@@ -1,0 +1,480 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .container-main .notify-data .notify-content ul li, .container-main .notify-data .notify-content ul li .notification, .container-main .notify-data .notify-content ul li p, .container-main .notify-data .notify-content ul li.overdue, .container-main .notify-data .notify-content ul li.overdue .notification, .container-main .notify-data .notify-content ul li.overdue p, .container-main .notify-data .notify-content .not-title, .workinbox-count {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block, .container-main .notify-data .notify-content ul li .notification p, .container-main .notify-data .notify-content ul li.overdue .notification p {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.container-main .notify-data {
+    border: 1px solid #ddd;
+    display: none;
+    width: 350px;
+}
+
+.container-main .notify {
+    position: relative;
+    top: 2px;
+}
+
+.container-main .notify-data {
+    position: absolute;
+    background: #fff;
+    border: 2px solid #888888;
+    right: 60px;
+    top: 64px;
+}
+
+.container-main .notify-data .notify-content {
+    max-height: 392px;
+    padding: 2px;
+    overflow: hidden;
+    overflow-y: auto;
+    display: block;
+    line-height: 1.4;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container-main .notify-data .notify-content ul {
+    padding: 0;
+}
+
+.container-main .notify-data .notify-content ul li {
+    padding: 2px 2px 5px 2px;
+    width: 100%;
+}
+
+.container-main .notify-data .notify-content ul li:hover {
+    background: #D9EAF8;
+}
+
+.container-main .notify-data .notify-content ul li .notification {
+    text-align: right;
+}
+
+.container-main .notify-data .notify-content ul li .notification p {
+    font-size: 11pt;
+    color: #494949;
+    opacity: .5;
+    float: right;
+    line-height: 40px;
+}
+
+.container-main .notify-data .notify-content ul li p {
+    font-size: 11pt;
+    color: #494949;
+    padding: 10px 0 0 0;
+    line-height: 15px;
+    margin: 0;
+    float: left;
+}
+
+.container-main .notify-data .notify-content ul li h4 {
+    margin: 0;
+    font-size: 14pt;
+    padding-top: 20px;
+    font-weight: 600;
+    color: #494949;
+}
+
+.container-main .notify-data .notify-content ul li a.see-all {
+    color: #E37222;
+    font-size: 12px;
+    float: right;
+    padding: 22px 4px 0 0;
+    line-height: 15px;
+}
+
+.container-main .notify-data .notify-content ul li a.see-all:hover {
+    text-decoration: underline;
+}
+
+.container-main .notify-data .notify-content ul li.overdue {
+    padding: 5px 2px;
+    background: #FFD9E0;
+}
+
+.container-main .notify-data .notify-content ul li.overdue .notification {
+    text-align: right;
+}
+
+.container-main .notify-data .notify-content ul li.overdue .notification p {
+    font-size: 11pt;
+    color: red;
+    opacity: .5;
+    float: right;
+    line-height: 40px;
+}
+
+.container-main .notify-data .notify-content ul li.overdue p {
+    font-size: 11pt;
+    color: #494949;
+    padding: 10px 0 0 0;
+    line-height: 15px;
+    margin: 0;
+    float: left;
+}
+
+.container-main .notify-data .notify-content ul li.head {
+    border-bottom: 2px solid #888888;
+}
+
+.container-main .notify-data .notify-content .not-title {
+    line-height: 1.5;
+    padding: 0px 5px;
+    background-color: #0073CF;
+    margin: 0;
+    color: #ffffff;
+    height: 24px;
+}
+
+.container-main .notify-data .notify-content .not-title .title {
+    color: #ffffff;
+    float: left;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.container-main .notify-data .notify-content .not-title .title:hover {
+    text-decoration: none;
+}
+
+.container-main .notify-data .notify-content .not-title a.notification-link {
+    color: #ffffff;
+    float: right;
+    font-size: 11px;
+    line-height: 28px;
+}
+
+.container-main .notify-data .notify-content .not-title a.notification-link:hover {
+    text-decoration: underline;
+}
+
+.container-main .notify-data .notify-content .not-title span {
+    line-height: 2.5;
+}
+
+.container-main .notify-data .notify-content ul li {
+    border-bottom: 1px solid #888888;
+}
+
+.container-main .notify-data:after, .container-main .notify-data:before {
+    bottom: 100%;
+    left: 90%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.container-main .notify-data:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 15px;
+    margin-left: -15px;
+}
+
+.container-main .notify-data:before {
+    border-color: rgba(242, 242, 242, 0);
+    border-bottom-color: #888888;
+    border-width: 18px;
+    margin-left: -18px;
+}
+
+.workinbox .no-proxy-value {
+    color: #B5B5B5 !important;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.workinbox .bg-blue {
+    background: #0039A6 none repeat scroll 0 0;
+}
+
+.workinbox .border {
+    border: 1px solid #B5B5B5;
+}
+
+.workinbox .nav {
+    border-bottom: 2px solid #888888;
+}
+
+.workinbox .nav .active {
+    border-bottom: 5px solid #0073CF;
+    color: #0073CF;
+    cursor: default;
+    height: 31px;
+}
+
+.workinbox .nav a {
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 0 !important;
+    padding: 0 15px !important;
+}
+
+.workinbox .nav a:focus {
+    background: #ffffff;
+}
+
+.workinbox .nav .badge {
+    background: #9E3039;
+    margin: 0 10px;
+    border-radius: 10px;
+    padding: 1px 7px;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.workinbox .panel-body {
+    margin-top: 10px;
+}
+
+.workinbox .tab-content .panel-default {
+    margin-top: 10px;
+}
+
+.workinbox .tab-content .nav li {
+    margin: 0 8px 0 0;
+    background: #B5B5B5;
+    border-bottom: 5px solid #B5B5B5;
+    text-align: center;
+    height: 31px;
+}
+
+.workinbox .tab-content .nav .active {
+    background: #0073CF;
+    border-bottom: 5px solid #0073CF;
+    cursor: default;
+}
+
+.workinbox .tab-content .nav .active a:hover, .workinbox .tab-content .nav .active a:focus {
+    color: #ffffff;
+}
+
+.workinbox .tab-content .nav .active .triangle {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: white none repeat scroll 0 0;
+    border-color: #B5B5B5;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    height: 15px;
+    left: 80px;
+    position: relative;
+    top: 8px;
+    transform: rotate(-45deg);
+    width: 15px;
+}
+
+.workinbox .tab-content .nav a {
+    line-height: 20px;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 600;
+    border-bottom: 0 !important;
+    padding: 0 15px !important;
+}
+
+.workinbox .tab-content .nav a:focus {
+    background: transparent;
+}
+
+.workinbox table thead {
+    border-bottom: 7px solid #0073CF;
+    border-top: 7px solid #0073CF;
+}
+
+.workinbox table thead tr th {
+    padding: 0 10px;
+    font-weight: 600;
+    font-size: 12px
+}
+.workinbox table > tbody > tr:nth-of-type(even){
+    background-color: #fff;
+    color: #4C4C4C;
+}
+.workinbox table > tbody > tr:nth-of-type(odd){
+    background-color: #f2f2f2;
+    color: #4C4C4C;
+}.workinbox table > tbody > tr:not(.history ):hover{
+     background-color: #D9EAF8;
+ }
+
+
+.workinbox table thead tr th [class^="icon-"], .workinbox table thead tr th [class*=" icon-"] {
+    font-size: 15px;
+    padding: 10px 9px 9px;
+    position: relative;
+    top: 2px;
+}
+
+.workinbox table thead tr th [class^="icon-"]:hover, .workinbox table thead tr th [class*=" icon-"]:hover {
+    background: #0039A6 none repeat scroll 0 0;
+}
+
+.workinbox table thead tr th .filt {
+    position: relative;
+}
+
+.workinbox table thead tr th .filt .ddlist {
+    left: -25px;
+    position: absolute;
+    width: 210px;
+}
+
+.workinbox table thead tr th .filt .ddlist ul {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #888;
+    color: #494949;
+    padding: 5px;
+}
+
+.workinbox table thead tr th .filt .ddlist ul li {
+    padding: 0 10px;
+}
+
+.workinbox table thead tr th .filt .ddlist ul li input[type=checkbox] {
+    height: 13px;
+    margin-right: 10px;
+}
+
+.workinbox table thead tr th .filt .ddlist ul li:hover {
+    background: #D9EAF8;
+}
+
+.workinbox table thead tr th .filt .ddlist .triangle {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: white none repeat scroll 0 0;
+    border-color: #888888;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    height: 10px;
+    left: 35px;
+    position: relative;
+    top: 5px;
+    transform: rotate(-45deg);
+    width: 10px;
+}
+
+.workinbox table tbody tr td {
+    line-height: 20px !important;
+    /*font-weight: 600;*/
+    vertical-align: middle;
+}
+
+.workinbox table tbody tr td:nth-last-child(1) {
+    padding: 5px 40px;
+}
+
+.workinbox table tbody tr label {
+    visibility: hidden;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.workinbox table tbody tr label:hover {
+    color: #0073CF;
+}
+
+.workinbox table tbody tr:hover label {
+    visibility: visible;
+}
+
+.workinbox-model-popup .modal-dialog {
+    margin-top: 140px;
+}
+
+.workinbox-model-popup .ngdialog-content, .workinbox-model-popup .modal-content {
+    width: 400px !important;
+    border-radius: 0 !important;
+}
+
+.workinbox-model-popup .ngdialog-content .modal-dialog, .workinbox-model-popup .modal-content .modal-dialog {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.workinbox-count {
+    position: absolute;
+    padding: 2px;
+    font-size: 10px;
+    background: #9E3039;
+    top: -10px;
+    right: -2px;
+    height: 19px;
+    line-height: 14px;
+    min-width: 17px;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.work-inbox-list-icons {
+    padding: 0 !important;
+    margin-top: 10px;
+}
+
+.work-inbox-list-icons:hover span {
+    color: #0039A6 !important;
+}
+
+.workinbox-new-popup {
+    margin: 10px 0 0 0 !important;
+}
+
+.workinbox-new-popup textarea {
+    width: 75%;
+    resize: none;
+    height: 70px;
+    margin-left: 10px;
+}
+
+.workinbox-new-popup .modal-header {
+    padding: 5px 10px;
+}
+
+.workinbox-new-popup .modal-header .close {
+    margin-top: 0;
+}
+
+.workinbox-new-popup .modal-body {
+    border-width: 10px 10px 0 10px !important;
+}
+
+.workinbox-new-popup .modal-footer {
+    border-top: 0px;
+}
+work-inbox-actions{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    min-width: 225px;
+}
+.ngdialog.ngdialog-theme-default.workInboxDetailsModal .ngdialog-content{
+    width: 880px;
+}
+/*# sourceMappingURL=workinbox.css.map */

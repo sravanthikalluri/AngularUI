@@ -1,0 +1,278 @@
+<div class="tn-manage-Employee tn-background pull-left">
+    <alert-view></alert-view>
+    <div class="col-sm-12 col-md-12 no-pad">
+        <h3 class="tn-page-heading" ng-bind="::translation.manageHeading"></h3>
+    </div>
+    <div class="col-sm-12 col-md-12 no-pad marg-bot-20 marg-top-20 alignVCenter" ng-show="isFullDataLoaded">
+        <div class="col-sm-1 col-md-1 no-pad text-center">
+            <div class="settings-manage-grid hand" id="showManageEmpColListId"
+                 ng-click="showManageEmpColList=!showManageEmpColList" ng-mouseleave="showManageEmpColList=!showManageEmpColList">
+                <i class="icon-icon_unified_cogwheel icon-settings"></i>
+                <i class="icon-icon_pagination_right_arrow icon-arrow"></i>
+                <div ng-show="showManageEmpColList"
+                     class="group-change-filter-list change-view">
+                    <div class="tn-profile-menu-caret"></div>
+                    <div ng-repeat="settinglist in settingData"
+                         class="list-sub-data">
+                        <div class="check">
+                            <input id="mgEmp_settinglistId{{$index}}" type="checkbox" name="name"
+                                   value="mgEmp_settinglistId{{$index}}"
+                                   ng-model="settinglist.show" ng-change="changeGrid(settinglist)"/>
+                            <label for="mgEmp_settinglistId{{$index}}">
+                                {{settinglist.title}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--   <button class="btn req-btn pull-right marg-right" id="newHireId" ng-hide="true"
+                       data-toggle="modal" data-target="#New Hire">{{ ::translation.addNewHire}}
+               </button>-->
+        </div>
+        <div class="col-sm-2 col-md-2">
+                <h5 class="proxima-nova-semibold"  ng-if="totalCount > 0">{{totalCount}} Total Employees</h5>
+        </div>
+        <div class="col-sm-3 col-md-3">
+            <div class="tn-toggle-container">
+                <div class="tn-toggle-labels">
+                    <h5 class="proxima-nova-semibold">{{::translation.showTerEmp}}</h5>
+                </div>
+                <label class="tn-toggle hand">
+                    <input type="checkbox"
+                           name="onoffswitchEmp" ng-model="onoffswitchEmp" class="onoffswitch-checkbox"
+                           id="myonoffswitchEmp" ng-click="toggleTerminatedEmployees();" ng-checked="false">
+                    <div class="tn-toggle-track">
+                        <div class="tn-toggle-handle"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-2">
+            <a href class="view-history-link no-marg" ng-click="clearAllFilters()">Clear All Filters</a>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="tn-search-box-container">
+                <span class="tn-search-box-search-icon icon-icon_unified_search"></span>
+                <input id="searchText" type="text" name="search" class="tn-search-box" ng-change="searchFilter();"
+                       placeholder="Search Employees..." ng-model="search" ng-model-options="{debounce:1000}">
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-12 no-pad">
+        <div class="manage-employee-table">
+            <table class="table tn-table">
+                <thead>
+                <tr>
+                    <th ng-style="{width: autoWidth+ '%'}" ng-if="settingData[0].show">
+                        <h6 id="mgAssign_sortType">
+                            <span ng-bind="::translation.manageEmpName"></span>
+                            <span ng-show="sortAsc"
+                                  class="icon-icon_filter_up sort-icon" ng-click="sortNames('desc')"></span>
+                            <span ng-show="!sortAsc"
+                                  class="icon-icon_filter_down sort-icon" ng-click="sortNames('asc')"></span>
+                        </h6>
+                    </th>
+                    <th ng-mouseleave="textboxhide()" ng-style="{width: autoWidth+ '%'}" ng-if="settingData[1].show">
+                        <h6>
+                            <span ng-bind="::translation.manageGroup.position"></span>
+                            <span class="grid-icon hand" id="mgEmp_searchPosition" ng-click="searchPos(1)">
+                            <i class="icon-icon_filter black"></i></span>
+                            <div ng-show="(searchbox == 1 && unfilteredTotal > 0) || employeesByPositionLoading" class="group-change-filter-list">
+                                <div ng-show="employeesByPositionLoading" class="text-center">Loading...</div>
+                                <div ng-show="!employeesByPositionLoading"
+                                     ng-repeat="position in positions | unique: 'name' |orderBy:'name' "
+                                     class="list-sub-data">
+                                    <div class="check">
+                                        <input type="checkbox" id="position_{{position.name}}"
+                                               name="name" value="{{position.name}}"
+                                               ng-model="position.isPositionChecked"
+                                               ng-click="filteredPositionData(position,position.isPositionChecked)"/>
+                                        <label for="position_{{position.name}}">
+                                            {{position.name === null ? "(Blanks)" : position.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </h6>
+                    </th>
+                    <th ng-mouseleave="textboxhide()" ng-style="{width: autoWidth+ '%'}" ng-if="settingData[2].show">
+                        <h6>
+                            <span ng-bind="::translation.manageStatus"></span>
+                        </h6>
+                    </th>
+                    <th ng-mouseleave="textboxhide()" ng-style="{width: autoWidth+ '%'}" ng-if="settingData[3].show">
+                        <h6>
+                            <span ng-bind="::translation.manageDept"></span>
+                            <span class="grid-icon hand" id="mgEmp_searchPosition" ng-click="searchPos(2)">
+                            <i class="icon-icon_filter black"></i></span>
+
+                            <div ng-show="(searchbox == 2 && unfilteredTotal > 0) || employeesByDeptLoading" class="group-change-filter-list">
+                                <div ng-show="employeesByDeptLoading" class="text-center">Loading...</div>
+                                <div ng-show="!employeesByDeptLoading"
+                                     ng-repeat="department in departments | unique: 'name'|orderBy:'name'"
+                                     class="list-sub-data">
+                                    <div class="check">
+                                        <input type="checkbox" id="department_{{department.name}}"
+                                               name="name" value="{{department.name}}"
+                                               ng-model="department.isDepartmentChecked"
+                                               ng-click="filteredDeptData(department,department.isDepartmentChecked)"/>
+                                        <label for="department_{{department.name}}">
+                                            {{department.name === null ? "(Blanks)" : department.name }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </h6>
+                    </th>
+                    <th ng-mouseleave="textboxhide()" ng-style="{width: autoWidth+ '%'}" ng-if="settingData[4].show">
+                        <h6>
+                            <span ng-bind="::translation.manageLoc"></span>
+                            <span class="grid-icon hand" id="mgEmp_searchPosition" ng-click="searchPos(3)">
+                            <i class="icon-icon_filter black"></i></span>
+
+                            <div ng-show="(searchbox == 3 && unfilteredTotal > 0) || employeesByLocLoading" class="group-change-filter-list">
+                                <div ng-show="employeesByLocLoading" class="text-center">Loading...</div>
+                                <div ng-show="!employeesByLocLoading"
+                                     ng-repeat="location in locations | unique: 'name'|orderBy:'name'"
+                                     class="list-sub-data">
+                                    <div class="check">
+                                        <input type="checkbox"
+                                               id="location_{{location.name}}"
+                                               name="name" value="{{location.name}}"
+                                               ng-model="location.isLocationChecked"
+                                               ng-click="filteredLocData(location,location.isLocationChecked)"/>
+                                        <label for="location_{{location.name}}">
+                                            {{location.name === null ? "(Blanks)" : location.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </h6>
+                    </th>
+                    <th ng-mouseleave="textboxhide()" ng-style="{width: autoWidth+ '%'}" ng-if="settingData[5].show">
+                        <h6>
+                            <span ng-bind="::translation.manageSerDate"></span>
+                        </h6>
+                    </th>
+                    <th ng-mouseleave="textboxhide()" ng-style="{width: autoWidth+ '%'}" ng-if="settingData[6].show">
+                        <h6>
+                            <span ng-bind="::translation.manageDirect"></span>
+                            <span class="pull-right hand" ng-hide="true" id="mgEmp_searchPosition"
+                                  ng-click="searchPos(4)">
+                            <i class="icon-icon_filter black"></i></span>
+
+                            <div ng-hide="true" ng-show="searchbox == 4 && allEmpData.length > 0"
+                                 class="group-change-filter-list">
+                                <div ng-show="!isFullDataLoaded" class="text-center">Loading...</div>
+                                <div ng-show="isFullDataLoaded"
+                                     ng-repeat="direct in totalEmployees | unique: 'supervisorName'| filter:search |orderBy:'supervisorName'"
+                                     class="list-sub-data">
+                                    <div class="check">
+                                        <input type="checkbox"
+                                               ng-init="directManger[direct.supervisorName]=direct.checked"
+                                               id="direct_{{direct.supervisorName}}"
+                                               name="name" value="{{direct.supervisorName}}"
+                                               ng-model="directManger[direct.supervisorName]"
+                                               ng-click="selectCheckBox($index,'direct')"/>
+                                        <label for="direct_{{direct.supervisorName}}">
+                                            {{direct.supervisorName === null ? "(Blanks)" :direct.supervisorName}}
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </h6>
+                    </th>
+                    <th ng-style="{width: autoWidth+ '%'}" ng-if="settingData[7].show">
+                        <h6>
+                            <span ng-bind="::translation.manageContacts"></span>
+                        </h6>
+                    </th>
+                </tr>
+                </thead>
+                <tbody ng-if="employeeData">
+                <tr class="hand" ng-class="onoffswitchEmp ? 'defalutPointer':'hand'" id="mgEmp_stopclick{{$index}}"
+                    ng-click="stopclick($event,allEmp.employeeId)"
+                    ng-repeat="allEmp in employeeData | startFrom:currentPage*pageSize | limitTo : 0 : pageSize">
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[0].show">
+                        <h6 class="main-text bold">{{allEmp.fullName}}</h6>
+                        <h6 class="sub-text bold">
+                            {{::translation.assignmanager.empId}}{{allEmp.employeeId}}</h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[1].show">
+                        <h6 class="main-text bold">{{allEmp.positionDesc}}</h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[2].show">
+                        <h6 ng-if="allEmp.employmentStatus=='A'" class="main-text bold">{{translation.manageActive}}</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='L'" class="main-text bold">{{translation.manageLeave}}</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='P'" class="main-text bold">
+                            {{translation.manageLeaveWithPay}}</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='S'" class="main-text bold">Suspended</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='U'" class="main-text bold">Terminated with Pay</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='R'" class="main-text bold">Retired</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='Q'" class="main-text bold">Retired with Pay</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='D'" class="main-text bold">Deceased</h6>
+                        <h6 ng-if="allEmp.employmentStatus=='T'" class="main-text bold">Terminated</h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[3].show">
+                        <h6 class="main-text bold">{{allEmp.departmentDesc}}</h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[4].show">
+                        <h6 class="main-text bold">{{allEmp.locationDesc}}</h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[5].show">
+                        <h6 class="main-text bold"
+                            ng-bind="(allEmp.serviceDate ? (formatDate(allEmp.serviceDate)): '-')"></h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[6].show">
+                        <h6 class="main-text bold"> {{allEmp.directManagerName}}</h6>
+                    </td>
+                    <td ng-style="{width: autoWidth+ '%'}" ng-if="settingData[7].show">
+                        <h6 class="contact-section">
+                            <span class="marg-right-15" ng-if="allEmp.workEmail != null">
+                                <a href="mailto:{{allEmp.workEmail}}" id="maildep{{index}}"
+                                   class="icon-icon_contact medium" ng-click="$event.stopPropagation();">
+                                </a>
+                              </span>
+                            <span class="marg-right-15" ng-if="allEmp.workEmail === null" id="mailLoc"
+                                  class="icon-icon_contact medium relative"
+                                  ng-mouseleave="textboxhide()" ng-click="mailFlyout($index);$event.stopPropagation();">
+                                            <div class="phone-flyout" ng-show="mailFlyoutData === $index ">
+                                                <p class="ng-binding"> {{ ::translation.manageNoEmailId}}</p>
+                                            </div>
+                              </span>
+                            <span id="mgEmp_phoneId{{$index}}" class="icon-icon_phone medium relative"
+                                  ng-if="allEmp.workPhone!='null'" ng-mouseleave="textboxhide()"
+                                  ng-click="flyout($index);$event.stopPropagation();">
+                                    <div class="phone-flyout" ng-show="showFlyout === $index ">
+                                        <p ng-if="allEmp.workPhone === undefined || allEmp.workPhone === null">
+                                            {{ ::translation.maangeNotAvab}} </p>
+                                        <p class="ng-binding"> {{ ::allEmp.workPhone}}</p>
+                                    </div>
+                              </span>
+                        </h6>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-12 no-pad" ng-show="isFullDataLoaded && totalCount > pageSize">
+        <div class="tn-pagination">
+            <div class="pages">
+                <button class="btn-prev"  ng-disabled="previousURL === ''" ng-click="pagePrevious();"  aria-label="Previous">
+                    <i class="icon-icon_pagination_left_arrow" aria-hidden="true"></i>
+                </button>
+                <span ng-if="isFullDataLoaded">
+                        {{currentPage+1}} of {{totalPages}}
+                    </span>
+                <button class="btn-next" ng-disabled="nextURL === ''" aria-label="Next"
+                        ng-click="pageNext();">
+                    <i class="icon-icon_pagination_right_arrow" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

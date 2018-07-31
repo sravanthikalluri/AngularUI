@@ -1,0 +1,66 @@
+<div id="tn-timeoff-history-widget"
+    layout="row"
+    layout-align="center center"
+    ng-if="showTimeOffChart(accruableLeaves)">
+
+    <!-- charts: start -->
+    <div ng-repeat="accrual in accruableLeaves" class="tn-widget-timeoff-chart">
+
+        <!-- title -->
+        <span class="tn-wiget-timeoff-label proxima-nova-bold tn-wiget-timeoff-chart-header">{{accrual.planTypeDesc}}</span>
+
+        <!-- donut chart -->
+        <radial-progress-chart
+            max="getRoundedTotalHours(accrual)"
+            amt="getRoundedHoursLeft(accrual)">
+        </radial-progress-chart>
+
+        <!-- legends -->
+        <table class="tn-widget-timeoff-legends table">
+            <tbody>
+                <tr>
+                    <td class="text-left">
+                        {{ translation.timeoff.accrued }}
+                    </td>
+                    <td class="text-right">
+                        {{ formatNumber(getAccrued(accrual)) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left">
+                        {{ translation.timeoff.taken }}
+                    </td>
+                    <td class="text-right">
+                        {{ formatNumber(getTaken(accrual)) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left">
+                        {{ translation.timeoff.hoursLeft }}
+                    </td>
+                    <td class="text-right">
+                        {{ formatNumber(getHoursLeft(accrual)) }}
+                    </td>
+                </tr>
+                <tr ng-if="showAccrualRate(accrual)">
+                    <td class="text-left">
+                        {{ translation.timeoff.accrualRate }}
+                    </td>
+                    <td class="text-right">
+                        {{ getAccrualRate(accrual) }}
+                    </td>
+                </tr>
+                <tr ng-if="showMaximumBalance(accrual)">
+                    <td class="text-left">
+                        {{ translation.timeoff.maximumBalance }}
+                    </td>
+                    <td class="text-right">
+                        {{ getMaximumBalance(accrual) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- charts: end -->
+</div>

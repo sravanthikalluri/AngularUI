@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+table.workinfo-employment-details tbody tr td {
+    padding: 2px 5px !important;
+}
+
+.no-marg-right {
+    margin-right: 0;
+}
+
+table.change-employee tbody tr {
+    display: table;
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    min-height: 70px;
+}
+
+table.change-employee tbody tr td {
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.employee-change-department {
+    margin-bottom: 5px;
+}
+
+.employment-change-request .ngdialog.ngdialog-theme-default.ngdialog-content, .employment-change-request .ngdialog-content, .employment-change-request .modal-dialog {
+    width: 900px !important;
+}
+
+.emp-popup label {
+    display: inline !important;
+}
+
+.emp-popup .label-data {
+    padding: 15px 5px !important;
+    background-color: #F2F2F2;
+}
+
+.bg-light-blur {
+    background: #D9EAF8 !important;
+}
+
+.myclose {
+    position: relative;
+    z-index: 99999;
+    width: 21px;
+}
+
+.table-total-row-adjustment {
+    padding: 2px !important;
+    background: #ffffff !important;
+}
+
+.end-payment-popup tbody tr td {
+    padding: 5px !important;
+}
+
+.end-payment-popup tbody tr td p {
+    margin: 0 !important;
+}
+
+.company-form-title {
+    font-size: 24px !important;
+    color: #0073CF;
+    font-weight: 600;
+    padding: 20px 0 5px !important;
+}
+
+.emp-money-open-close [class*=" icon-"] {
+    margin: 0;
+}
+.adj-changeEmployee .checkBox {
+  position: relative;
+  top: 1px;
+  float:left;
+}
+.adj-changeEmployee .description {
+  text-overflow: ellipsis;
+  width: 89%;
+  white-space: nowrap;
+  float: left;
+  overflow: hidden;
+  color:#000;
+}
+.changeWorkDescrp{
+    color: #494949;
+    font-size: 15px;
+}
+.radio-disable{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/*# sourceMappingURL=manage-employment-change.css.map */

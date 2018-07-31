@@ -1,0 +1,42 @@
+<!-- This is page is used to display manager forms details
+Author: Krishnam Raju
+ -->
+<div class="manage-forms" id="policiesId">
+    <alert-view></alert-view>
+    <div id="loadtabs">
+        <div class="row no-marg">
+            <div class="col-md-9 col-md-9 marg-top">
+                <h2 class="no-left-pad" ng-bind="::translation.manageGroup.forms"></h2>
+            </div>
+        </div>
+        <div class="col-md-12 no-pad">
+            <ul class="gridder adjGridder">
+                <li ng-repeat="form in managerFormData"
+                    ng-click="countMe(form.urlType)"
+                    class="gridder-list"
+                    data-griddercontent="#gridder-content-{{$index}}"
+                    id="list{{$index}}" ng-model="x1" on-last-repeat>
+
+                    <div class="title-block">
+                        <h4>{{::form.title}}</h4>
+                        <p class="form-content-text">{{::form.desc}}</p>
+
+                    </div>
+                </li>
+            </ul>
+
+            <div id="gridder-content-{{$index}}" class="gridder-content" ng-repeat="form in managerFormData">
+                <div class="col-md-12 medium">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-content-block no-marg">
+                            <div class="form-content-block no-marg" id="{{form.urlType}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--end of container-content-->

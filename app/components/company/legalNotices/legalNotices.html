@@ -1,0 +1,89 @@
+<!--
+Description: This is page to display legal notices information.
+Author:Raghavendra Kumar Bonthala
+ -->
+
+<div class="legal-notices-section">
+    <alert-view></alert-view>
+    <div class="col-md-12 col-sm-12 no-pad">
+        <div class="col-md-12 col-sm-12 top-marg-10 no-pad">
+            <h2 ng-bind="::translation.legalNocticeDevelopment"></h2>
+        </div>
+
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12 legal-block " ng-repeat="notice in legalData">
+            <div class="general-info">
+                <h4 class="general no-marg">{{::notice.header}}</h4>
+            </div>
+            <div class="col-md-12 col-sm-12 medium no-pad">
+                <div class="col-md-12 col-sm-12 no-pad">
+                    <div class="form-content-block">
+                        <div class="list">
+                            <ul class="no-pad no-top-pad" ng-repeat="data in notice.urls">
+                                <li><a target='_blank' class="inline"
+                                       href="{{data.url | contentUrl}}"><span class="icon-icon_pdf"></span> <span
+                                        class="pdf-text-col">{{::data.text}}</span></a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <accordion close-others="true" ng-repeat="data in notice.subHeader">
+                <accordion-group is-open="status1">
+                    <accordion-heading>
+                        <h5><b><span>{{::data.text}}</span></b></h5><i class="pull-right glyphicon"
+                                                                     ng-class="{'icon-icon_Disclosure_Collapse': status1, 'icon-icon_Disclosure_Expand':!status1}"></i>
+                    </accordion-heading>
+
+                    <accordion close-others="true" ng-repeat="x in data.subHeaders">
+                        <accordion-group is-open="status2">
+                            <accordion-heading>
+                                <h5><b><span>{{::x.text}}</span></b></h5><i class="pull-right glyphicon"
+                                                                          ng-class="{'icon-icon_Disclosure_Collapse': status2, 'icon-icon_Disclosure_Expand':!status2}"></i>
+                            </accordion-heading>
+
+                            <div class="" ng-repeat="y in x.content">
+                                <h2 ng-bind-html="y.heading"></h2>
+
+                                <p ng-bind-html="y.text"></p>
+                                <div class="panel-body panel-body-background">
+                                    <div class="form-content-block">
+                                        <div class="list">
+                                            <ul class="no-pad no-top-pad" ng-repeat="inner in y.subUrls">
+                                                <li><a target='_blank' class="inline"
+                                                       href="{{inner.url | contentUrl}}"><span
+                                                        class="icon-icon_pdf"></span> <span class="pdf-text-col">{{::inner.text}}</span></a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </accordion-group>
+                    </accordion>
+
+                    <div class="panel-body panel-body-background">
+                        <div class="form-content-block">
+                            <div class="list">
+                                <ul class="no-pad no-top-pad" ng-repeat="x in data.url">
+                                    <li><a target='_blank' class="inline"
+                                           href="{{x.url | contentUrl}}"><span class="icon-icon_pdf"></span> <span
+                                            class="medium pdf-text-col">{{::x.text}}</span></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+
+        </div>
+
+    </div>
+</div>

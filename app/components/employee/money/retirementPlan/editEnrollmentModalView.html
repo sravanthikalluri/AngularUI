@@ -1,0 +1,368 @@
+<alert-view></alert-view>
+<div class="tn-modal tn-modal-fullHeight tn-retirement-modal" id="editRetirementModal" tabindex="-1" role="dialog"
+     aria-labelledby="editRetirementModalLabel">
+
+    <form name="editEnrollForm" class="tn-form">
+        <div class="tn-modal-header">
+            <h4 class="profile-heading proxima-nova-semibold text-center"
+                id="exampleModalLabel" ng-bind="::translation.employee_money.editRetirementPlan"></h4>
+        </div>
+        <div class="tn-modal-boby col-sm-12">
+            <div class="col-sm-12 no-padding">
+                <p class="font-slate" ng-bind="::translation.employee_money.electionFor"></p>
+                <div class="flex-box space-between">
+                    <div class="tn-ellipsis-text">
+                        <p class="tn-ellipsis-text no-margin proxima-nova-semibold">{{employeeName}}</p>
+                        <p class="proxima-nova-semibold">(EMP ID: {{appUserId}})</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding">
+                <div class="col-sm-12 no-padding marg-top-15">
+                    <div>
+                        <label for="enrollEffectiveDate" ng-bind="::translation.employee_money.effDate"></label>
+                    </div>
+                    <div class="tn-calender-input"
+                         ng-controller="datePickerCtrl">
+                        <input type="text" class="form bg-white" name="effective_date"
+                               ng-change="editEffectiveDateChange()"
+                               placeholder={{effectiveDate}}
+                               id="enrollEffectiveDate" datepicker-popup="{{format}}"
+                               ng-model="effectiveDate" is-open="opened"  min-date="pastMonthValue" max-date="nextMonthValue"
+                               datepicker-options="dateOptions" close-text="Close"
+                               readonly>
+
+                        <Validation condition="isFormSubmited &&  validationPatterns.update.focus.effectiveDate"
+                                    msg="{{translation.effective_date+'\n '+translation.is_required}}"
+                                    class="error-msg-pos"></Validation>
+
+                        <span class="calendar-icon" ng-click="open($event)">
+                                <i class="icon-icon_calendar blue bold"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 no-padding">
+                    <p class="content-text no-margin" ng-show="editfutureMessage">*{{::translation.future_date}}</p>
+                    <p class="content-text no-margin" ng-show="editPastMessage">*{{::translation.past_date}}</p>
+                </div>
+                <div class="col-sm-12 no-padding">
+                    <div class="col-sm-8 no-padding">
+                        <label for="retirement_plan_plan_type" ng-bind="::translation.employee_money.plan"></label>
+                    </div>
+                    <div class="col-sm-8 no-padding">
+                        <select id="retirement_plan_plan_type" disabled
+                                ng-required="true"
+                                name="chooseAccountType"
+                                class="no-margin form-control"
+                                ng-model="$parent.selectedPlan"
+                                ng-options="plan.planDesc for plan in editEnrolledPlans track by plan.benefitPlan">
+                            <option value="" default>{{::translation.employee_money.selectPlan}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="tn-checkbox">
+                            <input type="checkbox" id="waveThis" ng-model="waivePlanchecked" ng-change="clearTextValues()">
+                            <label class="waveThis" for="waveThis" ng-bind="::translation.employee_money.waivePlan"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding tn-horizontal-divider"></div>
+            <ng-form name="innerForm">
+                <h4 class="col-sm-12 no-padding profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.employee_money.setupPayroll"
+                    ng-if="!selectedPlan.isEmployerOnly && $parent.selectedPlan"></h4>
+                <!--Pre-Tax Election section-->
+                <div class="col-sm-12 no-padding" ng-if="selectedPlan.beforeTaxPercent > 0 && !selectedPlan.isEmployerOnly">
+                        <p class="content-text" ng-bind="::translation.employee_money.withheld"></p>
+                        <p class="font-dark proxima-nova-semibold">{{::translation.employee_money.PreTaxElection}}</p>
+                        <div class="flex-box space-between">
+                            <div class="radio">
+                                <input type="radio"
+                                       ng-disabled="waivePlanchecked"
+                                       id="flatDollarRadioId"
+                                       ng-model="formData.prePayrollDeductions"
+                                       ng-click="formData.percentGrossDeductionPreTax = ''"
+                                       value="dollar"
+                                       name="edit_setup_payroll_deductions">
+                                <label for="flatDollarRadioId">{{::translation.employee_money.flatDollar}}</label>
+                            </div>
+                            <div class="flex-box">
+                                <p>{{::translation.employee_money.asof}}$</p>
+                                <input type="text" name="flatDollarAmt"
+                                       id="flatDollarInputId" class="form form-control input-small dollar-input"
+                                       only-decimals
+                                       ng-disabled="waivePlanchecked || formData.prePayrollDeductions === 'percentage'"
+                                       ng-model="formData.flatDeductionAmountPreTax"
+                                       autofocus="autofocus"
+                                       ng-class="{'error-warning': isFormSubmited && editEnrollForm.innerForm.editFlatDollar.$error.required}"
+                                       ng-required="(formData.prePayrollDeductions === 'dollar' && formData.percentGrossDeductionPostTax == '' && formData.flatDeductionAmountPostTax === '') ? true : false"
+                                       ng-focus="validationPatterns.update.focus.flatDollarRequiredText = editEnrollForm.innerForm.editFlatDollar.$error.required;validationPatterns.update.blur.flatDollarRequiredText = false;"
+                                       ng-blur="validationPatterns.update.blur.flatDollarRequiredText = editEnrollForm.innerForm.editFlatDollar.$error.required;validationPatterns.update.focus.flatDollarRequiredText = false;"
+                                       validation>
+
+                                <Validation
+                                    condition="isFormSubmited && validationPatterns.update.focus.flatDollarRequiredText "
+                                    msg="{{translation.is_required}}"></Validation>
+                                <p>{{::translation.employee_money.perCheckIssued}}</p>
+                            </div>
+                        </div>
+                        <div class="flex-box space-between">
+                            <div class="radio">
+                                <input type="radio"
+                                       ng-model="formData.prePayrollDeductions"
+                                       ng-disabled="waivePlanchecked"
+                                       id="grossWagesRadioId"
+                                       value="percentage"
+                                       ng-click="formData.flatDeductionAmountPreTax = ''"
+                                       name="edit_setup_payroll_deductions">
+                                <label for="grossWagesRadioId">
+                                    {{::translation.employee_money.percentageGrossWages}}</label>
+                            </div>
+                            <div class="flex-box">
+                                <p>{{::translation.employee_money.asof}}</p>
+                                <input type="text"
+                                       name="editGrossWages"
+                                       ng-disabled="waivePlanchecked || formData.prePayrollDeductions === 'dollar'"
+                                       id="grossWagesInputId"
+                                       class="form form-control input-small"
+                                       only-percentage-decimals
+                                       ng-model="formData.percentGrossDeductionPreTax"
+                                       autofocus="autofocus"
+                                       ng-class="{'error-warning': (isFormSubmited && editEnrollForm.innerForm.editGrossWages.$error.required) || grossWagesExceed }"
+                                       ng-change="grossWagesExceed = (formData.percentGrossDeductionPreTax > selectedPlan.beforeTaxPercent) ? true: false;validationPatterns.update.focus.grossWagesAmt = editEnrollForm.innerForm.editGrossWages.$error.required;validationPatterns.update.focus.grossWagesExceed = grossWagesExceed;"
+                                       ng-required="(formData.prePayrollDeductions === 'percentage' && formData.percentGrossDeductionPostTax == '' && formData.flatDeductionAmountPostTax == '') ? true : false"
+                                       ng-focus="validationPatterns.update.focus.grossWagesAmt = editEnrollForm.innerForm.editGrossWages.$error.required;validationPatterns.update.blur.grossWagesAmt = false;validationPatterns.update.focus.grossWagesExceed = grossWagesExceed;validationPatterns.update.blur.grossWagesExceed = false ;"
+                                       ng-blur="validationPatterns.update.blur.grossWagesAmt = editEnrollForm.innerForm.editGrossWages.$error.required;validationPatterns.update.focus.grossWagesAmt = false;validationPatterns.update.blur.grossWagesExceed = grossWagesExceed;validationPatterns.update.focus.grossWagesExceed = false;"
+                                >
+                                <Validation
+                                    condition="isFormSubmited && validationPatterns.update.focus.grossWagesAmt"
+                                    msg="{{translation.is_required}}"></Validation>
+                                <Validation condition=" validationPatterns.update.focus.grossWagesExceed "
+                                            msg="% cannot exceed {{selectedPlan.beforeTaxPercent}}%"></Validation>
+                                <p>% {{::translation.employee_money.perCheckIssued}}</p>
+                            </div>
+                        </div>
+                </div>
+                <!--Post-Tax Election section-->
+                <div class="col-sm-12 no-padding" ng-if="selectedPlan.afterTaxPercent > 0 && !selectedPlan.isEmployerOnly">
+                        <p class="font-dark proxima-nova-semibold">{{::translation.employee_money.PostTaxElection}}</p>
+                        <div class="flex-box space-between">
+                            <div class="radio">
+                                <input type="radio"
+                                       ng-disabled="waivePlanchecked"
+                                       id="postFlatDollarRadioId"
+                                       ng-model="formData.postPayrollDeductions"
+                                       ng-click="formData.percentGrossDeductionPostTax = ''"
+                                       value="dollar"
+                                       name="post_edit_setup_payroll_deductions">
+                                <label for="postFlatDollarRadioId"> {{::translation.employee_money.flatDollar}}</label>
+                            </div>
+                            <div class="flex-box">
+                                <p>{{::translation.employee_money.asof}}$</p>
+                                <input type="text"
+                                       name="postFlatDollarAmt"
+                                       id="postFlatDollarInputId"
+                                       class="form form-control input-small dollar-input"
+                                       only-decimals
+                                       ng-disabled="waivePlanchecked || formData.postPayrollDeductions === 'percentage'"
+                                       ng-model="formData.flatDeductionAmountPostTax"
+                                       autofocus="autofocus"
+                                       ng-class="{'error-warning': isFormSubmited && editEnrollForm.innerForm.postEditFlatDollar.$error.required}"
+                                       ng-required="(formData.postPayrollDeductions === 'dollar'&& formData.percentGrossDeductionPreTax == '' && formData.flatDeductionAmountPreTax == '') ? true : false"
+                                       ng-focus="validationPatterns.update.focus.postFlatDollarRequiredText = editEnrollForm.innerForm.postEditFlatDollar.$error.required;validationPatterns.update.blur.postFlatDollarRequiredText = false;"
+                                       ng-blur="validationPatterns.update.blur.postFlatDollarRequiredText = editEnrollForm.innerForm.postEditFlatDollar.$error.required;validationPatterns.update.focus.postFlatDollarRequiredText = false;"
+                                       validation>
+
+                                <Validation
+                                    condition="isFormSubmited && validationPatterns.update.focus.postFlatDollarRequiredText "
+                                    msg="{{translation.is_required}}"></Validation>
+                                <p>{{::translation.employee_money.perCheckIssued}}</p>
+                            </div>
+                        </div>
+                        <div class="flex-box space-between">
+                            <div class="radio">
+                                <input type="radio"
+                                       ng-model="formData.postPayrollDeductions"
+                                       ng-disabled="waivePlanchecked"
+                                       id="postGrossWagesRadioId"
+                                       value="percentage"
+                                       ng-click="formData.flatDeductionAmountPostTax = ''"
+                                       name="post_edit_setup_payroll_deductions">
+                                <label for="postGrossWagesRadioId">
+                                    {{::translation.employee_money.percentageGrossWages}}</label>
+                            </div>
+                            <div class="flex-box">
+                                <p>{{::translation.employee_money.asof}}</p>
+                                <input type="text"
+                                       name="postEditGrossWages"
+                                       ng-disabled="waivePlanchecked || formData.postPayrollDeductions === 'dollar'"
+                                       id="postGrossWagesInputId"
+                                       class="form form-control input-small"
+                                       only-percentage-decimals
+                                       ng-model="formData.percentGrossDeductionPostTax"
+                                       autofocus="autofocus"
+                                       ng-class="{'error-warning': (isFormSubmited && editEnrollForm.innerForm.postEditGrossWages.$error.required) || postGrossWagesExceed }"
+                                       ng-change="postGrossWagesExceed = (formData.percentGrossDeductionPostTax > selectedPlan.afterTaxPercent) ? true: false;validationPatterns.update.focus.postGrossWagesAmt = editEnrollForm.innerForm.postEditGrossWages.$error.required;validationPatterns.update.focus.postGrossWagesExceed = postGrossWagesExceed;"
+                                       ng-required="(formData.postPayrollDeductions === 'percentage' && formData.percentGrossDeductionPreTax == '' && formData.flatDeductionAmountPreTax == '') ? true : false"
+                                       ng-focus="validationPatterns.update.focus.postGrossWagesAmt = editEnrollForm.innerForm.postEditGrossWages.$error.required;validationPatterns.update.blur.postGrossWagesAmt = false;validationPatterns.update.focus.postGrossWagesExceed = postGrossWagesExceed;validationPatterns.update.blur.postGrossWagesExceed = false ;"
+                                       ng-blur="validationPatterns.update.blur.postGrossWagesAmt = editEnrollForm.innerForm.postEditGrossWages.$error.required;;validationPatterns.update.focus.postGrossWagesAmt = false;validationPatterns.update.blur.postGrossWagesExceed = postGrossWagesExceed;validationPatterns.update.focus.postGrossWagesExceed = false;"
+                                >
+                                <Validation
+                                    condition="isFormSubmited && validationPatterns.update.focus.postGrossWagesAmt"
+                                    msg="{{translation.is_required}}"></Validation>
+                                <Validation condition=" validationPatterns.update.focus.postGrossWagesExceed "
+                                            msg="% cannot exceed {{selectedPlan.afterTaxPercent}}%"></Validation>
+                                <p>% {{::translation.employee_money.perCheckIssued}}</p>
+                            </div>
+                        </div>
+                </div>
+                <div ng-if="(selectedPlan.beforeTaxPercent > 0 || selectedPlan.afterTaxPercent > 0) && !selectedPlan.isEmployerOnly" class="col-sm-12 no-padding tn-horizontal-divider"></div>
+                <!--Goal Amount section-->
+                <div class="col-sm-12 no-padding" ng-if="!selectedPlan.showContributions">
+                    <h4 class="profile-heading proxima-nova-semibold">
+                        {{::translation.employee_money.setupGoalAmount}} <span class="font-light-gray">{{::translation.employee_money.optional}}</span>
+                        <span class="tn-tooltip" tabindex="0" role="tooltip">
+                        <i class="icon-icon_UA blue"></i>
+                        <span class="tn-tooltip-content tooltip-top">
+                            <span ng-bind="::translation.employee_money.setupGoalAMountTooltip"></span>
+                        </span>
+                    </span>
+                    </h4>
+                    <div class="flex-box space-between margin-bottom">
+                        <div class="radio">
+                            <input type="radio"
+                                   ng-disabled="waivePlanchecked"
+                                   id="goalAmountRadioId"
+                                   ng-model="formData.contributions"
+                                   value="setGoal"
+                                   ng-click="formData.priorContributions = null"
+                                   name="setup_goal_amount">
+                            <label for="goalAmountRadioId">
+                                <p class="no-margin">
+                                    <span class="block">{{::translation.employee_money.setGoalAmount}}</span>
+                                    <span class="block font-light-gray h6 no-margin">{{::translation.employee_money.current_calenderyear}}</span>
+                                </p>
+                            </label>
+                        </div>
+                        <div class="flex-box isHaving-error">
+                            <h5>{{::translation.employee_money.asof}} $</h5>
+                            <input type="text"
+                                   id="goalAmountInputId"
+                                   ng-model="formData.goalAmount"
+                                   name="setGoalAmt"
+                                   only-decimals
+                                   ng-disabled="waivePlanchecked || formData.contributions === 'useLimit'"
+                                   autofocus="autofocus"
+                                   class="form form-control text-right input-small"
+                                   ng-class="{'error-warning': (isFormSubmited && editEnrollForm.innerForm.setGoalAmt.$error.required) ||  goalAmountIsMore }"
+                                   ng-change="goalAmountIsMore = priorAmountValid(formData.goalAmount,'setGoalAmt'); maxContribution(formData.goalAmount);
+                                            goalAmountRequired=enrollForm.innerForm.setGoalAmt.$error.required;"
+                                   ng-focus="validationPatterns.update.focus.setGoalAmtRequired = editEnrollForm.innerForm.setGoalAmt.$error.required;validationPatterns.update.blur.setGoalAmtRequired = false;validationPatterns.update.focus.setGoalAmtCondi = goalAmountIsZero;validationPatterns.update.blur.setGoalAmtCondi = false ;validationPatterns.update.focus.goalAmountIsMore = goalAmountIsMore;validationPatterns.update.blur.goalAmountIsMore = false ;"
+                                   ng-blur="validationPatterns.update.blur.setGoalAmtRequired = editEnrollForm.innerForm.setGoalAmt.$error.required;validationPatterns.update.focus.setGoalAmtRequired = false;validationPatterns.update.blur.setGoalAmtCondi = goalAmountIsZero;validationPatterns.update.focus.setGoalAmtCondi = false;validationPatterns.update.blur.goalAmountIsMore = goalAmountIsMore ;validationPatterns.update.focus.goalAmountIsMore = false ;"
+                                   ><!--ng-required="(formData.contributions === 'setGoal') ? true : false"-->
+
+                            <Validation condition="isFormSubmited && validationPatterns.update.focus.setGoalAmtRequired"
+                                        msg="{{translation.is_required}}"></Validation>
+                            <Validation condition="validationPatterns.update.focus.goalAmountIsMore"
+                                        msg="Goal amount should not exceed federal amount"></Validation>
+                            <Validation condition="validationPatterns.update.focus.setGoalAmtCondi"
+                                        msg="Goal amount should be greater than 0."></Validation>
+                        </div>
+                    </div>
+                    <div class="flex-box space-between items-end margin-top">
+                        <div class="radio no-margin">
+                            <input type="radio"
+                                   id="limitAmountRadioId"
+                                   ng-model="formData.contributions"
+                                   value="useLimit"
+                                   ng-click="formData.goalAmount = null"
+                                   ng-disabled="waivePlanchecked"
+                                   name="setup_goal_amount">
+                            <label for="limitAmountRadioId">
+                                <p class="no-margin">
+                                    <span class="block">{{::translation.employee_money.limitedAmountCal}}</span>
+                                    <span class="block font-light-gray h6 no-margin">(Federal Amount Maximum)</span>
+                                </p>
+                            </label>
+                        </div>
+                        <div>
+                            <div class="flex-box flex-start">
+                                 <span class="tn-tooltip margin-right" tabindex="0" role="tooltip">
+                                    <i class="icon-icon_UA blue"></i>
+                                    <span class="tn-tooltip-content tooltip-top">
+                                        <span ng-bind="::translation.employee_money.federalAmountTooltip"></span>
+                                    </span>
+                                 </span>
+                                <p class="content-text proxima-nova-semibold no-margin">
+                                    <span class="block" ng-bind="::translation.employee_money.federalAmount"></span>
+                                    <span class="block">{{fedAmount | currencyFilter}}</span>
+                                </p>
+                            </div>
+                            <div class="flex-box space-between">
+                                <p class="content-text no-margin">
+                                    <span class="tn-tooltip margin-right" tabindex="0" role="tooltip">
+                                        <i class="icon-icon_UA blue"></i>
+                                        <span class="tn-tooltip-content tooltip-top">
+                                            <span ng-bind="::translation.employee_money.priorContributionTooltip"></span>
+                                        </span>
+                                    </span>
+                                    <span ng-bind="::translation.employee_money.priorContribution"></span>
+                                </p>
+                                <div class="flex-box isHaving-error">
+                                    <span>- $</span>
+                                    <input type="text"
+                                           name="priorAmount"
+                                           only-decimals
+                                           id="limitAmountInputId"
+                                           class="form form-control input-small text-right no-margin"
+                                           ng-model="formData.priorContributions"
+                                           ng-class="{ 'error-warning' : validationPatterns.update.focus.priorAmountCondi || validationPatterns.update.blur.priorAmountCondi}"
+                                           ng-disabled="waivePlanchecked || formData.contributions === 'setGoal' "
+                                           ng-change="priorAmountIsMore = priorAmountValid(formData.priorContributions,'priorAmount');
+                                                maxContribution(formData.priorContributions);"
+                                           ng-focus="validationPatterns.update.focus.priorAmountCondi = priorAmountIsMore;validationPatterns.update.blur.priorAmountCondi = false;"
+                                           ng-blur="validationPatterns.update.blur.priorAmountCondi = priorAmountIsMore;validationPatterns.update.focus.priorAmountCondi = false;"
+                                           autofocus="autofocus">
+
+                                    <Validation condition="validationPatterns.update.focus.priorAmountCondi"
+                                                msg="{{translation.money.retirement_plan.validations.priorAmountCondi}}"
+                                                class="add-account-tooltip-adj"></Validation>
+                                </div>
+                            </div>
+                            <div class="tn-horizontal-divider no-margin"></div>
+                                <p class="content-text no-margin font-dark" ng-bind="::translation.employee_money.currentMaximumContribution"></p>
+                                <p class="content-text font-dark"
+                                > <!--ng-if="maximumContributions == '0.00' || maximumContributions == '0'"-->
+                                  {{maximumContributions | currencyFilter}}
+                                </p>
+                                <!--  <p class="content-text text-right"
+                                       ng-if="maximumContributions != '0.00' || maximumContributions != '0'">
+                                      {{maximumContributions | currencyFilter}}
+                                  </p>-->
+                        </div>
+                    </div>
+                </div>
+                <!--Agreement section-->
+                <div class="col-sm-12 no-padding">
+                    <h4 class="profile-heading proxima-nova-semibold">Agreement</h4>
+                    <p class="content-text" ng-bind="::translation.employee_money.penaltyPerjury"></p>
+                    <div class="tn-checkbox no-margin">
+                        <input type="checkbox" ng-model="isAgree" id="retirement_plan_agree">
+                        <label for="retirement_plan_agree" ng-bind="::translation.employee_money.agree"></label>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <button type="button" id="enrollId" class="tn-button tn-action-button" ng-disabled="!isAgree"
+                    ng-click="saveEditedData(editEnrollForm)" ng-bind="::translation.employee_money.save">
+            </button>
+            <button type="button" class="tn-button tn-cancel-button"
+                    ng-click="closePanel(editEnrollForm)" ng-bind="::translation.employee_money.cancel">
+            </button>
+        </div>
+
+    </form>
+</div>

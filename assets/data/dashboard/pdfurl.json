@@ -1,0 +1,41 @@
+{
+  "resource": [
+    {
+      "id": "SP_083",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    },
+    {
+      "id": "SP_143",
+      "url": "assets/pdf/benefits/TriNetWhatsChangingQ4_Client.pdf"
+    },
+    {
+      "id": "SP_084",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    },
+    {
+      "id": "SP_071",
+      "url": "assets/pdf/benefits/TriNetWhatsChangingQ4_Client.pdf"
+    },
+    {
+      "id": "SP_049",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    },
+    {
+      "id": "SP_064",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    },
+    {
+      "id": "SP_066",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    },
+    {
+      "id": "SP_113",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    },
+    {
+      "id": "SP_136",
+      "url": "assets/pdf/portal_visual_spec_allpages.pdf"
+    }
+  ],
+  "_statusCode": "200"
+}

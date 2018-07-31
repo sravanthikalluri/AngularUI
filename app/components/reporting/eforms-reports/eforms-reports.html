@@ -1,0 +1,169 @@
+<div id="printSection">
+<div class="tn-eForms-reports tn-background pull-left">
+    <alert-view></alert-view>
+    <div class="col-sm-12 heading">
+        <h2 class="bold no-marg">
+            <button class="breadcomb-button no-border no-bg no-marg">{{translation.reports.title}}</button>
+            <span aria-hidden="true" class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button no-border no-bg no-marg">{{translation.eformReports.title}}</button>
+        </h2>
+    </div>
+
+        <div class="col-sm-12">
+            <div class="reports-selection-state">
+                <a ng-click="toggleOptions(true)" ng-class="{'isActive':isSelectOption1} ">{{translation.reports.showByDocument}}</a>
+                <a ng-click="toggleOptions(false)" ng-class="{'isActive':!isSelectOption1} ">{{translation.reports.showByEmployee}}</a>
+                <div class="print-btn">
+                    <button class="tn-button tn-action-button no-marg" ng-click="printSection()">
+                        <i class="icon-icon_print_circle large icon-print" aria-hidden="true"></i>
+                        Print
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div ng-if="isSelectOption1 && eformsReportsData.length > 0"
+             class="col-sm-12 col-md-12 no-pad-imp card showByForms">
+            <table class="table tn-table tn-table-fixed">
+                <thead>
+                <tr>
+                    <th width="40%"
+                        ng-bind="::translation.eformReports.header.signature_forms"></th>
+                    <th width="30%" class="text-center no-marg"
+                        ng-bind="::translation.eformReports.header.accept"></th>
+                    <th width="30%" class="text-center no-marg"
+                        ng-bind="::translation.eformReports.header.not_completed"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="AllEmpReport{{$index}}" ng-repeat="report in eformsReportsData">
+                    <td width="40%">
+                        <h6 class="main-text bold" ng-bind="report.formDesc"></h6>
+                    </td>
+                    <td width="30%" align="center">
+                        <h6 class="main-text bold count" aria-hidden="true" ng-class="{'isSelected': (highlightType == 'accept' && (highlightIndex == $index))}">
+                            <a ng-class="report.accept.length > 0 ? 'haveCount hand' : 'default-cursor'"
+                               ng-click="viewDetails(report.accept,'accept' ,report.accept.length,$index)" ng-bind="report.accept.length"></a>
+                        </h6>
+                    </td>
+                    <td width="30%" align="center">
+                        <h6 class="main-text bold count" aria-hidden="true" ng-class="{'isSelected': (highlightType == 'notCompleted' && (highlightIndex == $index))}">
+                            <a ng-class="report.notCompleted.length > 0 ? 'haveCount hand' : 'default-cursor'"
+                               ng-click="viewDetails(report.notCompleted,'notCompleted',report.notCompleted.length,$index)"
+                               ng-bind="report.notCompleted.length"></a></h6>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <div ng-if="!isSelectOption1  && eformsReportsData.length > 0" class="col-sm-12 col-md-12 ">
+        <h4 class="bold formHeading">Forms:</h4>
+        <div class="formList" ng-repeat="report in eformsReportsData">
+            <h5 class="no-marg">
+                <span class="bold">Form {{$index + 1}}. </span><span class="padL10">{{report.formDesc}}</span>
+            </h5>
+        </div>
+    </div>
+    <div ng-if="!isSelectOption1  && eformsReportsData.length > 0" class="col-sm-12 col-md-12 no-pad-imp card">
+        <table class="table tn-table tn-table-fixed">
+            <thead>
+            <tr>
+                <th ng-style="{width: autoWidth+ '%'}" ng-click="orderByColumn('employeeName');" >
+                    <span class="relative">
+                        {{translation.eformReports.header.employeeName}}
+                        <i class="icon-icon_filter_down filter-icon" ng-if="empSort"></i>
+                        <i class="icon-icon_filter_up filter-icon" ng-if="!empSort"></i>
+                    </span>
+
+                </th>
+                <th ng-style="{width: autoWidth+ '%'}" ng-click="orderByColumn(data.testFilter);index = $index; iconDown = !iconDown" ng-repeat="data in eformsReportsData">
+                    <span class="relative">Form {{$index + 1}}
+                        <i ng-class="{'icon-icon_filter_down filter-icon': index === $index && iconDown  } "></i>
+                        <i ng-class="{'icon-icon_filter_up filter-icon':index === $index && !iconDown}"></i>
+                    </span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr ng-repeat="data in allData">
+                <td ng-style="{width: autoWidth+ '%'}" >{{data.employeeName}}</td>
+                <td ng-style="{width: autoWidth+ '%'}" class="text-capitalize no-marg"
+                    ng-repeat="report in eformsReportsData" >
+                    {{getFormStatus(data.employeeName,report.formId, data, report)}}
+                    <span>{{data[report.testFilter]}}</span>
+                </td>
+            </tr>-->
+
+            <tr ng-repeat="obj in finalEmpList">
+                <td ng-style="{width: autoWidth+ '%'}" >{{obj.employeeName}}</td>
+                <td ng-if="obj.forms" ng-style="{width: autoWidth+ '%'}" class="text-capitalize no-marg" ng-repeat="formName in obj.forms">
+                    {{formName.formStatus}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+	<no-records  error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+
+    <div class="byForms" ng-if="isSelectOption1 && viewDetailsData" class="col-sm-12 col-md-12">
+        <div class="col-sm-12">
+            <h4 class="bold"><span class="count marg-right-15 white-font isSelected">{{count}}</span>{{title}}</h4>
+        </div>
+        <div class="col-sm-12 col-md-12 no-pad-imp card ">
+            <table class="table tn-table tn-table-fixed">
+                <thead>
+                <tr>
+                    <th width="40%">
+                        Employee Name
+                    </th>
+                    <th width="30%" class="text-center no-marg">
+                        Date Accepted
+                    </th>
+                    <th width="30%" class="text-center no-marg">
+                        Time Accepted
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="view{{$index}}" ng-repeat="details in reportDetails| startFrom:currentPage*pageSize | limitTo : 0 : pageSize | orderBy:'employeeName'">
+                    <td width="40%">
+                        <h6 class="main-text bold">
+                            {{details.employeeName}}
+                        </h6>
+                    </td>
+                    <td width="30%" align="center">
+                        <h6 class="main-text" ng-bind="details.timpStamp != null ? details.timpStamp.split(' ')[0] : '' | date:'MM/dd/yyyy'"></h6>
+                    </td>
+                    <td width="30%" align="center">
+                        <h6 class="main-text" aria-hidden="true" ng-bind="details.timpStamp != null ? details.timpStamp.split(' ')[1] : '' | date:'HH:mm:ss'"></h6>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12">
+            <div class="tn-pagination">
+                <div class="pages">
+                    <button class="btn-prev" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"  aria-label="Previous">
+                        <i class="icon-icon_pagination_left_arrow" aria-hidden="true"></i>
+                    </button>
+                    <span>
+                       {{currentPage+1}} of {{numberOfPages()}}
+                    </span>
+                    <button class="btn-next" ng-disabled="currentPage >= reportDetails.length/pageSize - 1" aria-label="Next" ng-click="currentPage=currentPage+1">
+                        <i class="icon-icon_pagination_right_arrow" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="goTo tn-form">
+                  <select ng-model="selectedPage" ng-options="val for val in pagesList" ng-change="currentPage = selectedPage == null ? 0 : selectedPage-1">
+                        <option value="" selected class="bold">Go to Page</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+        </div>
+    </div>
+</div>
+</div>

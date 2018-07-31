@@ -1,0 +1,87 @@
+<!--
+Description: This page is used to display the benefits forms tile(s) information
+Author: Krishnam Raju Kollu
+-->
+<div class="manage-forms " id="policiesId">
+    <alert-view></alert-view>
+    <div class="clearfix"></div>
+    <div class="ma">
+        <div id="loadtabs" ng-repeat="form in benefitFormData">
+
+            <div class="col-md-9 col-md-9 general-info no-pad marg-bot-20">
+                <h2 class="no-left-pad trient-benefits-head">{{::form.pdfs.text}}</h2>
+            </div>
+
+            <div class=" benefit-policies-general" id="policiesIdforms">
+                <div class="row row-top-margin row-pad">
+                    <div ng-repeat="benefitsPoliciesDataObject in form.pdfs.sub" ng-click="selectTab($index+1)">
+                        <!-- tile template -->
+                        <div id="{{benefitsPoliciesDataObject.title |  lowercase}}ID"
+                             class="col-md-4 column-pad tile company-policies-selected"
+                             ng-click="selectTab($event,'{{benefitsPoliciesDataObject.id}}')"
+                             ng-if="benefitsPoliciesDataObject.id !== '3'">
+                            <a href="{{benefitsPoliciesDataObject.url | contentUrl}}" target="_blank"
+                               ng-if="benefitsPoliciesDataObject.label !== 'Massachusetts Health Insurance Responsibility Disclosure (HIRD) form'">
+                                <div class="title-block col-md-12 ben-form-tiles"
+                                     id="{{benefitsPoliciesDataObject.id}}">
+                                    <h4>{{::benefitsPoliciesDataObject.label}}</h4>
+                                    <p class="content-text">{{::benefitsPoliciesDataObject.description}}</p>
+                                </div>
+                            </a>
+                        <span class="tooltip-right  visible"
+                              ng-if="benefitsPoliciesDataObject.label === 'Massachusetts Health Insurance Responsibility Disclosure (HIRD) form'">
+                            <a href="{{benefitsPoliciesDataObject.url | contentUrl}}" target="_blank">
+                                <div class="title-block col-md-12 ben-form-tiles">
+                                    <h4>{{::benefitsPoliciesDataObject.label}}</h4>
+                                    <p class="content-text">{{::benefitsPoliciesDataObject.description}}</p>
+                                </div>
+                            </a>
+                            <div class="tooltip-right-content benform-masstile medium">
+                                <h4>{{::benefitsPoliciesDataObject.label}}</h4>
+                                <p>{{::benefitsPoliciesDataObject.description}}</p>
+                                <div class="arrow-down"></div>
+                                <div class="arrow-down-bg"></div>
+                            </div>
+                                </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div ng-repeat="obj in benefitFormData[1].pdfs.carrier" ng-if="benefitFormData[1].title =='Benefit Carriers'">
+
+            <div id="{{benefitsPoliciesDataObject.label |  lowercase}}other1"
+                 class="col-md-12 column-pad tile company-policies-selected"
+                 ng-click="selectTab($event,'{{benefitsPoliciesDataObject.id}}')">
+                <div class="col-md-12 no-pad-imp">
+                    <accordion class="panel-group-acc" close-other="true">
+                        <accordion-group is-open="isopen">
+                            <accordion-heading>
+                                <span class="medium" id="{{obj.label}}">{{obj.label}} ({{obj.count}})</span><i
+                                    class="pull-right icon-icon_Disclosure_Collapse no-marg"
+                                    ng-class="{'icon-icon_Disclosure_Expand': !isopen, 'icon-icon_Disclosure_Collapse': isopen}"></i>
+                            </accordion-heading>
+                            <div ng-repeat="acc in obj.sub" class="">
+                                <div id="{{acc.label |  lowercase}}other"
+                                     class="col-md-4 marg-bot-5 column-pad tile company-policies-selected"
+                                     ng-click="selectTab($event,'{{inner}}{{$index}}')">
+                                    <div class="title-block" id="sidebar{{acc}}{{$index}}other">
+                                        <a ng-href="{{acc.url | contentUrl}}" target="_blank">
+                                            <h4>{{::acc.label}}</h4>
+                                            <p class="content-text">{{::acc.description}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+            </div>
+        </div>
+
+        <no-records></no-records>
+    </div>
+</div>

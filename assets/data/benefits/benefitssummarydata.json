@@ -1,0 +1,24 @@
+{
+  "errorCode": null,
+  "resource": {
+    "benefitProgram": [
+      {
+        "benefitProgram": "26M",
+        "description": "Your Company Name Execs"
+      },
+      {
+        "benefitProgram": "312",
+        "description": "Your Company Name Staff"
+      }
+    ],
+    "payFrequency": [
+      "M",
+      "S"
+    ],
+    "employeeBenefitProgram": "312",
+    "employeePayFrequency": "S",
+    "customIndicator": true
+  },
+  "statusMessage": "Success",
+  "statusCode": "200"
+}

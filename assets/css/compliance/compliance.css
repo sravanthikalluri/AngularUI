@@ -1,0 +1,97 @@
+@import '../global';
+
+.tn-margin-15{
+    margin-left: 15px
+}
+.tn-compliance-heading{
+    font-size: 18px;
+    padding: 24px 16px 0px 16px;
+}
+.tn-compliance-content{
+    font-size: 16px;
+}
+.tn-compliance-button{
+    min-width: 250px !important;
+    color:  #ffffff !important;
+}
+.tn-compliance-card{
+    margin-bottom: 20px;
+}
+.tn-compliance-secondary-button{
+    background-color: #C6CDDD;;
+    border: 2px solid #cad3db;
+    box-shadow: none;
+    color:  #ffffff !important;
+    font-style: inherit;
+    height: 50px;
+    line-height: 47px;
+    margin-bottom: 20px;
+    text-transform: none !important;
+    margin-bottom: 20px !important;
+}
+.tn-compliance-secondary-button:hover{
+    border: 2px solid #92a0ac;
+}
+.tn-compliance-subheading{
+    color: #cad3db;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 14px;
+}
+
+.ng-modal-checkbox{
+    height: 14px;
+    width: 14px;
+    background-color: #FFFFFF;   
+}
+
+.ng-modal-third-party{
+    background-color: #FFFFFF !important;
+}
+
+.ng-modal-label{
+    margin-bottom: 0px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.ng-modal-button-container{
+    text-align: right;
+}
+
+.ng-modal-secondary-button{
+   height: 38px;
+   width: 115px;
+   border-radius: 4px;
+   background-color: #E3E9ED;
+   color: #30343C;
+   font-size: 14px;
+   text-align: center; 
+}
+
+.ng-modal-primary-button{
+    height: 38px;
+    width: 139px;
+    border-radius: 4px;
+    background: linear-gradient(18.96deg, #FF3565 0%, #F37C28 100%);
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: center;
+}
+
+.ng-modal-content{
+    height: 50px;
+    width: 274px;
+    color: #30343C;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center; 
+    margin-left: 150px;   
+    margin-top: 42px;
+    margin-bottom: 42px;
+}
+
+.ng-modal-footer{
+    margin-top: 32px;
+    margin-left: 16px;
+}

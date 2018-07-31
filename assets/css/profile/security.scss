@@ -1,0 +1,346 @@
+@import '../global';
+
+.security {
+  .security-details {
+    @extend .block;
+    background: $White;
+    padding: $padding*2;
+
+    label {
+      font-weight: 400 !important;
+      font-size: 14px;
+      width: 150px;
+    }
+    a {
+      color: $White;
+    }
+    p {
+      font-size: 14px;
+      padding-top: 3px;
+
+      span {
+        font-size: 14px;
+        float: left;
+      }
+    }
+    .custom-id {
+      padding-top: 6px;
+    }
+    a.action {
+      padding: 0 $padding*3 !important;
+    }
+
+    h3.default-text {
+      font-size: 36px;
+      color: $Lighter-gray;
+      font-weight: 400;
+    }
+
+    label.customer-id {
+      width: 125px !important;
+    }
+
+    .instructions {
+      @extend .block;
+
+      h3 {
+        font-size: 12px;
+        color: $Trinet-gray;
+      }
+
+      ul {
+        list-style: disc;
+        padding-left: $padding*2;
+        margin: 0;
+
+        li {
+          font-size: 22px;
+          color: $Trinet-gray;
+          list-style: disc;
+          line-height: 18px;
+
+          span {
+            font-size: 12px;
+            position: relative;
+            top: -2px;
+          }
+        }
+      }
+
+      .options-check {
+        padding: 0;
+        ul {
+          list-style: none;
+          padding-left: $padding*2;
+          margin: 0;
+          list-style-position: inside;
+          padding-left: 45px;
+
+          li {
+            font-size: 22px;
+            color: $Trinet-gray;
+            list-style: inherit !important;
+            line-height: 18px;
+            float: left;
+            width: 100%;
+          }
+          li.check {
+            position: relative;
+            left: -21px;
+
+            &:before {
+              content: "\a122";
+              font-family: 'icomoon';
+              font-size: 16px;
+              padding-right: 13px;
+              color: $Trinet-green !important;
+            }
+
+            span {
+              font-size: 12px;
+              position: relative;
+              top: -2px;
+            }
+          }
+
+          li.uncheck {
+            position: relative;
+            left: -21px;
+
+            &:before {
+              content: "\a120";
+              font-family: 'icomoon';
+              font-size: 14px;
+              padding-right: 11px;
+              color: $Trinet-dark-red !important;
+            }
+
+            span {
+              font-size: 12px;
+              position: relative;
+              top: -2px;
+            }
+          }
+        }
+      }
+    }
+
+    .green-check {
+      color: $Trinet-green !important;
+    }
+    .top-4 {
+      position: relative;
+      top: 4px;
+    }
+  }
+
+}
+
+.proxy {
+  @extend .block;
+
+  .proxy-details {
+    @extend .block;
+    padding: $padding+5;
+    background: $White;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: $margin+5;
+
+    h3 {
+      font-size: 16px;
+      font-weight: bold;
+      color: $Trinet-gray;
+      padding: 0;
+    }
+    small {
+      color: $Trinet-gray;
+    }
+    ul {
+      padding: $padding 0;
+      color: $Trinet-gray;
+
+      li {
+        @extend .in-block;
+        padding-right: $padding;
+        position: relative;
+        top: 2px;
+        color: $Trinet-dark-gray;
+
+        [class^="icon-"], [class*=" icon-"] {
+          font-size: 16px;
+          float: left;
+          padding-right: $padding/2;
+        }
+      }
+    }
+
+    .date {
+      color: $Trinet-dark-gray;
+    }
+
+  }
+
+  a {
+    padding: 0 0 0 $padding !important;
+  }
+}
+
+.dark-grey {
+  color: $Trinet-dark-gray !important;
+}
+
+.marg-top-20 {
+  margin-bottom: $margin*2;
+}
+
+.marg-top-5 {
+  margin-top: $margin/2;
+}
+
+a.new-proxey {
+  @extend .block;
+  margin-top: $margin*2.5;
+}
+
+#tab6 {
+  color: $Black;
+  h4 {
+    border-bottom: 1px solid $Black
+  }
+  .icon-icon_checkmark_emptybox {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+  }
+  table {
+    tr {
+      display: table;
+
+      td {
+        vertical-align: middle;
+      }
+      background-color: $Background;
+      margin-bottom: 10px;
+      min-height: 70px;
+      .hr-det {
+        font-size: 12px;
+      }
+      .hr-lht {
+      }
+
+    }
+  }
+
+}
+
+.top-1 {
+  position: relative;
+  top: 1px;
+}
+
+.top-3 {
+  position: relative;
+  top: 3px;
+}
+
+.security-history-timeline {
+  @extend .block;
+  top: -15px !important;
+  position: relative;
+  padding-top: 15px;
+
+  .message-item {
+    max-width: 95% !important;
+    min-width: 380px !important;
+  }
+  .action.pull-left {
+    margin-bottom: 15px;
+  }
+
+}
+#autocomplete {
+  ul.dropdown-menu {
+    border: 1px solid #888;
+    background: #fff;
+    z-index: 999;
+    text-align: left;
+    padding: 0px;
+    margin: 0;
+    min-height: 20px;
+    max-height: 100px;
+    overflow-y: auto;
+    li {
+      position: relative;
+      margin: 0 !important;
+      padding: 6px 10px;
+      cursor: pointer;
+      min-height: 0;
+      list-style: none;
+      &:hover {
+        background: #D9EAF8 !important;
+        margin: 0 !important;
+        color: #494949;
+      }
+      &:focus {
+        background: #D9EAF8 !important;
+        margin: 0 !important;
+        color: #494949;
+      }
+      a {
+        font-weight: 600;
+        min-width: 150px;
+        text-align: left;
+        margin-right: 15px;
+        color: #494949;
+        background: transparent;
+      }
+      span.userId {
+        font-weight: normal;
+        min-width: 150px;
+        text-align: center;
+        color: #494949;
+      }
+    }
+    li.active {
+      background: #D9EAF8 !important;
+      margin: 0 !important;
+      color: #494949;
+      a {
+        &:hover {
+          background: #D9EAF8 !important;
+          margin: 0 !important;
+          color: #494949;
+        }
+        &:focus {
+          background: #D9EAF8 !important;
+          margin: 0 !important;
+          color: #494949;
+        }
+        font-weight: 600;
+        min-width: 150px;
+        text-align: left;
+        margin-right: 15px;
+        color: #494949;
+        background: transparent;
+      }
+    }
+  }
+  .dropdown-menu {
+    >li {
+      >a {
+        &:hover {
+          background: #D9EAF8 !important;
+          margin: 0 !important;
+          color: #494949;
+        }
+        &:focus {
+          background: #D9EAF8 !important;
+          margin: 0 !important;
+          color: #494949;
+        }
+      }
+    }
+  }
+}
+

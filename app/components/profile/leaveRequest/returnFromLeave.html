@@ -1,0 +1,177 @@
+<div class="tn-return-from-leave tn-background pull-left" ng-controller="returnFromLeaveCtrl">
+    <div class="col-sm-12 no-pad">
+        <h3 class="tn-page-heading">
+            <a ng-href="#/manageEmployee" ng-if="notMeTab" ng-bind="::translation.manageHeading"></a>
+            <i aria-hidden="true" class="icon-icon_forward"></i>
+            <a href title="{{empName}}" ng-click="toggleExtendLeaveRequest()" ng-class="empName.length > 20 ? 'isEllipsis' : ''">{{empName}}</a>
+            <i aria-hidden="true" class="icon-icon_forward"></i>
+            <a href="" ng-bind="::translation.return_leaves.return_leave_request">Create Extended Leave Request</a>
+        </h3>
+    </div>
+    <div class="col-sm-12 no-pad">
+        <div class="col-sm-9 no-pad">
+            <md-card class="no-marg">
+                <md-card-content>
+                    <form name="returnLeaveForm" class="tn-form" id="returnLeaveForm" novalidate>
+                        <div class="tn-read-more-section">
+                            <p>
+                                <span ng-bind="::translation.return_leaves.desc1"></span>
+                                <span>
+                                <a href="" id="showLearn" class="blue bold marg-left-5 view-more" ng-show="showLearn"
+                                   ng-click="showLearnMore()">
+                                    {{::translation.leaveRequest.learnMore}}
+                                </a>
+                            </span>
+                            </p>
+                            <div ng-show="IsVisible">
+                                <strong ng-bind="::translation.return_leaves.ret_heading1"></strong>
+                                <p><span ng-bind="::translation.return_leaves.desc2"></span></p>
+                                <p class="trinet-grey"><span ng-bind="::translation.return_leaves.desc3"></span></p>
+                                <strong><span ng-bind="::translation.return_leaves.ret_heading2"></span></strong>
+                                <p><span ng-bind="::translation.return_leaves.desc4"></span></p>
+                                <p><span ng-bind="::translation.return_leaves.desc5"></span></p>
+                                <strong><span ng-bind="::translation.return_leaves.ret_heading3"></span></strong>
+                                <p><span ng-bind="::translation.return_leaves.desc6"></span></p>
+
+                                <a href="" id="hideMore" class="blue bold marg-left-5 view-more"
+                                   ng-click="showLearnMore()">
+                                    <span ng-bind="::translation.close"></span>
+                                    <span class="icon-icon_report_up"></span>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="tn-employee-detials">
+                            <h4 class="proxima-nova-semibold"
+                                ng-bind="::translation.return_leaves.request_from_leave"></h4>
+                            <p ng-bind="empName"></p>
+                            <p>
+                                <span class="emp-align" ng-bind="::translation.emp_id"></span>&nbsp;
+                                <span ng-bind="appUserId"></span>
+                            </p>
+
+                        </div>
+                        <div class="tn-horizontal-divider"></div>
+                        <h4 class="proxima-nova-semibold"
+                            ng-bind="::translation.return_leaves.dates_status"></h4>
+                        <div class="col-sm-12 no-pad">
+                            <div class="col-sm-4 no-pad" ng-controller='datePickerCtrl'>
+                                <div class="required-field">
+                                    <label for="returnToWorkDate"
+                                           ng-bind="::translation.return_leaves.return_to_work_date"></label>
+                                </div>
+                                <div class="tn-calender-input">
+                                    <input type="text" class="form-control bg-white"
+                                           name="returnToWorkDate" id="returnToWorkDate"
+                                           datepicker-popup="{{format}}"
+                                           readonly="readonly"
+                                           placeholder="MM/DD/YYYY"
+                                           ng-model="returnLeave.returnToWorkDate" is-open="opened"
+                                           ng-change="dateChanged(currentDate);"
+                                           close-text="Close"
+                                           required
+                                           ng-focus="onFocus('returnFromLeave', validationPatterns.returnFromLeave.focus); validationPatterns.returnFromLeave.focus.returnLeaveFormreturndateRequired=returnLeaveForm.returndate.$error.required; validationPatterns.returnFromLeave.blur.returnLeaveFormreturndateRequired = false;
+                                                            validationPatterns.returnFromLeave.focus.returnFromLeaveDate = checkDate(returnLeave.returnToWorkDate); validationPatterns.returnFromLeave.blur.returnFromLeaveDate = false;"
+                                           ng-blur="validationPatterns.returnFromLeave.blur.returnLeaveFormreturndateRequired=returnLeaveForm.returndate.$error.required; validationPatterns.returnFromLeave.focus.returnLeaveFormreturndateRequired = false;
+                                                            validationPatterns.returnFromLeave.blur.returnFromLeaveDate = checkDate(returnLeave.returnToWorkDate); validationPatterns.returnFromLeave.focus.returnFromLeaveDate = false;"
+                                    />
+                                    <span class="calendar-icon" ng-click="open($event)">
+                                                <i class="icon-icon_calendar blue bold"></i>
+                                            </span>
+                                    <Validation
+                                        condition="validationPatterns.returnFromLeave.focus.returnLeaveFormreturndateRequired"
+                                        msg="{{translation.required_field}}"></Validation>
+                                    <Validation
+                                        condition="validationPatterns.returnFromLeave.focus.returnFromLeaveDate"
+                                        msg="Date Cannot be in future"></Validation>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 no-pad">
+                            <div class="required-field">
+                                <label ng-bind="::translation.return_leaves.status_upon_work"></label>
+                            </div>
+                            <div class="radio">
+                                <input id="full_time" type="radio" ng-model="returnLeave.employeeType"
+                                       ng-value="'F'" required/>
+                                <label for="full_time">{{::translation.full_time}}</label>
+                                <input id="part_time" type="radio" ng-model="returnLeave.employeeType"
+                                       ng-value="'P'" required/>
+                                <label for="part_time">{{::translation.part_time}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div>
+                                <label ng-bind="::translation.return_leaves.status_changed_return">
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <input id="regular" type="radio" ng-model="returnLeave.regularTemporary"
+                                       ng-value="'N'" required/>
+                                <label for="regular">{{::translation.regular}}</label>
+                                <input id="temporary" type="radio" required
+                                       ng-model="returnLeave.regularTemporary" ng-value="'Y'"/>
+                                <label for="temporary">{{::translation.temporary}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div>
+                                <label>
+                                    <span ng-bind="::translation.return_leaves.medical_release"></span>
+                                    <i id="helptoggle" class=" icon-icon_UA question-mark no-pad"
+                                       data-toggle="tooltip"
+                                       tooltip="{{translation.return_leaves.medical_release}}"
+                                       tooltip-placement="right"></i>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <input id="medicalRelease_yes" type="radio" required
+                                       ng-model="returnLeave.medicalRelease" ng-value="'Y'">
+                                <label for="medicalRelease_yes">{{::translation.yes}}</label>
+                                <input id="medicalRelease_no" type="radio" required
+                                       ng-model="returnLeave.medicalRelease" ng-value="'N'">
+                                <label for="medicalRelease_no">{{::translation.no}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div>
+                                <label ng-bind="::translation.return_leaves.has_acct_service">
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <input id="statusReturntoWork_yes" type="radio" required
+                                       ng-model="returnLeave.returnToWorkStatus" ng-value="'Y'">
+                                <label for="statusReturntoWork_yes">{{::translation.yes}}</label>
+                                <input id="statusReturntoWork_no" type="radio" required
+                                       ng-model="returnLeave.returnToWorkStatus" ng-value="'N'">
+                                <label for="statusReturntoWork_no">{{::translation.no}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 no-pad">
+                            <div class="tn-horizontal-divider"></div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <button type="submit" class="tn-button tn-action-button"
+                                    ng-click="submitReturnRequest()"
+                                    ng-disabled="!(returnLeaveForm.$valid && !checkDate(returnLeave.returnToWorkDate))"
+                                    ng-class="{'button-disable': !(returnLeaveForm.$valid && !checkDate(returnLeave.returnToWorkDate)), 'trinet-primary-action-btn': (returnLeaveForm.$valid && !checkDate(returnLeave.returnToWorkDate))}"
+                                    id="submitReturnRequest"
+                                    ng-bind="::translation.submit"></button>
+                            <button type="button" class="tn-button tn-cancel-button"
+                                    id="toggleReturnFromLeaveCancel"
+                                    ng-click="cancel();"
+                                    ng-bind="::translation.cancel"></button>
+
+
+                        </div>
+                    </form>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div class="col-sm-3 secondary-section">
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<alert-view></alert-view>
+
+<!-- Page Title -->
+<div  layout="row">
+    <div flex="10"></div>
+    <div flex="90">
+        <header>
+            <h2 class="page-title" ng-bind="translation.dashboard.heading"></h2>
+        </header>
+    </div>
+</div>
+<!-- Widget List -->
+<div layout="row" layout-xs="column">
+    <div flex="10"></div>
+    <div flex="80" >
+        <div layout="column">
+            <div flex>
+                <md-card ng-if="showTimeOff && hasTimeOff">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold">Time Off</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <time-off-widget></time-off-widget>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center">
+                        <md-button class="md-accent md-raised md-hue-3 tn-widget-buttons" ng-click="requestTimeOff()" >  {{translation.dashboard.reqTimeOff}} </md-button>
+                    </md-card-actions>
+                </md-card>
+
+                <md-card ng-if="showPayroll && hasNextPayDay ">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold" >{{translation.dashboard.payDay}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <next-pay-day-widget></next-pay-day-widget>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center">
+                        <md-button ng-click="getPermissions(35);" class="md-accent md-raised md-hue-3 tn-widget-buttons" ng-href="#/payrollSchedule" >View Payroll Schedule</md-button>
+                    </md-card-actions>
+                </md-card>
+
+                <md-card ng-if="showHoliday && hasHolidayWidget">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold"  ng-bind="translation.dashboard.nextPaidHoliday"></span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <holiday-calendar-widget></holiday-calendar-widget>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center">
+                        <md-button class="md-accent md-raised md-hue-3 tn-widget-buttons" ng-href="#/holidaySchedule" ><span ng-bind="translation.dashboard.viewHolidaySch"></span></md-button>
+                    </md-card-actions>
+                </md-card>
+                
+            </div>
+        </div>
+    </div>
+    <div flex="40" class="dashboard-secondary-panel-main tn-secondary">
+        <md-card class="dashboard-secondary-panel">
+            <md-card-header class="dashboard-secondary-panel-header">
+                <md-card-title-text>
+                    <i class="md-icon icon-icon_important_notices tn-icon color-red dashboard-secondary-icon-top">
+                        <span class="path1-secondary"></span><span class="path2-secondary"></span>
+                    </i>
+                    <span class="md-subhead proxima-nova-bold">Important Notices</span>
+                </md-card-title-text>
+            </md-card-header>
+            <md-card-content>
+
+                <md-card-title-text>
+                    <span class="md-caption color-darkgray  dashboard-important-notice-item" layout="row">{{todaysDate}}</span>
+                    <span class="md-caption dashboard-important-notice-pad dashboard-important-notice-item" layout="row">
+                        Noticed a few changes? Check out our fresh, new look and enhancements that provide quicker access to your information.
+                    </span>
+                    <!--
+                    <span class="tn-secondary-link"><a href="#">More ></a></span>
+                    -->
+                </md-card-title-text>
+            </md-card-content>
+
+        </md-card>
+    </div>
+</div>
+
+<div dashboard-sections></div>
+<script type="text/ng-template" id="firstDialogId">
+    <div class="ngdialog-message">
+        <h4  ng-bind="translation.dashboard.listWidgets"></h4>
+        <div ng-scrollable class="widget-height">
+            <div ng-repeat="section_items in sectionsDetails">
+                <input type="checkbox" ng-model="panelsData"
+                       ng-change="setselectedValues(section_items.title,$index,section_items,section_items.directive)">&nbsp;{{section_items.title}}
+            </div>
+        </div>
+    </div>
+    <div class="ngdialog-buttons">
+        <button type="button" ng-click="addWidget()" class="ngdialog-button ngdialog-button-secondary" ng-bind="translation.dashboard.addWidget">
+        </button>
+    </div>
+</script>

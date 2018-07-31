@@ -1,0 +1,33 @@
+<!--
+Description: This is first page of benefits policies which will displays information to user about benefits policies.
+ -->
+
+<div class="row no-margin" id="employeePolicies">
+
+    <alert-view></alert-view>
+    <div class="col-sm-12 col-md-12 no-pad"  id="header-bar">
+        <h3 class="tn-page-heading" ng-bind="::translation.compPolicies"></h3>
+    </div>
+
+    <div class="col-sm-12 col-md-12 no-pad">
+        <div ng-repeat="benefitsPoliciesDataObject in companyPoliciesData" class="col-md-4 no-pad-left">
+            <div id="{{benefitsPoliciesDataObject.title}}" class="tn-polices-block">
+                <a ng-if="benefitsPoliciesDataObject.url !=null" href="{{benefitsPoliciesDataObject.url | contentUrl}}" target="_blank">
+                    <div class="title-block" id="sidebar{{benefitsPoliciesDataObject.id}}">
+                        <h4 class="proxima-nova">{{::benefitsPoliciesDataObject.title}}</h4>
+                        <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                    </div>
+                </a>
+                <a ng-if="benefitsPoliciesDataObject.url==null"  ng-click="openManageResources(benefitsPoliciesDataObject)" >
+                    <div class="title-block" id="sidebar{{benefitsPoliciesDataObject.id}}">
+                        <h4 class="proxima-nova">{{::benefitsPoliciesDataObject.title}}</h4>
+                        <p class="content-text">{{::translation.managerResourcesSubHeading}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <no-records error-alert="errorAlert"></no-records>
+    </div>
+</div>
+
+

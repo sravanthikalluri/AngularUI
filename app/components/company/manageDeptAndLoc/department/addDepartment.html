@@ -1,0 +1,102 @@
+<!-- This is page is used to Add Department details
+Author: Raghavendra Kumar Bonthala
+ -->
+
+<div class="tn-modal tn-emp-generate-form tn-modal-fullHeight" id="exampleModal1" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+    <alert-view></alert-view>
+    <div class="tn-modal-header">
+        <h4 class="proxima-nova-semibold text-center" id="exampleModal1Label">
+            {{::translation.manageDeptAndLoc.addDept}}</h4>
+    </div>
+    <form class="tn-form" name="addDepartmentForm" valid-submit="sendForm()" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label for="addDepartmentDatePicker">{{translation.manageDeptAndLoc.effectiveDate}}</label>
+                </div>
+                <div class="tn-calender-input no-margin" ng-controller="datePickerCtrl">
+                    <input type="text" class="form-control bg-white" readonly placeholder="MM/DD/YYYY"
+                           name="deptEffDate" id="addDepartmentDatePicker" datepicker-popup="{{format}}"
+                           ng-model="deptEffDate" is-open="opened" ng-change="selectedDepDate(deptEffDate)"
+                           ng-required="true"
+                           min-date="pastMonthValue" max-date="nextMonthValue"
+                           datepicker-options="dateOptions" close-text="Close">
+                    <span class="calendar-icon" ng-click="open($event)">
+                          <i class="icon-icon_calendar blue bold"></i>
+                        </span>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label for="goalAmountId1">{{::translation.departmenttab.code}}:</label>
+                </div>
+                <div>
+                    <input type="text" id="goalAmountId1" name="departmentcode" ng-model="department.deptCode"
+                           ng-change="department.deptCode=department.deptCode.toUpperCase()"
+                           maxlength="6"
+                           ng-class="{'error-warning': condition.invalidChar || condition.isExistDept}"
+                           ng-blur="checkCodeAvailability(department.deptCode)"
+                           ng-required="true"
+                           class="form form-control ">
+                    <Validation condition="condition.invalidChar" msg="Invalid Character in Department Code"
+                                class="error-msg-pos"></Validation>
+                    <Validation condition="condition.isExistDept" msg="Code already exists"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field ">
+                    <label for="goalAmountId2">{{::translation.departmenttab.name}}:</label>
+                </div>
+                <div><!--class="col-md-6 col-sm-7 no-pad"-->
+                    <input type="text" id="goalAmountId2" name="departmentname" ng-model="department.deptName"
+                           ng-class="{'error-warning': departmentnameRequired}"
+                           ng-required="true" maxlength="30"
+                           class="form form-control " Validation>
+                    <Validation condition="departmentnameRequired"
+                                msg="{{translation.departmenttab.name+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label for="earnAmountId">{{::translation.departmenttab.description}}:</label>
+                </div>
+                <div>
+                    <input type="text" id="earnAmountId" name="departmentdescription" ng-model='department.shortDesc'
+                           ng-class="{'error-warning': departmentdescriptionRequired}"
+                           ng-required="true" maxlength="10"
+                           class="form goal-amount-create-new form-control" Validation>
+                    <Validation condition="departmentdescriptionRequired"
+                                msg="{{translation.departmenttab.description+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+
+            <button type="button" class="tn-button tn-cancel-button" id="closePanelId"
+                    ng-bind="::translation.cancel" ng-click="closePanel()"></button>
+
+            <!--ng-class="{'trinet-btn-dissable default-cursor': (addDepartmentForm.$invalid  || condition.invalidChar || condition.isExistDept), 'trinet-primary-action-btn': (!addDepartmentForm.$invalid || !condition.invalidChar || !condition.isExistDept)}"-->
+            <button type="button"
+                    class="tn-button tn-buttomn-add"
+                    data-dismiss="modal"
+                    ng-disabled="addDepartmentForm.$invalid || condition.invalidChar || condition.isExistDept"
+                    ng-bind="::translation.saveAnother" id="validateDataId"
+                    ng-click="closeDialog(department,true)"></button>
+            <!--ng-class="{'trinet-btn-dissable default-cursor': (addDepartmentForm.$invalid || condition.invalidChar || condition.isExistDept), 'tn-button tn-action-button': (!addDepartmentForm.$invalid || !condition.invalidChar || !condition.isExistDept)}"-->
+            <button type="button"
+                    class="tn-button tn-action-button"
+                    data-dismiss="modal"
+                    ng-disabled="addDepartmentForm.$invalid || condition.invalidChar || condition.isExistDept"
+                    ng-bind="::translation.save" id="validateDataId1"
+                    ng-click="closeDialog(department,false)"></button>
+
+        </div>
+    </form>
+</div>

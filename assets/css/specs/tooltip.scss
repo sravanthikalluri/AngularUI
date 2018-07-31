@@ -1,0 +1,424 @@
+@import '../global';
+
+body {
+  padding: $padding*12;
+  box-sizing: border-box;
+}
+
+.block {
+  display: block;
+  overflow: hidden;
+}
+
+.arrow-right, .arrow-right-top, .arrow-left-top, .arrow-left {
+  display: none;
+}
+
+.Trinet-tool-tip {
+  .tooltip-left-content-new {
+    display: block;
+    position: relative;
+
+    p {
+      font-size: 14px;
+      padding: $padding*2;
+    }
+
+    .trinet-tooltip-left {
+      position: absolute;
+      display: none;
+      padding: $padding;
+      z-index: 99;
+      background: $White;
+      border: 1px solid $Trinet-gray;
+      top: 0;
+      left: -80px;
+      max-width: 350px;
+      color: $Black;
+
+      h3 {
+        margin: 0;
+        padding: $padding/2 0;
+        border-bottom: 1px solid $Trinet-gray;
+        font-size: 18px;
+      }
+
+      .arrow-right {
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $Trinet-gray;
+        position: absolute;
+        right: -10px;
+        top: 10px;
+        display: block !important;
+      }
+
+      .arrow-right-top {
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $White;
+        position: absolute;
+        right: -8px;
+        top: 10px;
+        display: block !important;
+      }
+
+      p {
+        color: $Black;
+        padding: 0;
+        margin: 0;
+        line-height: 22px;
+        font-size: 12px;
+        text-align: justify;
+      }
+    }
+
+    &:hover > .trinet-tooltip-left {
+      display: block !important;
+    }
+
+  }
+
+  .tooltip-right-content-new {
+    display: block;
+    position: relative;
+
+    p {
+      font-size: 14px;
+      padding: $padding*2;
+    }
+
+    .trinet-tooltip-right {
+      position: absolute;
+      display: none;
+      padding: $padding;
+      z-index: 99;
+      background: $White;
+      border: 1px solid $Trinet-gray;
+      top: -50px;
+      right: 0;
+      color: $Black;
+
+      h3 {
+        margin: 0;
+        padding: $padding/2 0;
+        border-bottom: 1px solid $Trinet-gray;
+        font-size: 18px;
+      }
+
+      p {
+        color: $Black;
+        padding: 0;
+        margin: 0;
+        line-height: 22px;
+        font-size: 12px;
+        text-align: justify;
+      }
+
+      .arrow-left {
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid $Trinet-gray;
+        position: absolute;
+        left: -10px;
+        display: block !important;
+        top: 51px;
+      }
+
+      .arrow-left-top {
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        display: block !important;
+        border-right: 8px solid $White;
+        position: absolute;
+        left: -8px;
+        top: 53px;
+      }
+
+    }
+
+    &:hover > .trinet-tooltip-right {
+      display: block !important;
+    }
+  }
+
+  .tooltip-top-content-new {
+    display: block;
+    position: relative;
+
+    p {
+      font-size: 14px;
+      padding: $padding*2;
+    }
+
+    .trinet-tooltip-top {
+      position: absolute;
+      display: none;
+      padding: $padding;
+      z-index: 99;
+      background: $White;
+      border: 1px solid $Trinet-gray;
+      top: -50px;
+      left: 20px;
+      color: $Black;
+
+      p {
+        color: $Black;
+        padding: 0;
+        margin: 0;
+        line-height: 22px;
+        font-size: 12px;
+        text-align: justify;
+      }
+
+      h3 {
+        margin: 0;
+        padding: $padding/2 0;
+        border-bottom: 1px solid $Trinet-gray;
+        font-size: 18px;
+
+      }
+
+    }
+
+    &:hover > .trinet-tooltip-top {
+      display: block !important;
+    }
+  }
+
+  .tooltip-bottom-content-new {
+    display: block;
+    position: relative;
+
+    p {
+      font-size: 14px;
+      padding: $padding*2;
+    }
+
+    .trinet-tooltip-bottom {
+      position: absolute;
+      display: none;
+      padding: $padding;
+      z-index: 99;
+      background: $White;
+      border: 1px solid $Trinet-gray;
+      bottom: -50px;
+      left: 20px;
+      color: $Black;
+
+      p {
+        color: $Black;
+        padding: 0;
+        margin: 0;
+        line-height: 22px;
+        font-size: 12px;
+        text-align: justify;
+      }
+
+      h3 {
+        margin: 0;
+        padding: $padding/2 0;
+        border-bottom: 1px solid $Trinet-gray;
+        font-size: 18px;
+
+      }
+
+    }
+
+    &:hover > .trinet-tooltip-bottom {
+      display: block !important;
+    }
+  }
+
+}
+
+.arrow-top {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid $Trinet-gray;
+  position: absolute;
+  left: 10px;
+  top: -20px;
+  left: 20px;
+}
+
+.arrow-top-top {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid $White;
+  position: absolute;
+  left: 10px;
+  top: -19px;
+  left: 20px;
+}
+
+.arrow-bottom {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid $Trinet-gray;
+  position: absolute;
+  right: -10px;
+  bottom: -20px;
+  left: 20px;
+}
+
+.arrow-bottom-top {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid $White;
+  position: absolute;
+  right: -10px;
+  bottom: -19px;
+  left: 20px;
+}
+
+.right-tool-tip-content {
+  right: -200px !important;
+  line-height: 20px;
+  max-width: 200px;
+  display: none;
+}
+
+.left-tool-tip-content {
+  left: -210px !important;
+  line-height: 20px;
+  width: 200px;
+  display: none;
+}
+
+.tooltip-right {
+  display: inline-block;
+  position: relative;
+  &:hover > .tooltip-right-content {
+    display: block !important;
+  }
+}
+
+.tooltip-right-content {
+  max-width: 447px;
+  min-width: 300px;
+  position: absolute;
+  z-index: 99999;
+  background: $White;
+  color: $Black;
+  padding: 10px;
+  border: 1px solid $Trinet-gray;
+  display: block;
+  bottom: 27px;
+  left: -51px;
+  padding-bottom: 0;
+  p {
+    color: $Trinet-dark-gray !important;
+    margin-bottom: 15px !important;
+    font-size: 12px !important;
+    line-height: 17px !important;
+  }
+  h3 {
+    font-weight: 600;
+    padding: 0;
+    color: $Trinet-dark-gray;
+    margin-bottom: 10px;
+  }
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 11px solid $Trinet-gray;
+  bottom: -11px;
+  position: absolute;
+  left: 58px;
+}
+
+.arrow-down-bg {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid $White;
+  bottom: -10px;
+  position: absolute;
+  z-index: 99;
+  left: 60px;
+}
+
+.input-tooltip-main {
+  margin-top: 35px;
+  .input-tooltip {
+    position: relative;
+    display: block;
+    padding: 15px;
+    text-align: left;
+    font-size: 12pt;
+    color: $Trinet-dark-gray;
+    background: #FFD9E0;
+    border: 1px solid $Trinet-dark-red;
+    position: absolute;
+    width: 250px;
+    margin-bottom: 15px;
+    -webkit-transition: opacity 0.5s linear;
+    -moz-transition: opacity 0.5s linear;
+    -ms-transition: opacity 0.5s linear;
+    -o-transition: opacity 0.5s linear;
+    transition: opacity 0.5s linear;
+    z-index: 9999;
+    margin-top: $margin;
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      top: -10px;
+      left: 11%;
+      margin-left: -10px;
+
+    }
+    &:before {
+      border-bottom: 10px solid $Trinet-dark-red;
+      top: -11px;
+    }
+    &:after {
+      border-bottom: 10px solid #FFD9E0;
+      margin-bottom: -2px;
+      z-index: 1;
+    }
+    i {
+      font-size: 16px;
+      color: #9E3039
+    }
+  }
+}
+
+.error-msg-pos {
+  /*position: relative;*/
+  .input-tooltip {
+    left: 0;
+    top: 32px;
+  }
+}
+
+.error-warning {
+  border: 1px solid $Trinet-dark-red !important;
+}
+
+.large-tool-tip {
+  width: 550px;
+}

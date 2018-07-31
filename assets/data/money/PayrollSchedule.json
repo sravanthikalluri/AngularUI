@@ -1,0 +1,487 @@
+{
+  "data": {
+    "payCalItems": [
+      {
+        "periodBeginDate": "2014-12-27",
+        "periodEndDate": "2015-01-09",
+        "dueDate": "2015-01-09",
+        "checkIssuedDate": "2015-01-15",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-01-10",
+        "periodEndDate": "2015-01-23",
+        "dueDate": "2015-01-23",
+        "checkIssuedDate": "2015-01-29",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-01-24",
+        "periodEndDate": "2015-02-06",
+        "dueDate": "2015-02-06",
+        "checkIssuedDate": "2015-02-12",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-02-07",
+        "periodEndDate": "2015-02-20",
+        "dueDate": "2015-02-20",
+        "checkIssuedDate": "2015-02-26",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-02-21",
+        "periodEndDate": "2015-03-06",
+        "dueDate": "2015-03-06",
+        "checkIssuedDate": "2015-03-12",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-03-07",
+        "periodEndDate": "2015-03-20",
+        "dueDate": "2015-03-20",
+        "checkIssuedDate": "2015-03-26",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-03-21",
+        "periodEndDate": "2015-04-03",
+        "dueDate": "2015-04-03",
+        "checkIssuedDate": "2015-04-09",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-04-04",
+        "periodEndDate": "2015-04-17",
+        "dueDate": "2015-04-17",
+        "checkIssuedDate": "2015-04-23",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-04-18",
+        "periodEndDate": "2015-05-01",
+        "dueDate": "2015-05-01",
+        "checkIssuedDate": "2015-05-07",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-05-02",
+        "periodEndDate": "2015-05-15",
+        "dueDate": "2015-05-15",
+        "checkIssuedDate": "2015-05-21",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-05-16",
+        "periodEndDate": "2015-05-29",
+        "dueDate": "2015-05-29",
+        "checkIssuedDate": "2015-06-04",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "Y"
+      },
+      {
+        "periodBeginDate": "2015-05-30",
+        "periodEndDate": "2015-06-12",
+        "dueDate": "2015-06-12",
+        "checkIssuedDate": "2015-06-18",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-06-13",
+        "periodEndDate": "2015-06-26",
+        "dueDate": "2015-06-26",
+        "checkIssuedDate": "2015-07-02",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-06-27",
+        "periodEndDate": "2015-07-10",
+        "dueDate": "2015-07-10",
+        "checkIssuedDate": "2015-07-16",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-07-11",
+        "periodEndDate": "2015-07-24",
+        "dueDate": "2015-07-24",
+        "checkIssuedDate": "2015-07-30",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-07-25",
+        "periodEndDate": "2015-08-07",
+        "dueDate": "2015-08-07",
+        "checkIssuedDate": "2015-08-13",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-08-08",
+        "periodEndDate": "2015-08-21",
+        "dueDate": "2015-08-21",
+        "checkIssuedDate": "2015-08-27",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-08-22",
+        "periodEndDate": "2015-09-04",
+        "dueDate": "2015-09-03",
+        "checkIssuedDate": "2015-09-10",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-09-05",
+        "periodEndDate": "2015-09-18",
+        "dueDate": "2015-09-18",
+        "checkIssuedDate": "2015-09-24",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-09-19",
+        "periodEndDate": "2015-10-02",
+        "dueDate": "2015-10-02",
+        "checkIssuedDate": "2015-10-08",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-10-03",
+        "periodEndDate": "2015-10-16",
+        "dueDate": "2015-10-16",
+        "checkIssuedDate": "2015-10-22",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-10-17",
+        "periodEndDate": "2015-10-30",
+        "dueDate": "2015-10-30",
+        "checkIssuedDate": "2015-11-05",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "Y"
+      },
+      {
+        "periodBeginDate": "2015-10-31",
+        "periodEndDate": "2015-11-13",
+        "dueDate": "2015-11-13",
+        "checkIssuedDate": "2015-11-19",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-11-14",
+        "periodEndDate": "2015-11-27",
+        "dueDate": "2015-11-25",
+        "checkIssuedDate": "2015-12-03",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-11-28",
+        "periodEndDate": "2015-12-11",
+        "dueDate": "2015-12-11",
+        "checkIssuedDate": "2015-12-17",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-12-12",
+        "periodEndDate": "2015-12-25",
+        "dueDate": "2015-12-23",
+        "checkIssuedDate": "2015-12-30",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2015-12-26",
+        "periodEndDate": "2016-01-08",
+        "dueDate": "2016-01-08",
+        "checkIssuedDate": "2016-01-14",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-01-09",
+        "periodEndDate": "2016-01-22",
+        "dueDate": "2016-01-22",
+        "checkIssuedDate": "2016-01-28",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-01-23",
+        "periodEndDate": "2016-02-05",
+        "dueDate": "2016-02-05",
+        "checkIssuedDate": "2016-02-11",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-02-06",
+        "periodEndDate": "2016-02-19",
+        "dueDate": "2016-02-19",
+        "checkIssuedDate": "2016-02-25",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-02-20",
+        "periodEndDate": "2016-03-04",
+        "dueDate": "2016-03-04",
+        "checkIssuedDate": "2016-03-10",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-03-05",
+        "periodEndDate": "2016-03-18",
+        "dueDate": "2016-03-18",
+        "checkIssuedDate": "2016-03-24",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-03-19",
+        "periodEndDate": "2016-04-01",
+        "dueDate": "2016-04-01",
+        "checkIssuedDate": "2016-04-07",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-04-02",
+        "periodEndDate": "2016-04-15",
+        "dueDate": "2016-04-15",
+        "checkIssuedDate": "2016-04-21",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-04-16",
+        "periodEndDate": "2016-04-29",
+        "dueDate": "2016-04-29",
+        "checkIssuedDate": "2016-05-05",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "Y"
+      },
+      {
+        "periodBeginDate": "2016-04-30",
+        "periodEndDate": "2016-05-13",
+        "dueDate": "2016-05-13",
+        "checkIssuedDate": "2016-05-19",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-05-14",
+        "periodEndDate": "2016-05-27",
+        "dueDate": "2016-05-26",
+        "checkIssuedDate": "2016-06-02",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-05-28",
+        "periodEndDate": "2016-06-10",
+        "dueDate": "2016-06-10",
+        "checkIssuedDate": "2016-06-16",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-06-11",
+        "periodEndDate": "2016-06-24",
+        "dueDate": "2016-06-24",
+        "checkIssuedDate": "2016-06-30",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-06-25",
+        "periodEndDate": "2016-07-08",
+        "dueDate": "2016-07-08",
+        "checkIssuedDate": "2016-07-14",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-07-09",
+        "periodEndDate": "2016-07-22",
+        "dueDate": "2016-07-22",
+        "checkIssuedDate": "2016-07-28",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-07-23",
+        "periodEndDate": "2016-08-05",
+        "dueDate": "2016-08-05",
+        "checkIssuedDate": "2016-08-11",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-08-06",
+        "periodEndDate": "2016-08-19",
+        "dueDate": "2016-08-19",
+        "checkIssuedDate": "2016-08-25",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-08-20",
+        "periodEndDate": "2016-09-02",
+        "dueDate": "2016-09-01",
+        "checkIssuedDate": "2016-09-08",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-09-03",
+        "periodEndDate": "2016-09-16",
+        "dueDate": "2016-09-16",
+        "checkIssuedDate": "2016-09-22",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-09-17",
+        "periodEndDate": "2016-09-30",
+        "dueDate": "2016-09-30",
+        "checkIssuedDate": "2016-10-06",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "Y"
+      },
+      {
+        "periodBeginDate": "2016-10-01",
+        "periodEndDate": "2016-10-14",
+        "dueDate": "2016-10-14",
+        "checkIssuedDate": "2016-10-20",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-10-15",
+        "periodEndDate": "2016-10-28",
+        "dueDate": "2016-10-28",
+        "checkIssuedDate": "2016-11-03",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-10-29",
+        "periodEndDate": "2016-11-11",
+        "dueDate": "2016-11-10",
+        "checkIssuedDate": "2016-11-17",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-11-12",
+        "periodEndDate": "2016-11-25",
+        "dueDate": "2016-11-23",
+        "checkIssuedDate": "2016-12-01",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-11-26",
+        "periodEndDate": "2016-12-09",
+        "dueDate": "2016-12-09",
+        "checkIssuedDate": "2016-12-15",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      },
+      {
+        "periodBeginDate": "2016-12-10",
+        "periodEndDate": "2016-12-23",
+        "dueDate": "2016-12-22",
+        "checkIssuedDate": "2016-12-29",
+        "payFrequencyType": "BW",
+        "payFrequencyName": "Biweekly",
+        "benefitsDeducted": "N"
+      }
+    ],
+    "payrollScheduleHelpInfo": {
+      "payFrequencyName": "Biweekly",
+      "firstCheckIssueDay": "Thursday",
+      "firstPayPeriodBeginDay": "Saturday",
+      "firstPayPeriodEndDay": "Friday",
+      "secondCheckIssueDay": " ",
+      "secondPayPeriodBeginDay": " ",
+      "secondPayPeriodEndDay": " "
+    }
+  },
+  "_requestId": "17513",
+  "_statusCode": "200",
+  "_statusText": "OK",
+  "_statusMessage": "Success"
+}

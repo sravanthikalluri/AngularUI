@@ -1,0 +1,768 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .carrier-certificate-content {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.policies-general h2 {
+    padding: 0px !important;
+}
+
+.policies-general .content-block {
+    /*max-width: 926px;*/
+    min-width: 600px;
+    display: block;
+    background-color: #ffffff;
+    overflow: auto;
+    /*position:relative;
+    top:-70px;*/
+}
+
+.policies-general .content-block button {
+    margin-top: 16px;
+}
+
+.policies-general .content-block .content-main {
+    margin: 32px 0 24px 0;
+    color: #0039A6;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.policies-general .content-block a {
+    text-decoration: none;
+}
+
+.policies-general .row-top-margin {
+    margin: 30px 0 0 0;
+}
+
+.policies-general .column-pad {
+    padding-left: 0;
+    padding-right: 4px;
+    padding-top: 4px;
+}
+
+.policies-general .title-block {
+    cursor: pointer;
+    background: #f2f2f2;
+    padding: 10px 14px;
+    height: 110px;
+}
+
+.policies-general .title-block:hover {
+    background: #0073CF;
+    color: #ffffff;
+}
+
+.policies-general .title-block:hover h4, .policies-general .title-block:hover p {
+    color: #ffffff;
+}
+
+.policies-general .title-block h4 {
+    color: #0073CF;
+    width: auto;
+    max-width: 280px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.policies-general .title-block p {
+    color: #888888;
+    height: 50px;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.policies-general title-block.title-block-active h4, .policies-general title-block.title-block-active p {
+    color: #FFFFFF;
+}
+
+.policies-general .title-img {
+    border: 1px solid #888888;
+    text-align: center;
+    padding: 22px;
+    height: 80px;
+    position: relative;
+}
+
+.policies-general .title-img:hover {
+    background: #D9EAF8;
+    border: 1px solid #0073CF;
+}
+
+.policies-general .img-pad {
+    padding-left: 0;
+    padding-right: 4px;
+    margin-top: 4px;
+}
+
+.title-margin {
+    margin: 4px 0 0 0;
+}
+
+.general-info {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.general-info .general {
+    margin-top: 32px;
+    font-weight: 600;
+    font-size: 24px;
+    /*border-bottom:1px solid $Trinet-gray;*/
+}
+
+.bottom-marg {
+    margin-bottom: 32px;
+}
+
+i.icon-icon_file {
+    line-height: 2;
+    padding-right: 10px;
+    font-size: 16px;
+    color: #D55C19;
+}
+
+.top-button {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+}
+
+.top-button a {
+    text-decoration: none;
+}
+
+.top-button span {
+    line-height: 0;
+    color: #D55C19;
+}
+
+.top-button label {
+    font-size: 12px !important;
+    display: block;
+    color: #D55C19;
+    line-height: 0;
+}
+
+#accordion .panel {
+    border-radius: 0px;
+    -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.05) !important;
+    -box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.05) !important;
+}
+
+#accordion .panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.panel-default {
+    border: none;
+}
+
+.panel-title {
+    color: #494949;
+    font-weight: bold;
+}
+
+.panel-body-background {
+    /*padding:($padding*2)+4  $padding+6;*/
+    border-top: 0px !important;
+}
+
+.panel-body-background ul {
+    padding-top: 24px;
+}
+
+.panel-body-background ul li {
+    background: #f2f2f2;
+    margin-top: 4px;
+    padding-left: 5px;
+    color: #0039A6;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.panel-body-background ul li a {
+    color: #0039A6;
+}
+
+.panel-body-background ul li a span {
+    color: #888888;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.fourth-panel ul li {
+    padding: 10px;
+    margin-top: 10px;
+    min-height: 70px;
+}
+
+.fourth-panel ul li:nth-of-type(even) {
+    background: #ffffff;
+}
+
+.fourth-panel ul li .circle-icon {
+    font-size: 10px !important;
+    margin-right: 10px;
+}
+
+.fourth-panel #accordion-example #modalcollapseOne .no-border {
+    border-right: none !important;
+}
+
+table.medical-aetna thead {
+    background: #0073CF;
+}
+
+table.medical-aetna thead tr th {
+    background: #0073CF;
+}
+
+table.medical-aetna thead tr td a {
+    text-decoration: underline;
+    color: #0073CF;
+}
+
+.hasSelectedItem .gridder-list.selectedItem .title-block {
+    background: #0073CF;
+}
+
+.hasSelectedItem .gridder-list.selectedItem .title-block h4 {
+    color: #fff;
+}
+
+.policies-headline h3 {
+    color: #494949;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.table-striped-even > tbody > tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+.policies-data {
+    position: relative;
+    top: -60px;
+    width: 100%;
+    margin: 0;
+    padding: 0px;
+}
+
+table.general-info-table tbody tr td, table.general-info-table thead tr th {
+    font-size: 14px;
+}
+
+.policies-table {
+    border: 1px solid #7FBAEC;
+}
+
+.policies-table .head {
+    width: 380px;
+    color: #0073CF;
+    padding: 5px;
+    background-color: #ebf1f6;
+}
+
+.policies-table .head tbody tr td:nth-child(1) {
+    border-bottom: 1px solid #EFEBEB;
+    border-right: 1px solid #EFEBEB;
+}
+
+.policies-table .head tbody tr td:nth-child(2) {
+    border-bottom: 1px solid #EFEBEB;
+    border-left: 1px solid #EFEBEB;
+}
+
+.policies-table
+.policies-table tbody tr
+.policies-forms input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+}
+
+.additional-policies h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.additional-policies a {
+    color: #E37222 !important;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.policies-info-box .additional-policies.panel-body-background ul {
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.policies-info-box .additional-policies.panel-body-background ul li {
+    padding: 5px;
+    display: block;
+    overflow: hidden;
+}
+
+.policies-info-box .additional-policies.panel-body-background ul li a {
+    color: #0073CF;
+    float: left;
+}
+
+.policies-info-box .additional-policies.panel-body-background ul li a span.benefit-text {
+    color: #0073CF;
+}
+
+#stats li {
+    list-style-type: disc !important;
+}
+
+.listStyle li {
+    list-style-type: circle;
+    color: none;
+    background-color: none;
+}
+
+.bullet {
+    display: list-item;
+    list-style: disc inside;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+
+.print {
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+
+.print span {
+    font-size: 25px;
+    position: relative;
+    top: 8px;
+}
+
+.inline {
+    display: inline;
+}
+
+.maillink {
+    display: inline;
+    text-decoration: underline !important;
+    color: #0073D4;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.carrier-certificate-content p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.caption {
+    font-size: 16px;
+    font-weight: 600 !important;
+}
+
+ul.benefits-summery-links li
+a {
+    text-decoration: none;
+}
+
+ul.benefits-summery-links li
+a:hover {
+    text-decoration: underline;
+}
+
+.grey-data {
+    color: #888888 !important;
+}
+
+ul.disc {
+    padding: 0;
+}
+
+ul.disc li {
+    padding: 0;
+    list-style: disc !important;
+    margin: 0;
+    color: #494949;
+    background: none;
+    list-style-position: inside;
+}
+
+.policies-info-box {
+    display: block;
+    height: 100%;
+    max-height: 575px;
+    min-height: 75px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 15px;
+}
+
+ol.state-ordered-list {
+    padding-left: 50px;
+}
+
+ol.state-ordered-list li {
+    list-style-type: upper-hexadecimal;
+    list-style-position: inside;
+}
+
+.metlife-benefits-list {
+    display: block;
+}
+
+.metlife-benefits-list ul {
+    padding-left: 50px;
+    margin: 0;
+}
+
+.metlife-benefits-list ul li {
+    list-style: disc;
+    list-style-position: outside;
+    display: list-item;
+    padding-left: 10px;
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.metlife-benefits-list ul .title {
+    font-weight: 600;
+}
+
+table.vertical tbody tr td {
+    vertical-align: middle;
+}
+
+.b2t {
+    font-size: 50px;
+    cursor: pointer;
+    float: right;
+    color: #E37222;
+}
+
+.tooltip-right-content {
+    display: none !important;
+}
+
+.tooltip-right:hover .tooltip-right-content {
+    display: inline !important;
+}
+
+title-adjustment {
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 15px !important;
+    padding: 0 !important;
+}
+
+.no-state-data p {
+    color: #494949;
+    font-size: 44px;
+    text-align: center;
+    margin: 2em 0;
+    opacity: .3;
+    line-height: 50px;
+}
+
+table.buildMaintainView tbody tr td input[type="checkbox"] {
+    float: left;
+}
+
+table.buildMaintainView tbody tr td span {
+    position: relative;
+    bottom: 2px;
+    margin: 0 10px 0 5px;
+}
+
+.bg-white {
+    background: white;
+}
+
+.print-button {
+    margin-top: 45px !important;
+}
+
+.email-details-adj {
+    position: relative;
+    top: -2px;
+    padding: 0 5px;
+}
+
+.top-2 {
+    position: relative;
+    top: 2px;
+}
+
+.eform-aca {
+    font-size: 34px;
+    color: #0073CF;
+}
+
+.pg-break {
+    page-break-after: always;
+}
+
+.afla-adj {
+    padding: 10px 5px 1px;
+}
+
+.img-adjust {
+    margin-left: 35px;
+    width: 150px;
+}
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.statebuilder {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.statebuilder p {
+    padding: 5px 15px;
+}
+
+.statebuilder h3 {
+    color: #0073CF;
+}
+
+.paragraph {
+    line-height: 100% !important;
+}
+
+.panel-title a:hover {
+    text-decoration: none;
+}
+
+.accord-adj-new {
+    overflow: hidden;
+    margin: 0;
+    line-height: 35px;
+}
+
+.accord-adj-new .icon-icon_Disclosure_Collapse:before {
+    position: relative;
+    top: 5px;
+    font-size: 20px !important;
+}
+
+.data-tables-headding {
+    font-size: 24px !important;
+    color: #494949 !important;
+    margin: 0;
+    padding: 5px 0 !important;
+}
+
+.emptyDivClass {
+    width: 5% !important;
+    float: left !important;
+}
+
+.questionDivClass {
+    width: 40% !important;
+    float: left !important;
+}
+
+.paddingDiv {
+    padding-top: 30px !important;
+}
+
+.welcomeDivClass {
+    width: 55% !important;
+    float: left !important;
+}
+
+.linklist ul li {
+    background: #ffffff !important;
+    padding-left: 10px !important;
+    color: #171718 !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.eform-adj {
+    margin-top: 1.5em !important;
+    margin-bottom: 1.5em !important;
+    display: block;
+    overflow: hidden;
+}
+
+table.eform-head thead {
+    background: #0073CF;
+}
+
+table.eform-head thead tr td {
+    font-size: 14px;
+    color: #fff;
+}
+
+.green-icon {
+    font-size: 24px !important;
+    color: #69BE28;
+}
+
+.red-icon {
+    font-size: 24px !important;
+    color: #BE2833;
+}
+
+.policies-general .title-block h4 {
+    white-space: normal !important;
+    font-size: 16px !important;
+}
+
+.policies-inner-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0073CF;
+}
+
+.manage-emp-reports-blocks .title-block {
+    padding: 5px 14px !important;
+}
+
+.estimated-tooltip {
+    left: -63px;
+}
+
+.company-policies-blocks .title-block h4 {
+    margin-bottom: 12px;
+}
+
+.nestedAccordian {
+    height: auto !important;
+    overflow: auto;
+}
+
+.company-addendum-links {
+    display: inline-block;
+    padding: 0;
+    line-height: 13px;
+    position: relative;
+}
+
+.employee-reports-blocks-adj {
+    top: -65px !important;
+}
+
+.employee-reports-blocks-adj .policies-info-box {
+    border: 1px solid #888888;
+    margin-top: 13px;
+}
+
+.arrow-up-border {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 13px solid #888888;
+    position: absolute;
+    z-index: 3;
+    left: 42%;
+}
+
+.arrow-up-white {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 12px solid #ffffff;
+    position: absolute;
+    z-index: 34;
+    top: 1px;
+    margin-left: 2px;
+    left: 42%;
+}
+
+#companypoliciesId .policies-data {
+    position: relative;
+    top: -55px;
+}
+
+#acaMarketPlace #printBenefitsData span:last-child {
+    font-size: 16px !important;
+    color: #0073CF;
+    font-weight: 400;
+    position: relative;
+    top: -2px;
+}
+
+#acaMarketPlace span, #acaMarketPlace ol li {
+    font-size: 14px !important;
+}
+
+.benefit-policies-general #printBenefitsData .icon-icon_print_circle {
+    top: 3px !important;
+    padding-right: 5px;
+    font-size: 25px !important;
+}
+
+.benefit-policies-general #printBenefitsData .currprint {
+    position: relative;
+    top: -2px;
+}
+.employee-reports-blocks-adj .arrow-up-white{
+    top: 3px;   left: 42.2%;}
+ .employee-reports-blocks-adj .arrow-up-border{top:1px;}
+
+.color-grey{
+    color:#494949 !important;
+}
+.comp-pol .title-block.active::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 12px solid #f2f2f2;
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  z-index: 999;
+}
+.companyFormsAdjust .policies-info-box-tiles-adjustment{top:-55px !important;}
+.companyFormsAdjust #loadtabs .title-block.active::after{
+content: '';
+    border-left: 19px solid transparent;
+    border-right: 19px solid transparent;
+    border-bottom: 12px solid #FFFFFF;
+    position: absolute;
+    left: 42%;
+    top: 45%;
+    z-index: 9999;
+}
+.companyFormsAdjust #loadtabs .title-block.active::before{
+    content: '';
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 12px solid #888;
+    position: absolute;
+    left: 42%;
+    top: 44%;
+    z-index: 999;
+}
+/*# sourceMappingURL=policesgeneral.css.map */

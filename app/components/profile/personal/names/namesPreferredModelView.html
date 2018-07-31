@@ -1,0 +1,137 @@
+<div class="tn-create-names-modal tn-modal-fullHeight tn-modal" ng-controller="namesPreferredModelCtrl">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center">
+            Edit Preferred Name
+        </h4>
+    </div>
+    <form class="tn-form" name="preferredNameForm" id="preferred_name_form" ng-submit="submitForm()" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <div class="required-field">
+                <label>{{::translation.effective_date}}:</label>
+            </div>
+            <div class="tn-calender-input" ng-controller="datePickerCtrl"
+                 ng-class="{'error-warning': (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired) || (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.blur.preferredNameFormeffDateRequired)||
+                                validationPatterns.primaryNameEdit.blur.preferredNameFuturedate || validationPatterns.primaryNameEdit.focus.preferredNameFuturedate ||
+			                    validationPatterns.primaryNameEdit.focus.preferredNamepastdate || validationPatterns.primaryNameEdit.blur.preferredNamepastdate
+                              }">
+                <input type="text" class="form-control bg-white"
+                       name="effDate"
+                       id="name_edit_pre_effective_date" datepicker-popup="{{format}}" readonly="readonly"
+                       ng-model="preferredNameEditData.effectiveDate" is-open="opened"
+                       ng-required="true" datepicker-options="dateOptions"
+                       onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode==47 || event.charCode==8"
+                       close-text="Close"
+                       ng-focus="validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired=preferredNameForm.effDate.$error.required;
+                                       validationPatterns.primaryNameEdit.blur.preferredNameFormeffDateRequired = false;
+                                       validationPatterns.primaryNameEdit.focus.preferredNamepastdate = checkDateThirtyDates(preferredNameEditData.effectiveDate); validationPatterns.primaryNameEdit.blur.preferredNamepastdate = false;
+                                       validationPatterns.primaryNameEdit.focus.preferredNameFuturedate = checkDateSixtyDates(preferredNameEditData.effectiveDate); validationPatterns.primaryNameEdit.blur.preferredNameFuturedate = false;"
+                       ng-blur="validationPatterns.primaryNameEdit.blur.preferredNameFormeffDateRequired=preferredNameForm.effDate.$error.required; validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired = false;
+                                        validationPatterns.primaryNameEdit.blur.preferredNamepastdate = checkDateThirtyDates(preferredNameEditData.effectiveDate); validationPatterns.primaryNameEdit.focus.preferredNamepastdate = false;
+                                        validationPatterns.primaryNameEdit.blur.preferredNameFuturedate = checkDateSixtyDates(preferredNameEditData.effectiveDate); validationPatterns.primaryNameEdit.focus.preferredNameFuturedate = false;"
+                />
+                <span class="calendar-icon" ng-click="open($event)">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+                <Validation
+                    condition="isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired"
+                    msg="{{translation.required_field}}"></Validation>
+                <Validation condition="isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNamepastdate"
+                            msg="Date cannot be more than 30 days in the past"></Validation>
+                <Validation condition="isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFuturedate"
+                            msg="Date cannot be more than 60 days in the future"></Validation>
+            </div>
+            <div class="tn-checkbox fullwidth marg-top-15 no-margin-left">
+                <input id="isPreferred" ng-model="isPreferred" type="checkbox" ng-click="showPrimaryInfo()"/>
+                <label for="isPreferred" ng-bind="::translation.profile_personal.usePrimaryName"> </label>
+            </div>
+            <div class="tn-horizontal-divider"></div>
+            <div class="primary-name-section col-sm-12 no-pad">
+                <div class="col-sm-6 no-pad-left marg-btm-10" ng-if="!notMeTab">
+                    <div>
+                        <label for="namespreferredformofadd">
+                            <span ng-bind="translation.profile_personal.form_address"></span>:</label>
+                    </div>
+                    <div>
+                        <select name="formOfAddress" id="namespreferredformofadd"
+                                class="txtfield_Style form form-control "
+                                ng-model="preferredNameEditData.formOfAddress"
+                                ng-options="foa.value for foa in formOfAddressData track by foa.value">
+                            <option value='' ng-bind="::translation.profile_personal.select"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="preferredFirstName" ng-bind="::translation.first_name"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="preferredFirstName" id='preferredFirstName'
+                               ng-model='preferredNameEditData.firstName' maxlength='30'
+                               class="form form-control"
+                               ng-required="true"
+                               ng-class="{'error-warning': (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormFirstNameRequired) || (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.blur.preferredNameFormFirstNameRequired)}"
+                               ng-focus="validationPatterns.primaryNameEdit.focus.preferredNameFormFirstNameRequired=preferredNameForm.preferredFirstName.$error.required; validationPatterns.primaryNameEdit.blur.preferredNameFormFirstNameRequired = false;"
+                               ng-blur="validationPatterns.primaryNameEdit.blur.preferredNameFormFirstNameRequired=preferredNameForm.preferredFirstName.$error.required; validationPatterns.primaryNameEdit.focus.preferredNameFormFirstNameRequired = false;"
+                        />
+                        <Validation
+                            condition="isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormFirstNameRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="namespreferredmiddlename" ng-bind="::translation.middle_name"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="middleName" id="namespreferredmiddlename"
+                               ng-model='preferredNameEditData.middleName' maxlength='30'
+                               class="form form-control"/>
+                    </div>
+                </div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="namespreferredlastname" ng-bind="::translation.last_name"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="preferredLastName" id="namespreferredlastname"
+                               ng-model='preferredNameEditData.lastName' maxlength='60'
+                               class="form form-control"
+                               ng-required="true"
+                               ng-class="{'error-warning': (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormLastNameRequired) || (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.blur.preferredNameFormLastNameRequired)}"
+                               ng-focus="validationPatterns.primaryNameEdit.focus.preferredNameFormLastNameRequired=preferredNameForm.preferredLastName.$error.required; validationPatterns.primaryNameEdit.blur.preferredNameFormLastNameRequired = false;"
+                               ng-blur="validationPatterns.primaryNameEdit.blur.preferredNameFormLastNameRequired=preferredNameForm.preferredLastName.$error.required; validationPatterns.primaryNameEdit.focus.preferredNameFormLastNameRequired = false;"
+                        />
+                        <Validation
+                            condition="isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormLastNameRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="namespreferredsuffix" ng-bind="::translation.profile_personal.suffix"></label>
+                    </div>
+                    <div>
+                        <select name="suffix" id="namespreferredsuffix"
+                                class="txtfield_Style form form-control"
+                                ng-model="preferredNameEditData.suffix"
+                                ng-options="sufix.value for sufix in suffixData track by sufix.key">
+                            <option value='' ng-bind="::translation.profile_personal.select"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+            <button ng-click="closeThisDialog()" name="cancel" id="namespreferredmiddlecancel"
+                    class="tn-button tn-cancel-button" ng-bind="::translation.cancel"></button>
+            <button type="submit" name="save" ng-click="updateData(preferredNameForm)" id="namespreferredsave"
+                    class="tn-button tn-action-button" ng-bind="::translation.save"></button>
+            <!--<button ng-click="deletePreferredName(preferredNameEditData)" ng-hide='preferredNamesHideDelete' name="delete" id="namespreferreddelete"
+                    class="tn-button tn-action-button" ng-bind="::translation.delete"></button>-->
+
+        </div>
+    </form>
+</div>

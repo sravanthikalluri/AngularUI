@@ -1,0 +1,141 @@
+<div class="tn-create-names-modal tn-modal-fullHeight tn-modal">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center">Edit Name</h4>
+    </div>
+    <form class="tn-form" name="empChangeRequestForm" id="empChangeRequestForm" valid-submit="sendForm()"
+          novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <div>
+                <label>{{::translation.effective_date}}:</label>
+            </div>
+            <div class="tn-calender-input">
+                <input type="text" class="form-control bg-white" name="effectiveDate" ng-disabled
+                       id="effective_pay_begin_date"
+                       is-open="opened" min-date="minDate" readonly
+                       datepicker-options="dateOptions"
+                       placeholder="MM/DD/YYYY"
+                />
+                <span class="calendar-icon" ng-click="open($event)">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+            </div>
+            <div class="tn-horizontal-divider"></div>
+            <div class="primary-name-section col-sm-12 no-pad">
+                <h4 class="profile-heading proxima-nova-semibold">Primary Name</h4>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="priFirstName">First Name</label>
+                    </div>
+                    <div>
+                        <input id="priFirstName" type="text" maxlength="30"
+                               class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="priMiddleName">Middle Name</label>
+                    </div>
+                    <div>
+                        <input id="priMiddleName" type="text" maxlength="30"
+                               class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="priLastName">Last Name</label>
+                    </div>
+                    <div>
+                        <input id="priLastName" type="text" maxlength="30"
+                               class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="priSuffix">Suffix</label>
+                    </div>
+                    <div>
+                        <select name="employeeTransferName" id="priSuffix"
+                                class="form-control">
+                            <option value='' disabled selected class="hiddenprofile"
+                            >suffix
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="tn-horizontal-divider"></div>
+            <div class="clearfix"></div>
+            <h4 class="profile-heading proxima-nova-semibold">Preferred Name</h4>
+            <div class="col-sm-12 no-pad">
+                <div class="tn-checkbox">
+                    <input id="makeThisPrimary" type="checkbox"/>
+                    <label for="makeThisPrimary">Use Primary Name</label>
+                </div>
+            </div>
+            <div class="preferred-name-section col-sm-12 no-pad">
+
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="prefFirstName">First Name</label>
+                    </div>
+                    <div>
+                        <input id="prefFirstName" type="text" maxlength="30"
+                               class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="priMiddleName">Middle Name</label>
+                    </div>
+                    <div>
+                        <input id="prefMiddleName" type="text" maxlength="30"
+                               class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="prefLastName">Last Name</label>
+                    </div>
+                    <div>
+                        <input id="prefLastName" type="text" maxlength="30"
+                               class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="prefSuffix">Suffix</label>
+                    </div>
+                    <div>
+                        <select name="employeeTransferName" id="prefSuffix"
+                                class="form-control">
+                            <option value='' disabled selected class="hiddenprofile"
+                            >suffix
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+            <button id="cancel" type="button" ng-click="closeThisDialog('$closeButton')"
+                    class="tn-button tn-cancel-button">{{::translation.cancel}}
+            </button>
+            <button id="save" type="button" ng-click="changeEmployeeDetails(empChangeRequestForm);"
+                    class="tn-button tn-action-button">{{::translation.save}}
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,10 @@
+{
+  "respnoseCode": null,
+  "status": null,
+  "message": null,
+  "statusCode": "200",
+  "statusMessage": "Success",
+  "resource": {
+    "showPaidTime": "Y"
+  }
+}

@@ -1,0 +1,12 @@
+
+<div ng-if="summaryData.heading!=''">
+        <strong>
+            
+        {{summaryData.heading}}
+        </strong>
+        <span ng-if="summaryData.subhead!=''">&nbsp;&nbsp;&nbsp;&nbsp;<strong>({{summaryData.subhead}})</strong></span>
+    </div>
+    <p>
+        <a href="" id="{{summaryData.id}}" class="inline no-float" ng-click="openExecutiveModal();" ng-scope>{{summaryData.label}}  {{payFrequencyKey[summaryData.key]}} costs</a>
+    </p>
+    

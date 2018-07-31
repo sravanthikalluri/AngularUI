@@ -1,0 +1,21 @@
+<div id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <h4 class="modal-title"  ng-bind="::translation.options.acknowledgement"></h4>
+        </div>
+        <div class="modal-body" ng-show="NoDiv">
+            <p ng-bind="::translation.options.eligibilityParticipation"></p>
+            <p ng-bind="::translation.options.additionalSupplement"></p>
+            <p ng-bind="::translation.options.makeChange"></p>
+        </div>
+
+        <div class="modal-footer">
+            <button type="reset" name="Request Extended Leave" class="trinet-primary-action-btn" ng-click="changeIt()" ng-bind="::translation.options.yesChange_it">
+
+            </button>
+            <button type="reset" name="Request Extended Leave" class="trinet-secondary-action-btn"
+                    ng-click="closeThisDialog(0)" data-dismiss="modal" ng-bind="::translation.options.cancel">
+            </button>
+        </div>
+    </div>
+</div>

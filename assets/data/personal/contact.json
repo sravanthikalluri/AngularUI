@@ -1,0 +1,127 @@
+{
+  "resource": [
+    {
+      "personId": "1121901",
+      "uniqueId": 1,
+      "accessType": "Work",
+      "media": "Email",
+      "telephoneNo": null,
+      "countryCd": "US",
+      "locationCd": "00000003KM",
+      "url": "pstest@ptgindia.com",
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 2,
+      "accessType": "Work",
+      "media": "Email",
+      "telephoneNo": null,
+      "countryCd": "US",
+      "locationCd": "000000034M",
+      "url": "pstest@ptgindia.com",
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 3,
+      "accessType": "Work",
+      "media": "Email",
+      "telephoneNo": null,
+      "countryCd": "US",
+      "locationCd": "000000034M",
+      "url": "pstest@ptgindia.com",
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 4,
+      "accessType": "Work",
+      "media": "Email",
+      "telephoneNo": null,
+      "countryCd": "US",
+      "locationCd": "0000000RSB",
+      "url": "pstest@ptgindia.com",
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 5,
+      "accessType": "Work",
+      "media": "Email",
+      "telephoneNo": null,
+      "countryCd": "US",
+      "locationCd": "0000000RSB",
+      "url": "pstest@ptgindia.com",
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 6,
+      "accessType": "Work",
+      "media": "Email",
+      "telephoneNo": null,
+      "countryCd": "US",
+      "locationCd": "000000034M",
+      "url": "pstest@ptgindia.com",
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 1,
+      "accessType": "Home",
+      "media": "Phone",
+      "telephoneNo": "775-356-9879",
+      "countryCd": "US",
+      "locationCd": "00000003KM",
+      "url": null,
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 2,
+      "accessType": "Home",
+      "media": "Phone",
+      "telephoneNo": "775-356-9879",
+      "countryCd": "US",
+      "locationCd": "00000003KM",
+      "url": null,
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 3,
+      "accessType": "Home",
+      "media": "Phone",
+      "telephoneNo": "303-428-7549",
+      "countryCd": "US",
+      "locationCd": "000000034M",
+      "url": null,
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 4,
+      "accessType": "Home",
+      "media": "Phone",
+      "telephoneNo": "775-303-2074",
+      "countryCd": "US",
+      "locationCd": "000000034M",
+      "url": null,
+      "notes": null
+    },
+    {
+      "personId": "1121901",
+      "uniqueId": 5,
+      "accessType": "Home",
+      "media": "Phone",
+      "telephoneNo": "775/762/3544",
+      "countryCd": "US",
+      "locationCd": "000000034M",
+      "url": null,
+      "notes": null
+    }
+  ],
+  "statusCode": "200",
+  "statusMesage": "Success"
+}

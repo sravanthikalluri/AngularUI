@@ -1,0 +1,210 @@
+{
+  "data": [
+    {
+      "tags": "",
+      "id": "1",
+      "subHeading": "Look at your company's contributions for each plan in your company's benefits package.",
+      "description": "Benefits Overview",
+      "img-url": "",
+      "documentUrl": "/ui/PayrollPolicy/BenefitsOverview.htm"
+    },
+    {
+      "tags": "",
+      "id": "2",
+      "subHeading": "Information you need to explore all of your benefits options.",
+      "description": "Benefits Guide Book",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/benefits/policies/benefitsOverview/benefitsGuideBookView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "3",
+      "subHeading": "Look at the cost of each plan in your company's benefits package.",
+      "description": "Benefits Summary",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/benefits/policies/benefitsSummary/benefitsSummaryView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "4",
+      "subHeading": "Contains in-depth information about your benefits coverage.",
+      "description": "Summary Plan Description",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/benefits/policies/summaryPlanDescription/summaryPlanDescriptionView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "5",
+      "subHeading": "Please review some important information about your rights.",
+      "description": "State & Federal Notices",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/benefits/policies/stateFederalNotices/stateFederalNoticesView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "6",
+      "subHeading": "",
+      "description": "Additional Policies",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/company/policies/additionalPolicies/additionalPoliciesView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "7",
+      "subHeading": "Provider Directories. Search for healthcare providers who serve your geographic area.",
+      "description": "Benefits Carrier Contacts",
+      "documentUrl": "/api-content/v1/benefits/policies/benefitsCarrierContacts/benefitsCarrierContactsView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "8",
+      "subHeading": "Bolster your benefits with voluntary benefits options: Annuities, Auto, Critical Illness, Home, Pet Insurance, Variable Life, and much more.",
+      "description": "MetLife Benefits",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/benefits/policies/metlifeBenefits/metlifeBenefitsView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "9",
+      "subHeading": ".",
+      "description": "Aflac Benefits",
+      "img-url": "",
+      "documentUrl": "/api-content/v1/benefits/policies/aflacBenefits/aflacBenefitsView.html/fileSearch"
+    },
+    {
+      "tags": "",
+      "id": "10",
+      "subHeading": "Aetna",
+      "description": "null",
+      "imgurl": "assets/images/benefits/aetna.png",
+      "documentUrl": "http://aetna.com"
+    },{
+      "tags": "",
+      "id": "17",
+      "subHeading": "Alfac",
+      "description": "null",
+      "imgurl": "assets/images/benefits/Alfac.png",
+      "documentUrl": "https://www.aflac.com/"
+    },{
+      "tags": "",
+      "id": "12",
+      "subHeading": "Blue Cross Blue Shield",
+      "description": "null",
+      "imgurl": "assets/images/benefits/bluecross.png",
+      "documentUrl": "http://bcbs.com"
+    },{
+      "tags": "",
+      "id": "13",
+      "subHeading": "Blue Shield of California",
+      "description": "null",
+      "imgurl": "assets/images/benefits/california.png",
+      "documentUrl": "https://www.blueshieldca.com/"
+    },
+    {
+      "tags": "",
+      "id": "18",
+      "subHeading": "Cigna",
+      "description": "null",
+      "imgurl": "assets/images/benefits/cigna.png",
+      "documentUrl": "http://www.cigna.com/"
+    },
+    {
+      "tags": "",
+      "id": "11",
+      "subHeading": "Florida Blue",
+      "description": "null",
+      "imgurl": "assets/images/benefits/florida.png",
+      "documentUrl": "https://www.floridablue.com/hcr/what-health-care-reform"
+    },
+    {
+      "tags": "",
+      "id": "19",
+      "subHeading": "Group Health",
+      "description": "null",
+      "imgurl": "assets/images/benefits/grouphealth.png",
+      "documentUrl": "https://ghc.org/"
+    },
+    {
+      "tags": "",
+      "id": "20",
+      "subHeading": "HMSA",
+      "description": "null",
+      "imgurl": "assets/images/benefits/hmsa-blue-cross.png",
+      "documentUrl": "https://hmsa.com/"
+    },
+    {
+      "tags": "",
+      "id": "16",
+      "subHeading": "Kaiser Permanente",
+      "description": "null",
+      "imgurl": "assets/images/benefits/kaiser.png",
+      "documentUrl": "https://kaiserpermanente.org/"
+    },{
+      "tags": "",
+      "id": "15",
+      "subHeading": "MetLife",
+      "description": "",
+      "imgurl": "assets/images/benefits/metlife.png",
+      "documentUrl": "https://www.metlife.com/"
+    },
+
+    {
+      "tags": "",
+      "id": "21",
+      "subHeading": "Triple S",
+      "description": "null",
+      "imgurl": "assets/images/benefits/triple-s.png",
+      "documentUrl": "http://sssadvantage.com/"
+    },
+
+    {
+      "tags": "",
+      "id": "14",
+      "subHeading": "UHC",
+      "description": "null",
+      "imgurl": "assets/images/benefits/united-health-care.png",
+      "documentUrl": "http://www.unitedhealthgroup.com/"
+    },
+
+
+    {
+      "tags": "",
+      "id": "22",
+      "subHeading": "aetna",
+      "description": "null",
+      "imgurl": "assets/images/benefits/aetna.png",
+      "documentUrl": "http://aetna.com/"
+    },
+    {
+      "tags": "",
+      "id": "23",
+      "subHeading": "Delta Dental",
+      "description": "null",
+      "imgurl": "assets/images/benefits/delta-dental.png",
+      "documentUrl": "https://www.deltadental.com/Public/index.jsp"
+    },
+    {
+      "tags": "",
+      "id": "24",
+      "subHeading": "guardian",
+      "description": "null",
+      "imgurl": "assets/images/benefits/guardian.png",
+      "documentUrl": "http://theguardian.com/"
+    },
+    {
+      "tags": "",
+      "id": "25",
+      "subHeading": "metlife",
+      "imgurl": "assets/images/benefits/metlife.png",
+      "documentUrl": "https://www.metlife.com/"
+    },
+    {
+      "tags": "",
+      "id": "27",
+      "subHeading": "Vision Service Plan",
+      "description": "null",
+      "imgurl": "assets/images/benefits/vsp.png",
+      "documentUrl": "https://www.vsp.com/"
+    }
+  ]
+}

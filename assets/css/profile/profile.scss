@@ -1,0 +1,1856 @@
+@import '../global';
+
+$red: red;
+
+.no-bg {
+  background: none !important;
+}
+
+.view-profile {
+  font-size: 22px;
+  color: $Trinet-dark-blue;
+  span {
+    padding: 7px !important;
+  }
+}
+.isHaving-error{
+    position: relative;
+}
+.isHaving-error .input-tooltip{
+    top:100%;
+    left: 5px !important;
+}
+.emergencystar {
+  div {
+    padding: $padding*2 0;
+    i {
+      font-size: 25px;
+    }
+  }
+}
+
+.move-buttom {
+  padding: 22px 0 0 0;
+}
+
+.home-address {
+  p {
+    color: $Lighter-gray;
+  }
+}
+
+.mymargin {
+  input, select {
+    margin: 0 0 $margin+5 0 !important;
+  }
+}
+
+.mystar {
+  div {
+    padding: $padding/2 0;
+    i {
+      font-size: 20px;
+    }
+  }
+}
+
+.emergency-contact {
+  h2 {
+    color: $Trinet-gray;
+  }
+}
+
+h3.user-name {
+  padding: 0;
+  color: $Trinet-blue;
+}
+
+.effective-list {
+  max-width: 165px;
+  padding: 0 !important;
+}
+
+.dropdown-menu {
+  z-index: 9999999;
+}
+
+.mail-gb {
+  background: $White url("../../assets/images/mail-bg.png") no-repeat right !important;
+  min-height: 152px;
+}
+
+.phone-gb {
+  background: $Background url("../../assets/images/phone-bg.png") no-repeat right !important;
+  min-height: 152px;
+}
+
+.vis-hide {
+  visibility: hidden;
+}
+
+.down-arrow {
+  padding: 0 $padding/2;
+}
+
+.no-border {
+  border: none !important
+}
+
+.no-bg-all {
+  background: none !important;
+  :hover, :active, :visited {
+    background: none !important;
+  }
+}
+
+* {
+  outline: none;
+}
+
+a.action {
+  color: $Trinet-orange !important
+}
+
+.wrapper {
+  @extend .block;
+  border: 1px solid $Trinet-gray;
+}
+
+.company {
+  @extend .block;
+  color: $White;
+  line-height: 35px;
+  border-left: 1px solid #ccc;
+}
+
+.header-bar {
+  @extend .block;
+  background: $Trinet-dark-gray;
+  padding: $margin $margin*2;
+}
+
+.top-bg {
+  background-color: $Trinet-dark-gray;
+  border-bottom: 2px solid $Trinet-orange;
+  height: 24px;
+
+  .active {
+    border-bottom: 5px solid $Trinet-orange;
+  }
+}
+
+.details {
+  @extend .block;
+  padding: $margin*3 0 0;
+  p {
+    color: $Trinet-dark-gray;
+  }
+}
+
+.mybox {
+
+  margin-top: 0;
+  width: $box-size;
+  height: $box-size+20;
+  h1 {
+
+    line-height: $box-size+20;
+    margin: 0;
+  }
+}
+
+.email {
+  padding-left: $margin*2;
+  background-repeat: repeat-y;
+
+}
+
+select, input[type="text"] {
+  height: 30px;
+  margin: 0 $padding;
+}
+
+/********************
+     Tabs css
+********************/
+
+//@extend-elements
+//original selectors
+//.panel-tabs > li.active > a, .panel-tabs > li.active > a:hover, .panel-tabs > li.active > a:focus
+%extend_1 {
+  color: $Trinet-dark-blue;;
+  cursor: default;
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 0px;
+  border-bottom: 3px solid $Trinet-dark-blue;
+}
+
+.panel-tabs {
+  position: relative;
+  clear: both;
+  > li {
+    float: left;
+    margin-bottom: -1px;
+
+    > a {
+      margin-right: 2px;
+      margin-top: 4px;
+      line-height: .85;
+      border: 1px solid transparent;
+      //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+      border-radius: 0;
+      background: none;
+      padding: 6px 24px;
+      color: $Trinet-gray;
+      &:hover {
+        background: none;
+      }
+    }
+    &.active > a {
+      @extend %extend_1;
+      &:hover {
+        @extend %extend_1;
+      }
+      &:focus {
+        @extend %extend_1;
+      }
+    }
+  }
+}
+
+.user-pic {
+  @extend .block;
+  @include border-radius(50%);
+  width: 96px;
+  height: 96px;
+  margin: 16px 0px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.my-field {
+  @extend .block;
+  height: 45px;
+  background: none;
+  border-top: none;
+  padding: 0 $padding;
+  h3 {
+    color: $Trinet-dark-gray !important;
+    margin: 0;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+
+  }
+}
+
+.profile-details-section {
+  @extend .block;
+
+  h3 {
+    padding: $padding 0;
+    color: $Trinet-blue
+  }
+  p {
+    line-height: 10px;
+
+    .ellipsis {
+      line-height: 16px;
+    }
+  }
+
+  .envelop {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  ul.contact-details {
+    @extend .block;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      float: left;
+      margin-right: $margin;
+      padding-right: $padding;
+      border-right: 1px solid $Trinet-gray;
+      line-height: 15px;
+    }
+
+    li:last-child {
+      $margin-left: $margin;
+      border-right: 0;
+    }
+  }
+}
+
+.bg-white {
+  background: $White !important;;
+}
+
+.personal-tabs, .money-tabs {
+  background: none !important;
+  padding: 6px $padding*2 !important;
+  font-size: 16px;
+  border-bottom: 4px solid $White !important;
+  font-weight: bold;
+  &:hover {
+    border: none !important;
+
+  }
+}
+
+.active .personal-tabs, .active .money-tabs {
+  border: none !important;
+  text-transform: capitalize;
+  border-bottom: 4px solid $Trinet-blue !important;
+  border-radius: 0 !important;
+  color: $Trinet-blue !important;
+}
+
+.active .money-tabs {
+  text-transform: none;
+}
+
+#contactDetails {
+  padding-bottom: $padding*2;
+}
+
+.myfield-content {
+  border: 1px solid #ebebeb;
+  border-top: 1px solid #BDBDBD;
+  padding: 7px $margin*2;
+  background: $Background;
+  .check {
+    @extend .block;
+    width: 100%;
+    float: left;
+    text-align: left;
+    line-height: 27px;
+    margin: 0 !important;
+  }
+  a {
+    color: $Trinet-dark-blue;
+    padding: $padding $padding/2 $padding/2 $padding*1.5;
+    @extend .in-block;
+
+  }
+
+  label {
+    @extend .block;
+    width: 130px;
+    float: left;
+    font-size: 16px;
+    font-weight: 100;
+    text-align: right;
+    line-height: 20px;
+    margin-right: $margin/2;
+    margin-bottom: 0;
+  }
+  .btn-icon{padding-top: 1px}
+
+  .profile-details {
+
+    padding: $padding*3 0;
+    background: $White !important;
+
+    input[type="text"] {
+      margin: 0
+    }
+    .email-section {
+      @extend .block;
+      margin-bottom: $margin+1;
+      padding-left: 20px;
+    }
+    .edit-details {
+      @extend .block;
+
+      p {
+        @extend .block;
+        margin: 0;
+        font-size: 14px;
+        color: $Trinet-gray;
+      }
+    }
+
+    .preferred {
+      background: $Trinet-green !important;
+      padding: $margin/5 $margin/2;
+      color: $White;
+      margin-left: 5px;
+      font-size: 10px;
+      @include border-radius(7px);
+      width: 60px;
+      height: 14px;
+      position: relative;
+      top: -6px;
+      text-transform: uppercase;
+
+    }
+
+    .name {
+      color: $Trinet-dark-gray;
+      @extend .in-block;
+      font-size: 16px;
+      font-weight: 100;
+      line-height: 20px;
+    }
+  }
+
+  .contact-email-bg {
+    background: #fff url("../../assets/images/profile/email-bg_360.png") no-repeat 96% 86% !important;
+    min-height: 100px;
+  }
+
+  .contact-phone-bg {
+    background: #fff url("../../assets/images/profile/phone-bg_360.png") no-repeat 96% 86% !important;
+    min-height: 100px;
+  }
+
+}
+
+.emergency-content {
+  border: 1px solid #ccc;
+  padding: $padding*2;
+  margin-bottom: $margin;
+  background: $Background;
+
+  h3 {
+    font-size: 36px;
+    color: $Trinet-dark-gray;
+    opacity: 50%;
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+.profile-details1 {
+
+  padding: $padding*2 $padding*2 $padding;
+  background: $White !important;
+
+  p {
+    margin: 0;
+    line-height: 24px;
+    font-size: 16px;
+  }
+}
+
+.profile-details3 {
+  padding: $padding*1.5 0 $padding;
+  background: $White !important;
+  input[type="text"] {
+    margin: 0
+  }
+
+}
+
+.change-name {
+  font-size: 18px;
+  color: $Trinet-dark-gray;
+  padding-top: $padding*1.5;
+  margin: 0 0 $margin*2 0;
+}
+
+#edit-details {
+  margin-bottom: $margin;
+}
+
+h4.adj {
+  margin: $margin/2 0 $margin*1.5 0;
+}
+
+.trinet-header-bar {
+  @extend .block;
+  height: 45px;
+
+  h3 {
+    color: $Trinet-dark-gray !important;
+    font-size: 18px !important;
+    margin: 0;
+    line-height: 65px;
+    padding: 0 $padding;
+    font-weight: bold;
+  }
+}
+
+h3.myname {
+  color: $Trinet-blue !important;
+}
+
+span.input-label {
+
+  font-size: 12px;
+  color: $Trinet-gray;
+}
+
+.radio-label {
+  color: $Trinet-gray;
+}
+
+#ssn-code {
+  position: relative;
+  top: -10px;
+}
+
+.cros-pos {
+  font-size: 10px !important;
+  position: relative;
+  top: -10px;
+}
+
+.blue {
+  color: $Trinet-blue;
+}
+
+.pannel-section {
+  padding: 0 $padding/2;
+}
+
+.personal-details {
+  @extend .in-block;
+  line-height: 16px;
+  font-size: 16px;
+}
+
+.personal-details4 {
+  background: $White;
+  @extend .block;
+  padding: $padding $padding*2;
+}
+
+.email-section {
+  @extend .block;
+  margin-bottom: $margin+1;
+  display:flex;
+  align-items:center;
+}
+
+input[type="text"] {
+  height: 30px;
+  line-height: 20px;
+}
+
+@media all and (max-width: $layout) {
+
+  .profile-details3 {
+    padding: 15px;
+  }
+  .myfield-content {
+    .profile-details {
+      padding: 30px 15px;
+    }
+
+  }
+
+  .panel-tabs {
+    li {
+      a {
+        padding: 6px !important;
+        font-size: 12px;
+      }
+    }
+  }
+
+}
+
+@media all and (max-width: $mobiles) {
+  .myfield-content {
+    padding: $padding/2 $padding;
+  }
+
+}
+
+@media all and (max-width: $mobile-480) {
+
+  .myfield-content label {
+    width: 100% !important;
+    text-align: left;
+  }
+
+  .header .user {
+    margin: 15px 6px;
+  }
+  .categories ul {
+    padding: 0;
+  }
+  .contact-edits-pos {
+    right: 0;
+  }
+}
+
+.bordr {
+  border-right: 1px solid $Trinet-gray;
+  padding-right: $padding;
+}
+
+.pad-20 {
+  padding: $padding*2 0 !important;
+}
+
+.contact-name {
+  line-height: 24px;
+  font-size: 16px;
+}
+
+.line-gap {
+  line-height: 24px !important;
+}
+
+.default-font {
+  font-size: 16px !important;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.ethnich-bg {
+  background: #ffffc7;
+  display: inline-block;
+  padding: 0 $padding;
+}
+
+.user-emergency-contact {
+  @extend .block;
+
+  h2 {
+    color: $Trinet-dark-gray;
+    font-size: 20px;
+    padding: 0;
+  }
+
+  small {
+    @extend .block;
+    font-size: 12px;
+    color: $Trinet-gray;
+    padding: 3px 0 $padding 0;
+    line-height: 12px;
+  }
+  ul {
+    @extend .block;
+    padding: 0;
+    margin: 0;
+
+    li {
+      @extend .in-block;
+      margin-right: $margin;
+      font-size: 14px;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    line-height: 24px;
+  }
+}
+
+.emergency-star {
+  font-size: 24px !important;
+  color: #00477F;
+}
+
+.change-primary-name {
+  @extend .block;
+
+  label {
+    @extend .block;
+    margin-top: $margin !important;
+
+  }
+
+  .name-block {
+    @extend .block;
+    margin-top: $margin*2 !important;
+  }
+}
+
+.change-primary-name-emerg {
+  @extend .block;
+
+  label {
+    @extend .block;
+    margin-top: $margin/5 !important;
+
+  }
+}
+
+.profile-details7 {
+  @extend .block;
+  padding: $padding*1.5 0;
+  background: $White;
+
+  .edit-details {
+    @extend .block;
+
+    p {
+      @extend .block;
+      margin: 0;
+      font-size: 14px;
+      color: $Trinet-gray;
+    }
+  }
+}
+
+.trinet-primary-action-btn, .trinet-secondary-action-btn {
+
+  font-family: SansPro;
+}
+
+.name-section-btns {
+  @extend .block;
+
+  .trinet-primary-action-btn, .trinet-secondary-action-btn {
+    min-width: 75px;
+  }
+}
+.noHomeaddress
+{
+    background: #ffffff;
+    padding: 30px;
+ h3{
+    font-size: 36px;
+    color: #B5B5B5;
+    font-weight: 400;
+    }
+}
+.profile-details8 {
+  @extend .profile-details7;
+}
+
+.no-pad-imp {
+  padding: 0 !important;
+}
+
+.social-list {
+  @extend .block;
+
+  a.action {
+    @extend .in-block;
+    padding: 0 0 0 $padding !important;
+  }
+}
+
+.contact-edits-pos {
+  position: absolute;
+  z-index: 5;
+}
+
+.profile-details8 .myfield-content a {
+  margin: 0 !important;
+}
+
+.star-color {
+  background: none !important;
+  outline: none;
+  border: none;
+}
+
+.nav-tabs > li > a {
+  border: none !important;
+}
+
+/*#contactDetails label{width:80px !important;}*/
+.radio-label-info {
+  color: $Trinet-gray;
+  position: relative;
+  top: -10px;
+}
+
+.radio-label-info-desc {
+  position: relative;
+  top: 0px;
+  padding-left: 5px;
+  line-height: 14px;
+}
+
+.home-bg {
+  background: #fff url("../../assets/images/profile/home-info.png") no-repeat 98% 86% !important;
+  min-height: 100px;
+}
+
+div1 {
+  display: none;
+}
+
+div2 {
+  display: inline-block;
+}
+
+.view_show {
+  display: inline-block;
+}
+
+.marg-3 {
+  margin-right: 3px;
+
+}
+
+.profile-view {
+  @extend .in-block;
+  margin-top: $margin;
+
+  .icon-icon_view_profile {
+    font-size: 22px;
+    margin-right: 7px;
+    float: left;
+  }
+
+  a {
+    display: block;
+    width: 160px;
+    line-height: 21px;
+    font-weight: bold;
+    color: $Trinet-blue;
+    font-size: 14px;
+  }
+}
+
+.compensation {
+  min-height: 80px;
+}
+
+.emergency-contact-details-block .icon-icon_Star {
+  font-size: 20px;
+}
+
+.emerg-title {
+  font-size: 24px !important;
+  color: $Trinet-dark-gray !important;
+}
+
+.emerg-add {
+  padding-top: 16px;
+  margin-right: 7px;
+}
+
+.marg-top-7 {
+  margin-top: 7px;
+}
+
+.same-add-select {
+  float: left;
+  margin-top: -1px !important;
+  margin-right: 5px !important;
+}
+
+p.marg-top-20-imp {
+  margin-top: 20px !important;
+  display: block;
+}
+
+.profile-details7.emergency-contact-details-block {
+  height: 256px;
+  margin-bottom: $margin;
+  padding-top: 0;
+}
+
+.default-emerg-block {
+  padding: 0 0 $padding*4.5;
+  margin-bottom: $margin+5;
+}
+
+input.no-marg-imp {
+  margin: 0 0 $margin/2 0 !important
+}
+
+@media all and(max-width: $tablets) {
+  .myfield-content label {
+    width: 120px;
+  }
+  .mobile-emerg-details {
+    padding-right: $padding/2;
+  }
+  .personal-details {
+    float: left;
+  }
+  .myfield-content {
+    .profile-details {
+      display: block;
+      overflow: hidden;
+    }
+  }
+  .switch-tab {
+    padding-left: 35px;
+  }
+  .cros-pos {
+    top: 6px;
+  }
+}
+
+.resize {
+  display: block;
+  overflow: hidden;
+  overflow-y: auto;
+  min-height: 100px;
+
+}
+
+.top-sec-height {
+  @extend .block;
+  height: 260px;
+}
+
+.user-profile-image {
+  width: 96px;
+  height: 96px;
+  margin: 14px 0;
+}
+
+.emergency-same-address {
+  @extend .block;
+
+  label {
+    width: 25px;
+    height: 30px;
+    top: -7px;
+    position: relative;
+    padding: 0;
+    maargin: 0;
+
+    input[type="checkbox"] {
+      height: 20px;
+      width: 20px;
+      position: relative;
+      top: -5px;
+      margin-right: 5px;
+    }
+  }
+
+}
+
+#tab7 {
+  .efrm-block {
+    background-color: $Background;
+  }
+  .icon-icon_print_circle {
+    font-size: 34px !important;;
+    color: black;
+    position: relative;
+    top: 5px;
+  }
+  .eform-content {
+    /*padding:10px;*/
+    border:1px solid transparent;
+    &:hover{
+    background:#fff;
+    border:1px solid $Trinet-blue;
+    }
+    h4 {
+      font-weight: bold;
+      color:  $Trinet-blue;
+    }
+    .accepted {
+      background: $Trinet-green !important;
+      padding: 4px 9px;
+      color: #ffffff;
+      font-size: 12px;
+      border-radius: 5px;
+      margin: 7px;
+      margin-left: 10px;
+      display: inline-block;
+    }
+    p {
+      color: $Trinet-gray;
+      height: auto;
+      overflow: hidden;
+    }
+    .prnt-txt {
+      position: relative;
+      bottom: 8px;
+    }
+
+    .not-complete {
+      background: $Trinet-light-orange !important;
+      padding: 4px 9px;
+      color: #ffffff;
+      font-size: 12px;
+      border-radius: 5px;
+      margin-left: 10px;
+      line-height: 40px;
+    }
+    .accept-date{
+        color: #494949 !important;
+        line-height: 39px;
+    }
+  }
+}
+
+.prnt-txt {
+  font-size: 16px !important;
+  color: $Trinet-gray;
+  position: relative !important;
+  top: -3px !important;
+  color: $Trinet-dark-blue;
+}
+
+.pencil-adj {
+  margin: $margin*2+8 0;
+  display: block;
+}
+
+.emergency-edit-label-adjustment {
+  label {
+    line-height: 27px !important;
+  }
+}
+
+.blurdiv {
+  opacity: 0.2;
+}
+
+.colorred {
+  color: $red !important;
+}
+
+.fullwidth {
+  width: 100% !important;
+}
+
+.hiddenprofile {
+  display: none !important;
+}
+
+.bgcolor {
+  background: #818285 !important;
+}
+
+.relposition {
+  position: relative !important;
+  top: 8px !important;
+}
+
+.prefname {
+  color: #ddd !important;
+  font-size: 21px !important;
+}
+
+.postal {
+  height: 34px !important;
+}
+
+.gmailsignin {
+  padding: 5px 0 0 10px !important;
+  position: relative !important;
+  top: 3px !important;
+}
+
+.yahoomail {
+  padding: 5px 0 0 10px !important;
+  position: relative !important;
+  top: 3px !important;
+}
+
+.addressmodelpostal {
+  height: 30px !important;
+  font-size: 15px !important;
+  width: 100%;
+}
+
+.addressmodeleffdate {
+  margin-left: 5px !important;
+}
+
+.waive-font-adj {
+  font-size: 12px;
+  margin-left: $margin/5;
+}
+
+.dollar-adj {
+  margin: 0 $margin/2+1 0 $margin/2+2;
+}
+
+#tab6 {
+  alerting {
+    .col-md-8.col-md-offset-2 {
+      .alert.green-alert.alert-success.col-md-12.col-sm-12,
+      .alert.red-alert.alert-danger.col-md-12.col-sm-12 {
+        top: 70px !important;
+      }
+    }
+  }
+}
+
+.benfit-box1 {
+  padding-right: 3px;
+  border: red;
+}
+
+.benfit-box2 {
+  padding: 0px 4px;
+}
+
+.benfit-box3 {
+  padding: 0px 11px 0px 4px;
+}
+
+.benfit-frame {
+  padding: 10px;
+  background-color: $Background;
+  border: 1px solid $Trinet-gray;
+  margin-top: 10%;
+}
+
+.benfit-data {
+  margin-top: 8px;
+  padding: 10px;
+  background-color: $White;
+
+  h4 {
+    color: $Trinet-dark-gray;
+  }
+
+  p {
+    color: $Trinet-gray;
+  }
+}
+
+.beneficiary {
+  background: $Trinet-orange !important;
+  padding: 2px 9px;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+
+}
+
+.dependent {
+
+  background: $Trinet-light-blue !important;
+  padding: 2px 9px;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.trinet-dark-grey {
+  color: $Trinet-dark-gray !important;
+}
+
+.icons-bft {
+  @extend .block;
+  padding-top: $padding;
+
+  .print-align {
+    position: relative;
+    top: -4px;
+    padding-right: $padding;
+  }
+
+  a {
+    display: inline-block;
+  }
+
+}
+
+.benefit-divider {
+  background: $Lighter-gray !important;
+}
+
+.manage-group {
+
+  .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #FFF;
+  }
+  .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: $Background;
+  }
+  .sub-heading {
+    margin-left: 5px;
+    color: $Trinet-light-gray;
+  }
+  .marg-left5 {
+    margin-left: 5px;
+  }
+  .sub-txt {
+    color: $Trinet-gray;;
+    font-size: 10px;
+  }
+  .manage-achr {
+    color: $Trinet-orange;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .settings-marg {
+    margin-top: 3px;
+    margin-left: 5px;
+  }
+  .manage-table {
+    color: $Trinet-gray;
+    margin-top: 10px;
+    th {
+      border-left: 1px solid;
+      border-bottom: none !important;
+      background: #0073CF;
+      color: #FFF;
+      font-weight: 600;
+      FONT-SIZE: 16px;
+    }
+    th:first-child {
+      border: none !important;
+    }
+    tr {
+      td {
+        .table-element {
+          boder-top: 1px solid $Trinet-gray;
+          margin-bottom: 5px;
+        }
+      }
+    }
+    .icon-icon_filter {
+      font-size: 18px;
+    }
+    .benifit-table {
+      td {
+        padding: $padding/2 8px;
+        border: none !important;
+        font-size: 14px;
+
+      }
+
+    }
+    .pad-td {
+      padding: 5px 8px !important;
+    }
+    .border-btm td {
+      border-bottom: 1px solid $Lighter-gray !important;
+    }
+    tbody tr:hover {
+      .view-details {
+        color: red;
+      }
+      background: #D9EAF8;
+    }
+    tbody {
+      td {
+        color: $Trinet-dark-gray;
+        font-size: 13px;
+      }
+      tr {
+        span {
+          font-size: 12px;
+          color: $Trinet-gray;
+        }
+      }
+    }
+
+    .row-icon {
+      font-size: 40px;
+      margin-top: 5px;
+      margin-right: 14px;
+      color: $Trinet-dark-gray;
+    }
+    .row-name {
+      font-size: 16px;
+      margin-top: 5px;
+
+    }
+    .top-line {
+      margin-top: 1px solid $Trinet-gray;
+    }
+  }
+
+}
+
+.flipicon-algn {
+  position: relative;
+  right: 10px;
+  font-size: 15px;
+}
+
+.block-values {
+  color: $Trinet-dark-gray;
+
+  .title {
+    @extend .block;
+    border-bottom: 1px solid $Trinet-gray;
+    padding-bottom: $padding/3;
+  }
+
+  span {
+    color: $Trinet-dark-gray !important;
+  }
+}
+
+.benefits-popup {
+
+  .modal-content {
+    max-width: 650px;
+
+    .status-adjustment {
+      margin-top: $margin*2.5;
+      text-align: right;
+    }
+
+    .personal-information {
+      border: none !important;
+      border-top: 1px solid $Trinet-dark-gray !important;
+      label {
+        float: right;
+        margin: 0;
+        font-weight: initial;
+      }
+
+      .row {
+        margin-top: $margin/2;
+      }
+      .information {
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+}
+
+.marg-19 {
+  margin-left: 19px !important;
+}
+
+.ssn-adj {
+  margin-top: 8px !important;
+}
+
+.no-preffered-adjustment {
+  margin: 0;
+  line-height: 22px;
+}
+
+.retirement-block {
+  .effective-list {
+    margin-right: $margin !important;
+    border: 1px solid $Trinet-gray;
+    max-width: 170px;
+  }
+}
+
+.email-bg {
+  background: #fff url("../../assets/images/profile/email-bg_360.png") no-repeat 97% 50% !important;
+  min-height: 100px;
+}
+
+.myfield-content.security {
+  .contact-email-bg {
+    min-height: 50px;
+    background: $White url("../../assets/images/profile/email-bg_360-big.png") no-repeat 96% 86% !important;
+  }
+}
+
+.emerg-home-address-tooltip {
+  validation {
+    .input-tooltip {
+      top: 54px;
+    }
+  }
+}
+
+#loadingSvgPlanSpinner {
+  top: -80px;
+  position: relative;
+}
+
+.underline {
+
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.contact-mails {
+  padding: 0 5px 0 0 !important;
+  float: left;
+}
+
+.name-edit-calander-adj {
+  min-width: 100px !important;
+  float: left;
+  width: 72% !important;
+}
+
+#acknowledgmentClose {
+  .modal-dialog {
+    width: 100%;
+  }
+}
+
+.security-customer-id-adj {
+  position: relative;
+  top: -7px;
+}
+
+.profile-landing-page .not-me-tab {
+  p.status {
+    &.leave {
+      background: #EAD0AA;
+    }
+    &.available {
+      background: #69BE28;
+    }
+    &.terminated {
+      background: red;
+    }
+    height: 20px;
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    position: relative;
+    right: 5px;
+    min-width: 70px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 10px;
+    text-transform: uppercase;
+  }
+
+}
+
+/*# sourceMappingURL=profile.css.map */
+
+.name-edit-default {
+  display: block;
+
+  min-width: 150px;
+}
+
+.personal-info-radio-adj {
+  position: relative;
+  top: -12px;
+  float: left;
+}
+
+.current-benfite-popup-new {
+  .ngdialog-content {
+    width: 500px !important;
+
+    .benefits-popup .modal-content {
+      max-width: 500px !important;
+    }
+  }
+  .ngdialog.ngdialog-theme-default.ng-scope .ngdialog-content .ngdialog-close:before {
+    color: $Trinet-dark-blue !important;
+  }
+  .currentdependent-popup {
+
+    .popup-head-adj {
+      margin-top: 35px !important;
+    }
+    .modal-body {
+      border-top: 1px solid $Trinet-gray !important;
+
+      .personal-information {
+        border-top: none !important;
+      }
+    }
+
+  }
+}
+
+.profile-workinbox-text-adj {
+  p {
+    position: relative;
+    top: -1px;
+    line-height: 23px;
+  }
+}
+
+.workinfo-history {
+  overflow: hidden;
+  padding-top: 20px;
+
+  .col-md-6.col-sm-6 {
+    width: 100%;
+
+    .message-item {
+      max-width: 100%;
+
+      .effective-date {
+        .time-line-date {
+          text-align: right !important;
+        }
+      }
+    }
+
+  }
+
+  .message-item:after, .message-item.effective-date:after {
+    height: 110% !important;
+    top: -21px !important;
+  }
+}
+
+table.work-info-history-table {
+  width: 100%;
+  display: table;
+  thead {
+    tr {
+      th {
+        border-right: 1px solid $Lighter-gray;
+        border-bottom: 1px solid $Lighter-gray;
+        font-size: 16px;
+        font-weight: 600;
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+    }
+  }
+  tbody {
+    tr {
+      &:last-child {
+        border-bottom: 1px solid $Lighter-gray;
+      }
+
+      td {
+        border-top: 0;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+
+
+#timeline, #personalinfotimeline , #preferred_timeline{
+  .time-line-adj {
+    .message-item {
+      min-width: 370px !important;
+      max-width: 95% !important;
+      margin-left: 35px;
+      .time-line-date {
+        text-align: right !important;
+      }
+    }
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* Safari and Chrome, if Chrome rule needed */
+  .someClass {
+    color: #c00;
+  }
+
+  /* Safari 5+ ONLY */
+  ::i-block-chrome, .cros-pos {
+    position: relative;
+    top: -21px;
+  }
+}
+@media only screen  and (min-width : 1500px) and (max-width : 1824px){
+  .myfield-content{  .adjClnderSection {
+        width: 55% !important;
+    }
+    }
+}
+#emerg_section {
+  .emergency-pro {
+    &:nth-child(even) {
+      emergency-card {
+        .emrg-no-pad-L-R {
+          padding-right: 0 !important;
+          padding-left: 7px !important;
+        }
+      }
+    }
+    &:nth-child(odd) {
+      emergency-card {
+        .emrg-no-pad-L-R {
+          padding-left: 0 !important;
+          padding-right: 7px !important;
+        }
+      }
+    }
+
+  }
+}
+
+.formerNames {
+  position: relative;
+  top: 1px;
+}
+
+.clnder {
+  width: 72% !important;
+}
+
+.custom-checkbox {
+  label {
+    top: 0;
+  }
+}
+
+.adjust-for-custom-checkbox {
+  line-height: 20px;
+  margin: 0;
+}
+
+.profile-checkbox {
+  width: auto !important;
+}
+
+.profile-checkbox {
+  .icon-icon_checkmarkwithbox {
+    line-height: 13px;
+    &:before {
+      font-size: 13px;
+    }
+  }
+}
+
+.profile-checkbox {
+  .icon-icon_checkmark_emptybox {
+    line-height: 13px !important;
+    font-size: 13px !important;
+    &:before {
+      font-size: 13px !important;
+    }
+  }
+}
+
+.profile-header {
+  padding: 0 0 10px 0 !important;
+  line-height: 30px !important
+}
+
+.user-details {
+  line-height: 20px !important;
+  padding-left:2px;
+
+}
+
+.email-view {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 65%;
+}
+
+.org-nav {
+  margin: 8px 0px;
+}
+
+.whitecheck {
+  color: #fff !important;
+}
+
+.manage-select-custom {
+  select {
+    width: 56%;
+    float: left;
+    margin: 0;
+    font-size: 12px;
+    padding: 0 !important;
+    height: 27px;
+  }
+  button {
+    float: left;
+    margin: 0 5px;
+    height: 27px;
+  }
+
+}
+
+.custom-table-create-group {
+  th {
+    &:last-child {
+      width: 20% !important;
+    }
+  }
+
+}
+
+.adjust-select {
+  width: 56%;
+  float: left;
+  margin: 0;
+  font-size: 12px;
+  padding: 0 !important;
+  height: 27px;
+}
+
+.line-height-13 {
+  line-height: 13px;
+}
+.adjPad{
+padding:0 15px !important;
+}
+.adjTimeLine{
+padding-left:35px;
+}
+.adj-profile-lable-width {
+  max-width: 80% !important;
+}
+.prfile-section{
+        margin: 16px 0 20px 0;
+ .Prof_head
+ {
+ width: 115px;
+ }
+
+.profile-user-image-sec {
+  font-size: 50px !important;
+  border: 1px solid $Trinet-gray;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: #0073CF;
+  color: #ffffff;
+  margin:0 auto;
+}
+.profile-details-section
+{
+ width: 115px;
+ padding:0 15px;
+.verticalCenter{
+display:flex;
+align-items: center;
+}
+  h1.profile-header{
+  font-size:36px !important;
+  color: $Trinet-blue;
+  margin:0px;
+  margin-right: 14px;
+  }
+  .not-me-tab{
+  p{&.status{
+    top:-15px;
+  }
+  }
+  }
+}
+.btnSection{
+button{
+    margin: 0 1px !important;
+    float: left;
+}
+}
+}
+.phoneHintText{
+    color: rgba(84,106,121,0.45);
+    font-size: 15px;
+}
+
+label.customeFileUpload input[type="file"] {
+  position: fixed;
+  top: -1000px;
+}
+
+/***** Example custom styling *****/
+
+.customeFileUpload {
+  display: block;
+  position: absolute;
+  left: 0px;
+  bottom: -8px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition: background-color 500ms ease-out;
+  -moz-transition: background-color 500ms ease-out;
+  -o-transition: background-color 500ms ease-out;
+  transition: background-color 500ms ease-out;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.21);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  i {
+    vertical-align: super;
+  }
+  span {
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}
+.employee-change-list{
+  select{
+    .error-warning{
+      border:1px solid #9E3039 !important;
+    }
+  }
+}
+
+p{
+  .addlpayment-calender {
+      width: 160px !important;
+  }
+}
+#emergencyContacts{
+ .myfield-content{
+     border: 0;
+     background: transparent;
+     padding: 0;
+ }
+ .security{
+   .security-details{
+       margin-Bottom: 0;
+   }
+ }
+ }
+ .adjClnderSection {
+   width: 73% !important;
+   input[type="text"] {
+     padding: 4px !important;
+   }
+   span button.Trinet-calendar {
+     margin-top: 1px !important;
+   }
+ }
+.chooseEmp-popup-scroll{
+        display: block;
+        height: 500px;
+        overflow: scroll !important;
+        overflow-x: hidden !important;
+}
+/*Profile section for name alignment*/
+.profile-sections-view{
+     display: flex;
+     align-items: center;
+     padding: 30px 20px;
+     flex-wrap: wrap;
+     background: #fff;
+     min-width: 100%;
+    &.no-data{
+        justify-content: center;
+    }
+    h5{
+        margin-right:15px;
+        margin-top: 0;
+        min-width: 80px;
+    }
+    h4{
+        font-size: 16px;
+        margin-top: 0;
+        line-height: 20px;
+    }
+ }
+
+.emergency-textarea {
+      width: 350px;
+      resize: none;
+  }

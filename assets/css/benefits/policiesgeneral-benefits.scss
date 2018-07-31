@@ -1,0 +1,900 @@
+@import '../global';
+
+.benefit-policies-general {
+  .modal {
+    margin: 0 auto;
+    width: 900px;
+
+  }
+  .title-block-active {
+    background: #0073CF !important;
+    color: #ffffff !important;
+  }
+  h2 {
+    padding: 0px !important;
+  }
+  .content-block {
+    max-width: 100% !important;
+    min-width: 600px important;
+    display: block;
+    background-color: #ffffff;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+
+    button {
+      margin-top: $margin+6;
+    }
+
+    .content-main {
+      margin: ($margin*3)+2 0 ($margin*2)+4 0;
+      color: $Trinet-dark-blue;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .row-top-margin {
+    margin: $margin*3 0 0 0;
+  }
+
+  .column-pad {
+    padding-left: 0;
+    padding-right: 4px;
+    padding-bottom: 4px;
+  }
+  .title-block {
+    cursor: pointer;
+    background: $Background;
+    padding: $padding $padding+4;
+    height: 110px;
+
+    &:hover {
+      background: $Trinet-blue;
+      color: $White;
+
+      h4, p {
+        color: $White;
+      }
+
+    }
+    h4 {
+      color: $Trinet-blue;
+    }
+
+    p {
+      color: $Trinet-gray;
+      height: 50px;
+      font-size: 12px;
+      overflow: hidden;
+    }
+  }
+  title-block.title-block-active {
+    h4, p {
+      color: #FFFFFF;
+    }
+  }
+
+  .title-img {
+    border: 1px solid $Trinet-gray;
+    text-align: center;
+    padding: ($padding*2)+2;
+    height: 80px;
+    position: relative;
+
+    &:hover {
+      background: $Lighter-blue;
+      border: 1px solid $Trinet-blue;
+
+    }
+
+  }
+
+  .img-pad {
+    padding-left: 0;
+    padding-right: 4px;
+  }
+  /*******************************************************************************************************************
+                                            css outside data moved to inside
+  *********************************************************************************************************************/
+
+  .title-margin {
+    margin: 4px 0 0 0;
+  }
+  .general-info {
+    margin-left: 5px;
+    margin-right: 5px;
+
+    .general {
+      margin-top: ($margin*3)+2;
+      font-weight: 600;
+      font-size: 24px;
+      /*border-bottom:1px solid $Trinet-gray;*/
+    }
+
+  }
+  .bottom-marg {
+    margin-bottom: ($margin*3)+2;
+  }
+  i.icon-icon_file {
+    line-height: 2;
+    padding-right: $padding;
+    font-size: 16px;
+    color: $Trinet-dark-orange;
+  }
+
+  .top-button {
+
+    position: fixed;
+    bottom: 15px;
+    left: 1100px;
+
+    a {
+      text-decoration: none;
+    }
+
+    span {
+      line-height: 0;
+      color: $Trinet-dark-orange;
+    }
+
+    label {
+      font-size: 12px !important;
+      display: block;
+      color: $Trinet-dark-orange;
+      line-height: 0;
+
+    }
+
+  }
+
+  #accordion {
+    .panel {
+      border-radius: 0px;
+      -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.05) !important;
+      -box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .panel-heading {
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+  }
+  .panel-default {
+    border: none;
+  }
+  .panel-title {
+    color: $Trinet-dark-gray;
+    font-weight: bold;
+  }
+  .panel-body-background { /*padding:($padding*2)+4  $padding+6;*/
+    border-top: 0px !important;
+  }
+
+  .panel-body-background {
+    ul {
+      padding-top: 0px;
+
+      li {
+        background: $Background;
+        margin-top: 4px;
+        padding-left: $padding/2;
+        color: $Trinet-dark-blue;
+        font-size: 16px;
+        font-weight: 400;
+
+        a {
+          color: $Trinet-dark-blue;
+          padding: 5px 0;
+          .icon-icon_pdf {
+            &:hover {
+              text-decoration: none !important;
+            }
+          }
+          span {
+            &:hover {
+              text-decoration: underline;
+            }
+            color: #494949;
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+        }
+
+      }
+    }
+  }
+  .fourth-panel {
+    ul {
+      li {
+
+        padding: $padding;
+        margin-top: $margin;
+        min-height: 70px;
+        &:nth-of-type(even) {
+          background: $White;
+        }
+
+        .circle-icon {
+          font-size: 10px !important;
+          margin-right: $margin;
+        }
+
+      }
+    }
+
+    #accordion-example {
+      #modalcollapseOne {
+
+        .no-border {
+          border-right: none !important;
+        }
+      }
+    }
+
+  }
+  table.medical-aetna {
+    thead {
+      background: $Trinet-blue;
+      tr {
+        th {
+          background: $Trinet-blue;
+        }
+      }
+      tr {
+        td {
+          a {
+            text-decoration: underline;
+            color: $Trinet-blue;
+          }
+        }
+      }
+
+    }
+  }
+
+  .hasSelectedItem .gridder-list.selectedItem .title-block {
+    background: #0073CF;
+  }
+
+  .hasSelectedItem .gridder-list.selectedItem .title-block h4 {
+    color: #fff;
+  }
+  .policies-headline h3 {
+    color: $Trinet-dark-gray;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .table-striped-even > tbody > tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+  }
+
+  .policies-data {
+    position: relative;
+    top: -61px;
+    //padding:0px $padding+6 $padding+6 $padding+6;
+  }
+  table.general-info-table tbody tr td, table.general-info-table thead tr th {
+    font-size: 14px;
+  }
+  .policies-table {
+    border: 1px solid #7FBAEC;
+  }
+  .policies-table .head {
+    width: 380px;
+    color: $Trinet-blue;
+    padding: $padding/2;
+    // Needs latest Compass, add '@import "compass"' to your scss
+    // Permalink - use to edit and share this gradient:
+    // http://colorzilla.com/gradient-editor/#ebf1f6+0,abd3ee+50,89c3eb+51,d5ebfb+100;Blue+Gloss+%234
+    background-color: #ebf1f6; // Old browsers
+    //@include filter-gradient(#ebf1f6, #d5ebfb, vertical); // IE6-9
+    //@include background-image(linear-gradient(top,  #ebf1f6 0%,#abd3ee 50%,#89c3eb 51%,#d5ebfb 100%));
+    tbody tr {
+      td:nth-child(1) {
+        border-bottom: 1px solid #EFEBEB;
+        border-right: 1px solid #EFEBEB;
+
+      }
+      td:nth-child(2) {
+        border-bottom: 1px solid #EFEBEB;
+        border-left: 1px solid #EFEBEB;
+
+      }
+    }
+  }
+  .policies-table
+  .policies-table tbody tr
+  .policies-forms input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 12px;
+    margin-left: $margin;
+
+  }
+
+  .additional-policies {
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    a {
+      color: $Trinet-orange;
+      font-weight: 600;
+      font-size: 14px !important;
+    }
+    label {
+      font-size: 14px !important;
+    }
+  }
+
+  #stats li {
+    list-style-type: disc !important;
+  }
+
+  .listStyle li {
+    list-style-type: circle;
+    color: none;
+    background-color: none;
+  }
+
+  .bullet {
+    display: list-item;
+    list-style: disc inside;
+    padding: 0 0 0 10px;
+    margin: 0;
+  }
+  .print {
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+  }
+  .print span {
+    font-size: 25px;
+    position: relative;
+    top: 5px;
+  }
+  .inline {
+    display: inline;
+  }
+  .maillink {
+    display: inline;
+    text-decoration: underline !important;
+    color: #0073D4;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .carrier-certificate-content {
+    @extend .block;
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+  .caption {
+    font-size: 16px;
+    font-weight: 600 !important;
+  }
+  ul.benefits-summery-links {
+    li {
+
+      @extend .block;
+
+      a {
+        text-decoration: none;
+        padding: 5px;
+        float: left;
+        width:100%;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .grey-data {
+        color: $Trinet-gray !important;
+      }
+
+    }
+  }
+
+  ul.disc {
+
+    padding: 0;
+    li {
+      padding: 0;
+      list-style: disc !important;
+      margin: 0;
+      color: $Trinet-dark-gray;
+      background: none;
+      list-style-position: inside;
+    }
+  }
+  .policies-info-box {
+
+    border: #E3E3E3 1px solid;
+    margin-top: 20px;
+    padding: 0px 16px 16px 16px;
+
+  }
+
+  ol.state-ordered-list {
+    padding-left: $padding*5;
+    li {
+      list-style-type: upper-hexadecimal;
+      list-style-position: inside;
+
+    }
+  }
+
+  .metlife-benefits-list {
+    display: block;
+
+    ul {
+      padding-left: $padding*5;
+
+      li {
+        list-style: none;
+        display: list-item;
+        padding-left: 10px;
+        float: left;
+        width: 100%;
+        padding: 10px;
+      }
+
+      .title {
+        font-weight: 600;
+      }
+    }
+  }
+
+  table.vertical tbody tr td {
+    vertical-align: middle;
+
+  }
+
+  .b2t {
+    font-size: 50px;
+    cursor: pointer;
+  }
+
+  .tooltip-right-content {
+    display: none !important;
+
+  }
+  .tooltip-right:hover .tooltip-right-content {
+    display: inline !important;
+
+  }
+  .arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 12px solid $Background;
+    position: absolute;
+    top: 9px;
+    left: 135px;
+  }
+  .arrow-up-2 {
+    width: 0;
+    height: 0;
+    border-left: 19px solid transparent;
+    border-right: 19px solid transparent;
+    border-bottom: 13px solid $White;
+  }
+  .benefit-text {
+    color: $Trinet-blue !important;
+  }
+
+  ul.payroll-services {
+    @extend .block;
+
+    li {
+      background: none !important;
+      color: $Trinet-dark-gray !important;
+    }
+  }
+
+  .title-block.title-block-active {
+    h4 {
+      color: $White !important;
+    }
+    p {
+      color: $White !important;
+    }
+  }
+  .trinet-primary-color {
+    color: $Trinet-dark-gray !important;
+  }
+  .list-title-adjustment {
+    background: $White;
+    color: $Trinet-dark-gray !important;
+    position: relative;
+    left: -10px;
+    padding-bottom: $padding/2;
+    @extend .block;
+  }
+
+  .print .value {
+    position: relative;
+    top: 4px !important;
+    font-size: 16px;
+    marginleft: $margin/2;
+
+  }
+
+  .top-5 {
+    position: relative;
+    top: 5px !important;
+  }
+
+  .trinet-grey {
+    color: $Trinet-dark-gray;
+  }
+
+  .cobra {
+    margin-left: 155px !important;
+  }
+  .tablefix {
+    width: 675px;
+    margin-left: 16%;
+  }
+
+  .magr-left-25 {
+    margin-left: 25px;
+  }
+
+  .SummaryPlanDescriptionId {
+    h5 {
+      float: left;
+      padding: 8px 0;
+    }
+    .panel-heading {
+      padding: 0 15px !important;
+
+    }
+  }
+
+  .benefits-accord-open-size-restrict {
+    max-height: 500px;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .policies-sub-data {
+    p {
+      margin-left: 15px !important;
+    }
+    .left-gap-list {
+      margin-left: 45px !important;
+    }
+  }
+
+  accordion {
+    h4 {
+
+      a {
+        padding: 5px 0;
+      }
+    }
+
+  }
+
+}
+
+.emp-assign-pln-pdf-adj {
+  tbody {
+    tr {
+      td {
+        a {
+          [class^="icon-"] {
+            padding-top: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.panel-title {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.sponserDataService {
+  a {
+    display: inline;
+  }
+}
+
+.metlifeVoltService {
+  ul {
+    margin: 10px 0 !important;
+    li {
+      background: none !important;
+      list-style: initial !important;
+      color: #333333 !important;
+      font-size: 14px !important;
+    }
+  }
+}
+
+.other-relInfo {
+  margin: 29px -7px;
+}
+
+.otherinfo-block {
+  .row {
+    margin: 0px 7px !important;
+  }
+}
+
+.panel-expand {
+  height: 70px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.learnMoreStatic {
+  height: auto;
+}
+
+.row {
+  .policies-data {
+    .move-top {
+      position: relative;
+      top: -177px;
+    }
+  }
+}
+
+.aflacDis {
+  display: inline-block;
+  margin-top: 7px;
+  padding-left: 5px
+}
+
+.border-btm-heading {
+  border-bottom: 1px solid $Trinet-gray;
+}
+
+#currentPanel {
+  .glyphicon {
+    position: relative;
+    top: -7px !important;
+    display: inline-block;
+  }
+}
+
+.benf-resource-35 {
+  margin-top: 35px;
+}
+
+.adjust-plan-pdf {
+  line-height: 16px;
+  margin-top: -2px;
+}
+
+#acaMarketPlace .policies-forms li input[type="checkbox"] {
+  top: 12 !important;
+}
+
+.trient-benefits-head {
+  margin: 14px 0px 5px 0px !important;
+}
+
+.trient-resource-head {
+  margin: -11px 0px 5px -2px !important
+}
+
+.benefit-policies-general {
+  .title-img {
+    img {
+      margin: 0 auto;
+    }
+  }
+}
+
+.benefit-title {
+  .general-info {
+    .general {
+      border: 0;
+    }
+  }
+}
+
+#tab5 {
+  .benefit-title {
+    .trient-benefits-head {
+      color: #333;
+    }
+    .employee-handbook {
+      position: relative;
+      top: 14px;
+    }
+
+  }
+}
+
+#printCurrentBenf {
+  .you_curr {
+    color: #333;
+    font-size: 24px !important;
+    font-weight: 600;
+    border-bottom: 1px solid $Lighter-gray !important;
+  }
+}
+
+.benform-masstile {
+  left: 0px !important;
+  bottom: 90px !important;
+}
+
+.policies-info-box-tiles-adjustment {
+  position: relative;
+  top: -69px;
+  background: $White;
+  border: 1px solid $Lighter-gray;
+
+}
+
+.company-policies-selected {
+
+  .title-block h4 {
+    height: 40px;
+  }
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 12px solid $Trinet-gray;
+
+}
+
+.arrow-up-2 {
+  width: 0;
+  height: 0;
+  border-left: 19px solid transparent;
+  border-right: 19px solid transparent;
+  position: relative;
+  left: -39px;
+  border-bottom: 12px solid $White;
+  top: 1px;
+}
+
+.policies-info-box-tiles-adjustment-arrow-adj {
+  position: relative;
+  top: -80px;
+  z-index: 99999;
+}
+
+#acaMarketPlace span.icon-print-size {
+  font-size: 22px !important;
+  position: relative;
+  top: 2px;
+  padding-right: 5px;
+}
+
+.acamarket-text-par {
+  padding-left: 5px;
+  position: relative;
+  top: 8px;
+}
+.benefit-policies-general .benefits-accord-open-state{
+    overflow: auto;
+    width: 100%;
+}
+.top-post-value{
+    top:0px !important;
+}
+#statePanPage{
+ table{
+  thead{
+    tr{
+      td{
+        font-weight:600;
+        text-transform: capitalize;
+        }
+       }
+      }
+     }
+    }
+
+
+  .adj-polices-genaral {
+    .list-title-adjustment {
+      position: relative;
+      left: 0 !important;
+    }
+    .adj-benfitGuideBook{
+    li{
+       margin: 2px 0;
+       background: $Background !important;
+       font-size: 16px;
+       padding: 7px 0;
+        }
+    }
+    .panel-body-background ul li {
+      background: none;
+        .adj-PlansAndCarrier {
+        margin: 2px 0;
+        background: $Background;
+        font-size: 16px;
+        padding: 7px 0;
+        a {
+        color:$Trinet-dark-gray;
+        display: inline;
+        &:hover {
+        text-decoration: underline !important;
+        }
+
+        }
+        span{
+        color:$Trinet-gray !important;
+        }
+        }
+      #buildmaintain{
+        display:block;
+         color:$Trinet-dark-gray;
+        background: $Background;
+          &:hover {
+            text-decoration: underline !important;
+            }
+      }
+      .tooltip-right {
+        left: -13px;
+        top: -5px;
+      }
+    }
+  }
+
+
+.bullet-points ul {
+  padding-left: 35px !important;
+
+  li {
+    list-style-type: disc !important;
+  }
+}
+.adjTolltipBenfitSummary {
+  min-width: 1040px !important;
+  left: -300px !important;
+  .arrow-down {
+    left: 51% !important;
+  }
+  .arrow-down-bg {
+    left: 51.2% !important;
+  }
+}
+.executiveTemplate
+{
+    .table-striped
+    {
+        tbody{
+            tr{
+                &:nth-child(odd){
+                    background-color:$Background !important;
+                }
+                &:nth-child(even){
+                    background-color:$White !important;
+                }
+                td{
+
+                }
+            }
+        }
+
+    }
+}

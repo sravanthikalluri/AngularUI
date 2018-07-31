@@ -1,0 +1,15 @@
+<div class="trinet-popup ng-modal-third-party" id="conformpopup">
+	<div class="modal-title"><h3>{{::translation.confirmNavigationTitle}}</h3 ></div>
+    <div class="modal-body no-border">
+        <h5 class="text-center">{{::translation.confirmNavigation}}</h5>
+    </div>
+    
+    <div class="modal-footer no-border">
+    		<button class="tn-button tn-cancel-button" aria-hidden="true"
+                aria-label="Close" ng-click="closeThisDialog(0)" type="button">{{::translation.cancel}}
+        </button>
+        <button name="save" class="tn-button tn-action-button"
+                type="button" ng-click="confirm(1)">{{::translation.continue}}
+        </button>  
+    </div>
+</div>

@@ -1,0 +1,520 @@
+@import '../global';
+
+.related-forms {
+  h4 {
+    border-bottom: 1px solid $Trinet-gray;
+  }
+  ul {
+    li {
+      background: #f9f9f9;
+      padding: $margin 0 0 0;
+      line-height: 20px;
+      margin: 4px;
+
+      &:hover {
+        background: $Background;
+      }
+
+      .label-color {
+        color: $Trinet-dark-blue;
+      }
+
+    }
+
+  }
+}
+
+.related-forms ul li.block label, .related-forms ul li.block p {
+  font-size: 12px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.manage-forms {
+  .triangle {
+    background: white;
+    border: 1px solid #B5B5B5;
+    border-width: 1px 1px 0 0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz--transform: rotate(-45deg);
+    position: relative;
+    left: 139px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+  }
+  .gridder-padding {
+    width: 100%;
+    border: 1px solid #B5B5B5;
+    @extend .block;
+    .my-pad {
+      padding: 10px;
+    }
+
+  }
+  .form-content-block {
+    max-width: 926px;
+    min-width: 600px;
+    display: block;
+    padding: 0px $padding+6 $padding+6 $padding+6;
+    margin: $margin auto;
+    background-color: #ffffff;
+    overflow: hidden;
+    /* position:relative;
+     top:-70px;*/
+
+    ul {
+      li {
+
+        min-height: 35px;
+        padding-top: 6px;
+        a {
+          display: inline-block;
+        }
+      }
+    }
+
+    .form-content {
+      margin: $margin $margin ($margin*2)+4 ($margin*2)+4;
+      color: $Trinet-dark-gray;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    button {
+      margin-top: $margin+6;
+    }
+    ul {
+      li {
+        background: $Background;
+        margin-top: 4px;
+        padding-left: 10px;
+        color: #0039A6;
+        font-size: 16px;
+        font-weight: 400;
+        @extend .block;
+
+        span {
+          color: #A09D9D;
+          padding-right: 10px;
+        }
+
+      }
+    }
+    h3 {
+      color: $Trinet-dark-gray;
+      font-size: 24px;
+      margin: 0;
+      padding: 0px 0px 0px ($padding*2)+4;
+    }
+
+    h2.company-form-title {
+      margin: 0px 0px 10px 0px !important;
+    }
+    .retirement-plan-enrolment {
+      margin-bottom: 25px !important;
+    }
+
+  }
+
+  .row-top-margin {
+    margin: $margin*3 0 0 0;
+  }
+  .row-pad {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .column-pad {
+    padding-left: 0;
+    padding-right: 4px;
+  }
+  .title-block {
+    background: $Background;
+    padding: $padding/2+2 $padding+4;
+    height: 110px;
+
+    &:hover, &:focus {
+      background: $Trinet-blue;
+      color: $White;
+      h4 {
+        color: $White;
+      }
+      p {
+        color: $White;
+      }
+
+    }
+
+    h4 {
+      color: $Trinet-blue;
+    }
+    p {
+      color: $Trinet-gray;
+      font-size: 12px;
+      overflow: hidden;
+      height: 51px;
+    }
+  }
+
+}
+
+.title-margin {
+  margin: 4px 0 0 0;
+}
+
+.manage-employee-icon {
+  [class*="icon-"] {
+    font-size: 1px;
+    color: $Trinet-gray;
+  }
+}
+
+ul.no-residence-alignment {
+  li {
+    padding: $padding/2 0;
+
+    a {
+      display: inline-block;
+
+    }
+  }
+}
+
+p.notification-data {
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: $margin*2;
+  text-align: justify;
+}
+
+.icon-close-temp {
+  font-size: 24px;
+  color: $Trinet-gray;
+}
+
+.number-size {
+  font-size: 38px;
+  margin: 0;
+  line-height: 0.8;
+  color: $Trinet-gray;
+}
+
+.default-placeholder {
+  color: $Lighter-gray !important;
+  text-align: center;
+}
+
+.manage-employee-table {
+  tr {
+    td {
+      a {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.trinet-breadcrumb {
+  position: relative;
+  top: -10px !important;
+}
+
+.marg-top-25.medium.emergency-same-address {
+  label {
+    height: 35px !important;
+    .icons {
+      span {
+        font-size: 16px !important;
+        position: relative;
+        display: block;
+        top: 9px;
+        margin-right: 5px;
+      }
+
+      span.icon-icon_checkmark_emptybox {
+        margin: 0 !important;
+      }
+
+      .icon_checkmarkwithbox:before {
+        font-size: 16px !important
+      }
+    }
+  }
+}
+
+.change-employee {
+  label {
+    width: 100% !important;
+    font-weight: 100;
+    .icon-icon_checkmarkwithbox {
+      font-size: 16px !important;
+    }
+  }
+}
+
+.retirement-plan-popup-content {
+  input[type="checkbox"],
+  input[type="radio"] {
+    float: left;
+    position: relative;
+    top: -3px;
+    margin-right: 5px;
+  }
+
+  .agree {
+    top: -5px !important;
+  }
+
+}
+
+.White-bg {
+  background: $White;
+  padding: 15px 0;
+  margin: 10px 0 0 0;
+}
+
+.create-leave-text-adj {
+  p {
+    padding-top: 10px;
+  }
+}
+
+.add-leave {
+  line-height: 30px;
+  color: $Trinet-orange !important;
+}
+
+.reports-blocks {
+  display: block;
+
+  .title-block h4 {
+    line-height: 22px !important;
+  }
+}
+
+.manage-employee-select-dropdown {
+  border: 1px solid black;
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background: #fff;
+  padding: 10px;
+  z-index: 99;
+  min-width: 200px;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    float: left;
+  }
+
+  span {
+    position: relative;
+    font-weight: 100;
+    top: 7px;
+    margin-left: 5px;
+  }
+
+}
+
+.list-group-item {
+  input[type="checkbox"],
+  input[type="radio"] {
+    float: left;
+  }
+
+  label {
+    position: relative;
+    font-weight: 100;
+    margin-left: 5px;
+  }
+}
+
+.policies-forms {
+  li {
+
+    input[type="checkbox"] {
+      position: relative;
+      top: 12px;
+      margin: 0 $margin/2;
+    }
+  }
+}
+
+.radio-buttons-adjustment {
+  margin-left: $margin;
+  display: inline-block;
+}
+
+table.table.table-striped.manage-table.marg-top.time-off {
+  thead {
+    tr {
+      th {
+        padding: 3px 10px !important;
+        line-height: 16px !important;
+        text-align: right !important;
+        font-size: 14px;
+
+        &:first-child {
+          text-align: left !important;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        border: none !important;
+        text-align: right !important;
+
+        &:first-child {
+          text-align: left !important;
+        }
+      }
+    }
+  }
+}
+
+.pointerEvent {
+  pointer-events: none;
+}
+
+.change-grp-optn {
+  label {
+    top: 4px;
+  }
+}
+
+.border {
+  border: 1px solid $Trinet-gray;
+}
+
+.company-policies-selected {
+  .title-block.active {
+    background: $Trinet-blue;
+
+    h4, p {
+      color: $White;
+    }
+  }
+}
+
+.marg-right-7 {
+  margin-right: 7px;
+}
+
+.add-location-emp, .edit-location-emp {
+  label {
+    font-weight: 400 !important;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.small label {
+  font-weight: normal !important;
+}
+
+.eform-accpet, .eform-complete, .eform-decline {
+  width: 75px;
+  height: 75px;
+  @include border-radius(50%);
+  border: 2px solid;
+  text-align: center;
+  line-height: 72px;
+  display: inline-block;
+}
+
+.eform-accpet {
+  color: $Trinet-green;
+}
+
+.eform-decline {
+  color: $Trinet-dark-red;
+}
+
+.eform-complete {
+  color: $Trinet-orange;
+}
+
+.time-off-Vacation {
+  text-align: center;
+}
+
+.ben-form-tiles {
+  overflow: hidden;
+  h4 {
+    @extend .line-clamp;
+  }
+  p {
+    @extend .line-clamp;
+    height: auto !important;
+  }
+}
+#manageDept{
+ &.manage-table
+ {
+ th {
+  &:last-child {
+   width: auto !important;
+
+  }
+  }
+ }
+ }
+#tab6 {
+.rolesDivide{
+h2{
+font-size: 22px;
+padding-left: 15px;
+font-weight: 600;
+}
+}
+	.table {
+	    margin: 0 20px 20px 20px;
+		tr {
+			td {
+				font-size: 17px;
+				span.aboutDesc {
+					p {
+						font-size: 16px;
+						color: #959393;
+						text-align: left;
+						margin:0 !important;
+					}
+					h3 {
+						color: #000;
+						margin-bottom: 5px !important;
+						text-align: left;
+						font-size: 17px;
+					}
+				}
+			}
+		}
+		.gray {
+			color: #888;
+		}
+		.icon-icon_checkmark_emptybox {
+			&:before {
+				line-height: 22px;
+			}
+		}
+		.icon-icon_checkmarkwithbox {
+			&:before {
+				line-height: 22px;
+			}
+		}
+	}
+	.table.editRoles {
+		.icon-icon_checkmark_emptybox {
+			top: 0;
+		}
+	}
+}
+.adjGridder {
+.gridder-show{
+top:-55px !important;
+    }
+  }

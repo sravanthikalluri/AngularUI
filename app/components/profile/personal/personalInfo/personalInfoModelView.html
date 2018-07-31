@@ -1,0 +1,203 @@
+<div class="tn-personal-section-modal tn-modal-fullHeight tn-modal" ng-controller='personalInfoModelCtrl'>
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.profile_personal.personal_info_title"></h4>
+    </div>
+    <form class="tn-form" name="personalInfoForm" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <div>
+                <label>{{::translation.effective_date}}:</label>
+            </div>
+            <div class="tn-calender-input" ng-controller="datePickerCtrl" ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormeffectiveDateRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormeffectiveDateRequired)  || validationPatterns.personalInfo.focus.personalInfoFormFuturedate ||
+                               validationPatterns.personalInfo.focus.personalInfoPastdate|| validationPatterns.personalInfo.blur.personalInfoPastdate || validationPatterns.personalInfo.blur.personalInfoFormFuturedate}">
+                <input type="text" class="form-control bg-white" name="effectiveDate"
+                       id="info_edit_effective_date" datepicker-popup="{{format}}"
+                       ng-model="selectedInfoData.effectiveDate" is-open="opened"
+                       datepicker-options="dateOptions"
+                       close-text="Close" ng-required="true"
+                       onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode==47"
+                       ng-focus="onFocus('personalInfo', validationPatterns.personalInfo.focus); validationPatterns.personalInfo.focus.personalInfoFormeffectiveDateRequired=personalInfoForm.effectiveDate.$error.required ;  validationPatterns.personalInfo.blur.personalInfoFormeffectiveDateRequired = false;
+                                       validationPatterns.personalInfo.focus.personalInfoPastdate = checkDateThirtyDates(selectedInfoData.effectiveDate); validationPatterns.personalInfo.blur.personalInfoPastdate = false;
+                                       validationPatterns.personalInfo.focus.personalInfoFormFuturedate = checkDateSixtyDates(selectedInfoData.effectiveDate); validationPatterns.personalInfo.blur.personalInfoFormFuturedate = false;"
+                       ng-blur="validationPatterns.personalInfo.blur.personalInfoFormeffectiveDateRequired=personalInfoForm.effectiveDate.$error.required ; validationPatterns.personalInfo.focus.personalInfoFormeffectiveDateRequired = false;
+                                       validationPatterns.personalInfo.blur.personalInfoPastdate = checkDateThirtyDates(selectedInfoData.effectiveDate); validationPatterns.personalInfo.focus.personalInfoPastdate = false;
+                                       validationPatterns.personalInfo.blur.personalInfoFormFuturedate = checkDateSixtyDates(selectedInfoData.effectiveDate); validationPatterns.personalInfo.focus.personalInfoFormFuturedate = false;"
+                       readonly="readonly"
+                />
+                <span class="calendar-icon" ng-click="open($event)">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+                <Validation
+                    condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormeffectiveDateRequired"
+                    msg="{{translation.required_field}}"></Validation>
+                <!--  <Validation condition="validationPatterns.personalInfo.focus.personalInfoFormpastdate"
+                              msg="Date should be future"></Validation>-->
+                <Validation condition="isPersonalInforSubmitted &&  validationPatterns.personalInfo.focus.addressFormDateFormat"
+                            msg="Enter a date in MM/DD/YYYY format"></Validation>
+                <Validation condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoPastdate"
+                            msg="Date cannot be more than 30 days in the past"></Validation>
+                <Validation condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormFuturedate"
+                            msg="Date cannot be more than 60 days in the future"></Validation>
+            </div>
+            <div class="tn-horizontal-divider"></div>
+            <div ng-class="{ 'has-error' : personalInfoForm.birthdate.$invalid && (personalInfoForm.birthdate.$dirty || submitted)}"
+                class="col-sm-12 no-pad">
+                <div class="col-sm-3 no-pad-left marg-top-15">
+                    <div>
+                        <label for="personalinfobirthdate" aria-label="month">{{::translation.birthdate}}:</label>
+                    </div>
+                    <div>
+                        <select name="birthdate" id="personalinfobirthdate"
+                                class="form form-control " ng-model='selectedInfoData.month'
+                                ng-options="month.key for month in monthData track by month.id"
+                                ng-required="true"
+                                ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormbirthdateRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormbirthdateRequired)}"
+                                ng-focus="onFocus('personalInfo', validationPatterns.personalInfo.focus); validationPatterns.personalInfo.focus.personalInfoFormbirthdateRequired=personalInfoForm.birthdate.$error.required; validationPatterns.personalInfo.blur.personalInfoFormbirthdateRequired = false;"
+                                ng-blur="validationPatterns.personalInfo.blur.personalInfoFormbirthdateRequired=personalInfoForm.birthdate.$error.required; validationPatterns.personalInfo.focus.personalInfoFormbirthdateRequired = false;">
+                        </select>
+                        <Validation
+                            condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormbirthdateRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-2 no-pad-left marg-top-15">
+                    <div class="visible-hide">
+                        <label for="personalinfodateinfo">Day</label>
+                    </div>
+                    <div>
+                        <select name="dateinfo" id="personalinfodateinfo"
+                                class="form form-control "
+                                ng-model='selectedInfoData.date'
+                                ng-options="date.id for date in dateData track by date.id"
+                                ng-required="true"
+                                ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormdateinfoRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormdateinfoRequired)}"
+                                ng-focus="onFocus('personalInfo', validationPatterns.personalInfo.focus); validationPatterns.personalInfo.focus.personalInfoFormdateinfoRequired=personalInfoForm.dateinfo.$error.required; validationPatterns.personalInfo.blur.personalInfoFormdateinfoRequired = false;"
+                                ng-blur="validationPatterns.personalInfo.blur.personalInfoFormdateinfoRequired=personalInfoForm.dateinfo.$error.required; validationPatterns.personalInfo.focus.personalInfoFormdateinfoRequired = false;"
+                        >
+                        </select>
+                        <Validation
+                            condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormdateinfoRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-3 no-pad-left marg-top-15">
+                    <div class="visible-hide">
+                        <label for="personalinfoyearinfo">Year</label>
+                    </div>
+                    <div>
+                        <select name="yearinfo" id="personalinfoyearinfo"
+                                class="form form-control "
+                                ng-model='selectedInfoData.year'
+                                ng-options="year.value for year in yearData track by year.key"
+                                ng-required="true"
+                                ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormyearinfoRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormyearinfoRequired)}"
+                                ng-focus="onFocus('personalInfo', validationPatterns.personalInfo.focus); validationPatterns.personalInfo.focus.personalInfoFormyearinfoRequired=personalInfoForm.yearinfo.$error.required; validationPatterns.personalInfo.blur.personalInfoFormyearinfoRequired = false;"
+                                ng-blur="validationPatterns.personalInfo.blur.personalInfoFormyearinfoRequired=personalInfoForm.yearinfo.$error.required; validationPatterns.personalInfo.focus.personalInfoFormyearinfoRequired = false;"
+                        >
+                        </select>
+                        <Validation
+                            condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormyearinfoRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-top-15">
+                    <div>
+                        <label>{{::translation.gender}}:</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="gender" ng-model="selectedInfoData.gender.key" id="personalinfomale"
+                               value="M"/>
+                        <label for="personalinfomale">{{::translation.profile_personal.male}}</label>
+                        <input type="radio" name="gender" ng-model="selectedInfoData.gender.key" id="personalinfofemale"
+                               value="F"/>
+                        <label for="personalinfofemale">{{::translation.profile_personal.female}}</label>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-5 no-pad-left marg-top-15">
+                    <div>
+                        <label for="personalinfoethinicity">{{translation.ethnicity}}:</label>
+                    </div>
+                    <div>
+                        <select name="ethnicity" id="personalinfoethinicity"
+                                class="form form-control "
+                                ng-model='selectedInfoData.ethnicity'
+                                ng-options="ethnicity.value for ethnicity in ethnicityData track by ethnicity.key"
+                                ng-required="true" ng-disabled="declineEthinicity"
+                                ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormethnicityRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormethnicityRequired)}"
+                                ng-focus="onFocus('personalInfo', validationPatterns.personalInfo.focus); validationPatterns.personalInfo.focus.personalInfoFormethnicityRequired=personalInfoForm.ethnicity.$error.required; validationPatterns.personalInfo.blur.personalInfoFormethnicityRequired= false;"
+                                ng-blur="validationPatterns.personalInfo.blur.personalInfoFormethnicityRequired=personalInfoForm.ethnicity.$error.required; validationPatterns.personalInfo.focus.personalInfoFormethnicityRequired= false;"
+                        >
+                        </select>
+                        <Validation
+                            condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormethnicityRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+<!--                <div class="col-sm-7 no-pad-left marg-top-15">
+                    <div class="tn-checkbox">
+                        <input type="checkbox" ng-hide="true" id="declineEthinicity"
+                               ng-model="checked"
+                               ng-click="disableEthinicity()" ng-bind=""
+                               name="declineEthinicity"/>
+                        <label for="declineEthinicity">{{::translation.profile_personal.decline_to_state_ethnicity}}</label>
+                    </div>
+                </div>-->
+                <div class="clearfix"></div>
+                <div class="col-sm-5 no-pad-left marg-top-15">
+                    <div>
+                        <label for="maritalsts">{{translation.marital_status}}:</label>
+                    </div>
+                    <div>
+                        <select name="maritalsts" id="maritalsts"
+                                class="txtfield_Style form form-control "
+                                ng-model='selectedInfoData.maritalStatus'
+                                ng-options="maritalStatus.value for maritalStatus in maritalStatusData track by maritalStatus.key"
+                                ng-required="true"
+                                ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormmaritalstsRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormmaritalstsRequired)}"
+                                ng-focus="validationPatterns.personalInfo.focus.personalInfoFormmaritalstsRequired=personalInfoForm.personalInfoSsn.$error.required; validationPatterns.personalInfo.blur.personalInfoFormmaritalstsRequired = false;"
+                                ng-blur="validationPatterns.personalInfo.blur.personalInfoFormmaritalstsRequired=personalInfoForm.personalInfoSsn.$error.required; validationPatterns.personalInfo.focus.personalInfoFormmaritalstsRequired = false;"
+                        >
+                        </select>
+                        <Validation
+                            condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormmaritalstsRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-5 no-pad-left marg-top-15">
+                    <div>
+                        <label for="Militarysts">{{translation.military_status}}:</label>
+                    </div>
+                    <div>
+                        <select name="Militarysts" id="Militarysts"
+                                class="txtfield_Style form form-control "
+                                ng-model='selectedInfoData.militaryStatus'
+                                ng-options="militaryStatus.value for militaryStatus in militaryStatusData track by militaryStatus.value"
+                                ng-required="false"
+                                ng-class="{'error-warning': (isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormMilitarystsRequired) || (isPersonalInforSubmitted && validationPatterns.personalInfo.blur.personalInfoFormMilitarystsRequired)}"
+                                ng-focus="validationPatterns.personalInfo.focus.personalInfoFormMilitarystsRequired=personalInfoForm.personalInfoSsn.$error.required; validationPatterns.personalInfo.blur.personalInfoFormMilitarystsRequired = false;"
+                                ng-blur="validationPatterns.personalInfo.blur.personalInfoFormMilitarystsRequired=personalInfoForm.personalInfoSsn.$error.required; validationPatterns.personalInfo.focus.personalInfoFormMilitarystsRequired = false;"
+                        >
+                            <option value=""> Select One </option>
+                        </select>
+                        <Validation
+                            condition="isPersonalInforSubmitted && validationPatterns.personalInfo.focus.personalInfoFormMilitarystsRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+
+            <button id="personalinfocancel" type="reset" name="cancel"
+                    class="tn-button tn-cancel-button" ng-click="closeThisDialog()"
+                    ng-bind="::translation.cancel"></button>
+
+            <button id="personalinfosave" type="submit" class="tn-button tn-action-button"
+                    ng-click='updatePersonalInfo(personalInfoForm)' ng-bind="::translation.save"></button>
+       </div>
+    </form>
+</div>

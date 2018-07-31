@@ -1,0 +1,85 @@
+
+<div class="orgBody tn-background pull-left">
+    <div class="col-sm-9 no-pad margin-top">
+            <h3 class="tn-page-heading">
+                <a ng-click="homePageDisplay()">Manage Employees</a>
+                <i aria-hidden="true" class="icon-icon_forward"></i>
+                <i title="{{fullName}}" ng-class="fullName.length > 40 ? 'isEllipsis' : ''">{{fullName}}</i>
+                <i aria-hidden="true" class="icon-icon_forward"></i>
+                <a>Org Chart</a>
+            </h3>
+    </div>
+    <div class="col-sm-3">
+        <button class="bg-white pull-right tn-search-btn tn-button" ng-click="findEmployees()">
+            <i class="tn-search-button-search-icon icon-icon_unified_search"></i>Find
+        </button>
+    </div>
+    <div class="col-sm-12">
+        <h5 class="department-name" ng-if="inDept">
+            <span><strong>Department:</strong>{{deptName}}</span>
+            <i class="icon-icon_close_mobile hand" ng-click="viewOrg()"></i>
+        </h5>
+        <div class="org-header-section">
+            <div class="org-DirectManger text-center">
+                <!--ng-if="managerData[0].employeeName"-->
+                    <div ng-repeat="directManager in manager">
+
+                        <a class="view-history-link proxima-nova-semibold" ng-click="getManagerList(directManager.employeeId)">
+                            <i class="icon-icon_back"></i>{{directManager.employeeName}}
+                        </a>
+                        <h6 class="assign-type proxima-nova" ng-if="directManager.relation === 'supr'" >
+                            {{fullName}}'s Direct Manager
+                        </h6>
+                        <hr class="tn-horizontal-divider" ng-if="$first && manager.length > 1">
+                        <h6 class="assign-type proxima-nova" ng-if="directManager.relation === 'wksupr'">
+                            {{fullName}}'s Direct Approver
+                        </h6>
+
+                    </div>
+            </div>
+            <div class="org-selected-employee text-center hand" ng-click="profilePageDisplay()">
+                    <span ng-bind="empLogoName" id="AdminProfileImageIcon1" class="tn-avatar" ></span>
+                    <h5 class="bold">
+                      {{fullName}}
+                    </h5>
+                    <h6 class="Me-dept">
+                       {{position}}
+                    </h6>
+                    <h6 class="Me-dept">
+                       {{department}}
+                    </h6>
+            </div>
+            <div class="assigned-count text-center">
+                <h5 class="bold count-class">{{membersCount}}</h5>
+                <h6 class="assign-type">Direct Reports</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="org-chart-divider text-center">
+            <span id="orgChartForward" class="divider-icon icon-downward icon-icon_forward hand"></span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="text-center" ng-if="membersCount">
+            <h4>{{fullName}} Direct Reports</h4>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="text-center managerClass" ng-repeat="member in membersData" ng-class="inDept ? 'default-cursor' : 'hand'"
+             ng-click="getManagerListInMembersData( $index, member.employeeId)">
+            <span ng-bind="memberslogoName[$index]" id="AdminProfileImageIcon" class="tn-avatar"></span>
+            <h5 class="bold">
+                {{member.employeeName}}
+            </h5>
+          <!--  <h6 class="Me-dept">
+                {{member.position}}
+            </h6>-->
+            <h6 class="Me-dept">
+                {{member.designation}}
+            </h6>
+             <h6 class="assignes-type" ng-if="member.teamMemberCount > 0">
+                {{member.teamMemberCount}} Direct Reports
+            </h6>
+        </div>
+    </div>
+</div>

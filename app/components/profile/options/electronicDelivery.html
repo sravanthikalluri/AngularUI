@@ -1,0 +1,18 @@
+<div id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <h4 class="modal-title"  ng-bind="::translation.options.agreement"></h4>
+        </div>
+        <div class="modal-body">
+            <p ng-bind-html="::translation.options.electronicDelivery"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="reset" name="Request Extended Leave" class="trinet-primary-action-btn"
+                    ng-click="saveElectronicDelivery()" ng-bind="::translation.options.agree">
+            </button>
+            <button type="reset" name="Request Extended Leave" class="trinet-secondary-action-btn" ng-click="close()" ng-bind="::translation.options.cancel">
+
+            </button>
+        </div>
+    </div>
+</div>

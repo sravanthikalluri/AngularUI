@@ -1,0 +1,32 @@
+<md-card class="dashboard-secondary-panel">
+    <md-card-header class="dashboard-secondary-panel-header" layout-align="center center">
+        <md-card-title-text>
+            <i class="md-icon icon-icon_important_notices tn-icon color-red dashboard-secondary-icon-top" >
+                <span class="path1-secondary"></span><span class="path2-secondary"></span>
+            </i>
+            <span class="md-subhead proxima-nova-bold">Notices</span>
+        </md-card-title-text>
+    </md-card-header>
+    <md-card-content ng-if="!showNoticesReults">
+        <div class="spinning spinner-loader relative"></div>
+    </md-card-content>
+    <md-card-content ng-if="noticesLength !== 0">
+        <div class="notices-card" ng-repeat="notices in setFullnotices | orderBy : ['priority','-effectiveDate'] |  limitTo :0:3">
+            <div class="notices-card-content">
+                <p class="notices-card-date">  <span ng-repeat="(key,value) in prorityType" ng-if="getPriority(key,notices)">{{value}} Priority </span></p>
+                <h4 class="h6 notices-card-title">{{notices.title}}</h4>
+                <p class="notices-card-desc" >
+                    <span ng-bind-html="getBodyParseValue(notices.body)"></span><a href="" class="hand blue margin-left" ng-click="more(notices, $index)"> more...</a></p>
+            </div>
+        </div>
+        <div class="notifications-footer text-center" ng-if="noticesLength > 3">
+            <div class="announcements-cards-length">Showing {{currentNoticesLength}}/{{noticesLength}}</div>
+            <button class="md-accent md-raised md-hue-3 tn-widget-buttons-secondary md-button md-trinet-theme md-ink-ripple" ng-click="showNotices()">View All</button>
+        </div>
+    </md-card-content>
+    <md-card-content ng-if="noticesLength == 0">
+        <div  class="announcements-card">
+            <span class="announcements-card-date">No important notices at this time</span>
+        </div>
+    </md-card-content>
+</md-card>

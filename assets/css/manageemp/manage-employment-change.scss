@@ -1,0 +1,110 @@
+@import '../global';
+
+table.workinfo-employment-details {
+  tbody {
+    tr {
+      td {
+        padding: 2px $padding/2 !important;
+      }
+    }
+  }
+}
+
+.no-marg-right {
+  margin-right: 0;
+}
+
+table.change-employee tbody tr {
+  display: table;
+  background-color: #f2f2f2;
+  margin-bottom: 10px;
+  min-height: 70px;
+
+  td {
+    font-size: 12px;
+    vertical-align: middle;
+  }
+}
+
+.employee-change-department {
+  margin-bottom: $margin/2;
+}
+
+.employment-change-request {
+  .ngdialog.ngdialog-theme-default.ngdialog-content, .ngdialog-content, .modal-dialog {
+    width: 900px !important;
+  }
+}
+
+.emp-popup {
+  label {
+    display: inline !important;
+
+  }
+  .label-data {
+    padding: 15px 5px !important;
+    background-color: #F2F2F2;
+  }
+
+}
+
+.bg-light-blur {
+  background: $Lighter-blue !important;
+}
+
+.myclose {
+  position: relative;
+  z-index: 99999;
+  width: 21px;
+
+}
+
+.table-total-row-adjustment {
+  padding: $padding/5 !important;
+  background: $White !important;
+}
+
+.end-payment-popup {
+  tbody {
+    tr {
+      td {
+        padding: $padding/2 !important;
+        p {
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+.company-form-title {
+  font-size: 24px !important;
+  color: $Trinet-blue;
+  font-weight: 600;
+  padding: 20px 0 5px !important;
+}
+
+.emp-money-open-close {
+  [class*=" icon-"] {
+    margin: 0;
+  }
+}
+.adj-changeEmployee{
+  .checkBox{
+    position:relative;
+    top:1px;
+    float:left;
+  }
+  .description{
+    text-overflow: ellipsis;
+    width: 89%;
+    white-space: nowrap;
+    float: left;
+    overflow: hidden;
+    color: $Black;
+  }
+}
+.changeWorkDescrp{
+    color: $Trinet-dark-gray;
+    font-size: 15px;
+}

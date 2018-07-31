@@ -1,0 +1,166 @@
+<div class="tn-background pull-left">
+    <alert-view></alert-view>
+    <div class="col-sm-12 no-pad">
+        <div class="heading col-sm-12 no-pad">
+            <h2 class="bold no-marg">
+                <button class="breadcomb-button">Benefits</button>
+                <span class="icon-heading icon-icon_forward"></span>
+                <button class="breadcomb-button">Resources</button>
+            </h2>
+        </div>
+    </div>
+    <div class="col-sm-10 no-pad">
+        <accordion close-other="true" class="accordion-card-style">
+            <accordion-group is-open="isopen" id="additionalPay" ng-repeat="item in resourcesItems">
+                <accordion-heading>
+                    <span class="medium">{{item.resourceName}}</span>
+                    <i class="pull-right icon-icon_Disclosure_Collapse" ng-class="{'icon-icon_Disclosure_Expand': !isopen, 'icon-icon_Disclosure_Collapse': isopen}"></i>
+                </accordion-heading>
+                <div class="col-md-12">
+                    <span class="icon-icon_pdf col-md-1 no-marg"></span>
+                    <div class="col-sm-11">
+                        <a ng-href="{{benefitsResource[0].url| contentUrl}}" target="_blank" id="benefitWhatChanging">
+                            <span class="">{{benefitsResource[0].title}}</span>
+                        </a>
+                        <div>{{benefitsResource[0].text}}</div>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+    <div class="col-sm-10 no-pad">
+
+        <accordion close-other="true" class="accordion-card-style">
+            <accordion-group is-open="isopen" id="planCosts">
+                <accordion-heading>
+                    <span class="medium">Plan Costs</span>
+                    <i class="pull-right icon-icon_Disclosure_Collapse" ng-class="{'icon-icon_Disclosure_Expand': !isopen, 'icon-icon_Disclosure_Collapse': isopen}"></i>
+                </accordion-heading>
+                <div class="col-md-12">
+                    <div class="benefits-plan-costs" ng-if="!error">
+                        <div ng-if="payFrquencyListArray.isAdmin != null  && payFrquencyListArray.stateCode == null">
+                            <div>
+                                {{translation.my_benefits.policies.benefit_summary}} {{fromDate}} to {{toDate}}
+                                <div>
+                                    <p>
+                                        <strong> {{subHeading}}</strong>
+                                    </p>
+                                    <div class="linedWithMargin"></div>
+                                    <div>
+                                        <div ng-repeat="summaryData1 in filteredBenefitsSummary">
+                                            <div ng-repeat="summaryData in summaryData1">
+                                                <link-list summary-data="summaryData" start-date="currentPlanStartDate" end-date="currentPlanEndDate" plan-type="summaryData.type"
+                                                    plan-key="summaryData.key" plan-code="summaryData.PlanCode">
+                                                </link-list>
+                                                <span ng-if="summaryData.apply!=''" class="bold trinet-primary-color inline">{{translation.summaryData.apply}}</span>
+                                            </div>
+
+                                            <div class="linedWithMargin"></div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <button class="tn-button marg-right-5 tn-edit-button tn-button-small" id="buildmaintain" ng-click="setFromToDate(currentPlanStartDate,currentPlanEndDate);openBuildMaintainCustomModal('current');">{{translation.my_benefits.policies.customBenefits}}</button>
+                                            </div>
+                                            <p>
+                                                <a href="" id="cobraId" ng-click="setFromToDate(currentPlanStartDate,currentPlanEndDate);openCobraSummaryModal(currentPlanStartDate,currentPlanEndDate);">
+                                                    {{translation.my_benefits.policies.cobraBenefits}}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="futureFromDate != null && futureFromDate != ''">
+                                    {{translation.my_benefits.policies.benefit_summary }} {{futureFromDate}} {{translation.my_benefits.policies.to}} {{futureToDate}}
+                                    <div>
+                                        <p>
+                                            <strong>{{subHeading}} </strong>
+                                        </p>
+                                        <div class="linedWithMargin"></div>
+                                        <div>
+
+                                            <div ng-repeat="summaryData1 in filteredBenefitsSummary" class="visible">
+                                                <div ng-repeat="summaryData in summaryData1">
+                                                    <link-list summary-data="summaryData" start-date="futurePlanStartDate" end-date="futurePlanEndDate" plan-type="summaryData.type"
+                                                        plan-key="summaryData.key" plan-code="summaryData.PlanCode">
+                                                    </link-list>
+                                                    <span ng-if="summaryData.apply!=''" class="bold trinet-primary-color inline">{{translation.summaryData.apply}}</span>
+                                                </div>
+                                                <div class="linedWithMargin"></div>
+                                            </div>
+
+                                            <div>
+                                                <div>
+                                                    <button class="tn-button marg-right-5 tn-edit-button tn-button-small" id="buildmaintainfuture" ng-click="setFromToDate(futurePlanStartDate,futurePlanEndDate);openBuildMaintainCustomModal('future');">{{translation.my_benefits.policies.customBenefits}}</button>
+                                                </div>
+                                                <p>
+                                                    <a href="" id="cobraId1" ng-click="setFromToDate(futurePlanStartDate,futurePlanEndDate);
+                                        openCobraSummaryModal(futurePlanStartDate,futurePlanEndDate);">
+                                                        {{translation.my_benefits.policies.cobraBenefits}}
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Default view start-->
+                            <div ng-if="payFrquencyListArray.isAdmin == null && payFrquencyListArray.stateCode == null">
+                                <h1 class="content-main trinet-primary-color">{{translation.my_benefits.policies.benefit_summary_heading}}</h1>
+                                <p ng-if="payFrquencyListArray.showText != null">
+                                    {{translation.my_benefits.policies.benefitsPlanCostData}}
+                                </p>
+                                <div ng-repeat="summaryData1 in filteredBenefitsSummary">
+                                    <div ng-repeat="summaryData in summaryData1">
+                                        <link-list summary-data="summaryData" start-date="currentPlanStartDate" end-date="currentPlanEndDate" plan-type="summaryData.type"
+                                            plan-key="summaryData.key" plan-code="summaryData.PlanCode">
+                                        </link-list>
+                                    </div>
+                                </div>
+                                <div ng-repeat="summaryData1 in filteredBenefitsSummary" ng-if="bPsBenSumNext != null">
+                                    <div ng-repeat="summaryData in summaryData1" ng-if="oeDisplay == 'Y' &&  customIndicator == true">
+                                        <link-list summary-data="summaryData" start-date="futurePlanStartDate" end-date="futurePlanEndDate" plan-type="summaryData.type"
+                                            plan-key="summaryData.key" plan-code="summaryData.PlanCode">
+                                        </link-list>
+                                    </div>
+                                </div>
+                                <div ng-if="!showSpinner">
+                                    <p class="adj-PlansAndCarrier">
+                                        <a href="" id="cobraId2" ng-click="setFromToDate(currentPlanStartDate,currentPlanEndDate);openCobraSummaryModal(currentPlanStartDate,currentPlanEndDate);">
+                                            {{translation.my_benefits.policies.cobraBenefits}}
+                                        </a>
+                                    </p>
+                                </div>
+                                <div ng-if="bPsBenSumNext != null">
+                                    <p ng-if="oeDisplay == 'Y'">
+                                        <a href="" id="cobraId3" ng-click="setFromToDate(futurePlanStartDate,futurePlanEndDate);openCobraSummaryModal(futurePlanStartDate,futurePlanEndDate);">
+                                            {{translation.my_benefits.policies.cobraBenefits}}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!--Default view start End-->
+
+                        </div>
+                        <!-- Canadian users start-->
+                        <div ng-if="payFrquencyListArray.stateCode === 'CA'">
+                            <h5 class="content-main trinet-primary-color">
+                                {{translation.my_benefits.policies.benfitsSumCA}}
+                            </h5>
+                            <div ng-repeat="response in response.textList">
+                                <div class="benefits-forms-item-accordion">
+                                    <span class="tn-icon-pdf-img">
+                                        <img alt="PDF-Icon" ng-src="./assets/images/Adobe_PDF_file_icon_24x24.png">
+                                    </span>
+                                    <a ng-href="{{response.url | contentUrl}}" target="_blank" id="benefitAtGlancePrevYearId{{$index}}">{{response.label}}</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- Canadian users End-->
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>

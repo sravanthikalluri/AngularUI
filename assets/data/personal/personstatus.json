@@ -1,0 +1,15 @@
+{
+  "resource": [
+    {
+      "personId": "1121901",
+      "effectiveDate": "09/22/2011",
+      "gender": "F",
+      "marriageStatus": "S",
+      "birthDate": "12/24/1969",
+      "militaryStatus": "1",
+      "ethinicity": "HISPA"
+    }
+  ],
+  "statusCode": "200",
+  "statusMesage": "Success"
+}

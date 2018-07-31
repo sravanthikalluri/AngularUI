@@ -1,0 +1,1553 @@
+@import '../global';
+@import "../font-proximanova";
+
+$tn-card-box-shadow: 0 0.125rem 0.375rem 0 rgba(36, 41, 54, .24);
+.box-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+}
+//*---------------------------------------*
+//  Default padding
+//*---------------------------------------*
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-padding-left {
+    padding-left: 0 !important;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
+}
+
+.padding-left {
+    padding-left: 10px !important;
+}
+//*---------------------------------------*
+//  Default margins
+//*---------------------------------------*
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-margin-left {
+    margin-left: 0 !important;
+}
+
+.margin-top {
+    margin-top: 10px !important;
+}
+
+.margin-right {
+    margin-right: 10px !important;
+}
+
+.margin-left {
+    margin-left: 10px !important;
+}
+
+.margin-bottom {
+    margin-bottom: 10px !important;
+}
+
+.tn-ellipsis-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.section-header {
+    min-height: 40px;
+}
+
+.tn-link-divider {
+    margin: 0 8px;
+    display: inline-block;
+    width: 1px;
+    background-color: #DFE3E7;
+    height: 13px;
+}
+
+.main-profile-card-section {
+    min-height: calc(100vh - 140px);
+    margin: 8px 0;
+}
+
+.tn-page-heading {
+    @extend .proxima-nova-bold;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    color: $font-color;
+    .icon-icon_forward {
+        margin: 0 10px;
+    }
+    .isEllipsis {
+        @extend .tn-ellipsis-text;
+        flex: 1;
+        width: 50%;
+    }
+}
+
+.tn-light-gray-background {
+    background: $cloudy !important;
+}
+
+.tn-modal-fullHeight {
+    .tn-modal-boby {
+        max-height: none;
+        overflow-y: visible;
+        padding: 10px 30px;
+    }
+}
+
+.table.tn-table {
+    tbody {
+        td {
+            vertical-align: middle;
+        }
+    }
+}
+
+.ngdialog.employee-genarate-modal {
+    .ngdialog-content {
+        width: 700px !important;
+    }
+}
+
+.tn-modal {
+    .tn-button {
+        height: 38px !important;
+    }
+    .tn-modal-boby {
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $silver;
+            outline: 1px solid $cloudy;
+        }
+    }
+}
+
+.no-data {
+    color: $silver;
+    text-transform: capitalize;
+    letter-spacing: 0.35px;
+}
+
+//*---------------------------------------*
+//  Tooltip
+//*---------------------------------------*
+.tn-tooltip {
+    position: relative;
+    .tn-tooltip-content {
+        position: absolute;
+        display: none;
+        background: $misty;
+        width: 250px;
+        border: 1px solid $silver;
+        padding: 10px;
+        font-size: 12px;
+        &.tooltip-top {
+            bottom: 25px;
+            left: -18px;
+            :before {
+                content: '';
+                border-right: 10px solid transparent;
+                border-left: 10px solid transparent;
+                border-top: 10px solid $misty;
+                position: absolute;
+                left: 15px;
+                top: 97%;
+                z-index: 999;
+            }
+            :after {
+                content: '';
+                border-right: 10px solid transparent;
+                border-left: 10px solid transparent;
+                border-top: 10px solid $silver;
+                position: absolute;
+                left: 15px;
+                top: 100%;
+            }
+        }
+    }
+    i {
+        padding: 0 !important;
+        font-size: 14px;
+    }
+    &:hover, &:focus {
+        .tn-tooltip-content {
+            display: block;
+        }
+    }
+}
+
+.heading-section {
+    @extend .flex-box;
+    justify-content: space-between;
+}
+
+.content-text {
+    @extend .proxima-nova;
+    line-height: 25px;
+    color: $slate;
+}
+
+.tn-input-field {
+    border: 1px solid $silver;
+    color: $font-color;
+    border-radius: 3px;
+    height: 38px !important;
+    box-shadow: none;
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.add-on-input {
+    position: relative;
+    input {
+        margin: 0 30px !important;
+        width: 90px;
+    }
+    span {
+        position: absolute;
+        z-index: 2;
+        right: 35px;
+        color: $silver;
+        font-size: 20px;
+        top: 4px;
+    }
+}
+
+.tn-form {
+    input {
+        @extend .tn-input-field;
+        max-width: 200px;
+        float: none;
+        &:hover, &:focus {
+            border-color: $azure-blue;
+        }
+    }
+}
+
+.effective-list {
+    max-width: 150px !important;
+}
+
+.tn-calender-input, .tn-input-group-addon {
+    position: relative;
+    margin-bottom: 20px;
+    width: 125px !important;
+    input {
+        @extend .tn-input-field;
+        padding-left: 35px !important;
+        width: 100% !important;
+        &:hover, &:focus, &:active {
+            border: 1px solid $azure-blue;
+        }
+    }
+    .calendar-icon, .add-on {
+        position: absolute;
+        left: 10px;
+        top: 8px;
+        z-index: 1;
+        color: $azure-blue;
+        font-weight: bold;
+        font-size: 20px;
+        &.add-on-right {
+            left: auto;
+            right: 10px;
+        }
+    }
+}
+
+.tn-input-group-addon {
+    .add-on {
+        color: $font-color;
+    }
+}
+//*---------------------------------------*
+//  Flex box
+//*---------------------------------------*
+.flex-box {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    &.space-between {
+        justify-content: space-between;
+    }
+    &.flex-end {
+        justify-content: flex-end;
+    }
+    &.align-flex-start {
+        align-items: self-start !important;
+    }
+    &.flex-start {
+        justify-content: flex-start !important;
+    }
+    &.items-baseline {
+        align-items: baseline !important;
+    }
+    &.items-end {
+        align-items: end !important;
+    }
+    &.items-flex-end {
+        align-items: flex-end !important;
+    }
+}
+
+.remove-link {
+    @extend .proxima-nova-semibold;
+    color: $red-lighter;
+    font-size: 14px;
+}
+
+.view-history-link {
+    @extend .proxima-nova-semibold;
+    display: inline-block;
+    margin-top: 15px;
+    color: $blue;
+    font-size: 14px;
+    letter-spacing: 0.35px;
+}
+
+.tn-profile-avatar {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background: $misty;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 600;
+    border: 1px solid $cloudy;
+    white-space: nowrap;
+}
+
+.tn-vertical-divider {
+    width: 1px;
+    max-height: 100%;
+    background-color: $cloudy;
+}
+
+.tn-horizontal-divider {
+    width: 100%;
+    height: 1px;
+    background: $silver;
+    margin: 10px 0;
+}
+
+.font-light-gray {
+    color: $pewter !important;
+}
+
+.font-slate {
+    color: $slate !important;
+}
+
+.font-dark {
+    color: $font-color !important;
+}
+
+.font-error {
+    color: $red-lighter !important;
+}
+
+.no-records {
+    /*@extend .box-shadow;*/
+    display: flex;
+    min-height: 200px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid $cloudy;
+    .no-records-heading {
+        opacity: 0.3;
+    }
+}
+
+.rounded-rectangle {
+    @extend .proxima-nova-light;
+    padding: 1px 10px;
+    background-color: $cloudy;
+    color: $font-color;
+    font-size: 12px;
+    border-radius: 15px;
+    margin-right: 5px;
+    display: inline-block;
+    line-height: 18px;
+}
+
+.profile-edit-button {
+    padding: 0 30px !important;
+    min-width: unset !important;
+}
+
+.tn-profile-main {
+    min-height: calc(100vh - 68px);
+    .tn-button {
+        padding: 0;
+        min-width: 200px;
+        margin: 8px 0;
+        height: 38px;
+        position: relative;
+    }
+    .table.tn-table {
+        thead {
+            tr {
+                th {
+                    height: 35px;
+                    vertical-align: bottom;
+                    padding-bottom: 3px;
+                }
+
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    height: 60px;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    .secondary-section {
+        md-card {
+            width: 100%;
+            text-align: center;
+            margin: 8px 0;
+        }
+    }
+    .profile-heading {
+        @extend .proxima-nova-semibold;
+        color: $font-color;
+        letter-spacing: 0.3px;
+    }
+    .money-sections {
+        margin-bottom: 30px;
+        .tn-horizontal-divider {
+            margin-top: 30px;
+        }
+    }
+    .tn-header-buttons {
+        margin: 25px 0 0 0;
+        padding-left: 15px;
+        button {
+            margin-right: 15px;
+        }
+    }
+}
+
+.tn-read-more-section {
+    p, ul {
+        @extend .proxima-nova;
+        line-height: 25px;
+        font-size: 15px;
+        color: $font-color;
+        .view-more {
+            line-height: 10px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+    }
+}
+
+.tn-choose-employee-change {
+    background-color: #eef0f2;
+    margin-bottom: 20px;
+    .employee-change {
+        p {
+            margin-bottom: 0;
+        }
+        &.flex-box {
+            min-height: 60px;
+            .employee-change-title {
+                margin-left: 20px;
+                min-width: 180px;
+            }
+            .employee-change-description {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.tn-tab-section {
+    /*border-bottom: 1px solid $misty-dark;*/
+    margin-bottom: 10px;
+    ul {
+        li {
+            &.active {
+                .personal-tabs {
+                    color: $blue;
+                }
+            }
+            & + li {
+                margin: 0 !important;
+            }
+        }
+    }
+    .personal-tabs {
+        @extend .proxima-nova-semibold;
+        font-size: 14px;
+        color: $font-color;
+        padding: 10px 8px !important;
+        letter-spacing: 0.5px;
+        margin: 0;
+        font-weight: normal !important;
+    }
+    &.tn-header-tabs {
+        ul {
+            padding-left: 22px;
+        }
+    }
+
+}
+
+.tn-view-org-chart-button {
+    @extend .box-shadow;
+    width: 100% !important;
+    color: $blue !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    height: 60px !important;
+}
+
+.tn-page-heading {
+    a, button {
+        color: $font-color !important;
+        font-size: 24px;
+        &:hover, &:active, &:focus {
+            opacity: 0.8;
+        }
+    }
+    i {
+        color: #A7B0B9;
+        font-size: 17px;
+        font-weight: 600;
+    }
+}
+
+//*---------------------------------------*
+//  Status of an employee
+//*---------------------------------------*
+.empStatus {
+    .status {
+        @extend .proxima-nova-bold;
+        position: absolute;
+        padding: 2px 10px;
+        display: inline-block;
+        top: 25px;
+        right: 20px;
+        border-radius: 15px;
+        color: $White;
+        font-size: 12px;
+    }
+    .leave {
+        background: $Trinet-light-orange;
+    }
+    .available {
+        background: $green-lighter;
+    }
+    .terminated {
+        background: $Trinet-dark-orange;
+    }
+}
+
+.tn-profile-header-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 15px;
+    .tn-profile-avatar {
+        margin-right: 25px;
+    }
+    .tn-employee-header-details {
+        flex: 1;
+        overflow: hidden;
+    }
+    .user-name {
+        @extend .tn-ellipsis-text;
+        width: 85%;
+    }
+    .profile-info-section {
+        display: inline-flex;
+        .employee-details-section {
+            min-width: 100px;
+            white-space: nowrap;
+        }
+        .employee-contact-section {
+            white-space: nowrap;
+            .isEllipsis {
+                @extend .tn-ellipsis-text;
+                width: 50%;
+            }
+        }
+    }
+}
+.split-department-section {
+    display: table-row;
+    height: 30px;
+    span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+.profile-section-view {
+    display: flex;
+    flex: 1 0 50%;
+    .section-block {
+        flex: 1 0 50%;
+        overflow: hidden;
+        word-wrap: break-word;
+        &:first-child {
+            border-right: 1px solid $cloudy;
+            padding-right: 3px;
+        }
+        &:last-child {
+            padding-left: 16px;
+        }
+        h5 {
+            margin: 30px 0;
+            @extend .proxima-nova-semibold
+        }
+        .employee-data {
+            margin: 25px 0;
+            h5 {
+                margin: 7px 0;
+            }
+        }
+        footer {
+            display: flex;
+            align-items: center;
+            .history-link-section {
+                flex: 1;
+            }
+            .action-section {
+                margin-right: 15px;
+                .remove-link {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+.tn-history-view {
+    .message-item {
+        @extend .proxima-nova !optional;
+        max-width: none;
+        width: 85%;
+    }
+}
+
+.tn-accordion {
+    .panel-group {
+        .accordion-panel {
+            box-shadow: none;
+            border-bottom: 1px solid $silver;
+            border-radius: 0;
+        }
+        .panel-title {
+            @extend .proxima-nova-semibold;
+            color: $font-color;
+            letter-spacing: 0.3px;
+        }
+        .content-text {
+            letter-spacing: 0.3px;
+        }
+        .panel-body {
+            padding: 0;
+        }
+        .panel-heading {
+            padding: 25px 0;
+            background-color: $White;
+        }
+        .accordion-icons {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            color: $blue;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        .accordion-status {
+            position: relative;
+            padding: 0 15px;
+            .icon-status {
+                position: absolute;
+                top: 2px;
+                right: 0;
+            }
+        }
+    }
+
+}
+
+.tn-names-section,
+.tn-contact-section,
+.tn-address-section,
+.tn-Acknowledgements-section,
+.tn-currentBenefits-section,
+.tn-permissions-section,
+.tn-money-section,
+.tn-personal-section,
+.tn-personal-status-section,
+.tn-emergency-section,
+.tn-timeoff-section,
+.tn-work-inbox-section,
+.tn-custom-fields-section {
+    padding: 15px 30px;
+}
+
+/*names styles start here*/
+
+/*names styles ends here*/
+
+/*Acknowledgements styles start here*/
+.tn-Acknowledgements-section {
+    .accordion-heading {
+        color: $blue;
+        font-size: 14px;
+    }
+    .panel-heading {
+        border: 2px solid #F0F4F8;
+        padding: 25px 15px !important;
+    }
+    .accept-date {
+        @extend .proxima-nova;
+        font-size: 13px;
+        color: $font-color;
+        margin-right: 15px;
+    }
+    .icon-status {
+        color: $blue;
+        margin-left: 15px;
+        font-weight: 600;
+    }
+    .panel-group {
+        margin-top: 15px;
+    }
+    .not-complete {
+        @extend .proxima-nova-semibold;
+        background: $Trinet-light-orange;
+        color: $White;
+        font-size: 12px;
+    }
+    .accepted {
+        @extend .proxima-nova-semibold;
+        background: $green-lighter;
+        color: $White;
+        font-size: 12px;
+    }
+    .panel-title {
+        a {
+            cursor: default;
+        }
+    }
+}
+
+/*Acknowledgements styles ends here*/
+
+/*custom-fields styles ends here*/
+.tn-custom-fields-section {
+    select {
+        height: 38px;
+        margin: 0;
+        &:hover, &:focus {
+            border-color: $azure-blue;
+        }
+    }
+    .tn-calender-input {
+        input {
+            width: 135px !important;
+        }
+    }
+    select.select-custom-answerChoices {
+        width: 100% !important;
+    }
+    label {
+        margin-top: 8px;
+    }
+    .details-section {
+        span {
+            font-size: 16px;
+            display: inline-block;
+            margin: 8px 0;
+            color: $slate;
+            word-break: break-all;
+        }
+    }
+}
+
+/*custom-fields styles ends here*/
+
+/*roles styles start here*/
+.tn-permissions-section {
+    .tn-roles-button {
+        min-width: auto;
+        padding: 0 15px !important;
+    }
+    .flex-box {
+        &.roles-selected-list {
+            flex-wrap: wrap;
+        }
+    }
+    .roles {
+        .profile-heading {
+            border-bottom: 1px solid $cloudy;
+            padding-bottom: 10px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+        }
+        .roles-content {
+            .role-heading {
+                font-size: 16px;
+                margin-top: 18px;
+                margin-bottom: 5px;
+            }
+            .content-text {
+                margin: 0;
+                line-height: 22px;
+            }
+            &:first-of-type {
+                .role-heading {
+                    margin-top: 10px;
+                }
+
+            }
+        }
+    }
+    .add-roles {
+        .roles-content {
+            margin-bottom: 5px;
+        }
+    }
+    .roles-content {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .checkbox-container {
+            flex-basis: 10%;
+        }
+        .role-details {
+            flex-basis: 90%;
+            .flex-box {
+                span {
+                    margin-right: 10px;
+                }
+            }
+        }
+        .role-selection {
+            margin-left: 10px;
+
+            h4, span {
+                margin-bottom: 5px !important;
+            }
+        }
+        .rounded-rectangle {
+            @extend .proxima-nova-semibold;
+            color: $font-color;
+        }
+    }
+}
+
+/*roles styles ends here*/
+/*extend leave request styles start here*/
+.tn-extended-leave-request {
+    select {
+        margin: 0;
+    }
+    .paid-hours {
+        input {
+            width: 100%;
+        }
+    }
+    .tn-horizontal-divider {
+        margin: 40px 0;
+    }
+    .extended-leave-absence {
+        margin-top: 20px;
+    }
+    .tn-form {
+        label {
+            font-weight: normal;
+            color: #848C9D;
+        }
+        .radio {
+            margin-bottom: 25px;
+            margin-top: 0;
+            &.horizontal-radio {
+                padding: 15px 5px;
+                margin: 5px 0;
+                border: 2px solid transparent;
+                &.isSelect {
+                    border: 2px solid $blue;
+                }
+            }
+        }
+        .form-return-plan {
+            textarea {
+                width: 70%;
+                color: $font-color;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+/*extend leave request styles ends here*/
+
+/*genarete form*/
+.tn-emp-generate-form {
+    .tn-form {
+        label {
+            margin: 5px 0;
+            color: $pewter;
+            font-size: 14px;
+        }
+        input {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: $font-color;
+        }
+        select {
+            height: 38px !important;
+            width: 350px;
+            max-width: 100%;
+            font-size: 14px;
+            color: $font-color;
+        }
+    }
+    .workers-combo {
+        .radio {
+            margin-right: 30px;
+        }
+    }
+    .tn-departments-section {
+        select {
+            margin: 0;
+        }
+    }
+    .add-department {
+        justify-content: space-between;
+        width: 55%;
+    }
+
+}
+
+/*genarete form*/
+/*crate names modal*/
+.tn-create-names-modal,
+.tn-address-section-modal,
+.tn-personal-status-modal,
+.emergency-contact-modal,
+.tn-personal-section-modal,
+.tn-contact-section-modal,
+.tn-create-payment-modal,
+.tn-retirement-modal,
+.tn-find-employee-modal {
+    select, input {
+        height: 38px !important;
+        width: 250px;
+        max-width: 100%;
+        font-size: 14px;
+        color: $font-color;
+        margin: 0;
+    }
+    .tn-horizontal-divider {
+        margin: 40px 0;
+    }
+}
+
+.tn-create-payment-modal {
+    select {
+        width: 350px !important;
+        max-width: 100%;
+    }
+}
+
+.tn-find-employee-modal {
+    .tn-modal-header {
+        padding: 20px 30px;
+    }
+    .tn-modal-boby {
+        min-height: 100px;
+    }
+    .tn-user-link {
+        @extend .tn-ellipsis-text;
+        max-width: 250px;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+    .tn-dept-table {
+        td {
+            height: 60px;
+        }
+    }
+}
+
+/*crate names modal*/
+/*address section style star here*/
+.tn-address-section {
+    .profile-section-view {
+        flex-direction: column;
+    }
+    .address-view {
+        @extend .proxima-nova-semibold;
+        p {
+            color: $font-color;
+        }
+    }
+}
+
+/*address modal*/
+
+/*address section style ends here*/
+
+/*contact section css start here*/
+.tn-contact-section {
+    .no-records {
+        min-height: 125px;
+        align-items: flex-start;
+        padding: 0;
+    }
+}
+.tn-enrollment-section{
+    .tn-button.tn-button-small {
+        margin: 0 0 0 10px !important;
+        padding: 5px 10px !important;
+        min-width: 0 !important;
+        height: auto !important;
+    }
+}
+/*contact modal*/
+.tn-contact-section-modal {
+    .flex-box {
+        justify-content: space-between;
+    }
+    .contact-phone-edit-section {
+        select {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+/*contact modal*/
+/*contact section css ends here*/
+
+/*emergency */
+.tn-emergency-section {
+    .profile-section-view {
+        flex-wrap: wrap;
+        .employee-Details {
+            @extend .box-shadow;
+            flex: 0 0 30%;
+            padding: 20px 15px;
+            margin: 10px;
+        }
+    }
+    .emergency-first-card {
+        margin-left: 0 !important;
+    }
+    .isPrimary {
+        @extend .proxima-nova-bold;
+        padding: 2px 10px;
+        display: inline-block;
+        border-radius: 15px;
+        color: $White;
+        font-size: 12px;
+        background-color: $green-lighter;
+    }
+    .view-history-link {
+        padding-right: 15px;
+        border-right: 1px solid #b3bdc7;
+        margin-right: 10px;
+        line-height: 12px;
+        margin-top: 0;
+    }
+    .emergency-card-section {
+        .name-section {
+            display: flex;
+            align-items: baseline;
+            .employee-name {
+                margin: 0 15px 0 0;
+            }
+            .isPrimary {
+                text-align: right;
+            }
+        }
+        .notes {
+            font-weight: bold;
+        }
+        .text-pre-wrap {
+            white-space: pre-wrap !important;
+            overflow-wrap: break-word;
+            word-break: break-all;
+            width: 400px;
+            height: 100px;
+        }
+    }
+    p {
+        @extend .proxima-nova;
+        line-height: 25px;
+        font-size: 15px;
+        color: $font-color;
+    }
+    .add-icon {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+    }
+}
+
+/*emergency */
+
+.tn-earningStatement-section {
+    .heading-section {
+        justify-content: flex-start;
+    }
+    .tn-form {
+        margin-left: 25px;
+        select {
+            margin: 0;
+            height: 35px;
+            width: 150px;
+        }
+    }
+    .tn-calender-input {
+        margin-bottom: 0;
+        width: unset !important;
+    }
+    .flex-box.date-range-selector {
+        width: 80%;
+        border: 1px solid #F4F4F4;
+        margin: 0;
+        padding: 5px;
+        justify-content: space-around;
+    }
+}
+
+.tn-create-payment-modal {
+    .tn-input-group-addon {
+        max-width: 250px;
+        width: 100% !important;
+        .tn-input-field {
+            max-width: 100% !important;
+        }
+    }
+}
+
+.tn-end-payment-modal {
+    .table.tn-table tbody tr {
+        background: transparent !important;
+    }
+}
+
+.tn-retirement-modal {
+    select {
+        width: 100% !important;
+    }
+    .input-small {
+        max-width: 95px !important;
+        margin: 0 15px !important;
+    }
+    .dollar-input {
+        margin-right: 30px !important;
+    }
+    .tn-checkbox label {
+        font-size: 16px !important;
+    }
+    .radio label {
+        color: $ink !important;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    .tn-horizontal-divider {
+        margin: 30px 0 25px 0;
+        background-color: #DFE3E7;
+    }
+    .content-text{
+        line-height: 20px;
+    }
+}
+
+//*---------------------------------------*
+//  Alert
+//*---------------------------------------*
+.tn-alert {
+    position: fixed;
+    top: 5px;
+    left: 285px;
+    right: 285px;
+    margin: 0 auto;
+    min-height: 60px;
+    border-radius: 3px;
+    z-index: 9999999999;
+    box-shadow: $tn-card-box-shadow;
+    .alert__body p {
+        @extend .proxima-nova-semibold;
+        color: $White;
+        font-size: 15px;
+        letter-spacing: .3px;
+        margin: 0;
+    }
+    .alert__buttons {
+        .tn-edit-button {
+            @extend .proxima-nova-semibold;
+            color: $White;
+            border-color: $White;
+            margin: 0 !important;
+            height: 36px;
+        }
+    }
+    .alert__body {
+        flex: 1;
+        position: relative;
+        padding: 0 10px 0 35px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .alert__body img, .alert__body > i {
+        margin-right: 15px;
+        height: 24px;
+        width: 24px;
+    }
+
+    .alert--status {
+        padding: .75rem 2.25rem;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: inherit;
+    }
+    .alert--success {
+        background-image: linear-gradient(to right, #1d914b, #108740);
+    }
+    .alert--warning {
+        background-image: linear-gradient(to right, #497199, #3d5e7f);
+    }
+    .alert--error {
+        background-image: linear-gradient(to right, #f32b46, #e61b36);
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .tn-alert {
+        left: 55px;
+        right: 55px;
+    }
+}
+
+//*---------------------------------------*
+//  Calender
+//*---------------------------------------*
+.tn-calender-input {
+    ul.dropdown-menu.my-cal {
+        @extend .proxima-nova;
+        box-shadow: 0 0.125rem 0.375rem 0 rgba(36, 41, 54, .24) !important;
+        border: 1px solid #DCE1E6 !important;
+        border-radius: 4px;
+        background-color: $White;
+        padding: 15px !important;
+        height: auto;
+        .cal-head, th {
+            background-color: $White !important;
+            padding: 10px 0;
+            button {
+                background-color: inherit;
+                box-shadow: none;
+                border: none !important;
+                color: $slate;
+                &:hover, &:focus {
+                    background-color: inherit !important;
+                    color: $slate !important;
+                }
+                strong {
+                    @extend .proxima-nova-semibold;
+                    font-weight: normal;
+                    font-size: 14px;
+                    color: $ink;
+                }
+            }
+        }
+        tr:not(.cal-head ) th {
+            height: 36px;
+            width: 36px;
+            small {
+                font-size: 12px;
+                color: $pewter;
+                font-weight: normal;
+            }
+        }
+        .cal-view {
+            tr {
+                td {
+                    button {
+                        padding: 0;
+                        height: 36px;
+                        color: $ink;
+                        font-size: 14px;
+                        text-align: center;
+                        &:hover, &:focus {
+                            background-color: $cloudy !important;
+                        }
+                        /*                       &:active{
+                                                   background-color: $cloudy !important;
+                                               }*/
+                        .text-muted {
+                            color: $silver !important;
+                        }
+                        .text-info {
+                            color: $ink;
+                        }
+                        &.btn-active, &.active {
+                            background-color: $azure-blue !important;
+                            .text-info {
+                                color: $White;
+                            }
+                        }
+                        &.btn-sm {
+                            width: 36px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//*---------------------------------------*
+//  Checkbox
+//*---------------------------------------*
+.tn-checkbox {
+    margin-left: 10px;
+    label {
+        color: #494949 !important;
+        font-size: 12px !important;
+        position: relative;
+        padding-left: 20px;
+        font-weight: normal;
+    }
+    input[type=checkbox ] {
+       &[disabled], &[disabled]:checked {
+            + label:before {
+                opacity: 0.3;
+            }
+           + label{
+               cursor: default;
+           }
+        }
+        position: absolute;
+        left: -99999px;
+        & + label:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            left: 0;
+            height: 1.5rem;
+            width: 1.5rem;
+            border: 2px solid $blue;
+            background-color: transparent;
+            border-radius: 0.25rem;
+        }
+        &:checked + label:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            left: 0;
+            height: 1.5rem;
+            width: 1.5rem;
+            background: url("../svg/input-checked-small.svg#webfont") $blue no-repeat -2px -2px;
+        }
+        &:checked {
+            &:hover, &:focus {
+                + label:before {
+                    background-color: $azure-blue;
+                }
+            }
+        }
+        &:hover, &:focus {
+            + label:before {
+                border-color: $azure-blue;
+            }
+        }
+    }
+    &.tn-checkbox-large {
+        input[type=checkbox ] {
+            & + label:before {
+                height: 3rem;
+                width: 3rem;
+            }
+            &:checked + label:before {
+                height: 3rem;
+                width: 3rem;
+                background: url("../svg/input-checked.svg#webfont") $blue no-repeat -3px -5px;
+                background-size: 35px;
+            }
+        }
+    }
+
+}
+
+//*---------------------------------------*
+//  Switch
+//*---------------------------------------*
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    margin: 0 3px;
+    input[type=checkbox ] {
+        position: absolute;
+        z-index: -9;
+        left: -9999px;
+        &:checked + .switch__slider {
+            background-color: $green-lighter;
+            &:before {
+                -webkit-transform: translateX(15px);
+                transform: translateX(15px);
+            }
+        }
+
+    }
+    input[type=checkbox ][disabled] {
+        &:checked + .switch__slider {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+    .switch-state {
+        @extend .proxima-nova-semibold;
+        position: absolute;
+        right: 50px;
+        top: 5px;
+        color: $slate;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    input[type=checkbox ][disabled] {
+        ~ .switch__slider {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+    .switch__slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 34px;
+        background-color: $silver;
+        -webkit-transition: .4s;
+        transition: .4s;
+        &:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 2px;
+            border-radius: 50%;
+            background-color: $White;
+            -webkit-transition: .4s;
+            transition: .4s;
+            box-shadow: rgba(36, 42, 54, .08) 0 0.0625rem 0.0625rem 0
+        }
+    }
+}
+
+//*---------------------------------------*
+//  Profile map
+//*---------------------------------------*
+.profile-map {
+    width: 210px;
+    height: 210px;
+    clip-path: circle(100px at center);
+    z-index: 1;
+    margin: 12px auto;
+
+    ng-map {
+        width: 210px;
+        height: 210px;
+        margin: 0 auto;
+    }
+}
+
+.profile-map-address-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 24px;
+    .profile-map-address {
+        margin: 0 auto;
+        position: relative;
+        font-size: 14px;
+        line-height: 26px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        word-break: break-word;
+        margin-left: 6.3rem;
+        i {
+            position: absolute;
+            top: 0;
+            left: -30px;
+        }
+    }
+    .profile-location-label {
+        font-size: 14px;
+        margin: 0;
+        line-height: inherit;
+    }
+}
+
+//*---------------------------------------*
+//  User Service card
+//*---------------------------------------*
+
+.profile-service-section {
+    md-card-content {
+        margin: 20px 0;
+    }
+    .service-years {
+        font-size: 35px;
+        line-height: normal;
+    }
+    .service-months {
+        font-size: 18px;
+    }
+}
+
+//*---------------------------------------*
+//  Features and settings
+//*---------------------------------------*
+.tn-features-and-settings {
+    .tn-settings-block {
+        padding: 10px 15px;
+        border-bottom: 1px solid #DFE3E7;
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}

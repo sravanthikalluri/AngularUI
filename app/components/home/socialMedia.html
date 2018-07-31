@@ -1,0 +1,20 @@
+<!-- 
+Description: This page displays all social Web sites of TriNet
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="col-md-12 social-media">
+    <div class="clearfix"></div>
+    <h2 ng-bind="::translation.social_media.title"></h2>
+    <p class="col-md-12  social-text" ng-bind="::translation.social_media.desc"></p>
+    <ul class="no-pad">
+        <li class="col-md-6 col-sm-6" ng-repeat="mediaInfo in translation.social_media.list"><a href="{{mediaInfo.url}}"
+                                                                                                target="_blank">
+            <div class="social-block"><span class="{{mediaInfo.css}}"></span>
+                <div class="col-md-10 col-sm-9 no-pad">
+                    <label ng-bind="::mediaInfo.title"></label>
+                    <p ng-bind="::mediaInfo.desc"></p>
+                </div>
+            </div>
+        </a></li>
+    </ul>
+</div>

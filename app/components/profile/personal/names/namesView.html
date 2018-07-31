@@ -1,0 +1,149 @@
+<div class="tn-names-section" ng-controller="namesCtrl">
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.names"></h4>
+    </div>
+    <div ng-if="!namesSection">
+        <div class="profile-section-view">
+            <div class="primary-name-view section-block">
+                <div id="effectiveDate" class="tn-form section-header flex-box"
+                     ng-class="primaryNameList.length > 1 ? 'space-between':'flex-end'">
+                    <select id="name_effective_date" class="effective-list no-marg"
+                            ng-model="primaryNameData" ng-if='primaryNameList.length > 1'
+                            ng-options="foa.effDateLabel for foa in primaryNameList"
+                            ng-change="dateChange(primaryNameData);">
+                    </select>
+                    <div>
+                        <!--ng-click="togglePrimaryName(); editData()"-->
+
+                        <button class="tn-button marg-right-5 tn-delete-button tn-button-small"
+                                ng-hide='primaryNamesHideDelete'
+                                id="namesmodaldeleteconfirm"
+                                ng-class="$parent.canDelete('names') ? 'visible-hide' : ''"
+                                ng-click="deleteConfirm()" ng-bind="::translation.delete"></button>
+                        <button class="tn-button marg-right-5 tn-edit-button tn-button-small" id="namesviewedit"
+                                ng-if="primaryNameData!=undefined" ng-click="editNames()"
+                                id="primaryNameEditLink"
+                                ng-class="$parent.canEdit('names') ? 'visible-hide' : ''"
+                                ng-bind="::translation.edit"></button>
+                    </div>
+                </div>
+                <div class="names-view">
+                    <h5>
+                        <span>{{translation.primary_name}}:</span>
+                    </h5>
+                    <h4 class="proxima-nova-semibold font-dark"
+                        title="{{primaryNameData.firstName}}{{primaryNameData.middleName}}{{primaryNameData.lastName}}">
+                        {{primaryNameData.firstName}}
+                        {{primaryNameData.middleName}}
+                        {{primaryNameData.lastName}}
+                    </h4>
+                </div>
+
+                <footer>
+                    <div class="history-link-section">
+                        <div class="flex-box space-between">
+                            <div class="flex-box">
+                                <a id="showTimeline" ng-show="showTimeline" ng-bind="::translation.viewHistory"
+                                   class="view-history-link" ng-if="!namesSection"
+                                   ng-click="toggleTimeline();selectedObject();">
+                                </a>
+                                <a id="hideTimeline" ng-click="toggleTimeline()"
+                                   ng-hide="showTimeline" ng-bind="::translation.close" class="view-history-link">
+                                </a>
+                            </div>
+                            <div>
+                                <!-- <a class="remove-link"
+                                    ng-hide='primaryNamesHideDelete'
+                                    id="namesmodaldeleteconfirm"
+                                    ng-class="$parent.canDelete('names') ? 'visible-hide' : ''"
+                                    ng-click="deleteConfirm()" ng-bind="::translation.delete"></a>-->
+                            </div>
+                        </div>
+                        <div class="block tn-history-view" ng-hide="showTimeline">
+                            <history-timeline data="primaryDetailTimeline" section="section"></history-timeline>
+                        </div>
+                    </div>
+
+                </footer>
+            </div>
+            <div class="preferred-name-view section-block">
+                <div class="tn-form section-header flex-box"
+                     ng-class="preferredNameDataList.length > 1 ? 'space-between':'flex-end'">
+                    <select id="name__preferred_effective_date" ng-if='preferredNameDataList.length > 1'
+                            class="effective-list no-marg"
+                            ng-model="preferredNameComboData"
+                            ng-options="foa.effDateLabel for foa in preferredNameDataList | orderBy: 'effectiveDate'"
+                            ng-change="preferredDateChagne(preferredNameComboData);">
+                    </select>
+                    <div class="action-section" ng-hide='noPref'>
+                        <button class="tn-button marg-right-5 tn-delete-button tn-button-small" id="namesviewdelete"
+                                ng-class="$parent.canDelete('names') ? 'visible-hide' : ''"
+                                ng-click="deletePreferredName(preferredNameData)" ng-hide='preferredNamesHideDelete'
+                                ng-bind="::translation.delete"></button>
+                        <button class="tn-button marg-right-5 tn-edit-button tn-button-small"
+                                ng-class="$parent.canEdit('names') ? 'visible-hide' : ''"
+                                id="namesviewpreferredNameEditLink"
+                                ng-click="togglePreferredName();editPreferredName(preferredNameData)"
+                                ng-bind="::translation.edit"></button>
+
+                    </div>
+                    <button ng-show='noPref' href="javascript:;" class="tn-button tn-edit-button"
+                            id="preferredNameEditLink" ng-click="toggleCreateNew()"
+                            ng-class="$parent.canAdd('names') ? 'visible-hide' : ''"
+                            ng-bind="::translation.profile_personal.create_new"></button>
+                </div>
+                <div class="names-view">
+                    <h5>
+                        <span>{{translation.preferred_name}}:</span>
+                    </h5>
+                    <h4 class="proxima-nova-semibold font-dark"
+                        title="{{preferredNameData.firstName}}{{preferredNameData.middleName}}{{preferredNameData.lastName}}">
+                        {{preferredNameData.firstName}}
+                        {{preferredNameData.middleName}}
+                        {{preferredNameData.lastName}}
+                    </h4>
+                    <h4 ng-if='noPref' class="proxima-nova-semibold no-data"
+                        ng-bind="::translation.profile_personal.no_preferred_name">
+                    </h4>
+                </div>
+                <footer>
+                    <div class="history-link-section" ng-if="prfNamesCurrentList.length > 0">
+                        <div class="flex-box space-between">
+                            <div class="flex-box">
+                                <a id="preferred_showTimeline"
+                                   ng-bind="::translation.viewHistory"
+                                   ng-show="preferred_showTimeline"
+                                   class="view-history-link" ng-if="!namesSection"
+                                   ng-click="togglePreferredTimeline(); selectedPreferredObject();">
+                                </a>
+                                <a id="preferred_hideTimeline" ng-click="togglePreferredTimeline()"
+                                   ng-hide="preferred_showTimeline" class="view-history-link"
+                                   ng-bind="::translation.close"></a>
+                            </div>
+                           <!-- <div ng-hide='noPref'>
+                                <a href="javascript:;" class="remove-link" id="namesviewdelete"
+                                   ng-class="$parent.canDelete('names') ? 'visible-hide' : ''"
+                                   ng-click="deletePreferredName(preferredNameData)" ng-hide='preferredNamesHideDelete'
+                                   ng-bind="::translation.delete"></a>
+                            </div>-->
+                        </div>
+                        <div class="block tn-history-view" ng-hide="preferred_showTimeline">
+                            <history-timeline data="preferredDetailTimeline" section="section"></history-timeline>
+                        </div>
+                    </div>
+
+                </footer>
+            </div>
+        </div>
+    </div>
+    <div class="tn-horizontal-divider"></div>
+    <!--    <div ng-controller="namesCreateNewCtrl">
+
+        </div>
+        <div ng-controller="namesPreferredModelCtrl">
+
+        </div>
+        <div ng-controller="namesModelCtrl">
+
+        </div>-->
+</div>

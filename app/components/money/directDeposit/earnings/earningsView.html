@@ -1,0 +1,567 @@
+<no-records></no-records>
+<div class="panel-body no-pad" ng-controller="earningsCtrl">
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1" ng-if="isLoading">
+            <div class="col-md-12 no-pad marg-top">
+                <div class="col-md-8 no-pad pull-right">
+                    <button id="viewonly" ng-if="!noPayChecks && !noData"
+                            class="trinet-secondary-action-btn pull-right dd-edit-adj"
+                            ng-click="toggleEdit(selectedEffectiveDate)" ng-show="isEditViewable"
+                            ng-bind="::translation.edit_account"></button>
+                    <button id="getStarted" ng-if="!noPayChecks && noData"
+                            class="trinet-secondary-action-btn pull-right dd-edit-adj"
+                            ng-click="toggleEdit(selectedEffectiveDate)" ng-show="isEditViewable"
+                            ng-bind="::translation.get_started"></button>
+                    <br/><br/>
+
+                    <div class="clearfix"></div>
+                    <h4 class="pull-right no-marg-top next-pay-date" ng-bind="::translation.your_next_pay_date"></h4>
+                    <div class="clearfix"></div>
+                    <label class="pull-right date">{{nextCheckIssueDate | dateFormat}}</label>
+                    <div class="clearfix"></div>
+                </div>
+
+                <!-- No Paychecks -->
+                <div class="col-md-4" ng-if="noPayChecks &&  isEditViewable"> <!--  ng-show="noData" -->
+                    <div id="edit-details_noData" class="col-md-12 no-pad"
+                         ng-show="isEditViewable"></div>
+                    <!--This is controller for radial  -->
+                    <div id="radialId"
+                         class="col-md-12 col-sm-12 earning-statement-check-adj text-center">
+                        <p ng-bind="::translation.money.direct_deposit.no_previous_paychecks_msg"></p>
+
+                    </div>
+                    <div class="clearfix">&ensp;</div>
+                    <div class="clearfix">&ensp;</div>
+                </div>
+
+                <!-- No Accounts -->
+                <div class="col-md-4" ng-if="!noPayChecks && noData && isEditViewable"> <!--  ng-show="noData" -->
+                    <div id="edit-details_noData" class="col-md-12 no-pad"
+                         ng-show="isEditViewable"></div>
+                    <!--This is controller for radial  -->
+                    <div id="radialId"
+                         class="col-md-12 col-sm-12 earning-statement-check-adj text-center">
+                        <p ng-bind="::translation.money.direct_deposit.no_previous_paychecks">.</p>
+                        <!--<a id="paycheckcalculatorView" ng-click="openChangeAmount()"
+                           ng-bind="translation.money.direct_deposit.payroll_calculator"></a>-->
+                    </div>
+                    <div class="clearfix">&ensp;</div>
+                    <div class="clearfix">&ensp;</div>
+                </div>
+
+                <div class="col-md-4 no-pad" ng-if="!isEditViewable &&  noData">
+                    <div class="col-md-12 col-sm-12 no-pad"
+                         ng-controller="datePickerCtrl">
+
+                        <div class="col-md-12 col-sm-12 no-pad medium">
+
+							<span class="effective ng-scope" id="trinetDDDateId">
+								<span class="col-md-3 col-sm-4 no-pad top-2">
+								<label ng-bind="::translation.money.direct_deposit.effective"></label>:</span>
+								  <span class="customed-calendar calender-border col-md-6 col-sm-6 no-pad">
+								 <span class="col-md-9 col-sm-9 no-pad">
+								 <input
+                                         type="text"
+                                         class="calendar no-border ng-pristine ng-valid ng-isolate-scope ng-valid-required ng-valid-date ng-touched ddCalender"
+                                         ng-class="{'error-warning': effectiveDateRequired}"
+                                         ng-blur="effectiveDateRequired=earningsEditView.effDate.$error.required;"
+                                         name="effDate" id="earningsView_edit_effective_date"
+                                         datepicker-popup="{{format}}"
+                                         ng-click="open($event)"
+                                         ng-model="calSelectedEffectiveDate" is-open="opened"
+                                         min-date="earnMinDate" max-date="'2099-12-31'"
+                                         datepicker-options="dateOptions"
+                                         date-disabled="disabled(date, mode)"
+                                         close-text="Close" readonly/>
+									 	<Validation condition="effectiveDateRequired"
+                                                    msg="{{translation.effective_date+'\n '+translation.is_required}}"></Validation>
+								</span>
+
+									 <span class="col-md-2 col-sm-2 no-pad">
+										<button id="calnderBtn" type="button"
+                                                class="btn no-bg-all bo-border btn-default Trinet-calendar blue"
+                                                ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+								 </span>
+								  </span>
+							 </span>
+                            <label ng-bind="::translation.money.direct_deposit.success_msg"></label>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 text-center" style="margin-top: 40px;">
+
+                        <div ng-show="isLastPaycheck" class="text-center value-direct-deposit">
+                            <p class="no-marg last-pay-check" ng-bind="::translation.money.direct_deposit.last_paycheck"></p>
+                            <span class="donet-amount"
+                                  ng-style="(earningsCheckAmount.checkAmount + '').length > 6 ? { 'font-size':'16px' } : { 'font-size':'24px' }">{{earningsCheckAmount.checkAmount | currencyFilter}}</span>
+                            <!-- <a id="paycheckcalculatorEdit" class="changeamount action" ng-click="openChangeAmount()"
+                                ng-bind="translation.change"></a>-->
+                        </div>
+                        <div ng-hide="isLastPaycheck && !estimatedNewPayCheck" class="text-center value-direct-deposit">
+                            <p class="no-marg last-pay-check" ng-bind="::translation.money.direct_deposit.your_estimate"></p>
+                            <span class="donet-amount"
+                                  ng-style="(earningsCheckAmount.estimatedPayCheck + '').length >= 6 ? { 'font-size':'16px' } : { 'font-size':'24px' }">{{earningsCheckAmount.estimatedPayCheck | currencyFilter}}</span>
+                            <!--  <a id="paycheckcalculatorEstimate" class="changeamount" ng-click="openChangeAmount()"
+                                 ng-bind="translation.change"></a>-->
+                        </div>
+                        <!--From here radial directive start  -->
+                        <div class="col-md-12 text-center radial my-tooltip no-pad cursor-auto" id="mytooltip">
+                            <canvas tc-chartjs-doughnut chart-options="options" chart-data="DefaultDoughnutData" width="260" height="260"></canvas>
+                        </div>
+                        <!--Here radial directive ends  -->
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 no-pad" ng-if="listData">
+                    <div id="edit-details_listData" class="col-md-12 no-pad" ng-show="isEditViewable">
+                        <div class="col-md-8 col-sm-8 pad-5" ng-hide="dataLength == 0">
+
+                            <label class="select-custom-lable">
+                                <select id="selected_effective_date" class="pull-left custom-select"
+                                        ng-model="selectedEffectiveDate"
+                                        ng-options="k as k for (k, v) in earningsList"
+                                        ng-change="populateData(selectedEffectiveDate)">
+                                </select>
+                            </label>
+
+                        </div>
+                        <label class="col-md-6 col-sm-10 no-pad" ng-show="dataLength == 0" ng-bind="::translation.money.direct_deposit.currently_title"></label>
+
+                    </div>
+                    <div class="col-md-12 col-sm-12 no-pad"
+                         ng-controller="datePickerCtrl" ng-hide="isEditViewable">
+
+                        <div class="col-md-12 col-sm-12 no-pad medium">
+
+							<span class="effective ng-scope" id="trinetDDDateId">
+								<span class="col-md-3 col-sm-4 no-pad top-2">
+								<label ng-bind="::translation.money.direct_deposit.effective"></label>:</span>
+								  <span class="customed-calendar calender-border col-md-6 col-sm-6 no-pad">
+								 <span class="col-md-9 col-sm-9 no-pad">
+								 <input
+                                         type="text"
+                                         class="calendar no-border ng-pristine ng-valid ng-isolate-scope ng-valid-required ng-valid-date ng-touched ddCalender"
+                                         ng-class="{'error-warning': effectiveDateRequired}"
+                                         ng-blur="effectiveDateRequired=earningsEditView.effDate.$error.required;"
+                                         name="effDate" id="earningsView_edit_effective_date"
+                                         datepicker-popup="{{format}}"
+                                         ng-click="open($event)"
+                                         ng-model="calSelectedEffectiveDate" is-open="opened"
+                                         min-date="earnMinDate" max-date="'2099-12-31'"
+                                         datepicker-options="dateOptions"
+                                         date-disabled="disabled(date, mode)"
+                                         close-text="Close" readonly/>
+									 	<Validation condition="effectiveDateRequired"
+                                                    msg="{{translation.effective_date+'\n '+translation.is_required}}"></Validation>
+								</span>
+
+									 <span class="col-md-2 col-sm-2 no-pad">
+										<button id="calnderBtn" type="button"
+                                                class="btn no-bg-all bo-border btn-default Trinet-calendar blue"
+                                                ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+								 </span>
+								  </span>
+							 </span>
+                            <label ng-bind="::translation.money.direct_deposit.success_msg"></label>
+
+                        </div>
+                    </div>
+                    <div class="clearfix">&ensp;</div>
+                    <!--This is controller for radial  -->
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <div ng-show="isLastPaycheck" class="text-center value-direct-deposit">
+                            <p class="no-marg last-pay-check" ng-bind="::translation.money.direct_deposit.last_paycheck"></p>
+                            <span class="donet-amount"
+                                  ng-style="(earningsCheckAmount.checkAmount + '').length > 6 ? { 'font-size':'16px' } : { 'font-size':'24px' }">{{earningsCheckAmount.checkAmount | currencyFilter}}</span>
+                            <!-- <a id="paycheckcalculatorEdit" class="changeamount action" ng-click="openChangeAmount()"
+                                ng-bind="translation.change"></a>-->
+                        </div>
+                        <div ng-hide="isLastPaycheck && !estimatedNewPayCheck" class="text-center value-direct-deposit">
+                            <p class="no-marg last-pay-check" ng-bind="::translation.money.direct_deposit.your_estimate"></p>
+                            <span class="donet-amount"
+                                  ng-style="(earningsCheckAmount.estimatedPayCheck + '').length >= 6 ? { 'font-size':'16px' } : { 'font-size':'24px' }">{{earningsCheckAmount.estimatedPayCheck | currencyFilter}}</span>
+                            <!--  <a id="paycheckcalculatorEstimate" class="changeamount" ng-click="openChangeAmount()"
+                                 ng-bind="translation.change"></a>-->
+                        </div>
+                        <!--From here radial directive start  -->
+                        <div class="text-center radial my-tooltip no-pad cursor-auto" id="mytooltip">
+                            <canvas ng-if="!noData && noCurrData" tc-chartjs-doughnut chart-options="options" chart-data="DefaultDoughnutData" width="260" height="260"></canvas>
+                            <canvas ng-if="!validPayCheckAmount" tc-chartjs-doughnut chart-options="options" chart-data="DefaultDoughnutData" width="260" height="260"></canvas>
+                            <canvas ng-if="!noData && !noCurrData && validPayCheckAmount" tc-chartjs-doughnut chart-options="options" width="260" height="260" chart-data="doughnutData"></canvas>
+                        </div>
+                        <!--Here radial directive ends  -->
+                    </div>
+                    <div class="clearfix">&ensp;</div>
+                    <div class="direct-deposit-list-items">
+                        <div ng-show="isLastPaycheck" class="bold">
+                            <span class="last-pay-check bold" ng-bind="::translation.money.direct_deposit.last_paycheck"></span>
+                            <span class="pull-right last-pay-check">{{earningsCheckAmount.checkAmount | currencyFilter}}</span>
+                        </div>
+
+                        <div ng-hide="isLastPaycheck">{{::translation.money.direct_deposit.your_estimate}}
+                            <label></label> <span class="pull-right">{{earningsCheckAmount.estimatedPayCheck | currencyFilter}}</span>
+                        </div>
+                        <div ng-repeat="earning in earningData">
+                            <div ng-if="!earning.netBalance">
+                                <label>{{earning.accountNumber}}</label>
+                                <label class="pull-right" ng-if="(isEditViewable) && earning.payCheck <= 0 && earning.remAmount > 0 && earning.remAmount + earning.payCheck > 0">-{{earning.remAmount + earning.payCheck | currencyFilter}}</label>
+                                <label class="pull-right" ng-if="(isEditViewable) && earning.payCheck <= 0 && earning.remAmount + earning.payCheck <= 0">0.00</label>
+                                <label class="pull-right" ng-if="(!isEditViewable) || earning.payCheck >0">-{{earning.remAmount | currencyFilter}}</label>
+                            </div>
+                            <div ng-if="earning.netBalance" class="bold total">
+                                <hr>
+                                <label ng-bind="translation.money.direct_deposit.balance"></label>
+                                <label class="pull-right" ng-if="(!isEditViewable) || earning.remAmount >0">{{earning.remAmount | currencyFilter}}</label>
+                                <label class="pull-right" ng-if="(isEditViewable) && earning.remAmount <=0">0.00</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 no-pad col-sm-12  pad-left-10">
+
+                    <div id="viewmode" class="row no-marg" ng-if="noData && isEditViewable">
+                        <div class="col-md-12 col-sm-12 no-pad marg-top">
+                            <div class="col-md-6 no-pad clearfix" ng-if="earningData.length > 1">
+                                <div class="col-md-12 col-sm-12 no-pad">
+                                    <label class="marg-left no-marg medium"
+                                           ng-bind="::translation.money.direct_deposit.priority"></label>
+                                </div>
+
+                            </div>
+                            <div class="row text-left no-marg">
+                                <ul class="draglist no-pad">
+                                    <li>
+                                        <div class="col-md-12 money-border marg-top  no-pad">
+
+                                            <span class="list-item no-pad sno">1</span>
+
+                                            <div class="col-md-4  marg-top no-pad">
+                                                <div class="col-md-2 col-sm-2 no-pad prior-circle">
+                                                    <span class="icon-icon_circle medium line-height"
+                                                          ng-style="{'color':'#EDEDED'}"></span>
+
+                                                </div>
+
+                                                <div class="col-md-10 no-pad">
+
+                                                    <span class="earn-name"
+                                                          ng-bind="::translation.money.direct_deposit.full_amount"></span>
+
+                                                    <p class="Trinet-gray no-marg"
+                                                       ng-bind="::translation.money.direct_deposit.check"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="pull-right marg-top">
+                                                <h4 class="priority-list">{{earningsCheckAmount.checkAmount |
+                                                    currencyFilter}}</h4>
+                                                <p ng-if="earning.amountType == 'percentage'"
+                                                   class="Trinet-gray no-marg">{{earning.percent}}% of
+                                                    {{earning.payCheck}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row no-marg" ng-hide="noData" ng-if="isEditViewable && checkCurEffCond">
+                        <!-- noData ng-show="isEditViewable" seema -->
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div class="col-md-6 no-pad clearfix" ng-if="earningData.length > 1">
+                                <div class="clearfix">&nbsp;</div>
+                                <label ng-bind="::translation.money.direct_deposit.priority"></label>
+                                <!-- help fyly out start -->
+                                <!--<span class="tooltip-right" ng-hide="earning.accountName=='Account Name'"> <i
+                                        id="helpPriority"
+                                        class="icon-icon_UA blue small"></i>
+                                    <div class="tooltip-right-content">
+
+                                        <p>Drag an account up or down to change the deposit order.</p>
+                                        <div class="arrow-down"></div>
+                                        <div class="arrow-down-bg"></div>
+                                    </div>
+                                </span>-->
+                                <!-- help fyly out end -->
+                            </div>
+                            <div class="row text-center no-marg">
+                                <ul class="draglist no-pad">
+                                    <li ng-repeat="earning in earningData"
+                                        ng-drop="(earning.netBalance!==true)"
+                                        ng-drop-success="onDropComplete($index, $data,$event)">
+
+                                        <div class="clearfix money-border no-pad">
+
+                                            <p class="sno pull-left width-15">{{$index + 1}}</p>
+                                            <div ng-drag="false" ng-drag-data="earning" class="block">
+                                                <div class="col-md-5 col-sm-5 marg-top no-pad">
+                                                    <div class="col-md-2 col-sm-2 no-pad">
+                                                     <span ng-if="noCurrData === true"
+                                                           class="icon-icon_circle medium line-height"
+                                                           ng-style="{'color':'#EDEDED'}"></span>
+                                             <span ng-if="noCurrData === false"
+                                                   class="icon-icon_circle medium line-height"
+                                                   ng-style="{'color':earning.color}"></span>
+
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 no-pad text-left">
+
+                                                        <span class="earn-name">{{earning.accountName}} </span>
+
+                                                        <!-- help fly out end -->
+                                                        <p ng-if="dataLength == 0" class="Trinet-gray no-marg"
+                                                           ng-bind="::translation.money.direct_deposit.check"></p>
+
+                                                        <div class="col-md-12 text-left no-pad">
+                                                            <p class="Trinet-gray no-marg">
+                                                                {{earning.accountTypeChanged.value}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7 col-sm-7 marg-top pull-right">
+                                                    <h4 class="priority-list" ng-if="earning.payCheck<=0 && earning.remAmount > 0 && earning.remAmount + earning.payCheck > 0">{{earning.remAmount + earning.payCheck | currencyFilter}}</h4>
+                                                    <h4 class="priority-list" ng-if="earning.payCheck<=0 && earning.remAmount + earning.payCheck <= 0">0.00</h4>
+                                                    <h4 class="priority-list" ng-if="earning.payCheck>0">{{earning.remAmount |
+                                                        currencyFilter}}</h4>
+                                                    <p ng-if="earning.amountType == 'percentage'"
+                                                       class="Trinet-gray no-marg">{{earning.percent | currencyFilter}}%
+                                                        {{::translation.money.direct_deposit.of}}
+                                                        {{earning.percAmout | currencyFilter}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit View Start -->
+                <form name="earningsEditView" class="col-md-8 col-sm-12  no-pad-right pull-right"
+                      ng-hide="isEditViewable" ng-click="checkChangesOnForm()">
+                    <div class="col-md-12 col-sm-12 no-pad dd-add-account">
+
+                        <button id="addaccBtn1"
+                                ng-class="{'trinet-btn-dissable pointerEvent': isDisabled || estimatedNewPayCheck, 'trinet-secondary-action-btn pull-right': !isDisabled || !estimatedNewPayCheck}"
+                                class="trinet-secondary-action-btn pull-right"
+                                ng-click="addAccountModal()"
+                                ng-bind="::translation.money.direct_deposit.add_account"></button>
+
+                        <!--<button id="addaccBtn2"ng-if="isNotDisabled"  class="trinet-secondary-action-btn pull-right"
+                                ng-click="addAccountModal()" ng-bind="translation.money.direct_deposit.add_account"></button>-->
+                        <div class="col-md-12 no-pad" ng-if="earningData.length > 1">
+                            <label ng-bind="::translation.money.direct_deposit.priority"></label>
+                            <!-- help fyly out start -->
+							<span class="tooltip-right pad-left-5" ng-hide="earning.accountName=='Account Name'"> <i
+                                    id="helpmultipleaccounts"
+                                    class="icon-icon_UA blue small no-pad"></i>
+								<div class="tooltip-right-content priority medium">
+
+                                    <p ng-bind="::translation.money.direct_deposit.drag_account_setup_msg"></p>
+                                    <div class="arrow-down"></div>
+                                    <div class="arrow-down-bg"></div>
+                                </div>
+							</span>
+                            <!-- help fyly out end -->
+                        </div>
+                        <div class=" col-md-12 no-pad marg-top">
+                            <!-- Right side records -->
+
+                            <fieldset ng-repeat="earning in earningData"
+                                      ng-drop="(earning.netBalance!==true)"
+                                      ng-drag="(earning.netBalance!==true)"
+                                      ng-drag-data="earning"
+                                      ng-drop-success="onDropComplete($index, $data,$event)">
+                                <div class="clearfix money-border no-pad">
+                                    <!-- Drag and drop tag begin-->
+                                    <div>
+                                        <span class="icon-icon_drag large hand drag line-height bg-grey block pull-left marg-top"
+                                              ng-if="!earning.netBalance"></span>
+                                         <span class="marg-left-22 line-height bg-grey block pull-left marg-top marg"
+                                               ng-if="earning.netBalance"></span>
+
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-5 no-pad">
+                                        <div class="col-md-2 col-sm-2 no-pad prior-circle">
+                                            <span ng-if="noCurrData === true"
+                                                  class="icon-icon_circle medium line-height"
+                                                  ng-style="{'color':'#EDEDED'}"></span>
+                                             <span ng-if="noCurrData === false"
+                                                   class="icon-icon_circle medium line-height"
+                                                   ng-style="{'color':earning.color}"></span>
+
+
+                                        </div>
+                                        <div class="col-md-10 no-pad text-left">
+                                            <span class="last-pay-check">{{earning.accountName}} </span>
+
+                                            <!-- <span class="icon-icon_UA blue small"></span> -->
+                                            <!-- help fly out start -->
+                                            <!--<span class="tooltip-right"
+                                                  ng-hide="earning.accountName=='Account Name'"> <i id="helpmultiple"
+                                                                                                    class="icon-icon_UA blue small"></i>
+                                                <div class="tooltip-right-content">
+
+                                                    <p>Drag an account up or down to change the deposit order.</p>
+                                                    <div class="arrow-down"></div>
+                                                    <div class="arrow-down-bg"></div>
+                                                </div>
+                                            </span>-->
+                                            <!-- help fly out end -->
+
+                                            <select ng-cancel-drag
+                                                    ng-if=" earning.accountName === 'Remaining Amount' || earning.accountName === 'Full Amount'"
+                                                    id="checkTypeId_{{$index}}"
+                                                    class="small-list ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched block"
+                                                    ng-model="earning.accountTypeChanged"
+                                                    ng-change="openAccount($index,earning,earning.accountTypeChanged)"
+                                                    name="accountName"
+                                                    ng-options="rs.value  for rs in checkTypeObj track by rs.value ">
+                                                <option value="" ng-if="false"></option>
+                                            </select>
+
+                                            <select ng-cancel-drag
+                                                    ng-if=" earning.accountName !== 'Remaining Amount' &&  earning.accountName !== 'Full Amount'"
+                                                    id="checkTypeId_{{$index}}"
+                                                    class="small-list ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched block"
+                                                    ng-model="earning.accountTypeChanged"
+                                                    ng-change="openAccount($index,earning,earning.accountTypeChanged)"
+                                                    name="accountName"
+                                                    ng-options="rs.value  for rs in checkTypeObj track by rs.value ">
+                                                <option value="" ng-if="false"></option>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div ng-if="!earning.netBalance" class="col-md-2 col-sm-2 marg-top">
+                                        <div>
+											<span class="pull-left"> <input ng-cancel-drag id="dollar{{$index}}"
+                                                                            type="radio"
+                                                                            name="amountType{{$index}}" value="dollar"
+                                                                            class="pull-left"
+                                                                            ng-change="getAmountType(earning.amountType, earning)"
+                                                                            ng-click="onChange(earningData,earningsCheckAmount.estimatedPayCheck,earning.percent,$event, $index, earning)"
+                                                                            ng-model="earning.amountType"></span>
+                                            <label
+                                                    class="pull-left marg-top-5">$</label>
+                                        </div>
+                                        <div ng-if="!earning.netBalance" class="priority-detail pad-left-10">
+                                            <!-- <span class="icon-icon_radiobutton_select black small"></span> -->
+                                            <input type="radio" ng-cancel-drag id="percentage{{$index}}"
+                                                   name="amountType{{$index}}"
+                                                   value="percentage" class="pull-left"
+                                                   ng-click="onChange(earningData,earningsCheckAmount.estimatedPayCheck,earning.percent,$event, $index, earning)"
+                                                   ng-change="getAmountType(earning.amountType, earning)"
+                                                   ng-model="earning.amountType"> <label
+                                                class="pull-left marg-top-5"> % </label>
+                                            <!-- <label> {{earning.percent}}</label> -->
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-3 pad-5">
+                                        <div class="col-md-12 col-sm-12 no-pad"
+                                             ng-if="!earning.netBalance && earning.amountType == 'dollar'">
+
+                                            <div class="col-md-12 col-sm-12 no-pad text-right earnings-tool-adjustment-dollar">
+                                            <span
+                                                    class="marg-top top-0 Trinet-gray bold"> $ </span>
+                                                <!-- <label> {{earning.amount}} </label> -->
+                                                <input ng-cancel-drag id="dollarinput_{{$index}}" type='text'
+                                                       class="top-margin priority-value marg-top-5 no-marg priority-value-dollar form-control"
+                                                       ng-pattern="/^[0-9]+(\.[0-9]{1,9})?$/"
+                                                       ng-model="earning.amount"
+                                                       onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode==46 || event.charCode== 8 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode==46 || event.keyCode== 8 '
+                                                       name="editDollar"
+                                                       ng-blur="onChange(earningData,earningsCheckAmount.estimatedPayCheck,earning.amount,$event, $index, earning);"
+                                                       autocomplete="off"
+                                                       placeholder="0"
+                                                       ng-focus="onFocus($index,earning.amount,'dollar')"
+                                                       ng-hide="earning.isAmountType"
+                                                       ng-keyup="enableSaveButton()"
+                                                       maxlength="8"/>
+                                                <!--  ng-change="editDollorValueRequired = getParsedVal(earning.amount) > checkRemAmount"ng-class="{'error-warning': editDollorValueRequired}"-->
+                                                <!-- <Validation condition="editDollorValueRequired"
+                                                             msg="Dollar amount should not be more than remaining amount"></Validation>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 no-pad "
+                                             ng-if="!earning.netBalance && earning.amountType != 'dollar'">
+                                            <div class="col-md-12 col-sm-12 no-pad text-right earnings-tool-adjustment-percentage">
+                                                <input ng-cancel-drag type='text' id="percentof_{{$index}}"
+                                                       onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode==46 || event.charCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode==46 || event.keyCode == 8 || event.keyCode == 32'
+                                                       class="no-marg priority-value adj-priority-value"
+                                                       ng-show="earning.isAmountType"
+                                                       ng-model="earning.percent"
+                                                       name="percent"
+                                                       maxlength="3"
+                                                       placeholder="0"
+                                                       ng-class="{'error-warning': editPercentageValueReq}"
+                                                       ng-focus="onFocus($index,earning.percent,'percent')"
+                                                       ng-blur="editPercentageValueReq = earning.percent > percentageShould;onChange(earningData,earningsCheckAmount.estimatedPayCheck,earning.percent,$event, $index, earning);"
+                                                       autocomplete="off"
+                                                       ng-keyup="enableSaveButton()"/>
+                                                <!-- <Validation condition="editPercentageValueReq"
+                                                             msg="Percentage value cannot be more than 100"></Validation>-->
+                                                <!--ng-class="{'error-warning':earningPercentageRequired}" earningPercentageRequired=earningsEditView.Percentage.$error.required;
+                                                <Validation condition="earningPercentageRequired" msg="{{translation.percentage+' '+translation.is_required}}"></Validation>-->
+												<span ng-if="earning.amountType != 'dollar'"
+                                                      class="Trinet-gray bold">% of
+												{{earning.percAmout | currencyFilter}} </span>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-right no-pad">
+                                                <span>
+                                                    <label class="earnings-amount adjust-earnin-amount">{{earning.remAmount | currencyFilter}}</label>
+                                                    <!-- <input type='text' class=" top-margin" ng-model="earning.remAmount"></input> -->
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-1 col-sm-1 pad-5 text-right marg-top enrnings-geleteAcount">
+                                        <button ng-cancel-drag id="deleteAccount{{$index}}"
+                                                class="icon-icon_trash marg-top-inherit earnings-amount no-bg no-border"
+                                                ng-if="!earning.netBalance && !estimatedNewPayCheck"
+                                                ng-click="remove($index, earningData,earningsCheckAmount.estimatedPayCheck)"></button>
+                                    </div>
+
+                                    <div class="text-right marg-top col-sm-6 no-pad" ng-if="earning.netBalance">
+                                        <label class="earnings-amount">{{earning.remAmount | currencyFilter}}</label>
+                                    </div>
+                                    <div class="col-md-10 marg-top"
+                                         ng-if="earningData.length > 1 && earning.netBalance ">
+                                        <p ng-bind="::translation.money.direct_deposit.remaining_account_msg"></p>
+                                    </div>
+                                    <!-- Drag and drop tag end-->
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-12 col-sm-12 text-right">
+                            <button id="earningsaveBtn" name="save"
+                                    ng-class="{'trinet-btn-dissable pointerEvent': enableSave || formDetailsChanged ||estimatedNewPayCheck, 'trinet-primary-action-btn': enableSave || !formDetailsChanged}"
+                                    type="submit" ng-disabled="enableSave || estimatedNewPayCheck" ng-click="saveData()"
+                                    ng-bind="::translation.save"></button>
+                            <button id="earningcancelBtn" class="trinet-secondary-action-btn" aria-hidden="true"
+                                    aria-label="Close" ng-click="cancel()" ng-bind="::translation.cancel"></button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Edit View End -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

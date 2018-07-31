@@ -1,0 +1,146 @@
+@import '../global';
+
+$Trinet-dropdown-btn: #898989;
+$Trinet-dropdown-btn-active: #48484a;
+$Trinet-secondary-btn-border-color: #6c6c6c;
+
+.trinet-btn {
+  @extend .in-block;
+  min-width: 70px;
+  color: $White;
+  height: 34px;
+  font-size: 17px;
+  margin: $margin $margin+2 $margin 0;
+  border: 0px;
+  line-height: 15px;
+  text-align: center;
+}
+
+.trinet-btn-secondary {
+  @extend .in-block;
+  min-width: 40px;
+  color: $White;
+  border: 0px;
+  height: 26px;
+  font-size: 14px;
+  margin: $margin $margin+2 $margin 0;
+  line-height: 7px;
+  text-align: center;
+}
+
+.trinet-dropdown-btn {
+
+  a {
+    color: $White;
+    text-decoration: none;
+    @extend .trinet-btn;
+    background: $Trinet-dropdown-btn;
+
+    &:hover, &:focus {
+      background: $Trinet-dropdown-btn-active;
+      color: $White;
+      text-decoration: none;
+
+    }
+  }
+  &.active {
+    background: $Trinet-dropdown-btn-active;
+  }
+}
+
+.trinet-default-btn {
+  @extend .trinet-btn;
+  background: $Trinet-dropdown-btn;
+  &:hover, &:focus {
+    background: #666;
+    color: $White;
+    text-decoration: none;
+  }
+}
+
+.trinet-default-btn-active {
+  @extend .trinet-btn;
+  background: $Trinet-orange;
+  &:hover, &:focus {
+    color: $White;
+    text-decoration: none;
+  }
+}
+
+.trinet-secondary-btn {
+  @extend .trinet-btn-secondary;
+  background: $Trinet-orange;
+  &:hover {
+    color: $White;
+    text-decoration: none;
+  }
+}
+
+.trinet-primary-action-btn {
+  @extend .trinet-btn;
+  background: $Trinet-orange;
+  border: 1px solid $Trinet-dark-orange;
+
+  &:hover {
+    background: $Trinet-dark-orange;
+    color: $White;
+    text-decoration: none;
+  }
+
+  &:focus {
+    background: $Trinet-dark-orange;
+    color: $White;
+    text-decoration: none;
+  }
+  &.active {
+    background: #c64e12;
+  }
+
+}
+
+.trinet-secondary-action-btn {
+  @extend .trinet-btn;
+  background: $Trinet-gray;
+  border: 2px solid $Trinet-secondary-btn-border-color;
+
+  &:hover {
+    background: #666;
+    color: $White;
+    text-decoration: none;
+  }
+  &:focus {
+    background: #666;
+    color: $White;
+    text-decoration: none;
+  }
+  &.active {
+    background: $Trinet-dark-gray;
+  }
+}
+
+.trinet-btn-dissable {
+  @extend .trinet-btn;
+  background: $Trinet-gray;
+  border: 2px solid $Trinet-secondary-btn-border-color;
+  opacity: .2;
+}
+
+.trinet-toogle-btn-active {
+  @extend .trinet-btn;
+  background: $Trinet-blue;
+  &:hover {
+    text-decoration: none;
+    color: $White;
+  }
+
+}
+
+.trinet-toogle-btn-default {
+  @extend .trinet-btn;
+  background: $Background;
+  color: $Trinet-blue !important;
+  &:hover {
+    text-decoration: none;
+    color: $Trinet-blue !important;
+  }
+}

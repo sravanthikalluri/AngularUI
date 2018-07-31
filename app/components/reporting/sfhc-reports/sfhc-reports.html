@@ -1,0 +1,61 @@
+<div class="tn-SFHC-reports tn-background pull-left">
+    <alert-view></alert-view>
+    <div class="col-sm-12 heading">
+        <h2 class="bold no-marg">
+            <button class="breadcomb-button no-border no-bg no-marg">{{translation.reports.title}}</button>
+            <span aria-hidden="true" class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button no-border no-bg no-marg">{{translation.sfhcReports.subTitle}}</button>
+        </h2>
+    </div>
+    <div class="col-sm-12 marg-bot-20" ng-if="pdfUrl !== ''">
+        <p class="info">
+            {{translation.sfhcReports.downloadInfo}}
+        </p>
+        <p>
+            <a class="pull-left bold info" ng-href='{{pdfUrl | contentUrl}}' target="_blank"> {{translation.sfhcReports.seeAdditionalInfo}}</a>
+        </p>
+    </div>
+
+    <div class="col-sm-12 col-md-12 no-pad-imp card">
+        <table ng-if="sfhcReportsData.length > 0" class="table tn-table tn-table-fixed">
+            <thead>
+            <tr>
+                <th width="50%">
+                    Report
+                </th>
+                <th width="50%" class="text-center no-marg">
+                    Archive
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr id="report{{$index}}" ng-repeat="report in sfhcReportsData | orderBy:sortType:sortReverse">
+                <td width="50%">
+                    <a class="info bold" ng-href='{{report.url | contentUrl}}'>{{report.displayName}}</a>
+                </td>
+                <td width="50%" class="text-center no-marg">
+                    <div class="check">
+                        <input id="changeReqcheck{{$index}}" type="checkbox" value="report.fileName"
+                               name="change request" ng-click="archiveSelection(report.fileName)">
+                        <label for="changeReqcheck{{$index}}">
+                        </label>
+                    </div>
+                   <!-- <span class="check">
+                           <label id="index"></label>
+                           <input name="index" type="checkbox" value="report.fileName"
+                                  ng-click="archiveSelection(report.fileName)">
+                      </span>-->
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div ng-if="sfhcReportsData.length > 0" class="col-sm-12 text-right">
+            <button id="archieveSubmitBtn" ng-click="commitArchive()" class="tn-button tn-action-button pull-right">
+                Archive Now
+            </button>
+        </div>
+		<no-records  error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+
+    </div>
+</div>

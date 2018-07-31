@@ -1,0 +1,1303 @@
+<div ng-controller="editCtrl">
+    <form id="taxedit" name="userForm">
+        <div class="col-md-12 pannel-section">
+            <div class="col-md-6 col-sm-6 medium">
+                <span class="effective pull-left" id="trinetDateId">
+                    <span class="pull-left top-5 pad-5">{{::translation.money.direct_deposit.effective}} : </span>
+                          <span class="calendar-main col-md-7 col-sm-7 no-pad">
+                            <span class="col-md-7 col-sm-7 no-pad">
+                          <input type="text" class="ddCalender no-border " name="effDate" data-provide="datepicker"
+                                 ng-keypress="$event.which === 13 && open($event)"
+                                 datepicker-popup="{{format}}" id="trinetTaxInputId"
+                                 ng-model="nextEffectiveDate" is-open="opened" min-date="minDate"
+                                 max-date="'2099-12-31'" datepicker-options="dateOptions"
+                                 date-disabled="disabled(date, mode,'#trinetDateId')"
+                                 ng-required="true"
+                                 ng-click="open($event)"
+                                 close-text="Close" readonly/>  </span>
+                    <button type="button"
+                            class="tax-calendar btn btn-default no-bg-all bo-border no-marg pull-right"
+                            ng-click="open($event)">
+                        <i id="taxcaleditBtn" class="glyphicon glyphicon-calendar blue"></i>
+                    </button>
+                        </span>
+                </span></div>
+
+            <div class="col-md-6 col-sm-6 text-right">
+                <div class="col-md-12 col-sm-12 no-pad">
+                </div>
+            </div>
+            <div class="clearfix">&ensp;</div>
+            <!-- editable panel start-->
+
+            <div id="taxdate" ng-if="taxWithHoldingDataLength >= 1 " class="medium"
+                 ng-repeat="taxWithHoldingData in taxWithHolingDataObject track by $index">
+
+                <div ng-if="(taxWithHoldingDataLength === 2 ||  taxWithHoldingDataLength === 1 || taxWithHoldingDataLength === 4) && (taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax')"
+                     class="col-md-6 col-sm-6 federal-border">
+                    <div id="federal_tax_{{$index}}">
+                        <div class="row federal-block no-marg">
+                            <div id="taxpatdet" class="col-md-7 col-sm-7 text-left">
+                                <h3 ng-if="taxWithHoldingData.type=='Federal tax'" class="federal-text"
+                                    ng-bind="::translation.money.tax_With_Holding.federal_tax"></h3>
+                                <h3 ng-if="taxWithHoldingData.type=='State tax'" class="federal-text">
+                                    {{taxWithHoldingData.payDedCode}} <span
+                                        ng-bind="::translation.money.tax_With_Holding.state_tax"></span></h3>
+                            </div>
+
+
+                            <div id="taxfedral" ng-if="taxWithHoldingData.type=='Federal tax'"
+                                 class="col-md-5 col-sm-5 no-pad text-right">
+                                    <span class="span-color" ng-if="taxWithHoldingData.isPDFAvailable === 'true'">
+                                        <a target="_blank"
+                                           class="action span-color"
+                                           ng-href="{{taxWithHoldingData.pdfURL.url | contentUrl}}"
+                                           ng-bind="::translation.money.tax_With_Holding.w4_form"></a></span>
+                                    <span class="pull-right"><a target="_blank" class="action span-color"
+                                                                href="http://www.irs.gov/Individuals/IRS-Withholding-Calculator"
+                                                                ng-bind="::translation.money.tax_With_Holding.irs_cal"></a></span>
+                            </div>
+                            <div id="taxstate" ng-if="taxWithHoldingData.type=='State tax'"
+                                 class="col-md-5 text-right col-sm-5 no-pad">
+                                <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length == 1">
+                                  <a  class="action top-marg-1" target="_blank"
+                                      ng-href="{{taxWithHoldingData.pdfURL[0].url}}">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_form}}</a>
+                            </span>
+                                <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length > 1">
+                                <a  class="action top-marg-1" ng-click="showAllStateForms($index)">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_forms}}</a>
+                            </span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 no-pad">
+                <!--            <div class="col-md-4 col-sm-4 text-right allowance">
+                                <h4 ng-if="taxWithHoldingData.type=='State tax' && !havingGA" ng-bind="::translation.money.tax_With_Holding.allowance"></h4>
+                            </div>-->
+                            <div ng-if="taxWithHoldingData.type=='Federal tax'" class="col-md-12 col-sm-12 allowance no-right-pad">
+                                <div class="col-md-4 col-sm-4 text-right allowance">
+                                    <h4 ng-bind="::translation.money.tax_With_Holding.allowance"></h4>
+                                </div>
+                                <div class="number-box block " ng-class="{'error-warning' : taxWithHoldingData.exceedLimit}">
+                                    <div class="col-md-9 col-sm-8 no-pad text-center">
+                                        <input id="taxfederalipnput_{{$index}}" autocomplete="off"
+                                               ng-if="taxWithHoldingData.type=='Federal tax'" name="fed_range"
+                                               type="text"
+                                               ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                               class="fedral-amount-input form-control number-font ng-binding federalAllowancesReq_{{$index}}"
+                                               value="0"
+                                               ng-model="taxWithHoldingData.allowancesRequested" required
+                                               ng-keyup="fedCheckKey(event,$index)"
+                                               ng-change="allowancesRequestedChange(taxWithHoldingData,'taxfederalipnput_'+$index)"
+                                               maxlength='3'
+                                               only-digits>
+
+                                    </div>
+                                    <Validation id="validationinput_{{$index}}"
+                                                ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                condition="taxWithHoldingData.exceedLimit"
+                                                msg="{{translation.money.tax_With_Holding.validations.exceedLimit}}"></Validation>
+                                    <div class="col-md-3 col-sm-4 no-pad pull-left text-center">
+                                        <ul id="federalcheck" ng-if="taxWithHoldingData.type=='Federal tax'"
+                                            class="no-pad">
+                                            <li>
+                                                <button id="federalincreasetop_{{$index}}" type="button"
+                                                        ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                        ng-click="allowanceFedIncrease($index);enableConfirm()"
+                                                        class="plus-btn  trinet-toogle-btn-active">+
+                                                </button>
+                                            </li>
+                                            <li>0-99</li>
+                                            <li>
+                                                <button id="allowanceincreasetop_{{$index}}" type="button"
+                                                        ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                        ng-click="allowanceFedDecrease($index);enableConfirm()"
+                                                        class="plus-btn trinet-toogle-btn-active ">-
+                                                </button>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="taxWithHoldingData.type=='State tax'" class="col-md-12 col-sm-12 allowance no-right-pad">
+                                <div class="col-md-4 col-sm-4 text-right allowance">
+                                    <h4 ng-if="!havingGA" ng-bind="::translation.money.tax_With_Holding.allowance"></h4>
+                                </div>
+                                <fieldset ng-disabled="taxWithHoldingData.type=='State tax' && (disableStateAllowances(taxWithHoldingData.payDedCode) || disableStateSection(taxWithHoldingData.payDedCode))">
+                                    <div class="number-box block" ng-if="taxWithHoldingData.type=='State tax' && !havingGA"
+                                         ng-class="{'error-warning' : taxWithHoldingData.exceedLimit}">
+                                        <div class="col-md-9 col-sm-8 no-pad text-center">
+
+                                            <input id="taxallowanceinput_{{$index}}" autocomplete="off"
+                                                   ng-if="taxWithHoldingData.type=='State tax'" name="state_range"
+                                                   type="text"
+                                                   ng-disabled="taxWithHoldingData.exempt === 'Yes' "
+                                                   class="col-md-9 number-font ng-binding fedral-amount-input form-control stateAdditionalAmt_{{$index}}"
+                                                   value="0"
+                                                   maxlength='3'
+                                                   ng-model="taxWithHoldingData.allowancesRequested" required="true"
+                                                   ng-change="allowancesRequestedChange(taxWithHoldingData,'taxallowanceinput_'+$index)"
+                                                   ng-keyup="checkKey(event,$index)" only-digits>
+
+
+                                        </div>
+                                        <Validation id="validationinput_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='State tax'"
+                                                    condition="taxWithHoldingData.exceedLimit"
+                                                    msg="{{translation.money.tax_With_Holding.validations.exceedLimit}}"></Validation>
+                                        <div class="col-md-3 col-sm-4 no-pad pull-left text-center">
+
+                                            <ul ng-if="taxWithHoldingData.type=='State tax'" class="no-pad">
+                                                <li>
+                                                    <button id="federalincreasebottom_{{$index}}" type="button"
+                                                            ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                            ng-click="allowanceIncrease($index);enableConfirm()"
+                                                            class="plus-btn  trinet-toogle-btn-active stateAdditionalAmt_{{$index}}">
+                                                        +
+                                                    </button>
+                                                </li>
+                                                <li>0-99</li>
+                                                <li>
+                                                    <button id="allowanceincreasebottom_{{$index}}" type="button"
+                                                            ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                            ng-click="allowanceDecrease($index);enableConfirm()"
+                                                            class="plus-btn trinet-toogle-btn-active stateAdditionalAmt_{{$index}}">
+                                                        -
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <fieldset ng-disabled="taxWithHoldingData.type=='State tax' && (disableStateSection(taxWithHoldingData.payDedCode))">
+                            <div class="col-md-12 col-sm-12 no-pad">
+                                <ul class="no-pad">
+                                    <li class=" col-md-12 col-sm-12 no-pad ">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional no-left-pad text-right"
+                                             ng-bind="::translation.money.tax_With_Holding.additional_amount">
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional  pull-left">
+                                            <div>
+                                                <input id="addamount_{{$index}}"
+                                                       ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                       ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                       name="fed_addAmt" type="text"
+                                                       class="additinal-input no-marg black height-33"
+                                                       placeholder="$0.00"
+                                                       ng-model="taxWithHoldingData.additionalAmount"
+                                                       format="currency"
+                                                       required
+                                                       only-decimals>
+
+
+                                            </div>
+
+                                            <div>
+                                                <input id="state_tax_{{$index}}"
+                                                       ng-if="taxWithHoldingData.type=='State tax'"
+                                                       ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                       name="state_addAmt" type="text"
+                                                       class="additinal-input no-marg black" placeholder="$0.00"
+                                                       ng-model="taxWithHoldingData.additionalAmount"
+                                                       format="currency"
+                                                       only-decimals>
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-md-12 col-sm-12 no-pad  top-marg-10">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional text-right marg-top"><span
+                                                ng-bind="::translation.marital_status"></span><span>:</span></div>
+                                        <div class="col-md-6 col-sm-6 edit-additional inputs pull-left no-pad">
+                                            <select id="taxChoosing_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                    ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                    class="form-control marital-input withhold-select"
+                                                    ng-options="rs.taxMarStatDesc for rs in taxWithHoldingData.maritalStatusList track by rs.taxMaritalStat"
+                                                    ng-model="taxWithHoldingData.maritalStatusValue"
+                                                    ng-change="checkMarriedFileSingle($index)"
+                                                    name="fed_MaritalStatus" ng-required="true">
+                                            </select>
+
+                                            <span id="helptaxchoose_{{$index}}"
+                                                  ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                  class="tooltip-right postion-static  pad-left-5">
+                                                <i id="helpFedTax_{{$index}}"
+                                                   class="icon-icon_UA blue small question-mark tax-hint-adj no-pad"></i>
+                                                <div class="tooltip-right-content  priority-state-tax  medium">
+
+                                                    <p ng-bind="::translation.money.tax_With_Holding.payrollTaxCal"></p>
+                                                    <div class="arrow-down"></div>
+                                                    <div class="arrow-down-bg"></div>
+                                                </div>
+							                 </span>
+
+
+                                            <div>
+                                                <select id="state_tax_mS_{{$index}}"
+                                                        ng-if="taxWithHoldingData.type=='State tax'"
+                                                        class="form-control marital-input withhold-select"
+                                                        ng-options="rs.taxMarStatDesc for rs in taxWithHoldingData.maritalStatusList track by rs.taxMaritalStat"
+                                                        ng-disabled="taxWithHoldingData.exempt === 'Yes' || disableStateAllowances(taxWithHoldingData.payDedCode) "
+                                                        ng-model="taxWithHoldingData.maritalStatusValue"
+                                                        ng-change="checkMarriedFileSingle($index)"
+                                                        name="state_MaritalStatus" ng-required="true">
+                                                </select>
+                                            </div>
+                                                <div>
+                                              <span id="helptaxchoose2_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='State tax'"
+                                                    class="tooltip-right postion-static pad-left-5">
+                                                <i id="helpStateTax_{{$index}}"
+                                                   class="icon-icon_UA blue small question-mark tax-hint-adj no-pad"></i>
+                                                <div class="tooltip-right-content priority-state-tax medium">
+
+                                                    <p ng-bind="::translation.money.tax_With_Holding.payrollTaxCal"></p>
+
+                                                    <div class="arrow-down"></div>
+                                                    <div class="arrow-down-bg"></div>
+                                                </div>
+							                 </span>
+                                           </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-md-12 col-sm-12 no-pad  top-marg-10">
+                                        <div class="col-md-12 col-sm-12 no-pad  top-marg-10">
+                                            <div class="col-md-6 col-sm-6 no-pad edit-additional text-right  top-marg-20x"
+                                                 ng-bind="::translation.money.tax_With_Holding.exempt">
+                                            </div>
+                                            <div class="col-md-6 edit-additional  pull-left  top-marg-20x">
+                                                <p class="onoff-toogle pull-left">
+
+                                                <div class="col-lg-2 col-md-2 col-sm-4 no-pad" id="onoffswitch_{{$index}}"  ng-if="taxWithHoldingData.type=='Federal tax'">
+
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch_{{$index}}"
+                                                               ng-model="taxWithHoldingData.exempt"
+                                                               ng-change="change(taxWithHoldingData.exempt,$index,'F',taxWithHoldingData)"
+                                                               class="onoffswitch-checkbox" id="exempt_F_{{$index}}"
+                                                               ng-true-value="'Yes'" ng-false-value="'No'">
+                                                        <label class="onoffswitch-label" for="exempt_F_{{$index}}">
+                                                            <span class="onoffswitch-inner small"></span>
+                                                            <span class="onoffswitch-switch small"></span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-2 col-sm-4 no-pad" id="onoffswitch_{{$index}}"  ng-if="taxWithHoldingData.type=='State tax' && taxWithHoldingData.payDedCode !== 'AL'">
+
+
+                                                    <div class="onoffswitch ">
+                                                        <input type="checkbox" name="onoffswitch_{{$index}}"
+                                                               ng-model="taxWithHoldingData.exempt"
+                                                               ng-change="change(taxWithHoldingData.exempt,$index,'S',taxWithHoldingData)"
+                                                               class="onoffswitch-checkbox" id="exempt_S_{{$index}}"
+                                                               ng-true-value="'Yes'" ng-false-value="'No'">
+                                                        <label class="onoffswitch-label" for="exempt_S_{{$index}}">
+                                                            <span class="onoffswitch-inner small"></span>
+                                                            <span class="onoffswitch-switch small"></span>
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-6 no-pad" id="onoffswitch_{{$index}}"  ng-if="taxWithHoldingData.type=='State tax' && taxWithHoldingData.payDedCode === 'AL'">
+                                                   <p ng-bind="::translation.money.tax_With_Holding.alabamaTaxpayers"></p>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+
+                                    <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                        ng-if="taxWithHoldingData.marriedFileSingle !== null">
+                                        <div class="col-md-6 col-sm-4 no-pad edit-additional text-right marg-top"><span ng-bind="::translation.money.tax_With_Holding.marriedFilling"> </span><span>:</span>
+                                        </div>
+                                        <div class="col-md-6 col-sm-8 edit-additional  pull-left no-right-pad">
+                                            <label class="adjTaxChekBox">
+                                               <span ng-if="taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax'" ng-class="taxWithHoldingData.marriedFileSingle ? 'icon-icon_checkmarkwithbox  blue':'icon-icon_checkmark_emptybox  blue'"></span>
+
+                                                <input  id="fed_tax_marriedFileSingle_{{$index}}"
+                                                        ng-hide="true"
+                                                        type="checkbox" class="pull-left"
+                                                        ng-model="taxWithHoldingData.marriedFileSingle"
+                                                        ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                        ng-change="checkMarriedFileSingle($index)"
+                                                        name="fed_marriedFileSingle">
+
+                                                <input
+                                                        id="state_tax_marriedFileSingle_{{$index}}"
+                                                        type="checkbox" class="pull-left"
+                                                        ng-hide="true"
+                                                        ng-model="taxWithHoldingData.marriedFileSingle"
+                                                        ng-if="taxWithHoldingData.type=='State tax'"
+                                                        ng-change="checkMarriedFileSingle()"
+                                                        name="state_marriedFileSingle">
+
+
+                                                <p class="direct-suspend-direct-deposit taxcheck" ng-bind="::translation.money.tax_With_Holding.singleStatusMarried"></p>
+                                            </label>
+
+                                        </div>
+                                    </li>
+
+                                    <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                        ng-if="taxWithHoldingData.percentageGross !== null && taxWithHoldingData.percentageGross !== 0">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional text-right marg-top"><span ng-bind="::translation.money.tax_With_Holding.taxableGrossWage"></span><span>:</span>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional  pull-left no-right-pad">
+                                            <select id="fed_tax_gross_wage_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                    class="form-control marital-input withhold-select"
+                                                    ng-options="act for act in  taxWithHoldingData.percentageGrossList"
+                                                    ng-model="taxWithHoldingData.percentageGross"
+                                                    name="fed_grossWage">
+                                            </select>
+                                            <select id="state_tax_gross_wage_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='State tax'"
+                                                    class="form-control marital-input withhold-select"
+                                                    ng-options="act for act in  taxWithHoldingData.percentageGrossList"
+                                                    ng-model="taxWithHoldingData.percentageGross"
+                                                    name="state_grossWage">
+                                            </select>
+                                            <span class="tax-percentage">%</span>
+
+                                        </div>
+                                    </li>
+
+                                    <li class=" col-md-12 col-sm-12 no-pad top-marg-10 "
+                                        ng-if="taxWithHoldingData.annualExemptionAmount !== null">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional no-left-pad text-right" ng-bind="translation.money.tax_With_Holding.annualExemption">
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional  pull-left">
+                                            <div>
+                                                <input id="fed_tax_annualExemptionAmount_{{$index}}"
+                                                       ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                       name="fed_annualExemptionAmount" type="text"
+                                                       class="additinal-input no-marg black height-33"
+                                                       placeholder=""
+                                                       ng-pattern="/^[0-9\.]+$/"
+                                                       ng-model="taxWithHoldingData.annualExemptionAmount"
+                                                       maxlength="5" required
+                                                       only-digits>
+
+
+                                            </div>
+
+                                            <div>
+                                                <input id="state_tax_annualExemptionAmount_{{$index}}"
+                                                       ng-if="taxWithHoldingData.type=='State tax'"
+                                                       name="state_annualExemptionAmount" type="text"
+                                                       class="additinal-input no-marg black"
+                                                       ng-pattern="/^[0-9\.]+$/"
+                                                       ng-model="taxWithHoldingData.annualExemptionAmount"
+                                                       maxlength="5" only-digits>
+
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </fieldset>
+
+                        <div ng-if="georgiaSpecificFieldsVisibility($index)">
+                            <li class=" col-md-12 col-sm-12 no-pad top-marg-10 "
+                                ng-if="taxWithHoldingData.dependentAllowances !== null">
+                                <div class="col-md-6 col-sm-6 no-pad edit-additional no-left-pad text-right"  ng-bind="::translation.money.tax_With_Holding.dependentAllowances">
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 edit-additional  pull-left">
+                                    <div>
+                                        <input id="fed_tax_dependentAllowances_{{$index}}"
+                                               ng-if="taxWithHoldingData.type=='Federal tax'"
+                                               name="fed_dependentAllowances" type="text"
+                                               class="additinal-input no-marg black height-33"
+                                               placeholder=""
+                                               ng-pattern="/^[0-9\.]+$/"
+                                               ng-model="taxWithHoldingData.dependentAllowances"
+                                               ng-class="{'error-warning': dependentAllowancesRequired}"
+                                               maxlength="2" required
+                                               only-digits>
+                                    </div>
+
+                                    <div>
+                                        <input id="state_tax_dependentAllowances{{$index}}"
+                                               ng-if="taxWithHoldingData.type=='State tax'"
+                                               name="state_dependentAllowances" type="text"
+                                               class="additinal-input no-marg black"
+                                               ng-pattern="/^[0-9\.]+$/"
+                                               ng-model="taxWithHoldingData.dependentAllowances"
+                                               maxlength="2" only-digits>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                ng-if="taxWithHoldingData.maritalAllowance !== null">
+                                <div class="col-md-6 col-sm-6 no-pad edit-additional text-right marg-top"><span ng-bind="::translation.money.tax_With_Holding.maritalStatusAllow"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 edit-additional  pull-left no-right-pad">
+                                    <select id="fed_tax_maritalAllowance_{{$index}}"
+                                            ng-if="taxWithHoldingData.type=='Federal tax'"
+                                            class="form-control marital-input withhold-select"
+                                            ng-options="act for act in  taxWithHoldingData.maritalStatusAllowance"
+                                            ng-model="taxWithHoldingData.maritalAllowance"
+                                            name="fed_maritalAllowance">
+                                    </select>
+                                    <select id="state_tax_maritalAllowance_{{$index}}"
+                                            ng-if="taxWithHoldingData.type ==='State tax'"
+                                            ng-disabled="disableMaritalStatusAllowance(taxWithHoldingData)"
+                                            class="form-control marital-input withhold-select"
+                                            ng-options="act for act in  taxWithHoldingData.maritalStatusAllowance"
+                                            ng-model="taxWithHoldingData.maritalAllowance"
+                                            name="state_maritalAllowance">
+                                    </select>
+                                </div>
+                            </li>
+                        </div>
+                        <div>
+                            <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                ng-if="taxWithHoldingData.additionalAllowances !== null">
+                                <div class="col-md-6 col-sm-12 no-pad edit-additional text-right marg-top">
+                                    <span ng-bind="::translation.money.tax_With_Holding.additionalAllowances"> </span></div>
+                                <div class="col-md-6 col-sm-12 edit-additional  pull-left no-right-pad">
+                                    <label>
+                                        <p class="additionalAllowances wordBreakAll proxima-nova-semibold">
+                                            <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.additionalAllowancesPrag}}</span>
+                                            <span style="color:#398ed4;">{{::translation.money.tax_With_Holding.georgiaEmp}}</span>
+                                            <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.withHoldingFormsEmail}}</span>
+                                        </p>
+                                    </label>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  Local tax div -->
+
+                <div id="taxhold_{{$index}}"
+                     ng-if="(taxWithHoldingDataLength === 2 ||  taxWithHoldingDataLength === 1 || taxWithHoldingDataLength === 4) && taxWithHoldingData.type=='Local tax'"
+                     class="col-md-6 col-sm-6 federal-border">
+                    <div id="local_tax_{{$index}}">
+                        <div class="row federal-block no-marg">
+                            <div class="col-md-7 col-sm-7 text-left">
+                                <h3 class="federal-text"
+                                    ng-bind="::translation.money.tax_With_Holding.local_tax"></h3>
+                            </div>
+                            <div class="col-md-5 col-sm-5  text-right">
+                                <span class="span-pad-top  pull-right">&nbsp;</span>
+
+                                <span class="span-pad-bottom pull-right">&nbsp;</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div class="col-md-4 col-sm-4 no-pad allowance">
+                                <h4 ng-bind="::translation.money.tax_With_Holding.allowance"></h4>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12 no-marg text-center bg-local-tax">
+                            <label class="number-font" id="localTax_allowancesRequested_{{$index}}">{{taxWithHoldingData.allowancesRequested}}</label>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-12 no-pad additional">
+                                <ul id="taxdecription_{{$index}}" class="no-pad">
+                                    <!--<li ng-repeat="localNames in taxWithHoldingData.localTaxNames">{{localNames.taxDesc}}</li>-->
+                                    <li class="" ng-if="taxWithHoldingData.desc !== null && taxWithHoldingData.desc !== ''"
+                                        ng-bind="taxWithHoldingData.desc"></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- --------------------------------------- -->
+                <!-- 3 columns divs begin -->
+
+                <div id="contribution_{{$index}}"
+                     ng-if="(taxWithHoldingDataLength === 3 || taxWithHoldingDataLength > 4) && (taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax')"
+                     class="col-md-4 col-sm-6 federal-border">
+                    <div id="fieldset_contribution{{$index}}">
+                        <div class="row federal-block no-marg">
+                            <div class="col-md-6 col-sm-6 no-pad text-left">
+
+                                <h3 ng-if="taxWithHoldingData.type=='Federal tax'"
+                                    class="federal-text no-pad medium ng-binding ng-scope top-marg-10"
+                                    ng-bind="::translation.money.tax_With_Holding.federal_tax"></h3>
+                                <h3 ng-if="taxWithHoldingData.type=='State tax'"
+                                    class="federal-text no-pad medium ng-binding ng-scopet top-marg-10">
+                                    {{taxWithHoldingData.payDedCode}} {{::translation.money.tax_With_Holding.stateTax}}</h3>
+                            </div>
+
+
+                            <div id="contributionfederal_{{$index}}"
+                                 ng-if="taxWithHoldingData.type=='Federal tax'"
+                                 class="col-md-6 col-sm-6 no-pad span-color text-right no-pad ng-scope">
+                                    <span class="span-color" ng-if="taxWithHoldingData.isPDFAvailable === 'true'">
+                                    <a id="w4Form" target="_blank" class="action span-color"
+                                       ng-href="{{ taxWithHoldingData.pdfURL.url | contentUrl}}"
+                                       ng-bind="::translation.money.tax_With_Holding.w4_form"></a></span>
+                                        <span class="pull-right"><a target="_blank"
+                                                                    href="http://www.irs.gov/Individuals/IRS-Withholding-Calculator"
+                                                                    class="action span-color"
+                                                                    ng-bind="::translation.money.tax_With_Holding.irs_cal"></a></span>
+                            </div>
+                            <div id="contributionwithhold_{{$index}}"
+                                 ng-if="taxWithHoldingData.type=='State tax'"
+                                 class="col-md-6 col-sm-6 no-pad span-color text-right no-pad ng-scope single-twh-link">
+                                <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length == 1">
+                                  <a  class="action top-marg-1" target="_blank"
+                                      ng-href="{{taxWithHoldingData.pdfURL[0].url}}">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_form}}</a>
+                            </span>
+                                <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length > 1">
+                                <a  class="action top-marg-1" ng-click="showAllStateForms($index)">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_forms}}</a>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div class="col-md-3 col-sm-3 text-right allowance no-pad">
+                                <p class="14px" ng-bind="::translation.money.tax_With_Holding.allowance">:</p>
+                            </div>
+                            <div class="col-md-9 col-sm-7 allowance no-right-pad">
+                                <fieldset
+                                        ng-disabled="taxWithHoldingData.type=='State tax' && (disableStateAllowances(taxWithHoldingData.payDedCode) || disableStateSection(taxWithHoldingData.payDedCode))">
+                                    <div class="number-box tax-edit-block tooltip-adjust block"
+                                         ng-if="taxWithHoldingData.type=='Federal tax'"
+                                         ng-class="{'error-warning' : taxWithHoldingData.exceedLimit}">
+                                        <div class="col-md-9 col-sm-8 no-pad text-center">
+                                            <input id="federalinput_{{$index}}" autocomplete="off"
+                                                   name="fed_range"
+                                                   type="text"
+                                                   ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                   class="fedral-amount-input form-control number-font federalAllowancesReq_{{$index}}"
+                                                   value="0"
+                                                   only-digits
+                                                   maxlength='3'
+                                                   ng-keyup="fedCheckKey(event,$index)"
+                                                   ng-change="allowancesRequestedChange(taxWithHoldingData,'federalinput_'+$index)"
+                                                   ng-model="taxWithHoldingData.allowancesRequested" required="true">
+                                        </div>
+                                        <Validation id="validationinput_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                    condition="taxWithHoldingData.exceedLimit"
+                                                    msg="Exceeds your maximum allowance"></Validation>
+
+                                        <div class="col-md-3 col-sm-3 no-pad pull-left">
+                                            <ul class="no-pad ">
+                                                <li>
+                                                    <button id="numberup_{{$index}}" type="button"
+                                                            ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                            ng-click="allowanceFedIncrease($index);enableConfirm()"
+                                                            class="plus-btn tax-inc-dec-btn trinet-toogle-btn-active">+
+                                                    </button>
+                                                </li>
+                                                <li>0-99</li>
+                                                <li>
+                                                    <button id="numberdown_{{$index}}" type="button"
+                                                            ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                            ng-click="allowanceFedDecrease($index);enableConfirm()"
+                                                            class="plus-btn tax-inc-dec-btn trinet-toogle-btn-active">-
+                                                    </button>
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="number-box tax-edit-block tooltip-adjust block"
+                                         ng-if="taxWithHoldingData.type=='State tax' && !havingGA"
+                                         ng-class="{'error-warning' : taxWithHoldingData.exceedLimit}">
+                                        <div class="col-md-9 col-sm-8 no-pad text-center">
+                                            <input id="stateinput_{{$index}}" autocomplete="off"
+                                                   name="state_range"
+                                                   type="text"
+                                                   class="col-md-9 fedral-amount-input form-control number-font stateAdditionalAmt_{{$index}}"
+                                                   value="0"
+                                                   ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                   ng-keyup="checkKey(event,$index)" only-digits
+                                                   maxlength='3'
+                                                   ng-change="allowancesRequestedChange(taxWithHoldingData,'stateinput_'+$index)"
+                                                   ng-model="taxWithHoldingData.allowancesRequested" required="true">
+                                        </div>
+
+                                        <Validation id="validationinput_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='State tax'"
+                                                    condition="taxWithHoldingData.exceedLimit"
+                                                    msg="Exceeds your maximum allowance"></Validation>
+
+                                        <div class="col-md-3 col-sm-3 no-pad pull-left">
+
+                                            <ul class="no-pad">
+                                                <li>
+                                                    <button id="numberincrement_{{$index}}" type="button"
+                                                            ng-click="allowanceIncrease($index);enableConfirm()"
+                                                            ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                            class="plus-btn tax-inc-dec-btn  trinet-toogle-btn-active">+
+                                                    </button>
+                                                </li>
+                                                <li>0-99</li>
+                                                <li>
+                                                    <button id="numberdecrement_{{$index}}" type="button"
+                                                            ng-click="allowanceDecrease($index);enableConfirm()"
+                                                            ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                            class="plus-btn tax-inc-dec-btn trinet-toogle-btn-active ">-
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+
+                        </div>
+
+                        <div class="clearfix">&nbsp;</div>
+                        <fieldset
+                                ng-disabled="taxWithHoldingData.type=='State tax' && (disableStateSection(taxWithHoldingData.payDedCode))">
+                            <div class="col-md-12 col-sm-12 no-pad">
+                                <ul class="no-pad">
+                                    <li class=" col-md-12 col-sm-12 no-pad ">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional no-left-pad text-right">
+                                            <p class="taxEditFileds"
+                                               ng-bind="::translation.money.tax_With_Holding.additional_amount"></p>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional  pull-left no-right-pad">
+                                            <input id="addamount_{{$index}}"
+                                                   ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                   ng-disabled="editFieldsDisabled" name="fed_addAmt"
+                                                   type="text" class="marital-input no-marg black "
+                                                   placeholder="$0.00"
+                                                   ng-required="true"
+                                                   format="currency"
+                                                   ng-model="taxWithHoldingData.additionalAmount"
+                                                   only-decimals>
+
+                                            <input id="state_tax_{{$index}}"
+                                                   ng-if="taxWithHoldingData.type=='State tax'"
+                                                   name="state_addAmt" type="text"
+                                                   class="marital-input no-marg black" placeholder="$0.00"
+                                                   ng-required="true"
+                                                   format="currency"
+                                                   ng-disabled="editStateFieldsDisabled"
+                                                   ng-model="taxWithHoldingData.additionalAmount"
+                                                   only-decimals>
+
+                                        </div>
+                                    </li>
+                                    <li class="col-md-12 col-sm-12 no-pad ">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional text-right">
+                                            <p class="taxEditFileds" ng-bind="::translation.money.tax_With_Holding.marital_status"></p>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional inputs pull-left no-pad">
+                                            <div>
+                                                <select id="taxChoosing_{{$index}}"
+                                                        ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                        ng-disabled="taxWithHoldingData.exempt === 'Yes'"
+                                                        class="form-control marg-5 visible marital-input withhold-select"
+                                                        ng-options="rs.taxMarStatDesc for rs in taxWithHoldingData.maritalStatusList track by rs.taxMaritalStat"
+                                                        ng-model="taxWithHoldingData.maritalStatusValue"
+                                                        ng-change="checkMarriedFileSingle($index)"
+                                                        name="fed_MaritalStatus" ng-required="true">
+                                                </select>
+
+                                            </div>
+
+                                            <div>
+                                                <select id="state_tax_mS_{{$index}}"
+                                                        ng-if="taxWithHoldingData.type=='State tax'"
+                                                        class="form-control marital-input marg-5 visible withhold-select"
+                                                        ng-options="rs.taxMarStatDesc for rs in taxWithHoldingData.maritalStatusList track by rs.taxMaritalStat"
+                                                        ng-disabled="taxWithHoldingData.exempt === 'Yes' || disableStateAllowances(taxWithHoldingData.payDedCode)"
+                                                        ng-model="taxWithHoldingData.maritalStatusValue"
+                                                        ng-change="checkMarriedFileSingle($index)"
+                                                        name="state_MaritalStatus" ng-required="true">
+
+                                                </select>
+
+                                            </div>
+                                           <div>
+                                             <span id="helptaxchoose2_{{$index}}" class="tooltip-right postion-static pad-left-5">
+                                                <i class="icon-icon_UA blue small question-mark tax-hint-adj no-pad"></i>
+                                                <div class="tooltip-right-content tax-tooltip-threeBlocks medium">
+
+                                                    <p ng-bind="::translation.money.tax_With_Holding.payrollTaxCal"></p>
+                                                    <div class="arrow-down"></div>
+                                                    <div class="arrow-down-bg"></div>
+                                                </div>
+							                 </span>
+                                           </div>
+
+                                        </div>
+                                    </li>
+                                    <li class="col-md-12 col-sm-12 no-pad ">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional text-right  top-marg-20x">
+                                            <p class="taxEditFileds"
+                                               ng-bind="::translation.money.tax_With_Holding.exempt"></p>
+
+                                        </div>
+                                        <div class="col-md-3 edit-additional  pull-left  top-marg-20x" ng-if="taxWithHoldingData.type=='Federal tax'">
+                                            <div class="onoff-toogle pull-left">
+                                                <div class="col-lg-2 col-md-2 col-sm-4 no-pad" id="onoffswitch_{{$index}}">
+                                                    <div class="onoffswitch marg-5 visible">
+                                                        <input ng-if="taxWithHoldingData.exempt=='Yes'"
+                                                               type="checkbox" name="onoffswitch_{{$index}}"
+                                                               ng-click="editDisableFn(taxWithHoldingData.exempt,$index,'F')"
+                                                               class="onoffswitch-checkbox "
+                                                               id="myonoffswitch_{{$index}}"
+                                                               ng-model="taxWithHoldingData.exempt"
+                                                               ng-change="change(taxWithHoldingData.exempt,$index,'F',taxWithHoldingData)"
+                                                               ng-true-value="'Yes'" ng-false-value="'No'">
+
+                                                        <input ng-if="taxWithHoldingData.exempt=='No'"
+                                                               type="checkbox" name="onoffswitch_{{$index}}"
+                                                               ng-click="editDisableFn(taxWithHoldingData.exempt,$index,'F')"
+                                                               class="onoffswitch-checkbox"
+                                                               id="myonoffswitch_{{$index}}"
+                                                               ng-model="taxWithHoldingData.exempt"
+                                                               ng-change="change(taxWithHoldingData.exempt,$index,'F',taxWithHoldingData)"
+                                                               ng-true-value="'Yes'" ng-false-value="'No'">
+
+                                                        <label class="onoffswitch-label"
+                                                               for="myonoffswitch_{{$index}}">
+                                                            <span class="onoffswitch-inner small"></span>
+                                                            <span class="onoffswitch-switch small"></span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 edit-additional  pull-left  top-marg-20x" ng-if="taxWithHoldingData.type=='State tax' && taxWithHoldingData.payDedCode !== 'AL'">
+                                            <div class="onoff-toogle pull-left">
+                                                <div class="col-lg-2 col-md-2 col-sm-4 no-pad" id="onoffswitch_{{$index}}">
+
+                                                    <div class="onoffswitch marg-5 visible">
+                                                        <input ng-if="taxWithHoldingData.exempt=='Yes'"
+                                                               type="checkbox" name="onoffswitch_{{$index}}"
+                                                               name="onoffswitch_{{$index}}"
+                                                               class="onoffswitch-checkbox"
+                                                               id="myonoffswitch_{{$index}}"
+                                                               ng-model="taxWithHoldingData.exempt"
+                                                               ng-change="change(taxWithHoldingData.exempt,$index,'S',taxWithHoldingData)"
+                                                               ng-true-value="'Yes'" ng-false-value="'No'">
+
+                                                        <input ng-if="taxWithHoldingData.exempt=='No'"
+                                                               type="checkbox" name="onoffswitch_{{$index}}"
+                                                               name="onoffswitch_{{$index}}"
+                                                               class="onoffswitch-checkbox"
+                                                               id="myonoffswitch_{{$index}}"
+                                                               ng-model="taxWithHoldingData.exempt"
+                                                               ng-change="change(taxWithHoldingData.exempt,$index,'S',taxWithHoldingData)"
+                                                               ng-true-value="'Yes'" ng-false-value="'No'">
+
+                                                        <label class="onoffswitch-label"
+                                                               for="myonoffswitch_{{$index}}">
+                                                            <span class="onoffswitch-inner small"></span>
+                                                            <span class="onoffswitch-switch small"></span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 edit-additional  pull-left  top-marg-20x" ng-if="taxWithHoldingData.type=='State tax' && taxWithHoldingData.payDedCode === 'AL'">
+                                            <div class="onoff-toogle pull-left">
+                                                <div class="col-lg-12 col-md-12 col-sm-6 no-pad" id="onoffswitch_{{$index}}" ng-if="taxWithHoldingData.type=='State tax' && taxWithHoldingData.payDedCode === 'AL'">
+                                                    <p ng-bind="::translation.money.tax_With_Holding.alabamaTaxPayers"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                        ng-if="taxWithHoldingData.marriedFileSingle !== null">
+                                        <div class="col-md-6 col-sm-4 no-pad edit-additional text-right marg-top">
+                                            <p class="taxEditFileds" ><span ng-bind="::translation.money.tax_With_Holding.marriedFilling"></span><span>:</span></p>
+                                        </div>
+                                        <div class="col-md-6 col-sm-8 edit-additional  pull-left no-right-pad">
+                                            <label class="adjTaxChekBox">
+
+                                                <span ng-if="taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax'" ng-class="taxWithHoldingData.marriedFileSingle ? 'icon-icon_checkmarkwithbox  blue':'icon-icon_checkmark_emptybox  blue'"></span>
+
+                                                <input
+                                                        id="fed_tax_marriedFileSingle_{{$index}}"
+                                                        type="checkbox" class="pull-left"
+                                                        ng-hide="true"
+                                                        ng-model="taxWithHoldingData.marriedFileSingle"
+                                                        ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                        ng-change="checkMarriedFileSingle($index)"
+                                                        name="fed_marriedFileSingle">
+
+                                                <input
+                                                        id="state_tax_marriedFileSingle_{{$index}}"
+                                                        type="checkbox" class="pull-left"
+                                                        ng-hide="true"
+                                                        ng-model="taxWithHoldingData.marriedFileSingle"
+                                                        ng-if="taxWithHoldingData.type=='State tax'"
+                                                        ng-change="checkMarriedFileSingle($index)"
+                                                        name="state_marriedFileSingle">
+
+
+                                                <p class="direct-suspend-direct-deposit taxcheck" ng-bind="::translation.money.tax_With_Holding.checkWithHolding"></p>
+                                            </label>
+
+                                        </div>
+                                    </li>
+                                    <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                        ng-if="taxWithHoldingData.percentageGross !== null && taxWithHoldingData.percentageGross !== 0 ">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional text-right marg-top">
+                                            <p class="taxEditFileds" > <span ng-bind="::translation.money.tax_With_Holding.taxableGrossWage"></span>:</p>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional  pull-left no-right-pad">
+                                            <select id="fed_tax_gross_wage_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                    class="form-control marital-input withhold-select"
+                                                    ng-options="act for act in  taxWithHoldingData.percentageGrossList"
+                                                    ng-model="taxWithHoldingData.percentageGross"
+                                                    name="fed_grossWage">
+                                            </select>
+                                            <select id="state_tax_gross_wage_{{$index}}"
+                                                    ng-if="taxWithHoldingData.type=='State tax'"
+                                                    class="form-control marital-input withhold-select"
+                                                    ng-options="act for act in  taxWithHoldingData.percentageGrossList"
+                                                    ng-model="taxWithHoldingData.percentageGross"
+                                                    name="state_grossWage">
+                                            </select>
+                                            <span class="tax-percentage">%</span>
+
+                                        </div>
+                                    </li>
+
+                                    <li class=" col-md-12 col-sm-12 no-pad top-marg-10 "
+                                        ng-if="taxWithHoldingData.annualExemptionAmount !== null">
+                                        <div class="col-md-6 col-sm-6 no-pad edit-additional no-left-pad text-right">
+                                            <p class="taxEditFileds" ng-bind="::translation.money.tax_With_Holding.annualExemption"></p>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 edit-additional  pull-left">
+                                            <div>
+                                                <input id="fed_tax_annualExemptionAmount_{{$index}}"
+                                                       ng-if="taxWithHoldingData.type=='Federal tax'"
+                                                       name="fed_annualExemptionAmount" type="text"
+                                                       class="additinal-input no-marg black height-33"
+                                                       placeholder=""
+                                                       ng-pattern="/^[0-9\.]+$/"
+                                                       ng-model="taxWithHoldingData.annualExemptionAmount"
+                                                       maxlength="5" required
+                                                       only-digits>
+
+
+                                            </div>
+
+                                            <div>
+                                                <input id="state_tax_annualExemptionAmount_{{$index}}"
+                                                       ng-if="taxWithHoldingData.type=='State tax'"
+                                                       name="state_annualExemptionAmount" type="text"
+                                                       class="additinal-input no-marg black"
+                                                       ng-pattern="/^[0-9\.]+$/"
+                                                       ng-model="taxWithHoldingData.annualExemptionAmount"
+                                                       maxlength="5" only-digits>
+
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </fieldset>
+
+                        <div ng-if="georgiaSpecificFieldsVisibility($index)">
+
+                            <li class=" col-md-12 col-sm-12 no-pad top-marg-10 "
+                                ng-if="taxWithHoldingData.dependentAllowances !== null">
+                                <div class="col-md-6 col-sm-6 no-pad edit-additional no-left-pad text-right">
+                                    <p class="taxEditFileds"  ng-bind="::translation.money.tax_With_Holding.dependentAllowances"> </p>
+                                </div>
+                                <div class="col-md-6 col-sm-6 edit-additional  pull-left">
+                                    <div>
+                                        <input id="fed_tax_dependentAllowances_{{$index}}"
+                                               ng-if="taxWithHoldingData.type=='Federal tax'"
+                                               name="fed_dependentAllowances" type="text"
+                                               class="additinal-input no-marg black height-33"
+                                               placeholder=""
+                                               ng-pattern="/^[0-9\.]+$/"
+                                               ng-model="taxWithHoldingData.dependentAllowances"
+                                               ng-class="{'error-warning': dependentAllowancesRequired}"
+                                               maxlength="2" required
+                                               only-digits>
+                                    </div>
+                                    <div>
+                                        <input id="state_tax_dependentAllowances{{$index}}"
+                                               ng-if="taxWithHoldingData.type=='State tax'"
+                                               name="state_dependentAllowances" type="text"
+                                               class="additinal-input no-marg black"
+                                               ng-pattern="/^[0-9\.]+$/"
+                                               ng-model="taxWithHoldingData.dependentAllowances"
+                                               maxlength="2" only-digits>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                ng-if="taxWithHoldingData.maritalAllowance !== null">
+                                <div class="col-md-6 col-sm-6 no-pad edit-additional text-right marg-top">
+                                    <p class="taxEditFileds" ng-bind="::translation.money.tax_With_Holding.maritalStatusAllow"> </p>
+                                </div>
+                                <div class="col-md-6 col-sm-6 edit-additional  pull-left no-right-pad">
+                                    <select id="fed_tax_maritalAllowance_{{$index}}"
+                                            ng-if="taxWithHoldingData.type=='Federal tax'"
+                                            class="form-control marital-input withhold-select"
+                                            ng-options="act for act in  taxWithHoldingData.maritalStatusAllowance"
+                                            ng-model="taxWithHoldingData.maritalAllowance"
+                                            name="fed_maritalAllowance">
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-sm-6 edit-additional  pull-left no-right-pad">
+                                    <select id="state_tax_maritalAllowance_{{$index}}"
+                                            ng-if="taxWithHoldingData.type=='State tax'"
+                                            class="form-control marital-input withhold-select"
+                                            ng-disabled="disableMaritalStatusAllowance(taxWithHoldingData)"
+                                            ng-options="act for act in  taxWithHoldingData.maritalStatusAllowance"
+                                            ng-model="taxWithHoldingData.maritalAllowance"
+                                            name="state_maritalAllowance">
+                                    </select>
+                                </div>
+                            </li>
+                        </div>
+                        <div>
+                            <li class="col-md-12 col-sm-12 no-pad  top-marg-10"
+                                ng-if="taxWithHoldingData.additionalAllowances !== null">
+                                <div class="col-md-6 col-sm-12 no-pad edit-additional text-right marg-top">
+                                    <span ng-bind="::translation.money.tax_With_Holding.additionalAllowances"> </span></div>
+                                <div class="col-md-6 col-sm-12 edit-additional  pull-left no-right-pad">
+                                    <label>
+                                        <p class="additionalAllowances wordBreakAll proxima-nova-semibold">
+                                            <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.additionalAllowancesPrag}}</span>
+                                            <span style="color:#398ed4;">{{::translation.money.tax_With_Holding.georgiaEmp}}</span>
+                                            <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.withHoldingFormsEmail}}</span>
+                                        </p>
+                                    </label>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  Local tax div -->
+
+                <div id="localtax_{{$index}}"
+                     ng-if="(taxWithHoldingDataLength=='3' || taxWithHoldingDataLength>'4') && taxWithHoldingData.type=='Local tax'"
+                     class="col-md-4 col-sm-6 federal-border">
+                    <div id="fieldset_{{$index}}">
+                        <div class="row federal-block no-marg">
+                            <div class="col-md-7 col-sm-7 text-left">
+                                <h3 class="federal-text no-pad medium ng-binding ng-scope"
+                                    ng-bind="::translation.money.tax_With_Holding.local_tax"></h3>
+                            </div>
+                            <div class="col-md-5 col-sm-5  single-twh-link text-right">
+                                <span class="span-pad-top  pull-right">&nbsp;</span>
+
+                                <span class="span-pad-bottom pull-right">&nbsp;</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 no-pad">
+                            <div class="col-md-3 col-sm-3 allowance no-pad">
+                                <p class="14px" ng-bind="::translation.money.tax_With_Holding.allowance">:</p>
+                            </div>
+
+                            <div class="col-md-9 no-marg text-center bg-local-tax">
+                                <label class="fedral-amount-input number-font"
+                                       id="localTax_allowancesRequested_{{$index}}">{{taxWithHoldingData.allowancesRequested}}</label>
+                            </div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-12 no-pad  additional ">
+                                <ul class="no-pad">
+                                    <!--<li ng-repeat="localNames in taxWithHoldingData.localTaxNames">{{localNames.taxDesc}}</li>-->
+                                    <li class="" ng-if="taxWithHoldingData.desc !== null && taxWithHoldingData.desc !== ''"
+                                        ng-bind="taxWithHoldingData.desc"></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 3 columns divs end -->
+                </ng-form>
+            </div> <!-- loop -->
+
+            <!-- editable panel end-->
+
+            <div class="block" ng-if="taxWithHoldingDataLength === 0 ">
+
+                <div class="col-md-6 col-sm-6 federal-border">
+                    <div id="fieldset_0">
+                        <div class="row federal-block no-marg">
+                            <div class="col-md-7 col-sm-7 text-left">
+                                <h3 class="federal-text" ng-bind="::translation.money.tax_With_Holding.federal_tax"> </h3>
+                            </div>
+                            <div class="col-md-5 col-sm-5 span-color">
+                      <span class="pull-right" ng-if="taxWithHoldingData.isPDFAvailable  === 'true'">
+                          <a target="_blank" class="span-color"
+                             ng-href="{{ taxWithHoldingData.pdfURL.url | contentUrl}}"
+                             ng-bind="::translation.money.tax_With_Holding.w4_form"></a>
+                          <a target="_blank" class="span-color"
+                             href="http://www.irs.gov/Individuals/IRS-Withholding-Calculator"
+                             ng-bind="::translation.money.tax_With_Holding.irs_cal"></a></span></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4  text-right allowance">
+                                <h4 ng-bind="::translation.money.tax_With_Holding.allowance"></h4>
+                            </div>
+                            <div class="col-md-7 col-sm-7 allowance medium">
+                                <div class="number-box block">
+                                    <div class="col-md-8 col-sm-8 no-pad text-center"
+                                         ng-class="{ 'has-error' : taxForm.range.$invalid && (taxForm.range.$dirty || submitted)}">
+
+                                        <input autocomplete="off"
+                                               name="fed_range"
+                                               type="text"
+                                               ng-disabled="fieldsDisabled"
+                                               class="fedral-amount-input form-control number-font"
+                                               value="0"
+                                               ng-model="fedRange" required
+                                               ng-keyup="fedCheckKey(event)"
+                                               only-digits>
+
+
+                                    </div>
+                                    <div class="col-md-2 col-sm-3 pull-right no-pad">
+                                        <ul class="no-pad">
+                                            <li>
+                                                <button ng-disabled="fieldsDisabled" type="button"
+                                                        ng-click="allowanceFedIncrease();enableConfirm()"
+                                                        class="plus-btn  trinet-toogle-btn-active">+
+                                                </button>
+                                            </li>
+                                            <li ng-disabled="fieldsDisabled">0-99</li>
+                                            <li>
+                                                <button ng-disabled="fieldsDisabled" type="button"
+                                                        ng-click="allowanceFedDecrease();enableConfirm()"
+                                                        class="plus-btn trinet-toogle-btn-active ">-
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-1 no-pad allowance"><span class="icon-icon_UA question-mark small"
+                                                                               data-toggle="tooltip"
+                                                                               tooltip="UA goes here"
+                                                                               tooltip-placement="top"></span></div>-->
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row medium">
+                            <ul class="no-pad">
+                                <li class="block top-marg-10">
+                                    <div class="col-md-4 col-sm-4 no-pad  edit-additional text-right" ng-bind="::translation.money.tax_With_Holding.additional_amount">
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 edit-additional  pull-left">
+                                        <div class=""
+                                             ng-class="{ 'has-error' : userForm.addAmt.$invalid && (userForm.addAmt.$dirty || submitted)}">
+                                            <input ng-disabled="fieldsDisabled" name="addAmt" type="text"
+                                                   class="additinal-input no-marg black height-35"
+                                                   ng-pattern="/^[0-9\.]+$/" ng-required="true" ng-maxlength="10000"
+                                                   placeholder="0.00" ng-model="addlAmt">
+                                            <!-- <span class="icon-icon_UA question-mark small" data-toggle="tooltip"
+                                                   tooltip="UA goes here" tooltip-placement="top"></span>--></div>
+                                    </div>
+                                </li>
+                                <li class="block top-marg-10">
+                                    <div class="col-md-4 col-sm-4 edit-additional text-right top-marg-20x"><span ng-bind="::translation.money.tax_With_Holding.marital_status"></span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 edit-additional  pull-left">
+                                        <div>
+                                            <select ng-disabled="fieldsDisabled"
+                                                    class="form-control marital-input no-marg withhold-select"
+                                                    ng-options="rs.taxMarStatDesc for rs in taxWithHoldingData.maritalStatusList track by rs.taxMaritalStat"
+                                                    ng-model="maritalStatusValue" name="MaritalStatus"
+                                                    ng-required="true">
+                                            </select></div>
+
+                                        <span class="icon-icon_UA question-mark small" data-toggle="tooltip"
+                                              tooltip="UA goes here" tooltip-placement="top"></span></div>
+                                </li>
+                                <li class="block top-marg-10">
+                                    <div class="col-md-4 col-sm-4 edit-additional text-right  top-marg-20x" ng-bind="::translation.money.tax_With_Holding.exempt">
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 edit-additional pull-left  top-marg-20x">
+                                        <div class="onoff-toogle col-lg-12 col-md-12 no-pad">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 no-pad">
+                                                <div class="onoffswitch ">
+                                                    <input type="checkbox" ng-click="disableFn()" name="onoffswitch"
+                                                           class="onoffswitch-checkbox" id="myonoffswitch">
+                                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                                        <span class="onoffswitch-inner small"></span>
+                                                        <span class="onoffswitch-switch small"></span>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--For first time user editble mode start -->
+
+                <div class="col-md-6 col-sm-6  federal-border">
+                    <div id="fieldset_1">
+                        <div class="row federal-block no-marg">
+                            <div class="col-md-7 col-sm-7 text-left">
+                                <h3 class="federal-text"> {{taxWithHoldingData.payDedCode}} {{::translation.money.tax_With_Holding.state_tax}}</h3>
+                            </div>
+                            <div class="col-md-5 col-sm-5 text-right no-pad">
+                                <span class=" top-marg-10" ng-if="taxWithHoldingData.isPDFAvailable  === 'true'"> <a
+                                        id="stateTaxForm" target="_blank" class="span-color"
+                                        ng-repeat="pdfItem in taxWithHoldingData.pdfURL track by $index"
+                                        ng-href="{{pdfItem.url | contentUrl}}">{{pdfItem.text}}</a>  </span><br>
+                            </div>
+                        </div>
+                        <div class="row medium">
+                            <div class="col-md-4 col-sm-4  text-right allowance">
+                                <h4 ng-bind="::translation.money.tax_With_Holding.allowance"></h4>
+                            </div>
+                            <div class="col-md-7 col-sm-7 allowance">
+                                <div class="number-box block">
+                                    <div class="col-md-8 col-sm-9 text-center no-pad"
+                                         ng-class="{'has-error' : taxForm.range.$invalid && (taxForm.range.$dirty || submitted)}">
+                                        <input autocomplete="off"
+                                               name="stateRange"
+                                               type="text"
+                                               ng-disabled="fieldsDisabled"
+                                               class="fedral-amount-input form-control number-font"
+                                               value="0"
+                                               ng-model="stateRange" required
+                                               ng-keydown="stateCheckKey(event)"
+                                               only-digits>
+                                    </div>
+                                    <div class="col-md-2 col-sm-3 pull-right no-pad">
+                                        <ul class=" no-pad">
+                                            <li>
+                                                <button type="button" ng-click="allowanceStateIncrease(1)"
+                                                        class="plus-btn  trinet-toogle-btn-active">+
+                                                </button>
+                                            </li>
+                                            <li>0-99</li>
+                                            <li>
+                                                <button type="button" ng-click="allowanceStateDecrease(1)"
+                                                        class="plus-btn trinet-toogle-btn-active ">-
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  <div class="col-md-1 col-sm-1 no-pad text-left allowance"><span
+                                      class="icon-icon_UA question-mark small" data-toggle="tooltip"
+                                      tooltip="UA goes here" tooltip-placement="top"></span></div>-->
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row medium">
+                            <ul class="no-pad">
+                                <li class="block top-marg-10">
+                                    <div class="col-md-4 col-sm-4 no-pad edit-additional text-right" ng-bind="::translation.money.tax_With_Holding.additional_amount">
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 edit-additional  pull-left">
+                                        <div class=""
+                                             ng-class="{ 'has-error' : userForm.addAmt.$invalid && (userForm.addAmt.$dirty || submitted)}">
+                                            <input name="addAmt" type="text"
+                                                   class="additinal-input no-marg black height-35" placeholder="0.00"
+                                                   ng-pattern="/^[0-9\.]+$/" ng-required="true" ng-maxlength="10000"
+                                                   ng-model="taxWithHoldingData.addlAmt">
+                                            <!--<span class="icon-icon_UA question-mark small" data-toggle="tooltip"
+                                                  tooltip="UA goes here" tooltip-placement="top"></span>--></div>
+                                    </div>
+                                </li>
+
+
+                                <li class="block top-marg-10">
+                                    <div class="col-md-4 col-sm-4 edit-additional text-right top-marg-20x"><span ng-bind="::translation.money.tax_With_Holding.marital_status"></span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 edit-additional top-marg-20x pull-left">
+                                        <div class=""
+                                             ng-class="{ 'has-error' : userForm.MaritalStatus.$invalid && (userForm.MaritalStatus.$dirty || submitted)}">
+                                            <select id="ms_1"
+                                                    class="form-control marital-input no-marg withhold-select "
+                                                    ng-options="rs.taxMarStatDesc for rs in taxWithHoldingData.maritalStatusList track by rs.taxMaritalStat"
+                                                    ng-model="taxWithHoldingData.maritalStatusValue"
+                                                    ng-change="checkMarriedFileSingle($index)"
+                                                    name="MaritalStatus" ng-required="true">
+                                            </select></div>
+
+                                        <span class="icon-icon_UA question-mark small" data-toggle="tooltip"
+                                              tooltip="UA goes here" tooltip-placement="top"></span></div>
+                                </li>
+                                <li class="block top-marg-10">
+                                    <div class="col-md-4 col-sm-4 edit-additional text-right  top-marg-20x" ng-bind="::translation.money.tax_With_Holding.exempt">
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 edit-additional  pull-left  top-marg-20x">
+                                        <div class="onoff-toogle col-lg-12 col-md-12 col-sm-12 no-pad">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 no-pad">
+                                                <div class="onoffswitch ">
+                                                    <input type="checkbox" name="onoffswitch1"
+                                                           class="onoffswitch-checkbox" id="myonoffswitch1">
+                                                    <label class="onoffswitch-label" for="myonoffswitch1">
+                                                        <span class="onoffswitch-inner small"></span>
+                                                        <span class="onoffswitch-switch small"></span>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--For first time user editble mode end -->
+            <!--  end --></div>
+        <!--end of tabs-->
+        <div class="col-md-12 text-right">
+            <button id="taxsave" name="save"
+                    ng-class="{'trinet-btn-dissable pointerEvent': exceedLimit, 'trinet-primary-action-btn': !exceedLimit}"
+                    class="trinet-primary-action-btn " data-toggle="modal" ng-click="taxWithHoldingSaveData()"
+                    type="submit" ng-bind="::translation.save" ng-disabled="exceedLimit"></button>
+            <button id="taxcancel" class="trinet-default-btn" name="cancel" ng-click='cancel()'
+                    ng-bind="::translation.cancel"></button>
+        </div>
+    </form>
+</div>
+<!--end of container-content-->

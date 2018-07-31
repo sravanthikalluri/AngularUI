@@ -1,0 +1,23 @@
+<md-card class="dashboard-secondary-panel">
+    <md-card-header class="dashboard-secondary-panel-header">
+        <md-card-title-text>
+            <i class="md-icon icon-icon_important_notices tn-icon color-red dashboard-secondary-icon-top" >
+                <span class="path1-secondary"></span><span class="path2-secondary"></span>
+            </i>
+            <span class="md-subhead proxima-nova-bold">Alerts</span>
+        </md-card-title-text>
+    </md-card-header>
+
+    <md-card-content>
+        <div class="announcements-card" ng-repeat="item in alerts">
+            <span class="legend-item-icon {{item.color }}"></span>
+            <span class="semibold">{{item.count}}</span>
+            <span class="semibold">{{item.title}}</span>
+        </div>
+        <md-card-actions layout="row" layout-align="center">
+            <md-button id="viewAlertsBtn" class="md-accent md-raised md-hue-3 tn-widget-buttons"
+                       ng-click="viewAlerts();"><span>View Alerts</span></md-button>
+        </md-card-actions>
+    </md-card-content>
+
+</md-card>

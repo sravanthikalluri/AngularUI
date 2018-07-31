@@ -1,0 +1,22 @@
+<div class="trinet-popup ng-modal-third-party" id="conformpopup">
+    <div class="modal-body conformPopUpBody col-md-12">
+        <h5 class="ng-modal-content"> You are now leaving TriNet and being redirected to a third-party site.</h5>
+    </div>
+    <div class="poupFooter clearfix no-pad ng-modal-footer" layout="row">
+        <div class="ng-modal-checkbox-container" flex="50">
+            <input type="checkbox"
+                   class="ng-modal-checkbox"
+                   ng-click="suppressModal()"
+                   data-toggle="checkbox" /> 
+            <label class="ng-modal-label"> Don't show this again</label>
+        </div>
+        <div class="ng-modal-button-container row" flex="50">
+            <button class="ng-modal-secondary-button col-md-5" aria-hidden="true"
+                    aria-label="Close" ng-click="closeThisDialog(0)" type="button" >Cancel
+            </button>
+            <button name="save" class="ng-modal-primary-button col-md-offset-1 col-md-6"
+                    type="button" ng-click="openThirdPartySite()" >Continue
+            </button>
+        </div>  
+    </div>
+</div>

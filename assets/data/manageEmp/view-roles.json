@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "employeeId": "00001005504",
+            "role": "APPROVER",
+            "roleDesc": "Final Approver",
+            "deptDesc": "Sales Direct",
+            "employeeName": "Candida Curridori",
+            "locationDesc": "Remote CO"
+        },
+        {
+            "employeeId": "00001005504",
+            "role": "APPROVER",
+            "roleDesc": "Final Approver",
+            "deptDesc": "Sales Direct",
+            "employeeName": "Candida Curridori",
+            "locationDesc": "Remote CO"
+        }
+    ],
+    "_requestId": "6f32863d-f4f6-42f0-ba4f-c1d8064f3e60",
+    "_statusCode": "200",
+    "_statusText": "OK",
+    "_statusMessage": "Success"
+}

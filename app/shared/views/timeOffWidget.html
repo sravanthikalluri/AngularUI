@@ -1,0 +1,57 @@
+<div id="tn-widget-timeoff" layout="row" layout-align="center center" ng-if="showTimeOffChart">
+    <div class="tn-widget-timeoff-chart column right-border">
+        <div id="timeOffCarousel" class="carousel slide time-off-carousel" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li ng-repeat="accrual in accruableLeaves" data-target="#timeOffCarousel" data-slide-to="$index" class="active"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div ng-repeat="accrual in accruableLeaves" class="item" ng-class="{'active' : $index===0}">
+                    <span class="tn-wiget-timeoff-label proxima-nova-bold tn-wiget-timeoff-chart-header">{{accrual.leaveTypeDesc}}</span>
+                    <radial-progress-chart max="leaveHours(accrual.accrualCap)" amt="leaveHours(accrual.hrsLeft)"></radial-progress-chart>
+                </div>
+
+            </div>
+            <!-- Left and right controls -->
+            <span ng-show="accruableLeaves.length > 1">
+            <a class="left carousel-control" href="#timeOffCarousel" role="button" data-slide="prev" target="_self" ng-non-bindable>
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+                </span>
+            <span ng-show="accruableLeaves.length > 1">
+            <a class="right carousel-control" href="#timeOffCarousel" role="button" data-slide="next" target="_self" ng-non-bindable>
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+                </span>
+        </div>
+    </div>
+    <div class="tn-widget-timeoff-table-container">
+        <div class="tn-wiget-timeoff-label proxima-nova-bold">Recent Activity</div>
+
+        <table class="table table-striped no-marg additional-beign proxima-nova-semibold">
+            <thead>
+            <tr>
+                <th class="medium tn-widget-timeoff-header text-left">Date</th>
+                <th class="medium tn-widget-timeoff-header text-left">Status</th>
+                <th class="medium tn-widget-timeoff-header text-right">Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="leaves in emplRecentActivities ">
+                <td class="text-left">
+                    {{leaves.period}}
+                </td>
+                <td class="text-left" ng-class="{approved : leaves.isApproved, rejected : leaves.isRejected , pending : leaves.isPending}">
+                    {{leaves.status}}
+                </td>
+                <td class="text-right">
+                    {{leaves.type}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!-- immigration card -->
+<div  layout="row">
+    <div flex="10"></div>
+    <div flex="90">
+        <header>
+            <h2 class="page-title">{{translation.immigration.immigrationTitle}}</h2>
+        </header>
+    </div>
+</div>
+
+<div layout="row" layout-xs="column" class="tn-dashboard-main proxima-nova immigration-card">
+    <div flex="10"></div>
+    <div flex="80" >
+        <div layout="column">
+            <div flex ng-if="!isLoading">
+                <md-card ng-if="hasProjects">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold">{{translation.immigration.cases}} - {{allProjects.length}} Total</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div class="col-sm-12 col-md-12" ng-if="!loadingData">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee Name</th>
+                                        <th>Case Type</th>
+                                        <th>Started</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="project in allProjects">
+                                        <td>{{project.employee_name}}</td>
+                                        <td>{{project.name}}</td>
+                                        <td>{{project.created_at | date:'mediumDate'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="space-around center">
+                        <md-button id="goToImmigration" class="md-accent md-raised md-hue-3 tn-widget-buttons" ng-click="goToImmigration()"><span>{{translation.immigration.startCase}}</span></md-button>
+                    </md-card-actions>
+                </md-card>
+                <md-card ng-if="!hasProjects">
+                    <md-card-title></md-card-title>
+                    <md-card-actions layout="row" layout-align="space-around center">
+                        <md-button id="goToImmigration" class="md-accent md-raised md-hue-3 tn-widget-buttons" ng-click="goToImmigration()"><span>{{translation.immigration.startCase}}</span></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>

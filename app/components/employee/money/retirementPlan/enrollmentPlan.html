@@ -1,0 +1,141 @@
+<div class="tn-enrollment-section" ng-controller="enrollmentPlanCtrl">
+    <div class="heading-section">
+        <h4 class="bold profile-heading"> Savings Plan Enrollment</h4>
+    </div>
+    <alert-view></alert-view>
+    <div ng-if="isLoadingCompleted">
+        <div ng-if="!noPlans" class="no-records">
+            <h4 class="no-data proxima-nova-semibold" ng-if="planTypes.length <=0 ">
+                {{::translation.employee_money.noRetirementSavings}}</h4>
+            <h4 class="no-data proxima-nova-semibold" ng-if="planTypes.length > 0">
+                {{::translation.employee_money.enrollRetirement}}</h4>
+            <button ng-if="planTypes.length > 0 && isThirdPartyEnrolled"
+                    id="createNewRetirementId"
+                    class="tn-button tn-action-button"
+                    ng-class="$parent.canAdd('savingsEnrollment') ? 'visible-hide' : ''"
+                    ng-click="createNewRetirement()">{{::translation.employee_money.enroll}}
+            </button>
+        </div>
+        <div ng-if="noPlans">
+            <div ng-include="'app/components/employee/money/retirementPlan/additionalEnrollmentPlanView.html'"></div>
+        </div>
+    </div>
+    <div ng-if="isReminderLoadingCompleted">
+        <accordion close-others="oneAtATime" class="tn-accordion">
+            <accordion-group is-open="remindersOpen" class="accordion-panel">
+                <accordion-heading class="accordion-heading">
+                    <span ng-bind="translation.moneyTab.reminders"></span>
+                    <i class="pull-right accordion-icons"
+                       ng-class="{'icon-icon_Disclosure_Collapse': remindersOpen, 'icon-icon_Disclosure_Expand': !remindersOpen}"></i>
+                </accordion-heading>
+                <div class="remindersOpen">
+                    <h5 class="content-text proxima-nova-semibold">PLAN COMPLIANCE</h5>
+                    <p class="content-text">It is the responsibility of you, the Plan Sponsor (TriNet customer) or your
+                        plan administrator,
+                        to monitor employee eligibility and entry effective dates.</p>
+
+                    <h5 class="content-text proxima-nova-semibold">401(k); 403(b); SARSEP; 457(b) Plan LIMITS
+                        {{reminderData.planYear}}</h5>
+                    <p class="content-text">Elective Deferral Limit {{reminderData.limitAmount | currency:"$":0}} ;
+                        Catch-Up Contribution
+                        Limit {{reminderData.catchupAmount}} Defined Contribution Dollar Limit
+                        {{reminderData.combineLimit}} (combined company and employee contribution); Maximum Compensation
+                        Limit {{reminderData.compLimit}}; Highly Compensated Employee Definitional Limit
+                        {{reminderData.highlyCompAmount}}.</p>
+
+                    <h5 class="content-text proxima-nova-semibold">SIMPLE IRA LIMITS {{reminderData.planYear}}</h5>
+                    <p class="content-text">Contribution Limit {{reminderData.iraLimitAmount}}; Catch-Up Limit
+                        {{reminderData.iraCatchupAmount}}; SEP Minimum Compensation {{reminderData.sepMinComp}}; SEP
+                        Maximum Compensation Limit {{reminderData.sepCompLimit}}.</p>
+                </div>
+            </accordion-group>
+            <accordion-group is-open="savingsPlanFeaturesOpen" class="accordion-panel">
+                <accordion-heading class="accordion-heading">
+                    <span ng-bind="translation.moneyTab.savings_plan_features"></span>
+                    <i class="pull-right accordion-icons"
+                       ng-class="{'icon-icon_Disclosure_Collapse': savingsPlanFeaturesOpen, 'icon-icon_Disclosure_Expand': !savingsPlanFeaturesOpen}"></i>
+                </accordion-heading>
+                <div>
+                    <h5 class="content-text proxima-nova-semibold">ELECTION CHANGES</h5>
+                    <p class="content-text">Entries made on the following page will set up the payroll deduction for the
+                        on-cycle paycheck immediately following the effective date. (See Effective Date Rules
+                        below.) </p>
+
+                    <h5 class="content-text proxima-nova-semibold">PRIOR CONTRIBUTIONS IN CURRENT YEAR</h5>
+                    <p class="content-text">Enter the amount equal to the combined (pre-tax and after-tax) contributions
+                        made in this calendar year to a previous savings plan outside of TriNet payroll. Only enter
+                        amounts
+                        contributed outside of TriNet payroll. If you are uncertain if the contributions were made
+                        through
+                        TriNet payroll, please contact your Client Service Associate to confirm.
+                        <br><span class="blue">Example:</span> If employee begins employment after the first of the year
+                        and
+                        has contributed to a retirement plan through a former employer, the amount entered in this field
+                        limits the employees remaining contributions for the current year by that amount. This will
+                        enable
+                        TriNet to stop the deductions when the collective total of contributions has reached the
+                        elective
+                        deferral limit for the calendar year.
+                    </p>
+
+                    <h5 class="proxima-nova-semibold content-text">GOAL AMOUNT</h5>
+                    <p class="content-text">Enter the self-imposed annual maximum contribution amount for the
+                        participant's
+                        Savings Plan.
+                        <br><span class="blue">Example:</span> An employee over the age of 50 is automatically set up
+                        with
+                        the additional catch-up contribution limit. If that employee does not wish to contribute the
+                        additional catch-up limit the amount entered in this field becomes the actual limit for the
+                        current
+                        calendar year.
+                    </p>
+
+                    <h5 class="content-text proxima-nova-semibold">CATCH-UP CONTRIBUTIONS</h5>
+                    <p class="content-text">The federal deferral limit of {{reminderData.catchupLimit}}
+                        is
+                        automatically extended to those employees who will attain the age of 50 prior to
+                        12/31/{{reminderData.planYear}}. Catch-up deferrals are not a separate election to be deducted
+                        concurrently, but they are deducted sequentially after the employee has met the annual elective
+                        deferral limit. If the participant does not wish to contribute the additional catch-up amount, see the Goal Amount
+                        instructions above.</p>
+
+                    <h5 class="content-text proxima-nova-semibold">EMPLOYER MATCH</h5>
+                    <p class="content-text">New elections will automatically include the employer match if
+                        applicable.</p>
+
+                    <h5 class="content-text proxima-nova-semibold">RETIREMENT LOANS</h5>
+                    <p class="content-text" ng-if="reminderData.retirementLoanStatus"> Please complete and provide the
+                        Retirement Plan Loan Deduction Form to TriNet per the instructions on the form. The Loan Form
+                        can
+                        be found at My Staff &#62; Manager Forms &#62; Retirement Plan Loan Deduction Form.</p>
+                    <p class="content-text" ng-if="!reminderData.retirementLoanStatus">Please complete and provide the
+                        Retirement Plan Loan Deduction Form to your Client Service Associate who will have the
+                        loan setup for payroll deductions. The Loan Form can be found at My Staff &#62; Manager
+                        Forms
+                        &#62; Retirement Plan Loan Deduction Form.</p>
+
+                     <h5 class="content-text proxima-nova-semibold">TERMINATIONS</h5>
+                     <p class="content-text" ng-if="reminderData.retirementLoanStatus">When processing a termination for an employee, if no action is taken to modify the deduction election it will occur on the final paycheck of your plan permits contributions from earned income paid post termination. It is important to verify with your plan administrator if final payout of vacation or post-termination compensation should be subject to deferrals.</p>
+                     <p class="content-text" ng-if="!reminderData.retirementLoanStatus">When processing a termination for an employee, if no action is taken to modify the deduction election it will occur on the final paycheck if your plan permits contributions from earned income paid post termination. It is important to verify with your plan administrator if final payout of vacation or post-termination compensation should be subject to deferrals.</p>
+
+                    <h5 class="content-text proxima-nova-semibold">EFFECTIVE DATE RULES</h5>
+                    <p class="content-text">Retroactive election deferrals are not system supported. If you've entered
+                        a contribution election which
+                        is to be effective in a prior pay period, please contact your Client Service Associate with
+                        the
+                        correct effective date and the elected contribution amount.</p>
+                    <p class="content-text">Elective deferrals are not prorated over a pay period.</p>
+                    <p class="content-text">You cannot enter an effective date for a current period when your payroll is
+                        currently in process. If
+                        you've entered a contribution which is to be effective for the current payroll, please
+                        Contact
+                        your Client Service Associate with the correct effective date and elected contribution
+                        amount.</p>
+                    <p class="content-text">An effective date can be any date between a pay period start date and end
+                        date.</p>
+
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>

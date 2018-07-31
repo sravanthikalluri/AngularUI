@@ -1,0 +1,738 @@
+@import '../global';
+
+.font-light {
+  font-weight: normal !important;
+}
+
+.Trinet-orange {
+  color: $Trinet-orange;
+}
+
+.no-right-pad {
+  padding-right: 0 !important;
+}
+
+.no-left-pad {
+  padding-left: 0 !important;
+}
+
+.no-top-pad {
+  padding-top: 0 !important;
+}
+
+.no-left-marg1 {
+  margin-left: -15px !important;
+}
+
+.no-top-marg1 {
+  margin-top: -15px !important;
+}
+
+.no-bottom-pad {
+  padding-bottom: 0 !important;
+}
+
+.bottom-pad {
+  padding-bottom: 14px !important;
+}
+
+//Dashboard Start
+
+.top-tabs {
+  div {
+    border-top: 3px solid $Trinet-dark-blue;
+    width: 100%;
+  }
+}
+
+//Dashboard End
+
+.logo {
+  width: 100%;
+  padding: 21px;
+  //Instead of the line below you could use @includebox-sizing($bs)
+  box-sizing: border-box;
+}
+
+.container {
+  @extend .block;
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.fa-html5 {
+  color: $White;
+  margin-left: 50px;
+}
+
+.container-main {
+  @extend .block;
+  width: 1024px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header-adj {
+  @extend .block;
+  height: 68px;
+}
+
+.drop-down-adj {
+  left: -146px;
+}
+
+.header {
+  display: block;
+  width: 1024px;
+  // position: fixed;
+  z-index: 99;
+  height: 68px;
+  top: 0;
+  background: $White;
+
+  .logo {
+    @extend .block;
+    float: left;
+    padding: $padding+2 $padding+6;
+    width: 220px;
+  }
+
+  .user {
+    display: block;
+    float: right;
+    background: $Trinet-light-blue;
+    border: 2px solid $Trinet-blue;
+    text-align: center;
+    line-height: 35px;
+    width: 35px;
+    height: 35px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    color: $White;
+    box-sizing: border-box;
+    margin: 21px 1px 15px 8px;
+
+    li {
+      list-style: none;
+
+      .my-top-image {
+        width: 31px;
+        height: 31px;
+        -webkit-border-radius: 31px;
+        -moz-border-radius: 31px;
+        border-radius: 31px;
+        overflow: hidden;
+
+        img {
+          width: 31px;
+          cursor: pointer;
+        }
+      }
+    }
+    a.short-name {
+      color: $White;
+      line-height: 35px;
+    }
+
+  }
+
+  .categories {
+    display: inline-block;
+    margin-top: 24px;
+
+    li {
+      list-style: none;
+      display: inline-block;
+      padding: 0;
+      line-height: 0px;
+      width: 30px;
+
+      a {
+        span {
+          color: $Trinet-dark-gray;
+          line-height: 42px;
+          padding: 0 $padding/2;
+        }
+
+        span.icon-icon_UA {
+          font-size: 24px;
+        }
+
+      }
+
+    }
+
+  }
+}
+
+.bordered {
+  border-top: 1px solid $Trinet-gray;
+  border-bottom: 1px solid $Trinet-gray;
+}
+
+a.white {
+  color: $White;
+}
+
+.container-content-main {
+  width: 1024px;
+  margin: 0 auto;
+  position: relative;
+  background: $Background-main;
+  padding: $padding/2;
+  box-sizing: border-box;
+  min-height: 575px;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+
+}
+
+.container-content {
+  @extend .block;
+  width: 959px;
+  float: right;
+  padding: $padding*2 $padding*2;
+  box-sizing: border-box;
+  background: $White;
+  position: relative;
+  right: 0;
+  z-index: 1;
+  height: calc(100vh - 90px);
+  overflow-y: auto !important;
+
+  .dashboard-box {
+    border: 1px solid $Lighter-gray;
+    border-top: 0px;
+    height: 206px;
+    .dashboard-box-head {
+      background: $Trinet-blue;
+      height: 30px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 30px;
+      padding: 0 $padding;
+
+      color: #FFF;
+
+    }
+
+    .mybox {
+
+      background: $White;
+
+      .days-out-label {
+        background: $Trinet-green;
+        color: #FFF;
+        height: 30px;
+        line-height: 30px;
+        .days-left {
+          font-size: 12px;
+        }
+      }
+      .days-widget-tag {
+        background: url(../../images/dashboard-widget-tag.png) no-repeat right top;
+        position: absolute;
+        right: -10px;
+        display: block;
+        width: 10px;
+        height: 40px;
+
+      }
+      textarea {
+        width: 100%;
+        height: 80px;
+        resize: none;
+      }
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      height: 175px;
+      margin-bottom: $margin+6;
+
+      &:hover {
+        overflow: auto;
+      }
+      table * {
+        font-size: 12px;
+      }
+      ul {
+        @extend .block;
+        margin: 0;
+        padding-left: $padding;
+
+        li {
+          list-style: none;
+          display: inline-block;
+          font-size: 14px;
+          padding: $padding/2 0;
+          line-height: 15px;
+
+          .list-image {
+            height: 30px;
+            width: 80px;
+          }
+        }
+
+      }
+
+      button {
+        background: $Trinet-orange;
+        color: $White;
+        padding: $padding/2;
+        border: none;
+      }
+      padding-right: $padding;
+      .claim-amount {
+        font-size: 50px;
+        line-height: 1;
+      }
+      p {
+        color: $Trinet-gray;
+        margin-bottom: 0;
+
+      }
+      .line-margin {
+        margin-top: 20%;
+        font-size: 11px;
+      }
+      ul {
+        padding: $padding/2;
+        li {
+          list-style: none;
+          display: block;
+          font-size: 14px;
+          padding: $padding/2 0;
+          i {
+            color: $Trinet-green;
+            padding: 0 $padding/2;
+          }
+        }
+      }
+      .date {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+      }
+      .table {
+        margin-bottom: 10px;
+      }
+      .table td {
+        border-top: none !important;
+        font-size: 14px;
+        padding: 0 0 0 $padding;
+      }
+    }
+  }
+
+  .img {
+    display: inline-block;
+    width: 297px;
+    height: 206px;
+    margin: 0 $margin $margin+4 0;
+
+  }
+
+  h2 {
+    color: $Trinet-blue;
+    font-size: 36px;
+    margin: 0;
+    padding: 0 $padding;
+    padding-bottom: $padding+6;
+  }
+
+  h3 {
+    color: $Trinet-blue;
+    font-size: 36px;
+    margin: 0;
+    padding: $padding/2 $padding;
+  }
+
+  .notice {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid $Lighter-gray;
+    margin-bottom: $margin;
+
+    &:hover {
+      overflow: auto;
+    }
+
+    ul {
+      @extend .block;
+      margin: 0;
+      padding-left: $padding;
+
+      li {
+        list-style: none;
+        display: block;
+        font-size: 16px;
+        padding: 3px 0;
+        margin-top: 0;
+        line-height: 19px;
+        color: $Trinet-dark-blue;
+
+        a {
+          font-size: 14px;
+          line-height: 21px;
+          font-weight: 400;
+          width: 100%;
+        }
+
+        .list-image {
+          height: 30px;
+          width: 80px;
+        }
+      }
+
+    }
+  }
+
+}
+
+#sec_0 {
+  img {
+    cursor: pointer;
+  }
+}
+
+.mybox1 {
+
+  background: $White;
+
+  .days-out-label {
+    background: $Trinet-green;
+    color: #FFF;
+    height: 30px;
+    line-height: 30px;
+    .days-left {
+      font-size: 12px;
+    }
+  }
+  .days-widget-tag {
+    background: url(../../images/dashboard-widget-tag.png) no-repeat right top;
+    position: absolute;
+    right: -10px;
+    display: block;
+    width: 10px;
+    height: 40px;
+    top: 0;
+  }
+  textarea {
+    width: 100%;
+    height: 70px;
+    resize: none;
+  }
+  display: block;
+  width: 100%;
+  height: 175px;
+  margin-bottom: $margin+6;
+
+  table * {
+    font-size: 12px;
+  }
+}
+
+h2.welcome {
+  padding: 1px 0 15px 5px;
+}
+
+.user-company {
+  position: relative;
+  top: 3px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-left: $margin*2;
+
+      &.active a {
+        color: $Trinet-blue;
+        border-top: 3px solid $Trinet-blue;
+        padding-left: $padding*2;
+        padding-right: $padding*2;
+      }
+
+      a {
+        text-decoration: none;
+        border-top: 3px solid $White;
+        padding-top: $padding+2;
+        font-weight: bold;
+        color: $Trinet-gray;
+        font-size: 16px;
+        font-weight: 700;
+        position: relative;
+        display: block;
+        top: -3px;
+
+      }
+    }
+  }
+
+}
+
+.green {
+  color: $Trinet-green;
+  font-size: 14px !important;
+}
+
+.clearfix {
+  clear: both;
+}
+
+@media all and (max-width: $mobiles) {
+  .container-content {
+    .dashboard-box {
+      margin-bottom: $margin*2;
+    }
+  }
+
+  h2.welcome {
+    font-size: 30px !important;
+  }
+
+  .mybox1 {
+    textarea {
+      margin: $margin auto;
+    }
+  }
+  .myfield-content {
+    label {
+      width: auto !important;
+    }
+    .form-control {
+      clear: both;
+    }
+  }
+
+  .header .logo {
+    width: 200px;
+  }
+
+}
+
+h2.dahsboard-more {
+  color: #0073CF;
+  font-size: 36px;
+  margin: 0;
+  padding: $padding;
+  line-height: 40px;
+  padding-bottom: 16px;
+}
+
+a.trinet-breadcrumb {
+  margin: $margin/2 $margin;
+  display: inline-block;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+
+}
+
+h3.dashboard-title {
+  border-top: 1px solid $Trinet-gray;
+  border-bottom: 1px solid $Trinet-gray;
+  color: $Trinet-dark-gray;
+  font-size: 24px;
+}
+
+.overflow-y {
+  height: 70vh;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+}
+
+.imp-left {
+  float: left !important;
+}
+
+.disable {
+  font-size: 24px;
+  margin: 30px 0;
+  color: $Black;
+  opacity: .4;
+}
+
+p.disable {
+  font-size: 14px;
+  padding-top: 5px !important;
+  color: $Black;
+  opacity: .4;
+}
+
+.widget-height {
+  height: 90px;
+}
+
+.user-profile-img-dim {
+  font-size: 60px;
+  border: 1px solid #ccc;
+  display: block;
+  letter-spacing: -5px;
+}
+
+.widget-height-default {
+  width: 300px;
+  height: 190px;
+}
+
+
+
+.dashboard-secondary-panel{
+    .dashboard-secondary-panel-header{
+        background-color: $Trinet-white-smoke;
+
+        span{
+            padding: $padding+7;
+        }
+        i.color-red{
+            color:$Trinet-crimson;
+        }
+        i.color-blue{
+            color:$Trinet-deep-sky-blue;
+        }
+        i.color-violet{
+            color:$Trinet-violet;
+        }
+    }
+    .dashboard-secondary-panel-content{
+        padding-left: ($padding*2)+7;
+        span.color-darkgray{
+            color:$Trinet-dim-gray;
+        }
+        span{
+            margin-bottom: $margin;
+        }
+    }
+}
+.best-practices {
+
+    dl {
+        dt {
+            margin: 10px 0;
+            line-height: 21px;
+        }
+    }
+    md-card-title {
+        background-color: #f9fafb;
+        border-bottom: 1px solid #eceded;
+        align-items: center;
+    }
+}
+.important-notices-card{
+    .important-notices-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        .important-notices-icon {
+            color: $notification-badge-red;
+        }
+    }
+    .important-notices-item{
+        .important-notices-item-date {
+            color: $leave-status-other-font-color;
+            margin-top: 25px;
+        }
+        .important-notices-item-description{
+            margin-bottom:0px;
+        }
+        .imporatnt-notices-link{
+            display: flex;
+            justify-content: center;
+            .icon-more{
+                font-size:12px;
+            }
+        }
+    }
+    .important-notices-view-all{
+        &:focus{
+            outline: 3px solid $tn-focus-border-color;
+        }
+    }
+    .notices-card{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .notices-card-date {
+            color: $slate;
+            margin-top: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+        .notices-card-title{
+            color: $font-color;
+            font-size: 18px;
+            word-wrap: break-word;
+            word-break: keep-all;
+            text-align: justify;
+            font-weight: 600;
+        }
+        .notices-card-desc {
+            color: $font-color;
+            word-wrap: break-word;
+            word-break:keep-all;
+            text-align: justify;
+        }
+    }
+}
+
+    .view-notice-modal{
+        padding: 25px;
+        .modal-header{
+            text-align: right;
+            color: $slate;
+            padding:0;
+            border:none;
+        }
+        .important-notices-item-date{
+            color: $slate;
+            span{
+                margin-right:15px;
+                display:inline-block;
+            }
+        }
+        .important-notices-item-title{
+            color: $font-color;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .important-notices-item-body{
+            color: $font-color;
+            margin-bottom: 0;
+            word-wrap: break-word;
+            word-break: keep-all;
+            text-align: justify;
+        }
+        .notice-filter {
+            .help-text{
+                color: $slate;
+                font-size: 12px;
+            }
+            .filter-value {
+                color: $slate;
+                background: #b3bdc7;
+                padding: 5px;
+                border-radius: 4px;
+                margin: 5px 0;
+                display: inline-block;
+            }
+            .shared-section{
+                i {
+                    display: inline-block;
+                    margin: 0 10px;
+                    color: #6e778a;
+                }
+                > span:last-child i {
+                    display: none;
+                }
+            }
+
+        }
+    }

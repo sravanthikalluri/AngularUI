@@ -1,0 +1,45 @@
+<div class="emergency-card-section">
+    <div class="name-section">
+        <h4 class="employee-name">{{emergencyData.name.lastName}}</h4>
+        <span ng-if="emergencyData.primaryContactFlag =='Y'" class="isPrimary">Primary</span>
+    </div>
+    <div>
+        <h5>{{emergencyData.telephoneNumbers.telephoneNumber1}}</h5>
+        <div>
+            <p>{{emergencyData.address.address1}}</p>
+            <p ng-if="emergencyData.address.city">
+                <span>{{emergencyData.address.city}}</span>
+                <span ng-if="emergencyData.state.key"> ,{{emergencyData.state.key}}</span>
+                <span ng-if="!emergencyData.state.key"> ,{{emergencyData.address.state}}</span>
+            </p>
+            <p>
+                <span ng-if="emergencyData.address.country && emergencyData.address.country.key">
+                    {{emergencyData.country.key}}
+                </span>
+                <span ng-if="emergencyData.address.country && !emergencyData.address.country.key">
+                    {{emergencyData.address.country}}
+                </span>
+                <span>{{emergencyData.address.postalCode}}</span>
+            </p>
+        </div>
+    </div>
+    <div>
+        <p>
+            <div class="notes">
+                <span ng-bind="::translation.notes"></span>
+            </div>
+            <span ng-if="emergencyData.notes">
+                <div class="text-pre-wrap">{{::emergencyData.notes}}</div>
+            </span>
+
+        </p>
+    </div>
+    <footer>
+        <a href="javascript:;" class="view-history-link" id="edit_emergencycontact{{$index}}"
+           ng-class="$parent.canEdit('emergencycontact') ? 'visible-hide' : ''"
+           ng-click="editEmergencyContact($index, emergencyData)" ng-bind="::translation.edit"></a>
+        <a href="javascript:;" class="remove-link" id="delete_emergencycontact{{$index}}"
+           ng-class="$parent.canDelete('emergencycontact') ? 'visible-hide' : ''"
+           ng-click="deleteEmergencyContact($index)" ng-bind="::translation.delete"></a>
+    </footer>
+</div>

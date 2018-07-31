@@ -1,0 +1,29 @@
+<!--
+Description: This is page to display about Individual Termination detail report
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-header">
+        <h4 class="modal-title">{{::translation.eformReports.eformReportsHeader}}</h4>
+    </div>
+    <div class="modal-body content-modal manage-employee-popup eform_popup">
+        <div class="col-md-12 no-pad marg10" id="printTermDiv">
+            <div class="col-md-12 content-bg no-pad">
+                <div class="col-md-12 no-pad">
+                    <div class="medium">
+                        <h5><strong ng-bind="title"></strong></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 content-bg no-pad">
+                <div class="reports-view" ng-repeat="details in reportDetails">
+                    <h6 class="text-right">{{$index + 1}})</h6>
+                    <h6 class="text-left">
+                        {{details.employeeName}} {{details.timpStamp  | date:'MM/dd/yyyy HH:mm:ss Z'}}
+                    </h6>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

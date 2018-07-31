@@ -1,0 +1,122 @@
+$Black: #000;
+$White: #FFF;
+$Trinet-dark-gray: #494949;
+$Trinet-gray: #888888;
+$Lighter-gray: #B5B5B5;
+$Background: #f2f2f2;
+$White: #ffffff;
+$Trinet-light-gray: #c0c0c0;
+
+$Trinet-dark-blue: #0039A6;
+$Trinet-blue: #0073CF;
+$Trinet-light-blue: #3DB7E4;
+$Lighter-blue: #D9EAF8;
+
+$Trinet-dark-orange: #D55C19;
+$Trinet-orange: #E37222;
+$Trinet-light-orange: #EEAF30;
+
+$Trinet-dark-green: #739600;
+$Trinet-green: #69BE28;
+$Trinet-dark-red: #9E3039;
+
+$Background-main: #e1e1e1;
+
+$margin: 10px;
+
+$padding: 10px;
+
+//fonts
+$font_0: Trebuchet;
+$font_1: Arial;
+$font_2: sans-serif;
+
+//@extend-elements
+//original selectors
+//.yesNoswitch-inner:before, .yesNoswitch-inner:after
+.toggle-button-prop {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 30px;
+  padding: 0;
+  line-height: 21px;
+  font-size: 10px;
+  color: $White;
+  font-family: $font_0, $font_1, $font_2;
+  font-weight: bold;
+  //Instead of the line below you could use @includebox-sizing($bs)
+  box-sizing: border-box;
+}
+
+.yesNoswitch {
+  position: relative;
+  width: 40px;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.yesNoswitch-checkbox {
+  display: none;
+  &:checked + .yesNoswitch-label {
+    .yesNoswitch-inner {
+      margin-left: 0;
+    }
+    .yesNoswitch-switch {
+      right: 0;
+    }
+  }
+}
+
+.yesNoswitch-label {
+  height: 20px;
+  width: 40px;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  /*border: 2px solid $color_mountain_mist_approx;*/
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 20px;
+}
+
+.yesNoswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: margin 0.3s ease-in 0s;
+  &:before {
+    @extend .toggle-button-prop;
+    content: "On";
+    padding-left: 3px;
+    text-align: left;
+    background-color: $Trinet-green;
+    color: $White;
+  }
+  &:after {
+    @extend .toggle-button-prop;
+    content: "Off";
+    padding-right: 6px;
+    background-color: $Trinet-gray;
+    color: $White;
+    text-align: right;
+  }
+}
+
+.yesNoswitch-switch {
+  display: block;
+  width: 14px;
+  height: 16px;
+  margin: 2px;
+  background: $White;
+  border: 2px solid $White;
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 22px;
+  //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all 0.3s ease-in 0s;
+}
+	

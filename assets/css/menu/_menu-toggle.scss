@@ -1,0 +1,62 @@
+.tn-menu-toggle {
+    .md-button-toggle {
+        display: flex;
+        align-items: center;
+        .menu-link-name {
+            width: 155px;
+            white-space: normal;
+            line-height: 20px;
+        }
+        .md-toggle-icon {
+            display: inline-block;
+            float: right;
+            margin-left: auto;
+            speak: none;
+            vertical-align: middle;
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transition: transform 0.3s ease-in-out;
+            -webkit-transition: -webkit-transform 0.3s ease-in-out;
+
+            &.toggled {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+        }
+    }
+
+    .menu-toggle-list {
+        overflow: hidden;
+        position: relative;
+        height: auto;
+        z-index: 1;
+        -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+        -webkit-transition-property: height;
+        -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+        -moz-transition-property: height;
+        transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+        transition-property: max-height;
+        .menu-link-name {
+            width: 100%;
+            white-space: normal;
+            line-height: 20px;
+        }
+        &.ng-hide {
+            max-height: 0;
+        }
+
+        a.md-button {
+            height: 45px;
+            padding-left: 70px;
+            color: #8e95a1;
+            text-rendering: optimizeLegibility;
+            &.active {
+                color: #fff;
+                background-color: #31384a;
+                font-weight: 600;
+            }
+        }
+    }
+
+}
+

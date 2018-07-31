@@ -1,0 +1,111 @@
+<div class="overlay" ng-if="progressPopup">
+    <div id="popup" class="progressSection">
+        <div class="modal-header">
+            <i class="icon-close-temp iconCloseCustom" ng-click="closemessage()"></i>
+            <h4 class="modal-title white text-left clearfix">{{::translation.manage_CustomFields.uploadFile}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="progress-Body">
+                <div class="file-section">
+                    <div class="fileIcon">
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                    </div>
+                    <div class="fileNmane">
+                        <span class="fName">{{fileName}}</span>
+                        <span class="fSize">{{fileSize}}</span>
+                    </div>
+                </div>
+                <div id="page-wrap">
+                    <h6>{{::translation.manage_CustomFields.uploadMessage}}</h6>
+                    <div class="meter">
+                        <span style=""></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Uplad PopUp Ends -->
+
+<div class="overlay" ng-if="importFile" ng-controller="myBulkController">
+    <div id="popup" class="importTableSection">
+        <div class="modal-header">
+            <h4 class="modal-title white text-left clearfix">{{::translation.manage_CustomFields.importFile}}</h4>
+            <i class="icon-close-temp iconCloseCustom" ng-click="closemessage()"></i>
+        </div>
+        <div class="modal-body">
+            <div class="table-Body">
+                <div class="tableBody">
+                    <div class="navTabs">
+                        <div>{{::translation.manage_CustomFields.correctRecords}}</div>
+                        <div class="cb firstTab" ng-class= "firstClass" ng-click="firstTabClick()"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            {{::translation.manage_CustomFields.errorRecords}}
+                        </div>
+                        <div class="cb secondTab" ng-class= "secondClass" ng-click="secondTabClick()">{{::translation.manage_CustomFields.importRecords}}({{successLength}}) </div>
+                    </div>
+                    <div ng-show="firstTab">
+                        <table class="table table-striped importTable" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>{{::translation.manage_CustomFields.customEmployee}}</th>
+                                    <th>{{::translation.manage_CustomFields.fname}}</th>
+                                    <th>{{::translation.manage_CustomFields.lname}}</th>
+                                    <th>{{::translation.manage_CustomFields.comapany}}</th>
+                                    <th>{{::translation.manage_CustomFields.fieldType}}</th>
+                                    <th>{{::translation.manage_CustomFields.customFLabel}}</th>
+                                    <th>{{::translation.manage_CustomFields.customFValue}}</th>
+                                    <th>{{::translation.manage_CustomFields.errorMessage}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="person in fileValue | filter : {'errorMessage' : ' '}">
+                                    <td >{{person.employeeId}}</td>
+                                    <td >{{person.firstName}}</td>
+                                    <td >{{person.lastName}}</td>
+                                    <td >{{person.companyId}}</td>
+                                    <td >{{person.fieldType}}</td>
+                                    <td >{{person.fieldLabel}}</td>
+                                    <td >{{person.fieldAnswer}}</td>
+                                    <td	>{{person.errorMessage}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-show="secondTab">
+                        <table class="table table-striped importTable" cellspacing="0" cellpadding="0">
+                            <head><tr>
+                                <th>{{::translation.manage_CustomFields.customEmployee}}</th>
+                                <th>{{::translation.manage_CustomFields.fname}}</th>
+                                <th>{{::translation.manage_CustomFields.lname}}</th>
+                                <th>{{::translation.manage_CustomFields.comapany}}</th>
+                                <th>{{::translation.manage_CustomFields.fieldType}}</th>
+                                <th>{{::translation.manage_CustomFields.customFLabel}}</th>
+                                <th>{{::translation.manage_CustomFields.customFValue}}</th>
+                                <th ng-hide="true">{{::translation.manage_CustomFields.errorMessage}}</th>
+                            </tr></head>
+                            <tbody>
+                            <tr ng-repeat="person in fileValue | filter :{ 'errorMessage' : null }">
+                                <td >{{person.employeeId}}</td>
+                                <td >{{person.firstName}}</td>
+                                <td >{{person.lastName}}</td>
+                                <td >{{person.companyId}}</td>
+                                <td >{{person.fieldType}}</td>
+                                <td >{{person.fieldLabel}}</td>
+                                <td >{{person.fieldAnswer}}</td>
+                                <td ng-hide="true">{{person.errorMessage}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="model-footer">
+            <button class="trinet-secondary-action-btn" ng-if="firstTab" ng-click="next()">{{::translation.manage_CustomFields.next}}</button>
+            <button class="trinet-primary-action-btn" ng-if="secondTab" ng-click="storeUploadData(fileValue)">{{::translation.manage_CustomFields.import}}</button>
+            <button class="trinet-secondary-action-btn" ng-click="closemessage()">{{::translation.cancel}}</button>
+        </div>
+    </div>
+</div>
+

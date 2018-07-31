@@ -1,0 +1,52 @@
+<!--
+Program: yourCompanyRequiredFormsView.html
+Description: It displays link to employee hand book.
+ -->
+
+<div>
+    <alert-view></alert-view>
+    <div ng-hide="visible">
+        <h2 class="eform-adj clearfix" ng-bind="::translation.policies.eformstitle"></h2>
+
+        <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 eform-adj">
+            <p class="medium" ng-bind="::translation.policies.eformsPra"></p>
+            <table class="small table eform-head" border="1">
+
+                <thead>
+                <tr>
+                    <td ng-bind="::translation.policies.eformsSign"></td>
+                    <td ng-bind="::translation.accept"></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a id="empHand" ng-click="showDiv()" target="_blank" class="Trinet-blue medium bold"
+                           ng-if="yourCompanyFormsData['eforms_data'][0] !== '' ">{{::translation.policies.empHandook}}</a>
+                        <p ng-if="yourCompanyFormsData['eforms_data'][0] === ''">{{::translation.policies.nofiles}}</p>
+                    </td>
+                    <td id="checkmark">
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="" ng-show="visible">
+        <h2 ng-bind="::translation.policies.empHandook"></h2>
+        <p ng-bind="::translation.policies.empHandookPra">
+
+        </p>
+        <div class="col-md-12 text-center">
+            <button type="button" id="agreeBtn" ng-click="employeeAccept()" class="trinet-primary-action-btn">
+                {{::buttonText}}
+            </button>
+        </div>
+        <p id="thanksId" ng-show="Iagrred" class="medium text-center"></p>
+
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="tn-money-section" ng-if="$parent.subSectionView('money')" ng-controller="moneyCtrl">
+    <div  ng-if="$parent.subSectionView('additionalPay')" class="money-sections">
+        <div ng-include="'app/components/employee/money/payment/addlPaymentView.html'"></div>
+        <div class="tn-horizontal-divider"></div>
+    </div>
+    <div ng-if="$parent.subSectionView('manageEarnings')" class="money-sections">
+        <div ng-include="'app/components/money/earningsStmts/earningsStmtsView.html'"></div>
+        <div class="tn-horizontal-divider"></div>
+    </div>
+    <div ng-if="$parent.subSectionView('payrollEstimates')"  class="money-sections">
+        <div ng-include="'app/components/employee/money/estimates/payrollEstimates.html'"></div>
+        <div class="tn-horizontal-divider"></div>
+    </div>
+    <div ng-if="$parent.subSectionView('manageTax')" class="money-sections">
+        <div ng-include="'app/components/money/taxWithHolding/taxWithHoldingView.html'"></div>
+        <div class="clearfix"></div>
+        <div class="tn-horizontal-divider"></div>
+    </div>
+    <div ng-if="$parent.subSectionView('savingsEnrollment')"  class="money-sections">
+        <div ng-include="'app/components/employee/money/retirementPlan/enrollmentPlan.html'"></div>
+    </div>
+</div>

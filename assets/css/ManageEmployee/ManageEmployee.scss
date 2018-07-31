@@ -1,0 +1,208 @@
+@import "../global";
+
+.tn-manage-Employee {
+    letter-spacing: .2px;
+    position: relative;
+    .tn-page-heading {
+        border-bottom: 1px solid $Trinet-dark-gray;
+        padding-bottom: 20px;
+        font-weight: normal;
+    }
+    thead {
+        th {
+            h6 {
+                position: relative;
+                padding-right: 10px;
+                float: left;
+            }
+        }
+    }
+    .tn-table-fixed {
+        tbody {
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: darkgrey;
+                outline: 1px solid slategrey;
+            }
+        }
+    }
+    .change-view {
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            outline: 1px solid slategrey;
+        }
+        p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0;
+        }
+        label {
+            font-weight: normal;
+            color: $font-color;
+            display: block;
+            padding: 5px 0;
+        }
+    }
+    .tn-toggle-container {
+        justify-content: flex-end;
+    }
+    .manage-employee-table {
+        background: $White;
+        .grid-icon {
+            position: absolute;
+            right: -20px;
+            top: 0;
+        }
+        .contact-section {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            justify-content: flex-start;
+            padding-left: 30px;
+        }
+    }
+    .group-change-filter-list {
+        min-height: 30px;
+        height: auto;
+    }
+    .settings-manage-grid {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background: $White;
+        border-radius: 5px;
+        font-size: 30px;
+        border: 1px solid $Trinet-light-gray;
+        .icon-settings {
+            color: $Lighter-gray;
+            opacity: 0.4;
+        }
+        .group-change-filter-list {
+            overflow: visible;
+        }
+        .icon-arrow {
+            font-size: 15px;
+            transform: rotate(90deg);
+            color: $font-color;
+        }
+        .tn-profile-menu-caret {
+            left: 60px;
+            right: auto;
+        }
+    }
+    .group-change-filter-list {
+        top: 100%;
+        left: 0;
+        box-shadow: 0 9px 34px 0 rgba(55, 57, 62, 0.38);
+        border: 0;
+        filter: drop-shadow(0px 9px 34px rgba(55, 57, 62, 0.38));
+        -webkit-filter: drop-shadow(0px 9px 34px rgba(55, 57, 62, 0.38));
+        border-radius: 5px;
+        min-height: 250px !important;
+        .check {
+            display: flex;
+            margin: 0;
+            padding-left: 10px;
+            input[type="checkbox"] {
+                position: absolute;
+            }
+        }
+        label {
+            display: flex !important;
+        }
+    }
+
+    .change-view label {
+        display: flex !important;
+    }
+}
+
+.tn-manager-resources-links {
+    .view-history-link {
+        display: flex;
+        padding: 20px 10px;
+        margin: 0;
+        align-items: center;
+    }
+    a:nth-child(even) {
+        background-color: $misty;
+    }
+    i {
+        margin-right: 15px;
+        padding: 0;
+        margin-top: 0;
+    }
+    i, .icon-icon_pdf:before {
+        font-size: 30px;
+    }
+}
+.tn-polices-block {
+    .title-block {
+        min-height: 120px;
+        cursor: pointer;
+        background-color: $Background;
+        h4{
+            padding: 10px 10px 0 10px;
+            color: $azure-blue;
+        }
+        p{
+            padding: 10px 10px 0 10px;
+            color: $Trinet-dark-gray;
+        }
+        &:hover, &:focus {
+            background-color: $Trinet-blue;
+            h4{
+                color: $White;
+            }
+            p{
+                color: $ink;
+            }
+        }
+    }
+}
+@media all and (max-width: 1070px) {
+    .table.tn-table {
+        thead th {
+            padding: 8px;
+            h6 {
+                font-size: 10px;
+            }
+        }
+        tbody td {
+            padding: 8px;
+            h6 {
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .tn-search-box-container {
+        width: 100%;
+    }
+    .table.tn-table {
+        thead th {
+            h6 {
+                font-size: 8px;
+            }
+        }
+        tbody td {
+            h6 {
+                font-size: 8px;
+            }
+        }
+    }
+}

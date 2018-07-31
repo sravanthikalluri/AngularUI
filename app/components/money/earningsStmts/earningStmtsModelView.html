@@ -1,0 +1,678 @@
+<div class="earning-statement-document" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="" ng-keypress="keyboardPress($event)">
+        <div class="block medium">
+            <div class="modal-header earning-popup-header">
+                <h4 class="modal-title" id="myModalLabel" ng-bind="::translation.money.earnings_statements.view_stmnt"></h4>
+            </div>
+            <div class="col-md-12 col-sm-12 popup-screen-adjustment">
+                <div class="clearfix">&nbsp;</div>
+                <div class="col-md-12 col-sm-12 col-xs-12 no-pad">
+                <div class="col-md-6 col-sm-6">
+                    <a  ng-click="printPdf()" target="_blank" id="printIcon">
+                        <span class="icon-icon_print_circle pull-left large"></span>
+                        <span class="pull-left pad-5 print" ng-bind="::translation.money.earnings_statements.print_pdf"></span>
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="pull-right">
+                        <div class="yesNoswitch">
+                            <input id="myonoffswitch1" type="checkbox" name="yesNoswitch1"
+                                   ng-model="isToolTipVisible" ng-click="onOFF()" class="yesNoswitch-checkbox"
+                                   ng-checked="isToolTipVisible" ng-value="isToolTipVisible">
+                            <label class="yesNoswitch-label" for="myonoffswitch1">
+
+                                <span class="yesNoswitch-switch small"></span>
+                                <span class="yesNoswitch-inner small"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <span class="pull-right" ng-bind="::translation.money.earnings_statements.paycheck_help"></span>
+                </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 no-pad">
+                    <hr>
+                </div>
+                <div id="mydiv" class="col-md-12 col-sm-12 col-xs-12 no-pad">
+                    <div class="col-md-12 no-pad" id="printThis">
+                        <div class="col-md-12 col-sm-12 over-flow no-pad">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h1 class="earning-title text-right bold" ng-bind="::translation.money.earnings_statements.earnings_stmnt"></h1>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-7">
+                                    <div id="popupLogo" class="col-md-5 col-sm-5 col-xs-5 border-right top-margin no-pad">
+                                    <img src="assets/images/New-logo.jpg" alt="TriNet popup logo"
+                                         class="img-responsive">
+                                </div>
+
+                                <div class="col-md-7 col-sm-7 col-xs-7">
+                                    <h3 class="no-marg" id="employerName"><span ng-bind="earningvalueData.peoAddress[0] + ', ' + earningvalueData.peoAddress[1]" ng-if="earningvalueData.peoAbbreviateName"></span></h3>
+                                    <ul class="no-pad light" id="employerAddress">
+                                        <li><span ng-bind="earningvalueData.peoAddress[0]" ng-if="!earningvalueData.peoAbbreviateName"></span></li>
+                                        <li><span ng-bind="earningvalueData.peoAddress[1]" ng-if="!earningvalueData.peoAbbreviateName"></span></li>
+                                        <li><span ng-bind="earningvalueData.peoAddress[2]"></span></li>
+                                        <li><span ng-bind="earningvalueData.peoAddress[3]"></span><span ng-if="!earningvalueData.peoAddress[5]" ng-bind="', '+earningvalueData.peoAddress[4]"></span></li>
+                                        <li ng-if="earningvalueData.peoAddress[5]"><span ng-bind="earningvalueData.peoAddress[4]"></span><span ng-bind="', '+earningvalueData.peoAddress[5]"></span></li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 pad-5 pull-right background">
+                                <ul class="text-right no-pad" id="checkDetails">
+                                    <li><span class="bold " >{{::translation.money.earnings_statements.check_no}}.: </span><span class="light">{{earningvalueData.header.checkNumber}}</span>
+                                    </li>
+                                    <li><span class="bold" ng-bind="::translation.money.earnings_statements.checkDate"> </span><span class="light">{{earningvalueData.header.checkDt | date: 'MM/dd/yyyy'}}</span>
+                                    </li>
+                                    <li><span class="bold"  ng-bind="::translation.money.earnings_statements.pay_period"> </span><span class="light">{{earningvalueData.header.earnsBegDt | date: 'MM/dd/yyyy'}} - {{earningvalueData.header.earnsEndDt | date: 'MM/dd/yyyy'}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-12 no-pad">
+                                <hr>
+                            </div>
+                            <div class="main-tools-block Trinet-tool-tip">
+                                <div class="col-md-12 col-sm-12 clearfix" id="earnHeader">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 no-pad head-print-section ">
+                                        <h3>{{earningvalueData.header.name}}</h3>
+                                        <ul class="no-pad" id="address">
+                                            <li ng-if="earningvalueData.header.address1!=' '" class="bold">
+                                                <pre>{{earningvalueData.header.address1}}</pre>
+                                            </li>
+                                            <li ng-if="earningvalueData.header.address2!=' '" class="bold">
+                                                <pre>{{earningvalueData.header.address2}}</pre>
+                                            </li>
+                                            <li ng-if="earningvalueData.header.address3!=' '" class="bold">
+                                                <pre>{{earningvalueData.header.address3}}</pre>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 no-pad head-print-section tooltip-right-content-new visible">
+
+                                        <ul class="no-pad earning-statement-address" id="employeeDetails">
+                                            <li><span class="bold" ng-bind="::translation.money.earnings_statements.employeeId"></span><span
+                                                    ng-bind-html="earningvalueData.header.employeeId"></span>
+                                            </li>
+                                            <li><span class="bold" ng-bind="::translation.money.earnings_statements.location"> </span><span
+                                                    ng-bind-html="earningvalueData.header.location"></span>
+                                            </li>
+                                            <li><span class="bold" ng-bind="::translation.money.earnings_statements.business_title"> </span><span>{{earningvalueData.header.businessTitle}}</span>
+                                            </li>
+                                        </ul>
+                                        <div class="trinet-tooltip-right right-tool-tip-content">
+                                            <div class="arrow-left"></div>
+                                            <div class="arrow-left-top"></div>
+                                            <h3 ng-bind="::translation.money.earnings_statements.personalInfo"> </h3>
+                                            <p ng-bind="::translation.money.earnings_statements.displayInfoDetails"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 no-pad head-print-section ">
+                                        <!--top-adj Class-->
+                                        <ul class="no-pad earning-statement-address" id="employeeDeptInfo">
+                                            <li><span class="bold" ng-bind="::translation.money.earnings_statements.department"> </span><span>{{earningvalueData.header.department}}</span>
+                                            </li>
+                                            <li><span class="bold" >{{::translation.money.earnings_statements.pay_rate}}: </span><span> {{earningvalueData.header.payRate | currencyFilter}}{{earningvalueData.header.payRateDesc}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 no-pad">
+                                        <button id="nonNegotiable" class="trinet-primary-action-btn no-marg pull-right" ng-bind="::translation.money.earnings_statements.non_negoitable">
+
+                                        </button>
+                                        <div class=" col-md-12 top-margin text-right clearfix">
+                                            <span class="col-md-12 no-pad col-sm-12" ng-bind="::translation.money.earnings_statements.net_pay"></span>
+                                            <h1 id="employeeNetPayDetails" class="no-marg action"
+                                                ng-class="{'red':earningvalueData.header.netPay < 0}">
+                                                {{earningvalueData.header.netPay | currencyFilter}} </h1>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-pad ">
+                                    <div class="col-md-7 col-sm-7 no-right-pad">
+                                        <div class="tooltip-right-content-new pointer">
+                                            <div id="hoursEarnings" class="modal-header earning-popup-header ">
+                                                <h4 class="modal-title" id="hrAndEarnLabel" ng-bind="::translation.money.earnings_statements.hoursEarnings"> </h4>
+                                            </div>
+                                            <div class="trinet-tooltip-right right-tool-tip-content">
+                                                <div class="arrow-left"></div>
+                                                <div class="arrow-left-top"></div>
+                                                <h3 ng-bind="::translation.money.earnings_statements.hoursEarnings"></h3>
+                                                <p ng-bind="::translation.money.earnings_statements.hoursEarnings_toolTip">
+                                                </p>
+                                            </div>
+
+                                            <table id="hrsEarnings"
+                                                   class="table table-responsive small no-table-border nth-child-2 blue-hover ">
+                                                <thead>
+                                                <tr>
+                                                    <th class="col-md-3" ng-bind="::translation.money.earnings_statements.description"></th>
+                                                    <th class="text-right" ng-bind="::translation.money.earnings_statements.rate"></th>
+                                                    <th class="text-right" ng-bind="::translation.money.earnings_statements.hoursText"></th>
+                                                    <th class="text-right"><span class="medium" ng-bind="::translation.money.earnings_statements.current"></span> <br/>
+                                                         {{ ::translation.money.earnings_statements.earnings}}
+                                                    </th>
+                                                    <th class="text-right" ng-bind="::translation.money.earnings_statements.hoursText"></th>
+                                                    <th class="text-right"><span class="medium" ng-bind="::translation.money.earnings_statements.yearTo_date"></span><br/>
+                                                        {{ ::translation.money.earnings_statements.earnings}}
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                <tr ng-repeat="data in earningvalueData.detail.earns">
+                                                    <td>{{data.curEarnsDesc}}</td>
+                                                    <td class="text-right">{{data.curEarnsRate}}</td>
+                                                    <td class="text-right">{{data.curEarnsHours}}</td>
+                                                    <td class="text-right" ng-class="{'red':data.curEarnsEarn < 0}"
+                                                        ng-bind="data.curEarnsEarn | decimal "></td>
+                                                    <td class="text-right">{{data.ytdEarnsHours}}</td>
+                                                    <td class="text-right">{{data.ytdEarnsEarn | decimal}}</td>
+                                                </tr>
+                                                <tr class="top-bordor-3 top-divider bold ">
+                                                    <td>Gross Pay</td>
+                                                    <td class="text-right">&nbsp;</td>
+                                                    <td class="text-right"
+                                                        ng-bind="earningvalueData.detail.totals.curHour"></td>
+                                                    <td class="text-right"
+                                                        ng-bind="earningvalueData.detail.totals.curGross | decimal"
+                                                        ng-class="{'red':earningvalueData.detail.totals.curGross < 0}"></td>
+                                                    <td class="text-right top-table-bordor"
+                                                        ng-bind="earningvalueData.detail.totals.ytdHrsEarn"></td>
+                                                    <td class="text-right"
+                                                        ng-bind="earningvalueData.detail.totals.ytdGross| decimal"></td>
+                                                </tr>
+                                                <tr class="top-bordor-4 bold">
+                                                    <td>
+                                                        <div class="col-md-12 col-sm-12 tooltip-right-content-new no-pad" ng-bind="::translation.money.earnings_statements.fedTaxableGross">
+
+                                                            <!-- <div class="trinet-tooltip-right right-tool-tip-content">
+                                                                 <div class="arrow-left"></div>
+                                                                 <div class="arrow-left-top"></div>
+                                                                 <h3>Fed Taxable Gross</h3>
+                                                                 <p>Contains the federal taxable wage (gross wages minus
+                                                                     tax deductions) for the current period and
+                                                                     year-to-date (YTD). Both the Fed Taxable Gross and
+                                                                     federal income taxable wage displayed on Form W-2
+                                                                     include imputed earnings and taxable (imputed)
+                                                                     employer-paid benefits.</p>
+                                                             </div>-->
+                                                        </div>
+
+
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td class="text-right"
+                                                        ng-bind="earningvalueData.detail.totals.curFedTaxableGross | decimal"
+                                                        ng-class="{'red':earningvalueData.detail.totals.curFedTaxableGross < 0}"></td>
+                                                    <td>&nbsp;</td>
+                                                    <td class="text-right"
+                                                        ng-bind="earningvalueData.detail.totals.ytdFedTaxableGross | decimal"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tooltip-right-content-new ">
+                                            <div id="taxesDeuctions" class="modal-header earning-popup-header">
+                                                <h4 class="modal-title" id="taxLabel" ng-bind="::translation.money.earnings_statements.taxDeductions"></h4>
+
+                                            </div>
+
+                                            <div class="trinet-tooltip-right right-tool-tip-content">
+                                                <div class="arrow-left"></div>
+                                                <div class="arrow-left-top"></div>
+                                                <h3 ng-bind="::translation.money.earnings_statements.taxDeductions"></h3>
+                                                <p  ng-bind="::translation.money.earnings_statements.taxDeductions_tooltip"> </p>
+                                                <p ng-bind="::translation.money.earnings_statements.aferTaxDed_tooltip"></p>
+                                                <p></p>
+
+                                            </div>
+                                            <table id="taxDeductions"
+                                                   class="table table-responsive small no-table-border nth-child-1 blue-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th ng-bind="::translation.money.earnings_statements.taxes"></th>
+                                                    <th class="text-right" ng-bind="::translation.money.earnings_statements.current"></th>
+                                                    <th class="text-right" ng-bind="::translation.money.earnings_statements.yearTo_date"></th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="taxdata in earningvalueData.detail.taxWithholdings">
+                                                    <td>{{taxdata.taxDesc}}</td>
+                                                    <td class="text-right" ng-class="{'red':taxdata.curTaxes < 0}"
+                                                        ng-bind="taxdata.curTaxes | decimal"></td>
+                                                    <td class="text-right">{{taxdata.ytdTaxes | decimal}}</td>
+                                                </tr>
+
+                                                <tr class="nth-right top-divider bold">
+                                                    <td  ng-bind="::translation.money.earnings_statements.total_taxes"></td>
+                                                    <td class="text-right"
+                                                        ng-bind="::earningvalueData.detail.totals.curTaxes | decimal"
+                                                        ng-class="{'red':earningvalueData.detail.totals.curTaxes < 0}"></td>
+                                                    <td class="text-right"
+                                                        ng-bind="::earningvalueData.detail.totals.ytdTaxes | decimal"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tooltip-right-content-new">
+                                            <table id="taxToolTip"
+                                                   class="table table-responsive small no-table-border nth-child-2 blue-hover">
+
+                                                <thead>
+                                                <tr>
+                                                    <th class="col-md-4 col-sm-4" ng-bind="::translation.money.earnings_statements.before_tax_deduction"></th>
+                                                    <th class="col-md-4 col-sm-4 text-right" ng-bind="::translation.money.earnings_statements.current"></th>
+                                                    <th class="col-md-2 col-md-2 " ng-bind="::translation.money.earnings_statements.planYear"></th>
+                                                    <th class="col-md-2 col-md-2" ng-bind="::translation.money.earnings_statements.yearTo_date"></th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="beforetd in earningvalueData.detail.preTaxDedns">
+                                                    <td class="col-md-4 col-sm-4" ng-bind="beforetd.desc"></td>
+                                                    <td class="col-md-4 col-sm-4" ng-bind="beforetd.curDedns | decimal"
+                                                        ng-class="{'red':beforetd.curDedns < 0}"></td>
+                                                    <td class="col-md-2 col-md-2"
+                                                        ng-bind="beforetd.pytdDedns | decimal"></td>
+                                                    <td class="col-md-2 col-md-2"
+                                                        ng-bind="beforetd.ytdDedns | decimal"></td>
+
+                                                </tr>
+                                                <tr class="nth-right bold">
+                                                    <td>{{::translation.money.earnings_statements.total_before_tax}}</td>
+                                                    <td ng-bind="earningvalueData.detail.totals.curPreDedn | decimal"
+                                                        ng-class="{'red':earningvalueData.detail.totals.curPreDedn < 0}"></td>
+                                                    <td ng-bind="earningvalueData.detail.totals.ytdPreDDedn | decimal"></td>
+                                                    <!-- dought in data mapping -->
+                                                    <td ng-bind="earningvalueData.detail.totals.ytdPreDedn | decimal"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <!--  <div class="trinet-tooltip-right right-tool-tip-content">
+                                                  <div class="arrow-left"></div>
+                                                  <div class="arrow-left-top"></div>
+                                                  <h3>Before-Tax Deductions</h3>
+                                                  <p>Lists any before-tax deductions such as health insurance premiums,
+                                                      and retirement plan and flexible spending account (FSA)
+                                                      contributions.</p>
+                                              </div>-->
+                                        </div>
+                                        <div class="tooltip-right-content-new">
+                                            <table id="postTaxDedns"
+                                                   class="table table-responsive small no-table-border nth-child-1 blue-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th class="col-md-4 col-sm-4" ng-bind="::translation.money.earnings_statements.afterTaxDed"></th>
+                                                    <th class="col-md-4 col-sm-4" ng-bind="::translation.money.earnings_statements.current"></th>
+                                                    <th class="col-md-4 col-sm-4" ng-bind="::translation.money.earnings_statements.yearTo_date"></th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="afterData in earningvalueData.detail.postTaxDedns">
+                                                    <td class="col-md-4 col-sm-4">{{afterData.desc}}</td>
+                                                    <td class="col-md-4 col-sm-4"
+                                                        ng-class="{'red':afterData.curDedns < 0}">{{afterData.curDedns |
+                                                        decimal}}
+                                                    </td>
+                                                    <td class="col-md-4 col-sm-4">{{afterData.ytdDedns | decimal}}</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <!--<div class="trinet-tooltip-right right-tool-tip-content">
+                                                <div class="arrow-left"></div>
+                                                <div class="arrow-left-top"></div>
+                                                <h3>After-Tax Deductions</h3>
+                                                <p>Lists any after-tax deductions such as employee-paid supplemental
+                                                    insurance and dependent insurance premiums, and garnishments.</p>
+                                            </div>-->
+                                        </div>
+                                        <table id="afterTax"
+                                               class="table table-responsive small no-table-border nth-child-1 no-marg blue-hover">
+                                            <tbody>
+                                            <tr class="top-bordor-3 bold  nth-right">
+                                                <td class="col-md-4 col-sm-4" ng-bind="::translation.money.earnings_statements.total_afterTaxDed"></td>
+                                                <td class="col-md-4 col-sm-4"
+                                                    ng-bind="earningvalueData.detail.totals.curPostDedn | decimal"
+                                                    ng-class="{'red':earningvalueData.detail.totals.curPostDedn < 0}"></td>
+                                                <td class="col-md-4 col-sm-4"
+                                                    ng-bind="earningvalueData.detail.totals.ytdPostDedn | decimal"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td class="table-total-row-adjustment"></td>
+                                                <td class="table-total-row-adjustment"></td>
+                                                <td class="table-total-row-adjustment"></td>
+                                            </tr>
+                                            <tr class="top-bordor-3 bold  nth-right btm-white-line">
+                                                <td class="col-md-4 col-sm-4" ng-bind="::translation.money.earnings_statements.totalDeductions"></td>
+                                                <td class="col-md-4 col-sm-4"
+                                                    ng-bind="earningvalueData.detail.totals.curTotalDedn | decimal"
+                                                    ng-class="{'red':earningvalueData.detail.totals.curTotalDedn< 0}"></td>
+                                                <td class="col-md-4 col-sm-4"
+                                                    ng-bind="earningvalueData.detail.totals.ytdTotalDedn | decimal"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="tooltip-right-content-new nth-right">
+                                            <table class="table table-responsive small no-table-border nth-child-1 blue-hover"
+                                                   id="netPayDetails">
+                                                <tbody>
+                                                <tr class="top-bordor-3 bold  nth-right">
+                                                    <td>Net Pay</td>
+                                                    <td ng-bind="earningvalueData.detail.totals.curNetPay | decimal"
+                                                        ng-class="{'red':earningvalueData.detail.totals.curNetPay < 0}"></td>
+                                                    <td ng-bind="earningvalueData.detail.totals.ytdNetPay | decimal"></td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <div class="trinet-tooltip-right right-tool-tip-content">
+                                                <div class="arrow-left"></div>
+                                                <div class="arrow-left-top"></div>
+                                                <h3 ng-bind="::translation.money.earnings_statements.net_pay"></h3>
+                                                <p ng-bind="::translation.money.earnings_statements.currentFederalTax"></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-5 col-sm-5">
+                                        <div class="earning-tax-section tooltip-left-content-new visible">
+                                            <div class="modal-header gray-bg">
+                                                <h4 class="modal-title" id="taxModalLabel" ng-bind="::translation.money.earnings_statements.taxWith_holding"></h4>
+                                            </div>
+                                            <div class="trinet-tooltip-left left-tool-tip-content">
+                                                <div class="arrow-right"></div>
+                                                <div class="arrow-right-top"></div>
+                                                <h3 ng-bind="::translation.money.earnings_statements.taxWith_holding"></h3>
+                                                <p ng-bind="::translation.money.earnings_statements.taxWith_holding_tooltip"> </p>
+                                            </div>
+
+                                            <table id="taxWithHold"
+                                                   class="table table-responsive no-table-border small tax-with-holding-left-text blue-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th ng-bind="::translation.money.earnings_statements.description"></th>
+                                                    <th ng-repeat="taxwith in earningvalueData.detail.taxData">
+                                                        {{taxwith.taxWithHolding}}
+                                                    </th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td ng-bind="::translation.money.earnings_statements.maritalStatus"></td>
+                                                    <td ng-repeat="taxwith in earningvalueData.detail.taxData">
+                                                        {{taxwith.maritalStatus}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td ng-bind="::translation.money.earnings_statements.allowances"></td>
+                                                    <td ng-repeat="taxwith in earningvalueData.detail.taxData">
+                                                        {{taxwith.allowances}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td ng-bind="::translation.money.earnings_statements.addPercent"></td>
+                                                    <td ng-repeat="taxwith in earningvalueData.detail.taxData">
+                                                        {{taxwith.addlPct}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td ng-bind="::translation.money.earnings_statements.addAmount"></td>
+                                                    <td ng-repeat="taxwith in earningvalueData.detail.taxData">
+                                                        {{taxwith.addlAmt}}
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="earning-tax-section visible">
+                                            <div class="tooltip-left-content-new">
+                                                <div class="modal-header gray-bg ">
+                                                    <h4 class="modal-title tooltip-left-content-new" id="compPaidLabel"  ng-bind="::translation.money.earnings_statements.companyPaidBenefits">
+                                                        </h4>
+                                                </div>
+                                                <div class="trinet-tooltip-left left-tool-tip-content">
+                                                    <div class="arrow-right"></div>
+                                                    <div class="arrow-right-top"></div>
+                                                    <h3 ng-bind="::translation.money.earnings_statements.companyPaidBenefits"></h3>
+                                                    <p ng-bind="::translation.money.earnings_statements.companyPaid_tooltip"></p>
+                                                </div>
+
+                                                <table id="compnyPaid"
+                                                       class="table table-responsive no-table-border small nth-child-1 data blue-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th ng-bind="::translation.money.earnings_statements.taxableBenefits"></th>
+                                                        <th ng-bind="::translation.money.earnings_statements.current"></th>
+                                                        <th  ng-bind="::translation.money.earnings_statements.yearTo_date"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="data in earningvalueData.detail.employerBenefitsTaxable">
+                                                        <td>{{data.desc}}</td>
+                                                        <td ng-class="">{{data.curEmpBenf}}</td>
+                                                        <td>{{data.ytdEmpBenf}}</td>
+                                                    </tr>
+
+                                                    <tr class="top-bordor-3 top-divider bold nth-right">
+                                                        <td ng-bind="::translation.money.earnings_statements.totalTaxable"></td>
+                                                        <td ng-class="">{{earningvalueData.detail.totals.curTaxableTot |
+                                                            decimal}}
+                                                        </td>
+                                                        <td>{{earningvalueData.detail.totals.ytdTaxableTot | decimal}}
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <table id="nonTax"
+                                                   class="table table-responsive no-table-border small nth-child-1 blue-hover">
+                                                <thead>
+                                                <tr class="">
+                                                    <th ng-bind="::translation.money.earnings_statements.nonTaxable"></th>
+                                                    <th ng-bind="::translation.money.earnings_statements.current"></th>
+                                                    <th  ng-bind="::translation.money.earnings_statements.yearTo_date"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="data in earningvalueData.detail.employerBenefitsNonTaxable">
+                                                    <td ng-bind="data.desc"></td>
+                                                    <td ng-bind="data.curEmpBenf | decimal"
+                                                        ng-class="{'red':data.curEmpBenf < 0}"></td>
+                                                    <td ng-bind="data.ytdEmpBenf | decimal"></td>
+                                                </tr>
+                                                <tr class="top-bordor-5 bold nth-right">
+                                                    <td ng-bind="::translation.money.earnings_statements.total_nonTaxable"></td>
+                                                    <td>{{earningvalueData.detail.totals.curNonTaxableTot | decimal}}
+                                                    </td>
+                                                    <td>{{earningvalueData.detail.totals.ytdNonTaxableTot | decimal}}
+                                                    </td>
+                                                </tr>
+                                                <tr class="top-bordor-5 bold">
+                                                    <td  ng-bind="::translation.money.earnings_statements.totalBenefits"></td>
+                                                    <td>{{earningvalueData.detail.totals.totalBenefitsCurrent |
+                                                        decimal}}
+                                                    </td>
+                                                    <td>{{earningvalueData.detail.totals.totalBenefitsYtd | decimal}}
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="earning-tax-section visible">
+                                            <div class=" tooltip-left-content-new gray-bg">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title tooltip-left-content-new" id="timeOffLabel" ng-bind="::translation.money.earnings_statements.timeOff">
+                                                        </h4>
+                                                </div>
+                                                <div class="trinet-tooltip-left left-tool-tip-content">
+                                                    <div class="arrow-right"></div>
+                                                    <div class="arrow-right-top"></div>
+                                                    <h3  ng-bind="::translation.money.earnings_statements.timeOff"></h3>
+                                                    <p ng-bind="::translation.money.earnings_statements.timeOff_tooltip"></p>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12 no-pad tooltip-left-content-new">
+                                                <table id="timeOff"
+                                                       class="table top-align table-responsive small no-table-border  data blue-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th width="30%" ng-bind="::translation.money.earnings_statements.description"></th>
+                                                        <th width="20%"
+                                                            ng-repeat="ptos in earningvalueData.detail.ptos">
+                                                            {{ptos.desc}}<br/>{{::translation.money.earnings_statements.hrs}}
+                                                        </th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <div class="trinet-tooltip-left left-tool-tip-content">
+                                                        <div class="arrow-right"></div>
+                                                        <div class="arrow-right-top"></div>
+                                                        <h3 ng-bind="::translation.money.earnings_statements.vacationHrs"></h3>
+                                                        <p ng-bind="::translation.money.earnings_statements.vacationHrs_tooltip"></p>
+                                                    </div>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td ng-bind="::translation.money.earnings_statements.startBalance"></td>
+                                                        <td width="30%"
+                                                            ng-repeat="ptos in earningvalueData.detail.ptos">
+                                                            {{ptos.begBal}}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td ng-bind="::translation.money.earnings_statements.earned"></td>
+                                                        <td width="20%"
+                                                            ng-repeat="ptos in earningvalueData.detail.ptos">
+                                                            {{ptos.earned}}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td ng-bind="::translation.money.earnings_statements.taken"></td>
+                                                        <td width="10%"
+                                                            ng-repeat="ptos in earningvalueData.detail.ptos">
+                                                            {{ptos.taken}}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td ng-bind="::translation.money.earnings_statements.adjustments"></td>
+                                                        <td width="24%"
+                                                            ng-repeat="ptos in earningvalueData.detail.ptos">
+                                                            {{ptos.adjust}}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr class="earningStmt-bordertop">
+                                                        <td ng-bind="::translation.money.earnings_statements.endBalance"></td>
+                                                        <td width="16%"
+                                                            ng-repeat="ptos in earningvalueData.detail.ptos">
+                                                            {{ptos.endBal}}
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <!--   <div class="trinet-tooltip-left left-tool-tip-content">
+                                                   <div class="arrow-right"></div>
+                                                   <div class="arrow-right-top"></div>
+                                                   <h3>Time Off</h3>
+                                                   <p>Lists any hours you have accrued and your remaining balance, as well as any taken hours that have been paid.</p>
+                                               </div>-->
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
+
+                                        <div class="earning-tax-section visible">
+                                            <div class="modal-header gray-bg tooltip-left-content-new">
+                                                <h4 class="modal-title tooltip-left-content-new" id="myModalLabel1" ng-bind="::translation.money.earnings_statements.directDept">
+                                                    </h4>
+                                            </div>
+                                            <div class="col-md-12 no-pad">
+                                                <table width="100%" id="directDepst"
+                                                       class="table top-align table-responsive small no-table-border nth-child-1 data blue-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th width="30%" ng-bind="::translation.money.earnings_statements.accType"></th>
+                                                        <th width="30%" ng-bind="::translation.money.earnings_statements.accountNo"></th>
+                                                        <th width="40%" ng-bind="::translation.money.earnings_statements.depositAmount"></th>
+
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    <tr class="top-bordor-6"
+                                                        ng-repeat="data in earningvalueData.detail.directDepositDistributions">
+
+                                                        <td ng-bind="data.acctType"></td>
+                                                        <td ng-bind="data.acctNum"></td>
+                                                        <td ng-bind="data.depositAmount | decimal"
+                                                            ng-class="{'red':data.depositAmount < 0}"></td>
+
+                                                    </tr>
+                                                    </tr>
+
+                                                    <tr class="top-bordor-5 bold ">
+                                                        <td colspan="2" class="black" ng-bind="::translation.money.earnings_statements.total"></td>
+                                                        <td>{{earningvalueData.detail.totals.totDirectDeposit |
+                                                            decimal}}
+                                                        </td>
+
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <div class="trinet-tooltip-left left-tool-tip-content">
+                                                <div class="arrow-right"></div>
+                                                <div class="arrow-right-top"></div>
+                                                <h3 ng-bind="::translation.money.earnings_statements.directDep"></h3>
+                                                <p ng-bind="::translation.money.earnings_statements.directDep_tooltip"></p>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="popup-footer">
+                                <div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-2 col-md-offset-2 col-sm-offset-2 text-center">
+                                    <p>
+                                        {{earningvalueData.header.companyObj}}</p>
+                                    <small>
+                                        {{earningvalueData.header.peoDesc}}
+                                    </small>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2"><img src="assets/images/New-logo.jpg"
+                                                                             alt="trinet logo image"
+                                                                             class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

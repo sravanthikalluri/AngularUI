@@ -1,0 +1,145 @@
+<!--
+Program: aflacBenefitsView.html
+Description: It provides information about Aflac business & makes user to login into vendors websites.
+ -->
+<div>
+    <div class="clearfix"
+    ></div>
+    <!--First Panel-->
+    <div class="panel panel-default afla-adj">
+        <!--<h2 ng-if="!aflac">{{::translation.my_benefits.aflacBenefits.heading}}</h2>-->
+        <div class="panel-body panel-body-background">
+            <p><b><span>{{::translation.my_benefits.aflacBenefits.aflacTrinetBenf}} </span></b>
+            </p>
+            <p><b><span> {{::translation.my_benefits.aflacBenefits.benefitEligibility}}</span></b>
+            </p>
+        </div>
+
+
+        <div>
+            <table class="table table-striped borderless general-info-table vertical">
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.accident_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.accident_statement"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.cancer_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.aflacBenefits.aflacInsuPolicy">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.dental_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.dental_statement"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.hospital_confinement"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.hospital_statement"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.hospital_intensive"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.hospital_aflac"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.life_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.aflac_variety"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.specified_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.aflac_specified"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.short_disability"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.aflac_short_term"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.vision_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.aflac_insurance"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body panel-body-background">
+
+            <p><b> {{::translation.my_benefits.aflacBenefits.aflacinfoRegard}}<a id="aflacImg"
+                                                                              href="https://enrollment.aflac.com/AccountSites/S_U/Trinet/Homepage.aspx"
+                                                                              target="_blank" class="aflacDis"> {{::translation.my_benefits.aflacBenefits.aflacWebsite}}</a> </b></p>
+
+            <div class="clearfix">&nbsp;</div>
+
+
+        </div>
+    </div>
+
+
+</div>

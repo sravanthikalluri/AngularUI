@@ -1,0 +1,51 @@
+{
+  "_statusCode": 200,
+  "_statusText": "OK",
+  "_meta": null,
+  "message": "Success",
+  "data": {
+    "suspended": false,
+    "currentlyEffictive": [
+      {
+        "accountType": "Checking",
+        "routingNumber": "121042882",
+        "accountNumber": "22255599",
+        "netBalance": false,
+        "fsaAccount": true,
+        "priority": 3,
+        "amount": null,
+        "accountName": "Account Name",
+        "percent": "50",
+        "apAccount": false,
+        "effectiveDate": "2015-07-10"
+      },
+      {
+        "accountType": "Checking",
+        "routingNumber": "121042882",
+        "accountNumber": "22255599",
+        "netBalance": false,
+        "fsaAccount": true,
+        "priority": 2,
+        "amount": "1000",
+        "accountName": "Account Name",
+        "percent": null,
+        "apAccount": false,
+        "effectiveDate": "2015-07-10"
+      },
+      {
+        "accountType": "Checking",
+        "routingNumber": "121042882",
+        "accountNumber": "333344499",
+        "netBalance": true,
+        "fsaAccount": false,
+        "priority": 1,
+        "amount": null,
+        "accountName": "Account Name",
+        "percent": null,
+        "apAccount": true,
+        "effectiveDate": "2015-07-10"
+      }
+    ],
+    "futurEffective": []
+  }
+}

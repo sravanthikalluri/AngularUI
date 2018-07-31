@@ -1,0 +1,329 @@
+<div class="tn-permissions-section" ng-controller="rolesCtrl">
+    <div class="no-records" ng-show="notMeTab && noRolesAssigned" ng-hide="true">
+        <h2 class="bold no-records-heading" ng-bind="::translation.roles.noAssignSec"></h2>
+        <button class="text-center proxima-nova-semibold tn-button tn-action-button" ng-if="noRoll"
+                ng-click="showAssignRoles()" ng-class="$parent.canAdd('addRoles') ? 'visible-hide' : ''"
+                ng-bind="::translation.roles.assignSecurity">
+        </button>
+    </div>
+
+    <!--<a ng-if="noRoll" type="" id="assignRolesButton" class="trinet-primary-action-btn marg-top-20-imp"
+       ng-class="$parent.canAdd('addRoles') ? 'visible-hide' : ''"
+       name="assignRoles"></a>-->
+
+    <!-- This is called if the user already has some predefined roles-->
+    <div ng-show="IsVisible1">
+        <div class="block text-right">
+            <p class="profile-heading text-left content-text" ng-if="empStatus != 'T'"
+                ng-bind="::translation.roles.securityAssignEmp"></p>
+            <!-- <p ng-if="allRolesData!=undefined" class="medium marg-top pull-left padL10" ng-if="empStatus === 'T'"  ng-bind="::translation.roles.securityAssignTermination"></p>-->
+
+            <button ng-if="empRolesData!=undefined" type="submit" class="tn-button tn-action-button tn-roles-button"
+                    ng-class="$parent.canEdit('addRoles') ? 'visible-hide' : ''" id="addRolesButton"
+                    ng-click="ShowHide()" ng-bind="::translation.roles.editPermissions">
+            </button>
+        </div>
+        <div class="roles" ng-repeat="roles in empRolesData |groupBy: 'category'" id="rolesData">
+            <h4 class="proxima-nova-semibold profile-heading">{{roles[0].category}}</h4>
+            <div class="roles-content" ng-repeat="subcat in roles">
+                    <div class="role-details"  >
+                        <h4 class="proxima-nova-semibold role-heading">{{subcat.roleDesc}}</h4>
+                        <div class="role-full-description">
+                            <p class="content-text">{{subcat.longDesc}}</p>
+                        </div>
+                        <div class="flex-box roles-selected-list" ng-if="roleRestrictions.department && subcat.role !== 'HRAUTH_R' && subcat.departments.length>0">
+                            <span class="proxima-nova-semibold marg-btm-10">{{::translation.roles.departments}}</span>
+                            <span class="rounded-rectangle marg-btm-10" ng-repeat="selected in subcat.departments">{{filterDept(selected.code)}}</span>
+                        </div>
+                        <div class="flex-box roles-selected-list" ng-if="roleRestrictions.location && subcat.role !== 'HRAUTH_R' && subcat.locations.length>0">
+                            <span class="proxima-nova-semibold marg-btm-10">{{::translation.roles.locations}}</span>
+                            <span class="rounded-rectangle marg-btm-10" ng-repeat="selected in subcat.locations">{{filterLocation(selected.code)}}</span>
+                        </div>
+                        <div class="flex-box roles-selected-list" ng-if="roleRestrictions.payrollGroup && subcat.role !== 'HRAUTH_R' && subcat.payrollGroups.length>0">
+                            <span class="proxima-nova-semibold marg-btm-10">{{::translation.roles.payGroups}}</span>
+                            <span class="rounded-rectangle marg-btm-10" ng-repeat="selected in subcat.payrollGroups">{{filterPayGroup(selected.code)}}</span>
+                        </div>
+                        <div class="flex-box roles-selected-list"  ng-if="subcat.role === 'HRAUTH' || subcat.role === 'HRAUTH_R'">
+                            <span class="proxima-nova-semibold font-dark">Locations</span>
+                            <span ng-repeat='locations in selectedLocations' class="rounded-rectangle">{{filterLocationName(locations)}}</span>
+                        </div>
+
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- This is called after the edit button clicked-->
+    <div ng-show="IsVisible">
+        <div class="roles add-roles" ng-repeat="roles in rolesData |groupBy: 'category'">
+            <h4 class="proxima-nova-semibold profile-heading">{{roles[0].category}}</h4>
+            <div ng-repeat="subCat in roles">
+                <div class="roles-content" ng-if="subCat.role !== 'HRAUTH_R'"
+                     ng-class="subCat.isChecked  ? 'bg-light-blur':' '">
+                    <div class="checkbox-container">
+                        <div class="tn-checkbox tn-checkbox-large">
+                            <input id="{{subCat.roleDesc}}_edit" type="checkbox" name="name"
+                                   ng-change="openHrSecurity(subCat)"
+                                   ng-model="subCat.isChecked"/>
+                            <label for="{{subCat.roleDesc}}_edit"></label>
+                        </div>
+                    </div>
+                    <div class="role-details">
+                        <h4 class="proxima-nova-semibold role-heading">{{subCat.roleDesc}}</h4>
+                        <div class="role-full-description">
+                            <p class="content-text">{{subCat.longDesc}}</p>
+                            <div
+                                ng-if="subCat.isChecked && (roleRestrictions.department || roleRestrictions.location || roleRestrictions.payrollGroup)">
+                                <div
+                                    ng-if="subCat.role === 'EPTAG' || subCat.role === 'EPHRS'||subCat.role === 'EPHNA'||subCat.role === 'EPHPR'||subCat.role === 'EPNPI'">
+                                   <div  ng-repeat="roleRest in roleRestrictions.restrictionOrder">
+                                    <div class="flex-box" ng-show="roleRestrictions.department && roleRest === '2'">
+                                        <h4 class="proxima-nova-semibold no-marg"
+                                            ng-if="subCat.selectedDeptList.length>0">Departments:</h4>
+                                        <div class="role-selection">
+                                            <span class="rounded-rectangle"
+                                                  data-ng-repeat="res in subCat.selectedDeptList">{{res.deptName}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-box" ng-show="roleRestrictions.location && roleRest === '3'">
+                                        <h4 class="proxima-nova-semibold no-marg"
+                                            ng-if="subCat.selectedLocationList.length>0">Location</h4>
+                                        <div class="role-selection">
+                                            <span class="rounded-rectangle"
+                                                  data-ng-repeat="res in subCat.selectedLocationList">{{res.locationName}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-box" ng-show="roleRestrictions.payrollGroup && roleRest === '4'">
+                                        <h4 class="proxima-nova-semibold no-marg"
+                                            ng-if="subCat.selectedPayGroupList.length>0">Pay Group</h4>
+                                        <div class="role-selection roles-selected-list">
+                                            <span class="rounded-rectangle marg-btm-10"
+                                                  data-ng-repeat="res in subCat.selectedPayGroupList">{{res.payGroupDescription}}</span>
+                                        </div>
+                                    </div>
+                                   </div>
+                                    <div class="flex-box">
+                                        <div ng-repeat="roleRest in roleRestrictions.restrictionOrder">
+                                        <div class="radio marg-right-15" ng-init="subCat.selectRole = selectRole">
+                                            <input id="Department{{$parent.$index}}" type="radio" ng-model="subCat.selectRole"
+                                                   ng-value="'department'">
+                                                <label for="Department{{$parent.$index}}" ng-show="roleRestrictions.department  && roleRest === '2'">{{::translation.roles.department}}</label>
+                                            <input id="Location{{$parent.$index}}" type="radio" ng-model="subCat.selectRole"
+                                                   ng-value="'location'">
+                                                <label for="Location{{$parent.$index}}" ng-show="roleRestrictions.location  && roleRest === '3'">{{::translation.roles.location}}</label>
+                                            <input id="paygroup{{$parent.$index}}" type="radio" ng-model="subCat.selectRole"
+                                                   ng-value="'payrollGroup'">
+                                                <label for="paygroup{{$parent.$index}}" ng-show="roleRestrictions.payrollGroup  && roleRest == '4'">{{::translation.roles.payGroup}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-if="subCat.selectRole === 'department'" class="relative multi-dropDown"
+                                             ng-mouseleave="toggle(subCat)">
+                                            <button ng-click="toggleDepartment(subCat)"><span
+                                                class="caret pull-right"></span></button>
+                                            <input type="text" hidden ng-model="subCat.deptId"
+                                                   ng-click="toggleDepartment(subCat)">
+                                            <ul class="dropdown-menu" ng-if="subCat.isShowDepartmentDropDown"
+                                                ng-class="{'block':subCat.isShowDepartmentDropDown}">
+                                                <li ng-repeat='department in departments'
+                                                    ng-class="{'blue': selectDept(department,subCat.selectedDeptList)}"
+                                                    ng-click="sendDept(subCat.selectedDeptList, department)">
+                                                    {{department.deptName}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div ng-if="subCat.selectRole === 'location'" class="relative multi-dropDown"
+                                             ng-mouseleave="toggle(subCat)">
+                                            <button class="dropDown-class" ng-click="toggleLocation(subCat)"><span
+                                                class="caret pull-right"></span></button>
+                                            <input type="text" hidden ng-model="subCat.location"
+                                                   ng-click="toggleLocation(subCat)">
+                                            <ul class="dropdown-menu" ng-if="subCat.isShowLocationDropDown"
+                                                ng-class="{'block':subCat.isShowLocationDropDown}">
+                                                <li ng-repeat='location in locations'
+                                                    ng-class="{'blue': selectLocation(location,subCat.selectedLocationList)}"
+                                                    ng-click="sendLoc(subCat.selectedLocationList,location)">
+                                                    {{location.locationName}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div ng-if="subCat.selectRole === 'payrollGroup'"
+                                             class="relative multi-dropDown" ng-mouseleave="toggle(subCat)">
+                                            <button class="dropDown-class" ng-click="togglePayGroup(subCat)"><span
+                                                class="caret pull-right"></span></button>
+                                            <input type="text" hidden ng-model="subCat.payGroupId"
+                                                   ng-click="togglePayGroup(subCat)">
+                                            <ul class="dropdown-menu" ng-if="subCat.isPayGroupDropDown"
+                                                ng-class="{'block':subCat.isPayGroupDropDown}">
+                                                <li ng-repeat='payGroup in payGroups'
+                                                    ng-class="{'blue':selectPayGroup(payGroup,subCat.selectedPayGroupList)}"
+                                                    ng-click="sendPay(subCat.selectedPayGroupList,payGroup)">
+                                                    {{payGroup.payGroupDescription}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="subCat.role === 'HRAUTH'">
+                                <div ng-show="editlocations" class="flex-box roles-selected-list">
+                                    <span class="proxima-nova-semibold font-dark">Locations</span>
+                                    <span ng-repeat='selectedlocation in totalSelected' class="rounded-rectangle">{{filterLocationName(selectedlocation)}}</span>
+                                </div>
+                                <div ng-show="editlocations">
+                                    <button class="tn-action-button tn-button" ng-click="hRAuthPopup()">Edit Locations
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tn-button-section">
+            <button class="tn-button tn-button-small tn-action-button" id="savedRolesDataObjectValue" ng-click="saveRolesDataObject()">
+                {{::translation.roles.save}}
+            </button>
+            <button class="tn-button tn-button-small tn-cancel-button" id="savedCancelRolesButtonValue" ng-click="ShowHide()">
+                {{::translation.roles.cancel}}
+            </button>
+        </div>
+    </div>
+
+    <!-- This is called if the user dont have any assigned roles-->
+    <div ng-show="showAssign && allRolesData.length > 0">
+        <div class="roles add-roles" ng-repeat="roles in rolesData |groupBy: 'category'">
+            <h4 class="proxima-nova-semibold profile-heading">{{roles[0].category}}</h4>
+            <div ng-repeat="subCat in roles">
+                <div class="roles-content" ng-if="subCat.role !== 'HRAUTH_R'"
+                     ng-class="subCat.isChecked  ? 'bg-light-blur':' '">
+                    <div class="checkbox-container">
+                        <div class="tn-checkbox tn-checkbox-large">
+                            <input id="{{subCat.roleDesc}}" type="checkbox" name="name"
+                                   ng-change="openHrSecurity(subCat)"
+                                   ng-model="subCat.isChecked"/>
+                            <label for="{{subCat.roleDesc}}"></label>
+                        </div>
+                    </div>
+                    <div class="role-details">
+                        <h4 class="proxima-nova-semibold role-heading">{{subCat.roleDesc}}</h4>
+                        <div class="role-full-description">
+                            <p class="content-text">{{subCat.longDesc}}</p>
+                            <div
+                                ng-if="subCat.isChecked && (roleRestrictions.department || roleRestrictions.location || roleRestrictions.payrollGroup)">
+                                <div
+                                    ng-if="subCat.role === 'EPTAG' || subCat.role === 'EPHRS'||subCat.role === 'EPHNA'||subCat.role === 'EPHPR'||subCat.role === 'EPNPI'">
+                                    <div ng-repeat="roleRest in roleRestrictions.restrictionOrder">
+                                        <div class="flex-box" ng-show="roleRestrictions.department  && roleRest === '2'">
+                                            <h4 class="proxima-nova-semibold no-marg"
+                                                ng-if="subCat.selectedDeptList.length>0">Departments:</h4>
+                                            <div class="role-selection">
+                                                <span class="rounded-rectangle"
+                                                      data-ng-repeat="res in subCat.selectedDeptList">{{res.deptName}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-box" ng-show="roleRestrictions.location  && roleRest === '3'">
+                                            <h4 class="proxima-nova-semibold no-marg"
+                                                ng-if="subCat.selectedLocationList.length>0">Location</h4>
+                                            <div class="role-selection">
+                                                <span class="rounded-rectangle"
+                                                      data-ng-repeat="res in subCat.selectedLocationList">{{res.locationName}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-box" ng-show="roleRestrictions.payrollGroup  && roleRest === '4'">
+                                            <h4 class="proxima-nova-semibold no-marg"
+                                                ng-if="subCat.selectedPayGroupList.length>0">Pay Group</h4>
+                                            <div class="role-selection">
+                                                <span class="rounded-rectangle"
+                                                      data-ng-repeat="res in subCat.selectedPayGroupList">{{res.payGroupDescription}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-box">
+                                        <div ng-repeat="roleRest in roleRestrictions.restrictionOrder">
+                                            <div class="radio marg-right-15" ng-init="subCat.selectRole = selectRole">
+                                            <input id="Department1{{$parent.$index}}" type="radio" ng-model="subCat.selectRole"
+                                                   ng-value="'department'">
+                                                <label for="Department1{{$parent.$index}}" ng-show="roleRestrictions.department  && roleRest === '2'">{{::translation.roles.department}}</label>
+                                            <input id="Location1{{$parent.$index}}" type="radio" ng-model="subCat.selectRole"
+                                                   ng-value="'location'">
+                                                <label for="Location1{{$parent.$index}}" ng-show="roleRestrictions.location  && roleRest === '3'">{{::translation.roles.location}}</label>
+                                            <input id="paygroup1{{$parent.$index}}" type="radio" ng-model="subCat.selectRole"
+                                                   ng-value="'payrollGroup'">
+                                                <label for="paygroup1{{$parent.$index}}" ng-show="roleRestrictions.payrollGroup  && roleRest === '4'">{{::translation.roles.payGroup}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-if="subCat.selectRole === 'department'" class="relative multi-dropDown"
+                                             ng-mouseleave="toggle(subCat)">
+                                            <button ng-click="toggleDepartment(subCat)"><span
+                                                class="caret pull-right"></span></button>
+                                            <input type="text" hidden ng-model="subCat.deptId"
+                                                   ng-click="toggleDepartment(subCat)">
+                                            <ul class="dropdown-menu" ng-if="subCat.isShowDepartmentDropDown"
+                                                ng-class="{'block':subCat.isShowDepartmentDropDown}">
+                                                <li ng-repeat='department in departments'
+                                                    ng-class="{'blue': selectDept(department,subCat.selectedDeptList)}"
+                                                    ng-click="sendDept(subCat.selectedDeptList, department)">
+                                                    {{department.deptName}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div ng-if="subCat.selectRole === 'location'" class="relative multi-dropDown"
+                                             ng-mouseleave="toggle(subCat)">
+                                            <button class="dropDown-class" ng-click="toggleLocation(subCat)"><span
+                                                class="caret pull-right"></span></button>
+                                            <input type="text" hidden ng-model="subCat.location"
+                                                   ng-click="toggleLocation(subCat)">
+                                            <ul class="dropdown-menu" ng-if="subCat.isShowLocationDropDown"
+                                                ng-class="{'block':subCat.isShowLocationDropDown}">
+                                                <li ng-repeat='location in locations'
+                                                    ng-class="{'blue': selectLocation(location,subCat.selectedLocationList)}"
+                                                    ng-click="sendLoc(subCat.selectedLocationList,location)">
+                                                    {{location.locationName}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div ng-if="subCat.selectRole === 'payrollGroup'"
+                                             class="relative multi-dropDown" ng-mouseleave="toggle(subCat)">
+                                            <button class="dropDown-class" ng-click="togglePayGroup(subCat)"><span
+                                                class="caret pull-right"></span></button>
+                                            <input type="text" hidden ng-model="subCat.payGroupId"
+                                                   ng-click="togglePayGroup(subCat)">
+                                            <ul class="dropdown-menu" ng-if="subCat.isPayGroupDropDown"
+                                                ng-class="{'block':subCat.isPayGroupDropDown}">
+                                                <li ng-repeat='payGroup in payGroups'
+                                                    ng-class="{'blue':selectPayGroup(payGroup,subCat.selectedPayGroupList)}"
+                                                    ng-click="sendPay(subCat.selectedPayGroupList,payGroup)">
+                                                    {{payGroup.payGroupDescription}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="subCat.role === 'HRAUTH'">
+                                <div ng-show="editlocations" class="flex-box roles-selected-list ">Locations:
+                                    <span ng-repeat='selectedlocation in totalSelected' class="rounded-rectangle">{{filterLocationName(selectedlocation)}}</span>
+                                </div>
+                                <div ng-show="editlocations">
+                                    <button class="tn-button tn-action-button" ng-click="hRAuthPopup()">Edit Locations
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tn-button-section">
+            <button class="tn-button tn-action-button tn-button-small" id="savedRolesDataObjectValue1" ng-click="saveRolesDataObject()">
+                {{::translation.roles.save}}
+            </button>
+            <button class="tn-button tn-cancel-button tn-button-small" id="savedCancelRolesButtonValue1" ng-click="showAssignRoles()">
+                {{::translation.roles.cancel}}
+            </button>
+        </div>
+    </div>
+</div>
+

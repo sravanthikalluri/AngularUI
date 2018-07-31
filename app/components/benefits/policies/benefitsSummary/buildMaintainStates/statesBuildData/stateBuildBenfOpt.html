@@ -1,0 +1,110 @@
+<!--
+Program: stateBuildBenfOpt.html
+Description: It provides selected state data to user to view specific plans type .
+ -->
+
+<div id="statePanPage">
+    <div class="clearfix"></div>
+    <div class="statebuilder noborder">
+        <h3 class="headlines-md-BluBerry">
+            <span ng-bind="companyName"></span><br><span ng-bind="::translation.my_benefits.policies.currentBenefitsSummary"></span></h3>
+        <p class="no-pad-imp" ng-bind="::translation.my_benefits.policies.benefitSummarRepresent"></p>
+        <h3 class="headlines-md-BluBerry">{{::translation.my_benefits.policies.your}}
+            <span ng-if="payFrequencyType === 'B'" ng-bind="translation.money.payrollSchedule.biWeek"></span>
+            <span ng-if="payFrequencyType === 'W'" ng-bind="translation.money.payrollSchedule.week"></span>
+            <span ng-if="payFrequencyType === 'S'" ng-bind="translation.money.payrollSchedule.smMonth"></span>
+            <span ng-if="payFrequencyType === 'M'" ng-bind="translation.money.payrollSchedule.mon"></span>
+            Cost</h3>
+        <!-- Medical plans table -->
+        <div id="appLoader" ng-if="loaderSpinner" class="spinning spinner-loader top-post-value"></div>
+        <table class="table small table-striped" ng-if="showFiled === 'medicalPlansList'">
+
+            <thead>
+            <tr ng-if="statesBuildData.medicalPlansList.length > 0">
+                <td width="20%"><strong ng-bind="::translation.my_benefits.policies.medical"></strong></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empOnly"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empSpouse"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empChild"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.family"></td>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in statesBuildData.medicalPlansList">
+                <td width="20%"><strong>{{data.desc}}</strong></td>
+                <td width="20%">{{data.employee}}</td>
+                <td width="20%">{{data.spouse}}</td>
+                <td width="20%">{{data.children}}</td>
+                <td width="20%">{{data.family}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Dental plans table -->
+        <table class="table small .table-striped" ng-if="showFiled === 'dentalPlansList'">
+
+            <thead>
+            <tr ng-if="statesBuildData.dentalPlansList.length > 0">
+                <td width="20%"><strong ng-bind="::translation.my_benefits.policies.dental"></strong></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empOnly"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empSpouse"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empChild"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.family"></td>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in statesBuildData.dentalPlansList">
+                <td width="20%"><strong>{{data.desc}}</strong></td>
+                <td width="20%">{{data.employee}}</td>
+                <td width="20%">{{data.spouse}}</td>
+                <td width="20%">{{data.children}}</td>
+                <td width="20%">{{data.family}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Vision plans table -->
+        <table class="table small .table-striped" ng-if="showFiled === 'visionPlansList'">
+
+            <thead>
+            <tr  ng-if="statesBuildData.visionPlanList.length > 0">
+                <td width="20%"><strong ng-bind="::translation.my_benefits.policies.vision"></strong></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empOnly"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empSpouse"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empChild"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.family"></td>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in statesBuildData.visionPlanList">
+                <td width="20%"><strong>{{data.desc}}</strong></td>
+                <td width="20%">{{data.employee}}</td>
+                <td width="20%">{{data.spouse}}</td>
+                <td width="20%">{{data.children}}</td>
+                <td width="20%">{{data.family}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table small .table-striped" ng-if="showFiled === 'lifeDescription'">
+
+            <thead>
+            <tr  >
+                <td width="30%"><strong ng-bind="::translation.my_benefits.policies.groupTermLife"></strong></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empOnly"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empSpouse"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.empChild"></td>
+                <td width="20%" ng-bind="::translation.my_benefits.policies.family"></td>
+            </tr>
+
+            </thead>
+
+        </table>
+        <div class="col-md-3 medium"><strong>{{statesBuildData.lifeDescription}}</strong></div>
+        <div class="col-md-9 text-center medium">{{statesBuildData.lifePlan}}</div>
+        <!-- Benefit Supplement plans table -->
+
+
+    </div>
+</div>

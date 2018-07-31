@@ -1,0 +1,368 @@
+<!--
+Program: summaryPlanDescription.html
+Description: It displays information to user about Summary plan Description.
+ -->
+
+<div class="SummaryPlanDescriptionId" ng-controller="summaryPlanDescriptionViewCtrl">
+    <p class="large marg-bottom" ng-bind="::translation.my_benefits.policies.summary_stmt"></p>
+    <!-- Panel 1 start -->
+    <!-- Summary Plan Description toggle -->
+    <accordion close-others="true" id="summaryPlanDesc">
+        <accordion-group is-open="status1">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.summary_accord1"></span></b><i
+                    class="pull-right glyphicon"
+                    ng-class="{'icon-icon_Disclosure_Collapse': status1, 'icon-icon_Disclosure_Expand':!status1}"></i>
+            </accordion-heading>
+
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body panel-body-background">
+                    <p ng-if="summaryPlanPdfData.type !== 'Ambrose'"
+                       ng-bind="::translation.my_benefits.policies.accord1_text"></p>
+                    <p ng-if="summaryPlanPdfData.type === 'Ambrose'" ng-bind-html="summaryPlanPdfData.ambText"></p>
+                    <ul class="no-pad benefits-summery-links" ng-repeat="data in summaryPlanPdfData.planDescList">
+                        <li>
+                            <a class="pull-left" ng-href="{{data.url | contentUrl}}" id="summaryPlanPdfDataId{{$index}}"
+                               target="_blank"><span
+                                    class="icon-icon_pdf"></span> <span
+                                    class="">{{data.text}}</span></a><span class="pdf-dissabled-text"
+                                                                           id="summaryPlanPdfDataDatesId{{$index}}">{{data.date}}</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </accordion-group>
+    </accordion>
+    <!-- Panel 1 End -->
+
+    <!-- Panel 2 start -->
+    <!-- What’s Changing Medical Summary Toggle -->
+    <accordion close-others="true" id="whatsChanging">
+        <accordion-group is-open="status2">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.summary_accord2"></span></b><i
+                    class="pull-right glyphicon"
+                    ng-class="{'icon-icon_Disclosure_Collapse': status2, 'icon-icon_Disclosure_Expand':!status2}"></i>
+            </accordion-heading>
+
+            <div class="col-md-12 retirement-plan-enrolment"
+                 ng-if="summaryPlanPdfData.medicalSummary === null || summaryPlanPdfData.medicalSummary.length === 0">
+                <div class="no-enrolment">
+                    <h3 ng-bind="::translation.my_benefits.policies.noDataAvailable"></h3>
+                </div>
+            </div>
+            <div ng-if="summaryPlanPdfData.medicalSummary !== null"
+                 class="panel-body panel-body-background">
+                <p ng-bind="::translation.my_benefits.policies.accord2_text"></p>
+                <ul class="no-pad benefits-summery-links">
+                    <li>
+                        <a ng-href="{{summaryPlanPdfData.medicalSummary.url | contentUrl}}"
+                           id="medicalSummaryId{{$index}}" target="_blank"
+                           class="pull-left"><span class="icon-icon_pdf"></span> <span class=""
+                                                                                       id="medicalSummaryTextId{{$index}}">{{summaryPlanPdfData.medicalSummary.text}}</span></a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </accordion-group>
+    </accordion>
+    <!-- Panel 2 end -->
+
+    <!-- panel 3 start -->
+    <!-- Benefits At-A-Glance Toggle -->
+    <!-- panel 3 end -->
+
+    <!-- panel 4 start -->
+    <!-- Carrier Certificates and Summary of Benefits and Coverages Toggle -->
+    <accordion close-others="true" id="carrierCertificates" ng-if="summaryPlanPdfData.type !== 'Ambrose'">
+        <accordion-group is-open="status7">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.summary_accord4"></span></b><i
+                    class="pull-right glyphicon"
+                    ng-class="{'icon-icon_Disclosure_Collapse': status7, 'icon-icon_Disclosure_Expand':!status7}"></i>
+
+            </accordion-heading>
+            <div class="panel-body panel-body-background">
+                <p class="normal-font"><span ng-bind="::translation.my_benefits.policies.accord4_text1"></span>
+                    <br>
+                    <span ng-bind="::translation.my_benefits.policies.accord4_text2"></span>
+
+                </p>
+                <ul class="no-pad benefits-summery-links">
+                    <li>
+
+                        <a href="{{summaryPlanPdfData.benefitsCarrier[0].url}}" target="_blank"
+                           id="benefitsCarrierId{{$index}}"><span
+                                class="icon-icon_pdf"></span><span class="">{{summaryPlanPdfData.benefitsCarrier[0].text}}</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </accordion-group>
+    </accordion>
+
+    <!-- panel 4 end -->
+
+    <!-- panel 5 start -->
+    <!-- Medical popups Toggle -->
+    <accordion close-others="true" id="medicalPopup">
+        <accordion-group is-open="status8">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.medical"></span></b><i class="pull-right glyphicon"
+                                                                                          ng-class="{'icon-icon_Disclosure_Collapse': status8, 'icon-icon_Disclosure_Expand':!status8}"></i>
+            </accordion-heading>
+            <div class=" ">
+                <div id="popMatena{{$index}}" class="col-md-3 column-pad" ng-repeat="x in medicalData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'medical')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined">{{x.text}}</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </accordion-group>
+    </accordion>
+    <!-- panel 5 end -->
+
+    <!-- panel 6 start -->
+    <!-- Dental Popups Toggle -->
+    <accordion close-others="true" id="dentalPopup">
+        <accordion-group is-open="status9">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.dental"></span></b><i class="pull-right glyphicon"
+                                                                                         ng-class="{'icon-icon_Disclosure_Collapse': status9, 'icon-icon_Disclosure_Expand':!status9}"></i>
+            </accordion-heading>
+            <div class=" ">
+                <div id="popDatena{{$index}}" class="col-md-3 column-pad" ng-repeat="x in dentalData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'dental')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined "> {{x.text}}</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </accordion-group>
+    </accordion>
+
+    <!-- panel 6 end -->
+    <!-- panel 7 start -->
+    <!-- Vision Popups Toggle -->
+    <accordion close-others="true" id="visionPopup">
+        <accordion-group is-open="status10">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.vision"></span></b><i class="pull-right glyphicon"
+                                                                                         ng-class="{'icon-icon_Disclosure_Collapse': status10, 'icon-icon_Disclosure_Expand':!status10}"></i>
+            </accordion-heading>
+            <div class=" ">
+                <div id="popVatena{{$index}}" class="col-md-3 column-pad" ng-repeat="x in visionData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'vision')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined"> {{x.text}}</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </accordion-group>
+    </accordion>
+    <!-- panel 7 end -->
+    <!-- panel 8 start -->
+    <!-- Life popups Toggle -->
+    <accordion close-others="true" id="lifePopup">
+        <accordion-group is-open="status11">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.life"></span></b><i class="pull-right glyphicon"
+                                                                                       ng-class="{'icon-icon_Disclosure_Collapse': status11, 'icon-icon_Disclosure_Expand':!status11}"></i>
+            </accordion-heading>
+
+            <div class="col-md-12 retirement-plan-enrolment"
+                 ng-if="summaryPlanPdfData.life === null || summaryPlanPdfData.life.length === 0">
+                <div class="no-enrolment">
+                    <h3 ng-bind="::translation.my_benefits.policies.noDataAvailable"></h3>
+                </div>
+            </div>
+
+            <div class=" " ng-if="summaryPlanPdfData.life !== null">
+                <div id="popLmet{{$index}}" class="col-md-3 column-pad" ng-repeat="x in lifeData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'life')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined"> {{x.text}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </accordion-group>
+    </accordion>
+    <!-- panel 8 end -->
+
+
+    <accordion close-others="true" id="disabilityPopup">
+        <accordion-group is-open="statusdis">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.disability"></span></b><i
+                    class="pull-right glyphicon"
+                    ng-class="{'icon-icon_Disclosure_Collapse': statusdis, 'icon-icon_Disclosure_Expand':!statusdis}"></i>
+            </accordion-heading>
+            <div class=" ">
+                <div id="popLmetdis{{$index}}" class="col-md-3 column-pad" ng-repeat="x in disability">
+                    <div class="title-img" ng-click="atenaPopUp($index,'disability')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined"> {{x.text}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </accordion-group>
+    </accordion>
+    <!--Employee assistance plan-->
+    <!-- panel 9 start -->
+    <accordion close-others="true" id="assistancePlan">
+        <accordion-group is-open="status12">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.emp_assistance"></span></b><i
+                    class="pull-right glyphicon"
+                    ng-class="{'icon-icon_Disclosure_Collapse': status12, 'icon-icon_Disclosure_Expand':!status12}"></i>
+            </accordion-heading>
+
+            <div class="col-md-12 retirement-plan-enrolment"
+                 ng-if="summaryPlanPdfData.employeeAssistancePlan === null || summaryPlanPdfData.employeeAssistancePlan.length === 0">
+                <div class="no-enrolment">
+                    <h3 ng-bind="::translation.my_benefits.policies.noDataAvailable"></h3>
+                </div>
+            </div>
+
+            <table class="table emp-assign-pln-pdf-adj" ng-if="summaryPlanPdfData.employeeAssistancePlan !== null">
+                <thead>
+                <tr class="blue-head">
+                    <th class="col-md-4 col-sm-4 medium" ng-bind="::translation.my_benefits.policies.empAssistancePlan">
+                    </th>
+                    <th class="col-md-4 col-sm-4 medium" ng-bind="::translation.my_benefits.policies.carrierCertificate"></th>
+                    <th class="col-md-4 col-sm-4 medium" ng-bind="::translation.my_benefits.policies.sbc"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in employeeAssistancePlan">
+                    <td class="col-md-4 col-sm-4 medium">{{x.plans}}</td>
+                    <td class="col-md-4 col-sm-4 medium"><a href="{{x.CCCurYearUrl | contentUrl}}" target="_blank"
+                                                            id="CCPlanYearStartDateId{{$index}}"><span
+                            ng-if="x.CCCurYearUrl !== '' " class="icon-icon_pdf pull-left"></span><span
+                            ng-if="x.CCCurYearUrl !== '' " id="thisPlanYearStartDateYearsId{{$index}}">{{summaryPlanPdfData.thisPlanYearStartDate}} - {{summaryPlanPdfData.thisPlanYearEndDate}}</span>
+                        <span ng-if="x.CCCurYearUrl === '' "></span></a>
+                        <a href="{{x.CCPrevYearUrl | contentUrl}}" target="_blank"
+                           id="prevPlanYearStartDateId{{$index}}"><span ng-if="x.CCPrevYearUrl !== '' "
+                                                                        class="icon-icon_pdf pull-left"></span><span
+                                ng-if="x.CCPrevYearUrl !== '' " id="prevPlanYearStartDateYearsId{{$index}}">{{summaryPlanPdfData.prevPlanYearStartDate}} - {{summaryPlanPdfData.prevPlanYearEndDate}}</span>
+                            <span ng-if="x.CCPrevYearUrl === '' "></span></a></br></td>
+                    <td class="col-md-4 col-sm-4 medium"><a href="{{x.SBCCurYearUrl | contentUrl}}" target="_blank"
+                                                            id="SBCPlanYearStartDateId{{$index}}"><span
+                            ng-if="x.SBCCurYearUrl !== '' " class="icon-icon_pdf pull-left"></span><span
+                            ng-if="x.SBCCurYearUrl !== '' " id="SBChisPlanYearStartDateId{{$index}}">{{summaryPlanPdfData.thisPlanYearStartDate}} - {{summaryPlanPdfData.thisPlanYearEndDate}}</span>
+                        <span ng-if="x.SBCCurYearUrl === '' "></span></a>
+                        <a href="{{x.SBCPrevYearUrl | contentUrl}}" target="_blank"
+                           id="SBCPrevPlanYearStartDateId{{$index}}"><span ng-if="x.SBCPrevYearUrl !== '' "
+                                                                           class="icon-icon_pdf pull-left"></span><span
+                                ng-if="x.SBCPrevYearUrl !== '' " id="SBChisprevPlanYearStartDateId{{$index}}">{{summaryPlanPdfData.prevPlanYearStartDate}} - {{summaryPlanPdfData.prevPlanYearEndDate}}</span>
+                            <span ng-if="x.SBCPrevYearUrl === '' "></span></a></br></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </accordion-group>
+    </accordion>
+    <!-- panel 9 end -->
+     <!-- panel 12 start -->
+    <accordion close-others="true" ng-if="summaryPlanPdfData.type === 'Ambrose'" id="criticalIllness">
+        <accordion-group is-open="status17">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.criticalIllness"></span></b><i class="pull-right glyphicon"
+                                                       ng-class="{'icon-icon_Disclosure_Collapse': status17, 'icon-icon_Disclosure_Expand':!status17}"></i>
+            </accordion-heading>
+            <div class="col-md-12 retirement-plan-enrolment"
+                 ng-if="summaryPlanPdfData.criticalIllness === null || summaryPlanPdfData.criticalIllness.length === 0">
+                <div class="no-enrolment">
+                    <h3 ng-bind="::translation.my_benefits.policies.noDataAvailable"></h3>
+                </div>
+            </div>
+            <div class=" ">
+                <div id="criticalIllness" class="col-md-3 column-pad" ng-repeat="x in criticalIllnessData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'criticalIllness')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined"> {{x.text}}</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </accordion-group>
+    </accordion>
+    <!-- panel 12 end-->
+
+    <!-- panel 13 start -->
+    <accordion close-others="true" ng-if="summaryPlanPdfData.type === 'Ambrose'" id="legalServices">
+        <accordion-group is-open="status18">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.legalServices"></span></b><i class="pull-right glyphicon"
+                                                     ng-class="{'icon-icon_Disclosure_Collapse': status18, 'icon-icon_Disclosure_Expand':!status18}"></i>
+            </accordion-heading>
+            <div class="col-md-12 retirement-plan-enrolment"
+                 ng-if="summaryPlanPdfData.legalServices === null || summaryPlanPdfData.legalServices.length === 0">
+                <div class="no-enrolment">
+                    <h3 ng-bind="::translation.my_benefits.policies.noDataAvailable"></h3>
+                </div>
+            </div>
+            <div class=" ">
+                <div id="legalServices" class="col-md-3 column-pad" ng-repeat="x in legalServicesData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'legalServices')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined"> {{x.text}}</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </accordion-group>
+    </accordion>
+    <!-- panel 13 end-->
+
+    <!-- panel 14 start -->
+    <accordion close-others="true" ng-if="summaryPlanPdfData.type === 'Ambrose'" id="flexibleSpendingAccounts">
+        <accordion-group is-open="status19">
+            <accordion-heading>
+                <b><span ng-bind="::translation.my_benefits.policies.flexibleSpending"></span></b><i class="pull-right glyphicon"
+                                                                 ng-class="{'icon-icon_Disclosure_Collapse': status19, 'icon-icon_Disclosure_Expand':!status19}"></i>
+            </accordion-heading>
+
+            <div class="col-md-12 retirement-plan-enrolment"
+                 ng-if="summaryPlanPdfData.flexibleSpendingAccounts === null || summaryPlanPdfData.flexibleSpendingAccounts.length === 0">
+                <div class="no-enrolment">
+                    <h3  ng-bind="::translation.my_benefits.policies.noDataAvailable"></h3>
+                </div>
+            </div>
+            <div class=" ">
+                <div id="flexibleSpendingAccounts" class="col-md-3 column-pad"
+                     ng-repeat="x in flexibleSpendingAmountsData">
+                    <div class="title-img" ng-click="atenaPopUp($index,'flexibleSpendingAccounts')">
+                        <img src="{{bindImgUrl(x.text)}}">
+                        <p ng-if="bindImgUrl(x.text) === undefined"> {{x.text}}</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </accordion-group>
+    </accordion>
+    <!-- panel 14 end-->
+
+</div>
+</div>

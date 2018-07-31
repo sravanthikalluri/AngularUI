@@ -1,0 +1,230 @@
+@import '../global';
+
+.no-marg {
+  margin: 0;
+}
+
+.staff-approvel {
+
+  a.back {
+    color: $Trinet-orange;
+    padding: 15px;
+  }
+  .heading {
+    color: $Trinet-blue !important;
+    padding: $padding*3 0 0 $padding !important;
+    font-size: 28px !important;
+  }
+  .your-invoice {
+    margin: 0;
+    padding-left: $padding;
+    color: $Lighter-gray;
+    font-size: 12px;
+  }
+
+  h5 {
+    margin: $margin/2 0 0;
+    padding-left: $padding;
+    color: $Lighter-gray !important;
+  }
+  h6 {
+    color: $Trinet-dark-gray;
+    padding-left: $padding;
+  }
+  .name {
+    margin: 0;
+    padding-left: $padding;
+    color: $Trinet-dark-gray;
+    margin-bottom: $margin;
+  }
+
+  .invoice {
+    color: $Trinet-dark-gray;
+    margin-top: 0;
+    padding: 0 0 0 $padding;
+    font-size: 28px !important;
+  }
+  .view {
+    color: $Trinet-orange;
+    padding-left: $padding;
+  }
+  .box {
+    width: 14.3%;
+    float: left;
+  }
+  .text-box-pad {
+    border: 1px solid $Trinet-gray;
+    padding: 5px;
+    background: #f5f6f7;
+    color: $Trinet-dark-gray;
+    @include border-radius(2px);
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+  .text-box-1 {
+    min-width: 14%;
+    float: left;
+    margin: 0 2px $margin/2;
+  }
+  .text-box-2 {
+    min-width: 16%;
+    float: left;
+    margin: 0 2px $margin/2;
+  }
+  .text-box-3 {
+    min-width: 18%;
+    float: left;
+    margin: 0 2px $margin/2;
+  }
+  .text-box-4 {
+    min-width: 20%;
+    float: left;
+    margin: 0 2px $margin/2;
+  }
+  .pay-categories {
+    margin-top: $margin*8.8;
+  }
+  /*.table-condensed > tbody > tr > td{padding:$padding+2 0px !important;}*/
+  .payroll-table {
+    .table-head-color {
+      background: $Trinet-blue;
+      color: #fff;
+      border-top: 5px solid $Trinet-blue;
+      border-bottom: 5px solid $Trinet-blue;
+      border-right: 5px solid $Trinet-blue;
+    }
+    /* .table-body{height:200px;overflow-y:auto;}*/
+    .table-head-color > tr > th {
+      vertical-align: middle;
+      font-weight: 600;
+      border-left: 1px solid #fff;
+      padding: 0 $padding/2 !important;
+      font-size: 14px;
+
+      &:first-child {
+        border: none;
+      }
+
+      .icon-icon_z-a_sort {
+        padding: 3px 0 0 $padding/2;
+      }
+    }
+    .disclosure-expand {
+      font-size: 18px !important;
+    }
+  }
+
+  .empid {
+    font-size: 12px;
+    color: $Trinet-gray;
+  }
+  .radio {
+    display: inline;
+    position: relative;
+    top: 10px;
+  }
+  .format {
+    display: inline-block;
+    margin: 0 1px;
+    float: left;
+    ul {
+      padding-left: 0;
+    }
+  }
+
+  .payroll-details {
+    @extend .block;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  .payroll-options {
+    position: absolute;
+    right: 23px;
+    margin: $margin*3.8 0 0;
+
+    .trinet-secondary-action-btn {
+      margin-bottom: 0;
+    }
+
+    ul.categories {
+      margin: 0;
+    }
+  }
+
+  @media all and (max-width: $tablets) {
+    .payroll {
+
+      .pay-categories {
+        margin-top: $margin;
+      }
+    }
+
+    .payroll-options {
+      margin-top: $margin*2.5;
+    }
+  }
+
+  input.search-filter {
+    font-size: 12px;
+  }
+  .split-department-details {
+    background: $Background;
+    padding: $padding;
+    clear: both;
+
+    table.net-details {
+      thead {
+        border-bottom: 1px solid $Trinet-dark-gray;
+      }
+      tbody {
+        tr {
+          td {
+            padding: 0 $padding/2;
+          }
+        }
+      }
+    }
+
+    .min-font {
+      font-size: 9px;
+    }
+    .left-section {
+      width: 60%;
+      float: left;
+      @extend .block;
+    }
+
+    .right-section {
+      width: 40%;
+      float: left;
+      @extend .block;
+
+      table {
+        tbody {
+          tr {
+            td {
+              vertical-align: top;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .deduction-values {
+    margin-top: $margin*2.2;
+
+    tbody {
+      tr {
+        td {
+          padding: 0 $padding/2;
+        }
+      }
+    }
+  }
+
+}

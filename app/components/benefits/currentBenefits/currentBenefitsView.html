@@ -1,0 +1,243 @@
+<div class="tn-currentBenefits-section" ng-controller="currBenefitsCtrl">
+    <div class="tn-tab-section">
+        <ul class="nav nav-pills nav-tabs">
+            <li ng-class="{ active: selectTab === 'Current'}" class="medium">
+                <a id="currentId" ng-click="selectTab = 'Current'"
+                   class="personal-tabs">Current</a></li>
+                   <li ng-class="{ active: selectTab === 'Future'}" class="medium" ng-show="showFutureTab && futureBenefits.length > 0 && enableFutureBenefits">
+                <a id="futureId" ng-click="selectTab = 'Future'"
+                   class="personal-tabs">Future </a></li>
+        </ul>
+    </div>
+
+    <div class="heading-section">
+        <h4 class="bold profile-heading" >{{selectTab}} Benefits</h4>
+        <button class="tn-button tn-edit-button tn-button-small" type="button"
+                ng-click="printCurrentBenf(selectTab)">
+            Print
+        </button>
+    </div>
+    <div class="col-md-12 col-sm-12 no-pad-imp" ng-if="isEmployeeView"><p class="para-align trinet-dark-grey top-5">
+        {{::translation.curr_benefits.summaryDesc}}
+        <span id="submitLifeStatusChange" ng-if="hasLifeStatusChange === true">
+            <span ng-bind-html="trust(translation.curr_benefits.lscLink)"></span>
+        </span>
+        <span ng-if="hasLifeStatusChange === false">
+            <span ng-bind-html="translation.curr_benefits.lscNoLink"></span>
+        </span>
+    </p>
+    </div>
+    <div id="CurrentPrint" ng-if="selectTab === 'Current'">
+        <div>
+            <table class="table tn-table" id="printThis">
+                <thead>
+                <tr>
+                    <th width="20%" ng-bind="::translation.curr_benefits.cover_type"></th>
+                    <th width="30%" ng-bind="::translation.curr_benefits.plan_name"></th>
+                    <th width="30%" ng-bind="::translation.curr_benefits.coverage"></th>
+                    <th width="20%" ng-bind="::translation.curr_benefits.cover_amt"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="curData in curBenefits.currentBenefits">
+                    <td>
+                        <h6 ng-bind="::curData.planTypeDescr"></h6>
+                        <!-- <li class="row-icon pull-left" ng-class="getFlatIconName(curData.planType)"></li>-->
+                    </td>
+                    <td>
+                        <h6>
+                            <span>{{::curData.planDesc}}</span>
+                            <span ng-if="curData.groupNbr != null">
+                            {{::translation.my_benefits.currentBenefits.groupAsh}}{{::curData.groupNbr}}
+                        </span>
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="flex-box" ng-if="curData.planType.charAt(0)==='1'">
+                            {{curData.coverage.employeeName}}</h6>
+                        <div
+                            ng-repeat="coverag in curData.coverage.beneficiaries | primaryContingentItems:{checked:true}">
+                            <h6 ng-if="$index == 0 && !(curData.planType.charAt(0)==='1') && coverag.primary == true"
+                                ng-bind="::translation.my_benefits.currentBenefits.primary"
+                                class="bold">
+                            </h6>
+                            <div ng-if="$index == 0 && !(curData.planType.charAt(0)==='1') && coverag.primary == true"
+                                 class="tn-horizontal-divider no-marg"></div>
+                            <h6 class="flex-box space-between">
+                                <span>{{::coverag.name}}</span>
+                                <span class="flex-box"
+                                      ng-if="coverag.benefit != null">{{::coverag.benefit.value}}
+                                <span class="marg-left-5"
+                                      ng-if="coverag.benefit.valueType === 'percent' && coverag.benefit != null">%</span>
+                                </span>
+                            </h6>
+                        </div>
+                        <div ng-repeat="coverag in curData.coverage.beneficiaries | primaryContingentItems:{checked:false}">
+                            <h6 ng-if="$index == 0 && coverag.primary == false" class="bold"
+                                ng-bind="::translation.my_benefits.currentBenefits.contingent">
+                            </h6>
+                            <div ng-if="$index == 0 && coverag.primary == false" class="tn-horizontal-divider no-marg"></div>
+                            <h6 class="flex-box space-between">
+                                <span>{{::coverag.name}}</span>
+                                <span class="flex-box"
+                                      ng-if="coverag.benefit != null">{{::coverag.benefit.value}}
+                                 <span class="marg-left-5"
+                                       ng-if="coverag.benefit.valueType === 'percent' && coverag.benefit != null">%</span>
+                            </span>
+                            </h6>
+                        </div>
+                    </td>
+                    <td>
+                        <h6 ng-if="curData.coverage.amount !== null">
+                            <span ng-if="!adminRole"> {{::curData.coverage.amount.value | currencyFilter}}<br/></span>
+							<span ng-if="adminRole">
+								<span ng-if="(curData.planType==='31' || curData.planType==='30' || curData.planType ==='23')">{{::translation.my_benefits.currentBenefits.confidential}} </span><br/>
+								<span ng-if="(curData.planType!=='31' && curData.planType!=='30' && curData.planType !=='23')">{{::curData.coverage.amount.value | currencyFilter}}<br/></span>
+							</span>
+                        </h6>
+                        <h6 ng-if="curData.coverage.btax != null && curData.coverage.btax.value > 0">
+                            <span>{{::translation.my_benefits.currentBenefits.beforeTaxEle}}{{::curData.coverage.btax.value | currencyFilter}}
+                                <span class="marg-left-5" ng-if="curData.coverage.btax.valueType === 'percent'">%</span>
+                            </span>
+                        </h6>
+                        <h6 ng-if="curData.coverage.atax != null && curData.coverage.atax.value > 0">
+                            <span>{{::translation.my_benefits.currentBenefits.afterTaxEle}}{{::curData.coverage.atax.value | currencyFilter}}
+                            </span>
+                            <span class="marg-left-5" ng-if="curData.coverage.atax.valueType === 'percent'">%</span>
+                        </h6>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert" ></no-records>
+        </div>
+        <div class="heading-section">
+            <h4 class="bold profile-heading" ng-bind="::translation.curr_benefits.you_curr"></h4>
+        </div>
+        <table class="table tn-table">
+            <thead>
+            <tr>
+                <th width="25%">{{::translation.name}}</th>
+                <th width="20%">{{::translation.profile_personal.relationship}}</th>
+                <th width="20%">{{::translation.curr_benefits.beneficiary}}</th>
+                <th width="20%">{{::translation.curr_benefits.dependent}}</th>
+                <th width="15%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="coverag in curBenefits.dependentDetails">
+                <td>
+                    <h6 ng-bind="::coverag.dependentName">
+                    </h6>
+                </td>
+                <td>
+                    <h6 ng-bind="::coverag.relationship"></h6>
+                </td>
+                <td>
+                    <h6>
+                        {{coverag.dependentBeneficiaryType === 'Beneficiary' || coverag.dependentBeneficiaryType.split('and')[1].trim()  == 'Beneficiary'  ? translation.yes : translation.no}}
+                    </h6>
+                </td>
+                <td>
+                    <h6>
+                          {{coverag.dependentBeneficiaryType === 'Dependent' || coverag.dependentBeneficiaryType.split('and')[0].trim()  == 'Dependent' ? translation.yes : translation.no}}
+                    </h6>
+                </td>
+                <td>
+                    <h6 ng-if="showDetailsLink(coverag)">
+                    <a href ng-click="openPersonalDetails($index)">Details</a>
+                    </h6>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="FuturePrint" ng-if="futureBenefits.length > 0 && enableFutureBenefits && selectTab === 'Future'">
+        <div class="tn-vertical-divider"></div>
+        <div id="printfutureBenf">
+            <table class="table tn-table">
+                <thead>
+                <tr>
+                    <th ng-bind="::translation.curr_benefits.cover_type"></th>
+                    <th ng-bind="::translation.curr_benefits.plan_name"></th>
+                    <th ng-bind="::translation.curr_benefits.coverage"></th>
+                    <th ng-bind="::translation.curr_benefits.cover_amt"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="curData in futureBenefits">
+                    <td>
+                        <h6 ng-bind="::curData.planTypeDescr"></h6>
+                        <!-- <li class="row-icon pull-left" ng-class="getFlatIconName(curData.planType)"></li>-->
+                    </td>
+                    <td>
+                        <h6>
+                            <span>{{::curData.planDesc}}</span>
+                            <span ng-if="curData.groupNbr != null">
+                                {{::translation.my_benefits.currentBenefits.groupAsh}}{{::curData.groupNbr}}
+                            </span>
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="flex-box" ng-if="curData.planType.charAt(0)==='1'">
+                            {{curData.coverage.employeeName}}</h6>
+                        <div
+                            ng-repeat="coverag in curData.coverage.beneficiaries | primaryContingentItems:{checked:true}">
+                            <h6 ng-if="$index == 0 && !(curData.planType.charAt(0)==='1') && coverag.primary == true"
+                                ng-bind="::translation.my_benefits.currentBenefits.primary"
+                                class="bold">
+                            </h6>
+                            <div ng-if="$index == 0 && !(curData.planType.charAt(0)==='1') && coverag.primary == true"
+                                 class="tn-horizontal-divider no-marg"></div>
+                            <h6 class="flex-box space-between">
+                                <span>{{::coverag.name}}</span>
+                                <span class="flex-box"
+                                      ng-if="coverag.benefit != null">{{::coverag.benefit.value}}
+                                <span class="marg-left-5"
+                                      ng-if="coverag.benefit.valueType === 'percent' && coverag.benefit != null">%</span>
+                                </span>
+                            </h6>
+                        </div>
+                        <div ng-repeat="coverag in curData.coverage.beneficiaries | primaryContingentItems:{checked:false}">
+                            <h6 ng-if="$index == 0 && coverag.primary == false" class="bold"
+                                ng-bind="::translation.my_benefits.currentBenefits.contingent">
+                            </h6>
+                            <div ng-if="$index == 0 && coverag.primary == false" class="tn-horizontal-divider no-marg"></div>
+                            <h6 class="flex-box space-between">
+                                <span>{{::coverag.name}}</span>
+                                <span class="flex-box"
+                                      ng-if="coverag.benefit != null">{{::coverag.benefit.value}}
+                                 <span class="marg-left-5"
+                                       ng-if="coverag.benefit.valueType === 'percent' && coverag.benefit != null">%</span>
+                            </span>
+                            </h6>
+                        </div>
+                    </td>
+                    <td>
+                        <h6 ng-if="curData.coverage.amount !== null">
+                            <span ng-if="!adminRole"> {{::curData.coverage.amount.value | currencyFilter}}<br/></span>
+                            <span ng-if="adminRole">
+								<span ng-if="(curData.planType==='31' || curData.planType==='30' || curData.planType ==='23')">{{::translation.my_benefits.currentBenefits.confidential}} </span><br/>
+								<span ng-if="(curData.planType!=='31' && curData.planType!=='30' && curData.planType !=='23')">{{::curData.coverage.amount.value | currencyFilter}}<br/></span>
+							</span>
+                        </h6>
+                        <h6 ng-if="curData.coverage.btax != null && curData.coverage.btax.value > 0">
+                            <span>{{::translation.my_benefits.currentBenefits.beforeTaxEle}}{{::curData.coverage.btax.value | currencyFilter}}
+                                <span class="marg-left-5" ng-if="curData.coverage.btax.valueType === 'percent'">%</span>
+                            </span>
+                        </h6>
+                        <h6 ng-if="curData.coverage.atax != null && curData.coverage.atax.value > 0">
+                            <span>{{::translation.my_benefits.currentBenefits.afterTaxEle}}{{::curData.coverage.atax.value | currencyFilter}}
+                                <span class="marg-left-5" ng-if="curData.coverage.atax.valueType === 'percent'">%</span>
+                            </span>
+                        </h6>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+        </div>
+    </div>
+</div>

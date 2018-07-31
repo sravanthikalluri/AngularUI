@@ -1,0 +1,27 @@
+<!--
+Program: benefitsCarrierContactsView.html
+Description: It provides links to user to know his quarter plans & history.-->
+<div ng-controller="benefitsCarrierContactsViewCtrl">
+    <alert-view></alert-view>
+    <div class="panel-group" id="accordion">
+        <!--First Panel-->
+        <div class="panel panel-default">
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body panel-body-background general-notice">
+                    <p ng-bind="::translation.my_benefits.policies.benefits_carrier_stmt">
+
+                    </p>
+                    <ul class="no-pad adj-benfitGuideBook" ng-repeat="data in benefitsCarrierData">
+                        <li class="block">
+                            <a id="currBook{{$index}}" ng-href="{{data.url | contentUrl}}" class="pull-left"
+                               target="_blank"><span class="icon-icon_pdf"></span>{{::data.urlName}}{{::data.fiscalYear}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <no-records></no-records>
+        <!--End of First Panel-->
+    </div>
+</div>

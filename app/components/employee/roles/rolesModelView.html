@@ -1,0 +1,56 @@
+<div ng-controller="securityModelViewCtrl">
+    <form name="userForm" id="submitForm" ng-submit="submitForm()"
+          novalidate>
+        <div class="block clearfix">
+            <div class="clearfix">&nbsp;</div>
+            <div class="retirement-plan-popup-header">
+                <button id="hrSecurityCancel" type="button" class="close"
+                        ng-click="cancel()"></button>
+                <alert-view></alert-view>
+                <h4 class="modal-title white text-left clearfix">{{::translation.roles.reassingHR}} </h4>
+            </div>
+            <div class="modal-body retirement-plan-popup-body clearfix">
+                <ng-form name="innerForm">
+                    <div class="modalbody">
+                        <div class="row no-marg text-row">
+                            <div class="col-md-12 ">
+                                <p>{{::translation.roles.assignedHRSecurity}}</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row no-marg  top-pad retirement-select-radio">
+                            <div class="radio-row">
+                                <div class="pull-left">
+                                    <strong class="medium">{{::translation.roles.assignto}} </strong>
+                                </div>
+                                <div class="col-md-9 col-sm-9">
+                                    <tags-input ng-model="hrSecurity" display-property="employeeName"
+                                                placeholder="Search"
+                                                replace-spaces-with-dashes="false"
+                                                add-from-autocomplete-only="false">
+                                        <auto-complete source="searchEmployee($query)"
+                                                       min-length="0"
+                                                       debounce-delay="0"
+                                                       max-results-to-show="10"></auto-complete>
+                                    </tags-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+
+            <div class="modal-footer-security text-right col-md-12 col-sm-12">
+                <button id="saveHRsecurity" type="button"
+                        ng-click="saveHrsecurity(hrSecurity)"
+                        class="trinet-primary-action-btn" ng-disabled="userForm.$invalid"
+                        ng-style="{'opacity': (userForm.$invalid)? '0.3' : '1'}">{{::translation.roles.save}}
+                </button>
+                <button id="retirecancel" type="button" id="saveHRsecurityCancel"
+                        ng-click="closePanel()" class="trinet-secondary-action-btn">{{::translation.roles.cancel}}
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>

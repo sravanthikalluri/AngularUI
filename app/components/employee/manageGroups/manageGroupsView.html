@@ -1,0 +1,105 @@
+<alert-view></alert-view>
+<div class="manage-group groupChangePadding manage-employee no-top-pad">
+
+    <div class="col-sm-12 no-pad" ng-if="groupChangeRequest ||createGroupChangeRequest"><h5>
+        <a ng-click="visibleManageGroups()" id="mngGroupTextId" class=" Trinet-orange bottom-pad block medium">&lt;
+            {{::translation.manageGroup.mangeGroups}}</a></h5></div>
+
+    <div class="row no-marg pad-top-10" ng-if="!createGroupChangeRequest && !groupChangeRequest">
+        <div class="col-md-12 col-md-12 no-pad">
+            <h2 class="no-pad pad-top-10">{{::translation.manageGroup.mangeGroups}}</h2>
+            <h5 ng-bind="::companyName"></h5>
+            <input class="trinet-primary-action-btn pull-right" id="mngGroupSaveId" type="button" name="save"
+                   data-toggle="modal" data-target="#exampleModal1" data-whatever="@fat"
+                   value="Request a Group Change" ng-click="requestGroupChange()"/>
+        </div>
+        <div>
+            <div class="clearfix">&nbsp;</div>
+            <div class="panel-body no-pad">
+                <div class="tab-content">
+                    <div class="clearfix"></div>
+
+                    <div class="tab-pane active">
+                        <div class="col-md-12 col-sm-12 no-pad">
+
+                            <table class="table table-fixed table-striped manage-table no-table-border table-hover no-marg manage-employee-table"
+                                   id="manage-group-tabel">
+                                <thead>
+                                <tr class="visible">
+                                    <th width="10%" ng-bind="::translation.manageGroup.status"></th>
+                                    <th width="20%" ng-mouseleave="textboxhide()">{{::translation.manageGroup.changeTypes}}<span
+                                            id="mngGroupSearchId" class="icon-icon_filter pull-right filter-blue"
+                                            ng-click="searchPos(1)"></span>
+                                        <div ng-show="searchbox == 1" class="group-change-filter-list">
+                                            <div class="black list-sub-data"
+                                                 ng-repeat="allEmp in manageGroupData| unique: 'changeType'">
+                                                <div class="action-checkbox">
+                                                    <label class="profile-checkbox reg-font"
+                                                           for="{{allEmp.changeType}}">
+                                                        <span class="pull-left no-marg"
+                                                              ng-class="selectchange ? 'icon-icon_checkmarkwithbox blue':'icon-icon_checkmark_emptybox blue'"></span>
+                                                        <p class="pull-left pad-left-10 line-height-13"><input
+                                                                type="checkbox" ng-hide="true"
+                                                                id="{{allEmp.changeType}}"
+                                                                name="name" value="{{allEmp.changeType}}"
+                                                                ng-model="selectchange"
+                                                                ng-click="toggleSelection(allEmp.changeType);"
+                                                                class="pill-left"/>
+                                                            {{allEmp.changeType
+                                                            === null ? "(Blanks)" : allEmp.changeType}}</p>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </th>
+
+                                    <th width="15%" ng-bind="::translation.manageGroup.effectDate"></th>
+                                    <th width="20%" ng-bind="::translation.manageGroup.numberEmployee"></th>
+                                    <th width="15%" ng-bind="::translation.manageGroup.submittedOn"></th>
+                                    <th width="20%" ng-bind="::translation.manageGroup.submitBy"></th>
+                                </tr>
+                                </thead>
+
+                                <tbody id="fixed" ng-if="manageGroupRequest" class="manage-employee-table manage-group-tbody" when-scroll="getMoreData()">
+                                <tr id="report{{$index}}" ng-click="visibleGroupChange(allEmp)" class="hand"
+                                    ng-repeat="allEmp in manageGroupData |SearchCheckboxFilter:selection | filter:search | orderBy:sortTypeEmp:sortReverse">
+                                    <td width="10%" ng-bind="allEmp.status"></td>
+                                    <td width="20%" ng-bind="allEmp.changeType"></td>
+                                    <td width="15%" ng-bind="allEmp.effectiveDate"></td>
+                                    <td width="20%" ng-bind="allEmp.employeeCount" class="noe text-left "></td>
+                                    <td width="15%" ng-bind="allEmp.submittedOn"></td>
+                                    <td width="20%" ng-bind="allEmp.submittedBy"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                           <!-- <div ng-if="count>0" class="totalCount">
+                                <span class="medium">{{activeData.length}} of total Employees{{count}}</span>
+                            </div>-->
+
+                            <div ng-if="manageGroupData.length==0">
+                                <no-records></no-records>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="groupChangeRequest">
+        <div
+            ng-include="'app/components/employee/manageGroups/groupChangeRequestView.html'">
+        </div>
+    </div>
+
+    <div ng-if="createGroupChangeRequest">
+        <div
+            ng-include="'app/components/employee/manageGroups/createGroupChangeView.html'">
+        </div>
+    </div>
+</div>

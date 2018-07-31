@@ -1,0 +1,75 @@
+<div class="tn-earningStatement-section" ng-controller="earningStmtsCtrl">
+    <alert-view></alert-view>
+    <div ng-if="!payFrame">
+        <div class="heading-section">
+            <h4 class="bold profile-heading" ng-bind="::translation.money.earnings_statements.title"></h4>
+            <div class="tn-form">
+                <select id="durationList"
+                        ng-change="selectValue(chooseOption.value);selectedValueIs(chooseOption)"
+                        ng-model="chooseOption"
+                        ng-options="chooseOpt.name for chooseOpt in chooseOptions track by chooseOpt.value">
+                </select>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div ng-controller="datePickerCtrl" ng-if="chooseOption.value ==='date'">
+            <div class="flex-box date-range-selector">
+                <div class="tn-calender-input ">
+                    <input type="text" name="effDate"
+                           id="earning_effectivefrom" datepicker-popup="{{format}}"
+                           ng-model="effectiveDate" is-open="datepicker.startDate"
+                           placeholder="Start Date"
+                           max-date="maxDate" datepicker-options="dateOptions"
+                           ng-click="[dateRange($event,'startDate'),dateRange($event,'endDate')]"
+                           ng-required="true" readonly/>
+                    <span class="calendar-icon">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+                </div>
+                <h6 class="text-capitalize" ng-bind="::translation.to"></h6>
+                <div class="tn-calender-input">
+                    <input type="text" name="effDate" class="tn-calender-input"
+                           id="earning_effectiveto" datepicker-popup="{{format}}"
+                           ng-model="effectiveSecDate" is-open="datepicker.endDate"
+                           placeholder="End Date"
+                           ng-click="[dateRange($event,'startDate'),dateRange($event,'endDate')]"
+                           max-date="maxDate" datepicker-options="dateOptions" ng-required="true" readonly/>
+                    <span class="calendar-icon">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+                </div>
+                <button type="button" class="tn-button tn-edit-button tn-button-small"
+                        ng-click="runDateRange()" ng-bind="::translation.run">
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div>
+            <table id="earningDetails" class="table tn-table" >
+                <thead>
+                <tr>
+                    <th ng-bind="::translation.money.earnings_statements.advice_check_no"></th>
+                    <th ng-bind="::translation.money.earnings_statements.pay_end_date"></th>
+                    <th ng-bind="::translation.money.earnings_statements.pay_date"></th>
+                    <th ng-bind="::translation.money.earnings_statements.net_pay"></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="earning in earningData ">
+                    <td>{{earning.checkNumber}}</td>
+                    <td>{{earning.checkKey.payEndDt | date: 'MM/dd/yyyy'}}</td>
+                    <td>{{earning.checkDt | date: 'MM/dd/yyyy'}}</td>
+                    <td>{{earning.netPay | currencyFilter}}</td>
+                    <td>
+                        <a id="viewList" class="view-history-link no-marg" ng-click="viewDetails($index)"
+                           ng-bind="::translation.money.earnings_statements.view_details"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+        </div>
+    </div>
+</div>

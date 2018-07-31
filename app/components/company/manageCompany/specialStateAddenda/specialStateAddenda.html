@@ -1,0 +1,61 @@
+<!--
+Description: This is page to display state wise addendum information.
+Author:Raghavendra Kumar Bonthala
+ -->
+
+<div class="pull-left relative">
+    <alert-view></alert-view>
+    <div class="tn-row">
+        <div class="col-sm-12 col-md-12">
+            <h2 ng-bind="::translation.addenda.addenda_hdr"></h2>
+            <h6 ng-bind="::translation.addenda.addenda_desc"></h6>
+        </div>
+    </div>
+    <div class="special-state">
+        <div id="addenda">
+            <div id="content">
+                <div id="searchfield">
+                    <form class="small">
+                        <div class="col-md-12 no-pad marg-top">
+                                <div class="pull-left col-md-offset-1 col-sm-offset-1"><p class="top-5 medium"
+                                                                                      ng-bind="::translation.state">:</p>
+                            </div>
+                                <div class="col-md-4 col-sm-5">
+                                    <ui-select ng-model="country.selected" theme="selectize"
+                                               ng-disabled="disabled" id="selectStateId" class="medium">
+                                        <ui-select-match
+                                                placeholder="Choose a State">{{$select.selected.stateProvinceDesc}}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="country in countries | propsFilter: {stateProvinceDesc: $select.search}">
+                                        <span ng-if="!country.textToken">
+                                            <small
+                                                ng-bind-html="country.stateProvinceDesc | highlight: $select.search">
+                                            </small>
+                                        </span>
+                                        <span ng-if="country.textToken"
+                                              ng-bind-html="country.stateProvinceDesc | highlight: $select.search">
+                                        </span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="clearfix">&nbsp;</div>
+                            <hr/>
+                            <div ng-if="country.selected.stateProvinceDesc == null || country.selected.stateProvinceDesc == ''"
+                                 class="no-state-data clearfix">
+                                <p ng-bind="::translation.addenda.item_select"></p>
+                            </div>
+                            <div class="specialState" ng-if="country.selected.textToken"
+                                     ng-bind-html="country.selected.textToken"></div>
+                            <div class="no-state-data clearfix"
+                                 ng-if="country.selected.stateProvinceDesc != null && country.selected.stateProvinceDesc != '' && (country.selected.textToken == null || country.selected.textToken == '')">
+                                <p ng-bind="::translation.addenda.no_data_addenda"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- @end #searchfield -->
+            </div>
+        </div>
+    </div>
+</div>

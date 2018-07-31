@@ -1,0 +1,15 @@
+{
+    "reporting":{
+        "reportsAndAlertsSecurityTitle":"Reports and Alerts Security",
+        "headerEmployeeId":"Employee ID",
+        "headerName":"Name",
+        "headerAlerts":"Alerts",
+        "headerDashboard":"Dashboard",
+        "headerStandardReports":"Standard Reports",
+        "headerCustomReports":"Custom Reports",
+        "showingText":"Showing",
+        "ofText":"of",
+        "employeesText":"employees",
+        "defineUserAccessLinkText" : "Define User Access in TriNet Reports"
+    }
+}

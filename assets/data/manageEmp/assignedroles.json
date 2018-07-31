@@ -1,0 +1,211 @@
+{
+    "data": {
+        "count": "4530",
+        "employeeRoleList": [
+            {
+                "deptId": "***",
+                "employeeId": "00001001481",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "jackie breslin"
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001001014",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "tom cooper"
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001000670",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "gregory owens"
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001000300",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "lisa medrano"
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00000003235",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "connie brown"
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00000003097",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "deborah benham-gutierrez"
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00000003017",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "helen cq salamanca "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00000003009",
+                "locationId": "***",
+                "role": "HRM",
+                "roleDesc": "HRM - not in use",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "clare bridges "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "TU_ADMIN",
+                "roleDesc": "TriNet University Admin",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "STD_RPTS",
+                "roleDesc": "Standard Reports",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "SAV_PLN_ADM",
+                "roleDesc": "Savings Plan Admin",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "MTAG",
+                "roleDesc": "Manager Access",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "INITIATOR",
+                "roleDesc": "Job Change Initiator",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "I9_AUTH",
+                "roleDesc": "I9 Authorizer",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "HRSECURITY",
+                "roleDesc": "HR Security",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "HRPAY_W2",
+                "roleDesc": "View Earnings Statements",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "HRENTRY",
+                "roleDesc": "HR Entry",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "HRAdmin",
+                "roleDesc": "HR Administrator",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "HRAUTH",
+                "roleDesc": "HR Authorization",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            },
+            {
+                "deptId": "***",
+                "employeeId": "00001052463",
+                "locationId": "***",
+                "role": "EPTAG",
+                "roleDesc": "Payroll Entry",
+                "locationDesc": "***",
+                "deptDesc": "***",
+                "employeeName": "thomas denny "
+            }
+        ]
+    },
+    "_requestId": "0d4422af-73e4-40d5-956f-30192d6c27f7",
+    "_statusCode": "200",
+    "_statusText": "OK",
+    "_statusMessage": "Success"
+}

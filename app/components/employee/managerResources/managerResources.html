@@ -1,0 +1,14 @@
+<div class="tn-create-names-modal tn-modal-fullHeight tn-modal" ng-controller="managerResourcesCtrl">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center" ng-bind="::translation.managerResourcesHeading"></h4>
+    </div>
+    <div class="tn-modal-boby">
+        <p class="h5 content-text" ng-bind="::translation.managerResourcesSubHeading"></p>
+        <div class="tn-manager-resources-links">
+            <a ng-repeat="resource in managerResourceData.pdfs" ng-href="{{resource.url | contentUrl}}" class="view-history-link"  target="{{setIconState(resource) ? '_blank' : '_self'}}">
+                <i class="{{setIconState(resource) ? 'icon-icon_pdf' : 'icon-icon_word'}}"></i>
+                <span>{{::resource.label}}</span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+<div class="eeo-audit-table tn-background pull-left">
+    <alert-view></alert-view>
+
+    <div class="tn-row">
+
+        <div class="col-sm-12 col-md-12 heading">
+                <h2 class="no-marg pull-left">{{::translation.eeoAudit.heading}}</h2>
+        </div>
+
+        <div class="col-sm-12 col-md-12">
+            <p>Each year, TriNet is required to provide statistical data to the U.S. Equal Employment Opportunity Commission (EEOC) based upon the ethnicity and job category classifications for our employees. This report is referred to as the EEO-1 Survey.</p>
+
+            <p><b>EEO-1 Detail Audit Report</b><br/>A downloadable EEO-1 Detail Audit Report with worksite employee information is available to you via your Reports Page. Log into TriNet (login.trinet.com) > Reports > TriNet Reports > HR section of report listing > EEO Detail Audit Report. This report has been published for the EEO contact we have listed for your company. </p>
+
+            <p><b>EEO Preliminary Audit Page instructions</b><br/>Please review the list of worksite employees below or download the EEO-1 Detail Audit Report (per above instructions) to ensure that their EEO-1 job categories are correct. Update any unspecified job categories or ethnicities using the instructions below.</p>
+
+            <p>
+                <ul>
+                    <li class="bullet-outside">Ethnicity - For each employee whose ethnicity is listed as <b>Decline to Specify</b> or <b>Not Defined</b>, please click on the text then select an ethnicity based on visual observation or employment records, and click <b>Save</b> to save. You cannot edit ethnicity for employees who have already specified their ethnicity.
+                    <li class="bullet-outside">EEO-1 Job Category - For each employee whose job category needs to be updated, please click on the job category, select the appropriate job description and, if necessary, FLSA status from the lists, then click <b>Save</b> to save. Updates will be effective at the start of the next pay period for the employee's pay group.
+                    <li class="bullet-outside">Updates to employee information on the Preliminary EEO-1 Report panel must be effective no later than <b>November 15, 2017</b>. If the effective date is later than this, please notify your Client Services Associate of the changes needed so that they can be applied during the period in which the information will be captured.
+                    <li class="bullet-outside">This page can be filtered by employment status, ethnicity, and job category to review any missing employee information.
+                </ul>
+            </p>
+
+            <p>For more information, please refer to the EEOC's <a class="inline" ng-href="https://www.eeoc.gov/employers/eeo1survey/jobclassguide.cfm" target="_blank">{{::translation.eeoAudit.eeo_classification_guide}}</a> or <a class="inline" ng-href="https://www.eeoc.gov/employers/eeo1survey/2007instructions.cfm" target="_blank">{{::translation.eeoAudit.eeo_instruction_booklet}}</a> (see Appendix, 5. Description of Job Categories). 
+            (see Appendix, 5. Description of Job Categories). You may also reference the TriNet <a class="inline" ng-href="https://www.trinet.com/eeo-1/faq/" target="_blank">{{::translation.eeoAudit.eeo1_FAQ_Page}}</a>.</p>
+        </div>
+
+        <div class="col-sm-12 col-md-12">
+            <div class="tn-search-box-container">
+                <span class="tn-search-box-search-icon icon-icon_unified_search"></span>
+                <input id="searchText" type="text" class="tn-search-box"  ng-change="searchFilter();" placeholder="Search Employees..." ng-model="search">
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12">
+            <div class="pull-right" ng-if="filterByData.length > 0 && emplist.length !== 0">
+                <h6 class="bold text-right">{{filterByData.length}} out of {{globalCount}} Employees </h6>
+            </div><br/>
+
+            <div class="eeo-table marg-top">
+            <div id="appLoader" ng-if="spinner" class="spinning spinner-loader"></div>
+                <div class="eeo-table-head">
+                    <h6 id="mgAssign_sortType" ng-click="sortReverse = !sortReverse">
+                        <span class="pull-left" ng-bind="::translation.eeoAudit.employee_name"></span>
+                        <span ng-show="!sortReverse"
+                            class="icon-icon_a-z_sort adjIcon medium"></span>
+                        <span ng-show="sortReverse"
+                            class="icon-icon_z-a_sort adjIcon medium"></span>
+                    </h6>
+                    <h6 ng-mouseleave="textboxhide()">
+                        <span class="pull-left" ng-bind="::translation.eeoAudit.employment_status"></span>
+                        <span class="hand" id="assignPositionId" ng-click="searchPos(1)">
+                            <i class="icon-icon_filter black"></i>
+                        </span>
+                        <div ng-show="searchbox === 1 && emplist.length > 0"
+                             class="group-change-filter-list">
+                            <div ng-repeat="list in emplist | unique: 'employmentStatus'"
+                                 class="list-sub-data">
+                                <div class="action-checkbox">
+                                    <label for="{{list.employmentDesc}}">
+                                        <p><input id="{{list.employmentDesc}} {{$index}}" type="checkbox" name="name"
+                                                  value="{{list.employmentDesc}}"
+                                                  ng-model="empStatusChecked"
+                                                  ng-click="filteredEmpStatusData(list,empStatusChecked)"/>
+                                            {{list.employmentDesc === null || list.employmentDesc === undefind ? "(Blanks)" :
+                                            list.employmentDesc}}</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </h6>
+                    <h6 ng-mouseleave="textboxhide()">
+                        <span class="pull-left" ng-bind="::translation.eeoAudit.ethnicity"></span>
+                        <span class="hand" id="assignDeptId" ng-click="searchPos(2)">
+                            <i class="icon-icon_filter black"></i>
+                        </span>
+                        <div ng-show="searchbox === 2 && emplist.length > 0"
+                             class="group-change-filter-list">
+                            <div ng-repeat="list in emplist | unique: 'ethnicityCodeDesc'"
+                                 class="list-sub-data">
+                                <div class="action-checkbox">
+                                    <label for="{{list.ethnicityCodeDesc}}">
+                                        <p><input id="{{list.ethnicityCodeDesc}}" type="checkbox" name="name"
+                                                   value="{{list.ethnicityCodeDesc}}"
+                                                   ng-model="ethnicityChecked"
+                                                   ng-click="filteredEthnicData(list,ethnicityChecked)"/>
+                                            {{list.ethnicityCodeDesc === null || list.ethnicityCodeDesc === undefind ? "(Blanks)" :
+                                            list.ethnicityCodeDesc}}
+                                        </p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </h6>
+                    <h6 ng-mouseleave="textboxhide()">
+                        <span class="pull-left" ng-bind="::translation.eeoAudit.eeo_job_code"></span>
+                        <span class="hand" id="assignDirectId"  ng-click="searchPos(3)"> <i class="icon-icon_filter black"></i></span>
+                            <div ng-show="searchbox === 3  && emplist.length > 0" class="group-change-filter-list">
+                                <div ng-repeat="list in emplist | unique: 'jobDesc'" class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{list.jobDesc}}"><p><input
+                                            id="{{list.jobDesc}}" type="checkbox" name="name"
+                                            value="{{list.jobDesc}}"
+                                            ng-model="jobChecked"
+                                            ng-click="filteredJobData(list,jobChecked)"/>{{list.jobDesc
+                                            === null || list.jobDesc === undefind ? "(Blanks)" :
+                                            list.jobDesc}}</p></label>
+                                    </div>
+                                </div>
+                            </div>
+                    </h6>
+                    <div>Edit</div>
+                </div>
+                <div class="eeo-table-body" when-scroll="loadData()">
+                    <div id="assignData{{$index}}" ng-repeat="assignData in filterByData | orderBy:sortTypeEmp:sortReverse">
+                        <div>
+                            <h6 class="main-text bold">{{assignData.lastName}}, {{assignData.firstName}}</h6>
+                            <h6 class="sub-text bold">{{::translation.eeoAudit.empId}} {{assignData.employeeId}}</h6>
+                        </div>
+                        <div>
+                            <h6 class="main-text bold">{{assignData.employmentDesc}}</h6>
+                            <h6 class="sub-text bold"></h6>
+                        </div>
+                        <div>
+                            <h6 class="main-text bold" ng-hide='{{assignData.ethnicity==="NSPEC"}}'>{{assignData.ethnicityCodeDesc}}</h6>
+                            <h6 class="main-text bold pull-left" ng-hide='{{assignData.ethnicity!=="NSPEC"}}'>
+                                <button class="link-button" ng-click="changeReq($index, assignData, false)">{{assignData.ethnicityCodeDesc}} - Edit</button></h6>
+                            <h6 class="sub-text bold" ng-show="ethnicityUpdated(assignData)">{{::translation.eeoAudit.update_saved}}</h6>
+                        </div>
+
+                        <div>
+                            <h6 class="main-text bold">{{assignData.jobDesc}}</h6>
+                            <h6 class="sub-text bold" ng-show="compareDate(assignData)">{{::translation.eeoAudit.update_effective}} {{assignData.effectiveDate}}</h6>
+                        </div>
+                        <span>
+                            <h6 class="main-text bold"><button class="link-button" ng-click="changeReq($index, assignData, true)" ng-disabled="assignData.editDisabled">Edit</button></h6>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

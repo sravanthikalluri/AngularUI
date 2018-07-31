@@ -1,0 +1,399 @@
+{
+  "data": {
+    "enrollment": {
+      "basPartic": null,
+      "employee": null,
+      "enrollmentDeadlineData": {
+        "emplId": "00002453002",
+        "emplRcd": 0,
+        "enrollStatus": 0,
+        "schedId": null,
+        "benefitRcd": null,
+        "eventId": null,
+        "benProgram": null,
+        "eventClass": null,
+        "eventDt": "1900-01-01",
+        "eventStatus": null,
+        "covrgBeginDt": "1900-01-01",
+        "enrollBeginDt": "1900-01-01",
+        "enrollEndDt": "1900-01-01",
+        "planYearBeginDt": "1900-01-01",
+        "planYearEndDt": "1900-01-01",
+        "confirmId": null,
+        "confirmDt": "1900-01-01",
+        "systemDefaultedElection": "N",
+        "currentDate": null
+      },
+      "curBenefits": {
+        "currentBenefits": [
+          {
+            "planType": "10",
+            "planTypeDescr": "Medical",
+            "planDesc": "Aetna PPO 750 Pacific NW",
+            "groupNbr": "0868048",
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": null,
+              "btax": null,
+              "atax": null,
+              "beneficiaries": [
+                {
+                  "name": "Pearson,Brett W",
+                  "benefit": null,
+                  "planType": "10",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Joann D",
+                  "benefit": null,
+                  "planType": "10",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Meagan D",
+                  "benefit": null,
+                  "planType": "10",
+                  "primary": true
+                }
+              ],
+              "plantype": "10"
+            }
+          },
+          {
+            "planType": "11",
+            "planTypeDescr": "Dental",
+            "planDesc": "Delta Dental 50 Group",
+            "groupNbr": "5459-1011",
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": null,
+              "btax": null,
+              "atax": null,
+              "beneficiaries": [
+                {
+                  "name": "Pearson,Brett W",
+                  "benefit": null,
+                  "planType": "11",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Joann D",
+                  "benefit": null,
+                  "planType": "11",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Meagan D",
+                  "benefit": null,
+                  "planType": "11",
+                  "primary": true
+                }
+              ],
+              "plantype": "11"
+            }
+          },
+          {
+            "planType": "14",
+            "planTypeDescr": "Vision",
+            "planDesc": "Aetna Vision Plus Group",
+            "groupNbr": "0326338",
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": null,
+              "btax": null,
+              "atax": null,
+              "beneficiaries": [
+                {
+                  "name": "Pearson,Brett W",
+                  "benefit": null,
+                  "planType": "14",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Joann D",
+                  "benefit": null,
+                  "planType": "14",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Meagan D",
+                  "benefit": null,
+                  "planType": "14",
+                  "primary": true
+                }
+              ],
+              "plantype": "14"
+            }
+          },
+          {
+            "planType": "23",
+            "planTypeDescr": "Life and AD and D",
+            "planDesc": "3X Earnings Basic Life & AD&D",
+            "groupNbr": null,
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": {
+                "valueType": "flat_amount",
+                "value": 1000000
+              },
+              "btax": null,
+              "atax": null,
+              "beneficiaries": [
+                {
+                  "name": "Pearson,Joann D",
+                  "benefit": {
+                    "valueType": "percent",
+                    "value": 40
+                  },
+                  "planType": "23",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Brett W",
+                  "benefit": {
+                    "valueType": "percent",
+                    "value": 30
+                  },
+                  "planType": "23",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,Meagan D",
+                  "benefit": {
+                    "valueType": "percent",
+                    "value": 30
+                  },
+                  "planType": "23",
+                  "primary": true
+                },
+                {
+                  "name": "Pearson,William N",
+                  "benefit": {
+                    "valueType": "percent",
+                    "value": 100
+                  },
+                  "planType": "23",
+                  "primary": false
+                }
+              ],
+              "plantype": "23"
+            }
+          },
+          {
+            "planType": "30",
+            "planTypeDescr": "Short-Term Disability",
+            "planDesc": "66.67% STD Company Paid",
+            "groupNbr": null,
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": {
+                "valueType": "flat_amount",
+                "value": 10000
+              },
+              "btax": null,
+              "atax": null,
+              "beneficiaries": null,
+              "plantype": "30"
+            }
+          },
+          {
+            "planType": "31",
+            "planTypeDescr": "Long-Term Disability",
+            "planDesc": "66.67% LTD Company Paid",
+            "groupNbr": null,
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": {
+                "valueType": "flat_amount",
+                "value": 12500.63
+              },
+              "btax": null,
+              "atax": null,
+              "beneficiaries": null,
+              "plantype": "31"
+            }
+          },
+          {
+            "planType": "40",
+            "planTypeDescr": "401(k)",
+            "planDesc": "401K",
+            "groupNbr": null,
+            "coverage": {
+              "employeeName": "Robert Mathews",
+              "amount": null,
+              "btax": {
+                "valueType": "flat_amount",
+                "value": 880
+              },
+              "atax": {
+                "valueType": "flat_amount",
+                "value": 0
+              },
+              "beneficiaries": null,
+              "plantype": "40"
+            }
+          }
+        ],
+        "dependentDetails": [
+          {
+            "emplid": "00002453002",
+            "dependentName": "Pearson,Joann D",
+            "address1": "Happy11111",
+            "address2": "plot no:402",
+            "address3": "near hitech mmts station",
+            "address4": " ",
+            "city": "thirum",
+            "county": "US",
+            "state": "IL",
+            "postal": "123123123123",
+            "country": "USA",
+            "nationalId": "XXX-XX-6540",
+            "dependentBeneficiaryType": "Dependent and Beneficiary",
+            "relationship": "Spouse",
+            "birthdate": "06/12/1964",
+            "sex": "F",
+            "maritalStatus": "M",
+            "student": "N"
+          },
+          {
+            "emplid": "00002453002",
+            "dependentName": "Pearson,Brian N",
+            "address1": "Bridle Trails",
+            "address2": " ",
+            "address3": " ",
+            "address4": " ",
+            "city": "Kirkland",
+            "county": " ",
+            "state": "WA",
+            "postal": "98033",
+            "country": "USA",
+            "nationalId": "XXX-XX-",
+            "dependentBeneficiaryType": "Beneficiary",
+            "relationship": "Sibling",
+            "birthdate": "01/01/1902",
+            "sex": "M",
+            "maritalStatus": "D",
+            "student": "N"
+          },
+          {
+            "emplid": "00002453002",
+            "dependentName": "Pearson,William N",
+            "address1": "7510 137th ave ne",
+            "address2": " ",
+            "address3": " ",
+            "address4": " ",
+            "city": "redmond",
+            "county": " ",
+            "state": "WA",
+            "postal": "98052",
+            "country": "USA",
+            "nationalId": "XXX-XX-1386",
+            "dependentBeneficiaryType": "Beneficiary",
+            "relationship": "Parent",
+            "birthdate": "10/20/1933",
+            "sex": "M",
+            "maritalStatus": "U",
+            "student": "N"
+          },
+          {
+            "emplid": "00002453002",
+            "dependentName": "Pearson,Meagan D",
+            "address1": "Happy11111",
+            "address2": "plot no:402",
+            "address3": "near hitech mmts station",
+            "address4": " ",
+            "city": "thirum",
+            "county": "US",
+            "state": "IL",
+            "postal": "123123123123",
+            "country": "USA",
+            "nationalId": "XXX-XX-8888",
+            "dependentBeneficiaryType": "Dependent and Beneficiary",
+            "relationship": "Child",
+            "birthdate": "06/25/2003",
+            "sex": "F",
+            "maritalStatus": "S",
+            "student": "N"
+          },
+          {
+            "emplid": "00002453002",
+            "dependentName": "Pearson,Brett W",
+            "address1": "Happy11111",
+            "address2": "plot no:402",
+            "address3": "near hitech mmts station",
+            "address4": " ",
+            "city": "thirum",
+            "county": "US",
+            "state": "IL",
+            "postal": "123123123123",
+            "country": "USA",
+            "nationalId": "XXX-XX-7721",
+            "dependentBeneficiaryType": "Dependent and Beneficiary",
+            "relationship": "Child",
+            "birthdate": "06/25/2003",
+            "sex": "M",
+            "maritalStatus": "S",
+            "student": "N"
+          }
+        ]
+      },
+      "uidependents": null,
+      "benefits": null,
+      "options": null,
+      "healthcosts": null,
+      "lifecosts": null,
+      "disabilitycosts": null,
+      "stdWaiveLtdPlans": null,
+      "fsacosts": null,
+      "hsacosts": null,
+      "cureeplans": null,
+      "histeeplans": null,
+      "histdpplans": null,
+      "legends": null,
+      "content": {
+        "company": null,
+        "effDt": null,
+        "benefit_program": null,
+        "company_name": null,
+        "hq_state": null,
+        "hq_country": null,
+        "product_line": null,
+        "company_hsa_contribution": null,
+        "medical_waiver_credit": null,
+        "t2_funding_optn": null,
+        "cobra_eligible": false,
+        "confirm_id": null,
+        "confirm_dt": null,
+        "dp_existence": false,
+        "spouse_existence": false,
+        "event_class": null,
+        "event_dt": null,
+        "supp_life_enrolled": false,
+        "supp_life_flat_dollar": null,
+        "med_waiver_credit": null,
+        "period_end_dt": null,
+        "event_class_descr": null,
+        "timestamp": "2016-04-07T12:28:48-0400",
+        "disability_taxiable": false,
+        "definition": null,
+        "plan_comparison_den": "http://www.hrpassport.com/",
+        "plan_comparison_med": "http://www.hrpassport.com/",
+        "base_url": "http://www.hrpassport.com/"
+      },
+      "selections": null,
+      "ages": null,
+      "providers": null,
+      "curLifeBenPlans": null,
+      "uiErrorMsgs": null,
+      "histexcreditplans": null,
+      "countries": null,
+      "states": null,
+      "authoriaServer": null,
+      "dualCoverage": null
+    },
+    "benefitElectionSubmitted": false
+  },
+  "_statusCode": "200",
+  "_statusText": "OK",
+  "_statusMessage": "Success"
+}

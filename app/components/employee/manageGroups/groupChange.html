@@ -1,0 +1,132 @@
+<div class="alert red-alert alert-danger popUp-alert" ng-show="showErrorMessage">
+    <div class="col-sm-1">
+        <i class="icon-icon_Error error-icon" ng-click="showErrorMessage = !showErrorMessage"></i>
+    </div>
+    <div class="col-md-11 no-pad">
+        <h5 class="no-marg">
+            <span ng-bind-html="customIdAlert._statusMessage"></span>
+        </h5>
+    </div>
+</div>
+<div class="" id="exampleModal1" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label" ng-hide="createGroupChangeRequest">
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title" id="gcexampleModal1Label"
+                ng-bind="::translation.mycompany.manageGrp.change_group"></h4>
+        </div>
+        <form class="profile-details7 no-pad" id="group_chnage_form" name="groupChangeForm" ng-submit="submitForm()">
+            <div class="modal-body">
+                <div id="appLoader" class="spinning spinner-loader" ng-if="loaderSpinner"></div>
+                <div class="content-modal change-group-list-new">
+                    <ul class="list-group no-marg">
+                        <li class="list-group-item">
+                            <div class="row" ng-controller='datePickerCtrl'>
+                                <div class="col-md-11 effect-title no-pad">
+                                    <div class="col-md-3 col-sm-3 no-pad change-grp-optn"><label  ng-bind="::translation.manageGroup.effDate"></label>
+                                    </div>
+                                    <div class="input-group  customed-calendar border"
+                                         ng-class="{'error-warning': (isModelNameSubmitted && validationPatterns.createGroupChange.focus.groupChangeEffDateRequired) || (isModelNameSubmitted && validationPatterns.createGroupChange.blur.groupChangeEffDateRequired) ||
+                           validationPatterns.createGroupChange.blur.groupChangeFuturedate || validationPatterns.createGroupChange.focus.groupChangeFuturedate ||
+			               validationPatterns.createGroupChange.focus.groupChangepastdate || validationPatterns.createGroupChange.blur.groupChangepastdate}"
+                                    >
+                                        <div class="col-md-10 col-sm-10 no-pad">
+                                            <input type="text" class="form-control no-border"
+                                                   name="selectedDates" id="selectedDates"
+                                                   datepicker-popup="{{format}}"
+                                                   readonly="readonly"
+                                                   ng-model="currentDate" is-open="opened"
+                                                   ng-change="dateChanged(currentDate);"
+                                                   close-text="Close"
+                                                   ng-focus="onFocus('createGroupChange', validationPatterns.createGroupChange.focus); validationPatterns.createGroupChange.focus.groupChangeEffDateRequired=groupChangeForm.effectiveDate.$error.required ; validationPatterns.createGroupChange.blur.groupChangeEffDateRequired = false;
+                                    validationPatterns.createGroupChange.focus.groupChangepastdate = checkDateThirtyDates(currentDate); validationPatterns.createGroupChange.blur.groupChangepastdate = false;
+                                    validationPatterns.createGroupChange.focus.groupChangeFuturedate = checkDateSixtyDates(currentDate); validationPatterns.createGroupChange.blur.groupChangeFuturedate = false;"
+                                                   ng-blur="validationPatterns.createGroupChange.blur.groupChangeEffDateRequired=groupChangeForm.effectiveDate.$error.required ; validationPatterns.createGroupChange.focus.groupChangeEffDateRequired = false;
+                                   validationPatterns.createGroupChange.blur.groupChangepastdate = checkDateThirtyDates(currentDate); validationPatterns.createGroupChange.focus.groupChangepastdate = false;
+                                   validationPatterns.createGroupChange.blur.groupChangeFuturedate = checkDateSixtyDates(currentDate); validationPatterns.createGroupChange.focus.groupChangeFuturedate = false;"
+                                            />
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 no-pad text-right pull-right">
+                                            <button type="button" id="gc_calendar"
+                                                    class="btn no-bg-all bo-border btn-default Trinet-calendar"
+                                                    ng-click="open($event)">
+                                                <span class="blue"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <Validation
+                                            condition="isModelNameSubmitted && validationPatterns.createGroupChange.focus.groupChangeEffDateRequired"
+                                            msg="{{translation.required_field}}"></Validation>
+                                        <Validation condition="validationPatterns.createGroupChange.focus.groupChangepastdate"
+                                                    msg="Date cannot be more than 30 days in the past"></Validation>
+                                        <Validation condition="validationPatterns.createGroupChange.focus.groupChangeFuturedate"
+                                                    msg="Date cannot be more than 60 days in the future"></Validation>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" ng-class="department ? 'bg-light-blur':' '">
+
+                            <div class="row">
+                                <div class="col-md-5 ">
+                                    <label class="profile-checkbox">
+                                        <span ng-class="department ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                        <input type="checkbox" ng-hide="true" id="gc_department"
+                                               ng-model="department" ng-value="department"
+                                               value="{{department}}" class="no-marg"/>
+                                        <lable ng-bind="::translation.mycompany.manageGrp.dept_change"></lable>
+                                    </label>
+                                   </div>
+                                <div class="col-md-7 "><p ng-bind="::translation.mycompany.manageGrp.make_grpchnge"></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" ng-class="loc ? 'bg-light-blur':' '">
+                            <div class="row">
+                                <div class="col-md-5 ">
+                                    <label class="profile-checkbox">
+                                        <span ng-class="loc ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                        <input type="checkbox" ng-hide="true" id="gc_loc"
+                                               ng-model="loc" ng-value="loc"
+                                               value="{{loc}}" class="no-marg"/>
+                                        <lable ng-bind="::translation.mycompany.manageGrp.loc_change"></lable>
+                                    </label></div>
+                                <div class="col-md-7" ><p
+                                        ng-bind="::translation.mycompany.manageGrp.change_emploc"></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" ng-class="leavePlan ? 'bg-light-blur':' '" ng-show="showLeavePlan">
+                            <div class="row">
+                                <div class="col-md-5 ">
+                                    <label class="profile-checkbox">
+                                        <span ng-class="leavePlan ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                        <input type="checkbox" ng-hide="true" id="gc_leavePlan"
+                                               ng-model="leavePlan" ng-value="leavePlan"
+                                               value="{{leavePlan}}" class="no-marg"/>
+                                        <lable ng-bind="::translation.mycompany.manageGrp.leave_plan"></lable>
+                                    </label>
+                                   </div>
+                                <div class="col-md-7 "><p ng-bind="::translation.mycompany.manageGrp.plans_include"></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="modal-footer no-border no-pad-imp">
+                                <button type="button" id="mgGcCloseDialog" ng-class="department || leavePlan || loc? 'trinet-primary-action-btn no-marg' : 'trinet-secondary-action-btn no-marg'"
+                                        ng-bind="::translation.confirm" ng-click="closeDialog(groupChangeForm)" ng-disabled="!(department || leavePlan || loc)"></button>
+                                <button type="button" id="mgGCClosePanel" class="trinet-secondary-action-btn no-marg"
+                                        ng-bind="::translation.cancel" ng-click="closePanel()"></button>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<!--
+Program: work-inbox-details.html
+Description: It displays details of each task.
+ -->
+<!-- Modal -->
+<div>
+    <div class="modal-header">
+        <h4 class="modal-title">Full Workflow Review</h4>
+    </div>
+    <div class="modal-body">
+        <table class="table manage-table1 table-hover" width="100%;">
+            <caption class="workspan">
+                <h6>
+                    <span>Process:</span>
+                    <span class="subName"><strong>{{ process }}</strong></span>
+                </h6>
+                <h6>
+                    <span>Subject:</span>
+                    <span class="subName"><strong>{{ detailsHeaderData.subjectName }}</strong></span>
+                </h6>
+                <h6 ng-if="detailsHeaderData.position">
+                    <span>Position:</span>
+                    <span class="subName"><strong>{{ detailsHeaderData.position }} , {{ detailsHeaderData.positionRelationName }} ( {{ detailsHeaderData.positionRelationId }} )</strong> </span>
+                </h6>
+
+            </caption>
+            <thead>
+            <tr>
+                <th ng-repeat="(key, value) in detailsHeaderNames">
+                    <span ng-hide="key == 'effectiveDate'">{{value}}</span>
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="border-btm" ng-repeat="d in detailsData">
+                <td  ng-repeat="(key, value) in detailsHeaderNames">
+                    <span ng-hide="key == 'effectiveDate'">{{d[key] | hyphen}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="remarks" ng-if="detailsHeaderData.remarks">
+            <h6><strong>Remarks: </strong></h6>
+            <h6>{{ detailsHeaderData.remarks }}</h6>
+        </div>
+
+
+    </div>
+    <div class="modal-footer no-pad">
+        <button type="button" class="trinet-secondary-action-btn workbutton" ng-click="closeModal()">Cancel</button>
+    </div>
+</div>

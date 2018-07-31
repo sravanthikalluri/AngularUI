@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.toggle-button-prop, .emptyswitch-inner:before, .emptyswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 21px;
+    font-size: 10px;
+    color: #ffffff;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.emptyswitch {
+    position: relative;
+    width: 60px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.emptyswitch-checkbox {
+    display: none;
+}
+
+.emptyswitch-checkbox:checked + .emptyswitch-label .emptyswitch-inner {
+    margin-left: 0;
+}
+
+.emptyswitch-checkbox:checked + .emptyswitch-label .emptyswitch-switch {
+    right: 0;
+}
+
+.emptyswitch-label {
+    height: 20px;
+    width: 60px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    /*border: 2px solid $color_mountain_mist_approx;*/
+    border-radius: 20px;
+}
+
+.emptyswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.emptyswitch-inner:before {
+    content: "";
+    padding-left: 3px;
+    background-color: #69BE28;
+    color: #ffffff;
+    border-radius: 10px 0px 0px 10px;
+    -moz-border-radius: 10px 0px 0px 10px;
+    -webkit-border-radius: 10px 0px 0px 10px;
+    height: 20px;
+}
+
+.emptyswitch-inner:after {
+    content: "";
+    padding-right: 6px;
+    background-color: #888888;
+    color: #ffffff;
+    text-align: left;
+    left: 0;
+    border-radius: 0px 10px 10px 0px;
+    -moz-border-radius: 0px 10px 10px 0px;
+    -webkit-border-radius: 0px 10px 10px 0px;
+    height: 20px;
+}
+
+.emptyswitch-switch {
+    display: block;
+    width: 14px;
+    margin: 2px;
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 31px;
+    transition: all 0.3s ease-in 0s;
+}
+
+/*# sourceMappingURL=empty-button.css.map */

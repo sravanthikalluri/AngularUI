@@ -1,0 +1,135 @@
+<div class="my-money retirement-plan col-md-12 col-sm-12">
+    <alert-view></alert-view>
+
+    <div class="row">
+        <div class="col-md-12 no-pad">
+            <h2 ng-bind="::translation.money.retirement_plan.title"></h2>
+            <h5 ng-bind="retirementData[0].currentYear" class="retirementdata"></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 retirement-bordered _retirement-border">
+            <h3 class="pull-left no-border"><span ng-bind="::translation.money.retirement_plan.roth_combination"></span>
+            </h3>
+            <div class="pull-right">
+                <a href="#{{ssoURL}}" target="_blank" id="retirelink" class="trinet-primary-action-btn pull-right" ng-bind="get401KLabel()"></a>
+            </div>
+        </div>
+        <div class="row no-marg" ng-if="isLoading">
+            <div class="clearfix"></div>
+            <div class="col-md-6 right-date text-right pull-right no-pad">
+
+                <span class="medium pull-right _nextPayadjust">
+                            <span class="nextpaydate" ng-bind="::translation.your_next_pay_date"></span>
+               </span>
+                <div class="clearfix"></div>
+                <h1 class="retirement-date no-marg _adjustdate" ng-bind="::nextCheckIssueDate"></h1>
+            </div>
+            <div class="clearfix visible-sm">&nbsp;</div>
+            <div class="col-md-4">
+                <div class="row no-marg">
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="col-md-9 col-sm-12 no-pad text-center my-tooltip " id="mytooltip">
+                        <canvas tc-chartjs-doughnut chart-options="options" chart-data="retirementDoughnutData" width="242" height="242"></canvas>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row ">
+
+                    <div class="values _retirement-values">
+                        <strong class="medium">
+                            <span ng-if="isSetGoal === 'true'" id="goalAmount" ng-bind="::translation.goal_amount"></span>
+                            <span ng-if="isSetGoal === 'false'" id="maximum" ng-bind="::translation.maximum"></span>
+                        </strong>
+                        <p ng-if="goal_amt === null || goal_amt === 0 ">{{federalAmount | currencyFilter}}</p>
+                        <p class="ellipsis" ng-if="goal_amt != null && goal_amt !== 0 ">{{goal_amt | currencyFilter}}</p>
+                        <span id="changegoal" class="goal-amount" ng-if="retirementData">
+                            <a class="action medium" ng-click="changeGoalAmount()" ng-bind="::translation.change"></a>
+                        </span>
+
+                    </div>
+
+                </div>
+                <div class="col-md-9 col-sm-8 no-pad text-center donut-details-adj">
+                    <div class="col-md-12  range-text no-pad">
+                        <strong class="medium"><span
+                                ng-bind="::translation.money.retirement_plan.total_ytd_contribution"></span></strong>
+                        <h3 id="totalYTDContribution" ng-if="retirementData[0].totalYtd==null" class="total-value no-border top-5">$0.00 </h3>
+                        <h3 id="totalYTDContribution" ng-if="retirementData[0].totalYtd!=null" class="total-value no-border top-5">
+                            {{retirementData[0].totalYtd |
+                            currencyFilter}}</h3>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="clearfix">&nbsp;</div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row no-marg">
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row donut-details-adj">
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-6 col-sm-6 pad-L-4">
+                            <span id="elected" ng-if="retirementData[0].coverageElect === 'E'" class="elected" ng-bind="::translation.enrolled"></span>
+                            <span id="waived" ng-if="retirementData[0].coverageElect === 'W'" class="waived" ng-bind="::translation.not_enrolled"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 text-right no-line-height last-pay-date ">
+                            <p ng-bind="::translation.last_contribution"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 no-pad list">
+                        <ul id="checkissue" class="no-pad">
+                            <li>
+                                <div class="col-md-12 col-sm-12 bordered ">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <h4 class="heading-marg" ng-bind="::translation.k401"></h4>
+                                            <p ng-if="! retirementData[0].PreTax.pctGross || retirementData[0].PreTax.pctGross <= 0">
+                                                0% {{::translation.money.retirement_plan.of_earnings}}</p>
+                                            <p ng-if="retirementData[0].PreTax.pctGross > 0">{{retirementData[0].PreTax.pctGross }}% {{::translation.money.retirement_plan.of_earnings}}</p>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+
+                                            <h4 id="lastPayDeduction401k" class="heading-marg final-price" ng-if="retirementData[0].PreTax.lastPayDeduction401k == null">$0.00</h4>
+                                            <h4 id="lastPayDeduction401k" class="heading-marg final-price" ng-if="retirementData[0].PreTax.lastPayDeduction401k != null">
+                                                ${{retirementData[0].PreTax.lastPayDeduction401k | number:2}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-12  col-sm-12 bordered ">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <h4 class="heading-marg">{{::translation.money.retirement_plan.roth}}</h4>
+                                            <p ng-if="! retirementData[0].Roth.pctGrossAtax || retirementData[0].Roth.pctGrossAtax <= 0 ">
+                                                $0 {{::translation.money.retirement_plan.per_paycheck}}</p>
+                                            <p ng-if="retirementData[0].Roth.pctGrossAtax > 0">
+                                                {{retirementData[0].Roth.pctGrossAtax}}% {{::translation.money.retirement_plan.of_earnings}}</p>
+                                        </div>
+                                        <div id="Finalprice" class="col-md-6 text-right">
+
+                                            <h4 id="lastPayDeductionRoth" class="heading-marg final-price" ng-if="retirementData[0].Roth.lastPayDeductionRoth==null">$0.00</h4>
+                                            <h4 id="lastPayDeductionRoth" class="heading-marg final-price" ng-if="retirementData[0].Roth.lastPayDeductionRoth!=null">
+                                                ${{retirementData[0].Roth.lastPayDeductionRoth | number:2}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-marg" ng-if="retirementData[0].planType ===  'sep'">
+            <div class="clearfix"></div>
+            <div class="col-md-8 right-date text-right pull-right">
+                <p ng-bind="::translation.money.retirement_plan.sep_plan_txt"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,266 @@
+<div class="emergency-contact-modal tn-modal-fullHeight tn-modal">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.profile_personal.set_as_primary_contact"></h4>
+    </div>
+    <form class="tn-form" name="emergencyCreateForm" id="emergency_create_form" ng-submit="submitForm()" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <div class="tn-checkbox fullwidth marg-top-15 no-margin-left">
+                <input id="primaryContact" ng-model="createEmergencyContact.star" type="checkbox" ng-click="setPrimaryContact(createEmergencyContact.star)"/>
+                <label for="primaryContact" ng-bind="::translation.profile_personal.set_as_primary_contact"> </label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6 no-pad-left marg-top-15">
+                <div class="required-field">
+                    <label for="emergencymodelname" ng-bind="::translation.profile_personal.names"></label>
+                </div>
+                <div>
+                    <input type="text" class="form form-control" ng-model="createEmergencyContact.contactName"
+                           id="emergencymodelname"
+                           ng-disabled="isEditEmergencyContact"
+                           placeholder="" name="names" ng-required="true" ng-maxlength="60"
+                           ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormNamesRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormNamesRequired)}"
+                           ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus); validationPatterns.emergencyCreate.focus.emergencyCreateFormNamesRequired=emergencyCreateForm.names.$error.required;
+                                            validationPatterns.emergencyCreate.blur.emergencyCreateFormNamesRequired = false;"
+                           ng-blur="validationPatterns.emergencyCreate.focus.emergencyCreateFormNamesRequired = false; validationPatterns.emergencyCreate.blur.emergencyCreateFormNamesRequired=emergencyCreateForm.names.$error.required"/>
+                    <Validation
+                        condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormNamesRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+
+            </div>
+            <div class="col-sm-6 no-pad-left marg-top-15">
+                <div class="required-field">
+                    <label for="preferredPhone" ng-bind="::translation.profile_personal.phone"></label>
+                </div>
+                <div>
+                    <phone-format id="preferredPhone" placeholder="'999-999-9999'" model='createEmergencyContact.telephoneNumber1' is-required="true" is-form-submitted="isEmergencyContactFormSubmitted"></phone-format>
+                    <span class="phoneHintText">(123) 123-1234</span>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6 no-pad-left marg-top-15">
+                <div class="required-field">
+                    <label for="emergencymodelrelations" ng-bind="::translation.profile_personal.relationship"></label>
+                </div>
+                <div>
+                    <select class="form form-control" id="emergencymodelrelations"
+                            ng-options="rs.value for rs in relationShipsData track by rs.value"
+                            ng-model='createEmergencyContact.designeeRelation'
+                            ng-required="true"
+                            name="relationship"
+                            ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormrelationshipRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormrelationshipRequired)}"
+                            ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormrelationshipRequired=emergencyCreateForm.relationship.$error.required;
+                                                    validationPatterns.emergencyCreate.blur.emergencyCreateFormrelationshipRequired = false;"
+                            ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormrelationshipRequired=emergencyCreateForm.relationship.$error.required;
+                                                    validationPatterns.emergencyCreate.focus.emergencyCreateFormrelationshipRequired = false;">
+                        <option value="" disabled selected
+                                ng-bind="::translation.profile_personal.select"></option>
+                    </select>
+                    <Validation
+                        condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormrelationshipRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="tn-horizontal-divider"></div>
+            <div class="home-address-section">
+                <div class="col-sm-12 no-pad">
+                    <h4 class="profile-heading proxima-nova-semibold">Home Address</h4>
+                    <div class="tn-checkbox fullwidth marg-top-15 no-margin-left">
+                        <input ng-model="checked"
+                               ng-click="sameAsAddressFn(checked)" name="sameaddress" id="sameaddress" type="checkbox"/>
+                        <label for="sameaddress" ng-bind="::translation.profile_personal.sameAddressEmp"></label>
+                    </div>
+                </div>
+                <div class="col-sm-12 no-pad">
+                    <fieldset id="addressDetails" ng-disabled="sameAsAddress">
+                        <div class="marg-top-15">
+                            <div class="required-field">
+                                <label>Country</label>
+                            </div>
+                            <div>
+                                <select id="emergencymodelcountry" class="form form-control"
+                                        ng-model='createEmergencyContact.county' name="country"
+                                        ng-required="true"
+                                        ng-options="foa.value for foa in countriesData track by foa.key"
+                                        class="form-control"
+                                        ng-change='populateStates(createEmergencyContact.county)'
+                                        ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormcountryRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormcountryRequired)}"
+                                        ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormcountryRequired=emergencyCreateForm.country.$error.required; validationPatterns.emergencyCreate.blur.emergencyCreateFormcountryRequired = false;"
+                                        ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormcountryRequired=emergencyCreateForm.country.$error.required; validationPatterns.emergencyCreate.focus.emergencyCreateFormcountryRequired = false;">
+                                    <option value="" selected
+                                            ng-bind="::translation.profile_personal.selectCountry"></option>
+                                </select>
+                                <Validation
+                                    condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormcountryRequired"
+                                    msg="{{translation.required_field}}"></Validation>
+                            </div>
+                        </div>
+
+                        <div class="marg-top-15">
+                            <div class="required-field">
+                                <label>Street Name</label>
+                            </div>
+                            <div class="marg-top-15">
+                                <!-- ng-class="{ 'has-error' : addressForm.line1.$invalid && (addressForm.line1.$dirty || submitted)}">-->
+                                <input type="text" class="form form-control" ng-model='createEmergencyContact.address1'
+                                       placeholder="" name="line1" ng-required="true" ng-maxlength="55"
+                                       id="emergencymodelline1"
+                                       ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormline1Required) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormline1Required)}"
+                                       ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormline1Required=emergencyCreateForm.line1.$error.required; validationPatterns.emergencyCreate.blur.emergencyCreateFormline1Required = false;"
+                                       ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormline1Required=emergencyCreateForm.line1.$error.required; validationPatterns.emergencyCreate.focus.emergencyCreateFormline1Required = false; "/>
+                                <Validation
+                                    condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormline1Required"
+                                    msg="{{translation.required_field}}"></Validation>
+                            </div>
+                            <div class="marg-top-15">
+                                <input type="text" class="form form-control" placeholder="" name="line2"
+                                       ng-maxlength="55"
+                                       ng-model='createEmergencyContact.address2' id="emergencymodelline2"></div>
+                        </div>
+                        <div class="marg-top-15">
+                            <input type="text" ng-model='createEmergencyContact.address3' ng-maxlength="55"
+                                   class="form form-control no-marg-imp" placeholder="" name="line3"
+                                   id="emergencymodelline3">
+                        </div>
+
+
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6 no-pad-left marg-top-15">
+                            <div class="required-field">
+                                <label ng-bind="::translation.city"></label>
+                            </div>
+                            <div>
+                                <input type="text" class="form form-control no-marg-imp" placeholder=""
+                                       ng-maxlength="50" name="city" ng-required="true"
+                                       ng-model='createEmergencyContact.city'
+                                       id="emergencymodelcity"
+                                       ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormcityRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormcityRequired)}"
+                                       ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormcityRequired=emergencyCreateForm.city.$error.required; validationPatterns.emergencyCreate.blur.emergencyCreateFormcityRequired = false;"
+                                       ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormcityRequired=emergencyCreateForm.city.$error.required; validationPatterns.emergencyCreate.focus.emergencyCreateFormcityRequired = false; "/>
+                                <Validation
+                                    condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormcityRequired"
+                                    msg="{{translation.required_field}}"></Validation>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 no-pad-left marg-top-15">
+                            <div class="required-field">
+                                <label ng-if="isCACountry" ng-bind="::translation.canadaStateName"></label>
+                                <label ng-if="isUSCountry" ng-bind="::translation.usStateName"></label>
+                            </div>
+                            <div>
+                                <select id="emergencymodelstates" class="form form-control"
+                                        ng-options="foa.value for foa in statesData track by foa.key"
+                                        ng-model='createEmergencyContact.state'
+                                        ng-required="true" name="state"
+                                        ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormstatepRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormstatepRequired)}"
+                                        ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormstatepRequired=emergencyCreateForm.state.$error.required; validationPatterns.emergencyCreate.focus.emergencyCreateFormstatepRequired = false;"
+                                        ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormstatepRequired=emergencyCreateForm.state.$error.required; validationPatterns.emergencyCreate.blur.emergencyCreateFormstatepRequired = false;">
+                                    <option value="" disabled selected
+                                            ng-bind="::translation.profile_personal.select"></option>
+                                </select>
+                                <Validation
+                                    condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormstatepRequired"
+                                    msg="{{translation.required_field}}"></Validation>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div ng-if="isUSCountry" class="marg-top-15">
+                            <div class="required-filed">
+                                <label ng-bind="::translation.usPostalCodeName"></label>
+                            </div>
+                            <div>
+                                <input type="text" ng-model='createEmergencyContact.postalCode'
+                                       ng-minlength="5" ng-maxlength="9" ng-required="true"
+                                       class="form form-control postal" placeholder=""
+                                       ng-pattern="/^(\d{5}|\d{9})$/"
+                                       id="emergencymodelpostalus" name="postal"
+                                       ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalRequired) || validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalPattern || validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern || validationPatterns.emergencyCreate.focus.postalminlength || validationPatterns.emergencyCreate.blur.postalminlength || validationPatterns.emergencyCreate.focus.postalmaxlength || validationPatterns.emergencyCreate.blur.postalmaxlength}"
+                                       ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired=emergencyCreateForm.postal.$error.required; validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalRequired = false;validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern=emergencyCreateForm.postal.$error.pattern; validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalPattern = false;validationPatterns.emergencyCreate.focus.postalminlength=emergencyCreateForm.postal.$error.minlength;validationPatterns.emergencyCreate.blur.postalminlength=false;validationPatterns.emergencyCreate.focus.postalmaxlength=emergencyCreateForm.postal.$error.maxlength;validationPatterns.emergencyCreate.blur.postalmaxlength=false;"
+                                       ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalRequired=emergencyCreateForm.postal.$error.required; validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired = false;validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern = false; validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalPattern=emergencyCreateForm.postal.$error.pattern;validationPatterns.emergencyCreate.focus.postalminlength=false;validationPatterns.emergencyCreate.blur.postalminlength=emergencyCreateForm.postal.$error.minlength;validationPatterns.emergencyCreate.focus.postalmaxlength=false;validationPatterns.emergencyCreate.blur.postalmaxlength=emergencyCreateForm.postal.$error.maxlength;"/>
+
+                                <Validation
+                                    condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired"
+                                    msg="{{translation.required_field}}"></Validation>
+                                <Validation
+                                    condition="validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern"
+                                    msg="ZIP Code must be five or nine digits"></Validation>
+                                <Validation condition="validationPatterns.emergencyCreate.focus.postalminlength"
+                                            msg="ZIP Code must be five or nine digits"></Validation>
+                                <Validation condition="validationPatterns.emergencyCreate.focus.postalmaxlength"
+                                            msg="ZIP Code must be five or nine digits"></Validation>
+                            </div>
+
+                        </div>
+                        <div ng-if="isCACountry" class="marg-top-15">
+                            <div class="required-filed">
+                                <label ng-bind="::translation.canadaPostalCodeName"></label>
+                            </div>
+                            <div>
+                                <input type="text" ng-model='createEmergencyContact.postalCode'
+                                       ng-minlength="6" ng-maxlength="7" ng-required="true"
+                                       class="form form-control postal" placeholder=""
+                                       ng-pattern="/^([a-zA-Z]\d[a-zA-Z]\s\d[a-zA-Z]\d|[a-zA-Z]\d[a-zA-Z]\d[a-zA-Z]\d)$/"
+                                       id="emergencymodelpostal" name="postal"
+                                       ng-class="{'error-warning': (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired) || (isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalRequired) || validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalPattern || validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern || validationPatterns.emergencyCreate.focus.postalminlength || validationPatterns.emergencyCreate.blur.postalminlength || validationPatterns.emergencyCreate.focus.postalmaxlength || validationPatterns.emergencyCreate.blur.postalmaxlength}"
+                                       ng-focus="onFocus('emergencyCreate', validationPatterns.emergencyCreate.focus);validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired=emergencyCreateForm.postal.$error.required; validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalRequired = false; validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalPattern = false; validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern=emergencyCreateForm.postal.$error.pattern;validationPatterns.emergencyCreate.focus.postalminlength=emergencyCreateForm.postal.$error.minlength;validationPatterns.emergencyCreate.blur.postalminlength=false;validationPatterns.emergencyCreate.focus.postalmaxlength=emergencyCreateForm.postal.$error.maxlength;validationPatterns.emergencyCreate.blur.postalmaxlength=false;"
+                                       ng-blur="validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalRequired=emergencyCreateForm.postal.$error.required; validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired = false;validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern = false; validationPatterns.emergencyCreate.blur.emergencyCreateFormpostalPattern=emergencyCreateForm.postal.$error.pattern;validationPatterns.emergencyCreate.focus.postalminlength=false;validationPatterns.emergencyCreate.blur.postalminlength=emergencyCreateForm.postal.$error.minlength;validationPatterns.emergencyCreate.focus.postalmaxlength=false;validationPatterns.emergencyCreate.blur.postalmaxlength=emergencyCreateForm.postal.$error.maxlength"/>
+                                <Validation
+                                    condition="isEmergencyContactFormSubmitted && validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalRequired"
+                                    msg="{{translation.required_field}}"></Validation>
+                                <Validation
+                                    condition="validationPatterns.emergencyCreate.focus.emergencyCreateFormpostalPattern"
+                                    msg="Invalid characters"></Validation>
+                                <Validation condition="validationPatterns.emergencyCreate.focus.postalminlength"
+                                            msg="Postal Code must be six digits"></Validation>
+                                <Validation condition="validationPatterns.emergencyCreate.focus.postalmaxlength"
+                                            msg="Postal Code must be six digits"></Validation>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="tn-horizontal-divider"></div>
+
+            <div class="notes-section">
+                <div class="col-sm-12 no-pad">
+                    <h4 class="profile-heading proxima-nova-semibold" ng-bind="::translation.notes"></h4>
+                </div>
+                <div class="col-sm-12 no-pad">
+                    <div class="col-sm-6 no-pad-left marg-top-15">
+                        <label for="emergencymodelnotes">Notes (max {{250-createEmergencyContact.notes.length}} characters)</label>
+                        <div>
+                            <textarea class="form-control emergency-textarea"
+                                rows="4"
+                                id="emergencymodelnotes"
+                                name="notes"
+                                placeholder=""
+                                ng-model="createEmergencyContact.notes"
+                                ng-required="false"
+                                maxlength="250"
+                                ng-trim="false"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="tn-modal-footer text-right">
+
+            <button class="tn-button tn-cancel-button" id="emergencymodelcancel" name="cancel" ng-click="cancel()"
+                    ng-bind="::translation.cancel"></button>
+            <button name="save" id="emergencymodelsave" class="tn-button tn-action-button "
+                    ng-click="saveData(emergencyCreateForm)"
+                    type="submit" ng-bind="::translation.save"></button>
+        </div>
+    </form>
+</div>

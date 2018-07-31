@@ -1,0 +1,104 @@
+@import '../../global';
+
+.social-media {
+
+  h2 {
+    padding: 1px 0 5px 0px;
+    margin-top: 5px;
+  }
+  .social-text {
+    padding: $padding*2 0;
+    color: $Trinet-dark-gray;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px;
+  }
+  .social-block {
+    @extend .block;
+    padding: $padding+5 $padding;
+    height: 120px;
+
+    span {
+      font-size: 48px;
+      color: $Trinet-dark-gray;
+      line-height: 88px;
+    }
+
+  }
+
+  ul {
+    float: left;
+  }
+
+  li {
+    padding: 0px;
+  }
+  a {
+    border: 1px solid $White;
+    float: left;
+    background: $Background;
+    height: 120px;
+    width: 100%;
+
+    label {
+      color: $Trinet-blue;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: $margin/2;
+    }
+
+    p {
+      color: $Trinet-gray;
+      font-size: 16px;
+      max-height: 70px;
+      overflow: hidden;
+
+    }
+
+    &:hover {
+      border: 1px solid $Trinet-blue;
+      background: $White;
+
+      span {
+        color: $Trinet-blue;
+
+      }
+
+    }
+
+  }
+
+  li:nth-of-type(odd) {
+    border: $White 1px solid;
+    border-width: 0 4px 4px 0;
+  }
+  li:nth-of-type(even) {
+    border: $White 1px solid;
+    border-width: 0 0px 4px 0;
+  }
+
+  @media all and (max-width: $tablets) {
+    .social-media {
+
+      .social-block {
+        padding: $padding/2 $padding;
+
+        span {
+          line-height: 120px;
+        }
+
+      }
+    }
+
+    .list-item {
+      margin: 3px $margin;
+    }
+    .my-money .sno {
+      font-size: 20px;
+    }
+  }
+
+}
+
+
+

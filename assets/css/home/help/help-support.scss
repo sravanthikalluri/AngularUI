@@ -1,0 +1,234 @@
+@import '../../global';
+
+.help-support {
+  @extend .block;
+
+  h3 {
+    font-size: 24px;
+    color: $Trinet-blue !important;
+    margin: 0;
+    font-weight: 600;
+    padding-left: 0 !important;
+  }
+
+  .section-block {
+    @extend .block;
+
+    .title {
+      @extend .block;
+      border-bottom: 1px solid $Trinet-gray;
+      padding: 0 5 0 !important;
+      font-size: 20px;
+      color: $Trinet-dark-gray;
+      font-weight: 600;
+      margin-bottom: $margin;
+    }
+
+    .panel-heading {
+      border: none;
+      font-size: 14px;
+
+    }
+
+    .panel-body {
+      border: 1px solid $Lighter-gray;
+      padding: $padding+5;
+      background: $Background;
+
+    }
+
+    .employee-enquiry {
+      @extend .block;
+
+      p {
+        color: $Trinet-dark-gray;
+        font-size: 14px;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: $Trinet-dark-gray !important;
+      }
+
+      ul {
+        padding: 0;
+
+        li {
+          list-style: disc;
+          list-style-position: inside;
+          color: $Trinet-dark-gray;
+          font-size: 14px;
+          padding-left: $padding;
+        }
+      }
+    }
+
+    .co-ordinator {
+      @extend .block;
+      border: 1px solid $Lighter-gray;
+      padding: $padding+6;
+      background: $White;
+
+      .title {
+        border-bottom: 1px solid $Trinet-gray;
+        padding-bottom: $padding !important;
+
+        img {
+          width: 45px;
+          height: 45px;
+          margin-right: $margin+2;
+        }
+        h3 {
+          font-size: 24px;
+          color: $Trinet-dark-gray !important;
+          margin: 0;
+          font-weight: 600;
+          padding: 0;
+        }
+        p {
+          font-size: 14px;
+          color: $Trinet-dark-gray !important;
+          margin: 0;
+          font-weight: 400;
+        }
+      }
+
+      .details {
+        padding: $padding;
+        color: $Trinet-dark-gray !important;
+        font-size: 14px;
+
+        .email {
+          @extend .block;
+          margin-top: $margin;
+          padding: 0;
+        }
+
+        [class*="icon-"] {
+          font-size: 20px;
+          color: $Trinet-dark-gray !important;
+          margin-right: $margin;
+          width: 22px !important;
+          height: 20px;
+          display: inline-block;
+        }
+        a {
+          color: $Trinet-orange;
+          display: inline-block;
+
+          &:hover {
+            color: $Trinet-orange;
+            text-decoration: underline;
+          }
+        }
+
+      }
+
+    }
+
+    .case-star {
+
+      @extend .block;
+      p {
+        margin: $margin/2 0;
+      }
+
+    }
+
+  }
+
+  .suggestion {
+    @extend .block;
+
+    p {
+      font-size: 14px;
+      margin-bottom: $margin;
+
+      a {
+        color: $Trinet-orange;
+
+        &:hover {
+          color: $Trinet-orange;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .email-pos-adjustment {
+    position: relative;
+    top: 3px;
+  }
+
+  .claculator-titles {
+    @extend .block;
+
+    h3 {
+      color: $Trinet-blue;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 0 0 $padding/2;
+    }
+    p {
+      font-size: 12px;
+      color: $Trinet-gray;
+      height: 50px;
+      overflow: hidden;
+
+    }
+
+    ul {
+      @extend .block;
+      padding: 0;
+
+      li {
+        @extend .in-block;
+        list-style: none;
+        padding: 0;
+        border-right: 4px solid $White;
+        border-bottom: 4px solid $White;
+
+        .calculator-block {
+          background: $Background;
+          height: 60px;
+          padding: $padding $padding+5;
+          border: 1px solid $Background;
+
+          &:hover {
+            background: $White;
+            border: 1px solid $Trinet-blue;
+          }
+        }
+
+      }
+    }
+
+  }
+  .help-support .section-block .panel.panel-primary .empty-head-adj-45 {
+    margin-bottom: 35px;
+  }
+
+  .help-support-title {
+    font-size: 20px;
+    color: #494949;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .help-support-solution-section {
+    padding: 15px 15px 15px 0;
+    background: $Background;
+    border: 1px solid $Lighter-gray;
+  }
+}
+
+.help-support-title-block {
+  background: $Background;
+  padding: 0 15px;
+  border-bottom: 1px solid $White;
+  border-left: 2px solid $White;
+}
+
+.case-stats {
+  padding: 7px 0 0 2px !important;
+}

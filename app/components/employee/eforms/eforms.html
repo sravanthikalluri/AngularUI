@@ -1,0 +1,21 @@
+
+<div class="tn-Acknowledgements-section" id="tab7" ng-controller="eformsCtrl">
+    <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.acknowledgements"></h4>
+        <!--<no-records></no-records>-->
+        <accordion close-other="true" class="tn-accordion">
+            <accordion-group heading="{{eformData.formDesc}}" is-open="isopen"
+                             ng-repeat="eformData in eformDataTab.eforms_data">
+                <accordion-heading>
+                    <span class="accordion-heading">{{eformData.formDesc}}</span>
+                    <span class="pull-right accordion-status empStatus">
+                        <span class="rounded-rectangle accepted " ng-if="eformData.formStatus === 'Accepted'">{{::translation.assignmanager.accepted}}</span>
+                        <span class="rounded-rectangle not-complete" ng-if="eformData.formStatus !='Accepted'">{{::translation.assignmanager.notCompleted}} </span>
+                        <span class="accept-date"
+                              ng-if="eformData.formStatus === 'Accepted'">{{::translation.assignmanager.acceptedOn}} {{eformData.timeStamp ? eformData.timeStamp : "" | date: 'MM/dd/yyyy'}}</span>
+                           <!-- <i class="icon-status icon-icon_forward"></i>-->
+                    </span>
+
+                </accordion-heading>
+            </accordion-group>
+        </accordion>
+ </div>

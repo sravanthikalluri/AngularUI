@@ -1,0 +1,756 @@
+@import '../global';
+
+.manage-employee {
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  table {
+ &:not(.dropdown-menu table){
+    margin: 0 !important;
+
+    thead {
+      border-bottom: 5px solid $Trinet-blue;
+      border-top: 5px solid $Trinet-blue;
+      tr {
+        th {
+          font-size: 14px;
+          padding: 3px $padding/2;
+
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          font-size: 14px;
+          padding: 5px 8px !important;
+        }
+      }
+    }
+}
+  }
+
+  table.no-table-border {
+    tbody tr {
+      border-bottom: 0px !important;
+
+      td {
+        padding: 10px !important;
+      }
+    }
+  }
+
+  .employee-tabs-head {
+    @extend .block;
+    border-bottom: 1px solid $Trinet-gray;
+    margin-bottom: $margin/2;
+
+    ul.panel-tabs {
+      margin-top: 7px;
+    }
+
+  }
+
+  .table-content-block {
+    @extend .block;
+    overflow-y: auto;
+    max-height: 380px;
+  }
+
+  .search-box {
+    background: #fff;
+    border: 1px solid #494949;
+    width: 100%;
+    input {
+      width: 80% !important;
+      color: black;
+    }
+  }
+
+}
+
+.money-tab {
+
+  .panel-default a .panel-heading {
+    color: #333333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    border-bottom: 1px solid $Trinet-gray;
+  }
+
+  .panel-group .panel {
+    border: none;
+    border-bottom: 1px solid $Trinet-gray;
+  }
+
+  a.trinet-primary-action-btn {
+    padding: $padding/2 $padding;
+    text-decoration: none;
+    line-height: 22px;
+    margin: 0;
+  }
+  .transaction-heading {
+    p {
+      font-size: 14px;
+      color: $Trinet-dark-gray;
+      padding-top: $padding*2.5;
+      margin: 0;
+    }
+  }
+}
+
+.organisation-navigation {
+  @extend .block;
+  padding-bottom: 20px;
+  [class*="icon-"] {
+    position: relative;
+    top: 5px;
+    padding-right: $padding/2;
+    font-size: 25px !important;
+    color: $Trinet-dark-blue !important;;
+  }
+
+  a {
+    font-size: 13px;
+    color: $Trinet-dark-blue !important;
+    padding-top: 4px;
+    font-weight: 600;
+  }
+}
+
+.end-process-btn {
+  cursor: pointer;
+}
+
+table.end-payment-popup {
+  tbody {
+    tr {
+      td {
+        border: none !important;
+        padding: 10px 5px 0 0 !important;
+        font-weight: 500;
+        vertical-align:middle;
+
+        small.tag {
+          font-size: 10px;
+          position: relative;
+          top: -2px;
+          float: right;
+
+        }
+      }
+    }
+  }
+}
+
+.popup-input {
+  width: 125px;
+}
+
+.calendar-main {
+    .popup-input {
+        width: 73%;
+    }
+}
+
+
+.goal-amount-create-new {
+  width: 61%;
+}
+
+.estimation-tool-nav {
+
+  .dropdown-menu {
+    left: -100px;
+  }
+
+  .calculator-drop-down {
+    padding: 0;
+    float: left;
+    top: -18px;
+    padding-left: $padding/2;
+  }
+
+  .icon-icon_Calculator {
+    position: relative;
+    top: 5px;
+  }
+  a {
+    color: $Trinet-blue;
+    font-size: 12px;
+
+    .icon-icon_Dropdown_Arrow {
+      font-size: 12px;
+      top: 8px;
+      position: relative;
+    }
+
+    &:hover, &:focus, &:visited {
+      background: none;
+    }
+  }
+}
+
+.view-details {
+  display: none;
+}
+
+.manage-table {
+  margin-top: 10px;
+  th {
+    border-left: 1px solid;
+    border-bottom: none !important;
+    background: #0073CF;
+    color: #FFF;
+    font-weight: 500;
+    &:last-child {
+      width: 15%;
+
+    }
+  }
+
+  th:first-child {
+    border: none !important;
+  }
+  .icon-icon_filter {
+    font-size: 18px;
+  }
+  td {
+    padding: 15px 8px;
+    border: none !important;
+
+    span {
+      padding: 0 10px;
+    }
+  }
+  .pad-td {
+    padding: 5px 8px !important;
+  }
+  .border-btm td {
+    border-bottom: 1px solid $Lighter-gray !important;
+  }
+  tbody tr {
+    .hide-icon {
+      visibility: hidden;
+    }
+    border-bottom: 1px solid;
+    &:hover {
+      background: #D9EAF8;
+      .hide-icon {
+        visibility: visible;
+      }
+    }
+  }
+  .icon-icon_checkmark_emptybox {
+    font-size: 18px;
+  }
+  .chkbox-li {
+    margin-top: 10px;
+    margin-right: 15px;
+  }
+  .chk-box-th {
+    margin-right: 15px;
+  }
+
+}
+
+.money-tax-with-holding {
+  color: $Trinet-dark-gray;
+}
+
+.payroll-estimation {
+  @extend .block;
+  padding-top: $padding*3;
+
+  p {
+    font-size: 14px;
+    color: $Trinet-dark-gray;
+  }
+}
+
+.claculator-titles {
+  @extend .block;
+
+  h3 {
+    color: $Trinet-blue;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 $padding/2;
+  }
+  p {
+    font-size: 12px;
+    color: $Trinet-gray;
+    height: auto;
+    overflow: hidden;
+
+  }
+
+  ul {
+    @extend .block;
+    padding: 0;
+
+    li {
+      @extend .in-block;
+      list-style: none;
+      padding: 0;
+      border-right: 4px solid $White;
+      border-bottom: 4px solid $White;
+
+      .calculator-block {
+        background: $Background;
+        height: 120px;
+        padding: $padding*2;
+        border: 1px solid $Background;
+
+        &:hover {
+          background: $White;
+          border: 1px solid $Trinet-blue;
+        }
+      }
+
+    }
+  }
+
+}
+
+.retirement-plan-enrolment {
+  @extend .block;
+
+  .no-enrolment {
+    @extend .block;
+    border: 1px solid $Background;
+    padding: $padding*8 0;
+    text-align: center;
+
+    h3 {
+      color: $Trinet-gray;
+      margin: 0;
+      opacity: .3;
+      font-weight: 400;
+    }
+    a {
+      padding: $padding/2 $padding*2;
+      line-height: 22px;
+      height: 34px;
+    }
+  }
+
+}
+
+.money-tab .panel-group .panel {
+  border: 0;
+}
+.adjustOverflow{
+    float:left;
+    width:100%;
+    clear:both;
+}
+.modal-content {
+  background: $Background;
+
+  .modal-body {
+    @extend .block;
+    background: $White;
+    border: 10px solid $Background;
+  }
+}
+
+.retirement-plan-election {
+  font-size: 14px;
+
+  h3 {
+    margin: 0;
+    border-bottom: 1px solid $Trinet-gray;
+    font-size: 18px;
+    font-weight: 600;
+    padding: $padding 0 $padding/2;
+  }
+}
+
+.background-bg {
+  background: $Background;
+  padding: $padding;
+  margin: $margin/2 0;
+  display: -webkit-box;
+  @extend .block;
+}
+
+.white-bg {
+  background: $White;
+  padding: $padding;
+}
+
+.plan-row {
+  padding: $padding 0 $padding/2 0;
+}
+
+.line-height-30 {
+  line-height: 30px;
+  border: 1px solid $Background;
+}
+
+.retirement-block {
+  display: block;
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: $Trinet-dark-gray;
+    border: 0;
+
+    sup {
+      font-size: 12px;
+    }
+  }
+
+  p.current-plan {
+    color: $Trinet-dark-gray;
+    font-size: 14px;
+    padding: $padding 0;
+    margin: 0;
+  }
+
+  a.elected {
+    background: $Trinet-green;
+    padding: 0 $padding;
+    color: $White;
+    width: 65px;
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    text-decoration: none;
+    @include border-radius(4px);
+    @extend .in-block;
+    font-size: 14px;
+  }
+
+  a.waived {
+    background: $Trinet-dark-red;
+    padding: 0 $padding;
+    color: $White;
+    text-decoration: none;
+    width: 65px;
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    @include border-radius(4px);
+
+    @extend .in-block;
+
+  }
+
+  .price-block {
+    display: block;
+    margin: $margin 0;
+
+    p {
+      font-size: 14px;
+      color: $Trinet-dark-gray;
+      margin: 0;
+      display: inline-block;
+    }
+
+    .price {
+      color: $Trinet-blue;
+      font-size: 50px;
+
+    }
+    .tooltip2 {
+      position: absolute;
+    }
+  }
+}
+
+.form-content-block.money {
+  h4.panel-title {
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    padding: $padding/2 0;
+  }
+}
+
+.transaction-details {
+
+  small {
+    font-size: 10px;
+    position: relative;
+    top: -7px;
+  }
+}
+
+.manage-employee-icon {
+
+  .icon-icon_approved, .icon-icon_declined, .icon-icon_pending {
+    font-size: 50px;
+    color: $Trinet-gray;
+  }
+
+}
+
+table.change-employee {
+  tbody {
+    tr {
+      td {
+        padding: 8px $padding+5 !important;
+      }
+    }
+  }
+}
+
+a.employee-change-add-more {
+  font-size: 16px;
+  padding: $padding/2 0 0 !important
+}
+
+.compel {
+  font-size: 18px;
+  position: relative;
+  top: -1px;
+}
+
+.pay-roll-declaration {
+  padding: 0 $padding/2;
+}
+
+.icon-big {
+  font-size: 48px;
+  color: $Trinet-gray;
+}
+
+.modes {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+
+  ul {
+    padding: 0;
+    margin-top: 7px;
+
+    li {
+      @extend .in-block;
+
+      .calander-list {
+        padding: $padding/2;
+        background: $Background;
+        cursor: pointer;
+        @extend .in-block;
+      }
+
+      .list-view {
+        padding: $padding/2;
+        background: $Trinet-blue;
+        color: $White;
+        cursor: pointer;
+        @extend .in-block;
+        margin-left: $margin;
+      }
+
+      .doc-print {
+        padding: $padding/2;
+        color: $Trinet-blue;
+        border-right: 1px solid $Trinet-gray;
+        cursor: pointer;
+        @extend .in-block;
+        padding-right: $padding
+      }
+    }
+  }
+
+}
+
+table.time-off {
+  thead {
+    border-top: 5px solid $Trinet-blue;
+    border-bottom: 5px solid $Trinet-blue;
+  }
+
+  tbody > tr > td, .table-striped > thead > tr > th {
+    font-size: 14px !important;
+  }
+}
+
+.roles-add {
+  position: absolute;
+  right: 0;
+}
+
+.eform-content {
+  height: 120px;
+  padding: $padding+5;
+}
+
+.accpt-date {
+  color: $Trinet-dark-gray !important;
+}
+
+.popup-content-adj {
+  position: relative;
+  top: 5px;
+}
+
+.group-change-checkbox {
+  position: relative;
+  top: 5px;
+  margin-right: $margin/2;
+}
+
+.manage-emp-title {
+  color: $Trinet-dark-gray !important;
+  font-size: 24px !important;
+  margin: 0 !important;
+  padding: 5px 10px !important;
+}
+
+.trinet-secondary-btn-line-height {
+  line-height: 30px !important;
+}
+
+.manage-emp-drop-list {
+  border: 1px solid black;
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background: #fff;
+  padding: 10px;
+  z-index: 99;
+  min-width: 200px;
+
+  label {
+    input {
+      float: left;
+    }
+
+    span {
+      padding-left: $padding+8;
+      display: block;
+      margin-top: $margin/2;
+      width: 180px;
+    }
+  }
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+  position: relative;
+  left: -9px;
+  top: -5px;
+}
+
+.overflow-60vh {
+  overflow: auto !important;
+  height: 60vh;
+}
+
+.marg-btm {
+  margin-bottom: 10px;
+}
+
+.scroll {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
+
+.table > tbody > tr > td.v-bottom {
+  vertical-align: bottom !important;
+}
+
+.trinet-report-head {
+  margin: 5px 0px 5px 0px !important;
+}
+.toggleSwitch {
+	padding-left: 20px !important;
+	.onoffswitch {
+		margin: 8px;
+	}
+}
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
+.ben-form-tiles {
+  overflow: hidden;
+  h4 {
+    @extend .line-clamp;
+  }
+  p {
+    @extend .line-clamp;
+    height: auto !important;
+  }
+}
+.text-line-through
+{
+  text-decoration: line-through;
+}
+#manageDept ,#manageLoc{
+ &.manage-table
+  {
+  thead
+   {
+    tr{
+    th{
+       padding: 7px 5px;
+    }
+    }
+   }
+    tbody
+    {
+     tr{
+
+     td{
+        padding: 10px 5px !important;
+        vertical-align: middle;
+     }
+     }
+    }
+ th {
+  &:last-child {
+   width: 17% !important;
+
+  }
+  }
+ }
+ }
+#inactiveDept{
+    p{
+    font-size: 12px;
+    margin:20px 15px;
+    color:#494949;
+    }
+  .adjustBtn
+  {
+        min-width: 325px;
+        height: 45px;
+        margin:2px 0;
+  }
+  }
+#assignToAnother
+{
+    .dislayMessage
+    {
+      margin: 7px 30px;
+          font-size: 14px;
+    }
+}
+
+.font-weight-100{
+   font-weight:$fontWeight-100;
+}
+.endpay-earning-amount{
+      position: relative;
+      top: -10px;
+}
+#enrollment-time-line {
+    .message-item {
+        &.enrollment-time-line {
+            min-width: 95%;
+        }
+    }
+}

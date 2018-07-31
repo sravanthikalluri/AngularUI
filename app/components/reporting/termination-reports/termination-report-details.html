@@ -1,0 +1,580 @@
+<!--
+Description: This is page to display about Individual Termination detail report
+Author:Raghavendra Kumar Bonthala
+ -->
+<div role="dialog" aria-labelledby="myModalLabel">
+    <div class="tn-modal-header text-center bold">
+        <h4>{{::translation.reports.termDetailHeader}}</h4>
+    </div>
+    <div class="tn-modal-boby">
+        <div class="termination-modal-table">
+            <table class="table tn-table">
+                <tbody>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.terminateEmpName}}:</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.terminaldetails.terminateEmp}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.hr_sal}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.hourlySalary}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.Std_hrs}}:</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.standardHours}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">Exempt/Non-Exempt :</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.exemptNExempt}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.compensation}}:</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.compensation| currencyFilter}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.address1}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.address.address1}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                  <td width="50%" align="left">
+                     <h5 class="main-text bold">{{::translation.reports.address2}}</h5>
+                  </td>
+                  <td width="50%" align="right">
+                    <h5 class="main-text secondary-title-color">
+                        {{viewTermReportData.terminationdetails.empInfo.address.address2}}
+                    </h5>
+                  </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.city}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.address.city}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.state}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.address.state}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.zip}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.address.postalCode}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.pay_grp}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.empInfo.payGroup}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.managedEvent}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.manageEvent}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.reason_term}} </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.reasonOfTermination}} - {{viewTermReportData.terminationdetails.reasonOfTerminationDesc}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.effectiveDate}} </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color" ng-bind="(viewTermReportData.terminationdetails.terminaldetails.effectiveDate ?
+                                 (viewTermReportData.terminationdetails.terminaldetails.effectiveDate | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.last_day}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text" ng-bind="(viewTermReportData.terminationdetails.lastDayWorked ?
+                                 (viewTermReportData.terminationdetails.lastDayWorked | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.pay_thr_date}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text" ng-bind="(viewTermReportData.terminationdetails.payThroughtDate ?
+                                (viewTermReportData.terminationdetails.payThroughtDate | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.payThrGaveOrGivenNotice}} </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color" ng-bind="(viewTermReportData.terminationdetails.dateofGivenNotice ?
+                                (viewTermReportData.terminationdetails.dateofGivenNotice | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.all_hr}} </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.allHoursEarning}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.total_hrs_term}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.tothourPaid}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.all_dol}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.allDollarEarning}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.spe_pay}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.totalFinalSepcialPay | currencyFilter}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.comm_check}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.commisionOnSeprateCheck | currencyFilter}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.bonus_sepChk}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.bonousOnSeperateCheck | currencyFilter}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.curr_leave}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.currentLeaveBalace}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.adj}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.adjustment}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.sec_leave}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.sndLeaveBalace}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.adj}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.secondAdjustment}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.pay_other_leave}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.payOtherActualLeaveHour}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.float_acc}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.floatingHolidayHour}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.est_leave_term}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.estimatedLeaveBalanceAtTerm}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold"> Pay Leave Balance on Final Check :</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.payLeaveBalance | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.if_leave}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.ifLeaveBalanceNegative | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.is_addl}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.isAddtionalPaytoPaid | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.ifYesPayType}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.addtionalPaymentType}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.addl_amt}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.addtionalAmount | currencyFilter}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.num_pay}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.numOfEqualPayment}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.throughwhichChkDate}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.checkDate}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.startingChkDate}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.asASeprateCheck | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.addl_pay_st}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text" ng-bind="(viewTermReportData.terminationdetails.additionalPaymentStartingDate ?
+                        (viewTermReportData.terminationdetails.additionalPaymentStartingDate | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>-->
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">{{::translation.reports.as_check}}</h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.asASeprateCheck | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.tri_hcc1}}<br/>
+                            {{::translation.reports.tri_hcc2}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.trinetHcc | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.name_hcc}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.nameofHcc}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.date_hcc}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text" ng-bind="(viewTermReportData.terminationdetails.dateofHcc ?
+                     (viewTermReportData.terminationdetails.dateofHcc | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.re_elg}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.reHireE | yesOrNo}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.final_check}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.finalCheckDistribution}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.otherEnterAddress}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.otherAddress.address1}}<br/>
+                            {{viewTermReportData.terminationdetails.otherAddress.address2}}
+                            {{viewTermReportData.terminationdetails.otherAddress.city}}<br/>
+                            {{viewTermReportData.terminationdetails.otherAddress.state}}
+                            <span ng-if="viewTermReportData.terminationdetails.otherAddress.country || viewTermReportData.terminationdetails.otherAddress.postalCode">,</span>
+                            {{viewTermReportData.terminationdetails.otherAddress.country}}<br>
+                            {{viewTermReportData.terminationdetails.otherAddress.postalCode}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.check_sent}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.checkSent}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.mgr_name}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.managerName}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.notes}}:
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.notes}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.death_dt}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text" ng-bind="::(viewTermReportData.terminationdetails.deathDate ?
+                        (viewTermReportData.terminationdetails.deathDate | date:'MM/dd/yyyy') : '-')">
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.est_ben}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.ebName}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.est_id}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.ebTaxId}}
+                        </h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" align="left">
+                        <h5 class="main-text bold">
+                            {{::translation.reports.timeStamp}}
+                        </h5>
+                    </td>
+                    <td width="50%" align="right">
+                        <h5 class="main-text secondary-title-color">
+                            {{viewTermReportData.terminationdetails.terminaldetails.submittedByTimestamp}}
+                        </h5>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

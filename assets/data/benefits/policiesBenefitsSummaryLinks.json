@@ -1,0 +1,114 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "heading": "Benefit Program Description ",
+      "apply": "",
+      "label": "View a summary of all plans ",
+      "sideLabel": "(available to your company with pay frequency weekly)",
+      "key": "W",
+      "type": "soap",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "2",
+      "heading": "",
+      "apply": "",
+      "label": "View a CUSTOM list of plans ",
+      "sideLabel": "(available to your company with pay frequency weekly)",
+      "key": "W",
+      "type": "cop",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "3",
+      "heading": "Benefit Program Description ",
+      "apply": "",
+      "label": "View a summary of all plans ",
+      "sideLabel": "(available to your company with pay frequency Semi Monthly)",
+      "key": "S",
+      "type": "soap",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "4",
+      "heading": "",
+      "apply": "",
+      "label": "View a CUSTOM list of plans ",
+      "sideLabel": "(available to your company with pay frequency Semi Monthly)",
+      "key": "S",
+      "type": "cop",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "5",
+      "heading": "Benefit Program Description ",
+      "apply": "",
+      "label": "View a summary of all plans ",
+      "sideLabel": "(available to your company with pay frequency monthly)",
+      "key": "M",
+      "type": "soap",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "6",
+      "heading": "",
+      "apply": "",
+      "label": "View a CUSTOM list of plans ",
+      "sideLabel": "(available to your company with pay frequency monthly)",
+      "key": "M",
+      "type": "cop",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "7",
+      "heading": "Benefit Program Description ",
+      "apply": "",
+      "label": "View a summary of all plans ",
+      "sideLabel": "(available to your company with pay frequency annually)",
+      "key": "A",
+      "type": "soap",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "8",
+      "heading": "",
+      "apply": "",
+      "label": "View a CUSTOM list of plans ",
+      "sideLabel": "(available to your company with pay frequency annually)",
+      "key": "A",
+      "type": "cop",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "9",
+      "heading": "Benefit Program Description ",
+      "apply": "",
+      "label": "View a summary of all plans ",
+      "sideLabel": "(available to your company with pay frequency bi-weekly)",
+      "key": "B",
+      "type": "soap",
+      "PlanCode": "",
+      "subhead": ""
+    },
+    {
+      "id": "10",
+      "heading": "",
+      "apply": "",
+      "label": "View a CUSTOM list of plans ",
+      "sideLabel": "(available to your company with pay frequency bi-weekly)",
+      "key": "B",
+      "type": "cop",
+      "PlanCode": "",
+      "subhead": ""
+    }
+  ]
+}

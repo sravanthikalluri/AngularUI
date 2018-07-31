@@ -1,0 +1,42 @@
+<!--
+Program: additionalPoliciesView.html
+Description: It provides links to user get into different plan types & it's information.
+ -->
+<div class="additional-policies" ng-controller='companyAdditionalPoliciesViewCtrl'>
+    <br/>
+    <h2 class="policies-inner-title" ng-bind="::translation.policies.additionalPolicies"></h2>
+
+    <br>
+    <h3 class="no-pad-imp large" ng-bind="::translation.policies.addPoliciesMsg"></h3>
+    <div class="paddingDiv">
+        <div class="col-md-6 col-sm-6">
+
+
+            <div ng-repeat="a in addition">
+                <a id="additional{{$index}}" href="#/{{a.baseUrl}}/{{a.id}}" id="titleLinkId" target="_blank">{{::a.title}}</a>
+                <p>{{::a.desc}}</p>
+                <div></div>
+            </div>
+
+            <p class="inline"><b>{{::translation.note}}:</b> {{::translation.policies.addPoliciesNote}}</p>
+            <a id="pdfRead" class="inline" href="http://pdfreaders.org/" id="pdfLinkId" target="_blank">{{::translation.policies.pdfReader}}</a>
+
+        </div>
+        <div class="emptyDivClass"><p></p></div>
+
+        <div class="col-md-6 col-sm-6">
+            <p><b>{{::translation.policies.addPoliciesQuestion}}</b> {{::translation.policies.addPoliciesAns}}</p>
+            <p ng-bind="::translation.policies.addPoliciesPrag"></p>
+            <br>
+            <p ng-bind="::translation.policies.addPoliciesSolution"></p>
+            <table>
+                <tr>
+                    <td><label class="marg-5">{{::translation.email}}:</label></td>
+                    <td><a id="mail" href="mailto:employees@trinet.com"><i>{{::translation.policies.email}}</i></a></td>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>

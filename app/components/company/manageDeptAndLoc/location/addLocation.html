@@ -1,0 +1,263 @@
+<div class="tn-modal tn-deptAndLoc-modal tn-emp-generate-form tn-modal-fullHeight" id="exampleModal1" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+    <div class="tn-alert" ng-if="errorCodeBool">
+        <div class="alert--status alert--error"
+             ng-if="errorCodeBool">
+            <div class="alert__body">
+                <img src="./assets/images/error-white.svg" width="24" height="24">
+                <p ng-bind="errorResp"></p>
+            </div>
+            <div class="alert__buttons">
+                <button type="button" ng-click="closeAlert($index)" class="tn-button tn-edit-button tn-button-small">
+                    {{::translation.shared.ok}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="tn-modal-header">
+        <h4 class="proxima-nova-semibold text-center" id="exampleModal1Label" ng-bind-html="translation.add_loc"></h4>
+    </div>
+    <form class="tn-form" name="addlocationForm" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label for="addLocationDatePicker">{{translation.manageDeptAndLoc.effectiveDate}}</label>
+                </div>
+                <div class="tn-calender-input" ng-controller="datePickerCtrl">
+                    <input type="text" class="form-control bg-white" readonly placeholder="MM/DD/YYYY"
+                           name="effDate" id="addLocationDatePicker" datepicker-popup="{{format}}"
+                           ng-model="locEffectiveDate" is-open="opened" ng-change="selectedLocDate(locEffectiveDate)"
+                           ng-required="true"
+                           min-date="pastMonthValue" max-date="nextMonthValue"
+                           datepicker-options="dateOptions" close-text="Close">
+                    <span class="calendar-icon" ng-click="open($event)">
+                          <i class="icon-icon_calendar blue bold"></i>
+                        </span>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom flex-box">
+                <div class="col-sm-3 no-padding-left margin-right">
+                    <h5 class="font-light-gray">{{::translation.locationtab.worklocation}}:</h5>
+                    <h5 class="font-slate">{{::addlocatn.locationId}}</h5>
+                </div>
+                <div class="col-sm-8 no-padding-left margin-left" ng-hide="true">
+                    <div class="tn-checkbox tn-checkbox-large">
+                        <input id="locationheadquarters" type="checkbox" ng-disabled="hideHeadQuaters"
+                               ng-model="addlocatn.headquarters">
+                        <label for="locationheadquarters" ng-bind="::translation.locationtab.headquarters"></label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label for="locationlocDesc">
+                        {{::translation.locationtab.locdescription}}:
+                    </label>
+                </div>
+                <div class="relative">
+                    <input type="text" id="locationlocDesc" name="locationlocDesc" ng-model="addlocatn.locationName"
+                           ng-class="{'error-warning': addlocationlocationlocDescRequired}"
+                           ng-required="true" maxlength="30"
+                           ng-pattern="/^[A-Za-z0-9 ,.-/@#()&+-]*$/"
+                           class="form form-control" validation>
+                    <Validation condition="addlocationlocationlocDescRequired"
+                                msg="{{translation.locationtab.locdescription+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field ">
+                    <label for="locationshortDesc"> {{::translation.locationtab.description}}:</label>
+                </div>
+                <div class="relative">
+                    <input type="text" id="locationshortDesc" name="locationshortDesc" ng-model="addlocatn.shortDesc"
+                           ng-class="{'error-warning': addlocationlocationshortDescRequired}"
+                           ng-required="true" maxlength="10"
+                           class="form form-control" validation>
+                    <Validation condition="addlocationlocationshortDescRequired"
+                                msg="{{translation.locationtab.description+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label>{{::translation.locationtab.remote}}:</label>
+                </div>
+                <div>
+                    <div class="radio no-margin">
+                        <input id="locationremoteOffice1" ng-hide="true" type="radio"
+                               ng-model="addlocatn.remoteOffice"
+                               ng-click="addressValidation(addlocatn.remoteOffice,addlocationForm)"
+                               name="locationremoteOffice" value="Y">
+                        <label for="locationremoteOffice1">
+                            {{::translation.yes}}</label>
+                        <input id="locationremoteOffice2" ng-hide="true" type="radio"
+                               ng-model="addlocatn.remoteOffice"
+                               ng-click="addressValidation(addlocatn.remoteOffice,addlocationForm)"
+                               name="locationremoteOffice" value="N">
+                        <label for="locationremoteOffice2">
+                            {{::translation.no}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <fieldset ng-disabled="addlocatn.remoteOffice === undefined" class="col-sm-12 no-padding">
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div ng-class="addlocatn.remoteOffice !== undefined ? 'required-field': ''">
+                        <label for="locationcountry">{{::translation.locationtab.country}}:</label>
+                    </div>
+                    <div class="relative">
+                        <select name="locationcountry"
+                                class="form form-control no-margin"
+                                ng-class="{'error-warning': addlocationlocationcountryRequired}"
+                                id="locationcountry"
+                                ng-model="addlocatn.address.country"
+                                ng-options="countries.key as countries.value for countries in countriesData"
+                                ng-change="getStateCode(addlocatn.address.country)" ng-required="true"
+                                validation>
+                        </select>
+                        <Validation condition="addlocationlocationcountryRequired"
+                                    msg="{{translation.locationtab.country+'\n '+translation.is_required}}"
+                                    class="error-msg-pos"></Validation>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div
+                        ng-class="(addlocatn.remoteOffice !== undefined && addlocatn.remoteOffice === 'N') ? 'required-field':''">
+                        <label for="locationaddLine1">{{::translation.locationtab.addressline}} 1 :</label>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="locationaddLine1" name="locationaddLine"
+                               ng-model="addlocatn.address.address1"
+                               ng-class="{'error-warning': addlocationlocationaddLineRequired}"
+                               ng-required="!hideHeadQuaters" maxlength="55"
+                               class="form form form-control"
+                               validation>
+                        <Validation condition="addlocationlocationaddLineRequired"
+                                    msg="{{translation.locationtab.description+'\n '+translation.is_required}}"
+                                    class="error-msg-pos"></Validation>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div>
+                        <label for="locationaddLine2">{{::translation.locationtab.addressline}} 2 :</label>
+                    </div>
+                    <div>
+                        <input type="text" id="locationaddLine2" name="locationaddLine2"
+                               ng-model='addlocatn.address.address2' maxlength="55"
+                               class="form form form-control">
+                    </div>
+                </div>
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div>
+                        <label for="locationaddLine3">{{::translation.locationtab.addressline}} 3 :</label>
+                    </div>
+                    <div>
+                        <input type="text" id="locationaddLine3" name="locationaddLine3"
+                               ng-model='addlocatn.address.address3' maxlength="55"
+                               class="form form form-control">
+                    </div>
+                </div>
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div ng-class="addlocatn.remoteOffice !== undefined ? 'required-field':''">
+                        <label for="locationcity">{{::translation.locationtab.city}}:</label>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="locationcity" name="locationcity" ng-model='addlocatn.address.city'
+                               ng-class="{'error-warning': addlocationlocationcityRequired}"
+                               ng-required="true" maxlength="50"
+                               class="form form form-control"
+                               validation>
+                        <Validation condition="addlocationlocationcityRequired"
+                                    msg="{{translation.locationtab.city+'\n '+translation.is_required}}"
+                                    class="error-msg-pos"></Validation>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div ng-class="addlocatn.remoteOffice !== undefined? 'required-field' : ''">
+                        <label for="locationcounty">{{::translation.locationtab.county}}:</label>
+                    </div>
+                    <div>
+                        <input type="text" id="locationcounty" name="locationcounty" ng-model='addlocatn.address.county'
+                               maxlength="50"
+                               ng-required="true"
+                               class="form form-control">
+                    </div>
+                </div>
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div ng-class="addlocatn.remoteOffice !== undefined ? 'required-field' :''">
+                        <label for="locationstate">{{::translation.locationtab.state}}:</label>
+                    </div>
+                    <div class="relative">
+                        <select name="locationstate" id="locationstate"
+                                class="form form-control no-margin"
+                                ng-model="addlocatn.address.state"
+                                ng-class="{'error-warning': addlocationlocationstatepRequired}"
+                                ng-options=" states.key as states.value for states in statesData"
+                                ng-click="checkCountry(addlocatn.address.country)" ng-required="true"
+                                validation>
+                        </select>
+                        <Validation
+                            n condition="addlocationlocationstatepRequired"
+                            msg="{{translation.locationtab.state+'\n '+translation.is_required}}"
+                            class="error-msg-pos"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-12 no-padding-left margin-bottom">
+                    <div ng-class="addlocatn.remoteOffice !== undefined ? 'required-field' :''">
+                        <label for="locationzip1" ng-if="addlocatn.address.country =='US'">
+                            {{::translation.usPostalCodeName}}:
+                        </label>
+                        <label for="locationzip2" ng-if="addlocatn.address.country =='CA'">
+                            {{::translation.canadaPostalCodeName}}:
+                        </label>
+                    </div>
+
+                    <div>
+                        <!-- US user-->
+                        <input type="text" id="locationzip1" name="locationzip" ng-model='addlocatn.address.postalCode'
+                               ng-class="{'error-warning': addlocationlocationzipRequired}"
+                               ng-if="addlocatn.address.country =='US'"
+                               ng-required="true" ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/"
+                               class="form form-control"
+                               validation>
+                        <Validation condition="addlocationlocationzipRequired" ng-if="addlocatn.address.country =='US'"
+                                    msg="{{translation.validation.zipCode}}"
+                                    class="error-msg-pos"></Validation>
+                        <!-- canda user-->
+                        <input ng-if="addlocatn.address.country =='CA'" type="text" id="locationzip2" name="locationzip"
+                               ng-model='addlocatn.address.postalCode'
+                               ng-class="{'error-warning': addlocationlocationzipRequired}"
+                               ng-required="true" ng-pattern="/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/"
+                               class="form form-control"
+                               validation>
+
+                        <Validation condition="addlocationlocationzipRequired" ng-if="addlocatn.address.country =='CA'"
+                                    msg="{{translation.validation.postalCode}}"
+                                    class="error-msg-pos"></Validation>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+        <div class="clearfix"></div>
+        <!--ng-class="{'trinet-btn-dissable default-cursor': addlocationForm.$invalid, 'tn-button tn-action-button': !addlocationForm.$invalid}"-->
+        <div class="tn-modal-footer text-right">
+            <button type="button" class="tn-button tn-cancel-button" id="closePanelId"
+                    ng-bind="::translation.cancel" ng-click="closePanel()"></button>
+            <button type="button"
+                    class="tn-button tn-action-button"
+                    data-dismiss="modal"
+                    ng-bind="::translation.save" id="validateDataId"
+                    ng-disabled="addlocationForm.$invalid"
+                    ng-click="closeDialog(addlocatn,addlocationForm.$invalid)"></button>
+
+        </div>
+    </form>
+</div>

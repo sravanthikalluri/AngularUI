@@ -1,0 +1,88 @@
+.toggle-button-prop, .onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 21px;
+    font-size: 10px;
+    color: #ffffff;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.onoffswitch {
+    position: relative;
+    width: 40px;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0;
+    height: 16px;
+}
+
+.onoffswitch-label {
+    height: 20px;
+    width: 40px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    /*border: 2px solid $color_mountain_mist_approx;*/
+    border-radius: 20px;
+}
+
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before {
+    content: "YES";
+    padding-left: 3px;
+    background-color: #69BE28;
+    color: #ffffff;
+    text-align: left;
+}
+
+.onoffswitch-inner:after {
+    content: "NO";
+    padding-right: 6px;
+    background-color: #888888;
+    color: #ffffff;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block;
+    width: 14px;
+    margin: 2px;
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    right: 22px;
+    transition: all 0.3s ease-in 0s;
+}
+.toggleSwitch .onoffswitch-inner:before {
+ content: "ON" !important;
+ padding-left: 6px;
+}
+.toggleSwitch .onoffswitch-inner:after {
+ content: "OFF" !important;
+ padding-right: 2px;
+}
+/*# sourceMappingURL=on-off.css.map */

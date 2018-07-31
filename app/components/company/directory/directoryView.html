@@ -1,0 +1,235 @@
+<div class="manage-group manage-employee no-top-pad">
+    <alert-view></alert-view>
+    <div class="row no-marg">
+        <div class="col-md-8 col-sm-8 no-pad">
+            <h2 class="no-pad marg-25">{{::translation.directory.title}}</h2>
+        </div>
+        <div class="col-md-12 col-sm-12 no-pad employee-tabs-head visible min-block-height-400 DirectorySearch">
+            <div class="col-md-5 col-sm-12 no-pad pull-right" ng-mouseleave="textboxhide()">
+                <div class="col-md-9 col-sm-6 no-pad pull-right marg-right-5">
+					<span class="input-group search-box"> <input type="text" id="mgEmp_searchName"
+                                                                 name="search"
+                                                                 ng-model="searchValue"
+                                                                 class="no-border form-control"
+                                                                 placeholder="Search by name, position">
+
+						<button class="no-border no-bg searchIcon">
+                            <span class="icon-icon_Zoom large"></span>
+                        </button>
+
+					</span>
+
+                </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div class="panel-body no-pad visible">
+                <div class="tab-content">
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 col-sm-12 no-pad">
+                        <div>
+                            <table class="table table-fixed manage-table table-hover no-marg manage-employee-table adjManageTable" id="directoryViewTable">
+                                <thead>
+                                <tr class="visible">
+                                    <th id="employeeName" width="20%" id="mgEmp_sortType" class="border-style-right"
+                                        ng-click="sortType = 'name'; sortReverse = !sortReverse">{{ ::translation.directory.employeeName}}
+                                    <span ng-show="sortTypeEmp == 'name' && !sortReverse"
+                                          class="icon-icon_a-z_sort pull-right large"></span> <span
+                                                ng-show="sortTypeEmp == 'name' && sortReverse"
+                                                class="icon-icon_z-a_sort pull-right large"></span>
+                                    </th>
+                                    <th width="20%" ng-mouseleave="textboxhide()"  class="border-style-right">
+                                        {{ ::translation.directory.position}}
+
+                                    </th>
+                                    <th width="15%" ng-mouseleave="textboxhide()"  class="border-style-right">
+                                        {{ ::translation.directory.department}}<span
+                                            class="icon-icon_filter pull-right black"
+                                            ng-click="searchPos(3)" id="mgEmp_searchDepartment"></span>
+                                        <div ng-show="searchbox == 3 && allEmpData.length > 0"
+                                             class="group-change-filter-list">
+
+                                            <div ng-repeat="department in allEmpData | unique: 'deptDesc'"
+                                                 class="list-sub-data">
+                                                <div class="action-checkbox">
+                                                    <label class="profile-checkbox reg-font" for="{{department.deptDesc}}">
+                                                        <span class="pull-left no-marg icon-icon_checkmark_emptybox blue"></span>
+                                                        <p class="pull-left pad-left-10 line-height-13">
+                                                            <input type="checkbox" ng-hide="true"
+                                                                   id="{{department.deptDesc}}"
+                                                                   name="name" value="{{department.deptDesc}}"
+                                                                   ng-model="selectdep[department.deptDesc]"
+                                                                   ng-click="selectCheckBox($event)"
+                                                                   class="pill-left"/>
+                                                            {{department.deptDesc === null ? "(Blanks)" :
+                                                            department.deptDesc }}</p>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th width="15%" ng-mouseleave="textboxhide()"  class="border-style-right">
+                                        {{ ::translation.directory.location}}<span
+                                            class="icon-icon_filter pull-right black"
+                                            ng-click="searchPos(4)" id="mgEmp_searchLocation"></span>
+                                        <div ng-show="searchbox == 4 && allEmpData.length > 0"
+                                             class="group-change-filter-list">
+                                            <div ng-repeat="locations in allEmpData | unique: 'workShortLocDesc'"
+                                                 class="list-sub-data">
+                                                <div class="action-checkbox">
+
+                                                    <label class="profile-checkbox reg-font"
+                                                           for="{{locations.workShortLocDesc}}">
+                                                        <span class="pull-left no-marg icon-icon_checkmark_emptybox blue "></span>
+                                                        <p class="pull-left pad-left-10 line-height-13">
+
+                                                            <input type="checkbox" ng-hide="true"
+                                                                   id="{{locations.workShortLocDesc}}"
+                                                                   name="name" value="{{locations.workShortLocDesc}}"
+                                                                   ng-model="selectLoc[locations.workShortLocDesc]"
+                                                                   ng-click="selectCheckBox($event)"
+                                                                   class="pill-left"/>
+                                                            {{locations.workShortLocDesc === null ? "(Blanks)" :
+                                                            locations.workShortLocDesc}}</p>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th width="15%"  class="border-style-right">{{ ::translation.directory.directManager}}</th>
+                                    <th width="15%"  class="border-style-right">{{ ::translation.directory.contacts}}</th>
+                                </tr>
+                                </thead>
+                                <tbody  id="fixed" class="" when-scroll="loadMore()">
+                                <tr class="hand" id="mgEmp_{{$index}}"
+                                    ng-repeat="allEmp in filterByData |filter:search | orderBy:sortTypeEmp:sortReverse |filter:searchValue"
+                                    ng-class="{'activeDirectory':$index == selectedRow}"
+                                    data-emp-id="{{allEmp.employeeId}}"
+                                    data-index="{{$index}}"
+                                    ng-keydown="getKeyDownDirectoryDetail(filterByData,$event);"
+                                    ng-click="getDirectoryDetail($index,allEmp);">
+                                    <td width="20.5%">
+                                        <strong><span ng-bind="::allEmp.name" class="no-pad-imp"></span></strong>
+                                    </td>
+                                    <td width="20.1%" ng-bind="::allEmp.posDesc"></td>
+                                    <td width="15.4%" ng-bind="::allEmp.deptDesc"></td>
+                                    <td width="15.6%" ng-bind="::allEmp.workShortLocDesc"></td>
+                                    <td width="15%" ng-bind="::allEmp.supervisorName"></td>
+                                    <td width="13%">
+                                    <span ng-if="allEmp.work_email != null" class="pull-left pad-5"><a
+                                            href="mailto:{{allEmp.work_email}}" id="mgEmp_tabsubLoc"
+                                            ng-click="$event.stopPropagation();">
+                                        <span id="maildep"
+                                              class="icon-icon_contact medium no-pad-imp">&ensp;</span></a></span>
+                                        <span ng-if="allEmp.work_email === null"
+                                              class="pull-left pad-5 marg-right-7"><span id="mailLoc"
+                                                                                         class="icon-icon_contact medium no-pad-imp relative"
+                                                                                         ng-mouseleave="textboxhide()"
+                                                                                         ng-click="mailFlyout($index);$event.stopPropagation();"><div
+                                                class="phone-flyout"
+                                                ng-show="mailFlyoutData === {{$index}} ">
+
+                                            <p class="ng-binding">{{ ::translation.directory.noMailId}}</p>
+                                            <div class="arrow-down1"></div>
+                                            <div class="arrow-down-bg1"></div>
+                                        </div></span></span>
+
+                                    <span id="mgEmp_phoneId{{$index}}"
+                                          class="icon-icon_phone top-6 medium relative no-pad-imp"
+                                          ng-if="allEmp.homePhone!='null'" ng-mouseleave="textboxhide()"
+                                          ng-click="flyout($index);$event.stopPropagation();">
+                                        <div class="phone-flyout" ng-show="showFlyout === {{$index}} ">
+                                            <p ng-if="allEmp.homePhone === undefined || allEmp.homePhone === null">
+                                                {{ ::translation.directory.notAvaliable}} </p>
+                                            <p class="ng-binding"> {{ ::allEmp.homePhone}}</p>
+                                            <div class="arrow-down1"></div>
+                                            <div class="arrow-down-bg1"></div>
+                                        </div>
+                                        </span>
+
+                                    </td>
+
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <no-records></no-records>
+
+                        <form  name="assignManagerForm" novalidate  >
+                            <div id="assignManagerForm" class="change-request-details directoryDetails flyout"
+                                 ng-if="showdirectoryReq" ng-style="position" click-off="closePopUp()">
+
+                                <span class="icon-close-temp close" id="assignChngReqId"
+                                      ng-click="closePopUp()"></span>
+                                <div class="col-md-3 col-sm-3 profile-pic no-pad">
+                                    <button class="monogram-directory" type="button"  >
+                                        <span>{{monogramName}}</span>
+                                        <div class="md-ripple-container"></div>
+                                    </button>
+                                </div>
+                                <div class="col-md-9 col-sm-9 profile-discription">
+                                    <ul class="no-pad">
+                                        <li>
+                                            <span class="name directory-emp-name" ng-if="directoryDetail.employeeDetails.preferredName != null">{{ directoryDetail.employeeDetails.preferredName}}</span>
+                                            <span class="name directory-emp-name" ng-if="directoryDetail.employeeDetails.preferredName == null">{{ directoryDetail.employeeName}}</span>
+                                            <span class="status available"
+                                                  ng-if="directoryDetail.status=='A'">{{ ::translation.directory.active}}</span><span
+                                                class="status available"
+                                                ng-if="directoryDetail.status=='L'">{{ ::translation.directory.leave}}</span><span
+                                                class="status available"
+                                                ng-if="directoryDetail.status=='T'">{{ ::translation.directory.terminated}}</span>
+                                        </li>
+                                        <li class="directory-emp-fullname"><span>   {{ ::translation.directory.fullName}}</span><span class="full-name">  {{directoryDetail.employeeName}}</span>
+                                        </li>
+                                        <li><span class="directory-seniorDirector">{{directoryDetail.designation}}</span> <span ng-if="directoryDetail.employeeDetails.department !== null && directoryDetail.employeeDetails.department !== ''" class="directory-seniorDirector"> | {{ directoryDetail.employeeDetails.department}}</span></li>
+                                        <li><span class="directory-seniorDirector">{{ empDirectoryDetail}}</span>
+                                            <span class="icon-icon_location map Trinet-blue bold">
+                                            </span>
+                                        </li>
+                                        <li ng-if="directoryDetail.employeeDetails.email != null"><span
+                                                class="icon-icon_contact medium pull-left pad-top-4"></span><a class="ellipsis org-mail-text pad-left-5"
+                                                                                                     href="mailto:{{directoryDetail.employeeDetails.email}}"
+                                                                                                     target="_top">{{directoryDetail.employeeDetails.email}}</a>
+                                        </li>
+                                        <li ng-if="directoryDetail.employeeDetails.phone != null && directoryDetail.employeeDetails.phone != ' '"><span
+                                                class="icon-icon_phone medium pull-left pad-top2"></span><span class="pad-left-5" >{{directoryDetail.employeeDetails.phone}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 no-pad">
+                                    <h3>{{ ::translation.directory.employeeDetails}}</h3>
+                                    <div class="EmployeeDetails">
+                                        <div class="row no-marg">
+                                            <div class="col-md-3 col-sm-3 no-pad"><label>{{ ::translation.directory.manager}}</label></div>
+                                            <div class="col-md-9 col-sm-9 information">{{directoryDetail.managerName}}
+                                            </div>
+                                        </div>
+                                        <div class="row no-marg">
+                                            <div class="col-md-3 col-sm-3 no-pad"><label>{{ ::translation.directory.division}}</label></div>
+                                            <div class="col-md-9 col-sm-9 information" ng-if="directoryDetail.employeeDetails.department">{{directoryDetail.employeeDetails.department}}</div>
+                                        </div>
+                                        <div class="row no-marg">
+                                            <div class="col-md-3 col-sm-3 no-pad"><label>{{ ::translation.directory.seniority}}</label></div>
+                                            <div class="col-md-9 col-sm-9 information">{{directoryDetail.employeeDetails.seniority}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+                <span id="totalCount" class="medium employee-total-count-adjustment"
+                      ng-if="filterByData.length > 0">{{(filterByData|filter:searchValue).length}} {{ ::translation.empOutOf}} {{::totalCount}}</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

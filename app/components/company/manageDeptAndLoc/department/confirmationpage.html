@@ -1,0 +1,20 @@
+<!-- This is page is used to confirmation information
+Author: Raghavendra Kumar Bonthala
+ -->
+
+<div class="" id="inactiveDept" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+
+    <div class="modal-header">
+        <h4 class="modal-title">{{::translation.manageDeptAndLoc.confirmation}}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{::translation.manageDeptAndLoc.confirmationMessage}} </p>
+        <div class="block text-center">
+            <button class="trinet-primary-action-btn adjustBtn" ng-click="assign();">{{::translation.manageDeptAndLoc.yes}}</button>
+            <button class="trinet-secondary-action-btn adjustBtn" ng-click="closePanel();">{{::translation.manageDeptAndLoc.cancel}}</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>

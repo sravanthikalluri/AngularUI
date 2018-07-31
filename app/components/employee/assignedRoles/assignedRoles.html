@@ -1,0 +1,70 @@
+<!--
+Description: This page displays about all employee assigned roles information
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="tn-assign-manager tn-background pull-left">
+    <alert-view></alert-view>
+    <div id="appLoader" class="spinning spinner-loader" ng-if="spinner"></div>
+        <!--<div class="col-sm-12 col-md-12">
+            <h2 ng-bind="::translation.assignedRoles.heading"></h2>
+        </div>-->
+        <div class="col-sm-12 heading">
+            <h2 class="bold no-marg">
+                <button class="breadcomb-button no-border no-bg no-marg">Employees</button>
+                <span class="icon-heading icon-icon_forward"></span>
+                <button class="breadcomb-button no-border no-bg no-marg">{{translation.assignedRoles.heading}}</button>
+            </h2>
+        </div>
+        <div class="col-sm-12 col-md-12 no-pad card" ng-if="loadData">
+            <table class="table tn-table tn-table-fixed">
+                <thead>
+                <tr>
+                    <th  ng-style="{width: autoWidth+ '%'}">
+                        <span ng-bind="::translation.manageEmpName"></span>
+                    </th>
+                    <th ng-style="{width: autoWidth+ '%'}">
+                        <span ng-bind="::translation.assignedRoles.role_desc"></span>
+                        <!-- <span class="pull-right hand" id="assignPositionId" ng-click="searchPos(1)">
+                             <i class="icon-icon_filter black"></i>
+                         </span>-->
+                    </th>
+                    <th  ng-style="{width: autoWidth+ '%'}" ng-if="rolesRestrictData.department">
+                        <span ng-bind="::translation.department"></span>
+                        <!--<span class="pull-right hand" id="assignDeptId" ng-click="searchPos(2)">
+                            <i class="icon-icon_filter black"></i>
+                        </span>-->
+                    </th>
+                    <th  ng-style="{width: autoWidth+ '%'}" ng-if="rolesRestrictData.location">
+                        <span ng-bind="::translation.loc"></span>
+                        <!--<span class="pull-right hand" id="assignLocId" ng-click="searchPos(3)"> <i class="icon-icon_filter black"></i></span>-->
+                    </th>
+                    <th  ng-style="{width: autoWidth+ '%'}" ng-if="rolesRestrictData.payrollGroup">
+                        <span ng-bind="::translation.assignedRoles.payrollGroup"></span>
+                        <!--<span class="pull-right hand" id="assignLocId" ng-click="searchPos(3)"> <i class="icon-icon_filter black"></i></span>-->
+                    </th>
+                </tr>
+                </thead>
+                <tbody when-scroll="assignedRoles()">
+                <tr ng-repeat="adminRole in assignedRolesData">
+                    <td  ng-style="{width: autoWidth+ '%'}">
+                        <h6 class="main-text bold">{{adminRole.employeeName}}</h6>
+                        <h6 class="sub-text">{{adminRole.employeeId}}</h6>
+                    </td>
+                    <td  ng-style="{width: autoWidth+ '%'}">
+                        <h6 class="main-text bold">{{adminRole.roleDesc}}</h6>
+                    </td>
+                    <td  ng-style="{width: autoWidth+ '%'}" ng-if="rolesRestrictData.department" >
+                        <h6 class="main-text bold">{{adminRole.deptDesc}}</h6>
+                    </td>
+                    <td  ng-style="{width: autoWidth+ '%'}" ng-if="rolesRestrictData.location">
+                        <h6 class="main-text bold">{{adminRole.locationDesc}}</h6>
+                    </td>
+                    <td  ng-style="{width: autoWidth+ '%'}" ng-if="rolesRestrictData.payrollGroup">
+                        <h6 class="main-text bold">{{adminRole.payGroup}}</h6>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+        </div>
+</div>

@@ -1,0 +1,18 @@
+<div ng-switch="companies.length >= 1" class="company-name-component">
+    <span ng-switch-when="true">
+        <md-menu ng-if="companies.length>=1" md-position-mode="target bottom" class="menu">
+            <md-button ng-click="$mdOpenMenu($event)" class="company-selector">
+                <span class="company-name-text">{{selectedCompany.companyDesc}}</span>
+            </md-button>
+            <md-menu-content class="menu-content">
+                <md-menu-item ng-repeat="c in companies | orderBy: 'companyDesc'" class="menu-item menu-item-link">
+                    <md-button ng-click="selectCompany(c);" class="button">{{c.companyDesc}} ({{c.companyId}})</md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </span>
+
+    <span ng-switch-default class="company-name-text-wrapper">
+        <span class="company-name-text">{{selectedCompany.companyDesc}}</span>
+    </span>
+</div>

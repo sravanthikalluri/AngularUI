@@ -1,0 +1,89 @@
+<!-- This is page is used to View Add'l Begin/End payment details
+Author: Raghavendra Kumar Bonthala
+ -->
+ <div class="" id="transDetails" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLabel" ng-controller="addlPaymentCtrl">
+
+<div class="modal-header">
+    <h4 class="modal-title" id="exampleModalLabel" ng-bind="translation.moneyTab.trans_details"></h4>
+</div>
+<div class="modal-body">
+    <div class="col-md-7 col-sm-7 no-pad" ng-controller="addlPaymentCtrl">
+        <table class="table medium end-payment-popup">
+            <tbody>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.dateSubmit}}:</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.submitDate"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.submitted_by}}:</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.submitByName"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.sub}}:</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.subjectName"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.reports.action}}:</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.action"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.goal_amount}}:</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.goalAmount"></td>
+            </tr>
+            <tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.earn_type}}:</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.earnType"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.earn_amount}}:<br>
+                    <small ng-bind="::translation.reports.earn_tag_cap"></small>
+                </td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.earnAmount"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right">{{::translation.reports.pay_freq}}</td>
+                <td class="col-md-6 col-sm-6 text-left" ng-bind="::viewTransactionData.paymentFrequency"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-5 col-sm-5">
+        <table class="table medium end-payment-popup">
+            <tbody>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.company}}:</td>
+                <td class="col-md-6 col-sm-6 text-left no-pad" ng-bind="::viewTransactionData.company"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.reports.pf_client}}</td>
+                <td class="col-md-6 col-sm-6 text-left no-pad" ng-bind="::viewTransactionData.pfClient"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right no-pad">&nbsp;</td>
+                <td class="col-md-6 col-sm-6 text-left no-pad">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.begin_date}}:</td>
+                <td class="col-md-6 col-sm-6 text-left no-pad"
+                    ng-bind="(viewTransactionData.beginDate ? (viewTransactionData.beginDate | date:'MM/dd/yyyy') : '-')"></td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.end_date}}:</td>
+                <td class="col-md-6 col-sm-6 text-left no-pad"
+                    ng-bind="(viewTransactionData.endDate ? (viewTransactionData.endDate | date:'MM/dd/yyyy') : 'No End Date')"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="trinet-primary-action-btn"
+                id="submitTransDetails" ng-click="submitTransDetails()" ng-if="viewTransactionData.action =='Begin'"
+                ng-bind="translation.moneyTab.end_pay"></button>
+    </div>
+</div>
+</div>

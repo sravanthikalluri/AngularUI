@@ -1,0 +1,84 @@
+<div ng-if="checkout && type !== 'assignedToMe'">
+    <label id="assignToMe" class="work-inbox-list-icons" ng-click="assignToMe(data)">
+        <span class="icon-icon_assign block"  title="Assign this task to myself"></span>
+        <span class="icon-icon_" title="Assign this task to myself">Assign to Me</span>
+    </label>
+</div>
+<div ng-if="actions.indexOf('i9-authorization') >= 0">
+    <a id="i9-authorization" target="_blank" href="#/ssowidget/i9admin">
+        <label  class="work-inbox-list-icons">
+            <span class="icon-icon_assign block"  title="I-9 Authorization of this task"></span>
+            <span class="icon-icon_" title="I-9 Authorization of this task">I-9 Authorization</span>
+        </label>
+    </a>
+</div>
+
+<div ng-if="actions.indexOf('new-hire-authorization') >= 0">
+    <a id="new-hire-authorization" target="_blank" href="../ui-onboarding-newhire/#/review/{{companyId}}/personid/{{data.subjectId}}">
+        <label  class="work-inbox-list-icons">
+            <span class="icon-icon_assign block"  title="New Hire Authorization of this task"></span>
+            <span class="icon-icon_" title="New Hire Authorization of this task">Authorization</span>
+        </label>
+    </a>
+</div>
+
+<div ng-if="actions.indexOf('leave-request-notification') >= 0">
+    <a id="leave-request-notification" target="_blank" href="{{lrUrl}}">
+        <label  class="work-inbox-list-icons">
+            <span class="icon-icon_assign block"  title="Leave Request Notification of this task"></span>
+            <span class="icon-icon_" title="Leave Request Notification of this task">Leave Request</span>
+        </label>
+    </a>
+</div>
+
+
+<div ng-if="actions.indexOf('Approve') >= 0">
+    <label id="approve" ng-click="openApproveAndDeclineModal(data,approveText)" class="work-inbox-list-icons">
+        <span class="icon-icon_approve block medium"  title="Approve this task"></span>
+        <span class="icon-icon_" title="Approve this entry">Approve</span>
+    </label>
+</div>
+
+<div ng-if="actions.indexOf('Decline') >= 0">
+    <label id="decline" ng-click="openApproveAndDeclineModal(data, declineText)" class="work-inbox-list-icons">
+        <span class="icon-icon_decline block medium" title="Decline this task"></span>
+        <span class="icon-icon_" title="Decline this entry">Decline</span>
+    </label>
+</div>
+
+<div ng-if="actions.indexOf('Edit') >= 0">
+    <label id="edit" class="work-inbox-list-icons">
+        <span class="icon-icon_comment block medium" title="Details of this task"></span>
+        <span class="icon-icon_" title="Edit this entry">Edit</span>
+    </label>
+</div>
+<div ng-if="actions.indexOf('Delete') >= 0">
+    <label id="delete" ng-click="archiveTask(data,'delete')" class="work-inbox-list-icons">
+        <span class="icon-icon_comment block medium" title="Delete this task"></span>
+        <span class="icon-icon_" title="Delete this entry">Delete</span>
+    </label>
+</div>
+
+<!--<div ng-if="actions.indexOf('Archive') >= 0">-->
+    <!--<label id="archive" class="work-inbox-list-icons" ng-click="archiveTask(data,'archive')">-->
+        <!--<span class="icon-icon_archive block medium" title="Archive this task"></span>-->
+        <!--<span class="icon-icon_" title="Archive this entry">Archive</span>-->
+    <!--</label>-->
+<!--</div>-->
+
+<div ng-if="actions.indexOf('History') >= 0">
+    <label id="history" ng-click="openHistory(data,$event)" class="work-inbox-list-icons">
+        <span class="icon-icon_history block medium" title="History of this task"></span>
+        <span class="icon-icon_" title="View History">History</span>
+    </label>
+</div>
+
+<div ng-if="actions.indexOf('Details') >= 0">
+    <label id="details" ng-click="getDetails(data)" class="work-inbox-list-icons">
+      <span class="icon-icon_comment block medium" title="Details of this task"></span>
+      <span class="icon-icon_" title="View Details">Details</span>
+    </label>
+</div>
+
+
+

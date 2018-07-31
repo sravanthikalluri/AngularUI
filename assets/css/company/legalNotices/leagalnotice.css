@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .legal-notices-section .list ul li, .legal-notices-section .legal-block, .legal-notices-section .state-development-section {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.legal-notices-section .icon-icon_pdf {
+    float: left;
+    padding-right: 5px;
+    margin-top: 3px;
+}
+
+
+.icon-icon_pdf:before {
+    content: "\e006";
+    color: #f22323;
+    font-size: 15px;
+}
+
+.legal-notices-section .list {
+    display: block;
+    clear: both;
+}
+
+.legal-notices-section .list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.legal-notices-section .list ul li {
+    margin: 0 0 7px;
+    padding: 7.33333px 10px;
+    background: #f2f2f2;
+}
+
+.legal-notices-section .pdf-text-col {
+    color: #888888;
+}
+
+.legal-notices-section .legal-block, .legal-notices-section .state-development-section {
+    padding: 10px 0 20px;
+}
+
+.legal-notices-section .legal-block .panel-group, .legal-notices-section .state-development-section .panel-group {
+    margin-bottom: 10px;
+}
+
+.legal-notices-section .state-development-section accordion .panel-group .panel.panel-default .panel-heading .icon-icon_Disclosure_Collapse:before {
+    content: "\a151";
+    color: #0073CF;
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    font-size: 22px;
+}
+
+.legal-notices-section .state-development-section accordion .panel-group .panel.panel-default .panel-heading .icon-icon_Disclosure_Expand:before {
+    content: "\a150";
+    font-size: 20px;
+    color: #0073CF;
+    position: absolute;
+    right: 4px;
+    font-size: 22px;
+}
+
+.legal-notices-section .state-development-section accordion .panel-group {
+    margin-bottom: 10px;
+}
+
+.legal-notices-section .state-development-section .panel-body {
+    padding: 0;
+}
+
+.legal-notices-section .state-development-section .panel-body .col-md-12.col-md-12.top-marg-10 {
+    padding: 0;
+}
+
+.legal-notices-section .state-development-section .panel-body .col-md-12.col-md-12.top-marg-10 .panel-group {
+    margin-bottom: 0;
+    margin-top: 10px;
+    padding: 0 15px;
+}
+
+.legal-notices-section .state-development-section .panel-body .col-md-12.col-md-12.top-marg-10 .panel-group .panel-body {
+    padding: 10px 15px !important;
+}
+
+.legal-notices-section .panel-body {
+    padding: 10px 15px !important;
+}
+
+.legal-notices-section .panel-title h5 {
+    display: inline-block !important;
+    margin: 0;
+}
+
+.legal-notices-section .panel-title i {
+    position: relative;
+    top: -3px;
+}
+
+.legal-notices-section .panel-title .icon-icon_Disclosure_Collapse {
+    font-size: 20px !important;
+}
+
+.legal-notices-section .panel-body h2 {
+    font-size: 18px !important;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 0 !important;
+}
+
+ul.bullet-list {
+    padding-left: 10px;
+    list-style: disc !important;
+    display: block;
+}
+
+ul.bullet-list li {
+    list-style: disc !important;
+    display: block;
+    padding: 5px 0;
+    font-size: 15px;
+    list-style-position: inside;
+}
+
+/*# sourceMappingURL=leagalnotice.css.map */

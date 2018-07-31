@@ -1,0 +1,96 @@
+<div class="tn-create-names-modal tn-modal-fullHeight tn-modal" ng-controller="namesCreateNewCtrl">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.profile_personal.create_new_preferred_name"></h4>
+    </div>
+    <form class="tn-form" name="nameCreateNewForm" id="name_create_new_form"
+          novalidate>
+        <div class="tn-modal-boby col-sm-12">
+
+            <div class="primary-name-section col-sm-12 no-pad">
+                <!--<div class="col-sm-4 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="namesformadress"><span
+                            ng-bind="::translation.profile_personal.form_address"></span>:</label>
+                    </div>
+                    <div>
+                        <select ng-model="create.formOfAddress" id="namesformadress"
+                                ng-options="foa.value for foa in formOfAddressData track by foa.value"
+                                class="form-control">
+                            <option value='' ng-bind="::translation.profile_personal.select"></option>
+                        </select>
+                    </div>
+                </div>-->
+                <div class="tn-checkbox fullwidth marg-top-15 no-margin-left">
+                    <input id="isPreferred" ng-model="isPreferred" type="checkbox" ng-click="showPrimaryInfo()"/>
+                    <label for="isPreferred" ng-bind="::translation.profile_personal.usePrimaryName"> </label>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="namesfirstname" ng-bind="::translation.first_name"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="firstName" ng-model='create.firstName' maxlength='30'
+                               id="namesfirstname"
+                               class="form form-control" ng-required="true"
+                               ng-class="{'error-warning': (isNamesNewSubmitted && validationPatterns.preferredNameCreate.focus.nameCreateNewFormfirstNameRequired) || (isNamesNewSubmitted && validationPatterns.preferredNameCreate.blur.nameCreateNewFormfirstNameRequired)}"
+                               ng-focus="validationPatterns.preferredNameCreate.focus.nameCreateNewFormfirstNameRequired=nameCreateNewForm.firstName.$error.required; validationPatterns.preferredNameCreate.blur.nameCreateNewFormfirstNameRequired = false;"
+                               ng-blur="validationPatterns.preferredNameCreate.blur.nameCreateNewFormfirstNameRequired=nameCreateNewForm.firstName.$error.required; validationPatterns.preferredNameCreate.focus.nameCreateNewFormfirstNameRequired = false;"
+                        />
+                        <Validation
+                            condition="isNamesNewSubmitted && validationPatterns.preferredNameCreate.focus.nameCreateNewFormfirstNameRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="namesmiddlename" ng-bind="::translation.middle_name"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="middleName" ng-model='create.middleName' maxlength='30'
+                               id="namesmiddlename"
+                               class="form form-control"/>
+                    </div>
+                </div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div class="required-field">
+                        <label for="nameslastname" ng-bind="::translation.last_name"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="lastName" maxlength='60' id="nameslastname"
+                               ng-model='create.lastName' class="form form-control"
+                               ng-required="true"
+                               ng-class="{'error-warning': (isNamesNewSubmitted && validationPatterns.preferredNameCreate.focus.nameCreateNewFormlastNameRequired) || (isNamesNewSubmitted && validationPatterns.preferredNameCreate.blur.nameCreateNewFormlastNameRequired)}"
+                               ng-focus="validationPatterns.preferredNameCreate.focus.nameCreateNewFormlastNameRequired=nameCreateNewForm.lastName.$error.required; validationPatterns.preferredNameCreate.blur.nameCreateNewFormlastNameRequired = false;"
+                               ng-blur="validationPatterns.preferredNameCreate.blur.nameCreateNewFormlastNameRequired=nameCreateNewForm.lastName.$error.required; validationPatterns.preferredNameCreate.focus.nameCreateNewFormlastNameRequired = false;"
+                        />
+                        <Validation
+                            condition="isNamesNewSubmitted && validationPatterns.preferredNameCreate.focus.nameCreateNewFormlastNameRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-btm-10">
+                    <div>
+                        <label for="namessuffix" ng-bind="::translation.profile_personal.suffix"</label>
+                    </div>
+                    <div>
+                        <select ng-model="create.suffix" id="namessuffix"
+                                ng-options="sufix.value for sufix in suffixData track by sufix.key"
+                                class="form-control">
+                            <option value='' ng-bind="::translation.profile_personal.select"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+            <button ng-click="closeThisDialog()" name="cancel"
+                    class="tn-cancel-button tn-button" ng-bind="::translation.cancel" id="namescancel"></button>
+            <button type="submit" name="save" ng-click="saveData(nameCreateNewForm)"
+                    class="tn-action-button tn-button" ng-bind="::translation.save" id="namessave"></button>
+        </div>
+    </form>
+</div>

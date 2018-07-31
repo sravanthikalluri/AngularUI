@@ -1,0 +1,64 @@
+<div class="tn-timeoff-section" ng-controller="timeOffCtrl">
+    <div class="profile-heading">
+        <h4 class="bold profile-heading">Time Off History</h4>
+    </div>
+    <time-off-history-widget data="timeOffSlickData" translation="translation"></time-off-history-widget>
+    <div class="tn-tab-section" ng-show="timeOffSlickData.length > 0">
+        <ul class="nav nav-pills nav-tabs">
+            <li ng-class="{ active: tabValue === $index}" class="medium"
+                ng-repeat="timeoffData in timeOffSlickData">
+                <a id="vactionTabId" ng-click="selectTab($index)"
+                   class="personal-tabs proxima-nova-semibold">{{timeoffData.planTypeDesc| uppercase }}</a></li>
+        </ul>
+    </div>
+    <div>
+        <table class="table tn-table">
+            <thead>
+            <tr>
+                <th ng-style="{width: autoWidth+ '%'}" ng-bind="::translation.employee_money.accrualDate"></th>
+                <th ng-style="{width: autoWidth+ '%'}" ng-bind="::translation.employee_money.carryOverHours"></th>
+                <th ng-style="{width: autoWidth+ '%'}">
+                    <span>Service Hours <br>Total / Period</span>
+                </th>
+                <th ng-style="{width: autoWidth+ '%'}">
+                    <span>
+                        Hours Earned <br> YTD / Period
+                    </span>
+                </th>
+                <th ng-style="{width: autoWidth+ '%'}">
+                    <span >Hours Taken <br> YTD / Period</span>
+                </th>
+                <th ng-style="{width: autoWidth+ '%'}" ng-bind="::translation.employee_money.balance"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="timeOff in val.accrualList">
+                <td ng-style="{width: autoWidth+ '%'}">{{timeOff.accrualDate | date:'MM/dd/yyyy'}}</td>
+                <td ng-style="{width: autoWidth+ '%'}">{{::timeOff.carryoverHrs | number : '2'}}</td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <span>{{::timeOff.serviceHrsTotal | number : '2'}}</span>
+                    <span> &#x2F;</span>
+                    <span>{{::timeOff.serviceHrsPeriod | number : '2'}}</span>
+                </td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <span>{{::timeOff.hrsEarnedYTD | number : '2'}}</span>
+                    <span> &#x2F;</span>
+                    <span>{{::timeOff.hrsEarnedPeriod | number : '2'}}</span>
+
+                </td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <span>{{::timeOff.hrsTakenYTD | number : '2'}}</span>
+                    <span> &#x2F;</span>
+                    <span>{{::timeOff.hrsTakenPeriod | number : '2'}}</span>
+                </td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <span>{{::timeOff.balanceHrs | number : '2'}}</span>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+		<no-records error-alert="errorAlert" no-records-alert="noRecordsAlert" ></no-records>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "state": "AZ",
+      "size": "A-4",
+      "pdfUrl": "app/pdf/ActiveBenefitCarrierContactChart.pdf"
+    },
+    {
+      "state": "Arizona",
+      "size": "A-4",
+      "pdfUrl": "/Link2HR.eng?/includes/content/forms/PDF/StateWithholding/Arizona_A4.pdf"
+    },
+    {
+      "state": "Arizona",
+      "size": "WEC",
+      "pdfUrl": "/Link2HR.eng?/includes/content/forms/PDF/StateWithholding/Arizona_WEC.pdf"
+    }
+  ]
+}

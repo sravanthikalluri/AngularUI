@@ -1,0 +1,120 @@
+<div class="compensation-general">
+
+    <!---->
+    <div class="row">
+        <div class="col-md-8 col-md-8 top-marg-10" id="header-bar">
+            <h2>{{::translation.money.earnings_statements.total_compensation_stmnt}}</h2>
+        </div>
+        <div class="col-md-9 col-md-offset-2">
+            <form class="form-horizontal compensationForm">
+
+                <div class="form-group">
+                    <label class="col-sm-4 no-pad-imp control-label">{{::translation.money.earnings_statements.earningPeriod}}</label>
+
+                    <div class="col-md-8">
+                        <div class="col-md-6 no-pad-imp">
+                            <label class="radio-inline">
+                                <input type="radio" name="periodType" ng-model="compensationDataForm.periodType"
+                                       ng-click="togglePeriodType()" value="year"> {{::translation.money.earnings_statements.year}}
+                            </label>
+                        </div>
+                        <div class="col-md-6 no-pad-imp">
+                            <label class="radio-inline">
+                                <input type="radio" name="periodType" ng-model="compensationDataForm.periodType"
+                                       ng-click="togglePeriodType()" value="custom"> {{::translation.money.earnings_statements.customDateRange}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="enableYearPeriodType">
+                    <label class="col-sm-4 no-pad-imp control-label">{{::translation.money.earnings_statements.dateRange}}</label>
+
+                    <div class="col-md-8 col-sm-8 no-pad-left date">
+                        <div class="col-sm-5 no-pad-imp " ng-controller="datePickerCtrl">
+                            <p class="input-group  customed-calendar ">
+                                <input type="text" class="form-control no-border" name="beginDate"
+                                       ng-class=" {'error-warning': beginDateRequired}"
+                                       ng-blur="beginDateRequired=createPayForm.beginDate.$error.required;"
+                                       ng-required="true"
+                                       id="pay_begin_date" datepicker-popup="{{format}}"
+                                       ng-model="compensationDataForm.fromDate" is-open="opened" min-date="minDate"
+                                       max-date="'12/31/2099'" datepicker-options="dateOptions"
+                                       close-text="Close" placeholder=" MM/DD/YYYY"/>
+										  <span class="input-group-btn">
+											<button type="button" id="calenderbeginId"
+                                                    class="btn no-bg-all bo-border btn-default Trinet-calendar"
+                                                    ng-click="open($event)">
+                                                <span class="blue"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </button>
+										</span>
+                            </p>
+                        </div>
+                        <div class="col-sm-1 no-pad-imp"><p style="padding: 7px;"> To</p></div>
+                        <div class="col-sm-5 no-pad-imp " ng-controller="datePickerCtrl">
+                            <p class="input-group  customed-calendar ">
+                                <input type="text" class="form-control no-border" name="beginDate"
+                                       ng-class=" {'error-warning': beginDateRequired}"
+                                       ng-blur="beginDateRequired=createPayForm.beginDate.$error.required;"
+                                       ng-required="true"
+                                       id="pay_begin_dateend" datepicker-popup="{{format}}"
+                                       ng-model="compensationDataForm.toDate" is-open="opened" min-date="minDate"
+                                       max-date="'12/31/2099'" datepicker-options="dateOptions"
+                                       close-text="Close" placeholder=" MM/DD/YYYY"/>
+										  <span class="input-group-btn">
+											<button type="button" id="calenderendId"
+                                                    class="btn no-bg-all bo-border btn-default Trinet-calendar"
+                                                    ng-click="open($event)">
+                                                <span class="blue"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </button>
+										</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group" ng-show="!enableYearPeriodType">
+                    <label class="col-sm-4 no-pad-imp control-label">{{::translation.money.earnings_statements.year}}:</label>
+
+                    <div class="col-sm-8 ">
+                        <div class="col-sm-5 no-pad-imp ">
+                            <select class="form-control" ng-model="compensationDataForm.year"
+                                    ng-options="year.name for year in years">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 no-pad-imp control-label">{{::translation.money.earnings_statements.earningPeriod}}:</label>
+
+                    <div class="col-md-8 ">
+                        <div class="col-md-6 no-pad-imp">
+                            <label class="radio-inline">
+                                <input type="radio" name="reportType" value="html"
+                                       ng-model="compensationDataForm.reportType">
+                            </label>
+                        </div>
+                        <div class="col-md-6 no-pad-imp">
+                            <label class="radio-inline">
+                                <input type="radio" name="reportType" value="pdf"
+                                       ng-model="compensationDataForm.reportType"> {{::translation.money.earnings_statements.pdf}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-5 col-sm-3">
+                        <button type="button" class="trinet-primary-action-btn" ng-click="viewReport()">{{::translation.money.earnings_statements.viewReport}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <hr class="hr">
+            <div class="upbtn">
+                <i class="glyphicon glyphicon-chevron-up custom-up-arrow"></i>
+            </div>
+        </div>
+    </div>
+
+</div>

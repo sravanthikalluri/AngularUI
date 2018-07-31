@@ -1,0 +1,369 @@
+<div>
+    <form id="create_group_change" name="createGroupChangeForm">
+        <div class="manage-group manage-employee no-top-pad">
+        <div>
+            <div class="row no-marg">
+                <h4 class="modal-title" id="exampleModal1Label"
+                    ng-bind="::translation.mycompany.manageGrp.createGroup_change"></h4>
+                <h2 class="col-md-6 no-pad p-t10-l12" ng-bind="::translation.manageGroup.groupChange"></h2>
+            </div>
+            <div>
+                <div class="clearfix"></div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="panel-body no-pad">
+                    <div class="tab-content">
+                        <div class="clearfix"></div>
+                        <div class="tab-pane active">
+                            <div class="col-md-12 col-sm-12 no-pad">
+
+                                   <span class="proxima-nova font-dark">{{selectedList}}</span>
+
+                                    <div class="col-md-5 col-sm-12 no-pad pull-right">
+                                        <div class="pull-right no-pad relative">
+                                        <span class=" icon-icon_Settings pull-right black v-large "
+                                              id="showManageEmpColListId"
+                                              ng-click="showManageEmpColListfun()"></span>
+                                            <div ng-mouseleave="textboxhide(showManageEmpColList)"
+                                                 ng-show="showManageEmpColList"
+                                                 class=" ng-hide group-change-filter-list top-30">
+                                                <!-- ngRepeat: settinglist in settingData -->
+                                                <div class="list-sub-data ng-scope">
+                                                    <div class="action-checkbox" ng-repeat="setting in settingData ">
+                                                        <label class="profile-checkbox reg-font ng-binding" for="1">
+                                                            <span class="pull-left no-marg top-0"
+                                                                  ng-class="setting.show ? 'icon-icon_checkmarkwithbox blue':'icon-icon_checkmark_emptybox blue'"></span>
+                                                            <p class="pull-left pad-left-10 line-height-13">
+                                                                <input type="checkbox" ng-hide="true" id="1" name="name"
+                                                                       value="Sr. Director"
+                                                                       ng-model="setting.show"
+                                                                       ng-click="toggleSelection(positions.position);"
+                                                                       class="pill-left"/>
+                                                                {{setting.title}} </p>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-6 no-pad pull-right marg-right-5">
+                                            <span class="input-group search-box">
+                                             <input id="mgEmp_search" type="text" name="search" class="no-border form-control ng-pristine ng-valid ng-touched" ng-change="searchFilter(search);"
+                                                   placeholder="Search Employees..." ng-model="search" ng-model-options="{debounce:1000}">
+                                            <button class="no-border no-bg top-2">
+                                            <span class="icon-icon_Zoom medium"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                <div class="clearfix">&nbsp</div>
+                                <hr>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="relative">
+                                <div class="manageGroupsTable"
+                                 ng-class="{'isLeavePlan' : (isLeavePlan)}">
+                                <div class="manageGroupsHeadings" ng-style="{width:'{{x}}'*170+'px'}" ng-show="createGroupChangeData.employees.length>0">
+                                <div class="customCheckBox">
+                                    <label class="profile-checkbox no-marg medium">
+                                        <span ng-class="selectedAllEmployees ? 'icon-icon_checkmarkwithbox whitecheck':'icon-icon_checkmark_emptybox whitecheck'"></span>
+                                        <input type="checkbox" ng-hide="true" id="mgcreateGroupChangeCheckId"
+                                               name="selectedAllEmployees"
+                                               ng-model="selectedAllEmployees"
+                                               ng-click="checkAllEmployees(selectedAllEmployees); disableSave = !disableSave"
+                                               class="mgcreateGroupChangeCheckId no-marg"/>
+                                    </label>
+                                </div>
+                                <div class="empName" id="CGH_employeeId" ng-click="sortType = 'employeeName'; sortReverse = !sortReverse" ng-show="settingData[0].show">
+                                    <span>{{::translation.manageGroup.empName}}</span>
+                                    <span ng-show="sortType == 'employeeName' && !sortReverse" class="icon-icon_a-z_sort pull-right"></span>
+                                    <span ng-show="sortType == 'employeeName' && sortReverse" class="icon-icon_z-a_sort pull-right"></span>
+                                </div>
+                                <div class="empPosition" ng-mouseleave="textboxhide()" ng-if="settingData[1].show">
+                                    <span>{{::translation.manageGroup.position}}</span>
+                                    <span class="icon-icon_filter pull-right black" id="CGH_SearchId" ng-click="searchPos(1,$event)"></span>
+                                    <div ng-show="searchbox == 1" class="group-change-filter-list">
+                                        <div ng-repeat="positions in createGroupChangeData.employees | unique: 'position'|orderBy:'position'" class="list-sub-data">
+                                            <div class="action-checkbox">
+                                                <label class="profile-checkbox reg-font" for="{{positions.position}}">
+                                                    <span class="pull-left no-marg" ng-class="selectchange ? 'icon-icon_checkmarkwithbox blue':'icon-icon_checkmark_emptybox blue'"></span>
+                                                    <p class="pull-left pad-left-10 line-height-13">
+                                                        <input type="checkbox" ng-hide="true" id="{{positions.position}}"
+                                                               name="name" value="{{positions.position}}" ng-model="selectchange"
+                                                               ng-click="toggleSelection(positions.position);" class="pill-left"/>
+                                                        {{positions.position === "" ? "(Blanks)" : positions.position}}
+                                                    </p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="empDirectManger" ng-if="settingData[2].show" ng-bind="::translation.manageGroup.directManager"></div>
+                                <div class="empDept" ng-mouseleave="textboxhide()" ng-if="isDepartment" ng-show="settingData[3].show" ng-class="(selectedAllEmployees || notSelectedAllEmployees) ? 'adjSelect' : ''">
+                                    <div ng-show="viewDropDown == false;">
+                                        <span>{{::translation.manageGroup.department}}</span>
+                                        <span class="icon-icon_filter pull-right black" ng-click="dropdownfun($event)"></span>
+                                        <div width="30%" class="group-change-filter-list" ng-show="filtercond">
+                                            <div ng-repeat="departments in departmentsData| unique: 'deptName' |orderBy:'deptName'"
+                                                 class="list-sub-data">
+                                                <div class="action-checkbox">
+                                                    <label class="profile-checkbox reg-font"
+                                                           for="{{departments.deptName}}">
+                                                            <span class="pull-left no-marg"
+                                                                  ng-class="selectchange ? 'icon-icon_checkmarkwithbox blue':'icon-icon_checkmark_emptybox blue'"></span>
+                                                        <p class="pull-left pad-left-10 line-height-13">
+                                                            <input type="checkbox" ng-hide="true"
+                                                                   id="{{departments.deptName}}"
+                                                                   value="{{departments.deptName}}" ng-model="selectchange"
+                                                                   ng-click="toggleSelection(departments.deptName);"
+                                                                   class="pill-left"/>
+                                                            {{departments.deptName === null ? "(Blanks)" :departments.deptName}}</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                        <select ng-model="globalvaluedept" id="grc_globalvalue" ng-options="dept.deptId as dept.deptName for dept in departmentsData"
+                                                class="selectbox_style">
+                                           <option value="">{{::translation.manageGroup.selectDept}}</option>
+                                        </select>
+                                        <button name="savevalue" id="grc_changeall" class="trinet-primary-action-btn"
+                                             ng-click="changeallCG('DEP',globalvaluedept)"> {{::translation.manageGroup.apply}}
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="empLoc" ng-mouseleave="textboxhide()" ng-if="isLocation" ng-show="settingData[4].show" ng-class="(selectedAllEmployees || notSelectedAllEmployees) ? 'adjSelect' : ''">
+                                    <div ng-show="viewDropDown == false;">
+                                        <span>{{::translation.manageGroup.location}}</span>
+                                        <span class="icon-icon_filter pull-right black" ng-click="dropdownlocationfun($event)"></span>
+                                        <div class="group-change-filter-list" ng-show="locationfiltercond">
+                                            <div ng-repeat="locations in locationsData| unique: 'locationName'|orderBy:'locationName'" class="list-sub-data">
+                                                <div class="action-checkbox">
+                                                    <label class="profile-checkbox reg-font" for="{{locations.locationName}}">
+                                                        <span class="pull-left no-marg" ng-class="selectchange ? 'icon-icon_checkmarkwithbox blue':'icon-icon_checkmark_emptybox blue'"></span>
+                                                        <p class="pull-left pad-left-10 line-height-13">
+                                                            <input type="checkbox" ng-hide="true" id="{{locations.locationName}}"
+                                                                   name="name" value="{{locations.locationName}}" ng-model="selectchange"
+                                                                   ng-click="toggleSelection(locations.locationName)"class="pill-left"/>
+                                                            {{locations.locationName === null ? "(Blanks)" : locations.locationName}}</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                        <select ng-model="globalvaluelocat" id="globalvalueloc"
+                                                ng-options="loc.locationId as loc.locationName +'('+loc.locationId+')' for loc in locationsData" class="selectbox_style"
+                                                ng-change="checkOhio(globalvaluelocat)">
+                                            <option value="">{{::translation.manageGroup.selecLoc}}</option>
+                                        </select>
+                                        <button name="save" id="saveloc" class="trinet-primary-action-btn"
+                                                ng-click="changeallCG('selloc',globalvaluelocat)"
+                                                ng-bind="::translation.manageGroup.apply">
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="empPlanTypes" ng-if="sick">
+                                    <div ng-show="viewDropDown == false;">
+                                        <span>Sick</span>
+                                    </div>
+                                    <div ng-if="isLeavePlan" ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                        <select ng-model="leaveTypeSick" id="leaveTypeSick" class="selectbox_style"
+                                                ng-options="sick.benefitPlan as sick.benefitPlanDescription for sick in sickData">
+                                            <option value="" ng-bind="::translation.manageGroup.selectLeave"></option>
+                                        </select>
+                                        <button name="save" id="saveSick" class="trinet-primary-action-btn"
+                                                ng-click="changeallCG('Sick',leaveTypeSick)" ng-bind="::translation.manageGroup.apply">
+                                        </button>
+                                     </div>
+                                </div>
+                                    <div class="empPlanTypes" ng-if="vacation">
+                                        <div ng-show="viewDropDown == false;">
+                                            <span>Vacation</span>
+                                        </div>
+                                        <div ng-if="isLeavePlan" ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                            <select ng-model="leaveTypeVacations" id="leaveTypeVacations" class="selectbox_style"
+                                                    ng-options="vacations.benefitPlan as vacations.benefitPlanDescription for vacations in vacationsData">
+                                                <option value="" ng-bind="::translation.manageGroup.selectLeave"></option>
+                                            </select>
+                                            <button name="save" id="saveVac" class="trinet-primary-action-btn"
+                                                    ng-click="changeallCG('Vacation',leaveTypeVacations)" ng-bind="::translation.manageGroup.apply">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="empPlanTypes" ng-if="pto">
+                                        <div ng-show="viewDropDown == false;">
+                                            <span>Personal</span>
+                                        </div>
+                                        <div ng-if="isLeavePlan" ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                            <select ng-model="leaveTypePto" id="leaveTypePto" class="selectbox_style"
+                                                    ng-options="pto.benefitPlan as pto.benefitPlanDescription for pto in ptoData">
+                                                <option value="" ng-bind="::translation.manageGroup.selectLeave"></option>
+                                            </select>
+                                            <button name="save" id="savePer" class="trinet-primary-action-btn"
+                                                    ng-click="changeallCG('Personal',leaveTypePto)" ng-bind="::translation.manageGroup.apply">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="empPlanTypes" ng-if="eib">
+                                        <div ng-show="viewDropDown == false;">
+                                            <span>EIB</span>
+                                        </div>
+                                        <div ng-if="isLeavePlan" ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                            <select ng-model="leaveTypeEib" id="leaveTypeEib" class="selectbox_style"
+                                                    ng-options="eib.benefitPlan as eib.benefitPlanDescription for eib in eibData">
+                                                <option value="" ng-bind="::translation.manageGroup.selectEIB"></option>
+                                            </select>
+                                            <button name="save" id="saveEIB" class="trinet-primary-action-btn"
+                                                    ng-click="changeallCG('EIB',leaveTypeEib)" ng-bind="::translation.manageGroup.apply">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="empPlanTypes" ng-if="restricted">
+                                        <div ng-show="viewDropDown == false;">
+                                            <span>Restricted Floating Holiday</span>
+                                        </div>
+                                        <div ng-if="isLeavePlan" ng-show="viewDropDown == true;" class="black manage-select-custom" >
+                                            <select ng-model="leaveTypeRec" id="leaveTypeRec" class="selectbox_style"
+                                                    ng-options="rec.benefitPlan as rec.benefitPlanDescription for rec in restrictedData">
+                                                <option value="" ng-bind="::translation.manageGroup.selecLoc"></option>
+                                            </select>
+                                            <button name="save" id="saveRec" class="trinet-primary-action-btn"
+                                                    ng-click="changeallCG('Restricted Floating Holiday',leaveTypeRec)" ng-bind="::translation.manageGroup.apply">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--manage-Groups-body-->
+                                <div id="manageGroupsBodySection" ng-style="{width:'{{x}}'*170+'px'}" when-scroll="loadData()">
+                                    <div class="manageGroupsBody hand" id="report{{$index}}"
+                                         ng-repeat="createGroupChange in filterByData | SearchCheckboxFilter:selection | orderBy:sortType:sortReverse"
+                                         ng-class="createGroupChange.Selected ? 'bg-light-blue ':' '" ng-class="{'isLeavePlan' : (adjColumns)}">
+                                        <div class="customCheckBox">
+                                            <label class="profile-checkbox">
+                                                <span ng-class="createGroupChange.Selected ? 'icon-icon_checkmarkwithbox blue':'icon-icon_checkmark_emptybox blue'"></span>
+                                                <input type="checkbox" ng-hide="true" id="createGroupChangeCheck{{$index}}"
+                                                       name="createGroupChange.Selected"
+                                                       ng-model="createGroupChange.Selected"
+                                                       ng-click="singleCheck(createGroupChange,createGroupChange.Selected,$index) ; disableSave = !disableSave"
+                                                       class="no-marg"/>
+                                            </label>
+                                        </div>
+                                        <div class="empName" ng-show="settingData[0].show">
+                                           <span ng-bind="::createGroupChange.employeeName"></span><br>
+                                           <span class="sub-txt">{{createGroupChange.employeeId}}</span>
+                                        </div>
+                                        <div class="empPosition" ng-bind="::createGroupChange.position" ng-show="settingData[1].show">
+                                        </div>
+                                        <div class="empDirectManger" ng-bind="::createGroupChange.managerName" ng-show="settingData[2].show"></div>
+                                        <div class="empDept" ng-if="isDepartment" ng-show="settingData[3].show" ng-class="(createGroupChange.Selected) ? 'adjSelect' : ''">
+                                            <span ng-hide="createGroupChange.Selected" class="pull-left">{{createGroupChange.deptName}}</span>
+                                            <select ng-show="createGroupChange.Selected" class="adjust-select"
+                                                    id="mgcrtGroupChangeDept{{$index}}" ng-model="createGroupChange.deptId"
+                                                    ng-options="dept.deptId as dept.deptName for dept in departmentsData"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'DEP')">
+                                            </select>
+                                        </div>
+                                        <div class="empLoc" ng-if="isLocation" ng-show="settingData[4].show" ng-class="(createGroupChange.Selected) ? 'adjSelect' : ''">
+                                            <span ng-hide="createGroupChange.Selected">{{createGroupChange.locationName}}</span>
+                                            <select ng-show="createGroupChange.Selected"
+                                                    id="mgcrtGroupChangelocation{{$index}}" class="adjust-select"
+                                                    ng-model="createGroupChange.locationId"
+                                                    ng-options="loc.locationId as loc.locationName +'('+loc.locationId+')' for loc in locationsData"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'LOC')">
+                                            </select>
+                                        </div>
+                                        <div class="empPlanTypes manage-select-custom" ng-if="isLeavePlan && sick">
+                                            <span ng-hide="createGroupChange.Selected" >{{createGroupChange.leavePlan50.value}}</span>
+                                            <select ng-show="createGroupChange.Selected"
+                                                    id="mgcrtGroupChangeleavePlan50Id{{$index}}"
+                                                    ng-model="createGroupChange.leavePlan50Id"
+                                                    ng-init="createGroupChange.leavePlan50 = leavePlanSetValue(createGroupChange.leavePlan50Id,createGroupChange.leavePlan50Values)"
+                                                    ng-options="create.key as create.value  for create in createGroupChange.leavePlan50Values"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'LPC')">
+                                            </select>
+                                        </div>
+                                        <div class="empPlanTypes manage-select-custom" ng-if="isLeavePlan &&  vacation">
+                                            <span ng-hide="createGroupChange.Selected">{{createGroupChange.leavePlan51.value}}</span>
+                                            <select ng-show="createGroupChange.Selected"
+                                                    id="mgcrtGroupChangeleavePlan51Id2{{$index}}"
+                                                    ng-model="createGroupChange.leavePlan51Id"
+                                                    ng-init="createGroupChange.leavePlan51 =leavePlanSetValue(createGroupChange.leavePlan51Id,createGroupChange.leavePlan51Values)"
+                                                    ng-options="create.key as create.value  for create in createGroupChange.leavePlan51Values"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'LPC')">
+                                            </select>
+                                        </div>
+                                        <div class="empPlanTypes manage-select-custom" ng-if="isLeavePlan && pto">
+                                            <span ng-hide="createGroupChange.Selected">{{createGroupChange.leavePlan52.value}}</span>
+                                            <select ng-show="createGroupChange.Selected"
+                                                    id="mgcrtGroupChangeleavePlan52Id{{$index}}"
+                                                    ng-model="createGroupChange.leavePlan52Id"
+                                                    ng-init="createGroupChange.leavePlan52 = leavePlanSetValue(createGroupChange.leavePlan52Id,createGroupChange.leavePlan52Values)"
+                                                    ng-options="create.key as create.value  for create in createGroupChange.leavePlan52Values"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'LPC')">
+                                            </select>
+                                        </div>
+
+                                        <div class="empPlanTypes manage-select-custom" ng-if="isLeavePlan && eib">
+                                            <span ng-hide="createGroupChange.Selected">{{createGroupChange.leavePlan5X.value}}</span>
+                                            <select ng-show="createGroupChange.Selected"
+                                                    id="mgcrtGroupChangeleavePlan5XId{{$index}}"
+                                                    ng-model="createGroupChange.leavePlan5XId"
+                                                    ng-init="createGroupChange.leavePlan5X = leavePlanSetValue(createGroupChange.leavePlan5XId,createGroupChange.leavePlan5XValues) "
+                                                    ng-options="create.key as create.value  for create in createGroupChange.leavePlan5XValues"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'LPC')"></select>
+                                        </div>
+
+                                        <div class="empPlanTypes manage-select-custom" ng-if="isLeavePlan && restricted">
+                                            <span ng-hide="createGroupChange.Selected">{{createGroupChange.leavePlan5Y.value}}</span>
+                                            <select ng-show="createGroupChange.Selected"
+                                                    id="mgcrtGroupChangeleavePlan5YId{{$index}}"
+                                                    ng-model="createGroupChange.leavePlan5YId"
+                                                    ng-init="createGroupChange.leavePlan5Y = leavePlanSetValue(createGroupChange.leavePlan5YId,createGroupChange.leavePlan5YValues)"
+                                                    ng-options="create.key as create.value for create in createGroupChange.leavePlan5YValues"
+                                                    ng-change="selectedEmpDepData(createGroupChange,'LOC')"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--manage-Groups-body-->
+                            </div>
+                            </div>
+                        </div>
+                        <!-- Main grid count-->
+                        <span class="medium" ng-if="!filteredByCheckbox">
+                            {{filterByData.length}} out of
+                            {{(filteredByCheckbox == false ? totalCount : (createGroupChangeData.employees | SearchCheckboxFilter:selection).length )}}
+                            {{::translation.manageGroup.employees}}
+                        </span>
+                        <!--Filter grid count-->
+                        <span class="medium" ng-if="filteredByCheckbox">
+                            {{selectedCount}}
+                            out of
+                            {{(filteredByCheckbox == false ? createGroupChangeData.employeesCount : (createGroupChangeData.employees | SearchCheckboxFilter:selection).length )}}
+                            {{::translation.manageGroup.employeesSelected}}
+                        </span>
+                        <div class="modal-footer">
+                            <button type="submit" class="trinet-primary-action-btn"
+                                    data-dismiss="modal" id="mgSaveCGC"
+                                    ng-disabled="selectedAllEmployees==true || test==true?disableSave=false:disableSave=true"
+                                    ng-style="{'opacity': (disableSave)? '0.3' : '1'}" ng-bind="::translation.save"
+                                    ng-click="saveData(createGroupChangeForm, $index)"></button>
+                            <button type="button" id="mgCancelCGC" class="trinet-secondary-action-btn"
+                                    ng-bind="::translation.cancel" ng-click="cancelRequest($index)"></button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,152 @@
+<div class="tn-additional-payment-section" ng-controller="addlPaymentCtrl">
+    <alert-view></alert-view>
+    <div class="heading-section">
+        <h4 class="bold profile-heading" ng-bind="::translation.moneyTab.addlHeader"></h4>
+        <button class="tn-button tn-action-button" type="button" id="addlPay_save" name="save" data-whatever="@fat"
+                ng-class="$parent.canAdd('additionalPay') ? 'visible-hide' : ''"
+                ng-click="createPaymentDetails()">Create a New Payment
+        </button>
+    </div>
+    <div ng-if="moneyPayData.length > 0" class="relative">
+        <table class="table tn-table">
+            <thead>
+            <tr>
+                <th width="16%" ng-bind="::translation.status_cap"></th>
+                <th width="15%" ng-bind="::translation.begin_date"></th>
+                <th width="15%" ng-bind="::translation.end_date"></th>
+                <th width="25%" ng-bind="::translation.pay_frequency"></th>
+                <th width="13%" ng-bind="::translation.earn_type"></th>
+                <th width="16%">
+                    <span ng-bind="::translation.earn_amount"></span>
+                    <!--<p class="ex-smsll no-marg" ng-bind="::translation.reports.earn_tag_cap"></p>-->
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="hand" id="addPayDataId{{$index}}" ng-repeat="payData in moneyPayData"
+                ng-click="viewTransDetails($index,$event)">
+                <td width="16%">
+                    <div class="flex-box">
+                        <label class="switch" for="myonoffswitch{{$index}}"
+                               ng-if="payData.action =='Begin' || payData.isFutureDate">
+                            <input type="checkbox" name="emptyswitch{{$index}}"
+                                   ng-click="onOFF($index);$event.stopPropagation();"
+                                   id="myonoffswitch{{$index}}" checked
+                                   ng-disabled="getPayCheck( payData.isFutureDate,  $index)">
+                            <div class="switch__slider"></div>
+                        </label>
+                        <span ng-bind="payData.action | status"></span>
+                    </div>
+                </td>
+                <td width="15%" ng-bind="(payData.beginDate ? (payData.beginDate | date:'MM/dd/yyyy') : '-')"></td>
+                <td width="15%"
+                    ng-bind="(payData.endDate ? (payData.endDate | date:'MM/dd/yyyy') : 'No End Date')"></td>
+                <td width="25%" ng-bind="::payData.paymentFrequency"></td>
+                <td width="13%" ng-bind="::payData.earnType"></td>
+                <td width="16%" ng-bind="payData.earnAmount | currency"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="change-request-details customeChangeRequestDetails flyout2" ng-if="onSelectedPaymentRow">
+
+            <div class="content-block">
+                <h4 class="title Trinet-blue" id="exampleModalLabel">{{::translation.moneyTab.trans_details}}
+                    <span class="icon-close-temp close blue" id="addPayRowId"
+                    ng-click="closeThisSection()"></span></h4>
+            </div>
+            <div class="assign-manager content-block">
+                <div class="col-md-7 col-sm-7 no-pad">
+                    <table class="table medium end-payment-popup ">
+                        <tbody>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right">{{::translation.dateSubmit}}:</td>
+                            <td class="col-md-6 col-sm-6 text-left" ng-bind="viewTransactionData.submitDate"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right vertical-align-top">{{::translation.submitted_by}}:</td>
+                            <td class="col-md-6 col-sm-6 text-left">{{viewTransactionData.submitByName}}<br />({{viewTransactionData.submitById}})</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right vertical-align-top">{{::translation.sub}}:</td>
+                            <td class="col-md-6 col-sm-6 text-left"> {{viewTransactionData.subjectName}}<br />({{viewTransactionData.subjectId}})</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">&nbsp;</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right">{{::translation.reports.action}}</td>
+                            <td class="col-md-6 col-sm-6 text-left" ng-bind="viewTransactionData.action"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right">{{::translation.goal_amount +' '+ translation.amount}}:</td>
+                            <td class="col-md-6 col-sm-6 text-left" ng-bind="viewTransactionData.goalAmount | currency"></td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right">{{::translation.earn_type}}:
+                                <div class="clearfix"></div>
+                                <small ng-bind="::translation.earn_tag_cap"></small></td>
+                            <td class="col-md-6 col-sm-6 text-left" ng-bind="viewTransactionData.earnType"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right">
+                                <h5 class="no-marg medium" ng-bind="translation.earn_amount"></h5>
+                                <h6 class="no-marg"><small>{{::translation.reports.earn_tag_cap}}</small></h6>
+                            </td>
+                            <td align="top" class="col-md-6 col-sm-6 text-left vertical-align-top" ng-bind="viewTransactionData.earnAmount | currency"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right">{{translation.reports.pay_freq}}</td>
+                            <td class="col-md-6 col-sm-6 text-left v-bottom"
+                                ng-bind="viewTransactionData.paymentFrequency"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-5 col-sm-5">
+                    <table class="table medium end-payment-popup ">
+                        <tbody>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.company}}</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad" ng-bind="viewTransactionData.company"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.reports.pf_client}}</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad" ng-bind="viewTransactionData.pfClient"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">&nbsp;</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">&nbsp;</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.begin_date}}:</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad"
+                                ng-bind="(viewTransactionData.beginDate ? (viewTransactionData.beginDate | date:'MM/dd/yyyy') : '-')"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6 col-sm-6 text-right no-pad">{{::translation.end_date}}:</td>
+                            <td class="col-md-6 col-sm-6 text-left no-pad"
+                                ng-bind="(viewTransactionData.endDate ? (viewTransactionData.endDate | date:'MM/dd/yyyy') : 'No End Date')"></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="col-md-12 col-sm-12 no-pad">
+                <button type="button" class="trinet-secondary-action-btn pull-right " id="submitTransDetailsId"
+                        ng-click="submitTransDetails()" ng-if="viewTransactionData.action =='Begin'"
+                        ng-bind="::translation.moneyTab.end_pay"></button>
+            </div>
+        </div>
+    </div>
+    <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+</div>

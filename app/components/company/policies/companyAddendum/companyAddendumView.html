@@ -1,0 +1,54 @@
+<!--
+Program: companyAddendumView.html
+Description: It displays Information of company Addendum details .
+ -->
+<div class="additional-policies" id="companyAdd">
+
+    <!--  Main body start -->
+    <div class="small">
+        <h2 class="policies-inner-title" ng-bind="::translation.policies.companyAddendum.title"></h2>
+
+
+        <p class="title-adjustment marg-5" ng-bind="::translation.policies.companyAddendum.titleInfo"></p>
+
+
+        <div class="col-md-8 col-sm-8">
+            <table class="table table-responsive addendum" width="80%">
+
+                <tbody>
+                <tr>
+                    <td class="no-border medium"><b>{{::translation.policies.companyAddendum.informationAbout}}</b></td>
+                    <td class="no-border medium"><b>{{translation.policies.companyAddendum.pleaseSee}}</b></a></td>
+                </tr>
+                <tr>
+                    <td class="no-border medium">{{::translation.policies.companyAddendum.yourCompnayBenf}}</td>
+                    <td class="no-border medium">{{::translation.policies.companyAddendum.mySelf_Benfits}}<a id="overView"
+                                                                                                           class="inline top-2 pad-5 company-addendum-links"
+                                                                                                           href="#/benefitsOverviewView"
+                                                                                                           target="_blank">{{::translation.policies.companyAddendum.benefitsOverview}}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border medium">{{::translation.policies.companyAddendum.yourPayroll}}</td>
+                    <td class="no-border medium">{{::translation.policies.companyAddendum.myself_payroll}}<a id="payRoll"
+                                                                                                           class="inline top-2 pad-5 company-addendum-links"
+                                                                                                           href="#/payrollSchedule"
+                                                                                                           target="_blank">{{::translation.policies.companyAddendum.payrollSchedule}}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border medium">{{::translation.policies.companyAddendum.allOthercompany}}</td>
+                    <td class="no-border medium">{{::translation.policies.companyAddendum.myCompany_Policies}}<a
+                            id="additional" class="inline top-2 pad-5 company-addendum-links"
+                            href="#/companyAdditionalPoliciesView" target="_blank">{{::translation.policies.additionalPolicies}}</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!--  Main body start -->
+
+    </div>
+</div>

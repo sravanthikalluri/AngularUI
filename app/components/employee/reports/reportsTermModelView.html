@@ -1,0 +1,310 @@
+<!-- 
+Description: This is page to display about Individual Termination detail report
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="reportsCtrl">
+    <div class="modal-header">
+        <h4 class="modal-title">{{::translation.reports.termDetailHeader}}</h4>
+
+    </div>
+    <div class="modal-body content-modal manage-employee-popup">
+
+        <div class="col-md-12 no-pad marg10" id="printTermDiv">
+
+            <div class="col-md-12 content-bg no-pad">
+                <div class="col-md-10 no-pad">
+                    <div class="medium dissable-text">
+                        <span ng-bind="::translation.submitted_by"></span>
+                        {{viewTermReportData.terminationdetails.terminaldetails.submittedByName}}
+                        on <span
+                            ng-bind="(viewTermReportData.terminationdetails.terminaldetails.submittedByTimestamp ? (viewTermReportData.terminationdetails.terminaldetails.submittedByTimestamp | date:'MM/dd/yyyy HH:mm:ss') : '-')"></span>
+                    </div>
+                </div>
+                <div class="col-md-2 text-right">
+                    <!-- print code commented due to client request -->
+                    <!-- <a ng-click="PrintElem('printTermDiv')" id="printDivterm"><span
+                             class=" icon-icon_print_circle top-5">&nbsp;</span><span
+                             class="medium">{{translation.print}}</span></a>-->
+                </div>
+            </div>
+
+            <table class="table generate-req-table small  no-border">
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.reports.term_emp}}:</td>
+                    <td class="text-left col-md-7"><b>
+                        {{viewTermReportData.terminationdetails.terminaldetails.terminateEmp}}</b>
+						<span class="dissable-text">({{::translation.emp_id}}
+							{{viewTermReportData.terminationdetails.terminaldetails.payToEmpId}})</span></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.effective_date}}:</td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewTermReportData.terminationdetails.terminaldetails.effectiveDate ? (viewTermReportData.terminationdetails.terminaldetails.effectiveDate | date:'MM/dd/yyyy') : '-')"></td>
+                </tr>
+            </table>
+            <h4 class="marg-top10 border-btm"
+                ng-bind="::translation.reports.empInfo"></h4>
+            <table class="table generate-req-table small">
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.department}}:</td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.empInfo.department}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.loc}}:</td>
+                    <td class="text-left col-md-7" ng-bind-html="viewTermReportData.terminationdetails.empInfo.location"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6" ng-bind="::translation.address"></td>
+                    <td class="text-left col-md-7">
+                        {{viewTermReportData.terminationdetails.empInfo.address.address1}},{{viewTermReportData.terminationdetails.empInfo.address.address2}}<br/>
+                        {{viewTermReportData.terminationdetails.empInfo.address.city}},
+                        {{viewTermReportData.terminationdetails.empInfo.address.state}}<br/>
+                        {{viewTermReportData.terminationdetails.empInfo.address.country}},
+                        {{viewTermReportData.terminationdetails.empInfo.address.postalCode}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6"
+                        ng-bind="::translation.reports.pay_grp"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.empInfo.payGroup}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6"
+                        ng-bind="::translation.reports.hr_sal"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.empInfo.hourlySalary}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.Std_hrs}}:</td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.empInfo.standardHours}}hr
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.compensation}}:</td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.empInfo.compensation
+                        | currencyFilter}}/hr
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6">Exempt/Non-Exempt:</td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.empInfo.exemptNExempt}}</td>
+                </tr>
+            </table>
+            <h4 class="marg-top10 border-btm"
+                ng-bind="::translation.reports.term_details"></h4>
+
+            <table class="table generate-req-table small">
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.reason_term"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.reasonOfTermination}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.last_day"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewTermReportData.terminationdetails.lastDayWorked ? (viewTermReportData.terminationdetails.lastDayWorked | date:'MM/dd/yyyy') : '-')"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.pay_thr_date"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewTermReportData.terminationdetails.payThroughtDate ? (viewTermReportData.terminationdetails.payThroughtDate | date:'MM/dd/yyyy') : '-')"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.given_date"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewTermReportData.terminationdetails.dateofGivenNotice ? (viewTermReportData.terminationdetails.dateofGivenNotice | date:'MM/dd/yyyy') : '-')"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.all_hr"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.allHoursEarning}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.total_hrs_term"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.tothourPaid}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.all_dol"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.allDollarEarning
+                        | currencyFilter}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.spe_pay"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.totalFinalSepcialPay
+                        | currencyFilter}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.comm_check"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.commisionOnSeprateCheck
+                        | currencyFilter}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.curr_leave"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.currentLeaveBalace}}
+                        hrs
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="::translation.reports.adj"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.adjustment}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.sec_leave"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.sndLeaveBalace}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="::translation.reports.adj"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.secondAdjustment}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.pay_other_leave"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.payOtherActualLeaveHour}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.float_acc"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.floatingHolidayHour}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.est_leave_term"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.estimatedLeaveBalanceAtTerm}}
+                        hrs
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.final_check"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.payLeaveBalance
+                        | yesOrNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.if_leave"></td>
+                    <td class="text-left col-md-7"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.is_addl"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.isAddtionalPaytoPaid
+                        | yesOrNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.addl_pay_type"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.addtionalPaymentType}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.addl_amt"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.addtionalAmount
+                        | currencyFilter}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.num_pay"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.numOfEqualPayment}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.addl_pay_st"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewTermReportData.terminationdetails.additionalPaymentStartingDate ? (viewTermReportData.terminationdetails.additionalPaymentStartingDate | date:'MM/dd/yyyy') : '-')"></td>
+
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.as_check"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.asASeprateCheck
+                        | yesOrNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-6">{{::translation.reports.tri_hcc1}}<br/>
+                        {{::translation.reports.tri_hcc2}}
+                    </td>
+                    <td class="text-left col-md-6"><br/>{{viewTermReportData.terminationdetails.trinetHcc
+                        | yesOrNo }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.name_hcc"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.nameofHcc}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.date_hcc"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewTermReportData.terminationdetails.dateofHcc ? (viewTermReportData.terminationdetails.dateofHcc | date:'MM/dd/yyyy') : '-')"></td>
+
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.re_elg"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.reHireE
+                        | yesOrNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.final_check"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.finalCheckDistribution}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="::translation.address"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.otherAddress.address1}}<br/>{{viewTermReportData.terminationdetails.otherAddress.address2}}{{viewTermReportData.terminationdetails.otherAddress.city}}<br/>{{viewTermReportData.terminationdetails.otherAddress.state}},
+                        {{viewTermReportData.terminationdetails.otherAddress.country}}<br>{{viewTermReportData.terminationdetails.otherAddress.postalCode}}</br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.check_sent"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.checkSent}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.mgr_name"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.managerName}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5">{{::translation.notes}}:</td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.notes}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.death_dt"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="::(viewTermReportData.terminationdetails.deathDate ? (viewTermReportData.terminationdetails.deathDate | date:'MM/dd/yyyy') : 'N/A')"></td>
+
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.est_ben"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.ebName}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"
+                        ng-bind="::translation.reports.est_id"></td>
+                    <td class="text-left col-md-7">{{viewTermReportData.terminationdetails.ebTaxId}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

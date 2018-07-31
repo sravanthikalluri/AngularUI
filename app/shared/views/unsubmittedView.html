@@ -1,0 +1,35 @@
+<div class="" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="exampleModal1Label"> {{::translation.dashboard.unsubmittedTitle}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12  col-sm-12 marg-btm">
+            <div class="col-md-1"></div>
+            <div class="col-md-6"><label>{{::translation.dashboard.unsubmittedFirstName}}</label></div>
+            <div class="col-md-5"><label>{{::translation.dashboard.unsubmittedLastName}}</label></div>
+        </div>
+        <div class="col-md-12  col-sm-12 tn-unsubmitted-data" ng-repeat="entries in unsubmitted.unsubmittedRecords track by $index">
+            <div ng-click="toggleUnsubmittedSelection($index)">
+                <label class="col-md-1 tn-unsubmitted-checkbox" ng-click="toggleUnsubmittedSelection($index)">
+                    <span ng-class="unsubmitted.unsubmittedIndex == $index ? 'icon-icon_radiobutton_select  blue':'icon-icon_radiobutton_empty'" ></span>
+                    <input id="locationheadquarters" ng-hide="true" type="checkbox" ng-click="toggleUnsubmittedSelection($index)">
+                </label>
+                <h5 class="semibold col-md-6">{{entries.name.firstName}}</h5>
+                <h5 class="semibold col-md-5">{{entries.name.lastName}}</h5>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <div class="tn-pagination">
+            <select class="page-select" ng-model="unsubmitted.dropdownIndex" ng-change="dropdownChange()">
+                <option ng-repeat="page in unsubmitted.unsubmittedPages track by $index" value="{{page}}">Page {{page}}</option>
+            </select>
+            <ul pagination total-items="unsubmitted.totalUnsubmitted" max-size="5" ng-model="unsubmitted.currentPage" ng-change="changePage()"></ul>
+        </div>
+        <button type="button" class="trinet-secondary-action-btn" id="closePanelId" ng-bind="::translation.dashboard.remove" ng-click="removeEmployeeOnboarding()"></button>
+        <button type="button" class="trinet-primary-action-btn" data-dismiss="modal" ng-bind="::translation.dashboard.continue" id="validateDataId"
+            ng-click="goToEmployeeOnboarding()"></button>
+    </div>
+</div>

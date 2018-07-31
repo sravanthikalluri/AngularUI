@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "title": "My Profile",
+    "directive": "profile"
+  },
+  {
+    "id":"2",
+    "title":"OnBoarding Checklist",
+    "directive":"checklist"
+  },
+  {
+    "id":"3",
+    "title":"Next Pay Day",
+    "directive":"nextpayday"
+  },
+  {
+  "id":"4",
+  "title":"Flexible Spending Claims",
+  "directive":"claims"
+  },
+  {
+    "id":"5",
+    "title":"Calendar",
+    "directive":"calendar"
+  },
+  {
+    "id":"6",
+    "title":"Perform",
+    "directive":"perform"
+  }
+]

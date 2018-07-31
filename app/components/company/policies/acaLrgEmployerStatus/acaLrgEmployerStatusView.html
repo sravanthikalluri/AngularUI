@@ -1,0 +1,16 @@
+<!--
+Program: acaMarketPlaceView.html
+Description: It displays Information of ACA Lrg Employer Status.
+ -->
+<div class="additional-policies">
+
+    <h2 class="policies-inner-title" ng-bind="translation.policies.acaEmpStatus"></h2>
+
+    <div class="marg-top block"><p class="marg-top-5">{{::translation.company}} <b>{{acaLrgEmployerStatusViewData.orgDesc}}</b>
+    </p></div>
+    <div><span><p>{{::translation.policies.iscompAle}} :<b> {{::acaLrgEmployerStatusViewData.acaFlag}} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{::translation.policies.effectiveOn}}:<b> {{::acaLrgEmployerStatusViewData.effectiveDate | dateFormat}}</b>
+    </p></span></div>
+</div>
+
+

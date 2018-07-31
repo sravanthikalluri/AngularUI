@@ -1,0 +1,34 @@
+{
+  "pdfList": [
+    {
+      "id": "1",
+      "quater": "Q4",
+      "path": "assets/pdf/benefits/TriNet-Benefit-Guidebook_Cur_Q4.pdf",
+      "name": "TriNet-Benefit-Guidebook_Cur_Q4.pdf"
+    },
+    {
+      "id": "2",
+      "quater": "Q4",
+      "path": "assets/pdf/benefits/TriNet-Benefit-Guidebook_Prev_Q4.pdf",
+      "name": "TriNet-Benefit-Guidebook_Prev_Q4.pdf"
+    },
+    {
+      "id": "3",
+      "quater": "Q4",
+      "path": "assets/pdf/benefits/Benefits_Carrier_Contact_Chart_Q4_2013-2014.pdf",
+      "name": "Benefits_Carrier_Contact_Chart_Q4_2013-2014.pdf"
+    },
+    {
+      "id": "4",
+      "quater": "Q4",
+      "path": "assets/pdf/benefits/Benefits_Carrier_Contact_Chart_Q4_2014-2015 (1).pdf",
+      "name": "Benefits_Carrier_Contact_Chart_Q4_2014-2015 (1).pdf"
+    },
+    {
+      "id": "5",
+      "quater": "Q4",
+      "path": "assets/pdf/benefits/TriNetWhatsChangingQ4_Client.pdf",
+      "name": "TriNetWhatsChangingQ4_Client.pdf"
+    }
+  ]
+}

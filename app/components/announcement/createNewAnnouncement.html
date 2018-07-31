@@ -1,0 +1,115 @@
+<div class="tn-background announcement pull-left">
+    <div class="heading col-sm-12 no-pad">
+        <h2 class="bold no-marg"><button class="breadcomb-button">Company Announcements</button>
+            <span class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button">New Company Announcements</button>
+        </h2>
+    </div>
+    <div class="card col-sm-10 no-pad">
+        <form class="tn-form" name="newAnnouncement">
+        <div class="col-sm-8">
+                <div class="form-group">
+                    <div class="col-sm-12 no-pad" >
+                      <div class="col-sm-5 no-pad-left" ng-controller='datePickerCtrl'>
+                           <label for="startDate" class="bold">Start Date</label>
+                           <div class="tn-calender-input">
+                               <!--<span class="input-group-addon" id="startID" ng-click="open($event)">
+                                       <i class="glyphicon glyphicon-calendar"></i>
+                               </span>-->
+                                <span class="calendar-icon" id="startID" ng-click="open($event)">
+                                    <i class="icon-icon_calendar blue bold"></i>
+                                </span>
+                               <input type="text" class="form-control bg-white" id="startDate"
+                                      readonly="readonly"
+                                      name="effectiveDate" datepicker-popup="{{format}}"
+                                      ng-model="createObj.effectiveDate" is-open="opened"
+                                      datepicker-options="dateOptions"close-text="Close" min-date="currentDate" ng-change="changeEndDate(createObj.effectiveDate)">
+                            </div>
+                       </div>
+                        <div class="col-sm-5 no-pad" ng-controller='datePickerCtrl'>
+                            <label for="endDate" class="bold">End Date</label>
+                            <div class="tn-calender-input">
+                            <!--<span ng-click="open($event)" id="endId" class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>-->
+                            <span class="calendar-icon" id="endId" ng-click="open($event)">
+                                <i class="icon-icon_calendar blue bold"></i>
+                            </span>
+                            <input type="text" class="form-control bg-white" id="endDate"
+                                   readonly="readonly"
+                                   name="endDate" datepicker-popup="{{format}}" ng-model="createObj.endDate" is-open="opened"
+                                   datepicker-options="dateOptions" close-text="Close" min-date="setDisable" >
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="bold">Title</label>
+                    <input type="text" class="form-control" id="title" ng-maxlength="100" placeholder="title" ng-model="createObj.title" maxlength="100" >
+                </div>
+                <div class="form-group">
+                    <label for="body" class="bold">Body</label>
+                    <textarea class="form-control" rows="10" id="body" ng-model="createObj.body" ></textarea>
+                </div>
+               <!-- <div class="form-group">
+                    <label for="body">Body</label>
+                    body
+                </div>-->
+        </div>
+        <div class="col-sm-12">
+                <div class="form-group">
+                    <hr>
+                    <h5 class="bold">Display For:</h5>
+                    <h5 ng-if="showText">All Employees</h5>
+                    <div ng-if="!showText">
+                        <div class="shared-section" ng-repeat="name in getName " ng-if="name =='Locations'">
+                                    <h5 class="pull-left">{{name}}:</h5>
+                            <div ng-repeat="filter in filterItemList track by $index" ng-if="filterItemList.length > 0">
+                                <span ng-if="filter.filterType == 'L'">
+                                {{filter.name}}
+                                <i class="icon-icon_close_mobile" ng-click="createDeleteFilter(filter)"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="shared-section" ng-repeat="name in getName " ng-if="name =='Departments'">
+                            <h5 class="pull-left" >{{name}}:</h5>
+                            <div  ng-repeat="filter in filterItemList track by $index " ng-if="filterItemList.length > 0">
+                                <span ng-if="filter.filterType == 'D'">
+                                    {{filter.name}}
+                                    <i class="icon-icon_close_mobile" ng-click="createDeleteFilter(filter)"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <label class="bold">Refine By</label>
+                    <div class="radio">
+                        <input id="location" type="radio" name="refindBy" ng-value="true" ng-model="location" ng-click="filterByItem('locations')">
+                        <label for="location"><span><b>Location</b></span></label>
+                        <input id="department" type="radio" name="refindBy"ng-value="true" ng-model="department" ng-click="filterByItem('departments')">
+                        <label for="department"><span><b>Department</b></span></label>
+                        <!--<input id="roles" type="radio" name="refindBy" ng-value="true"  ng-click="filterByItem('roles')">
+                        <label for="roles">Role</label> -->
+                    </div>
+                    <div ng-if="location || department">
+                        <select ng-model="selectedLocation" ng-options="list.locationName for list in filterList" ng-if="filterData ==='locations'" ng-change="selectBox(selectedLocation)">
+                            <option value="" selected>Please Choose a Location</option>
+                        </select>
+                        <select ng-model="selectedDepartment" ng-options="list.deptName for list in filterList" ng-if="filterData ==='departments'" ng-change="selectBox(selectedDepartment)">
+                            <option value="" selected>Please Choose a Department</option>
+                        </select>
+                    </div>
+                    <button ng-if="selectedValue" ng-click="addFilter(createObj)" class="tn-buttomn-add"> + Add Filter</button>
+                    <hr>
+                </div>
+                <button type="button" class="tn-button tn-cancel-button" ng-click="cancel()">Cancel</button>
+                <button type="submit" class="tn-button tn-action-button" ng-click="addNewAnnouncement(newAnnouncement)"
+                        ng-disabled="isValidForm(createObj)">Submit</button>
+
+        </div>
+        </form>
+    </div>
+</div>

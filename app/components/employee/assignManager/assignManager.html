@@ -1,0 +1,188 @@
+<div class="tn-assign-manager">
+        <alert-view></alert-view>
+        <div class="tn-row">
+            <div class="col-sm-12 col-md-12">
+                <h2 class="no-marg" ng-bind="::translation.assignmanager.heading"></h2>
+                <h6>{{::translation.assignmanager.asToday}} <span ng-bind="::weekDay"></span> <span ng-bind="::currentDate"></span></h6>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="tn-search-box-container">
+                    <span class="tn-search-box-search-icon icon-icon_unified_search"></span>
+                    <input id="searchText" type="text" class="tn-search-box"  ng-change="searchFilter();" placeholder="Search Employees..." ng-model="search" ng-model-options="{debounce:1000}">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="pull-right" ng-if="filterByData.length > 0">
+                    <h6 class="bold text-right">{{filterByData.length}} out of  {{unfilteredTotal}} Employees </h6>
+                </div><br/>
+                <div class="assign-manager-table fixed-table">
+                    <div class="fixed-table-head">
+                        <h6 id="mgAssign_sortType" ng-click="sortResults('DESC')" ng-show="sortFilter == ''">
+                            <span ng-bind="::translation.assignmanager.employee_name"></span>
+                            <span class="icon-icon_a-z_sort pull-right adjIcon medium"></span>
+                        </h6>
+                        <h6 id="mgAssign_sortType" ng-click="sortResults('')"  ng-show="sortFilter == 'DESC'">
+                                <span ng-bind="::translation.assignmanager.employee_name"></span>
+                                <span class="icon-icon_z-a_sort pull-right adjIcon medium"></span>
+                        </h6>
+                        <h6 ng-mouseleave="textboxhide()">
+                            <span ng-bind="::translation.assignmanager.position"></span>
+                            <span class="pull-right hand" id="assignPositionId" ng-click="searchPos(1)">
+                                <i class="icon-icon_filter black"></i>
+                            </span>
+                            <div ng-show="searchbox == 1 && positions.length > 0"
+                                 class="group-change-filter-list">
+                                 <div class="clear-filter">
+                                        <a class="semibold hand blue" href role="link"
+                                           ng-hide="$ctrl.filter" ng-click="filterPositions('pocCleared');">Clear Filters</a>
+                                 </div>
+                                <div ng-repeat="position in positions | orderBy:'name' "
+                                     class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{position.name}}">
+                                            <p><input id="{{positions.name}}" type="checkbox" name="name"
+                                                      value="{{positions.name}}"
+                                                      ng-model="position.positionChecked"
+                                                      ng-click="filterPositions(position,position.positionChecked)"/>
+                                                {{position.name === null || position.name === undefind ? "(Blanks)" :
+                                                position.name}}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="searchbox == 1 && positions.length === 0" class="group-change-filter-list">Loading...</div>
+                        </h6>
+                        <h6 ng-mouseleave="textboxhide()">
+                            <span ng-bind="::translation.assignmanager.department"></span>
+                            <span class="pull-right hand" id="assignDeptId" ng-click="searchPos(2)">
+                                <i class="icon-icon_filter black"></i>
+                            </span>
+                            <div ng-show="searchbox == 2 && departments.length > 0"
+                                 class="group-change-filter-list">
+                                 <div class="clear-filter">
+                                        <a class="semibold hand blue" href role="link"
+                                           ng-hide="$ctrl.filter" ng-click="filterDepartments('deptCleared');">Clear Filters</a>
+                                 </div>
+                                <div ng-repeat="department in departments |  orderBy:'name' "
+                                     class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{department.departement}}">
+                                            <p><input id="assignManagerDeptFilterCb_{{$index}}" type="checkbox" name="name"
+                                                       value="{{department.id}}"
+                                                       ng-model="department.departmentChecked"
+                                                       ng-click="filterDepartments(department,department.departmentChecked)"/>
+                                                {{department.name === null || department.name === undefind ? "(Blanks)" :
+                                                department.name}}
+                                            </p>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div ng-show="searchbox == 2 && departments.length === 0" class="group-change-filter-list">Loading...</div>
+                        </h6>
+                        <h6 ng-mouseleave="textboxhide()">
+                            <span ng-bind="::translation.loc"></span>
+                            <span class="pull-right hand" id="assignLocId" ng-click="searchPos(3)"> <i class="icon-icon_filter black"></i></span>
+                            <div ng-show="searchbox == 3 && locations.length > 0"
+                                 class="group-change-filter-list">
+                                <div class="clear-filter">
+                                        <a class="semibold hand blue" href role="link"
+                                        ng-hide="$ctrl.filter" ng-click="filterLocations('locCleared');">Clear Filters</a>
+                                </div>
+                                <div ng-repeat="location in locations | orderBy:'name' "
+                                     class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{location.name}}">
+                                            <p><input id="assignManagerLocFilterCb_{{$index}}" type="checkbox" name="name"
+                                                      value="{{location.id}}"
+                                                      ng-model="location.locationChecked"
+                                                      ng-click="filterLocations(location,location.locationChecked)"  />
+                                                {{location.name === null || location.name === undefind ? "(Blanks)" :
+                                                location.name }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="searchbox == 3 && locations.length === 0" class="group-change-filter-list">Loading...</div>
+                        </h6>
+                        <h6 ng-mouseleave="textboxhide()">
+                            <span ng-bind="::translation.assignmanager.direct_manager"></span>
+                            <span class="pull-right hand" id="assignDirectId"  ng-click="searchPos(4)"> <i class="icon-icon_filter black"></i></span>
+                            <div ng-show="searchbox == 4  && directManagers.length > 0" class="group-change-filter-list">
+                                <div class="clear-filter">
+                                            <a class="semibold hand blue" href role="link"
+                                               ng-hide="$ctrl.filter" ng-click="filterDirectManagers('assignManagerCleared');">Clear Filters</a>
+                                </div>
+                                <div ng-repeat="manager in directManagers | orderBy:'name' " class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{manager.name}}"><p><input
+                                            id="{{manager.name}}" type="checkbox" name="name"
+                                            value="{{manager.name}}"
+                                            ng-model="manager.directManagerChecked"
+                                            ng-click="filterDirectManagers(manager,manager.directManagerChecked)"/>{{manager.name
+                                            === null || manager.name === undefind ? "(Blanks)" :
+                                            manager.name }}</p></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="searchbox == 4 && directManagers.length === 0" class="group-change-filter-list">Loading...</div>
+                        </h6>
+                        <h6 ng-mouseleave="textboxhide()">
+                            <span ng-bind="::translation.assignmanager.work_supervisor"></span>
+                            <span class="pull-right hand" id="assignWorkId" ng-click="searchPos(5)"><i class="icon-icon_filter black"></i></span>
+                            <div ng-show="searchbox == 5 && workSupervisors.length > 0" class="group-change-filter-list">
+                                <div class="clear-filter">
+                                            <a class="semibold hand blue" href role="link"
+                                               ng-hide="$ctrl.filter" ng-click="filterWorkSupervisors('workSupervisorCleared');">Clear Filters</a>
+                                </div>
+                                <div ng-repeat="supervisor in workSupervisors | orderBy:'name' "
+                                     class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{supervisor.name}}"><p><input
+                                            id="{{supervisor.name}}" type="checkbox" name="name"
+                                            value="{{supervisor.name}}"
+                                            ng-model="supervisor.workSupervisorChecked"
+                                            ng-click="filterWorkSupervisors(supervisor,supervisor.workSupervisorChecked)"/>{{supervisor.name
+                                            === null || supervisor.name === undefind ? "(Blanks)" :
+                                            supervisor.name}}</p></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="searchbox == 5 && workSupervisors.length === 0" class="group-change-filter-list">Loading...</div>
+                        </h6>
+                    </div>
+                    <div class="fixed-table-body" when-scroll="loadData()">
+                        <div class="hand" ng-click="changeReq($index, assignData)" ng-class="assignData.status == 'Pending Approval' && assignData.workSupervisorStatus == 'Pending Approval' ? 'cursor-no-drop' : ''" ng-disabled="assignData.status == 'Pending Approval'" id="assignData{{$index}}"
+                             ng-repeat="assignData in filterByData">
+                            <div>
+                                <h6 class="main-text bold">{{assignData.fullName}}</h6>
+                                <h6 class="sub-text bold">{{::translation.assignmanager.empId}}{{assignData.employeeId}}</h6>
+                            </div>
+                            <div>
+                                <h6 class="main-text bold">{{assignData.positionDesc}}</h6>
+                            </div>
+                            <div>
+                                <h6 class="main-text bold">{{assignData.departmentDesc}}</h6>
+                            </div>
+                            <div>
+                                <h6 class="main-text bold">{{assignData.locationDesc}}</h6>
+                            </div>
+                            <div>
+                                <h6 class="main-text bold">{{assignData.directManagerName}}</h6>
+                                <h6 class="sub-text" ng-show="assignData.directManagerStatus =='A' && assignData.directManagerName.length >0">
+                                    Pending Approval
+                                </h6>
+                            </div>
+                            <div>
+                                <h6 class="main-text bold"> {{assignData.workSupervisorName}}</h6>
+                                <h6 class="sub-text" ng-show="assignData.workSupervisorStatus == 'A' && assignData.workSupervisorName.length > 0 ">
+                                    Pending Approval
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,40 @@
+<div class="col-md-12 no-right-pad">
+    <div class="col-md-12 no-pad dashboard-box">
+        <h3 class="dashboard-box-head" ng-bind="::translation.shared.onboardingCheck"></h3>
+        <div class="mybox">
+            <ul>
+                <li>
+                    <span class="mycheckbox green icon-icon_checkmark_emptybox"></span> {{::translation.shared.compProfile}}
+                </li>
+                <li>
+                    <span class="mycheckbox green icon-icon_checkmark_emptybox"></span> {{::translation.shared.taxReturnForm}}
+                </li>
+                <li>
+                    <span class="icon-icon_checkmarkwithbox mycheckbox green"></span> {{::translation.shared.benefitEnrolment}}
+                </li>
+                <li>
+                    <a href="#">{{::translation.shared.directDeposit}}</a>
+                </li>
+                <li>
+                    <a href="#">{{::translation.shared.attendEmpOrientation}}</a>
+                </li>
+                <li>
+                    <a href="#">{{::translation.shared.empHandBook}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".mycheckbox").click(function () {
+            $(this).toggleClass("icon-icon_checkmarkwithbox");
+        });
+
+        $(".mycheckbox").click(function () {
+            $(this).toggleClass("icon-icon_checkmark_emptybox");
+        });
+    });
+</script>
+        

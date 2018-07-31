@@ -1,0 +1,259 @@
+{
+  "_statusCode": 200,
+  "_statusText": "OK",
+  "_meta": {},
+  "data": {
+    "header": {
+      "peoDesc": "F",
+      "companyObj": "",
+      "companyId": "6Y0",
+      "employerName": "Avante Mezzanine Partners, Inc",
+      "employerPhone": "3106679242",
+      "employerAddress": {
+        "addressLine1": "abcd",
+        "addressLine2": "yyyy",
+        "addressLine3": "zzzz",
+        "city": "Pleasanton",
+        "county": "Alameda",
+        "state": "CA",
+        "postalCode": "9XXXX",
+        "country": "USA"
+      },
+      "payGroup": "M0-Avante Mezzanine Partners, M0",
+      "earnsBeginDate": "2014-06-01",
+      "earnsEndDate": "2014-06-30",
+      "payEndDate": "2014-06-30",
+      "checkDate": "2014-06-26",
+      "checkNumber": "14314500",
+      "payCurrencyCd": "USD",
+      "employeeName": "Clifford Lyon ",
+      "employeeId": "00001147830",
+      "ssn": " ",
+      "employeeAddress": {
+        "address1": "abcd",
+        "address2": "yyyy",
+        "address3": "zzzz",
+        "city": "Pleasanton",
+        "county": "Alameda",
+        "state": "CA",
+        "postalCode": "9XXXX"
+      },
+      "department": "8141100",
+      "location": "Avante Mezzanine Partners-HQ",
+      "businessTitle": "CFO and Administrative Partner",
+      "payRate": 170000,
+      "payRateDesc": "Annual",
+      "netPay": 40672.44
+    },
+    "detail": {
+      "key": {
+        "payGroup": "M0",
+        "payPeriodEndDate": null,
+        "payEndDt": "2014-06-30",
+        "pageNo": "1",
+        "lineNo": "7",
+        "sepChk": "0",
+        "offCycle": "N",
+        "effDt": "2013-10-01"
+      },
+      "taxData": [
+        {
+          "taxWithHolding": "CA State",
+          "maritalStatus": "Married",
+          "allowances": 0,
+          "addlPct": 0,
+          "addlAmt": 1500,
+          "netClaimAmt": null,
+          "splLetters": null
+        },
+        {
+          "taxWithHolding": "Federal",
+          "maritalStatus": "Married",
+          "allowances": 0,
+          "addlPct": 0,
+          "addlAmt": 4000,
+          "netClaimAmt": null,
+          "splLetters": null
+        }
+      ],
+      "earns": [
+        {
+          "curEarnsDesc": "Regular",
+          "curEarnsRate": 0,
+          "curEarnsHours": 0,
+          "curEarnsEarn": 12858.98,
+          "ytdEarnsHours": 976,
+          "ytdEarnsEarn": 76448.72,
+          "earnsBegDt": null,
+          "earnsEndDt": null
+        },
+        {
+          "curEarnsDesc": "Discretionary Supplemental BNS",
+          "curEarnsRate": 0,
+          "curEarnsHours": 0,
+          "curEarnsEarn": 61875,
+          "ytdEarnsHours": 0,
+          "ytdEarnsEarn": 61875,
+          "earnsBegDt": null,
+          "earnsEndDt": null
+        },
+        {
+          "curEarnsDesc": "Other Supp Rate",
+          "curEarnsRate": 81.73,
+          "curEarnsHours": 0,
+          "curEarnsEarn": 1666.68,
+          "ytdEarnsHours": 0,
+          "ytdEarnsEarn": 1666.68,
+          "earnsBegDt": null,
+          "earnsEndDt": null
+        },
+        {
+          "curEarnsDesc": "PTO",
+          "curEarnsRate": 81.73,
+          "curEarnsHours": 16,
+          "curEarnsEarn": 1307.69,
+          "ytdEarnsHours": 24,
+          "ytdEarnsEarn": 1923.07,
+          "earnsBegDt": null,
+          "earnsEndDt": null
+        },
+        {
+          "curEarnsDesc": "Holiday",
+          "curEarnsRate": 0,
+          "curEarnsHours": 0,
+          "curEarnsEarn": 0,
+          "ytdEarnsHours": 32,
+          "ytdEarnsEarn": 2461.53,
+          "earnsBegDt": null,
+          "earnsEndDt": null
+        }
+      ],
+      "taxWithholdings": [
+        {
+          "taxDesc": "Fed Withholdng",
+          "curTaxes": 22219.61,
+          "ytdTaxes": 52730.01
+        },
+        {
+          "taxDesc": "Fed MED/EE",
+          "curTaxes": 1126.77,
+          "ytdTaxes": 2093.44
+        },
+        {
+          "taxDesc": "Fed OASDI/EE",
+          "curTaxes": 3120.67,
+          "ytdTaxes": 7254
+        },
+        {
+          "taxDesc": "CA Withholdng",
+          "curTaxes": 8760.84,
+          "ytdTaxes": 19934.04
+        },
+        {
+          "taxDesc": "CA OASDI/EE",
+          "curTaxes": 349.69,
+          "ytdTaxes": 1016.36
+        }
+      ],
+      "preTaxDedns": [
+        {
+          "desc": "401k/Roth Combination",
+          "curDedns": 1458.33,
+          "ytdDedns": 8749.98,
+          "pytdDedns": 0
+        }
+      ],
+      "postTaxDedns": [],
+      "employerBenefits": [
+        {
+          "desc": "Blue Shield",
+          "curEmpBenf": 2096,
+          "ytdEmpBenf": 12576
+        },
+        {
+          "desc": "Delta Dental",
+          "curEmpBenf": 165.62,
+          "ytdEmpBenf": 993.72
+        },
+        {
+          "desc": "VSP Vision",
+          "curEmpBenf": 27.88,
+          "ytdEmpBenf": 167.28
+        },
+        {
+          "desc": "Life and AD&D",
+          "curEmpBenf": 2.35,
+          "ytdEmpBenf": 14.1
+        }
+      ],
+      "employerBenefitsTaxable": [],
+      "employerBenefitsNonTaxable": [
+        {
+          "desc": "Blue Shield",
+          "curEmpBenf": 2096,
+          "ytdEmpBenf": 12576
+        },
+        {
+          "desc": "Delta Dental",
+          "curEmpBenf": 165.62,
+          "ytdEmpBenf": 993.72
+        },
+        {
+          "desc": "VSP Vision",
+          "curEmpBenf": 27.88,
+          "ytdEmpBenf": 167.28
+        },
+        {
+          "desc": "Life and AD&D",
+          "curEmpBenf": 2.35,
+          "ytdEmpBenf": 14.1
+        }
+      ],
+      "totals": {
+        "curHours": 16,
+        "curGross": 77708.35,
+        "ytdHrsEarn": 1032,
+        "ytdGross": 144375,
+        "curTaxes": 35577.58,
+        "ytdTaxes": 83027.85,
+        "curPreDedn": 1458.33,
+        "ytdPreDedn": 8749.98,
+        "ytdPreDDedn": 0,
+        "curPostDedn": 0,
+        "ytdPostDedn": 0,
+        "ytdTotalDedn": 8749.98,
+        "curTotalDedn": 1458.33,
+        "curEmpBenf": 2291.85,
+        "ytdEmpBenf": 13751.1,
+        "curFedTaxableGross": 76250.02,
+        "ytdFedTaxableGross": 135625.02,
+        "curNetPay": 40672.44,
+        "ytdNetPay": 52597.17
+      },
+      "ptos": [
+        {
+          "desc": "VAC/PTO",
+          "begBal": 200,
+          "earned": 20.92,
+          "taken": 24,
+          "adjust": 0,
+          "endBal": 196.92
+        }
+      ],
+      "netPayDistributions": [
+        {
+          "desc": "Advice",
+          "refNum": "14314500",
+          "depositAmt": 40672.44
+        }
+      ],
+      "directDepositDistributions": [
+        {
+          "acctType": "Checking",
+          "acctNum": "1349",
+          "depositAmount": 40672.44
+        }
+      ]
+    }
+  }
+}

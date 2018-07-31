@@ -1,0 +1,97 @@
+<div class="tn-personal-section" ng-controller="personalInfoCtrl">
+    <div class="heading-section flex-box space-between">
+        <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.personal_info_title"></h4>
+        <div>
+           <!-- <button id="personalinfodelete" type="reset" name="cancel" ng-hide="hideDelete"
+                    class="tn-button tn-delete-button profile-edit-button" ng-click="deletePersonalInfo()"
+                    ng-bind="::translation.delete"></button>-->
+            <button class="tn-edit-button tn-button profile-edit-button" ng-click="editPersonalView()">
+                Edit
+            </button>
+        </div>
+    </div>
+    <div data-ng-if="!personalInfoSection">
+        <div id="effectiveDate" class="tn-form section-header" ng-if='activePersonalDataListLength > 1'>
+            <select id="personal_info_effective_date" class="effective-list no-marg"
+                    ng-model="selectedInfoData"
+                    ng-options="foa.effDateLabel for foa in personalInfoList"
+                    ng-change="dateChange(selectedInfoData);">
+            </select>
+        </div>
+        <div class="profile-section-view" ng-if='activePersonalDataListLength >= 1'>
+            <div class="primary-name-view section-block">
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.birthdate}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark"
+                       ng-bind="(selectedInfoData.birthDate ? (selectedInfoData.birthDate | date:'MM/dd/yyyy') : '')">
+                    </p>
+                </div>
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.gender}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{selectedInfoData.gender.value}}
+                    </p>
+                </div>
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.ethnicity}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{ethnicityValue}}
+                    </p>
+                </div>
+            </div>
+            <div class="preferred-name-view section-block">
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.marital_status}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{maritalStatusValue}}
+                    </p>
+                </div>
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.military_status}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{militaryStatusValue}}
+                    </p>
+                </div>
+                <!--  <div class="employee-data" ng-if="ssnAvailable">
+                      <h5 class="font-light-gray">
+                          <span ng-if="canadaCountrySSNStatus">{{::translation.sin}}:</span>
+                          <span ng-if="usCountrySSNStatus">{{::translation.ssn}}:</span>
+                      </h5>
+                      <p ng-if="usCountrySSNStatus || canadaCountrySSNStatus" class="proxima-nova-semibold font-dark">
+                          XXX-XX-{{ssn}}
+                      </p>
+                  </div>-->
+            </div>
+        </div>
+        <footer ng-if='personalInfoDetailTimeline.length'>
+            <div class="history-link-section">
+                <a href id="showTimeline" ng-hide="showTimeline" class="view-history-link"
+                   ng-click="showHideTimeline();selectedObject();" ng-bind="translation.viewHistory">
+                </a>
+                <a href id="hideTimeline" class="view-history-link"
+                   ng-click="showHideTimeline()" ng-show="showTimeline">
+                    Close
+                </a>
+            </div>
+            <div ng-show="showTimeline" class="block tn-history-view">
+                <history-timeline data="personalInfoDetailTimeline" datemsg="effective"
+                                  section="section"></history-timeline>
+            </div>
+        </footer>
+    </div>
+    <div data-ng-if="personalInfoSection">
+        <no-records></no-records>
+    </div>
+
+    <div class="tn-horizontal-divider"></div>
+</div>

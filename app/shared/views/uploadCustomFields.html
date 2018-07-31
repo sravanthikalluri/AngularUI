@@ -1,0 +1,36 @@
+<div id="bulkUploadPopup" class="BulkUploadPopup">
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title white text-left ">{{::translation.manage_CustomFields.uploadFields}}</h4>
+            <i class="icon-close-temp iconCloseCustom" ng-click="closemessage()"></i>
+        </div>
+        <div class="modal-body">
+            <div class="BulkUploadPopupBody">
+                <h3>{{::translation.manage_CustomFields.templateUpload}}</h3>
+                <ul>
+                    <li><a href="./assets/xls/CustomFieldsTemplate.xlsx" target="_blank">{{::translation.manage_CustomFields.downloadTemplate}}</a>{{::translation.manage_CustomFields.customInformation}}</li>
+                    <li>{{::translation.manage_CustomFields.saveUpload}}</li>
+                    <div class="stepIndicator"></div>
+                </ul>
+                <div class="Impdata">
+                    <div class="Impdatabg">
+                        <h4>{{::translation.manage_CustomFields.beforeUpload}}</h4>
+                        <ul>
+                            <li>{{::translation.manage_CustomFields.uploadInfo}}</li>
+                            <li>{{::translation.manage_CustomFields.uploadValue}}</li>
+                            <li>{{::translation.manage_CustomFields.answerChoice}}</li>
+                            <li>{{::translation.manage_CustomFields.answerField}}</li>
+                        </ul>
+                    </div>
+                    <div ng-controller="myBulkController">
+                        <label for="file_id" class="btn btnCustom">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            {{::translation.manage_CustomFields.upload}}
+                            <input type = "file" id="file_id" file-model="myFile" name="fileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

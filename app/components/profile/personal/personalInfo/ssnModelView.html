@@ -1,0 +1,48 @@
+<!--
+Description: This page is used to add the sso information
+Author:Raghavendra Kumar Bonthala
+-->
+<div class="col-md-8 col-sm-8 no-pad">
+    <div class="col-md-4 col-sm-4 text-left no-pad">
+        <div class="edit-section">
+            <div class="myself col-md-12">
+                <div class="col-md-12 no-pad no-topborder">
+                    <h3 class="myself-title text-left" class="bgcolor">
+                        <span ng-bind="::translation.profile_personal.ssnRequest"></span>
+
+                    </h3>
+                    <div class="table-responsive panel-default panel no-topborder">
+                        <p ng-bind="::translation.profile_personal.socialSecNumber">
+                        </p>
+                        <label ng-bind="::translation.profile_personal.ssn"></label>
+                        <input id="ssnno1" type="number">-<input id="ssnno2"
+                                                                 type="number">-<input
+                            id="ssnno3" type="number">
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" id="personalinfosubmit"
+                                        class="try-primary-btn"
+                                        data-dismiss="modal" ng-bind="::translation.profile_personal.submit">
+                                </button>
+                            </div>
+                            <div class="col-md-10">
+                                <button type="button" id="personalinforeset"
+                                        class="try-secondary-btn nomarg"
+                                        ng-click="cancel()" ng-bind="::translation.profile_personal.cancel">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 no-pad">
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-show="selected">{{::translation.profile_personal.selectionModal}} {{ selected }}
+    </div>
+</div>
+</div>

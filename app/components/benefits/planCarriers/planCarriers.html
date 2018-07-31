@@ -1,0 +1,407 @@
+<!--
+Description: This page is used to display the plan and carrier information
+Author: Krishnam Raju Kollu
+-->
+<div class="marg-left-15">
+    <div class="clearfix"></div>
+    <h2 class="no-padding trient-benefits-head marg-top-25">{{::translation.my_benefits.planCarrier.heading}}</h2>
+    <div class="general-info  no-marg" >
+        <h4 class="bold general">{{::translation.my_benefits.planCarrier.resources}}</h4>
+    </div>
+    <no-records></no-records>
+    <div class=" benefit-policies-general adj-polices-genaral" id="policiesId">
+        <!-- first & two tiles info-->
+        <div class="row row-top-margin row-pad">
+            <div ng-repeat="benefitsPoliciesDataObject in planCarriersCtrldocMeta | limitTo:0:2"
+                 ng-click="selectTab($index+1)">
+                <!-- tile template -->
+                <div id="{{benefitsPoliciesDataObject.title |  lowercase}}"
+                     class="col-md-6 column-pad tile company-policies-selected"
+                     ng-click="selectTab($event,'{{benefitsPoliciesDataObject.id}}')">
+                    <div class="title-block" ng-class="{'active': $index+1 == tab}"
+                         id="sidebar{{benefitsPoliciesDataObject.id}}">
+                        <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                        <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row policies-data no-pad">
+            <div class="col-md-12 no-pad">
+
+                <div class="content-block no-pad tilePanel" id="nav1" ng-if='isSelected(1)'>
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                        <div class="col-md-4 text-center hidden"><span class="arrow-up"></span></div>
+                        <div class="col-md-4 text-center hidden"><span class="arrow-up"></span></div>
+                    </div>
+                    <div class="policies-info-box visible">
+                        <div class="col-md-12 no-pad">
+                            <button id="overviewCloseresource1" type="button" class="close" aria-label="Close"
+                                    ng-click="closePanel()">
+                                <span aria-hidden="true" class="icon-close-temp"></span>
+                            </button>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div id="collapseOne1" class="panel-collapse collapse in">
+                                <div class="panel-body panel-body-background general-notice">
+                                    <p ng-bind="::translation.my_benefits.policies.benefits_carrier_stmt">
+                                    </p>
+                                    <ul class="no-pad no-marg adj-benfitGuideBook" ng-repeat="data in innerTileDatadocMeta.pdfLinks">
+                                        <li class="block">
+                                            <a id="currBook1{{$index}}" ng-href="{{data.url | contentUrl}}"
+                                               class="pull-left adjust-plan-pdf"
+                                               target="_blank"><span class="icon-icon_pdf"></span>
+                                                <span class="pdf-dissabled-text" id="currBookdates1{{$index}}">{{::data.urlName}}{{::data.fiscalYear}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block no-pad tilePanel" id="nav2" ng-if='isSelected(2)'>
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-6 text-center "><span class="arrow-up  hidden"></span></div>
+                        <div class="col-md-6 text-center "><span class="arrow-up"></span></div>
+                    </div>
+                    <div class="policies-info-box visible">
+                        <div class="col-md-12 no-pad">
+                            <button id="overviewCloseresource2" type="button" class="close" aria-label="Close"
+                                    ng-click="closePanel()">
+                                <span aria-hidden="true" class="icon-close-temp"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- first two tiles info-->
+
+        <!-- three & four tiles info-->
+        <div class="row  no-marg row-pad">
+            <div ng-repeat="benefitsPoliciesDataObject in planCarriersCtrldocMeta.slice(2, 4)"
+                 ng-click="selectTab($index+3)">
+                <!-- tile template -->
+                <div id="{{benefitsPoliciesDataObject.title |  lowercase}}3"
+                     class="col-md-6 column-pad tile company-policies-selected"
+                     ng-click="selectTab($event,'{{benefitsPoliciesDataObject.id}}')">
+                    <div class="title-block" ng-class="{'active': $index+3 == tab}"
+                         id="sidebar{{benefitsPoliciesDataObject.id}}4">
+                        <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                        <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row policies-data no-pad">
+            <div class="col-md-12 no-pad">
+
+                <div class="content-block no-pad tilePanel" id="nav3" ng-if='isSelected(3)'>
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-6 text-center"><span class="arrow-up"></span></div>
+                        <div class="col-md-6 text-center hidden"><span class="arrow-up"></span></div>
+                    </div>
+                    <div class="policies-info-box ">
+                        <div class="col-md-12 no-pad">
+                            <button id="overviewCloseresource3" type="button" class="close" aria-label="Close"
+                                    ng-click="closePanel()">
+                                <span aria-hidden="true" class="icon-close-temp"></span>
+                            </button>
+                        </div>
+                        <div ng-include="benefitsGuideUrl"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 no-pad">
+
+                <div class="content-block no-pad tilePanel" id="nav4" ng-if='isSelected(4)'>
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-6 text-center"><span class="arrow-up hidden"></span></div>
+                        <div class="col-md-6 text-center "><span class="arrow-up "></span></div>
+                    </div>
+                    <div class="policies-info-box ">
+                        <div class="col-md-12 no-pad">
+                            <button id="overviewCloseresource4" type="button" class="close" aria-label="Close"
+                                    ng-click="closePanel()">
+                                <span aria-hidden="true" class="icon-close-temp"></span>
+                            </button>
+                        </div>
+
+                        <div ng-include="'app/components/benefits/policies/summaryPlanDescription/medicalPlanCoverageSummaries.html'"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- three & four tiles info-->
+
+        <!-- five & six tiles info-->
+        <div class="row  no-marg row-pad">
+            <div ng-repeat="benefitsPoliciesDataObject in planCarriersCtrldocMeta.slice(4,6)"
+                 ng-click="selectTab($index+5)">
+                <!-- tile template -->
+
+
+                <div id="{{benefitsPoliciesDataObject.title |  lowercase}}4"
+                     class="col-md-6 column-pad tile company-policies-selected"
+                     ng-click="selectTab($event,'{{benefitsPoliciesDataObject.id}}')">
+                    <div class="title-block" ng-class="{'active': $index+5 == tab}"
+                         id="sidebar{{benefitsPoliciesDataObject.id}}5">
+                        <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                        <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- tile template -->
+        <div class="row policies-data no-pad">
+            <div class="col-md-12 no-pad">
+
+                <div class="content-block no-pad tilePanel" id="nav5" ng-if='isSelected(5)'>
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-6 text-center"><span class="arrow-up "></span></div>
+                        <div class="col-md-6 text-center "><span class="arrow-up hidden"></span></div>
+                    </div>
+                    <div class="policies-info-box arrowAdj">
+
+                        <div class="col-md-12 no-pad">
+                            <button id="overviewCloseresource" type="button" class="close" aria-label="Close"
+                                    ng-click="closePanel()">
+                                <span aria-hidden="true" class="icon-close-temp"></span>
+                            </button>
+                        </div>
+                        <div class="clear-fix"></div>
+                        <div ng-include="'app/components/benefits/policies/benefitsSummary/benefitsSummaryView.html'"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row policies-data no-pad">
+            <div class="col-md-12 no-pad">
+
+                <div class="content-block no-pad tilePanel" id="nav6" ng-if='isSelected(6)'>
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-6 text-center"><span class="arrow-up hidden"></span></div>
+                        <div class="col-md-6 text-center "><span class="arrow-up"></span></div>
+                    </div>
+                    <div class="policies-info-box ">
+                        <div class="col-md-12 no-pad">
+                            <button id="overviewCloseresource6" type="button" class="close" aria-label="Close"
+                                    ng-click="closePanel()">
+                                <span aria-hidden="true" class="icon-close-temp"></span>
+                            </button>
+                        </div>
+                        <div class="clear-fix"></div>
+                        <div ng-include="'app/components/benefits/policies/summaryPlanDescription/inDepthPlanDescription.html'"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row  no-marg row-pad">
+            <div ng-repeat="benefitsPoliciesDataObject in planCarriersCtrldocMeta.slice(6,8)"
+                 ng-click="selectTab($index+7)">
+                <!-- tile template -->
+                <div id="" class="col-md-6 column-pad tile company-policies-selected" ng-if="benefitsPoliciesDataObject.id !=='8'"
+                     ng-click="selectTab($event,'{{benefitsPoliciesDataObject.id}}')">
+                    <div class="title-block" ng-class="{'active': $index+7 == tab}" id="sidebar{{$index}}">
+                        <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                        <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                    </div>
+                </div>
+                <div ng-if="benefitsPoliciesDataObject.id =='8'" id="{{benefitsPoliciesDataObject.title}}"
+                     class="col-md-6 column-pad tile company-policies-selected">
+                    <a href="{{benefitsPoliciesDataObject.url | contentUrl }}" target="_blank">
+                        <div class="title-block" id="{{benefitsPoliciesDataObject.id}}">
+                            <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                            <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row policies-data no-pad">
+                <div class="col-md-12 no-pad">
+
+                    <div class="content-block no-pad tilePanel" id="nav7" ng-if='isSelected(7)'>
+                        <div class="col-md-12 no-pad">
+                            <div class="col-md-6 text-center"><span class="arrow-up"></span></div>
+                            <div class="col-md-6 text-center hidden"><span class="arrow-up"></span></div>
+                        </div>
+                        <div class="policies-info-box  ">
+                            <div class="col-md-12 no-pad">
+                                <button id="overviewCloseresource5" type="button" class="close" aria-label="Close"
+                                        ng-click="closePanel()">
+                                    <span aria-hidden="true" class="icon-close-temp"></span>
+                                </button>
+                            </div>
+                            <div class="clear-fix"></div>
+                            <div
+                                    class="panel-body panel-body-background">
+                                <p class="normal-font"><span
+                                        ng-bind="::translation.my_benefits.policies.accord3_text"></span></p>
+                                <!-- sub panel 1 start -->
+                                <div class="col-md-12">
+                                    <accordion close-others="true" id="currentPanel">
+                                        <accordion-group is-open="status4">
+                                            <accordion-heading>
+                                                <b><span id="benefitAtGlanceId">{{planCarriersCtrldocMeta[6].pdfLinks[0].date}} </span></b><i
+                                                    class="pull-right glyphicon"
+                                                    ng-class="{'icon-icon_Disclosure_Collapse': status4, 'icon-icon_Disclosure_Expand':!status4}"></i>
+                                            </accordion-heading>
+
+
+                                            <div class="panel-body panel-body-background">
+
+                                                <ul class="no-pad benefits-summery-links adj-benfitGuideBook"
+                                                    ng-repeat="i in getPdfLink(planCarriersCtrldocMeta[6].pdfLinks[0].urlList.length) track by $index">
+
+                                                    <li>
+                                                        <a ng-href="{{planCarriersCtrldocMeta[6].pdfLinks[0].urlList[$index] | contentUrl}}"
+                                                           target="_blank" id="benefitAtGlanceId{{$index}}"> <span
+                                                                class="icon-icon_pdf"></span><span
+                                                                class="">{{planCarriersCtrldocMeta[6].pdfLinks[0].textList[$index]}}</span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </accordion-group>
+                                    </accordion>
+                                    <!-- sub panel 1 end -->
+
+                                    <!-- sub panel 2 start -->
+                                    <accordion close-others="true" id="previousPanel">
+                                        <accordion-group is-open="status6">
+                                            <accordion-heading>
+                                                <b><span id="benefitAtGlancePrevYear">{{planCarriersCtrldocMeta[6].pdfLinks[1].date}}</span></b><i
+                                                    class="pull-right glyphicon"
+                                                    ng-class="{'icon-icon_Disclosure_Collapse': status6, 'icon-icon_Disclosure_Expand':!status6}"></i>
+                                            </accordion-heading>
+                                            <div class="panel-body panel-body-background">
+                                                <ul class="no-pad benefits-summery-links adj-benfitGuideBook"
+                                                    ng-repeat="i in getPdfLink(planCarriersCtrldocMeta[6].pdfLinks[1].urlList.length) track by $index">
+
+                                                    <li>
+                                                        <a ng-href="{{planCarriersCtrldocMeta[6].pdfLinks[1].urlList[$index] | contentUrl}}"
+                                                           target="_blank"
+                                                           id="benefitAtGlancePrevYearId{{$index}}"><span
+                                                                class="icon-icon_pdf"></span><span
+                                                                class="">{{planCarriersCtrldocMeta[6].pdfLinks[1].textList[$index]}}</span></a>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </accordion-group>
+                                    </accordion>
+                                </div>
+                                <!-- sub panel 2 end -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- five & six tiles info-->
+
+        <div id="optionalBenefits" class="general-info  no-marg">
+            <h4 class="bold  general">{{translation.my_benefits.planCarrier.optionalBenf}}</h4>
+            <no-records></no-records>
+
+            <div class="row row-top-margin row-pad">
+                <!-- tile template -->
+                <div ng-repeat="benefitsPoliciesDataObject in planCarriersCtrlGeneral" ng-click="genaralTab($index+1)">
+                    <!-- tile template -->
+                    <div id="{{benefitsPoliciesDataObject.title |  lowercase}}opt"
+                         class="col-md-6 column-pad tile company-policies-selected"
+                         ng-click="genaralTab($event,'{{benefitsPoliciesDataObject.id}}')">
+                        <div class="title-block" ng-class="{'active': $index+1 == seletedValue}"
+                             id="sidebar{{benefitsPoliciesDataObject.id}}opt">
+                            <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                            <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-block no-pad tilePanel" id="navopt1" ng-if='isSelectedGeneral(1)'>
+                <div class="col-md-12 no-pad">
+                    <div class="col-md-6 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-6 text-center hidden"><span class="arrow-up"></span></div>
+                </div>
+                <div class="policies-info-box ">
+                    <div class="col-md-12 no-pad">
+                        <button id="overviewClose1" type="button" class="close" aria-label="Close"
+                                ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+
+
+                    <div ng-include="selectTabURl"></div>
+                </div>
+            </div>
+
+            <div class="content-block no-pad tilePanel" id="navopt2" ng-if='isSelectedGeneral(2)'>
+                <div class="col-md-12 no-pad">
+                    <div class="col-md-6 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-6 text-center "><span class="arrow-up "></span></div>
+                </div>
+                <div class="policies-info-box ">
+                    <div class="col-md-12 no-pad">
+                        <button id="overviewClose" type="button" class="close" aria-label="Close"
+                                ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+
+
+                    <div ng-include="selectTabURl"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row general-info  no-marg">
+            <h4 class="general" ng-bind="::translation.my_benefits.policies.benfits_carrier"></h4>
+            <div class=" ">
+                <div class="col-md-3 col-sm-3 column-pad"
+                     ng-repeat="benefitsPoliciesDataObject in benefitsPoliciesJsonData.slice(9, 14)">
+                    <a id="carrierFirst{{$index}}" ng-href="{{benefitsPoliciesDataObject.documentUrl}}" target="_blank">
+                        <div class="title-img">
+                            <img ng-src="{{benefitsPoliciesDataObject.imgurl}}" class="img-responsive">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="">
+                <div class="col-md-3 col-sm-3 img-pad"
+                     ng-repeat="benefitsPoliciesDataObject in benefitsPoliciesJsonData.slice(14, 17)">
+                    <a id="carrierSecond{{$index}}" ng-href="{{benefitsPoliciesDataObject.documentUrl}}"
+                       target="_blank">
+                        <div class="title-img">
+                            <img ng-src="{{benefitsPoliciesDataObject.imgurl}}" class="img-responsive">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

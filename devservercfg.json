@@ -1,0 +1,45 @@
+{
+  "api" : {
+    "addr" : "192.168.99.100/api",
+    "port" : "80"
+  },
+  "api_common" 		: {
+    "addr" 	: "http://192.168.99.100/api/common",
+    "port"	: "80"
+  },
+  "api_mock"        : {
+    "addr"  : "http://192.168.99.100/api",
+    "port"  : "80"
+  },
+  "api_benefits"    : {
+    "addr"	: "http://192.168.99.100/api/benefits",
+    "port"	: "80"
+  },
+  "api_company"  	: {
+    "addr" 	: "http://192.168.99.100/api/company",
+    "port"	: "80"
+  },
+  "api_money"  	 	: {
+    "addr"	: "http://192.168.99.100/api/money",
+    "port"	: "80"
+  },
+  "api_profile"  	 	: {
+    "addr"	: "http://192.168.99.100/api/profile",
+    "port"	: "80"
+  },
+  "api_aboutme"       : {
+    "addr"  : "192.168.99.100",
+    "port"  : "80"
+  },
+  "greenstack"       : {
+    "addr"  : "greenstack.hrpassport.com",
+    "port"  : "80"
+  },
+  "api_content"       : {
+    "addr"  : "http://192.168.99.100/api/content",
+    "port"  : "80"
+  },
+  "devEnvCookie":"TriNetAuthCookieBIB",
+  "localEnvCookie":"TriNetAuthCookieGS"
+
+}

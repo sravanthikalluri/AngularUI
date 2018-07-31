@@ -1,0 +1,23 @@
+[
+  {
+    "leavePlanId": "1",
+    "leavePlanName": "leavePlan1"
+  },
+  {
+    "leavePlanId": "2",
+    "leavePlanName": "leavePlan2"
+  },
+  {
+    "leavePlanId": "3",
+    "leavePlanName": "leavePlan3"
+  },
+  {
+    "leavePlanId": "4",
+    "leavePlanName": "leavePlan4"
+  },
+  {
+    "leavePlanId": "5",
+    "leavePlanName": "leavePlan5"
+  }
+]
+

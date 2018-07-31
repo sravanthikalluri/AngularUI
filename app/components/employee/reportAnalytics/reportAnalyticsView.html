@@ -1,0 +1,288 @@
+
+<div class="manage-group manage-employee no-top-pad">
+    <div class="clearfix"></div>
+    <div class="col-md-8 col-md-8 no-pad">
+        <div class="col-md-8 col-sm-8 no-pad clearfix top-5">
+            <span class="small Trinet-orange" ng-show="reportAnalyticValue && routvalue == 'manageGroup'">{{::translation.reportAnalytics.manageGroup}}</span>
+        </div>
+
+        <h2 class="no-pad reports-title trinet-report-head col-md-12 col-sm-12"
+            ng-bind="::translation.reportAnalytics.heading"></h2>
+    </div>
+    <alert-view></alert-view>
+    <div class="row no-marg">
+
+        <div class="clearfix">&nbsp;</div>
+
+        <div class="clearfix">&nbsp;</div>
+        <div class="col-md-12 col-sm-12 no-pad employee-tabs-head min-height400">
+
+            <div class="col-md-5 col-sm-12 no-pad pull-right" ng-mouseleave="textboxhide()">
+                <div class="pull-right no-pad">
+                    <span class=" icon-icon_Settings pull-right pointer" id="rptSettingId"
+                          ng-click="showManageEmpColList=!showManageEmpColList"></span>
+                    <div ng-show="showManageEmpColList " class="manage-emp-drop-list">
+                        <li ng-repeat="settingList in settingData"><label><input type="checkbox" id="settingList"
+                                                                                 ng-model="settingList.show"/><span>{{settingList.title}} </span></label>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-6 no-pad pull-right marg-right-5">
+					<span class="input-group search-box"> <input type="text" id="search_employeeName"
+                                                                 name="search" ng-model="search.employeeName"
+                                                                 class="no-border medium"
+                                                                 placeholder="Search Employee">
+						<button class="no-border no-bg pull-right top-2">
+                            <span class="icon-icon_Zoom medium"></span>
+                        </button>
+
+					</span>
+                </div>
+            </div>
+
+            <div class="clearfix">&nbsp;</div>
+
+            <div class="col-md-12 col-sm-12 no-pad">
+                <table
+                        class="table table-striped manage-table table-hover no-marg manage-employee-table">
+                    <thead>
+                    <tr>
+                        <th width="16%" id="rptEmployeeId"
+                            ng-click="sortTypeEmp = 'employeeName'; sortReverse = !sortReverse"
+                            ng-show="settingData[0].show">
+                            <span ng-bind="::translation.reportAnalytics.empName"></span>
+								<span
+                                        ng-show="sortTypeEmp == 'employeeName' && !sortReverse"
+                                        class="icon-icon_a-z_sort pull-right"></span> <span
+                                ng-show="sortTypeEmp == 'employeeName' && sortReverse"
+                                class="icon-icon_z-a_sort pull-right"></span>
+                        </th>
+                        <th width="15%" ng-mouseleave="textboxhide()" ng-show="settingData[1].show">
+                            {{::translation.reportAnalytics.position}}
+								<span class="icon-icon_filter pull-right black" id="rptSearchPosId"
+                                      ng-click="searchPos(1)"></span>
+                            <div ng-show="searchbox == 1 && analyticData.length > 0" class="group-change-filter-list">
+
+                                <div ng-repeat="positions in analyticData | unique: 'position'" class="list-sub-data">
+                                    <div class="action-checkbox">
+                                        <label for="{{positions.position}}" class="reg-font">
+                                        </label>
+                                        <p><input
+                                                id="{{positions.position}}" type="checkbox" name="name"
+                                                value="{{positions.position}}" class="pull-left "
+                                                ng-click="toggleSelection(positions.position);"/><span class="">{{positions.position === null ? "(Blanks)" : positions.position}}</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+
+                        <th width="15%" ng-if="settingData[2].show"
+                            ng-bind="::translation.reportAnalytics.direct_manager"></th>
+                        <th width="9%" ng-if="settingData[3].show" ng-bind="translation.reportAnalytics.alerts"></th>
+                        <th width="12%" ng-if="settingData[4].show"
+                            ng-bind="::translation.reportAnalytics.dashboards"></th>
+                        <th width="14%" ng-if="settingData[5].show"
+                            ng-bind="::translation.reportAnalytics.report_user"></th>
+                        <th width="20%" ng-if="settingData[6].show"
+                            ng-bind="::translation.reportAnalytics.standard_reports"></th>
+                    </tr>
+                    </thead>
+                </table>
+                <div class="change-request-details flyout " ng-show="showchangeReq == true">
+                    <div class="content-block">
+                        <div class="title">
+                            <h3>{{::translation.reportAnalytics.popup_heading +" "+ headeremployeeName}}</h3>
+                            <span class="icon-close-temp close" id="rptTempCloseId"
+                                  ng-click="showchangeReq = false"></span>
+                        </div>
+
+                        <div class="content-modal assign-manager pad-5">
+                            <ul class="list-group no-marg">
+                                <li ng-class="alertvalue ? 'label-data bg-light-blur list-group-item':'label-data list-group-item' "
+                                    class="marg-bot-5 border-rad-0">
+                                    <div class="row">
+
+                                        <div class="col-md-5 col-sm-5">
+                                            <label class="no-marg">
+                                                <span ng-class="alertvalue ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                                <input type="checkbox" ng-hide="true" id="alertValueId"
+                                                       ng-model="alertvalue" ng-value="alertvalue"
+                                                       value="{{alertvalue}}" class="no-marg"/>
+                                                <label ng-bind="::translation.reportAnalytics.alerts"
+                                                       class="top-5 marg-top-5 medium"></label>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <p ng-bind="::translation.reportAnalytics.message"></p>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li ng-class="dashboards ? 'label-data bg-light-blur list-group-item':'label-data list-group-item' "
+                                    class="marg-bot-5 border-rad-0 ">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-5">
+                                            <label class="no-marg">
+                                                <span ng-class="dashboards ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                                <input type="checkbox" ng-hide="true" id="dashboardsId"
+                                                       ng-model="dashboards " ng-value="dashboards"
+                                                       value="{{dashboards}}" class="no-marg"/>
+                                                <label ng-bind="::translation.reportAnalytics.dashboards"
+                                                       class="top-5 marg-top-5 medium"></label>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <p ng-bind="::translation.reportAnalytics.message"></p>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li ng-class="reportuser ? 'label-data bg-light-blur list-group-item ':'label-data list-group-item' "
+                                    class="marg-bot-5 border-rad-0">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-5">
+                                            <label class="no-marg">
+                                                <span ng-class="reportuser ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                                <input type="checkbox" ng-hide="true" id="reportuserId"
+                                                       ng-model="reportuser" ng-value="reportuser"
+                                                       value="{{reportuser}}" class="no-marg"/>
+                                                <label ng-bind="::translation.reportAnalytics.report_user"
+                                                       class="top-5  marg-top-5  medium"></label>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <p ng-bind="::translation.reportAnalytics.message"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ng-class="standardReports ? 'label-data bg-light-blur list-group-item':'label-data list-group-item' "
+                                    class="marg-bot-5 border-rad-0">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-5">
+                                            <label class="no-marg">
+                                                <span ng-class="standardReports ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                                <input type="checkbox" ng-hide="true" id="standardReportsId"
+                                                       ng-model="standardReports" ng-value="standardReports"
+                                                       value="{{standardReports}}" class="no-marg"/>
+                                                <label ng-bind="::translation.reportAnalytics.standard_reports"
+                                                       class="top-5 marg-top-5 medium"></label>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <p ng-bind="::translation.reportAnalytics.message"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 no-pad buttons form-btn">
+                        <button type="button" id="saveReportAnalyticId" class="trinet-primary-action-btn"
+                                ng-click="saveReportAnalytic()" ng-bind="::translation.save">
+                        </button>
+                        <button type="button" id="rep_showchngReqId" class="trinet-secondary-action-btn"
+                                data-dismiss="modal" ng-click="showchangeReq = false" ng-bind="::translation.cancel">
+
+                        </button>
+                    </div>
+                </div>
+                <div class="table-content-block">
+                    <table
+                            class="table table-striped manage-table table-fixed-header table-hover"
+                            ng-if="!reportAnalyticValue">
+
+                        <tbody class="manage-employee-table">
+                        <tr id="report{{$index}}"
+                            ng-repeat="report in analyticData |SearchCheckboxFilter:selection | orderBy:sortTypeEmp:sortReverse | filter:search "
+                            class="hand" ng-click="openSelectRow($index)">
+                            <td width="14%" class="pad-td" width="22%" ng-if="settingData[0].show">
+                                <strong><span
+                                        ng-bind="report.employeeName" class="no-pad-imp"></span></strong>
+                                <br/>
+								 <span
+                                         class="sub-txt no-pad-imp" ng-bind="::translation.emp_id"></span><span
+                                    id="spanTermId{{$index}}" class="sub-txt no-pad-imp"
+                                    ng-bind="::report.employeeId"></span></td>
+                            <td width="13%" ng-bind="::report.position" ng-if="settingData[1].show"></td>
+                            <td width="13%" ng-bind="::report.managerName" ng-if="settingData[2].show"></td>
+
+                            <td width="9%" ng-if="settingData[3].show"><span ng-model="report.alerts"
+                                                                             ng-class="report.alerts===true ? 'icon-icon_Check blue':'' "
+                                                                             ng-if="settingData[3].show"
+                                                                             class="large"></span></td>
+                            <td width="12%" ng-if="settingData[4].show"><span ng-model="report.dashboards"
+                                                                              ng-class="report.dashboards===true ? 'icon-icon_Check blue':'' "
+                                                                              ng-if="settingData[4].show"
+                                                                              class="large"></span></td>
+                            <td width="11%" ng-if="settingData[5].show"><span ng-model="report.reportuser"
+                                                                              ng-class="report.reportuser===true ? 'icon-icon_Check blue':'' "
+                                                                              ng-if="settingData[5].show"
+                                                                              class="large"></span></td>
+                            <td width="14%" ng-if="settingData[6].show"><span ng-model="report.standardReports"
+                                                                              ng-class="report.standardReports===true ? 'icon-icon_Check blue':'' "
+                                                                              ng-if="settingData[6].show"
+                                                                              class="large"></span></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <table class="table table-striped manage-table table-fixed-header table-hover"
+                           ng-if="reportAnalyticValue">
+                        <tbody class="manage-employee-table">
+                        <tr id="reportId{{$index}}"
+                            ng-repeat="report in analyticData | orderBy:sortTypeEmp:sortReverse | filter:search "
+                            class="hand">
+                            <td width="15%" class="pad-td" width="22%" ng-if="settingData[0].show">
+                                <strong><span
+                                        ng-bind="::report.employeeName"></span></strong>
+                                <br> <span
+                                    class="sub-txt" ng-bind="::translation.emp_id"></span><span
+                                    id="spanTerm{{$index}}" class="sub-txt"
+                                    ng-bind="::report.employeeId"></span></td>
+                            <td width="10%" ng-bind="::report.position" ng-if="settingData[1].show"></td>
+                            <td width="16%" ng-bind="::report.managerName" ng-if="settingData[2].show"></td>
+                            <td width="11%" ng-if="settingData[3].show">
+                                <label>
+                                    <span ng-class="report.alerts ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                    <input type="checkbox" ng-hide="true" id="mngalertValueId" ng-model="report.alerts"
+                                           ng-value="report.alerts" class="no-marg"/>
+                                </label>
+                            </td>
+                            <td width="11%" ng-if="settingData[3].show">
+                                <label>
+                                    <span ng-class="report.dashboards ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                    <input type="checkbox" ng-hide="true" id="mngdashboardsId"
+                                           ng-model="report.dashboards" ng-value="report.alerts" class="no-marg"/>
+                                </label>
+                            </td>
+                            <td width="11%" ng-if="settingData[3].show">
+                                <label>
+                                    <span ng-class="report.reportuser ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                    <input type="checkbox" ng-hide="true" id="mngreportuserId"
+                                           ng-model="report.reportuser" ng-value="report.alerts" class="no-marg"/>
+                                </label>
+                            </td>
+                            <td width="11%" ng-if="settingData[3].show">
+                                <label>
+                                    <span ng-class="report.standardReports ? 'icon-icon_checkmarkwithbox marg-right blue':'icon-icon_checkmark_emptybox marg-right blue'"></span>
+                                    <input type="checkbox" ng-hide="true" id="mngstndReportsId"
+                                           ng-model="report.standardReports" ng-value="report.alerts" class="no-marg"/>
+                                </label>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" id="reportsAnyId" class="trinet-primary-action-btn pull-right"
+                    ng-show="reportAnalyticValue" ng-click="submitMultipleReportAnalytic()">{{::translation.reportAnalytics.submit}}
+            </button>
+
+        </div>
+
+        <span class="medium"
+              ng-if=""> {{analyticDataCount.employeeCount}} {{::translation.reportAnalytics.emptotal}}</span>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+<!--
+   Description: This page is used to display the Affordable Care Act Information page
+   Author:Raghavendra Kumar Bonthala
+-->
+<div class="tn-background affordable pull-left">
+    <alert-view></alert-view>
+    <div class="col-sm-12 no-pad">
+        <div class="heading col-sm-12 no-pad">
+            <h2 class="bold no-marg"><button class="breadcomb-button">Benefits</button>
+                <span class="icon-heading icon-icon_forward"></span>
+                <button class="breadcomb-button">Affordable Care Act</button>
+            </h2>
+        </div>
+    </div>
+    <div class="card col-sm-10 no-pad">
+        <no-records></no-records>
+        <div ng-if="ACAStatusData !== undefined">
+        <div class="col-sm-12">
+            <h4  class="bold" ng-bind="::ACAStatusData.label"></h4>
+            <div class="col-sm-6 no-pad">
+                <div class="sections">
+                    <h5 class="supplemental-text-color">Company:</h5>
+                    <h5>{{::companyCode}} - {{::ACAStatusData.companyDescription}}</h5>
+                </div>
+
+            </div>
+            <div class="col-sm-6 no-pad">
+                <div class="sections">
+                    <h5 class="supplemental-text-color">Is Company an ALE:</h5>
+                    <h5>{{::ACAStatusData.acaLargeEmployer | yesOrNo}}</h5>
+                </div>
+
+            </div>
+            <div class="col-sm-6 no-pad">
+                <div class="sections">
+                    <h5 class="supplemental-text-color">Effective On:</h5>
+                    <h5>{{::ACAStatusData.effectiveDate | dateFormat}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div  class="col-sm-12" ng-if="ACAStatusData.ALL_HRL_SAL !== 'N/A'">
+            <hr class="gray-divder">
+            <h4 class="bold">ACA Measurements and Stability Periods</h4>
+
+            <div class="col-sm-6 no-pad">
+                <div class="col-sm-12 no-pad sections">
+                    <h5 class="supplemental-text-color">Employee Class Type:</h5>
+                    <h5 ng-bind="ACAStatusData.employeeClassType"></h5>
+                </div>
+                <div class="col-sm-12 no-pad sections">
+                   <div ng-if="ACAStatusData.ALL_HRL_SAL === 'ALL'">
+                       <div class="sections">
+                           <h5 class="supplemental-text-color">Effective On:</h5>
+                           <h5 ng-bind="ACAStatusData.allStartDate ? (ACAStatusData.allStartDate | dateFormat) : '-'"></h5>
+                       </div>
+                     <div class="sections">
+                         <h5 class="supplemental-text-color">Measurement Period (Days) for All Employees:</h5>
+                         <h5 ng-bind="::ACAStatusData.allMeasurement"></h5>
+                     </div>
+                   </div>
+                    <div ng-if="ACAStatusData.ALL_HRL_SAL === 'SAL'">
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Effective (Hourly) On:</h5>
+                            <h5 ng-bind="ACAStatusData.hourlyPeriodStartDate ? (ACAStatusData.hourlyPeriodStartDate | dateFormat) : '-'"></h5>
+                        </div>
+                       <div class="sections">
+                           <h5 class="supplemental-text-color">Effective (Salaried) On:</h5>
+                           <h5 ng-bind="ACAStatusData.salaryPeriodStartDate ? (ACAStatusData.salaryPeriodStartDate | dateFormat) : '-'"></h5>
+                       </div>
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Measurement Period for Hourly Employees:</h5>
+                            <h5 ng-bind="::ACAStatusData.hourlyPeriodMeasurement"></h5>
+                        </div>
+                       <div class="sections">
+                           <h5 class="supplemental-text-color">Measurement Period for Salaried Employees:</h5>
+                           <h5 ng-bind="::ACAStatusData.salaryPeriodMeasurement"></h5>
+                       </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6 no-pad">
+                <div class="col-sm-12 no-pad ">
+                    <div ng-if="ACAStatusData.ALL_HRL_SAL === 'ALL'">
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Stability Period (Days) for All Employees:</h5>
+                            <h5 class="secondary-title-color" ng-bind="ACAStatusData.allStability"></h5>
+                        </div>
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Admin Period (Days) for All Employees:</h5>
+                            <h5 ng-bind="::ACAStatusData.allAdminPeriod"></h5>
+                        </div>
+                    </div>
+                    <div ng-if="ACAStatusData.ALL_HRL_SAL === 'SAL'" >
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Stability Period for Hourly Employees:</h5>
+                            <h5 class="secondary-title-color" ng-bind="::ACAStatusData.hourlyPeriodStability"></h5>
+                        </div>
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Stability Period for Salaried Employees:</h5>
+                            <h5 class="secondary-title-color" ng-bind="::ACAStatusData.salaryPeriodStability"></h5>
+                        </div>
+                        <div class="sections">
+                            <h5 class="supplemental-text-color">Admin Periods for Hourly Employees:</h5>
+                            <h5 ng-bind="::ACAStatusData.hourlyAdminPeriod"></h5>
+                        </div>
+                       <div class="sections">
+                           <h5 class="supplemental-text-color">Admin Periods for Salaried Employees:</h5>
+                           <h5 ng-bind="::ACAStatusData.salaryAdminPeriod"></h5>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-sm-12" ng-if="equifaxData !== undefined">
+            <hr class="gray-divder">
+            <a id="equiFaxReportingGuideLink" class="linkSection" target="_blank" ng-href="{{::equifaxData.equiFaxPDFURL | contentUrl}}">
+                  <i class="icon-icon_pdf tn-icon-adjust tn-pdf-icon"></i>
+                  <span ng-bind="::equifaxData.label"></span>
+                </a>
+        </div>
+
+        <div class="col-sm-12" ng-if="ACAUploadData !== undefined">
+            <hr class="gray-divder">
+                <a id="acaHistoricalUploadLink"  class="linkSection" ng-href="{{::ACAUploadData.uploadHistorygateWayURL}}" target="_blank">
+                    <i class="icon-icon_link tn-icon-adjust"></i>
+                    <span ng-bind="::ACAUploadData.label"></span>
+                </a>
+        </div>
+    </div>
+</div>
+

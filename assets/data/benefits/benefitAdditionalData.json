@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": "policyMenuId",
+      "link": "app/components/benefits/policies/additionalPolicies/policiesAndProcedures/policiesAndProceduresView.html",
+      "title": "Policies and Procedures",
+      "desc": "Find out what your company policies and procedures are.",
+      "viewDesc": "Need a look at the rules your company lives by? Check out your company's additional Policies and Procedures not found in other places.",
+      "baseUrl": "additionalPolicies/policies"
+    },
+    {
+      "id": "managerMenuId",
+      "link": "app/components/benefits/policies/additionalPolicies/manageResources/manageResourcesView.html",
+      "title": "Manager Resources",
+      "desc": "For Managers, find procedures, guidelines and special forms for your company.",
+      "viewDesc": "Please review or select from these additional resources as needed or required.",
+      "baseUrl": "additionalPolicies/manager"
+    },
+    {
+      "id": "additionalFormsMenuId",
+      "link": "app/components/benefits/policies/additionalPolicies/additionalForms/additionalFormsView.html",
+      "title": "Additional Forms",
+      "desc": "Forms you may need. These forms can also be viewed on Myself -> Forms -> Employee",
+      "viewDesc": "Please use the forms here as needed from time to time.",
+      "baseUrl": "additionalPolicies/forms"
+    },
+    {
+      "id": "benefitsMenuId",
+      "link": "app/components/benefits/policies/additionalPolicies/yourCompanyRequiredForms/yourCompanyRequiredFormsView.html",
+      "title": "Your Company Required Forms",
+      "desc": "Forms that need your attention",
+      "viewDesc": "Hie",
+      "baseUrl": "additionalPolicies/yourCompany"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<div class="tn-modal tn-modal-fullHeight" ng-controller="workInfoCtrl">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.work_info.cec_heading"></h4>
+    </div>
+    <div class="tn-modal-boby col-sm-12 no-pad">
+        <div ng-repeat="options in employmentChangeOptions" class="tn-choose-employee-change"
+             ng-class="options.isSelected ? 'bg-light-blur':'' "
+             ng-click="selectEmploymentChangeOption(options.id); ">
+            <div class="tn-checkbox tn-checkbox-large">
+                <input id="{{options.id}}" type="checkbox" ng-model="options.isSelected"
+                       ng-disabled="options.isInActive">
+                <label for="{{options.id}}" ng-class="options.isSelected ? 'proxima-nova-semibold':'proxima-nova' ">
+                    <div class="flex-box space-between employee-change">
+                        <p class="employee-change-title">{{options.title}}</p>
+
+                        <p class="employee-change-description" aria-hidden="true">
+                            {{options.description}}
+                        </p>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="tn-modal-footer text-right">
+        <button type="button" class="tn-button tn-action-button"
+                ng-style="{'opacity': !employeeGenerateFormbutton ? '1' : '0.7'}"
+                data-toggle="modal" ng-click="employeeGenerateForm()" data-target="#myModal"
+                ng-disabled="employeeGenerateFormbutton">{{::translation.generate_form}}
+        </button>
+        <button type="button" class="tn-button tn-cancel-button" ng-click="closePanel()">{{::translation.cancel}}
+        </button>
+    </div>
+</div>

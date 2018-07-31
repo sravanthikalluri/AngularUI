@@ -1,0 +1,18 @@
+<div class="tn-work-inbox-section" ng-controller="workInfoCtrl">
+    <div class="flex-box tn-form" ng-class="(workinfo.length > 1) ? 'space-between' : 'flex-end'">
+        <select name="earnType"
+                title="effective date"
+                ng-model="viewdate"
+                ng-show="workinfo.length > 1"
+                ng-options=" emptype.name as emptype.value for emptype in dateDropDown"
+                ng-change="selecteddate(viewdate)">
+            <option value='' disabled selected class="hiddenprofile" ng-bind="::translation.work_info.selectDate"></option>
+        </select>
+        <div class="clearfix"></div>
+    </div>
+    <div ng-if=$parent.subSectionView('employmentDetails')
+         ng-include="'app/components/profile/workinfo/empDetails/empDetailView.html'"></div>
+
+    <div ng-if=$parent.subSectionView('compensationDetails')
+         ng-include="'app/components/profile/workinfo/compensationDetails/compDetailView.html'"></div>
+</div>

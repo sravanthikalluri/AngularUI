@@ -1,0 +1,18 @@
+<div class="tn-menu-toggle">
+    <md-button class="md-button-toggle" id="{{section.menuIdAttribute}}"
+               ng-click="toggle()"
+            aria-controls="tn-menu-{{section.name}}" ng-class="{'tn-top-level-menu-selected' : isOpen()}">
+
+            <md-icon class="tn-icon" ng-if="section.icon" md-font-icon="{{section.icon}}"></md-icon>
+            <span class="menu-link-name">{{section.name}}</span>
+            <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled' : isOpen()}">
+                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+            </span>
+
+    </md-button>
+    <ul ng-show="isOpen()" class="menu-toggle-list">
+        <li ng-repeat="menu in section.subMenus" id="{{menu.menuIdAttribute}}">
+            <menu-link section="menu"></menu-link>
+        </li>
+    </ul>
+</div>

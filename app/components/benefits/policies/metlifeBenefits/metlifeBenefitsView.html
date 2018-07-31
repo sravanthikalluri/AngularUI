@@ -1,0 +1,123 @@
+<!--
+Program: metlifeBenefitsView.html
+Description: It displays information to user about metlife benefits & takes user to login into vendors login page.
+ -->
+
+<div ng-controller="metlifeBenefitsViewCtrl">
+    <alert-view></alert-view>
+    <!--First Panel-->
+    <div class="clearfix"></div>
+    <h2 ng-if="metlifeLoc=='metLifeBenefits'">{{::translation.my_benefits.metLifeBenefits.heading}}</h2>
+    <div class="panel panel-default afla-adj">
+
+        <div class="panel-body panel-body-background">
+            <p><b>{{::translation.my_benefits.metLifeBenefits.trinetMetlife}}
+            </b></p>
+
+        </div>
+
+
+        <div>
+            <table class="table table-striped borderless general-info-table vertical">
+                <tr>
+                    <td width="25%">
+ 			<span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.auto_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.auto_idata"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.ill_insurance"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%">{{::translation.my_benefits.metLifeBenefits.metLifeCriticalInsu}}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.home_insure"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.home_idata"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.legal_serv"></strong>
+                </li>
+            </ul>
+ 			</span>
+
+                    </td>
+                    <td width="*%">{{::translation.my_benefits.metLifeBenefits.metlifeGroupLegal}}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.universe_life"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.universe_ldata"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul>
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.life_income"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.life_idta"></td>
+                </tr>
+                <tr>
+                    <td width="25%">
+          <span class="metlife-benefits-list">
+ 			<ul> <!-- class="no-pad-imp" -->
+                <li>
+                    <strong ng-bind="::translation.my_benefits.policies.pet_insure"></strong>
+                </li>
+            </ul>
+ 			</span>
+                    </td>
+                    <td width="*%" ng-bind="::translation.my_benefits.policies.pet_idata"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body panel-body-background">
+
+            <p><b>{{::translation.my_benefits.metLifeBenefits.enorllMetLife}} <a id="metImg"
+                                                                              href="https://mybenefits.metlife.com/MyBenefits/commonAccess.jsp"
+                                                                              target="_blank" class="aflacDis"></a>{{::translation.my_benefits.metLifeBenefits.metlifeLink}}</b></p>
+        </div>
+
+
+    </div>
+</div>
+
+
+</div>

@@ -1,0 +1,12 @@
+{
+  "errorCode": null,
+  "resource": {
+    "url": "https://enrollment.aflac.com/AccountSites/S_U/Trinet/Homepage.aspx",
+    "aflacAccountId": "28",
+    "nationalId": "999257928",
+    "timeLine": "20150803000000",
+    "keyHash": "15d0c347004f519ae2ba8f0267095c3f32729"
+  },
+  "statusMessage": "Success",
+  "statusCode": "200"
+}

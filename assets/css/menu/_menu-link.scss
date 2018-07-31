@@ -1,0 +1,19 @@
+.tn-menu-link {
+    .md-button.active {
+        background-color: #0077bc; /*#0077bc; #007FB9;*/
+        color: #fff;
+
+        &:hover {
+            background-color: #0e364d;
+        }
+        md-icon {
+            color: #fff;
+        }
+    }
+    .menu-link-name{
+        width: 190px;
+        white-space: normal;
+        line-height: 20px;
+    }
+
+}

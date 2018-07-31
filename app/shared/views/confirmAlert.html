@@ -1,0 +1,16 @@
+<div class="tn-modal" id="conformpopup">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center" id="myModalLabel">Confirmation</h4>
+    </div>
+    <div class="tn-modal-boby">
+        <h5>{{confirmMessage}}</h5>
+    </div>
+    <div class="tn-modal-footer text-right">
+        <button name="save" class="tn-button tn-action-button popUpBtn"
+                type="button" ng-click="confirm(1)">{{yes_btn}}
+        </button>
+        <button class="tn-button tn-cancel-button" aria-hidden="true"
+                aria-label="Close" ng-click="closeThisDialog(0)" type="button">{{no_btn}}
+        </button>
+    </div>
+</div>

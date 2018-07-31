@@ -1,0 +1,110 @@
+<div class="tn-background tn-notices pull-left">
+    <div class="heading col-sm-12 no-pad">
+        <h2 class="bold no-marg"><button class="breadcomb-button">TriNet Only Links</button>
+            <span class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button">Notices</button>
+            <span class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button">Create New Notice</button>
+        </h2>
+    </div>
+
+    <div class="alert red-alert alert-danger col-md-8" ng-show="setBoolean">
+        <div class="col-md-1 col-sm-1 no-pad"><i class="icon-icon_Error error-icon" ng-click="closeAlert()"></i></div>
+        <div class="col-md-11 no-pad col-sm-11">
+            <h5 class="no-marg" >Start date cannot be greater than end date</h5>
+        </div>
+    </div>
+
+    <div class="card col-sm-10 no-pad">
+        <form class="tn-form" name="newNotice">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <div class="col-sm-12 no-pad" >
+                        <div class="col-sm-5 no-pad-left" ng-controller='datePickerCtrl'>
+                            <label for="startDate" class="bold">*Start Date</label>
+                            <div class="input-group">
+                               <span class="input-group-addon" id="startID" ng-click="open($event)">
+                                       <i class="glyphicon glyphicon-calendar"></i>
+                               </span>
+                                <input type="text" class="form-control bg-white" id="startDate"
+                                       readonly="readonly"
+                                       name="effectiveDate" datepicker-popup="{{format}}"
+                                       ng-model="createObj.effectiveDate" is-open="opened"
+                                       datepicker-options="dateOptions"close-text="Close" min-date="currentDate" ng-change="changeStartDate(createObj.effectiveDate)">
+                            </div>
+                        </div>
+                        <div class="col-sm-5 no-pad" ng-controller='datePickerCtrl'>
+                            <label for="endDate" class="bold">*End Date</label>
+                            <div class="input-group">
+                            <span ng-click="open($event)" id="endId" class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                                <input type="text" class="form-control bg-white" id="endDate"
+                                       readonly="readonly"
+                                       name="endDate" datepicker-popup="{{format}}" ng-model="createObj.endDate" is-open="opened"
+                                       datepicker-options="dateOptions" close-text="Close" min-date="setDisable" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="bold">*Title</label>
+                    <input type="text" class="form-control" id="title" ng-maxlength="100" placeholder="title" ng-model="createObj.title" maxlength="100" >
+                </div>
+                <div class="form-group">
+                    <label for="body" class="bold">*Body</label>
+                    <textarea class="form-control" rows="10" id="body" ng-model="createObj.body" ></textarea>
+                </div>
+                 <div class="form-group selectSection">
+                     <label for="title" class="bold">*Priority</label>
+                     <select ng-model="createObj.priority"  ng-options="key as value for (key , value) in prorityType">
+                         <option value="" selected>Please Choose a Priority type</option>
+                     </select>
+                 </div>
+                <div class="form-group">
+                    <div class="col-sm-6 no-pad">
+                        <label for="pointOfContact" class="bold">Point Of Contact</label>
+                        <input type="text" class="form-control" id="pointOfContact" ng-model="createObj.pointOfContact">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 no-pad">
+                        <label for="pointOfContact" class="bold">Department</label>
+                        <input type="text" class="form-control" id="department" ng-model="createObj.department">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr class="gray-divder">
+            </div>
+            <div class="col-sm-12">
+                <h5 class="bold">Display for</h5>
+                <div class="form-group selectSection" >
+                    <label class="bold">Refine By Role:</label>
+                    <div class="col-sm-12 no-pad marg-top" ng-repeat="addRole in selectRole">
+                        <select ng-model="addRole.selectedRole" class="pull-left" ng-change="getFilterdValue(addRole,$index)" ng-options="roles.roleDesc for roles in rolesData | orderBy:'roleDesc' ">
+                            <option  value="" selected>Please Select role</option>
+                            <!--<option ng-repeat="roles in rolesData" value="{{roles.role}}">{{roles.roleDesc}}</option>-->
+                        </select>
+                        <a  ng-click="removeSelect(null,$index)" class="pull-left hand">Remove</a>
+                    </div>
+                </div>
+                <p class="red" ng-if="showRolesStatus"> Please select or remove selected duplicate roles</p>
+                <button  ng-click="addFilter(selectedRole)" class="tn-buttomn-add" ng-disabled="disableAddFilter" ng-class="{'cursor-no-drop':disableAddFilter}"> + Add Another Role</button>
+
+                <p ng-if="disableAddFilter"><b>Note</b>: Please select a role to add another role</p>
+            </div>
+            <div class="col-sm-12">
+                <hr class="gray-divder">
+            </div>
+            <div class="col-sm-12">
+                <button type="button" class="tn-button tn-cancel-button" ng-click="cancel()">Cancel</button>
+                <button type="submit" class="tn-button tn-edit-button" ng-click="addNewNotice(createObj,'D')"  ng-disabled="isValidForm(createObj)">Save</button>
+                <!--<button type="button" class="tn-button tn-edit-button">Preview</button>-->
+                <button type="submit" class="tn-button tn-action-button" ng-click="addNewNotice(createObj,'A')"
+                        ng-disabled="isValidForm(createObj)">Publish</button>
+            </div>
+
+         </form>
+    </div>
+</div>

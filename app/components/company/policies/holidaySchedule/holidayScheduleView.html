@@ -1,0 +1,36 @@
+<!--
+Program: holidayScheduleView.html
+Description: It displays Information of holiday Schedule details that are applicable .
+ -->
+
+
+<div class="" id="holidaySchedule" >
+    <h2 class="policies-inner-title">{{::translation.policies.holidaySchedule.title}}</h2>
+    <br>
+
+    <div>
+    <p class="medium" ng-if="currentYearErrorAlert._statusCode != '404' || nextYearErrorAlert._statusCode != '404'">{{::translation.policies.holidaySchedule.holidaySchedulelist}}</p>
+    <div class="col-md-12 col-sm-12">
+        <a id="firstId" ng-if="currentYearHolidayScheduleData"
+           ng-href="{{currentYearHolidayScheduleData.url | contentUrl}}"
+           class="pull-left"
+           target="_blank">
+            <span id="firstIdPdf">{{::currentYearHolidayScheduleData.year}} {{::translation.policies.holidaySchedule.title}}</span>
+        </a>
+        <p><span  ng-if="currentYearErrorAlert._statusCode == '404' && nextYearErrorAlert._statusCode != '404'">{{currentYear}} {{::translation.policies.holidaySchedule.holidaySheduleNotAvailable}}</span></p>
+
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <a id="secondId" ng-if="nextyearHolidayScheduleData"
+           ng-href="{{nextyearHolidayScheduleData.url | contentUrl}}"
+           class="pull-left"
+           target="_blank">
+            <span id="secondIdPdf">{{::nextyearHolidayScheduleData.year}} {{::translation.policies.holidaySchedule.title}}</span>
+        </a>
+         <p><span  ng-if="currentYearErrorAlert._statusCode != '404' && nextYearErrorAlert._statusCode == '404'">{{currentYear+1}} {{::translation.policies.holidaySchedule.holidaySheduleNotAvailable}}</span></p>
+     </div>
+    </div>
+    <div ng-if="currentYearErrorAlert._statusCode == '404' && nextYearErrorAlert._statusCode == '404'">
+            <p class="medium">{{::translation.policies.holidaySchedule.holidayScheduleNoRecords}}</p>
+    </div>
+</div>

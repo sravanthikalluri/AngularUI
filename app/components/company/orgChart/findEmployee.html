@@ -1,0 +1,100 @@
+<div class="tn-modal tn-find-employee-modal" ngController="findEmployeeCtrl">
+    <alert-view></alert-view>
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center" ng-bind="::translation.find"></h4>
+        <div class="tn-form flex-box">
+            <div class="col-sm-5">
+                <div class="radio">
+                    <input type="radio" name="search" value="employee" id="personTextId"
+                           class="findEmployeeInput"
+                           ng-model="findView" ng-click="getView(findView)">
+                    <label for="personTextId" ng-bind="::translation.person"></label>
+                    <input type="radio" name="search" value="department" id="deptTextId"
+                           class="findEmployeeInput"
+                           ng-model="findView" ng-click="getView(findView)">
+                    <label for="deptTextId" ng-bind="::translation.department">{{::translation.no}}</label>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="searchChangeTextId"
+                       ng-model="searchQuery" placeholder="{{findPlaceHolder}}"
+                       ng-model-options='{ debounce: 1000 }'
+                       ng-change="searchOnChange(findView,searchQuery)"/>
+            </div>
+            <div class="col-sm-2">
+                <button class="tn-button tn-action-button tn-button-small" id="searchButtonId"
+                        ng-click="search(findView,searchQuery)" ng-bind="::translation.search"></button>
+            </div>
+        </div>
+
+    </div>
+    <!--<div class="tn-horizontal-divider no-marg"></div>-->
+    <div class="tn-modal-boby col-sm-12">
+
+        <div ng-show="isEmployeeViewVisible">
+            <table class="table tn-table" ng-if="employeeData.length > 0">
+                <thead>
+                <tr>
+                    <th>{{::translation.name}}</th>
+                    <th>{{::translation.email}}</th>
+                    <th>{{::translation.contactTrinet.phone}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="emp in employeeData track by $index" ng-if="emp!=null">
+                    <td>
+                        <div class="flex-box">
+                            <img class="find-img in-block img-circle img-responsive"
+                                 src="assets/images/default-user.png">
+                            <a ng-if="emp.employeeDetails && emp.employeeDetails.preferredName"
+                               class="view-history-link tn-user-link"
+                               ng-click="closeAndUpdate(emp.employeeId)"
+                               id="empName{{$index}}">
+                                <span>{{emp.employeeDetails.preferredName}}</span>
+                                <span ng-if="emp.employeeDetails.preferredName"><br/>({{emp.employeeName}})</span>
+                            </a>
+                            <a ng-if="!(emp.employeeDetails && emp.employeeDetails.preferredName)"
+                               ng-click="closeAndUpdate(emp.employeeId)"
+                               class="view-history-link tn-user-link"
+                               id="empNameLinkId{{$index}}">{{::emp.employeeName}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span ng-if="emp.employeeDetails.email !== null" class="pull-left"><a
+                            href="mailto:{{emp.employeeDetails.email}}"
+                            id="empEmailLinkId{{$index}}" target="_top"
+                            class="icon-icon_contact"></a></span>
+                    </td>
+                    <td>
+                        <span ng-if="emp.employeeDetails.phone !== null"
+                              class="icon-icon_phone"></span>
+                        <span>{{::emp.employeeDetails.phone}}</span>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div ng-hide="isEmployeeViewVisible">
+            <table class="table tn-table tn-dept-table" ng-if="deptData.length > 0">
+                <thead>
+                <tr>
+                    <th>{{::translation.name}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="deptName{{$index}}" ng-repeat="dept in deptData" ng-if="dept!=null">
+                    <td>
+                        <a ng-click="getDepartmentEmployees(dept)"
+                           class="view-history-link"
+                           id="deptLinkId{{$index}}">{{::dept.deptName}}</a>
+                        <small class="proxima-nova-semibold">({{::dept.deptCode}})</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+    </div>
+    <div class="clearfix"></div>
+</div>

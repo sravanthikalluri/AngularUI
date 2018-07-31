@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .find-scroll ul li, .find-scroll ul li .find-personal-details .name {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.radio-org {
+    font-size: 20px !important;
+    position: relative;
+    top: 2px;
+}
+
+.find-table .find-img {
+    height: 50px !important;
+    width: 50px !important;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.find-table a {
+    display: inline-block;
+    color: #000;
+}
+
+#myModal2 .find-box {
+    height: 34px !important;
+}
+
+.trinet-secondary-action-btn {
+    margin-top: 0px;
+    /*line-height:30px;*/
+}
+
+.find-scroll {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.find-scroll ul {
+    padding: 0;
+}
+
+.find-scroll ul li {
+    list-style: none;
+    min-height: 50 xp;
+}
+
+.find-scroll ul li .find-personal-details {
+    border-top: 1px solid #888888;
+    padding-top: 15px;
+}
+
+.find-scroll ul li .find-personal-details .name {
+    line-height: 16px;
+}
+
+.find-scroll ul li .find-personal-details .name a {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    float: left;
+    line-height: 15px;
+    text-decoaration: none;
+    color: #888888;
+}
+
+.find-scroll ul li .find-personal-details .name a:hover {
+    text-decoration: underline;
+}
+
+.find-scroll ul li .find-personal-details .name span {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.find-scroll ul li .find-personal-details .contact-details .icon-icon_contact {
+    padding-right: 20px;
+}
+
+.find-scroll ul li .find-personal-details .contact-details .icon-icon_phone {
+    position: relative;
+    top: 1px;
+    padding-right: 3px;
+}
+
+.dept-table tr td a {
+    color: #000;
+}
+
+.organization-find-popup .modal-popup, .organization-find-popup .modal-content, .organization-find-popup modal-body {
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    float: left;
+    width: 100%;
+}
+
+.organization-find-popup .modal-dialog {
+    width: 100%;
+    margin: 0;
+}
+
+.organization-find-popup .modal-body input[type="radio"] {
+    float: left;
+    position: relative;
+    top: -6px;
+}
+
+.organization-find-popup .content-bg {
+    margin-bottom: 10px;
+}
+
+.organization-find-popup .model-body .profile-pics img {
+    width: 50px;
+    height: 50px;
+}
+
+.organization-find-popup .modal-content {
+    border: none;
+}
+
+.organization-popup .modal-body {
+    overflow: visible !important;
+}
+
+.organization-chart-find-section a:hover {
+    text-decoration: underline !important;
+}
+
+.find-img {
+    width: 40px;
+    margin-top: 5px;
+}
+.popUp-text-align{
+    padding:2px 0px 0px 4px;
+}
+.pad-top-2{
+    padding-top:2px;
+}
+.pad-leftright-5{
+    padding:0 5px !important;
+}
+/*# sourceMappingURL=organisationpop.css.map */

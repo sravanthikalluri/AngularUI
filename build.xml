@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ui-portal" default="all" basedir=".">
+  
+  <!--*********************************************************-->
+  <!-- Please change properties according to your local setup  -->
+  <!--*********************************************************-->
+  <property name="trinet.home" value="${basedir}"/>
+  <property name="trinet.war" value="ui-portal.war"/>
+  <property name="deploy.dir" value="${trinet.home}/deploy"/>
+  <property name="output.dir" value="${trinet.home}/WebContent/WEB-INF"/>
+  
+  <!--*********************************************************-->
+  <!-- Please change properties according to your local setup  -->
+  <!--*********************************************************-->
+  
+ <target name="all" description="complete build and deploy" depends="clean,archive"/>
+	
+ <target name="clean" description="Cleans output directories">
+   <delete quiet="true" defaultexcludes="false" includeemptydirs="true">
+    <fileset dir="${output.dir.classes}"> </fileset>
+   </delete>  
+ </target> 
+
+  <target name="archive" description="create WAR file for deployment">
+  	<delete quiet="true" defaultexcludes="false" includeemptydirs="true">
+	  <fileset dir="${deploy.dir}">
+	    <include name="**/*"/>     
+	  </fileset>
+    </delete>
+  	<jar jarfile="${deploy.dir}/${trinet.war}" basedir="${trinet.home}/WebContent"/>
+  </target>
+</project>

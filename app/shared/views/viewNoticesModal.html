@@ -1,0 +1,19 @@
+<div class="view-notice-modal">
+    <div class="modal-header">
+        <h4 class="modal-title" id="exampleModal1Label"> </h4>
+    </div>
+    <div class="view-notice-body">
+        <h4 class="important-notices-item-date"><span ng-repeat="(key,value) in prorityType" ng-if="getPriority(key,data)">{{value}} Priority</span></h4>
+        <span class="important-notices-item-title">{{data.title}}</span>
+        <p class="important-notices-item-body " ng-bind-html="getBodyParseValueForModal(data.body)"></p>
+        <div class="notice-filter" >
+            <p class="help-text no-marg">Shared with:</p>
+            <div class="shared-section" ng-if="data.filters.length  === 0"><span class="filter-value"> All Active Employees </span></div>
+            <div class="shared-section" ng-if="data.filters.length  > 0">
+                <span ng-repeat="disp in data.filters"><span class="filter-value">{{disp.filterValueDesc}}</span><i class="icon-icon_plus"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .form-section-table {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #494949;
+}
+
+.form-section-table {
+    overflow-y: auto;
+    height: 250px;
+}
+
+.manage-main-grid .panel-default a .panel-heading {
+    color: #333333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    border-bottom: 1px solid #888888;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #494949 !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.manage-group table.adjManageTable tbody tr td{padding:5px 2px !important; word-wrap: break-word;}
+.manage-group table.adjManageTable thead tr th{padding:7px 5px !important; }
+.manage-group table.adjManageTable thead tr th .adjIcon{position:relative;left: 3px;top: 3px;}
+.manage-group table.adjManageTable tbody tr{display:table;width:100%;overflow:visible;}
+.manage-group table.adjManageTable tbody tr td:nth-child{display:table-cell;}
+.manage-group table.adjManageTable tbody tr td:last-child{width:7% !important}
+.manage-group table.adjManageTable thead tr th:last-child{width:7% !important;padding: 7px 2px !important;}
+
+.manage-group table.adjManageTable tbody tr:nth-child(1) .phone-flyout .arrow-down-bg1 {
+    border-top: 10px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #ffffff;
+    bottom: 9px;
+    right: -17px;
+}
+.manage-group table.adjManageTable tbody tr:nth-child(1) .phone-flyout .arrow-down1 {
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 11px solid #888888;
+    bottom: 6px;
+    right: -23px;
+}
+.manage-group table.adjManageTable tbody tr:nth-child(1) .phone-flyout {
+    right: 30px;
+    bottom: -14px;
+	}
+.adjSwitch{margin:8px 12px !important}
+.manage-employee-select-dropdown li:hover{background:#D9EAF8}
+.manage-employee-select-dropdown li label{ margin: 0; padding: 5px;}
+@media all and (max-width: 991px) {
+.manage-group table.adjManageTable thead tr th{
+font-size:12px;
+}
+.manage-group table.adjManageTable thead tr th:first-child span{
+font-size:9px !important;
+}
+}
+/*# sourceMappingURL=manage-main-grid.css.map */

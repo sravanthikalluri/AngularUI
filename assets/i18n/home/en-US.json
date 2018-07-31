@@ -1,0 +1,145 @@
+{
+  "dashboard":{
+    "heading":"Dashboard",
+    "hoursLeft":"Hours Left",
+    "reqTimeOff":"Request Time Off",
+    "noTimeOff":"No time off plans",
+    "unableTimeOff":" Unable to access Time Off",
+    "payDay":"Paychecks",
+    "viewPayRoll":"View Payroll Schedule",
+    "nextPaidHoliday":"Next Holiday",
+    "viewHolidaySch":"View Holiday Schedule",
+    "listWidgets":"List Of Widgets",
+    "addWidget":"Add Widget",
+    "newHiring":"Hiring",
+    "addNewHiring":"Add New Hire",
+    "viewUnsubmitted":"View Unsubmitted",
+    "onboardingOption":{
+      "k1": "K1",
+      "newHire": "New Hire",
+      "title": "Select New Employee Type",
+      "trustedAdvisor": "Trusted Advisor"
+    },
+    "unsubmittedTitle": "New Hires Not Submitted",
+    "unsubmittedFirstName": "First Name",
+    "unsubmittedLastName": "Last Name",
+    "continue":"Continue",
+    "remove":"Remove"
+  },
+  "social_media": {
+    "title": "Social Media",
+    "desc": "Join the giant conversation happening in the social media stratosphere! You can also subscribe to our blog's RSS,watch some of our online videos,and connect with us on the various networks. We'd love to meet you!",
+    "list": [
+      {
+        "title": "TriNet HR Blog",
+        "desc": "We blog about HR issues affecting small business, management best practices and Entrepreneurship",
+        "url": "http://blog.trinet.com/",
+        "css": "col-md-2 col-sm-3 icon-icon_rss no-pad"
+      },
+      {
+        "title": "LinkedIn",
+        "desc": "Get connected with some of the TriNet team via our company page on LinkedIn.",
+        "url": "http://www.linkedin.com/companies/trinet",
+        "css": "col-md-2 col-sm-3 icon-icon_linkedin no-pad"
+      },
+      {
+        "title": "Twitter Feeds",
+        "desc": "We microblog links to useful articles on HR and leadership.",
+        "url": "http://twitter.com/trinet",
+        "css": "col-md-2 col-sm-3  icon-icon_twitter no-pad"
+      },
+      {
+        "title": "YouTube",
+        "desc": "View client video testimonials of how we've helped them realize ambitions.",
+        "url": "http://www.youtube.com/TriNetHR",
+        "css": "col-md-2 col-sm-3 icon-icon_youtube no-pad"
+      },
+      {
+        "title": "Facebook",
+        "desc": "Connect with us on our Facebook fan page.  ",
+        "url": "http://www.facebook.com/TriNetHR",
+        "css": "col-md-2 col-sm-3 icon-icon_facebook no-pad"
+      },
+      {
+        "title": "Wikipedia",
+        "desc": "For a full history and background on the company, our Wikipedia entry's got it all.",
+        "url": "http://en.wikipedia.org/wiki/TRINet_%28consultancy%29",
+        "css": "col-md-2 col-sm-3 icon-icon_wiki no-pad"
+      }
+    ]
+  },
+  "best_practices": {
+    "title": "Best Practices",
+    "desc": "TriNet is dedicated to enabling our client companies to grow and develop their most important resource - their people. We're offering exclusive programs to help educate and inspire, including webinars on a range of HR topics and leadership practices.",
+    "headers": [
+      {
+        "title": "HR Strategy Webinar Series",
+        "desc": "This series of one-hour webinars provides insight into optimizing HR's contribution to the core business strategy."
+      },
+      {
+        "title": "TriNet Executive Insider eNewsletter",
+        "desc": "This exclusive publication for TriNet clients provides insights and information to help you manage your human capital."
+      },
+      {
+        "title": "TriNet Extreme Leadership Series with Steve Farber",
+        "desc": "We partnered with best-selling business author Steve Farber in an industry-leading thought leadership program entrepreneurs."
+      }
+    ]
+  },
+  "support": {
+    "title": "Support",
+    "heading": "Contact TriNet",
+    "cases": "Cases and Stats",
+    "tileHeaders": [
+      {
+        "title": "Manage My Cases"
+      },
+      {
+        "title": "Add Case"
+      },
+      {
+        "title": "My Support Stats"
+      },
+      {
+        "title": "My Company's Stats"
+      }
+    ],
+    "suggestion": "You can also submit a case for your questions or concerns.",
+    "statement1_first": "If you need help with payroll,benefits,or HR issues at TriNet,please send an email to",
+    "statement1_last": "A corporate HR representative will respond to your request.",
+    "statement2_Part1": "If you need IT assistance, please submit a North Star case.Go to the Intranet Home page.Under Tools & Resources,",
+    "statement2_Part2": "click Add a North Star Case.Enter your contact information and a detailed description of the issue, then assign the case to the IT-Helpdesk Provider Group.",
+    "contFor": "Contact for:",
+    "tab1": {
+      "title": "EMPLOYEE",
+      "forWhat0": "For worksite employee inquiries.",
+      "forWhat1": "Questions about TriNet benefits",
+      "forWhat2": "Questions about payroll",
+      "forWhat3": "Change home address",
+      "forWhat4": "Change W-4"
+    },
+    "tab2": {
+      "title": "HR FINANCE COORDINATOR",
+      "forWhat0": "For your company's day-to-day operational needs",
+      "forWhat1": "Payroll",
+      "forWhat2": "Invoice questions",
+      "forWhat3": "Reporting",
+      "forWhat4": "Using HR Passport®"
+    },
+    "tab3": {
+      "title": "C-LEVEL, MANAGERS",
+      "forWhat0": "For your company's human resource management needs",
+      "forWhat1": "Employee relations and compliance",
+      "forWhat2": "Progressive discipline and employee terminations",
+      "forWhat3": "HR policies",
+      "forWhat4": "HR strategy",
+      "forWhat5": "Your company's benefits investment strategy"
+    },
+    "tab4": {
+      "title": "C-LEVEL",
+      "forWhat0": "For your TriNet business relationship",
+      "forWhat1": "Issue escalation, if necessary",
+      "forWhat2": "Helping you realize ROI on your TriNet relationship"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<div class="no-records" data-ng-if="errorAlert && errorAlert._statusCode === '404'">
+    <h4 class="no-data proxima-nova-semibold"> {{ ::errorAlert._statusMessage}}</h4>
+</div>
+<div class="no-records" data-ng-if="errorAlert._statusCode !== '404' && noRecordsAlert">
+    <h4 class="no-data proxima-nova-semibold"> {{ ::noRecordsAlert._statusMessage}}</h4>
+</div>

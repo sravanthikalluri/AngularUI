@@ -1,0 +1,29 @@
+{
+  "data": {
+    "count": null,
+    "newHire": [],
+    "timeOffRequest": [
+      {
+        "startDate": "2014-01-23 17:29:13.0",
+        "status": "Completed",
+        "lastEdited": "2014-01-23 00:00:00.0",
+        "type": "Leave Request Manager Notification",
+        "actionId": "3161899",
+        "processId": "20"
+      },
+      {
+        "startDate": "2013-12-10 12:02:40.0",
+        "status": "Completed",
+        "lastEdited": "2013-12-10 00:00:00.0",
+        "type": "Leave Request Manager Notification",
+        "actionId": "3040618",
+        "processId": "20"
+      }
+    ],
+    "employeeChangeRequest": [],
+    "claimStaff": null
+  },
+  "errorCode": null,
+  "_statusCode": "200",
+  "_statusMessage": "Success"
+}

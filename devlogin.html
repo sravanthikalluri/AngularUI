@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TriNet</title>
+<!-- build:css assets/styles/app.min.css -->
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/menu/menu.css">
+<link rel="stylesheet" href="assets/css/company/workInbox/workinbox.css">
+<link rel="stylesheet" href="assets/css/specs/tooltip.css">
+<link rel="stylesheet" href="assets/css/dashboard/dashboard.css">
+<link rel="stylesheet" href="assets/css/dashboard/dashboard-temp.css">
+<link rel="stylesheet" href="assets/css/profile/profile.css">
+<link rel="stylesheet" href="assets/css/specs/on-off.css">
+<link rel="stylesheet" href="assets/css/specs/empty-button.css">
+<link rel="stylesheet" href="assets/css/specs/yes-no.css">
+<link rel="stylesheet" href="assets/css/specs/errors.css">
+<link rel="stylesheet" href="assets/css/font-icons.css">
+<link rel="stylesheet" href="assets/css/money/my-money.css">
+<link rel="stylesheet" href="assets/css/benefits/policesgeneral-benefits.css">
+<link rel="stylesheet" href="assets/css/util/all-forms.css">
+<link rel="stylesheet" href="assets/css/dashboard/ngDialog-custom-width.css">
+<link rel="stylesheet" href="assets/css/dashboard/ngDialog-theme-default.css">
+<link rel="stylesheet" href="assets/css/dashboard/ngDialog-theme-plain.css">
+<link rel="stylesheet" href="assets/css/dashboard/ngDialog.css">
+<link rel="stylesheet" href="assets/css/money/doughnut.css">
+<link rel="stylesheet" href="assets/css/money/normalize.css">
+<link rel="stylesheet" href="assets/css/profile/historytimeline.css">
+<link rel="stylesheet" href="assets/css/innerdivspinner.css">
+<link rel="stylesheet" href="assets/css/company/organisation/organisation.css">
+<link rel="stylesheet" href="assets/css/company/organisation/organisationpop.css">
+<link rel="stylesheet" href="assets/css/company/organisation/main.css">
+<link rel="stylesheet" href="assets/css/company/organisation/jquerysctipttop.css">
+<link rel="stylesheet" href="assets/css/manageemp/managereports.css">
+<link rel="stylesheet" href="assets/css/company/manageemployee-form.css">
+<link rel="stylesheet" href="assets/css/company/policesgeneral.css">
+<link rel="stylesheet" href="assets/css/util/demo.css">
+<link rel="stylesheet" href="assets/css/manageemp/manageemployee-form.css">
+<link rel="stylesheet" href="assets/css/manageemp/grid.css">
+<link rel="stylesheet" href="assets/css/company/selectize.css">
+<link rel="stylesheet" href="assets/css/manage-group/manage-group.css">
+<link rel="stylesheet" href="assets/css/manageemp/manage-main-grid.css">
+<link rel="stylesheet" href="assets/css/benefits/v-accordion.css">
+<link rel="stylesheet" href="assets/css/fonts-awesome.css">
+<link rel="stylesheet" href="assets/css/home/social/social.css">
+<link rel="stylesheet" href="assets/css/home/best/bestpractice.css">
+<link rel="stylesheet" href="assets/css/home/help/help-support.css">
+<link rel="stylesheet" href="assets/css/company/managereports.css">
+<link rel="stylesheet" href="assets/css/ngLoader.css">
+<link rel="stylesheet" href="assets/css/manageemp/manage-employment-change.css">
+<link rel="stylesheet" href="assets/css/manageemp/manageemployee-money.css">
+<link rel="stylesheet" href="assets/css/manageemp/manage-employee-leave.css">
+<link rel="stylesheet" href="assets/css/manageemp/assign-manager.css">
+<link rel="stylesheet" href="assets/css/company/jquery-ui.css">
+<link rel="stylesheet" href="assets/css/company/legalNotices/leagalnotice.css">
+<link rel="stylesheet" href="assets/css/company/tcamain.css">
+<link rel="stylesheet" href="assets/css/manageemp/staff-approval.css">
+<link rel="stylesheet" href="assets/css/profile/security.css">
+<link rel="stylesheet" href="assets/css/ng-tags-input.min.css">
+<link rel="stylesheet" href="assets/css/vality.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<!-- endbuild -->
+<!-- Styles End-->
+
+</head>
+<body ng-app="TrinetPassport">
+<div ng-controller="homeController">
+	<!--<div class="json-overlay hidden" id="loader">
+		<span class="spinner"></span>
+	</div>-->
+	<div class="errors">
+		<div class="row no-marg">
+			<div class="col-md-8 col-md-offset-3"></div>
+		</div>
+
+		<div ng-cloak class="ng-cloak login-main container" ng-controller="loginController">
+			<h1 >TriNet Passport</h1>
+			<div ng-cloak class="ng-cloak alert alert-danger medium visible" ng-if="invalid !== undefined && errormsg">
+				<strong ng-bind="invalid"></strong>
+			</div>
+			<h4>Login Page</h4>
+			<form name="userForm" ng-submit="submitForm()" novalidate>
+			<div class="login-form row no-marg">
+				<div class="form-group col-md-12 no-pad"
+				ng-class="{ 'has-error' : userForm.empId.$invalid && (userForm.empId.$dirty || submitted)}">
+					<input type="text" class="form form-control user-input " id="pwd"
+						placeholder="Employee Id" name="empId" ng-model="empId"  ng-pattern="/^[0-9\.]+$/" ng-required="true">
+						<p ng-show="userForm.empId.$invalid && !userForm.empId.$pristine" class="help-block">Enter a valid Employee ID.</p>
+
+				</div>
+				<div class="form-group col-md-12 no-pad">
+							<input type="text" class="form form-control user-input" id="userpassword"
+						placeholder="Password" name="userpassword" ng-model="userpassword"  ng-required="true">
+						</div>
+				<div class="clearfix"></div>
+				<button type="submit" class="btn btn-primary" ng-click="sendData()" ng-disabled="userForm.$invalid">Go</button>
+			</div>
+			</form>
+		</div>
+		<script type="text/javascript"
+				src="assets/libs/jquery/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="assets/libs/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="assets/libs/jquery/jquery.gridder.js"></script>
+		<script type="text/javascript" src="assets/libs/jquery/jquery.browser.js"></script>
+        <script type="text/javascript" src="assets/libs/jquery/jquery-iframe-auto-height.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/angular.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/angular-spinners.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/Chart.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/tc-angular-chartjs.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/angular-route.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/angular-resource.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/ui-bootstrap-tpls-0.13.0.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/ngDialog.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/sortable.js"></script>
+		<script type="text/javascript" src="assets/libs/other/angular-bootstrap-select.js"></script>
+		<script type="text/javascript" src="assets/libs/bootstrap/bootstrap.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/ngStorage.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/select.js"></script>
+		<script type="text/javascript" src="assets/libs/other/ngDraggable.js"></script>
+		<script type="text/javascript" src="assets/libs/other/v-accordion.js"></script>
+		<script type="text/javascript" src="assets/libs/other/ngMaskDirective.js"></script>
+		<script type="text/javascript" src="assets/libs/angular/angular-cookies.js"></script>
+		<script type="text/javascript" src="assets/libs/other/angular-filter.js"></script>
+		<script type="text/javascript" src="assets/libs/other/ng-tags-input.js"></script>
+		<script type="text/javascript" src="assets/libs/other/date.js"></script>
+		<script type="text/javascript" src="assets/libs/angulartics/angulartics.min.js"></script>
+		<script type="text/javascript" src="assets/libs/angulartics-ga/angulartics-ga.min.js"></script>
+
+
+		<script type="text/javascript" src="app/templates.js"></script>
+		<script type="text/javascript" src="app/app.js"></script>
+
+
+
+		<!-- Routes Files Start -->
+		<script type="text/javascript" src="app/shared/config/images.js"></script>
+		<script type="text/javascript" src="app/shared/config/constants.js"></script>
+		<script type="text/javascript" src="app/shared/routes/homeRoutes.js"></script>
+		<script type="text/javascript" src="app/shared/routes/moneyRoutes.js"></script>
+		<script type="text/javascript" src="app/shared/routes/benefitsRoutes.js"></script>
+		<script type="text/javascript" src="app/shared/routes/companyRoutes.js"></script>
+		<script type="text/javascript" src="app/shared/routes/manageEmployeeRoutes.js"></script>
+		<!-- Routes Files End -->
+
+		<!-- Shared Services Files Start  -->
+		<script type="text/javascript" src="app/shared/services/genericService.js"></script>
+		<script type="text/javascript" src="app/shared/services/sharedProperties.js"></script>
+		<script type="text/javascript" src="app/shared/services/crudService.js"></script>
+		<script type="text/javascript" src="app/shared/services/crudOperationService.js"></script>
+		<script type="text/javascript" src="app/shared/factories/operationFactory.js"></script>
+		<script type="text/javascript" src="app/shared/services/translationService.js"></script>
+		<script type="text/javascript" src="app/shared/services/hrpSignonService.js"></script>
+		<!-- Shared Services Files End  -->
+
+		<!--Shared Controllers Files Start  -->
+		<script type="text/javascript" src="app/shared/controllers/datePickerCtrl.js"></script>
+		<script type="text/javascript" src="app/shared/controllers/radioButtonCtrl.js"></script>
+		<script type="text/javascript" src="app/shared/controllers/i18nController.js"></script>
+		<script type="text/javascript" src="app/shared/factories/httpInterceptor.js"></script>
+		<script type="text/javascript" src="app/components/login/loginUrlConfig.js"></script>
+		<script type="text/javascript" src="app/components/login/loginCtrl.js"></script>
+		<!-- Shared Controllers Files End  -->
+
+		<!-- Shared Directive Files Start  -->
+		<script type="text/javascript" src="app/shared/directives/icons/checkboxDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/alertDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/historyDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/icons/starDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/icons/radioDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/dashboard/dashboardDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/dashboard/widgets/calendar.js"></script>
+		<script type="text/javascript" src="app/shared/directives/dashboard/widgets/flexibleSpendingClaims.js"></script>
+		<script type="text/javascript" src="app/shared/directives/dashboard/widgets/profile.js"></script>
+		<script type="text/javascript" src="app/shared/directives/dashboard/widgets/nextPayDay.js"></script>
+		<script	type="text/javascript" src="app/shared/directives/dashboard/widgets/onBoardingCheckList.js"></script>
+		<script type="text/javascript" src="app/shared/directives/dashboard/widgets/perform.js"></script>
+		<script	type="text/javascript" src="app/shared/directives/personal/emergencyCardDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/printDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/hyperlinkDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/policyTileDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/personal/profileHeaderDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/messageAlert.js"></script>
+		<script type="text/javascript" src="app/shared/directives/ngScrollDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/customIframeDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/icons/checkboxGroupDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/menuDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/tilesGridShow.js"></script>
+		<script type="text/javascript" src="app/shared/directives/notificationDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/workInboxNotificationDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/validationDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/currencyFormatDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/norecordsDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/delayDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/compileDirective.js"></script>
+		<script type="text/javascript" src="app/shared/directives/confirmPasswordDirective.js"></script>
+        <script type="text/javascript" src="app/shared/config/globalUrlConfig.js"></script>
+        <script type="text/javascript" src="app/shared/util/utilService.js"></script>
+        <script type="text/javascript" src="app/shared/util/urlBuilder.js"></script>
+        <script type="text/javascript" src="app/shared/util/passportUrlBuilder.js"></script>
+		<!-- Shared Directive Files End  -->
+
+		<!-- Filter Files Start  -->
+		<script type="text/javascript" src="app/shared/filters/profileFilter.js"></script>
+		<script type="text/javascript" src="app/shared/filters/globalFilter.js"></script>
+		<script type="text/javascript" src="app/shared/filters/manageEmpFilter.js"></script>
+		<!-- Filter Files End  -->
+
+
+		<!-- Home Page Files Start -->
+		<script type="text/javascript" src="app/components/dashboard/dashboardCtrl.js"></script>
+		<script type="text/javascript" src="app/components/menu/menuCtrl.js"></script>
+		<script type="text/javascript" src="app/components/home/homeUrlConfig.js"></script>
+        <script type="text/javascript" src="app/components/home/homeCtrl.js"></script>
+		<!-- Home Page Files End -->
+
+		<!-- Profile related js files Start  -->
+		<script type="text/javascript" src="app/components/profile/profileAlerts.js"></script>
+		<script type="text/javascript" src="app/components/profile/profileLandingPageCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/address/addressCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/address/addressModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/personalInfo/personalInfoCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/personalInfo/personalInfoModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/personalStatus/personalStatusCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/personalStatus/personalStatusModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/emergencyContact/emergencyContactCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/emergencyContact/emergencyContactModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/workinfo/workInfoCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/contactMethods/contactMethodsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/names/namesCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/names/namesModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/names/namesCreateNewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/names/namesPreferredModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/personal/contactMethods/contactMethodsModelCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/leaveRequest/extendLeaveRequestCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/leaveRequest/returnFromLeaveCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/profileUrlConfig.js"></script>
+		<script type="text/javascript" src="app/components/profile/options/optionsViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/profile/security/securityViewCtrl.js"></script>
+		<!-- Profile related js files End  -->
+
+		<!--My Money related js files Start  -->
+		<script type="text/javascript" src="app/components/money/earningsStmts/earningStmtsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/taxWithHolding/taxWithHoldingEditCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/directDeposit/earnings/earningsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/directDeposit/reimbursements/reimbursementsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/directDeposit/directDepositCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/directDeposit/earnings/newAccountCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/taxWithHolding/taxWithHoldingCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/retirementPlan/retirementCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/retirementPlan/retirementPlanAmtChangeCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/payrollSchedule/payrollScheduleCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/moneyAlerts.js"></script>
+        <script type="text/javascript" src="app/components/money/forms/moneyFormsCtrl.js"></script>
+        <script type="text/javascript" src="app/components/money/verifyEmp/verifyEmpCtrl.js"></script>
+		<script type="text/javascript" src="app/components/money/moneyUrlConfig.js"></script>
+        <script type="text/javascript" src="app/components/money/earningsStmts/compensation/compensationCtrl.js"></script>
+		<!-- My Money related js files End  -->
+
+		<!-- My Benefits related js files End  -->
+		<script type="text/javascript" src="app/components/benefits/policies/policiesViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsGuideBook/benefitsGuideBookViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsSummary/benefitsSummaryViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsSummary/executive/executiveCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsSummary/buildMaintainStates/buildMaintainViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsSummary/cobraBenefitsSummary/cobraBenefitsSummaryViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/metlifeBenefits/metlifeBenefitsViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsOverview/benefitsOverviewViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/currentBenefits/currBenefitsViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/summaryPlanDescription/summaryPlanDescriptionViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsCarrierContacts/benefitsCarrierContactsViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/policies/benefitsSummary/buildMaintainStates/statesBuildData/statesBuildDataCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/benefitsAlerts.js"></script>
+        <script type="text/javascript" src="app/components/benefits/forms/benefitsFormsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/commuter/commuterViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/lifeStatusChange/lifeStatusChangeViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/benefits/benefitsUrlConfig.js"></script>
+        <script type="text/javascript" src="app/components/benefits/policies/benefitsOverview/benefitsRules.js"></script>
+        <script type="text/javascript" src="app/components/benefits/policies/benefitsOverview/benefitsVariables.js"></script>
+		<!-- My Benefits related js files End  -->
+
+		<!-- My Company related js files Start  -->
+		<script type="text/javascript" src="app/components/company/orgChart/orgChartViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/orgChart/findEmployeeCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/managerforms/managerFormsViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/companyPoliciesViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/trinetTCA/trinetTCAViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/companyAlerts.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/additionalPolicies/companyAdditionalPoliciesViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/additionalPolicies/policiesAndProcedures/policiesAndProceduresCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/additionalPolicies/additionalForms/additionalFormsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/additionalPolicies/manageResources/manageResourcesViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/additionalPolicies/yourCompanyRequiredForms/yourCompanyRequiredFormsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/workInbox/workInboxCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/companyUrlConfig.js"></script>
+		<script type="text/javascript" src="app/components/company/manageCompany/specialStateAddenda/specialStateAddendaViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/policies/paidTimeOffPolicies/paidTimeOffPolicesCtrl.js"></script>
+		<script type="text/javascript" src="app/components/workInbox/workInboxNotificationCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/legalNotices/legalNoticesCtrl.js"></script>
+		<script type="text/javascript" src="app/components/company/help/helpSupportCtrl.js"></script>
+		<!-- My Company related js files end  -->
+
+		<!-- Manage Employee related js files Start  -->
+		<script type="text/javascript" src="app/components/employee/manageEmpUrlConfig.js"></script>
+		<script type="text/javascript" src="app/components/employee/money/payment/addlPaymentCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/money/moneyCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/timeoff/timeOffCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/reports/reportsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/roles/rolesCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/roles/rolesModelViewCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/reportAnalytics/reportAnalyticsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/assignManager/assignManagerCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/manageEmployeeCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/money/retirementPlan/enrollmentPlanCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/eforms/eformsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/manageAlerts.js"></script>
+		<!-- Manage Employee related js files End  -->
+
+		<!-- Manage Groups related js files Start -->
+		<script type="text/javascript" src="app/components/employee/manageGroups/manageGroupsCtrl.js"></script>
+		<script type="text/javascript" src="app/components/employee/manageGroups/groupChangeRequestCtrl.js"></script>
+		<!-- Manage Groups related js files End -->
+		<!-- endbuild -->
+		<script>
+ // JavaScript Document
+$(document).ready(function(){
+
+	/* Benefits WIndows Scrolling*/
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			$('#go-to-top').fadeIn();
+		} else {
+			$('#go-to-top').fadeOut();
+		}
+	});
+
+	$('#go-to-top').click(function () {
+		$("html, body").animate({
+			scrollTop: 0
+		}, 600);
+		return false;
+	});
+
+	/*Company Policies Accordians*/
+	$('#only-one [data-accordion]').accordion();
+
+     $('#multiple [data-accordion]').accordion({
+       singleOpen: false
+     });
+
+     $('#single[data-accordion]').accordion({
+       transitionEasing: 'cubic-bezier(0.455, 0.030, 0.515, 0.955)',
+       transitionSpeed: 200
+     });//End
+
+	$("#showTimeline").click(function(){
+		$("#timeline").attr('class', ' col-md-12 col-sm-12 show');
+		$("#showTimeline").attr('class', 'hide');
+		$("#hideTimeline").attr('class', 'show');
+		});
+
+	$("#hideTimeline").click(function(){
+		$("#timeline").attr('class', ' col-md-12 col-sm-12 hide');
+		$("#showTimeline").attr('class', 'show');
+		$("#hideTimeline").attr('class', 'hide');
+		});
+
+	$("#primaryNameEditLink").click(function(){
+		$("#details").attr('class', 'myfield-content hide');
+		$("#primaryNameEdit").attr('class', ' myfield-content show');
+		});
+
+	$("#preferredNameEditLink").click(function(){
+		$("#details").attr('class', 'myfield-content hide');
+		$("#preferredNameEdit").attr('class', ' myfield-content show');
+		});
+
+	$(".cancel").click(function(){
+		$("#primaryNameEdit").attr('class', 'myfield-content hide');
+		$("#preferredNameEdit").attr('class', 'myfield-content hide');
+		$("#details").attr('class', ' myfield-content show');
+		});
+
+var __slice = [].slice;
+
+(function($, window) {
+    var Starrr;
+
+    Starrr = (function() {
+        Starrr.prototype.defaults = {
+            rating: void 0,
+            numStars: 4,
+            change: function(e, value) {}
+        };
+
+        function Starrr($el, options) {
+            var i, _, _ref,
+                _this = this;
+
+            this.options = $.extend({}, this.defaults, options);
+            this.$el = $el;
+            _ref = this.defaults;
+            for (i in _ref) {
+                _ = _ref[i];
+                if (this.$el.data(i) != null) {
+                    this.options[i] = this.$el.data(i);
+                }
+            }
+            this.createStars();
+            this.syncRating();
+            this.$el.on('mouseover.starrr', 'i', function(e) {
+                return _this.syncRating(_this.$el.find('i').index(e.currentTarget) + 1);
+            });
+            this.$el.on('mouseout.starrr', function() {
+                return _this.syncRating();
+            });
+            this.$el.on('click.starrr', 'i', function(e) {
+                return _this.setRating(_this.$el.find('i').index(e.currentTarget) + 1);
+            });
+            this.$el.on('starrr:change', this.options.change);
+        }
+
+        Starrr.prototype.createStars = function() {
+            var _i, _ref, _results;
+
+            _results = [];
+            for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+                _results.push(this.$el.append("<div class='pull-left'><i class='fa fa-star-o'></i></div>"));
+            }
+            return _results;
+        };
+
+        Starrr.prototype.setRating = function(rating) {
+            if (this.options.rating === rating) {
+                rating = void 0;
+            }
+            this.options.rating = rating;
+            this.syncRating();
+            return this.$el.trigger('starrr:change', rating);
+        };
+
+        Starrr.prototype.syncRating = function(rating) {
+            var i, _i, _j, _ref;
+
+            rating || (rating = this.options.rating);
+            if (rating) {
+                for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+                    this.$el.find('i').eq(i).removeClass('fa-star-o').addClass('fa-star');
+                }
+            }
+            if (rating && rating < 5) {
+                for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+                    this.$el.find('i').eq(i).removeClass('fa-star').addClass('fa-star-o');
+                }
+            }
+            if (!rating) {
+                return this.$el.find('i').removeClass('fa-star').addClass('fa-star-o');
+            }
+        };
+
+        return Starrr;
+
+    })();
+    return $.fn.extend({
+        starrr: function() {
+            var args, option;
+
+            option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+            return this.each(function() {
+                var data;
+
+                data = $(this).data('star-rating');
+                if (!data) {
+                    $(this).data('star-rating', (data = new Starrr($(this), option)));
+                }
+                if (typeof option === 'string') {
+                    return data[option].apply(data, args);
+                }
+            });
+        }
+    });
+})(window.jQuery, window);
+
+$(function() {
+    return $(".starrr").starrr();
+});
+
+});
+
+var toggle = true;
+
+$("#menubar").click(function() {
+  if (toggle)
+  {
+    $(".page-container").removeClass("sidebar-collapsed");
+
+  }
+  else
+  {
+    $(".page-container").addClass("sidebar-collapsed");
+
+  }
+  toggle = !toggle;
+});
+</script>
+<script type='text/javascript'>
+	$(window).load(function(){
+		$("#menu li").click(function() {
+		    $('li').removeClass('active');
+		    $(this).addClass("active");
+		});
+
+		$("html").click(function(){
+		 	$("#menubar").addClass("page-container sidebar-collapsed")
+		});
+		$("#menubar").click(function(e){
+		 	e.stopPropagation();
+		});
+	});
+</script>
+<script>
+$(document).ready(function(){
+    $(".mycheckbox").click(function(){
+        $(this).toggleClass("icon-icon_checkmarkwithbox");
+    });
+
+	$(".mycheckbox").click(function(){
+        $(this).toggleClass("icon-icon_checkmark_emptybox");
+    });
+
+});
+</script>
+
+<script>
+  $(function() {
+	    $( "#accordion" ).accordion({
+	      collapsible: true
+	    });
+	  });
+</script>
+<script type='text/javascript'>
+	$('#form-box').hide();
+
+	$('#form-div').click(function () {
+		$('#form-box').toggle();
+		$('.form-content-text').toggle();
+	});
+
+</script>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

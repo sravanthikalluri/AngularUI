@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .social-media .social-block {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.social-media h2 {
+    padding: 1px 0 5px 0px;
+    margin-top: 5px;
+}
+
+.social-media .social-text {
+    padding: 20px 0;
+    color: #494949;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.social-media .social-block {
+    padding: 15px 10px;
+    height: 120px;
+}
+
+.social-media .social-block span {
+    font-size: 48px;
+    color: #494949;
+    line-height: 88px;
+}
+
+.social-media ul {
+    float: left;
+}
+
+.social-media li {
+    padding: 0px;
+}
+
+.social-media a {
+    border: 1px solid #ffffff;
+    float: left;
+    background: #f2f2f2;
+    height: 120px;
+    width: 100%;
+}
+
+.social-media a label {
+    color: #0073CF;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.social-media a p {
+    color: #888888;
+    font-size: 16px;
+    max-height: 70px;
+    overflow: hidden;
+}
+
+.social-media a:hover {
+    border: 1px solid #0073CF;
+    background: #ffffff;
+}
+
+.social-media a:hover span {
+    color: #0073CF;
+}
+
+.social-media li:nth-of-type(odd) {
+    border: #ffffff 1px solid;
+    border-width: 0 4px 4px 0;
+}
+
+.social-media li:nth-of-type(even) {
+    border: #ffffff 1px solid;
+    border-width: 0 0px 4px 0;
+}
+
+@media all and (max-width: 991px) {
+    .social-media .social-media .social-block {
+        padding: 5px 10px;
+    }
+
+    .social-media .social-media .social-block span {
+        line-height: 120px;
+    }
+
+    .social-media .list-item {
+        margin: 3px 10px;
+    }
+
+    .social-media .my-money .sno {
+        font-size: 20px;
+    }
+}
+
+/*# sourceMappingURL=social.css.map */

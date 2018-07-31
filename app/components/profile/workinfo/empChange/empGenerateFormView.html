@@ -1,0 +1,1300 @@
+
+<div class="tn-alert" ng-if="warningCodeBool || errorCodeBool" >
+    <div class="alert--status alert--warning"  ng-if="warningCodeBool">
+        <div class="alert__body">
+            <img src="./assets/images/info-white.svg" width="24" height="24">
+            <p ng-bind="errorResp"></p>
+        </div>
+        <div class="alert__buttons">
+            <button type="button" class="tn-button tn-edit-button tn-button-small" ng-click="closeAlert($index)">
+                {{::translation.shared.ok}}
+            </button>
+        </div>
+    </div>
+    <div class="alert--status alert--error"
+         ng-if="errorCodeBool">
+        <div class="alert__body">
+            <img src="./assets/images/error-white.svg" width="24" height="24">
+            <p  ng-bind="errorResp"></p>
+        </div>
+        <div class="alert__buttons">
+            <button type="button" ng-click="closeAlert($index)" class="tn-button tn-edit-button tn-button-small">
+                {{::translation.shared.ok}}
+            </button>
+        </div>
+    </div>
+</div>
+<div class="tn-emp-generate-form tn-modal tn-modal-fullHeight">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.work_info.egfv_heading"></h4>
+    </div>
+    <form class="tn-form" name="empChangeRequestForm" id="empChangeRequestForm" valid-submit="sendForm()"
+          novalidate>
+        <div class="tn-modal-boby">
+            <div>
+                <label ng-bind="::translation.work_info.egfv_job_change_for"></label>
+                <h4 class="proxima-nova-semibold"><span>{{headerName}}</span>&nbsp;<span>(EMP ID:{{appUserId}})</span></h4>
+            </div>
+            <div ng-if="!businessTitleChange">
+                <label>{{::translation.effective_date}}:</label>
+            </div>
+            <div class="tn-calender-input" ng-if="!businessTitleChange" ng-controller="datePickerCtrl">
+                <input type="text" class="form-control bg-white" name="effectiveDate" ng-disabled
+                       id="effective_pay_begin_date" datepicker-popup="{{format}}"
+                       is-open="opened" min-date="minDate" readonly
+                       ng-class="{'error-warning': (isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.effectiveDateRequired ) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.effectiveDateRequired)
+                                            || (isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.blur.effectiveFormpastdate) ||( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.effectiveFormpastdate)||
+                                            ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.effectiveFormFuturedate) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.effectiveFormFuturedate) }"
+                       max-date="'12/31/2099'" datepicker-options="dateOptions"
+                       onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode==47 || event.charCode==8"
+                       ng-required="true" close-text="Close" ng-model="effectiveDate"
+                       ng-change="fillEmployeeChangeData(effectiveDate)"
+                       placeholder="MM/DD/YYYY"
+                       ng-focus="validationPatterns.empChangeRequest.focus.effectiveDateRequired= empChangeRequestForm.effectiveDate.$error.required; validationPatterns.empChangeRequest.blur.effectiveDateRequired = false;
+                                            validationPatterns.empChangeRequest.focus.effectiveFormpastdate = checkDateThirtyDates(effectiveDate);validationPatterns.empChangeRequest.blur.effectiveFormpastdate = false;
+                                            validationPatterns.empChangeRequest.focus.effectiveFormFuturedate = checkDateSixtyDates(effectiveDate);validationPatterns.empChangeRequest.blur.effectiveFormFuturedate = false;"
+                       ng-blur="validationPatterns.empChangeRequest.blur.effectiveDateRequired= empChangeRequestForm.effectiveDate.$error.required; validationPatterns.empChangeRequest.focus.effectiveDateRequired = false;
+                                            validationPatterns.empChangeRequest.blur.effectiveFormpastdate = checkDateThirtyDates(effectiveDate);validationPatterns.empChangeRequest.focus.effectiveFormpastdate = false;
+                                            validationPatterns.empChangeRequest.blur.effectiveFormFuturedate = checkDateSixtyDates(effectiveDate); validationPatterns.empChangeRequest.focus.effectiveFormFuturedate = false;"
+                />
+                <span class="calendar-icon" ng-click="open($event)">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+                <Validation
+                    condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.effectiveDateRequired"
+                    ng-if="isEmpGenerateFormSubmitted"
+                    msg="{{translation.required_field}}"></Validation>
+                <Validation
+                    condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.effectiveFormpastdate"
+                    ng-if="isEmpGenerateFormSubmitted"
+                    msg="{{translation.validation.thirtyDaysPast}}"></Validation>
+                <Validation
+                    condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.effectiveFormFuturedate"
+                    ng-if="isEmpGenerateFormSubmitted"
+                    msg="{{translation.validation.sixtyDaysFuture}}"></Validation>
+            </div>
+            <div ng-show="futureMessage">
+                <label>*{{::translation.future_date}}</label>
+            </div>
+            <!-- 	Business Title Change div start here -->
+            <div ng-if="businessTitleChange">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.work_info.egfv_busniness_title_change_only"></h4>
+                <div>
+                    <label for="bussinessTitlePositionDescription"
+                           ng-bind="::translation.work_info.egfv_busniness_title_change_only_bussiness_title"></label>
+                </div>
+                <div>
+                    <input id="bussinessTitlePositionDescription" type="text" maxlength="30"
+                           class="form-control"
+                           ng-class="{'error-warning':  (isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.bussinessTitlePositionRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.bussinessTitlePositionRequired) || validationPatterns.empChangeRequest.focus.bussinessTitlePositionPattern || validationPatterns.empChangeRequest.blur.bussinessTitlePositionPattern}"
+                           value=""
+                           ng-required="true"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           name="bussinessTitlePositionDescription"
+                           ng-model="employmentChangeData.businessTitle"
+                           ng-focus="validationPatterns.empChangeRequest.focus.bussinessTitlePositionRequired = empChangeRequestForm.bussinessTitlePositionDescription.$error.required; validationPatterns.empChangeRequest.blur.bussinessTitlePositionRequired = false;
+                                                                validationPatterns.empChangeRequest.focus.bussinessTitlePositionPattern = empChangeRequestForm.bussinessTitlePositionDescription.$error.pattern; validationPatterns.empChangeRequest.blur.bussinessTitlePositionPattern = false;"
+
+                    />
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.bussinessTitlePositionRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <Validation condition="validationPatterns.empChangeRequest.focus.bussinessTitlePositionPattern"
+                                msg="{{translation.work_info.specialChars}}"></Validation>
+                </div>
+                <div>
+                    <label for="pay_begin_date"
+                           ng-bind="::translation.work_info.egfv_busniness_title_change_only_seniority_date"></label>
+                </div>
+                <div class="tn-calender-input"
+                     ng-controller="datePickerCtrl">
+                    <input type="text" ng-class="{'error-warning': senioritydtRequired}" class="form-control bg-white"
+                           name="seniority_dt"
+                           id="pay_begin_date" datepicker-popup="{{format}}"
+                           ng-model="employmentChangeData.seniorityDate" is-open="opened"
+                           placeholder="MM/DD/YYYY" min-date="minDate"
+                           max-date="'12/31/2099'" datepicker-options="dateOptions"
+                           onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode==47 || event.charCode==8"
+                           ng-required="true" close-text="Close"
+                    />
+                    <span class="calendar-icon" ng-click="open($event); effectiveDateselectAlert(effectiveDate)">
+                          <i class="icon-icon_calendar blue bold"></i>
+                     </span>
+                </div>
+                <div>
+                    <label for="bussinessTitleChangePhone"
+                           ng-bind="::translation.work_info.egfv_busniness_title_change_only_work_phone"></label>
+                </div>
+                <div>
+                    <phone-format id="bussinessTitleChangePhone" placeholder="'999-999-9999'" model='employmentChangeData.workPhone' is-required="false"></phone-format>
+                </div>
+            </div>
+            <!-- 	Business Title Change div end's here -->
+            <!-- 	Employee Transfer div start here -->
+            <div ng-if="EmployeeTransfer">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.work_info.egfv_employee_transfer"></h4>
+                <div>
+                    <label for="employeeTransferName"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_reason"></label>
+                </div>
+                <div>
+                    <select name="employeeTransferName" id="employeeTransferName"
+                            class="form form-control "
+                            ng-model="employmentChangeData.employeeTransfer.reasonId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in transferReasonsData"
+                            ng-required="true"
+                            ng-class="{'error-warning': (  isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.empTransferReasonRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.empTransferReasonRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.empTransferReasonRequired=empChangeRequestForm.employeeTransferName.$error.required; validationPatterns.empChangeRequest.blur.empTransferReasonRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.focus.empTransferReasonRequired = false; validationPatterns.empChangeRequest.blur.empTransferReasonRequired=empChangeRequestForm.employeeTransferName.$error.required; "
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.chooseReason">
+                        </option>
+                    </select>
+
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.empTransferReasonRequired"
+                        msg="{{translation.required_field}}"></Validation>
+
+                </div>
+
+                <div ng-if="!JobReclassification">
+                    <label ng-bind="::translation.work_info.egfv_employee_transfer_department"></label>
+                </div>
+                <div class="flex-box" ng-if="!JobReclassification">
+                    <div>
+                        <select name="employeeTransferDepartmentFi{{$index}}"
+                                class="form-control "
+                                ng-model="employmentChangeData.deptId"
+                                ng-click="effectiveDateselectAlert(effectiveDate);clearPercentValue(rowContent)"
+                                ng-options=" emptype.deptId as  emptype.deptName + ' - ' + emptype.deptId for emptype in departmentsData"
+                                ng-required="true"
+                                ng-class="{'error-warning':( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.employeeTransferDeptRequiredFi[$index] )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.employeeTransferDeptRequiredFi[$index])}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.employeeTransferDeptRequiredFi=empChangeRequestForm['employeeTransferDepartmentFi'+$index].$error.required; validationPatterns.empChangeRequest.blur.employeeTransferDeptRequiredFi[$index] = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.employeeTransferDeptRequiredFi=empChangeRequestForm['employeeTransferDepartmentFi'+$index].$error.required; validationPatterns.empChangeRequest.focus.employeeTransferDeptRequiredFi[$index] = false;">
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectDep">
+
+                            </option>
+                        </select>
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.employeeTransferDeptRequiredFi[$index]"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                    <div class="tn-checkbox">
+
+                        <input id="DefineFinancialSplit" name="DefineFinancialSplit" type="checkbox" ng-model="financialSplit" ng-click="checkFinancialSplit(financialSplit)"
+                               ng-true-value="'Yes'" ng-false-value="'No'">
+                        <label for="DefineFinancialSplit">
+                            Define Financial Split
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="!JobReclassification && financialSplit === 'Yes'">
+                    <label>Financial Split by Department:</label>
+                </div>
+                <div class="flex-box" ng-if="!JobReclassification && financialSplit == 'Yes'" ng-repeat="rowContent in employmentChangeData.departments">
+                    <div>
+                        <select name="employeeTransferDepartment{{$index}}"
+                                class="form-control "
+                                ng-model="rowContent.deptId"
+                                ng-click="effectiveDateselectAlert(effectiveDate);clearPercentValue(rowContent)"
+                                ng-options=" emptype.deptId as  emptype.deptName + ' - ' + emptype.deptId for emptype in departmentsData"
+                                ng-required="true"
+                                ng-class="{'error-warning':( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.employeeTransferDeptRequired[$index] )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.employeeTransferDeptRequired[$index])}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.employeeTransferDeptRequired[$index]=empChangeRequestForm['employeeTransferDepartment'+ $index].$error.required; validationPatterns.empChangeRequest.blur.employeeTransferDeptRequired[$index] = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.employeeTransferDeptRequired[$index]=empChangeRequestForm['employeeTransferDepartment'+ $index].$error.required; validationPatterns.empChangeRequest.focus.employeeTransferDeptRequired[$index] = false;">
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectDep">
+
+                            </option>
+                        </select>
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.employeeTransferDeptRequired[$index]"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                    <div class="flex-box" ng-if="employmentChangeData.departments.length > 0 && financialSplit == 'Yes'">
+                        <div class="add-on-input">
+                            <input
+                                id="employeeTransferPercentage{{$index}}" type="text"
+                                ng-pattern="[0-9]+(\.[0-9][0-9]?)?" maxlength="5"
+                                ng-click="effectiveDateselectAlert(effectiveDate);clearPercentValue(rowContent);setCurrentDep($index)"
+                                ng-blur="departmentTotal()"
+                                required name="employeeTransferPercentage{{$index}}"
+                                class="form-control"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.employeeTransferPercentageRequired[$index]) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.employeeTransferPercentageRequired[$index]) || (empTransferTotalpercent !== 100 && $index === currentDep)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.employeeTransferPercentageRequired[$index]=empChangeRequestForm['employeeTransferPercentage'+ $index].$error.required; validationPatterns.empChangeRequest.blur.employeeTransferPercentageRequired[$index] = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.employeeTransferPercentageRequired[$index]=empChangeRequestForm['employeeTransferPercentage'+ $index].$error.required; validationPatterns.empChangeRequest.focus.employeeTransferPercentageRequired[$index] = false;"
+                                ng-model="rowContent.percentage"
+                            />
+                            <Validation
+                                condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.employeeTransferPercentageRequired[$index]"
+                                msg="{{translation.required_field}}"></Validation>
+
+                            <Validation
+                                condition="empTransferTotalpercent !== 100 && $index === currentDep"
+                                msg="{{errorRespForDept}}"></Validation>
+                            <span>/ %</span>
+                        </div>
+                        <div>
+                            <a class="remove-link" ng-click="removeRow($index,rowContent.percentage)" href
+                               id="percentage">
+                                Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-box add-department" ng-if="!JobReclassification && financialSplit == 'Yes'">
+                    <a id="addingrow" href="" class="tn-button tn-buttomn-add"
+                       ng-click="addRow()">{{::translation.add}}</a>
+                    <h6 class="proxima-nova-semibold" ng-show="employmentChangeData.departments.length > 1">
+                        <span>{{::translation.total}}:</span>{{empTransferTotalpercent}}
+                    </h6>
+
+                </div>
+                <div>
+                    <label for="employeeTransferWorkLocation"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_work_location"></label>
+                </div>
+                <div>
+                    <select name="employeeTransferWorkLocation" id="employeeTransferWorkLocation"
+                            class="form-control "
+                            ng-model="employmentChangeData.employeeTransfer.locationId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.locationId as emptype.locationName for emptype in locationsData"
+                            ng-change="onWorkLocationChange(employmentChangeData.employeeTransfer.locationId)"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.employeeTransferWorkLocationRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.employeeTransferWorkLocationRequired) || oHWorkerComp}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.employeeTransferWorkLocationRequired=empChangeRequestForm.employeeTransferWorkLocation.$error.required; validationPatterns.empChangeRequest.blur.employeeTransferWorkLocationRequired = false;validationPatterns.empChangeRequest.focus.employeeTransferWorkLocation = oHWorkerComp;validationPatterns.empChangeRequest.blur.employeeTransferWorkLocation = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.employeeTransferWorkLocationRequired=empChangeRequestForm.employeeTransferWorkLocation.$error.required; validationPatterns.empChangeRequest.focus.employeeTransferWorkLocationRequired = false;validationPatterns.empChangeRequest.focus.employeeTransferWorkLocation = false;validationPatterns.empChangeRequest.blur.employeeTransferWorkLocation = oHWorkerComp;">
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectLocation">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="empChangeRequestFormemployeeTransferWorkLocationRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.employeeTransferWorkLocationRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <validation
+                        condition="oHWorkerComp && validationPatterns.empChangeRequest.focus.employeeTransferWorkLocation"
+                        msg="{{translation.OHState_Validation}}"></validation>
+                </div>
+                <div ng-if="!JobReclassification">
+                    <label for="employeeTransferBusinessTitle"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_bussiness_title"></label>
+                </div>
+                <div ng-if="!JobReclassification">
+                    <input id="employeeTransferBusinessTitle" maxlength="30"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="text" ng-required="true"
+                           name="employeeTransferBusinessTitle"
+                           class="form-control"
+                           ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.empTransfBusinessTitleRequired) || ( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.blur.empTransfBusinessTitleRequired)  || validationPatterns.empChangeRequest.focus.empTransfBusinessTitlePattern || validationPatterns.empChangeRequest.blur.empTransfBusinessTitlePattern}"
+                           ng-model="employmentChangeData.businessTitle" value=""
+                           ng-focus="validationPatterns.empChangeRequest.focus.empTransfBusinessTitleRequired = empChangeRequestForm.employeeTransferBusinessTitle.$error.required; validationPatterns.empChangeRequest.blur.empTransfBusinessTitleRequired = false; validationPatterns.empChangeRequest.focus.empTransfBusinessTitlePattern = empChangeRequestForm.employeeTransferBusinessTitle.$error.pattern; validationPatterns.empChangeRequest.blur.empTransfBusinessTitlePattern = false;"
+                    >
+
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.empTransfBusinessTitleRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <Validation
+                        condition="validationPatterns.empChangeRequest.focus.empTransfBusinessTitlePattern"
+                        msg="{{translation.work_info.specialChars}}"></Validation>
+                </div>
+                <div ng-if="!JobReclassification">
+                    <label for="employeeTransferDirectManager"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_direct_manager"></label>
+                </div>
+                <div ng-if="!JobReclassification">
+                    <select name="employeeTransferDirectManager" id="employeeTransferDirectManager"
+                            ng-model="employmentChangeData.managerId"
+                            class="form-control"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in directManagerData"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.empTransferDirectManagerRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.empTransferDirectManagerRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.empTransferDirectManagerRequired=empChangeRequestForm.employeeTransferDirectManager.$error.required; validationPatterns.empChangeRequest.blur.empTransferDirectManagerRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.empTransferDirectManagerRequired=empChangeRequestForm.employeeTransferDirectManager.$error.required; validationPatterns.empChangeRequest.focus.empTransferDirectManagerRequired = false;"
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectDirectManager">
+                        </option>
+                    </select>
+                </div>
+                <div ng-if="!JobReclassification">
+                    <label
+                        ng-bind="::translation.work_info.egfv_employee_transfer_work_phone"></label>
+                </div>
+                <div class="flex-box" ng-if="!JobReclassification">
+                    <div class="relative">
+                        <phone-format id="employeeTransferWorkPhone" placeholder="'999-999-9999'" model='employmentChangeData.workPhone' is-required="false"></phone-format>
+                    </div>
+                </div>
+            </div>
+            <!-- 	Employee Transfer div start here -->
+            <!-- Job Reclassification  div end's here -->
+            <div ng-if="JobReclassification">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.work_info.egfv_job_reclassification"></h4>
+                <div>
+                    <label for="jobReclassificationReason"
+                           ng-bind="::translation.work_info.egfv_job_reclassification_reason"></label>
+                </div>
+                <div>
+                    <select name="jobReclassificationReason"
+                            class="form-control "
+                            id="jobReclassificationReason"
+                            ng-model="employmentChangeData.jobReclassification.reasonId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in jobRecReasonsData"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationReasonRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassificationReasonRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.jobReclassificationReasonRequired=empChangeRequestForm.jobReclassificationReason.$error.required; validationPatterns.empChangeRequest.blur.jobReclassificationReasonRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.jobReclassificationReasonRequired=empChangeRequestForm.jobReclassificationReason.$error.required; validationPatterns.empChangeRequest.focus.jobReclassificationReasonRequired = false;"
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.chooseReason">
+                        </option>
+
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationReasonRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label ng-bind="::translation.work_info.egfv_employee_transfer_department"></label>
+                </div>
+                <div class="flex-box">
+                    <div>
+                        <select name="jobReclassificationDepartmentFi{{$index}}"
+                                class="form-control "
+                                ng-model="employmentChangeData.deptId"
+                                ng-click="effectiveDateselectAlert(effectiveDate);clearPercentValue(rowContent)"
+                                ng-options=" emptype.deptId as  emptype.deptName + ' - ' + emptype.deptId for emptype in departmentsData"
+                                ng-required="true"
+                                ng-class="{'error-warning':( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.jobReclassificationDepartmentFi[$index] )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassificationDepartmentFi[$index])}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.jobReclassificationDepartmentFi=empChangeRequestForm['jobReclassificationDepartmentFi'+$index].$error.required; validationPatterns.empChangeRequest.blur.jobReclassificationDepartmentFi[$index] = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.jobReclassificationDepartmentFi=empChangeRequestForm['jobReclassificationDepartmentFi'+$index].$error.required; validationPatterns.empChangeRequest.focus.jobReclassificationDepartmentFi[$index] = false;">
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectDep">
+
+                            </option>
+                        </select>
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.jobReclassificationDepartmentFi[$index]"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                    <div class="tn-checkbox">
+
+                        <input id="DefineFinancialSplit" name="DefineFinancialSplit" type="checkbox" ng-model="financialSplit" ng-click="checkFinancialSplit(financialSplit)"
+                               ng-true-value="'Yes'" ng-false-value="'No'">
+                        <label for="DefineFinancialSplit">
+                            Define Financial Split
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="!conditionCheck">
+                    <label>Financial Split by Department:</label>
+                </div>
+
+                <div class="flex-box tn-departments-section no-marg"  ng-if="!conditionCheck" ng-repeat="rowContent in employmentChangeData.departments">
+                    <div>
+                        <select name="jobReclassificationDepartment{{$index}}"
+                                class="txtfield_Style form form-control "
+                                ng-model="rowContent.deptId"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-options=" emptype.deptId as emptype.deptName + ' - ' + emptype.deptId for emptype in departmentsData"
+                        >
+                            <option value='' disabled selected
+                                    class="hiddenprofile" ng-bind="::translation.work_info.selectDep">
+                            </option>
+                        </select>
+                         <Validation
+                             condition="isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.employeeTransferDeptRequired"
+                             msg="{{translation.required_field}}"></Validation>
+                    </div>
+                    <div class="flex-box" ng-if="employmentChangeData.departments.length > 0 && !conditionCheck">
+                        <div class="add-on-input">
+                            <input
+                                id="jobReclassificationPercentage{{$index}}"
+                                ng-click="effectiveDateselectAlert(effectiveDate);clearPercentValue(rowContent)"
+                                ng-blur="departmentTotal();"
+                                type="text" ng-pattern="[0-9]+(\.[0-9][0-9]?)?" required
+                                name="jobReclassificationPercentageDyn"
+                                maxlength="5"
+                                class="pull-right form-control"
+                                ng-model="rowContent.percentage"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationPercentage[$index]) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassificationPercentage[$index]) || (empTransferTotalpercent !== 100 && $index === currentDep)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.jobReclassificationPercentage[$index]=empChangeRequestForm['jobReclassificationPercentage'+ $index].$error.required; validationPatterns.empChangeRequest.blur.jobReclassificationPercentage[$index] = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.jobReclassificationPercentage[$index]=empChangeRequestForm['jobReclassificationPercentage'+ $index].$error.required; validationPatterns.empChangeRequest.focus.jobReclassificationPercentage[$index] = false;"
+                            />
+                            <Validation
+                                condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationPercentage[$index]"
+                                msg="{{translation.required_field}}"></Validation>
+
+                            <Validation
+                                condition="jobReclassificationTotalpercent !== 100 && $index === currentDep"
+                                msg="{{errorRespForDept}}"></Validation>
+                            <span>/ %</span>
+                        </div>
+                        <!-- <div>
+                              <span class="colorred"
+                                              ng-show="empChangeRequestForm.jobReclassificationPercentage{{$index}}.$dirty &&empChangeRequestForm.jobReclassificationPercentage{{$index}}.$invalid">
+                            <span ng-show="empChangeRequestForm.jobReclassificationPercentage{{$index}}.$error.required">{{::translation.percentage}} {{::translation.is_required}}.</span>
+                          <span ng-show="empChangeRequestForm.jobReclassificationPercentage{{$index}}.$invalid"
+                                ng-hide="empChangeRequestForm.jobReclassificationPercentage{{$index}}.$error.required">{{::translation.number_only}}.</span>
+                          </span>
+                         </div>-->
+                        <div>
+                            <a class="remove-link" ng-click="removeRow($index,rowContent.percentage)" href
+                               id="jobReclassificationPercentagebutton">
+                                Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-box add-department" ng-if="!conditionCheck">
+                    <a id="jobclassaddrow" href="" class="tn-button tn-buttomn-add"
+                       ng-click="addRow()">{{::translation.add}}</a>
+                    <h6 class="proxima-nova-semibold" ng-show="employmentChangeData.departments.length > 1">
+                        <span>{{::translation.total}}:</span>{{empTransferTotalpercent}}
+                    </h6>
+
+                </div>
+                <div>
+                    <label for="jobReclassificationBusinessTitle"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_bussiness_title"></label>
+                </div>
+                <div>
+                    <input id="jobReclassificationBusinessTitle"  maxlength="30"
+                           ng-required="true"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="text" name="jobReclassificationBusinessTitle"
+                           class="form form-control black"
+                           ng-model="employmentChangeData.businessTitle" value=""
+                           ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassifBusinessTitleRequired) ||( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.blur.jobReclassifBusinessTitleRequired) || validationPatterns.empChangeRequest.focus.jobReclassifBusinessTitlePattern || validationPatterns.empChangeRequest.blur.jobReclassifBusinessTitlePattern}"
+                           ng-focus="validationPatterns.empChangeRequest.focus.jobReclassifBusinessTitleRequired = empChangeRequestForm.jobReclassificationBusinessTitle.$error.required; validationPatterns.empChangeRequest.blur.jobReclassifBusinessTitleRequired = false;
+                                                                    validationPatterns.empChangeRequest.focus.jobReclassifBusinessTitlePattern = empChangeRequestForm.jobReclassificationBusinessTitle.$error.pattern; validationPatterns.empChangeRequest.blur.jobReclassifBusinessTitlePattern = false;"
+                    >
+
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassifBusinessTitleRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <Validation
+                        condition="validationPatterns.empChangeRequest.focus.jobReclassifBusinessTitlePattern"
+                        msg="{{translation.work_info.specialChars}}"></Validation>
+                </div>
+                <div>
+                    <label for="jobReclassificationDirectManager"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_direct_manager"></label>
+                </div>
+                <div>
+                    <select name="jobReclassificationDirectManager"
+                            id="jobReclassificationDirectManager"
+                            class="form form-control "
+                            ng-model="employmentChangeData.managerId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in directManagerData"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassifDirectManagerRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassifDirectManagerRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.jobReclassifDirectManagerRequired=empChangeRequestForm.jobReclassificationDirectManager.$error.required; validationPatterns.empChangeRequest.blur.jobReclassifDirectManagerRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.jobReclassifDirectManagerRequired=empChangeRequestForm.jobReclassificationDirectManager.$error.required; validationPatterns.empChangeRequest.focus.jobReclassifDirectManagerRequired = false;"
+
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectDirectManager">
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="jobReclassificationWorkPhone"
+                           ng-bind="::translation.work_info.egfv_employee_transfer_work_phone"></label>
+                </div>
+                <div>
+                    <phone-format id="jobReclassificationWorkPhone" placeholder="'999-999-9999'" model='employmentChangeData.workPhone' is-required="false"></phone-format>
+                </div>
+                <div>
+                    <label for="earnTypeJobId" ng-bind="::translation.work_info.egfv_job_reclassification_job"></label>
+                </div>
+                <div>
+                    <select name="earnTypeJobId"
+                            id="earnTypeJobId"
+                            class="form form-control "
+                            ng-model="employmentChangeData.jobReclassification.jobId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in jobsData"
+                            ng-required="true"
+                            ng-disabled="employeeStatusFlag === true || employeeStatusFlagForK1D === true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypeRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.earnTypeRequired=empChangeRequestForm.earnTypeJobId.$error.required; validationPatterns.empChangeRequest.blur.earnTypeRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.earnTypeRequired=empChangeRequestForm.earnTypeJobId.$error.required; validationPatterns.empChangeRequest.focus.earnTypeRequired = false;">
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectJob">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="earnTypeFlsaStatus"
+                           ng-bind="::translation.work_info.egfv_job_reclassification_flsa_status"></label>
+                </div>
+                <div>
+                    <select name="earnTypeFlsaStatus"
+                            id="earnTypeFlsaStatus"
+                            class="form form-control "
+                            ng-model="employmentChangeData.jobReclassification.flsaStatus"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in flsaData"
+                            ng-required="true"
+                            ng-disabled="employeeStatusFlag === true || employeeStatusFlagForK1D === true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeStatusRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypeStatusRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.earnTypeStatusRequired=empChangeRequestForm.earnTypeFlsaStatus.$error.required; validationPatterns.empChangeRequest.blur.earnTypeStatusRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.earnTypeStatusRequired=empChangeRequestForm.earnTypeFlsaStatus.$error.required; validationPatterns.empChangeRequest.focus.earnTypeStatusRequired = false;">
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="employeeStatusFlag === true ? 'No FLSA Applicable' : translation.work_info.selectFLSA ">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeStatusRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label ng-bind="::translation.work_info.egfv_job_reclassification_temporary_indicator"></label>
+                </div>
+                <div class="radio">
+                    <input id="indicatory"
+                           ng-disabled="employeeStatusFlagForK1D === true"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="radio"
+                           ng-model="employmentChangeData.jobReclassification.temporaryInd"
+                           name="indicator" ng-value="false">
+                    <label for="indicatory">{{::translation.regular}}</label>
+                    <input id="indicatorn"
+                           ng-disabled="employeeStatusFlag === true"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="radio"
+                           ng-model="employmentChangeData.jobReclassification.temporaryInd"
+                           name="indicator" ng-value="true">
+                    <label for="indicatorn">{{::translation.temporary}}</label>
+                </div>
+                <div>
+                    <label ng-bind="::translation.work_info.egfv_job_reclassification_employee_type"></label>
+                </div>
+                <div class="radio">
+                    <input id="empltypef"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="radio"
+                           ng-model="employmentChangeData.jobReclassification.employeeType"
+                           name="employeeType" value="F">
+                    <label for="empltypef">{{::translation.full_time}}</label>
+                    <input id="empltypep"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="radio"
+                           ng-model="employmentChangeData.jobReclassification.employeeType"
+                           name="employeeType" value="P">
+                    <label for="empltypep">{{::translation.part_time}}</label>
+                </div>
+                <div>
+                    <label for="jobReclassificationStandardHours"
+                           ng-bind="::translation.work_info.egfv_job_reclassification_standard_hours"></label>
+                </div>
+                <div>
+                    <input id="jobReclassificationStandardHours"
+                           onkeypress="return event.charCode > 45 && event.charCode <= 57 || event.charCode== 8"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="number" name="jobReclassificationStandardHours"
+                           ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/" value="" ng-required="true"
+                           ng-model="employmentChangeData.jobReclassification.standardHours"
+                           min="0" max="40"
+                           class="additional-box col-md-2 col-sm-2 form  no-pad black form-control"
+                           ng-class="{'error-warning': empChangeRequestForm.jobReclassificationStandardHours.$error.pattern || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationStandardHours )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassificationStandardHours)}"
+                           ng-focus="validationPatterns.empChangeRequest.focus.jobReclassificationStandardHours=empChangeRequestForm.jobReclassificationStandardHours.$error.required; validationPatterns.empChangeRequest.blur.jobReclassificationStandardHours = false;"
+                           ng-blur="validationPatterns.empChangeRequest.blur.jobReclassificationStandardHours=empChangeRequestForm.jobReclassificationStandardHours.$error.required; validationPatterns.empChangeRequest.focus.jobReclassificationStandardHours = false;"
+
+                    >
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationStandardHours"
+                        msg="{{translation.required_field}}"></Validation>
+                    <Validation condition="empChangeRequestForm.jobReclassificationStandardHours.$error.pattern"
+                                msg="Decimal Digits should not exceed more than two"></Validation>
+                    <Validation condition="empChangeRequestForm.jobReclassificationStandardHours.$error.min"
+                                msg="{{translation.standard_hours_min}}"></Validation>
+
+                    <Validation condition="empChangeRequestForm.jobReclassificationStandardHours.$error.max"
+                                msg="{{translation.standard_hours_max}}"></Validation>
+                </div>
+                <div ng-if="showTipped">
+                    <div>
+                        <label for="jobClassificationTippedCode">Tipped:</label>
+                    </div>
+                    <div>
+                        <select id="jobClassificationTippedCode" name="jobClassificationTippedCode"
+                                class="form form-control "
+                                ng-model="employmentChangeData.jobReclassification.directlyTipped" ng-disabled="tempDisable"
+                                ng-options=" tippedcode.key as tippedcode.value for tippedcode in tippedCodesData"
+                        >
+                            <option value='' disabled selected class="hiddenprofile">Select Tipped</option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hideVacation && vacationsData">
+                    <div>
+                        <label for="earnTypeVacationPto"
+                               ng-bind="::translation.work_info.egfv_job_reclassification_vacation"></label>
+                    </div>
+                    <div>
+                        <select name="earnTypeVacationPto"
+                                id="earnTypeVacationPto"
+                                class="form form-control "
+                                ng-model="employmentChangeData.jobReclassification.vacationPto"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-disabled="employeeStatusFlag === true || employeeStatusFlagForK1D === true ||tempDisable"
+                                ng-options=" vacation.benefitPlan as vacation.benefitPlanDescription for vacation in vacationsData"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeVacationRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypeVacationRequired)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.earnTypeVacationRequired=empChangeRequestForm.earnTypeVacationPto.$error.required; validationPatterns.empChangeRequest.blur.earnTypeVacationRequired = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.earnTypeVacationRequired=empChangeRequestForm.earnTypeVacationPto.$error.required; validationPatterns.empChangeRequest.focus.earnTypeVacationRequired = false;"
+
+                        >
+                            <option value='' disabled
+                                    ng-selected="!(employmentChangeData.jobReclassification.vacationPto)"
+                                    class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectVacation">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hideEibRepsonse && eibRepsonse">
+                    <div>
+                        <label for="earnTypeEib"
+                               ng-bind="::translation.work_info.egfv_job_reclassification_eib"></label>
+                    </div>
+                    <div>
+                        <select name="earnTypeEib"
+                                id="earnTypeEib"
+                                class="form form-control "
+                                ng-disabled="tempDisable"
+                                ng-model="employmentChangeData.jobReclassification.eib"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-options=" eibRes as eibRes.benefitPlanDescription for eibRes in eibRepsonse track by eibRes.benefitPlan">
+                            <option value='' disabled
+                                      ng-selected="!(employmentChangeData.jobReclassification.eib)"
+                                    class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectEib">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hideFloatingHoliday">
+                    <div>
+                        <label for="earnTypefloatingHoliday"
+                               ng-bind="::translation.work_info.egfv_job_reclassification_floatingHoliday"></label>
+                    </div>
+                    <div>
+                        <select name="earnTypefloatingHoliday"
+                                id="earnTypefloatingHoliday"
+                                class="form-control "
+                                ng-model="employmentChangeData.jobReclassification.floatingHoliday"
+                                ng-disabled="tempDisable"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-options=" holiday as holiday.benefitPlanDescription for holiday in floatingHoliday track by holiday.benefitPlan">
+                            <option value='' disabled
+                                    ng-selected="!(employmentChangeData.jobReclassification.floatingHoliday)"
+                                    class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectFloatingHoliday">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hideSick &&sickData">
+                    <div>
+                        <label for="earnTypeSick"
+                               ng-bind="::translation.work_info.egfv_job_reclassification_sick"></label>
+                    </div>
+                    <div>
+                        <select name="earnTypeSick"
+                                id="earnTypeSick"
+                                class="txtfield_Style form form-control "
+                                ng-model="employmentChangeData.jobReclassification.sick"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-options=" sick.benefitPlan as sick.benefitPlanDescription for sick in sickData"
+                                ng-disabled="tempDisable"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeSickRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypeSickRequired)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.earnTypeSickRequired=empChangeRequestForm.earnTypeSick.$error.required; validationPatterns.empChangeRequest.blur.earnTypeSickRequired = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.earnTypeSickRequired=empChangeRequestForm.earnTypeSick.$error.required; validationPatterns.empChangeRequest.focus.earnTypeSickRequired = false;"
+                        >
+                            <option value='' disabled
+                                      ng-selected="!(employmentChangeData.jobReclassification.sick)"
+                                    class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectSick">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hidePersonal && personalData">
+                    <div>
+                        <label for="earnTypePersonal"
+                               ng-bind="::translation.work_info.egfv_job_reclassification_Personal"></label>
+                    </div>
+                    <div>
+                        <select name="earnTypePersonal"
+                                id="earnTypePersonal"
+                                class="txtfield_Style form form-control "
+                                ng-model="employmentChangeData.jobReclassification.personal"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-disabled="tempDisable"
+                                ng-options=" personal as personal.benefitPlanDescription for personal in personalData track by personal.benefitPlan">
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectPersonal">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hidePerformance && performanceMgmtData">
+                    <div>
+                        <label for="earnTypePerformanceMgmtJobCode"
+                               ng-bind="::translation.work_info.egfv_job_reclassification_performance_mgmt_job_code "></label>
+                    </div>
+                    <div>
+                        <select name="earnTypePerformanceMgmtJobCode"
+                                id="earnTypePerformanceMgmtJobCode"
+                                class="txtfield_Style form form-control "
+                                ng-model="employmentChangeData.jobReclassification.performanceMgmtJobCode"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-disabled="tempDisable"
+                                ng-options=" performance.planTypeShortName as performance.planTypeDescription for performance in performanceMgmtData"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypePerfJobCodeRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypePerfJobCodeRequired)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.earnTypePerfJobCodeRequired=empChangeRequestForm.earnTypePerformanceMgmtJobCode.$error.required; validationPatterns.empChangeRequest.blur.earnTypePerfJobCodeRequired = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.earnTypePerfJobCodeRequired=empChangeRequestForm.earnTypePerformanceMgmtJobCode.$error.required; validationPatterns.empChangeRequest.focus.earnTypePerfJobCodeRequired = false;"
+
+                        >
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="translation.work_info.selectMgmt">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="hideVariableHour">
+                    <div>
+                        <label ng-bind="::translation.work_info.egfv_job_reclassification_variable_hour"></label>
+                    </div>
+                    <div class="radio">
+                        <input id="empltypey"
+                               ng-click="effectiveDateselectAlert(effectiveDate);"
+                               type="radio"
+                               ng-disabled="employeeStatusFlag === true || employeeStatusFlagForK1D === true"
+                               ng-model="employmentChangeData.jobReclassification.variableHour"
+                               name="employeeVariableHour" ng-value="true">
+                        <label for="empltypey">{{::translation.yes}}</label>
+                        <input id="empltypen"
+                               ng-click="effectiveDateselectAlert(effectiveDate);"
+                               type="radio"
+                               ng-model="employmentChangeData.jobReclassification.variableHour"
+                               name="employeeVariableHour" ng-value="false">
+                        <label for="empltypen">{{::translation.no}}</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Job Reclassification  div end's here -->
+            <!-- Promotion  div start here -->
+            <div ng-if="Promotion">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold" ng-bind="::translation.work_info.egfv_promotion"></h4>
+                <div>
+                    <label for="promotionReason" ng-bind="::translation.work_info.egfv_promotion_reason"></label>
+                </div>
+                <div>
+                    <select name="promotionReason" id="promotionReason"
+                            class="form-control "
+                            ng-model="employmentChangeData.promotion.reasonId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in promotionReasonsData"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.promotionReasonRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.promotionReasonRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.promotionReasonRequired=empChangeRequestForm.promotionReason.$error.required; validationPatterns.empChangeRequest.blur.promotionReasonRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.promotionReasonRequired=empChangeRequestForm.promotionReason.$error.required; validationPatterns.empChangeRequest.focus.promotionReasonRequired = false;"
+
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.chooseReason">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.promotionReasonRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="earnTypeCompBasis"
+                           ng-bind="::translation.work_info.egfv_promotion_compensation_basis"></label>
+                </div>
+                <div>
+                    <select name="earnTypeCompBasis" id="earnTypeCompBasis"
+                            class="form-control "
+                            ng-model="employmentChangeData.payChange.compBasis"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in compensationtypesData"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypecompBasisRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypecompBasisRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.earnTypecompBasisRequired=empChangeRequestForm.earnTypeCompBasis.$error.required; validationPatterns.empChangeRequest.blur.earnTypecompBasisRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.earnTypecompBasisRequired=empChangeRequestForm.earnTypeCompBasis.$error.required; validationPatterns.empChangeRequest.focus.earnTypecompBasisRequired = false;"
+
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectCompensation">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypecompBasisRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="EmployeePayChangePeriodicRate"
+                           ng-bind="::translation.work_info.egfv_promotion_periodic_rate"></label>
+                </div>
+                <div class="flex-box">
+                    <div class="relative">
+                        <input id="comprate"
+                               ng-class="{'error-warning': promotionPeriodicRateRequired || promotionPeriodicRateCharcter || empChangeRequestForm.promotionPeriodicRate.$error.pattern || minWageFlag}"
+                               ng-click="effectiveDateselectAlert(effectiveDate);"
+                               type="text"
+                               name="promotionPeriodicRate"
+                               ng-pattern="/^[1-9]\d*(\.\d{0,2})?$/"
+                               ng-required="true"
+                               ng-model="employmentChangeData.payChange.compRate"
+                               class="form-control no-marg text-right"
+                               ng-class="{'error-warning': (( isEmpGenerateFormSubmitted && alidationPatterns.empChangeRequest.focus.promotionPeriodicRateRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.promotionPeriodicRateRequired) || (validationPatterns.empChangeRequest.blur.promotionPeriodicRatePattern || validationPatterns.empChangeRequest.focus.promotionPeriodicRatePattern))}"
+                               ng-focus="isPromotionPeriodicRate = true; validationPatterns.empChangeRequest.focus.promotionPeriodicRateRequired = empChangeRequestForm.promotionPeriodicRate.$error.required;
+                                                                validationPatterns.empChangeRequest.blur.promotionPeriodicRateRequired = false;
+                                                                validationPatterns.empChangeRequest.blur.promotionPeriodicRatePattern = false;
+                                                                validationPatterns.empChangeRequest.focus.promotionPeriodicRatePattern = empChangeRequestForm.promotionPeriodicRate.$error.pattern;"
+                               ng-blur="isPromotionPeriodicRate = false; validationPatterns.empChangeRequest.blur.promotionPeriodicRateRequired = empChangeRequestForm.promotionPeriodicRate.$error.required;
+                                                                validationPatterns.empChangeRequest.focus.promotionPeriodicRateRequired = false;
+                                                                validationPatterns.empChangeRequest.focus.promotionPeriodicRatePattern = false;
+                                                                validationPatterns.empChangeRequest.blur.promotionPeriodicRatePattern = empChangeRequestForm.promotionPeriodicRate.$error.pattern"
+                        >
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.promotionPeriodicRateRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                        <validation
+                            condition="isPromotionPeriodicRate && empChangeRequestForm.promotionPeriodicRate.$error.pattern"
+                            msg="Enter valid promotion periodic rate."></validation>
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted && minWageFlag"
+                            msg="{{::translation.work_info.minWageValidationMsg}}"></Validation>
+                    </div>
+                    <h4 class="proxima-nova-semibold marg-left"
+                        ng-bind="employmentChangeData.payChange.compBasis === 'A'?translation.year : translation.hour"></h4>
+                    <p  class="no-margin margin-left"><span>{{employmentChangeData.minWageRateMsg}}</span><span class="marg-left-5 inline">{{::translation.work_info.minWageMessage}}</span><span>{{employmentChangeData.payChange.compBasis === 'A'? employmentChangeData.minWageRateAnl :employmentChangeData.minWageRate}}</span></p>
+                </div>
+                <div ng-if="enable">
+                    <div>
+                        <label for="proBusniessTitle"
+                               ng-bind="::translation.work_info.egfv_employee_transfer_bussiness_title"></label>
+                    </div>
+                    <div>
+                        <input ng-class="{'error-warning': promotionBusinessTitleRequired || promotionBusinessTitleCharcter||
+                                                  ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.promotionBusinessTitleRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.promotionBusinessTitleRequired) || validationPatterns.empChangeRequest.focus.promotionBusinessTitlePattern || validationPatterns.empChangeRequest.blur.promotionBusinessTitlePattern}"
+                               id="proBusniessTitle" ng-required="true" maxlength="30"
+                               ng-click="effectiveDateselectAlert(effectiveDate);"
+                               type="text" name="proBusniessTitle"
+                               class="form form-control black"
+                               ng-model="employmentChangeData.businessTitle" value=""
+                               ng-focus="validationPatterns.empChangeRequest.focus.promotionBusinessTitleRequired = empChangeRequestForm.proBusniessTitle.$error.required; validationPatterns.empChangeRequest.blur.promotionBusinessTitleRequired = false;
+                                                                validationPatterns.empChangeRequest.focus.promotionBusinessTitlePattern = empChangeRequestForm.proBusniessTitle.$error.pattern; validationPatterns.empChangeRequest.blur.promotionBusinessTitlePattern = false;"
+                        >
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.promotionBusinessTitleRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                        <Validation condition="validationPatterns.empChangeRequest.focus.promotionBusinessTitlePattern"
+                                    msg="{{translation.work_info.specialChars}}"></Validation>
+                    </div>
+                </div>
+                <div ng-if="enable">
+                    <div>
+                        <label for="PromotionjobReclassificationDirectManager"
+                               ng-bind="::translation.work_info.egfv_employee_transfer_direct_manager"></label>
+                    </div>
+                    <div>
+                        <select name="jobReclassificationDirectManager"
+                                id="PromotionjobReclassificationDirectManager"
+                                class="txtfield_Style form form-control "
+                                ng-model="employmentChangeData.managerId"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-options=" emptype.key as emptype.value for emptype in directManagerData"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationDMRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassificationDMRequired)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.jobReclassificationDMRequired=empChangeRequestForm.jobReclassificationDirectManager.$error.required; validationPatterns.empChangeRequest.blur.jobReclassificationDMRequired = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.jobReclassificationDMRequired=empChangeRequestForm.jobReclassificationDirectManager.$error.required; validationPatterns.empChangeRequest.focus.jobReclassificationDMRequired = false;"
+                        >
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectDirectManager">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="enable">
+                    <div>
+                        <label for="promotionWorkPhone"
+                               ng-bind="::translation.work_info.egfv_employee_transfer_work_phone"></label>
+                    </div>
+                    <div>
+                        <phone-format id="promotionWorkPhone" placeholder="'999-999-9999'" model='employmentChangeData.workPhone' is-required="false"></phone-format>
+                    </div>
+                </div>
+            </div>
+            <!-- Promotion  div end's here -->
+            <!-- employee pay change  div start here -->
+            <div ng-if="EmployeePayChange">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.work_info.egfv_employee_pay_change"></h4>
+                <div>
+                    <label for="EmployeePayChangeReason"
+                           ng-bind="::translation.work_info.egfv_employee_pay_change_reason"></label>
+                </div>
+                <div>
+                    <select name="EmployeePayChangeReason"
+                            id="EmployeePayChangeReason"
+                            class="form-control "
+                            ng-model="employmentChangeData.payChange.reasonId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in payChangeReasonsData"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.employeePayChangeReasonRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.employeePayChangeReasonRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.employeePayChangeReasonRequired=empChangeRequestForm.EmployeePayChangeReason.$error.required; validationPatterns.empChangeRequest.blur.employeePayChangeReasonRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.employeePayChangeReasonRequired=empChangeRequestForm.EmployeePayChangeReason.$error.required; validationPatterns.empChangeRequest.focus.employeePayChangeReasonRequired = false;"
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.chooseReason">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.employeePayChangeReasonRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="earnTypePayChangeCompBasis"
+                           ng-bind="::translation.work_info.egfv_employee_pay_change_compensation_basis"></label>
+                </div>
+                <div>
+                    <select name="earnTypePayChangeCompBasis"
+                            id="earnTypePayChangeCompBasis"
+                            class="form-control "
+                            ng-model="employmentChangeData.payChange.compBasis"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in compensationtypesData"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypePayCompBasisRequired) ||( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.blur.earnTypePayCompBasisRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.earnTypePayCompBasisRequired=empChangeRequestForm.earnTypePayChangeCompBasis.$error.required; validationPatterns.empChangeRequest.blur.earnTypePayCompBasisRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.earnTypePayCompBasisRequired=empChangeRequestForm.earnTypePayChangeCompBasis.$error.required; validationPatterns.empChangeRequest.focus.earnTypePayCompBasisRequired = false;"
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectComp">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypePayCompBasisRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="EmployeePayChangePeriodicRate"
+                           ng-bind="::translation.work_info.egfv_employee_pay_change_periodic_rate"></label>
+                </div>
+                <div class="flex-box">
+                    <div class="relative">
+                        <input
+                            onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode== 8 || event.charCode !== 110 "
+                            ng-class="{'error-warning': EmployeePayChangePeriodicRateRequired || minWageFlag || EmployeePayChangePeriodicRateCharcter ||
+                                                        ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.empPayChangePeriodicRateRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.empPayChangePeriodicRateRequired)}"
+                            type="text"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            id="EmployeePayChangePeriodicRate"
+                            name="EmployeePayChangePeriodicRate"
+                            required ng-model="employmentChangeData.payChange.compRate"
+                            class=" form-control no-marg text-right" value=""
+                            ng-focus="validationPatterns.empChangeRequest.focus.empPayChangePeriodicRateRequired=empChangeRequestForm.EmployeePayChangePeriodicRate.$error.required; validationPatterns.empChangeRequest.blur.empPayChangePeriodicRateRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.empPayChangePeriodicRateRequired=empChangeRequestForm.EmployeePayChangePeriodicRate.$error.required; validationPatterns.empChangeRequest.focus.empPayChangePeriodicRateRequired = false;">
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.empPayChangePeriodicRateRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted && minWageFlag"
+                            msg="{{::translation.work_info.minWageValidationMsg}}"></Validation>
+
+                    </div>
+                    <h4 class="proxima-nova-semibold marg-left"
+                        ng-bind="employmentChangeData.payChange.compBasis === 'A'?translation.year : translation.hour"></h4>
+                    <p class="no-margin margin-left"><span> {{employmentChangeData.minWageRateMsg}}</span><span class="marg-left-5 inline">{{::translation.work_info.minWageMessage}}</span><span>{{employmentChangeData.payChange.compBasis === 'A'? employmentChangeData.minWageRateAnl :employmentChangeData.minWageRate}}</span></p>
+                </div>
+            </div>
+            <!-- employee pay change  div end's here -->
+            <!-- demotion  div start here -->
+            <div ng-if="Demotion">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold" ng-bind="::translation.work_info.egfv_demotion"></h4>
+                <div>
+                    <label for="DemotionReason" ng-bind="::translation.work_info.egfv_demotion_reason"></label>
+                </div>
+                <div>
+                    <select name="DemotionReason"
+                            id="DemotionReason"
+                            class="txtfield_Style form form-control "
+                            ng-model="employmentChangeData.demotion.reasonId"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in demotionReasonsData"
+                            ng-required="true"
+                            ng-class="{'error-warning':( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.demotionReasonRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.demotionReasonRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.demotionReasonRequired=empChangeRequestForm.DemotionReason.$error.required; validationPatterns.empChangeRequest.blur.demotionReasonRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.demotionReasonRequired=empChangeRequestForm.DemotionReason.$error.required; validationPatterns.empChangeRequest.focus.demotionReasonRequired = false;">
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.chooseReason">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.demotionReasonRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="earnTypeDemotionComp"
+                           ng-bind="::translation.work_info.egfv_demotion_compensation_basis"></label>
+                </div>
+                <div>
+                    <select name="earnTypeDemotionComp"
+                            id="earnTypeDemotionComp"
+                            class="txtfield_Style form form-control "
+                            ng-model="employmentChangeData.payChange.compBasis"
+                            ng-click="effectiveDateselectAlert(effectiveDate);"
+                            ng-options=" emptype.key as emptype.value for emptype in compensationtypesData"
+                            ng-required="true"
+                            ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeDemotionCompBasisRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.earnTypeDemotionCompBasisRequired)}"
+                            ng-focus="validationPatterns.empChangeRequest.focus.earnTypeDemotionCompBasisRequired=empChangeRequestForm.earnTypeDemotionComp.$error.required; validationPatterns.empChangeRequest.blur.earnTypeDemotionCompBasisRequired = false;"
+                            ng-blur="validationPatterns.empChangeRequest.blur.earnTypeDemotionCompBasisRequired=empChangeRequestForm.earnTypeDemotionComp.$error.required; validationPatterns.empChangeRequest.focus.earnTypeDemotionCompBasisRequired = false;"
+
+                    >
+                        <option value='' disabled selected class="hiddenprofile"
+                                ng-bind="::translation.work_info.selectComp">
+                        </option>
+                    </select>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.earnTypeDemotionCompBasisRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="DemotionPeriodicRate"
+                           ng-bind="::translation.work_info.egfv_demotion_periodic_rate"></label>
+                </div>
+                <div class="flex-box">
+                    <div class="relative">
+                    <input ng-class="{'error-warning': minWageFlag || DemotionPeriodicRateRequired || DemotionPeriodicRateCharcter ||
+                                                    (empChangeRequestForm.DemotionPeriodicRate.$error.pattern) ||
+                                                   ( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.focus.demotionPeriodicRateRequired )||( isEmpGenerateFormSubmitted &&  validationPatterns.empChangeRequest.blur.demotionPeriodicRateRequired)}"
+                           id="DemotionPeriodicRate" ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="text" name="DemotionPeriodicRate" ng-pattern="/^[1-9]\d*(\.\d{0,2})?$/"
+                           required ng-model="employmentChangeData.payChange.compRate"
+                           class=" form-control text-right no-marg" value=""
+                           ng-focus="isDemotionPeriodicRate = true; validationPatterns.empChangeRequest.focus.demotionPeriodicRateRequired=empChangeRequestForm.DemotionPeriodicRate.$error.required; validationPatterns.empChangeRequest.blur.demotionPeriodicRateRequired = false;
+                                                                validationPatterns.empChangeRequest.blur.DemotionPeriodicRatePattern = false; validationPatterns.empChangeRequest.focus.empMinWageValidationRequired = empChangeRequest.focus.empMinWageValidationRequired.$error.required;
+                                                                validationPatterns.empChangeRequest.focus.DemotionPeriodicRatePattern = empChangeRequestForm.DemotionPeriodicRate.$error.pattern;"
+                           ng-blur="isDemotionPeriodicRate = false; validationPatterns.empChangeRequest.blur.demotionPeriodicRateRequired=empChangeRequestForm.DemotionPeriodicRate.$error.required; validationPatterns.empChangeRequest.focus.demotionPeriodicRateRequired = false;
+                                                                validationPatterns.empChangeRequest.focus.DemotionPeriodicRatePattern = false;
+                                                                validationPatterns.empChangeRequest.blur.DemotionPeriodicRatePattern = empChangeRequestForm.DemotionPeriodicRate.$error.pattern;"
+                    >
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.demotionPeriodicRateRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <validation
+                        condition="isDemotionPeriodicRate && empChangeRequestForm.DemotionPeriodicRate.$error.pattern"
+                        msg="Enter valid demotion periodic rate."></validation>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && minWageFlag"
+                        msg="{{::translation.work_info.minWageValidationMsg}}"></Validation>
+                    </div>
+                    <h4 class="proxima-nova-semibold marg-left"
+                        ng-bind="employmentChangeData.payChange.compBasis === 'A'?translation.year : translation.hour"></h4>
+                    <p class="no-margin margin-left"><span>{{employmentChangeData.minWageRateMsg}}</span><span class="marg-left-5 inline">{{::translation.work_info.minWageMessage}}</span><span>{{employmentChangeData.payChange.compBasis === 'A'? employmentChangeData.minWageRateAnl :employmentChangeData.minWageRate}}</span></p>
+                </div>
+
+                <div ng-if="enable">
+                    <div>
+                        <label for="DemotionBusinessTitle"
+                               ng-bind="::translation.work_info.egfv_employee_transfer_bussiness_title"></label>
+                    </div>
+                    <div>
+                        <input ng-class="{'error-warning': DemotionBusinessTitleRequired || DemotionBusinessTitleCharcter||
+                                                  ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.demotionBusinessTitleRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.demotionBusinessTitleRequired) || validationPatterns.empChangeRequest.focus.demotionBusinessTitlePattern || validationPatterns.empChangeRequest.blur.demotionBusinessTitlePattern}"
+                               id="DemotionBusinessTitle" ng-required="true" maxlength="30"
+                               ng-click="effectiveDateselectAlert(effectiveDate);"
+                               type="text" name="DemotionBusinessTitle"
+                               class="form form-control black"
+                               ng-model="employmentChangeData.businessTitle" value=""
+                               ng-focus="validationPatterns.empChangeRequest.focus.demotionBusinessTitleRequired = empChangeRequestForm.DemotionBusinessTitle.$error.required; validationPatterns.empChangeRequest.blur.demotionBusinessTitleRequired = false;
+                                                                validationPatterns.empChangeRequest.focus.demotionBusinessTitlePattern = empChangeRequestForm.DemotionBusinessTitle.$error.pattern; validationPatterns.empChangeRequest.blur.demotionBusinessTitlePattern = false;"
+                        >
+                        <Validation
+                            condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.demotionBusinessTitleRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                        <Validation condition="validationPatterns.empChangeRequest.focus.demotionBusinessTitlePattern"
+                                    msg="{{translation.work_info.specialChars}}"></Validation>
+
+                    </div>
+                </div>
+                <div ng-if="enable">
+                    <div>
+                        <label for="demotionDirectManager"
+                               ng-bind="::translation.work_info.egfv_employee_transfer_direct_manager"></label>
+                    </div>
+                    <div>
+                        <select name="demotionDirectManager"
+                                id="demotionDirectManager"
+                                class="txtfield_Style form form-control "
+                                ng-model="employmentChangeData.managerId"
+                                ng-click="effectiveDateselectAlert(effectiveDate);"
+                                ng-options=" emptype.key as emptype.value for emptype in directManagerData"
+                                ng-class="{'error-warning': ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.jobReclassificationDMRequired )|| ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.jobReclassificationDMRequired)}"
+                                ng-focus="validationPatterns.empChangeRequest.focus.jobReclassificationDMRequired=empChangeRequestForm.jobReclassificationDirectManager.$error.required; validationPatterns.empChangeRequest.blur.jobReclassificationDMRequired = false;"
+                                ng-blur="validationPatterns.empChangeRequest.blur.jobReclassificationDMRequired=empChangeRequestForm.jobReclassificationDirectManager.$error.required; validationPatterns.empChangeRequest.focus.jobReclassificationDMRequired = false;"
+                        >
+                            <option value='' disabled selected class="hiddenprofile"
+                                    ng-bind="::translation.work_info.selectDirectManager">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="enable">
+                    <div>
+                        <label for="DemotionWorkPhone"
+                               ng-bind="::translation.work_info.egfv_employee_transfer_work_phone"></label>
+                    </div>
+                    <div>
+                        <phone-format id="DemotionWorkPhone" placeholder="'999-999-9999'" model='employmentChangeData.workPhone' is-required="false"></phone-format>
+                    </div>
+                </div>
+
+            </div>
+            <!-- demotion  div end's here -->
+            <!-- Optional Groupings  div start here -->
+            <div ng-if="OptionalGroupings">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.work_info.egfv_optional_groupings"></h4>
+                <div>
+                    <label for="optionalGroupingsGroupingALevel"
+                           ng-bind="::translation.work_info.egfv_optional_groupings_grouping_a_level"></label>
+                </div>
+                <div>
+                    <input id="optionalGroupingsGroupingALevel"
+                           ng-click="effectiveDateselectAlert(effectiveDate);"
+                           type="text" name="optionalGroupingsGroupingALevel"
+                           ng-model="employmentChangeData.optionalGrouping.groupA" required
+                           class=" form-control no-pad black" value=""
+                           ng-class="{'error-warning':optionalGroupingsGroupingALevelRequired || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.optionalGroupingALevelRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.optionalGroupingALevelRequired)}"
+                           ng-focus="validationPatterns.empChangeRequest.focus.optionalGroupingALevelRequired=empChangeRequestForm.optionalGroupingsGroupingALevel.$error.required; validationPatterns.empChangeRequest.blur.optionalGroupingALevelRequired = false;"
+                           ng-blur="validationPatterns.empChangeRequest.blur.optionalGroupingALevelRequired=empChangeRequestForm.optionalGroupingsGroupingALevel.$error.required; validationPatterns.empChangeRequest.focus.optionalGroupingALevelRequired = false;"
+
+                    >
+                    <Validation condition="optionalGroupingsGroupingALevelRequired"
+                                msg="{{translation.required_field}}"></Validation>
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.optionalGroupingALevelRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+                <div>
+                    <label for="optionalGroupingsGroupingBSponsor"
+                           ng-bind="::translation.work_info.egfv_optional_groupings_grouping_b_sponsor"></label>
+                </div>
+                <div>
+                    <input
+                        id="optionalGroupingsGroupingBSponsor"
+                        ng-click="effectiveDateselectAlert(effectiveDate);"
+                        type="text" name="optionalGroupingsGroupingBSponsor"
+                        ng-model="employmentChangeData.optionalGrouping.groupB" required
+                        class=" form-control no-pad black" value=""
+                        ng-class="{'error-warning':( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.optGroupingsBSponsorRequired) || ( isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.blur.optGroupingsBSponsorRequired)}"
+                        ng-focus="validationPatterns.empChangeRequest.focus.optGroupingsBSponsorRequired=empChangeRequestForm.optionalGroupingsGroupingBSponsor.$error.required; validationPatterns.empChangeRequest.blur.optGroupingsBSponsorRequired = false;"
+                        ng-blur="validationPatterns.empChangeRequest.blur.optGroupingsBSponsorRequired=empChangeRequestForm.optionalGroupingsGroupingBSponsor.$error.required; validationPatterns.empChangeRequest.focus.optGroupingsBSponsorRequired = false;"
+
+                    >
+                    <Validation
+                        condition="isEmpGenerateFormSubmitted && validationPatterns.empChangeRequest.focus.bussinessTitlePositionRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                </div>
+            </div>
+            <!-- Optional Groupings  div end's here -->
+            <!-- Workers Comp div start here -->
+            <div class="tn-workers-compo" ng-if="!WorkersComp && !isCanadianWSE">
+                <div class="tn-horizontal-divider"></div>
+                <h4 class="profile-heading proxima-nova-semibold"
+                    ng-bind="::translation.work_info.egfv_workers_comp"></h4>
+                <div>
+                    <label ng-bind="::translation.work_info.egfv_workers_comp_yes_have_the_job_duties"></label>
+                </div>
+                <div class="radio">
+                    <input id="employmentChangeWorkerCompy"
+                           ng-click="effectiveDateselectAlert(effectiveDate,employmentChangeWorkerComp);worksCompService(employmentChangeData.employeeTransfer.locationId)"
+                           type="radio" ng-model="employmentChangeWorkerComp"
+                           name="WorkersComp" value="Y">
+                    <label for="employmentChangeWorkerCompy">{{::translation.yes}}</label>
+                    <input id="employmentChangeWorkerCompn"
+                           ng-click="effectiveDateselectAlert(effectiveDate,employmentChangeWorkerComp);"
+                           type="radio" ng-model="employmentChangeWorkerComp"
+                           ng-click="workerComop=false" name="WorkersComp" value="N">
+                    <label for="employmentChangeWorkerCompn">{{::translation.no}}</label>
+                </div>
+                <div ng-show="employmentChangeWorkerComp==='Y' || workerComop">
+                    <div ng-show="workersCompLookUpData">
+                        <div>
+                            <span ng-bind="::translation.work_info.egfv_workers_comp_compensation_code"></span>
+                            <span>{{stateNameData.stateDesc}}:</span>
+                        </div>
+                        <div class="flex-box workers-combo" ng-repeat=" item in workersCompLookUpData">
+                            <div class="radio">
+                                <input id="employeetypewrkcompcode_{{$index}}"
+                                       ng-click="effectiveDateselectAlert(effectiveDate);"
+                                       type="radio"
+                                       ng-model="employmentChangeData.workComp.workCompCode"
+                                       name="workersCompLookUpData" value="{{item.key}}">
+                                <label for="employeetypewrkcompcode_{{$index}}" ng-bind="item.key"></label>
+                            </div>
+                            <p class="no-marg" ng-bind="item.value"></p>
+                        </div>
+                        <div class="radio">
+                            <input id="workCompCoderadio"
+                                   ng-click="effectiveDateselectAlert(effectiveDate);"
+                                   type="radio"
+                                   ng-model="employmentChangeData.workComp.workCompCode"
+                                   name="workersCompLookUpData" value="Unknown">
+                            <label for="workCompCoderadio">{{::translation.unknown}}</label>
+                        </div>
+                        <div>
+                            <p ng-bind="::translation.work_info.egfv_workers_comp_Please_described_the_employee_job_duties"></p>
+                            <textarea
+                                rows="5"
+                                ng-model="employmentChangeData.workComp.jobDuties"
+                                class="form-control note-textarea"> </textarea>
+                        </div>
+                    </div>
+                    <p ng-bind="::translation.work_info.egfv_workers_comp_In_requesting_the_time_off_i_understand_the_following_des "></p>
+
+                </div>
+            </div>
+            <!-- Workers Comp div ends here -->
+        </div>
+        <div class="tn-modal-footer text-right">
+            <button id="cancel" type="button" ng-click="closeThisDialog('$closeButton')"
+                    class="tn-button tn-cancel-button">{{::translation.cancel}}
+            </button>
+            <button id="save" type="button" ng-click="changeEmployeeDetails(empChangeRequestForm);"
+                    class="tn-button tn-action-button">{{::translation.save}}
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,106 @@
+$Black: #000;
+$Trinet-dark-gray: #494949;
+$Trinet-gray: #888888;
+$Lighter-gray: #B5B5B5;
+$Background: #f2f2f2;
+$White: #ffffff;
+$Trinet-light-gray: #c0c0c0;
+
+$Trinet-dark-blue: #0039A6;
+$Trinet-blue: #0073CF;
+$Trinet-light-blue: #3DB7E4;
+$Lighter-blue: #D9EAF8;
+
+$Trinet-dark-orange: #D55C19;
+$Trinet-orange: #E37222;
+$Trinet-light-orange: #EEAF30;
+
+$Trinet-dark-green: #739600;
+$Trinet-green: #69BE28;
+$Trinet-dark-red: #9E3039;
+
+$Background-main: #e1e1e1;
+
+$margin: 10px;
+
+$padding: 10px;
+.no-marg {
+  margin: 0px;
+}
+
+.no-pad {
+  padding: 0px;
+}
+
+.errors {
+  .alert {
+    margin: 0 auto !important;
+    position: fixed;
+    z-index: 999;
+    top: 75px;
+  }
+  .red-alert {
+    background: #FFD9E0;
+    color: $Trinet-dark-gray;
+    border: 2px solid $Trinet-dark-red;
+
+    margin: $margin*2 $margin+6;
+    width: 500px;
+    border-radius: 3px;
+
+    .error-icon {
+      font-size: 16px;
+      color: #9E3039;
+      margin-right: 5px;
+    }
+  }
+  .orange-alert {
+    background: #FBEFD7;
+    color: $Trinet-dark-gray;
+    border: 2px solid $Trinet-light-orange;
+    margin: $margin*2 $margin+6;
+    width: 500px;
+    min-height: 70px;
+    border-radius: 3px;
+
+    .warning-icon {
+      font-size: 16px;
+      color: #E37222;
+      margin-right: 5px;
+    }
+    .ok-btn {
+      background: #898989;
+      color: #fff;
+      min-width: 50px;
+      border-radius: 0px;
+      border-color: #898989;
+      padding: $padding/5 12px;
+      margin-right: $margin+2;
+    }
+  }
+  .green-alert {
+    background: #F3F7EF;
+    color: $Black;
+    border: 2px solid #60ae26;
+    margin: $margin*2 $margin+6;
+    width: 500px;
+    min-height: 60px;
+    border-radius: 3px;
+
+    .tick-icon {
+      font-size: 16px;
+      color: #739600;
+      margin-right: 5px;
+    }
+
+    a {
+      .cross-mark {
+        color: #888888 !important;
+        font-size: 14px !important;
+        margin-right: 0px !important;
+      }
+
+    }
+
+  }
+}

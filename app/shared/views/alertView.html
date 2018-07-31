@@ -1,0 +1,42 @@
+<div class="tn-alert" role="alert" id="Error" data-ng-if="errorAlert && errorAlert._statusCode !== '404'">
+    <div class="alert--success alert--status" ng-if="errorAlert._statusCode === '200'">
+        <div class="alert__body">
+           <img src="./assets/images/tick-white.svg" width="24" height="24">
+            <p  ng-if="errorAlert._statusPage != 'assignManager'"
+                  ng-bind-html="errorAlert._statusMessage"></p></h5>
+            <p  ng-if="errorAlert._statusPage == 'assignManager'">{{::translation.shared.assignMangerSucess}}
+                <a ng-click="redirect()" class="font-dark"> {{::translation.shared.assignMangerSucessLab}}</a> {{::translation.shared.assignManagerLab}}</p>
+        </div>
+        <div class="alert__buttons">
+            <button type="button" ng-click="closeAlert($index,'success',this)"
+                    class="tn-button tn-edit-button tn-button-small">
+                {{::translation.shared.ok}}
+            </button>
+        </div>
+    </div>
+
+    <div class="alert--status alert--warning" ng-if="errorAlert._statusCode === 'warning'">
+        <div class="alert__body">
+            <img src="./assets/images/info-white.svg" width="24" height="24">
+            <p  ng-bind-html="errorAlert._statusMessage"></p>
+        </div>
+        <div class="alert__buttons">
+            <button type="button" class="tn-button tn-edit-button tn-button-small" ng-click="closeAlert($index)">
+                {{::translation.shared.ok}}
+            </button>
+        </div>
+    </div>
+    <div class="alert--status alert--error"
+         ng-if="errorAlert._statusCode !== '200' && errorAlert._statusCode !== 'warning'">
+        <div class="alert__body">
+            <img src="./assets/images/error-white.svg" width="24" height="24">
+            <p  ng-bind-html="errorAlert._statusMessage"></p>
+        </div>
+        <div class="alert__buttons">
+            <button type="button" ng-click="closeAlert($index)" class="tn-button tn-edit-button tn-button-small">
+                {{::translation.shared.ok}}
+            </button>
+        </div>
+    </div>
+
+</div>

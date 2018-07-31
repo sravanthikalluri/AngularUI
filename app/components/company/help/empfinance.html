@@ -1,0 +1,55 @@
+<!--
+Description: This is page to display of Speak to contact information.
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="tab-pane" id="tab2">
+    <div class="col-md-12 no-pad help-support-solution-section clearfix">
+        <div class="col-md-5 col-sm-5 employee-enquiry">
+            <p>{{::translation.support.tab2.forWhat0}}</p>
+            <h3>{{::translation.support.contFor}}</h3>
+            <ul>
+                <li>{{::translation.help.questionsAboutTriNetBenefits}}</li>
+                <li>{{::translation.help.questionsAboutPayroll}}</li>
+                <li>{{::translation.help.changeHomeAddress}}</li>
+                <li>{{::translation.help.changeW4}}</li>
+            </ul>
+        </div>
+
+        <div class="col-md-7 col-sm-7 co-ordinator">
+
+            <div class="title">
+                <div ng-show="hrfinance">
+                    <div class="pull-left">
+                        <!-- <img src="assets/images/user.png" alt="image" class="img-circle">-->
+                        <span class="large" ng-bind="::monogrom"></span>
+                    </div>
+                    <div class="pull-left"><h3>{{::translation.help.name}}</h3>
+                        <p>{{::translation.help.profession}}</p>
+                    </div>
+                </div>
+
+                <div class="pull-left" ng-show="employee"><h3>{{::translation.help.solCenter}}</h3></div>
+            </div>
+            <div class="details">
+                <div class="row no-marg">
+                    <span class="icon-icon_phone medium"></span><span class="medium">{{::translation.help.ext}}</span>
+                </div>
+
+                <div class="row no-marg email">
+                    <span class="icon-icon_contact medium email-pos-adjustment">&ensp;</span><a
+                        href="mailto:employees@trinet.com" target="_top" class="medium">{{::translation.help.email}}</a>
+                </div>
+                <div class="row no-marg" ng-show="employee">
+                    <span class="medium">{{::translation.help.officeHours}}</span><br/>
+                    <span class="medium">{{::translation.help.timings}}</span>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,1770 @@
+{
+  "errorCode": null,
+  "resource": {
+    "medicalPlans": [
+      {
+        "description": "Aetna CPOS 20 PA",
+        "employee": "$416.16",
+        "spouse": "$915.96",
+        "children": "$832.32",
+        "family": "$1,248.48"
+      },
+      {
+        "description": "Aetna CPOS 30 PA",
+        "employee": "$379.44",
+        "spouse": "$834.36",
+        "children": "$757.86",
+        "family": "$1,137.30"
+      },
+      {
+        "description": "Aetna EPO 20 Northeast",
+        "employee": "$309.06",
+        "spouse": "$679.32",
+        "children": "$617.10",
+        "family": "$926.16"
+      },
+      {
+        "description": "Aetna EPO 25 Northeast",
+        "employee": "$241.74",
+        "spouse": "$532.44",
+        "children": "$483.48",
+        "family": "$725.22"
+      },
+      {
+        "description": "Aetna EPO 30 Northeast",
+        "employee": "$283.56",
+        "spouse": "$624.24",
+        "children": "$567.12",
+        "family": "$851.70"
+      },
+      {
+        "description": "Aetna HDHP 2000  Central FL",
+        "employee": "$241.74",
+        "spouse": "$532.44",
+        "children": "$484.50",
+        "family": "$726.24"
+      },
+      {
+        "description": "Aetna HDHP 2000  Colorado",
+        "employee": "$239.70",
+        "spouse": "$526.32",
+        "children": "$478.38",
+        "family": "$718.08"
+      },
+      {
+        "description": "Aetna HDHP 2000  Mid Atlantic",
+        "employee": "$285.60",
+        "spouse": "$628.32",
+        "children": "$571.20",
+        "family": "$855.78"
+      },
+      {
+        "description": "Aetna HDHP 2000  Midwest",
+        "employee": "$257.04",
+        "spouse": "$565.08",
+        "children": "$513.06",
+        "family": "$770.10"
+      },
+      {
+        "description": "Aetna HDHP 2000  Mountain West",
+        "employee": "$261.12",
+        "spouse": "$574.26",
+        "children": "$522.24",
+        "family": "$783.36"
+      },
+      {
+        "description": "Aetna HDHP 2000  New England",
+        "employee": "$339.66",
+        "spouse": "$747.66",
+        "children": "$679.32",
+        "family": "$1,018.98"
+      },
+      {
+        "description": "Aetna HDHP 2000  Out-of-Area",
+        "employee": "$245.82",
+        "spouse": "$540.60",
+        "children": "$490.62",
+        "family": "$736.44"
+      },
+      {
+        "description": "Aetna HDHP 2000  Pacific NW",
+        "employee": "$231.54",
+        "spouse": "$507.96",
+        "children": "$462.06",
+        "family": "$693.60"
+      },
+      {
+        "description": "Aetna HDHP 2000  S. East/N FL",
+        "employee": "$223.38",
+        "spouse": "$490.62",
+        "children": "$445.74",
+        "family": "$669.12"
+      },
+      {
+        "description": "Aetna HDHP 2000  South FL",
+        "employee": "$247.86",
+        "spouse": "$544.68",
+        "children": "$494.70",
+        "family": "$742.56"
+      },
+      {
+        "description": "Aetna HDHP 2000 Austin/San Ant",
+        "employee": "$246.84",
+        "spouse": "$542.64",
+        "children": "$493.68",
+        "family": "$740.52"
+      },
+      {
+        "description": "Aetna HDHP 2000 Dallas",
+        "employee": "$308.04",
+        "spouse": "$678.30",
+        "children": "$617.10",
+        "family": "$925.14"
+      },
+      {
+        "description": "Aetna HDHP 2000 MA",
+        "employee": "$339.66",
+        "spouse": "$747.66",
+        "children": "$679.32",
+        "family": "$1,018.98"
+      },
+      {
+        "description": "Aetna HDHP 2000 Northeast",
+        "employee": "$248.88",
+        "spouse": "$547.74",
+        "children": "$497.76",
+        "family": "$746.64"
+      },
+      {
+        "description": "Aetna HDHP 2000 PA",
+        "employee": "$268.26",
+        "spouse": "$590.58",
+        "children": "$536.52",
+        "family": "$804.78"
+      },
+      {
+        "description": "Aetna HDHP 2000 South Central",
+        "employee": "$277.44",
+        "spouse": "$610.98",
+        "children": "$554.88",
+        "family": "$833.34"
+      },
+      {
+        "description": "Aetna HDHP 2000 Texas",
+        "employee": "$292.74",
+        "spouse": "$644.64",
+        "children": "$586.50",
+        "family": "$879.24"
+      },
+      {
+        "description": "Aetna HDHP 3000 Austin/San Ant",
+        "employee": "$202.98",
+        "spouse": "$445.74",
+        "children": "$404.94",
+        "family": "$607.92"
+      },
+      {
+        "description": "Aetna HDHP 3000 Central FL",
+        "employee": "$198.90",
+        "spouse": "$437.58",
+        "children": "$397.80",
+        "family": "$596.70"
+      },
+      {
+        "description": "Aetna HDHP 3000 Colorado",
+        "employee": "$196.86",
+        "spouse": "$432.48",
+        "children": "$392.70",
+        "family": "$589.56"
+      },
+      {
+        "description": "Aetna HDHP 3000 Dallas",
+        "employee": "$252.96",
+        "spouse": "$556.92",
+        "children": "$506.94",
+        "family": "$759.90"
+      },
+      {
+        "description": "Aetna HDHP 3000 MA",
+        "employee": "$279.48",
+        "spouse": "$614.04",
+        "children": "$557.94",
+        "family": "$837.42"
+      },
+      {
+        "description": "Aetna HDHP 3000 Mid Atlantic",
+        "employee": "$234.60",
+        "spouse": "$516.12",
+        "children": "$469.20",
+        "family": "$702.78"
+      },
+      {
+        "description": "Aetna HDHP 3000 Midwest",
+        "employee": "$211.14",
+        "spouse": "$464.10",
+        "children": "$421.26",
+        "family": "$632.40"
+      },
+      {
+        "description": "Aetna HDHP 3000 Mountain West",
+        "employee": "$214.20",
+        "spouse": "$471.24",
+        "children": "$428.40",
+        "family": "$642.60"
+      },
+      {
+        "description": "Aetna HDHP 3000 New England",
+        "employee": "$279.48",
+        "spouse": "$614.04",
+        "children": "$557.94",
+        "family": "$837.42"
+      },
+      {
+        "description": "Aetna HDHP 3000 PA",
+        "employee": "$220.32",
+        "spouse": "$484.50",
+        "children": "$440.64",
+        "family": "$660.96"
+      },
+      {
+        "description": "Aetna HDHP 3000 Pacific NW",
+        "employee": "$189.72",
+        "spouse": "$417.18",
+        "children": "$379.44",
+        "family": "$569.16"
+      },
+      {
+        "description": "Aetna HDHP 3000 South Central",
+        "employee": "$228.48",
+        "spouse": "$501.84",
+        "children": "$455.94",
+        "family": "$684.42"
+      },
+      {
+        "description": "Aetna HDHP 3000 South FL",
+        "employee": "$202.98",
+        "spouse": "$447.78",
+        "children": "$406.98",
+        "family": "$609.96"
+      },
+      {
+        "description": "Aetna HDHP 3000 Southeast/N FL",
+        "employee": "$182.58",
+        "spouse": "$402.90",
+        "children": "$366.18",
+        "family": "$548.76"
+      },
+      {
+        "description": "Aetna HDHP 3000 Texas",
+        "employee": "$240.72",
+        "spouse": "$529.38",
+        "children": "$481.44",
+        "family": "$722.16"
+      },
+      {
+        "description": "Aetna HMO 20  Central FL",
+        "employee": "$326.40",
+        "spouse": "$718.08",
+        "children": "$652.80",
+        "family": "$979.20"
+      },
+      {
+        "description": "Aetna HMO 20  Colorado",
+        "employee": "$322.32",
+        "spouse": "$709.92",
+        "children": "$645.66",
+        "family": "$967.98"
+      },
+      {
+        "description": "Aetna HMO 20  MA",
+        "employee": "$457.98",
+        "spouse": "$1,007.76",
+        "children": "$915.96",
+        "family": "$1,374.96"
+      },
+      {
+        "description": "Aetna HMO 20  Mid Atlantic",
+        "employee": "$384.54",
+        "spouse": "$846.60",
+        "children": "$770.10",
+        "family": "$1,154.64"
+      },
+      {
+        "description": "Aetna HMO 20  Midwest",
+        "employee": "$345.78",
+        "spouse": "$761.94",
+        "children": "$692.58",
+        "family": "$1,038.36"
+      },
+      {
+        "description": "Aetna HMO 20  Mountain West",
+        "employee": "$351.90",
+        "spouse": "$774.18",
+        "children": "$703.80",
+        "family": "$1,055.70"
+      },
+      {
+        "description": "Aetna HMO 20  Pacific NW",
+        "employee": "$311.10",
+        "spouse": "$685.44",
+        "children": "$623.22",
+        "family": "$934.32"
+      },
+      {
+        "description": "Aetna HMO 20  South FL",
+        "employee": "$333.54",
+        "spouse": "$734.40",
+        "children": "$668.10",
+        "family": "$1,001.64"
+      },
+      {
+        "description": "Aetna HMO 20  Southeast/N FL",
+        "employee": "$300.90",
+        "spouse": "$660.96",
+        "children": "$600.78",
+        "family": "$901.68"
+      },
+      {
+        "description": "Aetna HMO 20 Austin/San Ant",
+        "employee": "$332.52",
+        "spouse": "$732.36",
+        "children": "$666.06",
+        "family": "$998.58"
+      },
+      {
+        "description": "Aetna HMO 20 Dallas",
+        "employee": "$416.16",
+        "spouse": "$914.94",
+        "children": "$832.32",
+        "family": "$1,248.48"
+      },
+      {
+        "description": "Aetna HMO 20 PA",
+        "employee": "$417.18",
+        "spouse": "$919.02",
+        "children": "$835.38",
+        "family": "$1,252.56"
+      },
+      {
+        "description": "Aetna HMO 20 Texas",
+        "employee": "$395.76",
+        "spouse": "$870.06",
+        "children": "$790.50",
+        "family": "$1,186.26"
+      },
+      {
+        "description": "Aetna HMO 30  Central FL",
+        "employee": "$264.18",
+        "spouse": "$580.38",
+        "children": "$528.36",
+        "family": "$792.54"
+      },
+      {
+        "description": "Aetna HMO 30  Colorado",
+        "employee": "$261.12",
+        "spouse": "$574.26",
+        "children": "$522.24",
+        "family": "$782.34"
+      },
+      {
+        "description": "Aetna HMO 30  MA",
+        "employee": "$370.26",
+        "spouse": "$814.98",
+        "children": "$741.54",
+        "family": "$1,111.80"
+      },
+      {
+        "description": "Aetna HMO 30  Mid Atlantic",
+        "employee": "$311.10",
+        "spouse": "$684.42",
+        "children": "$622.20",
+        "family": "$934.32"
+      },
+      {
+        "description": "Aetna HMO 30  Midwest",
+        "employee": "$280.50",
+        "spouse": "$616.08",
+        "children": "$559.98",
+        "family": "$840.48"
+      },
+      {
+        "description": "Aetna HMO 30  Mountain West",
+        "employee": "$284.58",
+        "spouse": "$626.28",
+        "children": "$569.16",
+        "family": "$853.74"
+      },
+      {
+        "description": "Aetna HMO 30  Pacific NW",
+        "employee": "$251.94",
+        "spouse": "$553.86",
+        "children": "$503.88",
+        "family": "$755.82"
+      },
+      {
+        "description": "Aetna HMO 30  South FL",
+        "employee": "$270.30",
+        "spouse": "$593.64",
+        "children": "$539.58",
+        "family": "$809.88"
+      },
+      {
+        "description": "Aetna HMO 30  Southeast/N FL",
+        "employee": "$242.76",
+        "spouse": "$534.48",
+        "children": "$486.54",
+        "family": "$729.30"
+      },
+      {
+        "description": "Aetna HMO 30 Austin/San Ant",
+        "employee": "$269.28",
+        "spouse": "$592.62",
+        "children": "$538.56",
+        "family": "$807.84"
+      },
+      {
+        "description": "Aetna HMO 30 Dallas",
+        "employee": "$336.60",
+        "spouse": "$740.52",
+        "children": "$673.20",
+        "family": "$1,009.80"
+      },
+      {
+        "description": "Aetna HMO 30 PA",
+        "employee": "$360.06",
+        "spouse": "$791.52",
+        "children": "$720.12",
+        "family": "$1,080.18"
+      },
+      {
+        "description": "Aetna HMO 30 Texas",
+        "employee": "$319.26",
+        "spouse": "$702.78",
+        "children": "$639.54",
+        "family": "$958.80"
+      },
+      {
+        "description": "Aetna HMO 35 Austin/San Ant",
+        "employee": "$237.66",
+        "spouse": "$522.24",
+        "children": "$475.32",
+        "family": "$711.96"
+      },
+      {
+        "description": "Aetna HMO 35 Central FL",
+        "employee": "$232.56",
+        "spouse": "$512.04",
+        "children": "$466.14",
+        "family": "$698.70"
+      },
+      {
+        "description": "Aetna HMO 35 Colorado",
+        "employee": "$230.52",
+        "spouse": "$505.92",
+        "children": "$460.02",
+        "family": "$690.54"
+      },
+      {
+        "description": "Aetna HMO 35 Dallas",
+        "employee": "$296.82",
+        "spouse": "$652.80",
+        "children": "$593.64",
+        "family": "$890.46"
+      },
+      {
+        "description": "Aetna HMO 35 MA",
+        "employee": "$326.40",
+        "spouse": "$719.10",
+        "children": "$653.82",
+        "family": "$980.22"
+      },
+      {
+        "description": "Aetna HMO 35 Mid Atlantic",
+        "employee": "$274.38",
+        "spouse": "$603.84",
+        "children": "$548.76",
+        "family": "$823.14"
+      },
+      {
+        "description": "Aetna HMO 35 Midwest",
+        "employee": "$246.84",
+        "spouse": "$543.66",
+        "children": "$493.68",
+        "family": "$740.52"
+      },
+      {
+        "description": "Aetna HMO 35 Mountain West",
+        "employee": "$250.92",
+        "spouse": "$551.82",
+        "children": "$501.84",
+        "family": "$752.76"
+      },
+      {
+        "description": "Aetna HMO 35 PA",
+        "employee": "$317.22",
+        "spouse": "$698.70",
+        "children": "$635.46",
+        "family": "$952.68"
+      },
+      {
+        "description": "Aetna HMO 35 Pacific NW",
+        "employee": "$222.36",
+        "spouse": "$488.58",
+        "children": "$444.72",
+        "family": "$667.08"
+      },
+      {
+        "description": "Aetna HMO 35 South FL",
+        "employee": "$237.66",
+        "spouse": "$524.28",
+        "children": "$476.34",
+        "family": "$715.02"
+      },
+      {
+        "description": "Aetna HMO 35 Southeast/N FL",
+        "employee": "$214.20",
+        "spouse": "$471.24",
+        "children": "$428.40",
+        "family": "$643.62"
+      },
+      {
+        "description": "Aetna HMO 35 Texas",
+        "employee": "$281.52",
+        "spouse": "$620.16",
+        "children": "$564.06",
+        "family": "$845.58"
+      },
+      {
+        "description": "Aetna Indemnity 1000 NTL",
+        "employee": "$427.38",
+        "spouse": "$940.44",
+        "children": "$854.76",
+        "family": "$1,282.14"
+      },
+      {
+        "description": "Aetna POS 15 Northeast",
+        "employee": "$462.06",
+        "spouse": "$1,017.96",
+        "children": "$925.14",
+        "family": "$1,387.20"
+      },
+      {
+        "description": "Aetna POS 20 Northeast",
+        "employee": "$426.36",
+        "spouse": "$937.38",
+        "children": "$851.70",
+        "family": "$1,278.06"
+      },
+      {
+        "description": "Aetna POS 30 Northeast",
+        "employee": "$399.84",
+        "spouse": "$880.26",
+        "children": "$799.68",
+        "family": "$1,200.54"
+      },
+      {
+        "description": "Aetna PPO 1000  Central FL",
+        "employee": "$270.30",
+        "spouse": "$594.66",
+        "children": "$540.60",
+        "family": "$811.92"
+      },
+      {
+        "description": "Aetna PPO 1000  Colorado",
+        "employee": "$267.24",
+        "spouse": "$587.52",
+        "children": "$534.48",
+        "family": "$801.72"
+      },
+      {
+        "description": "Aetna PPO 1000  Mid Atlantic",
+        "employee": "$319.26",
+        "spouse": "$701.76",
+        "children": "$637.50",
+        "family": "$956.76"
+      },
+      {
+        "description": "Aetna PPO 1000  Midwest",
+        "employee": "$286.62",
+        "spouse": "$631.38",
+        "children": "$574.26",
+        "family": "$860.88"
+      },
+      {
+        "description": "Aetna PPO 1000  Mountain West",
+        "employee": "$291.72",
+        "spouse": "$641.58",
+        "children": "$583.44",
+        "family": "$874.14"
+      },
+      {
+        "description": "Aetna PPO 1000  New England",
+        "employee": "$379.44",
+        "spouse": "$835.38",
+        "children": "$758.88",
+        "family": "$1,139.34"
+      },
+      {
+        "description": "Aetna PPO 1000  Out-of-Area",
+        "employee": "$328.44",
+        "spouse": "$723.18",
+        "children": "$657.90",
+        "family": "$986.34"
+      },
+      {
+        "description": "Aetna PPO 1000  Pacific NW",
+        "employee": "$258.06",
+        "spouse": "$568.14",
+        "children": "$516.12",
+        "family": "$774.18"
+      },
+      {
+        "description": "Aetna PPO 1000  South FL",
+        "employee": "$276.42",
+        "spouse": "$608.94",
+        "children": "$552.84",
+        "family": "$830.28"
+      },
+      {
+        "description": "Aetna PPO 1000  Southeast/N FL",
+        "employee": "$248.88",
+        "spouse": "$547.74",
+        "children": "$497.76",
+        "family": "$746.64"
+      },
+      {
+        "description": "Aetna PPO 1000 Austin/San Ant",
+        "employee": "$275.40",
+        "spouse": "$606.90",
+        "children": "$551.82",
+        "family": "$827.22"
+      },
+      {
+        "description": "Aetna PPO 1000 Dallas",
+        "employee": "$344.76",
+        "spouse": "$757.86",
+        "children": "$689.52",
+        "family": "$1,034.28"
+      },
+      {
+        "description": "Aetna PPO 1000 Northeast",
+        "employee": "$309.06",
+        "spouse": "$680.34",
+        "children": "$618.12",
+        "family": "$927.18"
+      },
+      {
+        "description": "Aetna PPO 1000 PA",
+        "employee": "$299.88",
+        "spouse": "$659.94",
+        "children": "$599.76",
+        "family": "$899.64"
+      },
+      {
+        "description": "Aetna PPO 1000 South Central",
+        "employee": "$310.08",
+        "spouse": "$682.38",
+        "children": "$620.16",
+        "family": "$930.24"
+      },
+      {
+        "description": "Aetna PPO 1000 Texas",
+        "employee": "$327.42",
+        "spouse": "$720.12",
+        "children": "$654.84",
+        "family": "$982.26"
+      },
+      {
+        "description": "Aetna PPO 1500  Central FL",
+        "employee": "$266.22",
+        "spouse": "$586.50",
+        "children": "$532.44",
+        "family": "$799.68"
+      },
+      {
+        "description": "Aetna PPO 1500  Colorado",
+        "employee": "$263.16",
+        "spouse": "$579.36",
+        "children": "$526.32",
+        "family": "$789.48"
+      },
+      {
+        "description": "Aetna PPO 1500  Mid Atlantic",
+        "employee": "$314.16",
+        "spouse": "$690.54",
+        "children": "$628.32",
+        "family": "$942.48"
+      },
+      {
+        "description": "Aetna PPO 1500  Midwest",
+        "employee": "$282.54",
+        "spouse": "$622.20",
+        "children": "$565.08",
+        "family": "$847.62"
+      },
+      {
+        "description": "Aetna PPO 1500  Mountain West",
+        "employee": "$287.64",
+        "spouse": "$631.38",
+        "children": "$574.26",
+        "family": "$861.90"
+      },
+      {
+        "description": "Aetna PPO 1500  New England",
+        "employee": "$374.34",
+        "spouse": "$823.14",
+        "children": "$747.66",
+        "family": "$1,122.00"
+      },
+      {
+        "description": "Aetna PPO 1500  Pacific NW",
+        "employee": "$253.98",
+        "spouse": "$558.96",
+        "children": "$508.98",
+        "family": "$762.96"
+      },
+      {
+        "description": "Aetna PPO 1500  South FL",
+        "employee": "$272.34",
+        "spouse": "$599.76",
+        "children": "$544.68",
+        "family": "$817.02"
+      },
+      {
+        "description": "Aetna PPO 1500  Southeast/N FL",
+        "employee": "$244.80",
+        "spouse": "$539.58",
+        "children": "$490.62",
+        "family": "$735.42"
+      },
+      {
+        "description": "Aetna PPO 1500 Austin/San Ant",
+        "employee": "$271.32",
+        "spouse": "$597.72",
+        "children": "$543.66",
+        "family": "$814.98"
+      },
+      {
+        "description": "Aetna PPO 1500 Dallas",
+        "employee": "$339.66",
+        "spouse": "$746.64",
+        "children": "$679.32",
+        "family": "$1,018.98"
+      },
+      {
+        "description": "Aetna PPO 1500 PA",
+        "employee": "$295.80",
+        "spouse": "$649.74",
+        "children": "$590.58",
+        "family": "$886.38"
+      },
+      {
+        "description": "Aetna PPO 1500 South Central",
+        "employee": "$306.00",
+        "spouse": "$672.18",
+        "children": "$610.98",
+        "family": "$916.98"
+      },
+      {
+        "description": "Aetna PPO 1500 Texas",
+        "employee": "$322.32",
+        "spouse": "$709.92",
+        "children": "$644.64",
+        "family": "$967.98"
+      },
+      {
+        "description": "Aetna PPO 2000 Austin/San Ant",
+        "employee": "$252.96",
+        "spouse": "$556.92",
+        "children": "$505.92",
+        "family": "$759.90"
+      },
+      {
+        "description": "Aetna PPO 2000 Central FL",
+        "employee": "$247.86",
+        "spouse": "$546.72",
+        "children": "$496.74",
+        "family": "$744.60"
+      },
+      {
+        "description": "Aetna PPO 2000 Colorado",
+        "employee": "$245.82",
+        "spouse": "$539.58",
+        "children": "$490.62",
+        "family": "$736.44"
+      },
+      {
+        "description": "Aetna PPO 2000 Dallas",
+        "employee": "$316.20",
+        "spouse": "$696.66",
+        "children": "$633.42",
+        "family": "$949.62"
+      },
+      {
+        "description": "Aetna PPO 2000 Mid Atlantic",
+        "employee": "$292.74",
+        "spouse": "$643.62",
+        "children": "$585.48",
+        "family": "$878.22"
+      },
+      {
+        "description": "Aetna PPO 2000 Midwest",
+        "employee": "$263.16",
+        "spouse": "$579.36",
+        "children": "$526.32",
+        "family": "$790.50"
+      },
+      {
+        "description": "Aetna PPO 2000 Mountain West",
+        "employee": "$267.24",
+        "spouse": "$588.54",
+        "children": "$535.50",
+        "family": "$802.74"
+      },
+      {
+        "description": "Aetna PPO 2000 New England",
+        "employee": "$348.84",
+        "spouse": "$767.04",
+        "children": "$696.66",
+        "family": "$1,045.50"
+      },
+      {
+        "description": "Aetna PPO 2000 Northeast",
+        "employee": "$267.24",
+        "spouse": "$588.54",
+        "children": "$535.50",
+        "family": "$802.74"
+      },
+      {
+        "description": "Aetna PPO 2000 PA",
+        "employee": "$275.40",
+        "spouse": "$605.88",
+        "children": "$550.80",
+        "family": "$826.20"
+      },
+      {
+        "description": "Aetna PPO 2000 Pacific NW",
+        "employee": "$236.64",
+        "spouse": "$521.22",
+        "children": "$474.30",
+        "family": "$710.94"
+      },
+      {
+        "description": "Aetna PPO 2000 South Central",
+        "employee": "$284.58",
+        "spouse": "$626.28",
+        "children": "$569.16",
+        "family": "$854.76"
+      },
+      {
+        "description": "Aetna PPO 2000 South FL",
+        "employee": "$253.98",
+        "spouse": "$558.96",
+        "children": "$507.96",
+        "family": "$761.94"
+      },
+      {
+        "description": "Aetna PPO 2000 Southeast/N FL",
+        "employee": "$228.48",
+        "spouse": "$502.86",
+        "children": "$456.96",
+        "family": "$685.44"
+      },
+      {
+        "description": "Aetna PPO 2000 Texas",
+        "employee": "$300.90",
+        "spouse": "$660.96",
+        "children": "$601.80",
+        "family": "$901.68"
+      },
+      {
+        "description": "Aetna PPO 300  Central FL",
+        "employee": "$341.70",
+        "spouse": "$752.76",
+        "children": "$683.40",
+        "family": "$1,026.12"
+      },
+      {
+        "description": "Aetna PPO 300  Colorado",
+        "employee": "$337.62",
+        "spouse": "$743.58",
+        "children": "$675.24",
+        "family": "$1,013.88"
+      },
+      {
+        "description": "Aetna PPO 300  Midwest",
+        "employee": "$363.12",
+        "spouse": "$797.64",
+        "children": "$725.22",
+        "family": "$1,088.34"
+      },
+      {
+        "description": "Aetna PPO 300  Mountain West",
+        "employee": "$368.22",
+        "spouse": "$810.90",
+        "children": "$737.46",
+        "family": "$1,105.68"
+      },
+      {
+        "description": "Aetna PPO 300  New England",
+        "employee": "$480.42",
+        "spouse": "$1,055.70",
+        "children": "$959.82",
+        "family": "$1,440.24"
+      },
+      {
+        "description": "Aetna PPO 300  Pacific NW",
+        "employee": "$326.40",
+        "spouse": "$718.08",
+        "children": "$652.80",
+        "family": "$979.20"
+      },
+      {
+        "description": "Aetna PPO 300  South FL",
+        "employee": "$349.86",
+        "spouse": "$769.08",
+        "children": "$699.72",
+        "family": "$1,049.58"
+      },
+      {
+        "description": "Aetna PPO 300  Southeast/N FL",
+        "employee": "$315.18",
+        "spouse": "$692.58",
+        "children": "$629.34",
+        "family": "$944.52"
+      },
+      {
+        "description": "Aetna PPO 300 Austin/San Ant",
+        "employee": "$348.84",
+        "spouse": "$767.04",
+        "children": "$697.68",
+        "family": "$1,045.50"
+      },
+      {
+        "description": "Aetna PPO 300 Dallas",
+        "employee": "$435.54",
+        "spouse": "$958.80",
+        "children": "$871.08",
+        "family": "$1,307.64"
+      },
+      {
+        "description": "Aetna PPO 300 MA",
+        "employee": "$480.42",
+        "spouse": "$1,055.70",
+        "children": "$959.82",
+        "family": "$1,440.24"
+      },
+      {
+        "description": "Aetna PPO 300 Mid Atlantic",
+        "employee": "$402.90",
+        "spouse": "$887.40",
+        "children": "$805.80",
+        "family": "$1,209.72"
+      },
+      {
+        "description": "Aetna PPO 300 PA",
+        "employee": "$379.44",
+        "spouse": "$834.36",
+        "children": "$757.86",
+        "family": "$1,137.30"
+      },
+      {
+        "description": "Aetna PPO 300 South Central",
+        "employee": "$392.70",
+        "spouse": "$862.92",
+        "children": "$784.38",
+        "family": "$1,176.06"
+      },
+      {
+        "description": "Aetna PPO 300 Texas",
+        "employee": "$414.12",
+        "spouse": "$910.86",
+        "children": "$828.24",
+        "family": "$1,242.36"
+      },
+      {
+        "description": "Aetna PPO 3000 Austin/San Ant",
+        "employee": "$256.02",
+        "spouse": "$563.04",
+        "children": "$512.04",
+        "family": "$768.06"
+      },
+      {
+        "description": "Aetna PPO 3000 Central FL",
+        "employee": "$250.92",
+        "spouse": "$551.82",
+        "children": "$501.84",
+        "family": "$752.76"
+      },
+      {
+        "description": "Aetna PPO 3000 Colorado",
+        "employee": "$247.86",
+        "spouse": "$545.70",
+        "children": "$495.72",
+        "family": "$743.58"
+      },
+      {
+        "description": "Aetna PPO 3000 Dallas",
+        "employee": "$320.28",
+        "spouse": "$703.80",
+        "children": "$639.54",
+        "family": "$959.82"
+      },
+      {
+        "description": "Aetna PPO 3000 Mid Atlantic",
+        "employee": "$295.80",
+        "spouse": "$650.76",
+        "children": "$591.60",
+        "family": "$887.40"
+      },
+      {
+        "description": "Aetna PPO 3000 Midwest",
+        "employee": "$266.22",
+        "spouse": "$585.48",
+        "children": "$532.44",
+        "family": "$798.66"
+      },
+      {
+        "description": "Aetna PPO 3000 Mountain West",
+        "employee": "$270.30",
+        "spouse": "$595.68",
+        "children": "$540.60",
+        "family": "$811.92"
+      },
+      {
+        "description": "Aetna PPO 3000 New England",
+        "employee": "$351.90",
+        "spouse": "$775.20",
+        "children": "$704.82",
+        "family": "$1,056.72"
+      },
+      {
+        "description": "Aetna PPO 3000 PA",
+        "employee": "$278.46",
+        "spouse": "$612.00",
+        "children": "$556.92",
+        "family": "$835.38"
+      },
+      {
+        "description": "Aetna PPO 3000 Pacific NW",
+        "employee": "$239.70",
+        "spouse": "$527.34",
+        "children": "$479.40",
+        "family": "$719.10"
+      },
+      {
+        "description": "Aetna PPO 3000 South Central",
+        "employee": "$287.64",
+        "spouse": "$633.42",
+        "children": "$575.28",
+        "family": "$863.94"
+      },
+      {
+        "description": "Aetna PPO 3000 South FL",
+        "employee": "$257.04",
+        "spouse": "$565.08",
+        "children": "$513.06",
+        "family": "$770.10"
+      },
+      {
+        "description": "Aetna PPO 3000 Southeast/N FL",
+        "employee": "$231.54",
+        "spouse": "$507.96",
+        "children": "$462.06",
+        "family": "$693.60"
+      },
+      {
+        "description": "Aetna PPO 3000 Texas",
+        "employee": "$303.96",
+        "spouse": "$668.10",
+        "children": "$607.92",
+        "family": "$911.88"
+      },
+      {
+        "description": "Aetna PPO 6350 Austin/San Ant",
+        "employee": "$170.34",
+        "spouse": "$374.34",
+        "children": "$340.68",
+        "family": "$511.02"
+      },
+      {
+        "description": "Aetna PPO 6350 Central FL",
+        "employee": "$165.24",
+        "spouse": "$363.12",
+        "children": "$330.48",
+        "family": "$494.70"
+      },
+      {
+        "description": "Aetna PPO 6350 Colorado",
+        "employee": "$165.24",
+        "spouse": "$363.12",
+        "children": "$330.48",
+        "family": "$494.70"
+      },
+      {
+        "description": "Aetna PPO 6350 Dallas",
+        "employee": "$213.18",
+        "spouse": "$468.18",
+        "children": "$425.34",
+        "family": "$638.52"
+      },
+      {
+        "description": "Aetna PPO 6350 Mid Atlantic",
+        "employee": "$196.86",
+        "spouse": "$433.50",
+        "children": "$393.72",
+        "family": "$590.58"
+      },
+      {
+        "description": "Aetna PPO 6350 Midwest",
+        "employee": "$177.48",
+        "spouse": "$389.64",
+        "children": "$353.94",
+        "family": "$531.42"
+      },
+      {
+        "description": "Aetna PPO 6350 Mountain West",
+        "employee": "$180.54",
+        "spouse": "$395.76",
+        "children": "$360.06",
+        "family": "$540.60"
+      },
+      {
+        "description": "Aetna PPO 6350 New England",
+        "employee": "$234.60",
+        "spouse": "$516.12",
+        "children": "$469.20",
+        "family": "$703.80"
+      },
+      {
+        "description": "Aetna PPO 6350 PA",
+        "employee": "$185.64",
+        "spouse": "$406.98",
+        "children": "$370.26",
+        "family": "$555.90"
+      },
+      {
+        "description": "Aetna PPO 6350 Pacific NW",
+        "employee": "$159.12",
+        "spouse": "$350.88",
+        "children": "$319.26",
+        "family": "$478.38"
+      },
+      {
+        "description": "Aetna PPO 6350 S. East/N FL",
+        "employee": "$154.02",
+        "spouse": "$338.64",
+        "children": "$308.04",
+        "family": "$461.04"
+      },
+      {
+        "description": "Aetna PPO 6350 South Central",
+        "employee": "$191.76",
+        "spouse": "$421.26",
+        "children": "$383.52",
+        "family": "$575.28"
+      },
+      {
+        "description": "Aetna PPO 6350 South FL",
+        "employee": "$168.30",
+        "spouse": "$371.28",
+        "children": "$337.62",
+        "family": "$505.92"
+      },
+      {
+        "description": "Aetna PPO 6350 Texas",
+        "employee": "$201.96",
+        "spouse": "$444.72",
+        "children": "$404.94",
+        "family": "$606.90"
+      },
+      {
+        "description": "Aetna PPO 750 Austin/San Ant",
+        "employee": "$297.84",
+        "spouse": "$655.86",
+        "children": "$596.70",
+        "family": "$894.54"
+      },
+      {
+        "description": "Aetna PPO 750 Central FL",
+        "employee": "$292.74",
+        "spouse": "$643.62",
+        "children": "$585.48",
+        "family": "$877.20"
+      },
+      {
+        "description": "Aetna PPO 750 Colorado",
+        "employee": "$288.66",
+        "spouse": "$635.46",
+        "children": "$578.34",
+        "family": "$867.00"
+      },
+      {
+        "description": "Aetna PPO 750 Dallas",
+        "employee": "$372.30",
+        "spouse": "$820.08",
+        "children": "$745.62",
+        "family": "$1,117.92"
+      },
+      {
+        "description": "Aetna PPO 750 MA",
+        "employee": "$411.06",
+        "spouse": "$903.72",
+        "children": "$821.10",
+        "family": "$1,232.16"
+      },
+      {
+        "description": "Aetna PPO 750 Mid Atlantic",
+        "employee": "$344.76",
+        "spouse": "$758.88",
+        "children": "$689.52",
+        "family": "$1,034.28"
+      },
+      {
+        "description": "Aetna PPO 750 Midwest",
+        "employee": "$310.08",
+        "spouse": "$682.38",
+        "children": "$620.16",
+        "family": "$931.26"
+      },
+      {
+        "description": "Aetna PPO 750 Mountain West",
+        "employee": "$315.18",
+        "spouse": "$693.60",
+        "children": "$630.36",
+        "family": "$945.54"
+      },
+      {
+        "description": "Aetna PPO 750 New England",
+        "employee": "$411.06",
+        "spouse": "$903.72",
+        "children": "$821.10",
+        "family": "$1,232.16"
+      },
+      {
+        "description": "Aetna PPO 750 Northeast",
+        "employee": "$345.78",
+        "spouse": "$760.92",
+        "children": "$691.56",
+        "family": "$1,038.36"
+      },
+      {
+        "description": "Aetna PPO 750 PA",
+        "employee": "$324.36",
+        "spouse": "$714.00",
+        "children": "$648.72",
+        "family": "$973.08"
+      },
+      {
+        "description": "Aetna PPO 750 Pacific NW",
+        "employee": "$279.48",
+        "spouse": "$614.04",
+        "children": "$557.94",
+        "family": "$837.42"
+      },
+      {
+        "description": "Aetna PPO 750 South Central",
+        "employee": "$335.58",
+        "spouse": "$738.48",
+        "children": "$671.16",
+        "family": "$1,006.74"
+      },
+      {
+        "description": "Aetna PPO 750 South FL",
+        "employee": "$298.86",
+        "spouse": "$657.90",
+        "children": "$598.74",
+        "family": "$897.60"
+      },
+      {
+        "description": "Aetna PPO 750 Southeast/N FL",
+        "employee": "$269.28",
+        "spouse": "$592.62",
+        "children": "$538.56",
+        "family": "$807.84"
+      },
+      {
+        "description": "Aetna PPO 750 Texas",
+        "employee": "$353.94",
+        "spouse": "$779.28",
+        "children": "$707.88",
+        "family": "$1,062.84"
+      },
+      {
+        "description": "BS-CA HDHP 2500 CA North",
+        "employee": "$231.54",
+        "spouse": "$510.00",
+        "children": "$463.08",
+        "family": "$695.64"
+      },
+      {
+        "description": "BS-CA HDHP 2500 CA South",
+        "employee": "$213.18",
+        "spouse": "$470.22",
+        "children": "$427.38",
+        "family": "$640.56"
+      },
+      {
+        "description": "BS-CA HDHP 2500 N NTL",
+        "employee": "$231.54",
+        "spouse": "$510.00",
+        "children": "$463.08",
+        "family": "$695.64"
+      },
+      {
+        "description": "BS-CA HDHP 5500 CA North",
+        "employee": "$210.12",
+        "spouse": "$462.06",
+        "children": "$420.24",
+        "family": "$630.36"
+      },
+      {
+        "description": "BS-CA HDHP 5500 CA South",
+        "employee": "$193.80",
+        "spouse": "$426.36",
+        "children": "$387.60",
+        "family": "$581.40"
+      },
+      {
+        "description": "BS-CA HDHP 5500 N NTL",
+        "employee": "$210.12",
+        "spouse": "$462.06",
+        "children": "$420.24",
+        "family": "$630.36"
+      },
+      {
+        "description": "BS-CA HMO 20 CA North",
+        "employee": "$307.02",
+        "spouse": "$676.26",
+        "children": "$615.06",
+        "family": "$923.10"
+      },
+      {
+        "description": "BS-CA HMO 20 CA South",
+        "employee": "$240.72",
+        "spouse": "$530.40",
+        "children": "$482.46",
+        "family": "$723.18"
+      },
+      {
+        "description": "BS-CA HMO 30 CA North",
+        "employee": "$279.48",
+        "spouse": "$616.08",
+        "children": "$559.98",
+        "family": "$840.48"
+      },
+      {
+        "description": "BS-CA HMO 30 CA South",
+        "employee": "$220.32",
+        "spouse": "$483.48",
+        "children": "$439.62",
+        "family": "$659.94"
+      },
+      {
+        "description": "BS-CA PPO 1500 CA North",
+        "employee": "$255.00",
+        "spouse": "$561.00",
+        "children": "$510.00",
+        "family": "$765.00"
+      },
+      {
+        "description": "BS-CA PPO 1500 CA South",
+        "employee": "$234.60",
+        "spouse": "$517.14",
+        "children": "$470.22",
+        "family": "$704.82"
+      },
+      {
+        "description": "BS-CA PPO 1500 N NTL",
+        "employee": "$255.00",
+        "spouse": "$561.00",
+        "children": "$510.00",
+        "family": "$765.00"
+      },
+      {
+        "description": "BS-CA PPO 250 CA North",
+        "employee": "$386.58",
+        "spouse": "$849.66",
+        "children": "$772.14",
+        "family": "$1,158.72"
+      },
+      {
+        "description": "BS-CA PPO 250 CA South",
+        "employee": "$355.98",
+        "spouse": "$783.36",
+        "children": "$711.96",
+        "family": "$1,067.94"
+      },
+      {
+        "description": "BS-CA PPO 250 N NTL",
+        "employee": "$386.58",
+        "spouse": "$849.66",
+        "children": "$772.14",
+        "family": "$1,158.72"
+      },
+      {
+        "description": "BS-CA PPO 500 CA North",
+        "employee": "$320.28",
+        "spouse": "$704.82",
+        "children": "$640.56",
+        "family": "$961.86"
+      },
+      {
+        "description": "BS-CA PPO 500 CA South",
+        "employee": "$295.80",
+        "spouse": "$649.74",
+        "children": "$590.58",
+        "family": "$886.38"
+      },
+      {
+        "description": "BS-CA PPO 500 N NTL",
+        "employee": "$320.28",
+        "spouse": "$704.82",
+        "children": "$640.56",
+        "family": "$961.86"
+      },
+      {
+        "description": "BS-CA PPO 700 CA North",
+        "employee": "$285.60",
+        "spouse": "$628.32",
+        "children": "$571.20",
+        "family": "$857.82"
+      },
+      {
+        "description": "BS-CA PPO 700 CA South",
+        "employee": "$263.16",
+        "spouse": "$579.36",
+        "children": "$526.32",
+        "family": "$790.50"
+      },
+      {
+        "description": "BS-CA PPO 700 N NTL",
+        "employee": "$285.60",
+        "spouse": "$628.32",
+        "children": "$571.20",
+        "family": "$857.82"
+      },
+      {
+        "description": "GHC HMO 20 WA",
+        "employee": "$588.54",
+        "spouse": "$1,294.38",
+        "children": "$1,177.08",
+        "family": "$1,765.62"
+      },
+      {
+        "description": "GHC HMO 30 WA",
+        "employee": "$461.04",
+        "spouse": "$1,013.88",
+        "children": "$921.06",
+        "family": "$1,382.10"
+      },
+      {
+        "description": "HMSA HI",
+        "employee": "$508.98",
+        "spouse": "$1,016.94",
+        "children": "$960.84",
+        "family": "$1,459.62"
+      },
+      {
+        "description": "Kaiser HMO 20  DC/MD/VA",
+        "employee": "$482.46",
+        "spouse": "$1,060.80",
+        "children": "$963.90",
+        "family": "$1,446.36"
+      },
+      {
+        "description": "Kaiser HMO 20 HI",
+        "employee": "$425.34",
+        "spouse": "$849.66",
+        "children": "$765.00",
+        "family": "$1,275.00"
+      },
+      {
+        "description": "Kaiser HMO 20 OR/WA",
+        "employee": "$461.04",
+        "spouse": "$1,012.86",
+        "children": "$921.06",
+        "family": "$1,382.10"
+      },
+      {
+        "description": "Kaiser HMO 25 DC/MD/VA",
+        "employee": "$403.92",
+        "spouse": "$889.44",
+        "children": "$807.84",
+        "family": "$1,211.76"
+      },
+      {
+        "description": "Kaiser HMO 30 OR/WA",
+        "employee": "$414.12",
+        "spouse": "$911.88",
+        "children": "$828.24",
+        "family": "$1,243.38"
+      },
+      {
+        "description": "Triple S PPO 100 PR",
+        "employee": "$236.64",
+        "spouse": "$473.28",
+        "children": "$473.28",
+        "family": "$539.58"
+      }
+    ],
+    "dentalPlans": [
+      {
+        "description": "Aetna Dental 100 Group",
+        "employee": "$36.05",
+        "spouse": "$73.90",
+        "children": "$73.87",
+        "family": "$111.72"
+      },
+      {
+        "description": "Aetna Dental 50 Group",
+        "employee": "$56.66",
+        "spouse": "$116.20",
+        "children": "$121.84",
+        "family": "$181.34"
+      },
+      {
+        "description": "Aetna Dental DMO Group",
+        "employee": "$24.32",
+        "spouse": "$49.86",
+        "children": "$52.26",
+        "family": "$77.78"
+      },
+      {
+        "description": "Delta Dental 100 FL Group",
+        "employee": "$27.53",
+        "spouse": "$56.44",
+        "children": "$56.44",
+        "family": "$85.34"
+      },
+      {
+        "description": "Delta Dental 100 Group",
+        "employee": "$37.96",
+        "spouse": "$77.83",
+        "children": "$77.83",
+        "family": "$117.70"
+      },
+      {
+        "description": "Delta Dental 100 VA Group",
+        "employee": "$27.34",
+        "spouse": "$56.04",
+        "children": "$56.04",
+        "family": "$84.75"
+      },
+      {
+        "description": "Delta Dental 50 FL Group",
+        "employee": "$49.78",
+        "spouse": "$102.04",
+        "children": "$107.02",
+        "family": "$159.27"
+      },
+      {
+        "description": "Delta Dental 50 Group",
+        "employee": "$54.59",
+        "spouse": "$111.90",
+        "children": "$117.37",
+        "family": "$174.69"
+      },
+      {
+        "description": "Delta Dental 50 VA Group",
+        "employee": "$48.26",
+        "spouse": "$98.92",
+        "children": "$103.74",
+        "family": "$154.42"
+      },
+      {
+        "description": "Delta Dental DMO Group",
+        "employee": "$20.20",
+        "spouse": "$41.40",
+        "children": "$43.43",
+        "family": "$64.64"
+      },
+      {
+        "description": "Guardian Dental 100 Group",
+        "employee": "$36.16",
+        "spouse": "$74.12",
+        "children": "$74.12",
+        "family": "$112.08"
+      },
+      {
+        "description": "Guardian Dental 50 Group",
+        "employee": "$57.33",
+        "spouse": "$117.53",
+        "children": "$123.28",
+        "family": "$183.47"
+      },
+      {
+        "description": "MetLife Dental 100 Group",
+        "employee": "$38.36",
+        "spouse": "$78.62",
+        "children": "$78.62",
+        "family": "$118.89"
+      },
+      {
+        "description": "MetLife Dental 50 Group",
+        "employee": "$64.56",
+        "spouse": "$132.33",
+        "children": "$138.80",
+        "family": "$206.57"
+      },
+      {
+        "description": "Aetna Dental 100 Optional",
+        "employee": "$36.05",
+        "spouse": "$73.90",
+        "children": "$73.87",
+        "family": "$111.72"
+      },
+      {
+        "description": "Aetna Dental 50 Optional",
+        "employee": "$56.66",
+        "spouse": "$116.20",
+        "children": "$121.84",
+        "family": "$181.34"
+      },
+      {
+        "description": "Aetna Dental DMO Optional",
+        "employee": "$24.32",
+        "spouse": "$49.86",
+        "children": "$52.26",
+        "family": "$77.78"
+      },
+      {
+        "description": "Delta Dental 100 FL Optional",
+        "employee": "$27.53",
+        "spouse": "$56.44",
+        "children": "$56.44",
+        "family": "$85.34"
+      },
+      {
+        "description": "Delta Dental 100 Optional",
+        "employee": "$37.96",
+        "spouse": "$77.83",
+        "children": "$77.83",
+        "family": "$117.70"
+      },
+      {
+        "description": "Delta Dental 100 VA Optional",
+        "employee": "$27.34",
+        "spouse": "$56.04",
+        "children": "$56.04",
+        "family": "$84.75"
+      },
+      {
+        "description": "Delta Dental 50 FL Optional",
+        "employee": "$49.78",
+        "spouse": "$102.04",
+        "children": "$107.02",
+        "family": "$159.27"
+      },
+      {
+        "description": "Delta Dental 50 Optional",
+        "employee": "$54.59",
+        "spouse": "$111.90",
+        "children": "$117.37",
+        "family": "$174.69"
+      },
+      {
+        "description": "Delta Dental 50 VA Optional",
+        "employee": "$48.26",
+        "spouse": "$98.92",
+        "children": "$103.74",
+        "family": "$154.42"
+      },
+      {
+        "description": "Delta Dental DMO Optional",
+        "employee": "$20.20",
+        "spouse": "$41.40",
+        "children": "$43.43",
+        "family": "$64.64"
+      },
+      {
+        "description": "Guardian Dental 100 Optional",
+        "employee": "$36.16",
+        "spouse": "$74.12",
+        "children": "$74.12",
+        "family": "$112.08"
+      },
+      {
+        "description": "Guardian Dental 50 Optional",
+        "employee": "$57.33",
+        "spouse": "$117.53",
+        "children": "$123.28",
+        "family": "$183.47"
+      },
+      {
+        "description": "MetLife Dental 100 Optional",
+        "employee": "$38.36",
+        "spouse": "$78.62",
+        "children": "$78.62",
+        "family": "$118.89"
+      },
+      {
+        "description": "MetLife Dental 50 Optional",
+        "employee": "$64.56",
+        "spouse": "$132.33",
+        "children": "$138.80",
+        "family": "$206.57"
+      }
+    ],
+    "visionPlans": [
+      {
+        "description": "Aetna Vision Plan Group",
+        "employee": "$4.26",
+        "spouse": "$8.10",
+        "children": "$8.52",
+        "family": "$12.53"
+      },
+      {
+        "description": "Aetna Vision Plus Plan Group",
+        "employee": "$10.40",
+        "spouse": "$19.77",
+        "children": "$20.82",
+        "family": "$30.59"
+      },
+      {
+        "description": "VSP Vision Plan Group",
+        "employee": "$5.95",
+        "spouse": "$11.88",
+        "children": "$12.71",
+        "family": "$20.35"
+      },
+      {
+        "description": "VSP Vision Plus Plan Group",
+        "employee": "$9.17",
+        "spouse": "$18.38",
+        "children": "$19.67",
+        "family": "$31.43"
+      },
+      {
+        "description": "Aetna Vision Plan Optional",
+        "employee": "$5.29",
+        "spouse": "$10.06",
+        "children": "$10.61",
+        "family": "$15.58"
+      },
+      {
+        "description": "Aetna Vision Plus Plan Optiona",
+        "employee": "$12.83",
+        "spouse": "$24.46",
+        "children": "$25.63",
+        "family": "$37.68"
+      },
+      {
+        "description": "VSP Vision Plan Optional",
+        "employee": "$6.62",
+        "spouse": "$13.23",
+        "children": "$14.16",
+        "family": "$22.62"
+      },
+      {
+        "description": "VSP Vision Plus Plan Optional",
+        "employee": "$10.20",
+        "spouse": "$20.42",
+        "children": "$21.84",
+        "family": "$34.91"
+      }
+    ]
+  },
+  "statusCode": "200",
+  "statusMessage": "Success"
+}

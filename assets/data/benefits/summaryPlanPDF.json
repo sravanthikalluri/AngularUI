@@ -1,0 +1,102 @@
+{
+  "data": {
+    "ambText": null,
+    "quater": "Q4",
+    "thisPlanYearStartDate": "October   01, 2015",
+    "thisPlanYearEndDate": "September 30, 2016",
+    "prevPlanYearStartDate": "October   01, 2014",
+    "prevPlanYearEndDate": "September 30, 2015",
+    "medicalSummary": {
+      "url": "/api-content/v1/benefits/policies/TriNetWhatsChangingQ4_Client.pdf/pdf",
+      "text": "2016 What's Changing"
+    },
+    "benefitAtGlance": {
+      "date": "October 1, 2015 - September 30, 2016",
+      "url": [
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-AllPlans.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Dental-Vision.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Life-Disability.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Florida.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Mountain-West.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-BCBSNC.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Northeast-Midwest.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Northwest.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-NY-Tri-State.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-SouthCentral.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2016-Q4-BAAG-Southeast.pdf/pdf"
+      ],
+      "text": [
+        "Benefits At-A-Glance All Plans",
+        "Benefits At-A-Glance Dental and Vision",
+        "Benefits At-A-Glance Life and Disability",
+        "Benefits At-A-Glance Florida",
+        "Benefits At-A-Glance Mountain West",
+        "Benefits At-A-Glance North Carolina",
+        "Benefits At-A-Glance Northeast and Midwest",
+        "Benefits At-A-Glance Northwest",
+        "Benefits At-A-Glance NY/TriState",
+        "Benefits At-A-Glance South Central",
+        "Benefits At-A-Glance Southeast"
+      ]
+    },
+    "benefitAtGlancePrevYear": {
+      "date": "October 1, 2014 - September 30, 2015",
+      "url": [
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-AllPlans.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-LifeDisability.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-Florida.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-Mountain-West.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-BCBSNC.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-Northeast-and-Midwest.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-Northwest.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-NY-Tri-State.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-SouthCentral.pdf/pdf",
+        "/api-content/v1/benefits/policies/BAAG/2015-Q4-BAAG-Southeast.pdf/pdf"
+      ],
+      "text": [
+        "Benefits At-A-Glance All Plans",
+        "Benefits At-A-Glance Life and Disability",
+        "Benefits At-A-Glance Florida",
+        "Benefits At-A-Glance Mountain West",
+        "Benefits At-A-Glance North Carolina",
+        "Benefits At-A-Glance Northeast and Midwest",
+        "Benefits At-A-Glance Northwest",
+        "Benefits At-A-Glance NY/TriState",
+        "Benefits At-A-Glance South Central",
+        "Benefits At-A-Glance Southeast"
+      ]
+    },
+    "planDesc": [
+      {
+        "url": "/api-content/v1/benefits/policies/benefit_guide/TriNet-Benefit-Guidebook_Prev_Q4.pdf/pdf",
+        "text": "TriNet Benefits Guidebook and Summary Plan Description",
+        "date": "(October   01, 2014 - September 30, 2015)"
+      }
+    ],
+    "staticJsonData": {
+      "data": [
+        {
+          "C3": {
+            "text": "2011-2012 Medicare Part D Creditable Coverage Notice",
+            "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2011-2012MedicarePartDCreditableCoverageNotice.pdf/pdf"
+          },
+          "C4": {
+            "text": "2009-2010 Medicare Part D Creditable Coverage Notice",
+            "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2009-2010MedicareNotice_CreditableCoverage_%20PrescriptionDrug.pdf/pdf"
+          },
+          "C1": {
+            "text": "2013-2014 Medicare Part D Creditable Coverage Notice",
+            "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2013-2014MedicarePartDCreditableCoverageNotice.pdf/pdf"
+          },
+          "C2": {
+            "text": "2012-2013 Medicare Part D Creditable Coverage Notice",
+            "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2012-2013MedicarePartDCreditableCoverageNotice.pdf/pdf"
+          }
+        }
+      ]
+    },
+    "t2_PLAN_DT_START": "1999-12-31 00:00:00.0"
+  },
+  "_statusCode": "200",
+  "_statusText": "OK"
+}

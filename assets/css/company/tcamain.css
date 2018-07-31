@@ -1,0 +1,44 @@
+.tcamain {
+    padding-top: 40px;
+}
+
+.tcamain .ui-accordion-content {
+    padding: 0 10px !important;
+}
+
+.tcamain .ui-accordion-content .panel-collapse {
+    padding: 0 !important;
+}
+
+.tcamain [class*="icon-"] {
+    margin: 0;
+    font-size: 20px !important;
+}
+
+.tcamain p {
+    font-size: 15px;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.tcamain .sub-list {
+    padding: 0 15px;
+}
+
+.tcamain .sub-list h3 {
+    font-size: 15px !important;
+}
+
+.tcamain .sub-list .panel-body {
+    padding: 0 10px !important;
+}
+
+.tca-acc-trinet .panel-group {
+    margin-bottom: 10px !important;
+}
+
+.trient-tca-head {
+    margin: 5px 0px 5px 0px !important;
+}
+
+/*# sourceMappingURL=tcamain.css.map */

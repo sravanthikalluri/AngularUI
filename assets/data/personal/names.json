@@ -1,0 +1,70 @@
+{
+  "resource": [
+    {
+      "approvalStat": "F",
+      "effDate": "01/11/2041",
+      "endDate": "07/12/2101",
+      "firstName": "Walter",
+      "formOfAddress": " ",
+      "middleName": "C",
+      "name": "Book",
+      "nameFormat": null,
+      "nameSuffix": " ",
+      "nameType": "PRI",
+      "personId": "00001005491",
+      "personTitle": " ",
+      "reasonChangeCode": null,
+      "uniqueId": 2
+    },
+    {
+      "approvalStat": "F",
+      "effDate": "11/01/2021",
+      "endDate": "12/31/2099",
+      "firstName": "Walter",
+      "formOfAddress": " ",
+      "middleName": "C",
+      "name": "Book",
+      "nameFormat": null,
+      "nameSuffix": " ",
+      "nameType": "PRI",
+      "personId": "00001005491",
+      "personTitle": " ",
+      "reasonChangeCode": null,
+      "uniqueId": 1
+    },
+    {
+      "approvalStat": "F",
+      "effDate": "01/11/2009",
+      "endDate": "07/12/2101",
+      "firstName": "Walter",
+      "formOfAddress": " ",
+      "middleName": "C",
+      "name": "Book",
+      "nameFormat": null,
+      "nameSuffix": " ",
+      "nameType": "PRI",
+      "personId": "00001005491",
+      "personTitle": " ",
+      "reasonChangeCode": null,
+      "uniqueId": 3
+    },
+    {
+      "approvalStat": "F",
+      "effDate": "11/01/2001",
+      "endDate": "12/31/2099",
+      "firstName": "Walter",
+      "formOfAddress": " ",
+      "middleName": "C",
+      "name": "Book",
+      "nameFormat": null,
+      "nameSuffix": " ",
+      "nameType": "PRF",
+      "personId": "00001005491",
+      "personTitle": " ",
+      "reasonChangeCode": null,
+      "uniqueId": 1
+    }
+  ],
+  "statusCode": "200",
+  "statusMesage": "Success"
+}

@@ -1,0 +1,95 @@
+<div class="tn-modal tn-modal-fullHeight tn-end-payment-modal">
+    <!--   <div class="alert red-alert alert-danger col-md-12 col-sm-12"
+            ng-if="errorCodeMsg">
+           <div class="col-md-1 col-sm-1 no-pad"><i class="icon-icon_Error error-icon" data-dismiss="alert"
+                                                    ng-click="closeAlert($index)"></i></div>
+
+           <div class="col-md-11 no-pad col-sm-11">
+               <h5 class="no-marg" ng-bind="errorAlert._statusMessage"></h5>
+           </div>
+       </div>-->
+       <div class="tn-modal-header">
+           <h4 class="profile-heading proxima-nova-semibold text-center"
+               id="exampleModalLabel" ng-bind="::translation.moneyTab.end_pay"></h4>
+       </div>
+       <form name="endPaymentForm" class="tn-form">
+           <div class="tn-modal-boby col-sm-12">
+               <table class="table tn-table ">
+                   <tbody>
+                   <tr>
+                       <td class="col-md-4 col-sm-4 text-right">{{::translation.reports.pay_to}}</td>
+                       <td class="col-md-8 col-sm-8 text-left">
+                           <span><strong>{{submitTransactionData.subjectName}} </strong></span>
+                           <sapn class="reg-font">({{translation.emp_id}} {{submitTransactionData.subjectId}})</sapn>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4 col-sm-4 text-right">{{::translation.begin_date}}:</td>
+                       <td class="col-md-8 col-sm-8 text-left"
+                           ng-bind="(submitTransactionData.beginDate ? (submitTransactionData.beginDate | date:'MM/dd/yyyy') : '-')"></td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4 col-sm-4 text-right">{{::translation.final_payment_date}}:</td>
+                       <td class="col-md-8 col-sm-8 text-left">
+                           <select name="endDateName" id="pay_effective_date"
+                                   class="form-control no-marg"
+                                   ng-model="endDate"
+                                   required="required"
+                                   ng-options="earnTypeEndDate.addlPageValue for earnTypeEndDate in payEndDates | filterDatesByDate: submitTransactionData.beginDate | orderBy:'payBeginDate'">
+                               <option value="">Select One</option>
+                               <option value='' disabled selected class="hidden" ng-bind="::translation.manageGroup.addlPageValue"></option>
+                           </select>
+                           <!--<div class="col-md-6 col-sm-6 no-pad-left date" ng-controller="datePickerCtrl">
+                               <p class="input-group calendar-main customed-calendar bg-transparent clnder addlpayment-calender">
+                                   <input type="text" class="form-control no-border" name="minDate"
+                                          id="pay_effective_date" datepicker-popup="{{format}}"
+                                          ng-model="minDate" is-open="opened" min-date="minDate"
+                                          max-date="'12/31/2099'" datepicker-options="dateOptions"
+                                          close-text="Close"
+                                          ng-class="{'error-warning': minDateRequired}"
+                                          ng-blur="minDateRequired=endPaymentForm.minDate.$error.required;"
+                                          ng-required="true"/> <span class="input-group-btn pull-left">
+                                       <Validation condition="minDateRequired"
+                                                   msg="{{translation.end_date+'\n '+translation.is_required}}"></Validation>
+                                           <button type="button" id="calenderId"
+                                                   class="btn no-bg-all bo-border btn-default Trinet-calendar"
+                                                   ng-click="open($event)">
+                                               <span class="blue"><i class="glyphicon glyphicon-calendar"></i></span>
+                                           </button>
+                                       </span>
+                               </p>
+                           </div>-->
+                       </td>
+                   </tr>
+                   <tr ng-if="submitTransactionData.goalAmount">
+                       <td class="col-md-4 col-sm-4 text-right">{{::translation.goal_amount +' '+ translation.amount}}:</td>
+                       <td class="col-md-8 col-sm-8 text-left">{{submitTransactionData.goalAmount | currency}}</td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4 col-sm-4 text-right">{{::translation.earn_type}}:</td>
+                       <td class="col-md-8 col-sm-8 text-left" ng-bind="::submitTransactionData.earnType"></td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4 col-sm-4 text-right ">{{::translation.earn_amount}}
+                           <div class="clear-fix"></div>
+                           <small ng-bind="::translation.reports.earn_tag_cap"></small>
+                       </td>
+                       <td class="col-md-8 col-sm-8 text-left endpay-earning-amount">{{submitTransactionData.earnAmount | currency}}</td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4 col-sm-4 text-right">{{::translation.reports.pay_freq}}</td>
+                       <td class="col-md-8 col-sm-8 text-left" ng-bind="::submitTransactionData.paymentFrequency"></td>
+                   </tr>
+                   </tbody>
+               </table>
+           </div>
+           <div class="clearfix"></div>
+           <div class="tn-modal-footer text-right">
+               <button type="button" class="tn-button tn-action-button" id="savePayData"
+                       ng-class="{'trinet-btn-dissable cursor-auto': endPaymentForm.$invalid, 'trinet-primary-action-btn': !endPaymentForm.$invalid}"
+                       data-dismiss="modal" ng-click="savePayData(endDate)" ng-bind="::translation.submit"></button>
+               <button type="button" id="closePanel" class="tn-cancel-button tn-button"
+                       ng-click="closePanel('resetchanges')" ng-bind="::translation.cancel"></button>
+           </div>
+       </form>
+   </div>

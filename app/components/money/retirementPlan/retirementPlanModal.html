@@ -1,0 +1,177 @@
+<div class="" id="myModal" tabindex="-1" role="dialog" ng-controller="goalAmtChangeCtrl"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <alert-view></alert-view>
+    <form id='userform' name="userForm" novalidate>
+        <div class="change-goal-amount-popup">
+            <div class="retirement-plan-popup-header clearfix">
+                <button id='retirecancel' type="button" class="close" data-dismiss="modal"
+                        aria-label="Close" ng-click="cancel()">
+                    <span aria-hidden="true"><!-- <i class="icon-close-temp"></i> --></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel" ng-bind="::translation.money.retirement_plan.popup_title"></h4>
+            </div>
+            <div class="modal-body retirement-plan-popup-body">
+                <ng-form id='retireform' name="innerForm">
+                    <div class="modalbody">
+                        <div class="row no-marg text-row">
+                            <div class="col-md-12 ">
+                                <p class="hidden"></p>
+                            </div>
+                        </div>
+                        <div id="goalAmtBorderId"
+                             class="row no-marg  top-pad retirement-select-radio pop-section-dissable amount-calculator">
+                            <div class="radio-row">
+                                <div class="col-md-7 col-sm-7 ">
+                                    <i class="icon-icon_radiobutton_empty Trinet-blue medium hidden"></i>
+                                    <!-- <radio-button checked="checked" model="checked" name="radio1" btnId="btnId1" class="" ng-click="radioClickFn1()"></radio-button> -->
+                                    <input id="goalamount" type="radio" class="goal"
+                                           ng-click="radioClickFn('primary')" ng-model="update.selectGoal"
+                                           name="amount">&nbsp;
+                                    <span class="medium" ng-bind="::translation.money.retirement_plan.set_amount"> </span>
+
+                                </div>
+                                <div class="col-md-5 col-sm-5 dissable" ng-if="isShowGoalAmount">
+                                    <div class="col-md-1 col-sm-1 text-right no-pad">
+                                        <span class="medium">$ </span>
+
+                                    </div>
+                                    <div class="col-md-10 col-sm-10 pad-5">
+                                        <div>
+
+                                            <input only-decimals
+                                                   id="goalchange"
+                                                   type="text"
+                                                   class="form-control marg-top-3 text-right"
+                                                   ng-class="{ 'error-warning' : (isFormSubmited &&  validationPatterns.update.focus.setGoalAmtRequired) || (isFormSubmited && validationPatterns.update.blur.setGoalAmtRequired) || validationPatterns.update.blur.setGoalAmtNotZero || validationPatterns.update.focus.setGoalAmtNotZero || validationPatterns.update.focus.setGoalAmtCondi || validationPatterns.update.blur.setGoalAmtCondi}"
+                                                   name="setGoalAmt"
+                                                   ng-disabled="update.goal_amount != true"
+                                                   ng-model="update.setGoal"
+                                                   ng-required="true"
+                                                   ng-focus="onFocus('update',validationPatterns.update.focus);validationPatterns.update.blur.setGoalAmtRequired = false;validationPatterns.update.blur.setGoalAmtCondi=false;validationPatterns.update.blur.setGoalAmtNotZero = false;validationPatterns.update.focus.setGoalAmtRequired=isFormSubmited && userForm.innerForm.setGoalAmt.$error.required;validationPatterns.update.focus.setGoalAmtNotZero = (!validationPatterns.update.focus.setGoalAmtRequired ) && getFloatValue(userForm.innerForm.setGoalAmt.$viewValue);validationPatterns.update.focus.setGoalAmtCondi= (!validationPatterns.update.focus.setGoalAmtRequired && !validationPatterns.update.focus.setGoalAmtNotZero) && (userForm.innerForm.setGoalAmt.$viewValue > federalAmount) ? true : false"
+                                                   ng-change="goalChangeFn(update.setGoal);validationPatterns.update.focus.setGoalAmtRequired = false;validationPatterns.update.focus.setGoalAmtNotZero = false;validationPatterns.update.focus.setGoalAmtCondi=false;validationPatterns.update.blur.setGoalAmtRequired=isFormSubmited &&userForm.innerForm.setGoalAmt.$error.required;validationPatterns.update.blur.setGoalAmtNotZero = (!validationPatterns.update.blur.setGoalAmtRequired) && getFloatValue(userForm.innerForm.setGoalAmt.$viewValue);validationPatterns.update.blur.setGoalAmtCondi= (!validationPatterns.update.blur.setGoalAmtRequired && !validationPatterns.update.blur.setGoalAmtNotZero) && (userForm.innerForm.setGoalAmt.$viewValue > federalAmount) ? true : false">
+
+
+                                            <Validation condition="validationPatterns.update.focus.setGoalAmtRequired"
+                                                        msg="{{translation.required_field}}"
+                                                        class="add-account-tooltip-adj"></Validation>
+                                            <Validation condition="validationPatterns.update.focus.setGoalAmtNotZero"
+                                                        msg="{{translation.money.retirement_plan.validations.setGoalAmtNotZero}}"
+                                                        class="add-account-tooltip-adj"></Validation>
+                                            <Validation condition="validationPatterns.update.focus.setGoalAmtCondi"
+                                                        msg="{{translation.money.retirement_plan.validations.setGoalAmtCondi}}"
+                                                        class="add-account-tooltip-adj"></Validation>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <span class="pull-left pad-left-18">{{::translation.money.retirement_plan.federalMaximum}}</span>
+                            </div>
+                        </div>
+                        <div id="limitAmtBorderId" class="row  amount-calculator no-pad">
+
+                            <div class="col-md-12">
+                                <input id="setgoal" type="radio" ng-click="radioClickFn('setGoalAmt')" class="setgoal"
+                                       ng-model="update.selectPrior" name="amount">&nbsp;
+                                <span class="medium"> <span
+                                        ng-bind="::translation.money.retirement_plan.Amount_calculator"></span></span>
+
+                            </div>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="col-md-12 top-marg-20 no-pad dissable">
+                                <div class="row no-marg dissable">
+                                    <div class="col-md-7 col-sm-7  text-right">
+                                        <span class="medium "><span
+                                                ng-bind="::translation.money.retirement_plan.federal_amount"></span>:</span>
+                                        <span class="tooltip-right"> <i
+                                                id="federalAmountHelp"
+                                                class="icon-icon_UA blue small no-pad"></i>
+								<div class="tooltip-right-content priority medium">
+
+                                    <p ng-bind="::translation.money.retirement_plan.fed_amount_help"></p>
+                                    <div class="arrow-down"></div>
+                                    <div class="arrow-down-bg"></div>
+                                </div>
+							</span>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 text-right goal-amount-adjustment">
+                                        <span id="federalamount" class="medium">{{federalAmount | currencyFilter}}</span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="row no-marg dissable">
+                                    <div class="col-md-7 col-sm-7 text-right">
+                                        <span class="medium marg-top pull-right"><span
+                                                ng-bind="::translation.money.retirement_plan.prior_contribution"></span>:
+
+                                            <span class="tooltip-right"> <i
+                                                    id="priorContributionHelp"
+                                                    class="icon-icon_UA blue small no-pad"></i>
+                                                <div class="tooltip-right-content priority medium">
+
+                                                    <p ng-bind="::translation.money.retirement_plan.prior_contribution_help"></p>
+                                                    <div class="arrow-down"></div>
+                                                    <div class="arrow-down-bg"></div>
+                                                </div>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 text-right" ng-if="!isShowGoalAmount">
+                                        <span class="medium col-md-1 col-sm-1 marg-top no-pad">- $</span>
+                                        <div class="col-md-10 col-sm-10 pad-5">
+                                            <div>
+
+                                                <input id="prioramount"
+                                                       only-decimals
+                                                       type="text"
+                                                       ng-disabled="update.goal_amount"
+                                                       ng-class="{ 'error-warning' : validationPatterns.update.focus.priorAmountCondi || validationPatterns.update.blur.priorAmountCondi}"
+                                                       class="goal-input-adj bg-white form-control text-right"
+                                                       name="priorAmount"
+                                                       ng-model="update.priorAmount"
+                                                       ng-focus="onFocus('update',validationPatterns.update.focus);validationPatterns.update.blur.priorAmountCondi=false;validationPatterns.update.focus.priorAmountCondi= (userForm.innerForm.priorAmount.$viewValue > federalAmount) ? true : false"
+                                                       ng-change="priorChangeFn(update.priorAmount);validationPatterns.update.focus.priorAmountCondi=false;validationPatterns.update.blur.priorAmountCondi=  (userForm.innerForm.priorAmount.$viewValue > federalAmount) ? true : false">
+
+                                                <Validation condition="validationPatterns.update.focus.priorAmountCondi"
+                                                            msg="{{translation.money.retirement_plan.validations.priorAmountCondi}}"
+                                                            class="add-account-tooltip-adj"></Validation>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">&nbsp;</div>
+                                <div class="col-md-12 total-contribution">
+                                    <div class="col-md-12 top-divider"></div>
+                                    <div class="row max-contrib">
+                                        <div class="col-md-7 col-sm-7 medium text-right">
+                                            <strong> <span
+                                                    ng-bind="::translation.money.retirement_plan.max_contribution"></span>:
+                                            </strong>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 text-right medium no-pad">
+
+                                            <strong class="goal-amount-adjustment "
+                                                    ng-model="totalAmount">{{totalAmt | currencyFilter}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+            <div class="modal-footer clearfix no-pad">
+                <button id="retiresave" type="button" ng-click="saveMethod()" class="trinet-primary-action-btn"
+                        ng-bind="::translation.save"></button>
+                <button id="retirecancel" type="button" ng-click="cancel()" class="trinet-secondary-action-btn"
+                        data-dismiss="modal" ng-bind="::translation.cancel"></button>
+
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,537 @@
+<div class="tn-extended-leave-request tn-background pull-left" ng-controller="extendLeaveRequestCtrl">
+      <alert-view></alert-view>
+    <div class="col-sm-12 no-pad">
+        <h3 class="tn-page-heading">
+            <a ng-href="#/manageEmployee" ng-if="notMeTab" ng-bind="::translation.manageHeading"></a>
+            <i aria-hidden="true" class="icon-icon_forward"></i>
+            <a href="" title="{{headerName}}" ng-class="headerName.length > 20 ? 'isEllipsis' : ''" ng-click="toggleExtendLeaveRequest()">{{headerName}}</a>
+            <i aria-hidden="true" class="icon-icon_forward"></i>
+            <a href="" ng-bind="::translation.leaveRequest.createExtLeaveReq"></a>
+        </h3>
+    </div>
+    <div class="col-sm-12 no-pad">
+        <div class="col-sm-9 no-pad">
+            <md-card class="no-marg">
+                <md-card-content>
+                    <form class="tn-form" name="extendLeaveForm" id="extendLeave_form" ng-submit="submitForm()"
+                          novalidate>
+                        <h4 class="font-dark proxima-nova-semibold" ng-bind="::translation.leaveRequest.createExtLeaveReq"></h4>
+                        <div class="tn-read-more-section">
+                            <p>
+                                <span ng-bind="::translation.leaveRequest.leaveReqDays"></span>
+                                <span>
+                                <a href="" id="showLearn" class="blue marg-left-5 view-more proxima-nova-semibold" ng-show="showLearn"
+                                   ng-click="showLearnMore()">
+                                    {{::translation.leaveRequest.learnMore}}
+                                </a>
+                            </span>
+                            </p>
+                            <div id="isVisible" ng-show="IsVisible">
+                                <h4 class="proxima-nova-semibold "
+                                        ng-bind="::translation.leaveRequest.clientServiceAss"></h4>
+                                <!--  <dl>
+                                      <dt>Coffee</dt>
+                                      <dd>black hot drink</dd>
+                                      <dt>Milk</dt>
+                                      <dd>white cold drink</dd>
+                                  </dl>-->
+
+                                <ul class="extendRequestTerms">
+                                    <li ng-bind="::translation.leaveRequest.unpaidLeaveOccurred1"></li>
+                                    <li ng-bind="::translation.leaveRequest.unpaidLeaveOccurred2"></li>
+                                    <li ng-bind="::translation.leaveRequest.unpaidLeaveOccurred3"></li>
+                                </ul>
+                                <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.notification"></h4>
+                                <ul class="extendRequestTerms">
+                                    <li ng-if="!isAmbrose" ng-bind="::translation.leaveRequest.absenceNotification"></li>
+                                    <li ng-bind="::translation.leaveRequest.federalNotices"></li>
+                                </ul>
+                                <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.benefits"></h4>
+                                <ul class="extendRequestTerms">
+                                    <li ng-if="!isAmbrose" ng-bind="::translation.leaveRequest.empHandbookAddendum"></li>
+                                    <li ng-if="isAmbrose" ng-bind="::translation.leaveRequest.empHandbookAddendumAmbrose"></li>
+                                    <li ng-if="!isAmbrose" ng-bind="::translation.leaveRequest.empEligibleFMLA"></li>
+                                    <li ng-if="isAmbrose" ng-bind="::translation.leaveRequest.empEligibleFMLAAmbrose"></li>
+                                </ul>
+                                <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.disabilityClaims"></h4>
+                                <ul class="extendRequestTerms">
+                                    <li ng-if="!isAmbrose" ng-bind="::translation.leaveRequest.empEligibleTrinetSponsored"></li>
+                                    <li ng-if="isAmbrose" ng-bind="::translation.leaveRequest.empEligibleTrinetSponsoredAmbrose"></li>
+                                </ul>
+                                <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.payrollTimeEntry"></h4>
+                                <ul class="extendRequestTerms">
+                                    <li ng-bind="::translation.leaveRequest.empAccruedLeaveTime1"></li>
+                                    <li ng-bind="::translation.leaveRequest.empAccruedLeaveTime2"></li>
+                                </ul>
+                                <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.returnWork"></h4>
+                                <p ng-bind="::translation.leaveRequest.adviseTrinet"></p>
+                                <h4 class="proxima-nova-semibold " ng-bind="::translation.leaveRequest.failureReturn"></h4>
+                                <p ng-bind="::translation.leaveRequest.leavePlanAnnual"></p>
+
+                                <a href="" id="showLearnMore" class="blue proxima-nova-semibold marg-left-5 view-more"
+                                   ng-click="showLearnMore()">{{::translation.leaveRequest.close}}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tn-employee-detials">
+                            <h4 class="proxima-nova-semibold"
+                                ng-bind="::translation.leaveRequest.requestExtendedLeave"></h4>
+                            <p ng-bind="empName"></p>
+                            <p>
+                                <span ng-bind="::translation.emp_id"></span>&nbsp;
+                                <span ng-bind="appUserId"></span>
+                            </p>
+
+                        </div>
+                        <div class="tn-horizontal-divider"></div>
+                        <div class="payment-date-info">
+                            <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.datesPayment"></h4>
+                            <div class="col-sm-12 no-pad">
+                                <div class="col-sm-4 no-pad" ng-controller='datePickerCtrl'>
+                                    <div class="required-field">
+                                        <label for="lastWorkedDate"
+                                               ng-bind="::translation.leaveRequest.lastWorked"></label>
+                                    </div>
+                                    <div class="tn-calender-input">
+                                        <input type="text" class="form-control bg-white" name="lastWorkedDate"
+                                               id="lastWorkedDate"
+                                               ng-class="{'error-warning': (validationPatterns.extendLeave.focus.extendLeaveFormlastWorkedDateRequired) || (validationPatterns.extendLeave.blur.extendLeaveFormlastWorkedDateRequired)
+                                                    || validationPatterns.extendLeave.focus.lastWorkedDate || validationPatterns.extendLeave.blur.lastWorkedDate}"
+                                               datepicker-popup="{{format}}"
+                                               readonly="readonly"
+                                               ng-change="dateValidate()"
+                                               ng-model="extendLeave.lastWorkedDate" is-open="opened"
+                                               datepicker-options="dateOptions"
+                                               date-disabled="disabled(date, mode)"
+                                               close-text="Close"
+                                               required
+                                               ng-focus="validationPatterns.extendLeave.focus.extendLeaveFormlastWorkedDateRequired = extendLeaveForm.lastWorkedDate.$error.required; validationPatterns.extendLeave.blur.extendLeaveFormlastWorkedDateRequired = false;
+                                                            validationPatterns.extendLeave.focus.lastWorkedDate = dateValidate(); validationPatterns.extendLeave.blur.lastWorkedDate = false;"
+                                               ng-blur="validationPatterns.extendLeave.blur.extendLeaveFormlastWorkedDateRequired = extendLeaveForm.lastWorkedDate.$error.required; validationPatterns.extendLeave.focus.extendLeaveFormlastWorkedDateRequired = false;
+                                                                validationPatterns.extendLeave.blur.lastWorkedDate = dateValidate(); validationPatterns.extendLeave.focus.lastWorkedDate = false;"
+                                        />
+                                        <span class="calendar-icon" ng-click="open($event)">
+                                                   <i class="icon-icon_calendar blue bold"></i>
+                                        </span>
+                                        <Validation
+                                            condition="validationPatterns.extendLeave.focus.extendLeaveFormlastWorkedDateRequired"
+                                            msg="{{translation.required_field}}"></Validation>
+                                        <Validation condition="validationPatterns.extendLeave.focus.lastWorkedDate"
+                                                    msg="{{lastWorkedDateMessage}}"></Validation>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-sm-offset-1 no-pad" ng-controller='datePickerCtrl'>
+                                    <div class="required-field">
+                                        <label for="extendedLeaveStartDate"
+                                               ng-bind="::translation.leaveRequest.extendedLeaveStart"></label>
+                                    </div>
+                                    <div class="tn-calender-input">
+                                        <input type="text" class="form-control bg-white"
+                                               name="extendedLeaveStartDate" id="extendedLeaveStartDate"
+                                               datepicker-popup="{{format}}"
+                                               ng-class="{'error-warning': (validationPatterns.extendLeave.focus.extendLeaveFormStartDateRequired) || (validationPatterns.extendLeave.blur.extendLeaveFormStartDateRequired)
+                                                    || validationPatterns.extendLeave.focus.lastWorkedDate || validationPatterns.extendLeave.blur.lastWorkedDate}"
+                                               readonly="readonly"
+                                               ng-change="dateValidate();addSevenDays('extendedLeaveStartDate');checkFirstDayLeaveIsUnpaid()"
+                                               ng-model="extendLeave.extendedLeaveStartDate" is-open="opened"
+                                               datepicker-options="dateOptions"
+                                               date-disabled="disabled(date, mode)"
+                                               close-text="Close"
+                                               required
+                                               ng-focus="validationPatterns.extendLeave.focus.extendLeaveFormStartDateRequired = extendLeaveForm.extendedLeaveStartDate.$error.required; validationPatterns.extendLeave.blur.extendLeaveFormStartDateRequired = false;
+                                                            validationPatterns.extendLeave.focus.extendedLeaveStartDate = dateValidate(); validationPatterns.extendLeave.blur.extendedLeaveStartDate = false;"
+                                               ng-blur="validationPatterns.extendLeave.blur.extendLeaveFormStartDateRequired = extendLeaveForm.extendedLeaveStartDate.$error.required; validationPatterns.extendLeave.focus.extendLeaveFormStartDateRequired = false;
+                                                                validationPatterns.extendLeave.blur.extendedLeaveStartDate = dateValidate(); validationPatterns.extendLeave.focus.extendedLeaveStartDate = false;"
+                                        />
+                                        <span class="calendar-icon" ng-click="open($event)">
+                                                    <i class="icon-icon_calendar blue bold"></i>
+                                            </span>
+                                        <Validation
+                                            condition="validationPatterns.extendLeave.focus.extendLeaveFormStartDateRequired"
+                                            msg="{{translation.required_field}}"></Validation>
+                                        <Validation
+                                            condition="validationPatterns.extendLeave.focus.extendedLeaveStartDate"
+                                            msg="{{lastWorkedDateMessage}}"></Validation>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="col-sm-4 no-pad" ng-controller='datePickerCtrl'>
+                                    <div class="required-field">
+                                        <label for="estimatedReturnDate"
+                                               ng-bind="::translation.leaveRequest.estimatedReturnDate"></label>
+                                    </div>
+                                    <div class="tn-calender-input">
+                                        <input type="text" class="form-control bg-white"
+                                               name="estimatedReturnDate" id="estimatedReturnDate"
+                                               datepicker-popup="{{format}}"
+                                               readonly="readonly"
+                                               ng-class="{'error-warning': (validationPatterns.extendLeave.focus.extendLeaveFormSestimatedReturnDateRequired) || (validationPatterns.extendLeave.blur.extendLeaveFormSestimatedReturnDateRequired)}"
+                                               ng-change="addSevenDays()"
+                                               ng-model="extendLeave.estimatedReturnDate" is-open="opened"
+                                               datepicker-options="dateOptions"
+                                               date-disabled="disabled(date, mode)"
+                                               close-text="Close"
+                                               required
+                                               ng-focus="validationPatterns.extendLeave.focus.extendLeaveFormSestimatedReturnDateRequired = extendLeaveForm.estimatedReturnDate.$error.required; validationPatterns.extendLeave.blur.extendLeaveFormSestimatedReturnDateRequired = false;"
+                                               ng-blur="validationPatterns.extendLeave.blur.extendLeaveFormSestimatedReturnDateRequired = extendLeaveForm.estimatedReturnDate.$error.required; validationPatterns.extendLeave.focus.extendLeaveFormSestimatedReturnDateRequired = false;"
+                                        />
+                                        <span class="calendar-icon" ng-click="open($event)">
+                                                <i class="icon-icon_calendar blue bold"></i>
+                                            </span>
+                                        <Validation
+                                            condition="validationPatterns.extendLeave.focus.extendLeaveFormSestimatedReturnDateRequired"
+                                            msg="{{translation.required_field}}"></Validation>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="required-field">
+                                    <label ng-bind="::translation.leaveRequest.trinetPayroll"></label>
+                                </div>
+                                <div class="radio">
+                                    <input id="trinetPayrollYes" type="radio"
+                                           ng-model="extendLeave.isTrinetPayroll" ng-value="true" required/>
+                                    <label for="trinetPayrollYes">{{::translation.yes}}</label>
+                                    <input id="trinetPayrollNo" type="radio"
+                                           ng-model="extendLeave.isTrinetPayroll" ng-value="false" required/>
+                                    <label for="trinetPayrollNo">{{::translation.no}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad" ng-if="extendLeave.isTrinetPayroll == false"
+                                 ng-controller="datePickerCtrl">
+                                <div class="col-sm-4 no-pad">
+                                    <div class="required-field">
+                                        <label for="firstDayleaveUnpaid"
+                                               ng-bind="::translation.leaveRequest.firstDayLeave"></label>
+                                    </div>
+                                    <div class="tn-calender-input">
+                                        <input type="text" class="form-control bg-white"
+                                               name="firstDayleaveUnpaid" id="firstDayleaveUnpaid"
+                                               datepicker-popup="{{format}}"
+                                               ng-class="{'error-warning': (validationPatterns.extendLeave.focus.firstDayleaveUnpaidRequired) || (validationPatterns.extendLeave.blur.firstDayleaveUnpaidRequired)}"
+                                               readonly="readonly"
+                                               ng-change="checkFirstDayLeaveIsUnpaid()"
+                                               ng-model="extendLeave.unpaidLeaveDate" is-open="opened"
+                                               close-text="Close"
+                                               required
+                                               ng-focus="validationPatterns.extendLeave.focus.firstDayleaveUnpaidRequired = extendLeaveForm.firstDayleaveUnpaid.$error.required; validationPatterns.extendLeave.blur.firstDayleaveUnpaidRequired = false;"
+                                               ng-blur="validationPatterns.extendLeave.blur.firstDayleaveUnpaidRequired = extendLeaveForm.firstDayleaveUnpaid.$error.required; validationPatterns.extendLeave.focus.firstDayleaveUnpaidRequired = false;"
+                                        />
+                                        <span class="calendar-icon" ng-click="open($event)">
+                                                <i class="icon-icon_calendar blue bold"></i>
+                                            </span>
+                                        <Validation
+                                            condition="validationPatterns.extendLeave.focus.firstDayleaveUnpaidRequired"
+                                            msg="{{translation.required_field}}"></Validation>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="required-field">
+                                    <label ng-bind="::translation.leaveRequest.leaveAbsense"></label>
+                                </div>
+                                <div class="radio">
+                                    <input id="leaveAbsenseYes" type="radio"
+                                           ng-model="extendLeave.leaveOfAbsence.isLeaveOfAbsence" ng-value="true"
+                                           required/>
+                                    <label for="leaveAbsenseYes">{{::translation.yes}}</label>
+                                    <input id="leaveAbsenseNo" type="radio"
+                                           ng-model="extendLeave.leaveOfAbsence.isLeaveOfAbsence" ng-value="false"
+                                           required/>
+                                    <label for="leaveAbsenseNo">{{::translation.no}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad" ng-if="extendLeave.leaveOfAbsence.isLeaveOfAbsence">
+                                <div class="required-field">
+                                    <label ng-bind="::translation.leaveRequest.addPaidHours"></label>
+                                </div>
+                                <div class="col-sm-12 no-pad flex-box paid-hours"
+                                     ng-repeat="exleaveRequest in extendLeave.leaveOfAbsence.additionalTime">
+                                    <div class="col-sm-4 no-pad">
+                                        <select name="paidHours" class="pull-left" ng-model="exleaveRequest.leaveType"
+                                                id="paidHours" required>
+                                            <option value='' disabled selected class='hiddenprofile'
+                                                    ng-bind="::translation.leaveRequest.selectLeaveAbsence"></option>
+                                            <option ng-repeat="leave in leaveTypes" value="{{leave.key}}">
+                                                {{leave.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3" ng-show="exleaveRequest.leaveType == 'Othertype'">
+                                        <input name="leaveDesc_{{$index}}" class="input-midium" type="text"
+                                               id="leaveDesc"
+                                               ng-model="exleaveRequest.leaveDesc"
+                                               ng-required="exleaveRequest.leaveType == 'Othertype'"
+                                               ng-class="{'error-warning': (extendLeaveForm['leaveDesc_' + $index].$invalid)}"
+                                               ng-focus="isLeaveFocused = true; validationPatterns.leaveDesc.blur.leaveDescRequired= false;
+                                                                        validationPatterns.leaveDesc.focus.leaveDescRequired=extendLeaveForm['leaveDesc_' + $index].$invalid;"
+                                               ng-blur="isLeaveFocused = false; validationPatterns.leaveDesc.focus.leaveDescRequired= false;
+                                                                        validationPatterns.leaveDesc.blur.leaveDescRequired=extendLeaveForm['leaveDesc_' + $index].$error.required;"
+                                        />
+                                        <Validation
+                                            condition="(isLeaveFocused && extendLeaveForm['leaveDesc_' + $index].$error.required)"
+                                            msg="{{translation.required_field}}"></Validation>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input id="hours_{{$index}}" name="hours_{{$index}}" type="text"
+                                               ng-pattern="/^[1-9]\d*(\.\d{0,2})?$/" maxlength="6"
+                                               ng-model="exleaveRequest.hours" required
+                                               ng-change="isHoursExceededFun(exleaveRequest)"
+                                               ng-class="{'error-warning': (extendLeaveForm['hours_' + $index].$invalid || (extendLeaveForm['hours_' + $index].$error.pattern) || isHoursExceeded)}"
+                                               ng-focus="isHoursFocused = true; validationPatterns.hours.blur.hoursRequired= false; validationPatterns.hours.blur.hoursPattern = false;
+                                                                        validationPatterns.hours.focus.hoursRequired=extendLeaveForm['hours_' + $index].$invalid; validationPatterns.hours.focus.hoursPattern=extendLeaveForm['hours_' + $index].$error.pattern;"
+                                               ng-blur="isHoursFocused = false; validationPatterns.hours.focus.hoursRequired= false; validationPatterns.hours.focus.hoursPattern = false;
+                                                                        validationPatterns.hours.blur.hoursRequired=extendLeaveForm['hours_' + $index].$error.required; validationPatterns.hours.blur.hoursPattern=extendLeaveForm['hours_' + $index].$error.pattern;"
+                                        />
+                                        <Validation
+                                            condition="(isHoursFocused && extendLeaveForm['hours_' + $index].$error.required)"
+                                            msg="{{translation.required_field}}"></Validation>
+                                        <validation
+                                            condition="isHoursFocused && extendLeaveForm['hours_' + $index].$error.pattern"
+                                            msg="Enter valid number of hours while on LOA."></validation>
+                                        <validation
+                                            condition="isHoursExceeded"
+                                            msg="Please enter the valid hours from the remaining balance"></validation>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span ng-bind="::translation.leaveRequest.hrs"></span>
+                                        <span class="delete-icon" id="removeAdditionalTime"
+                                              ng-click="removeAdditionalTime()"><i class="icon-icon_trash"></i></span>
+                                    </div>
+                                </div>
+                                <a ng-bind="::translation.leaveRequest.add" class="blue bold marg-left-5 view-more"
+                                   id="addAdditionalTime" ng-click="addAdditionalTime()"></a>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="required-field">
+                                    <label ng-bind="::translation.leaveRequest.leaveIntermittent"></label>
+                                </div>
+                                <div class="radio">
+                                    <input id="leaveIntermittentYes" type="radio"
+                                           ng-model="extendLeave.isLeaveIntermittent" required ng-value="true"
+                                    />
+                                    <label for="leaveIntermittentYes">{{::translation.yes}}</label>
+                                    <input id="leaveIntermittentNo" type="radio"
+                                           ng-model="extendLeave.isLeaveIntermittent" required ng-value="false"
+                                    />
+                                    <label for="leaveIntermittentNo">{{::translation.no}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad" ng-if="extendLeave.isLeaveIntermittent">
+                                <p class="proxima-nova-semibold">
+                                    <span ng-bind="::translation.leaveRequest.noteSendMail"></span>
+                                    <span><a id="mailto" href="mailto:loa@trinet.com" class="view-more"
+                                             ng-bind="::translation.leaveRequest.loaEmail"></a></span>
+                                    <span ng-bind="::translation.leaveRequest.spredSheet"></span>
+                                </p>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="col-sm-4 no-pad">
+                                    <div class="required-field">
+                                        <label ng-bind="::translation.leaveRequest.preferredPhone"></label>
+                                    </div>
+                                    <phone-format id="preferredPhone" placeholder="'999-999-9999'" model='extendLeave.preferredPhone' is-required="true" is-form-submitted="true"></phone-format>
+                                    <span class="phoneHintText adjHintText">(123) 123-1234</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="tn-horizontal-divider"></div>
+                            </div>
+                            <h4 class="proxima-nova-semibold"
+                                ng-bind="::translation.leaveRequest.extendedLeaveAbsence"></h4>
+                            <div class="col-sm-12 no-pad">
+                                <div class="col-sm-12 no-pad required-field">
+                                    <label for="mgdReason" ng-bind="::translation.leaveRequest.reasonLeave"></label>
+                                </div>
+                                <div class="col-sm-12 no-pad">
+                                   <!-- <select id="mgdReason"
+                                            ng-class="{'error-warning': (validationPatterns.extendLeave.focus.reasonLeaveRequired) || (validationPatterns.extendLeave.blur.reasonLeaveRequired)}"
+                                            ng-model='extendLeave.leaveReason.reasonCode' name="mgdReason"
+                                            required
+                                            ng-options="item.value for item in extendedLeaveOfAbsenceValues.extendedLOACds track by item.key"
+                                            ng-change="populateRespectiveField(extendLeave.leaveReason.reasonCode)"
+                                            ng-focus="validationPatterns.extendLeave.focus.reasonLeaveRequired = extendLeaveForm.mgdReason.$error.required; validationPatterns.extendLeave.blur.reasonLeaveRequired = false;"
+                                            ng-blur="validationPatterns.extendLeave.blur.reasonLeaveRequired = extendLeaveForm.mgdReason.$error.required; validationPatterns.extendLeave.focus.reasonLeaveRequired = false;">
+                                        <option value="" selected
+                                                ng-bind="::translation.leaveRequest.chooseReason"></option>
+                                    </select>
+                                    <Validation
+                                        condition="validationPatterns.extendLeave.focus.reasonLeaveRequired"
+                                        msg="{{translation.required_field}}"></Validation>-->
+                                    <select id="mgdReason"
+                                            ng-class="{'error-warning': (validationPatterns.extendLeave.focus.reasonLeaveRequired) || (validationPatterns.extendLeave.blur.reasonLeaveRequired)}"
+                                            ng-model='extendLeave.leaveReason.reasonCode' name="mgdReason"
+                                            required
+                                            ng-change="populateRespectiveField(extendLeave.leaveReason.reasonCode)"
+                                            ng-focus="validationPatterns.extendLeave.focus.reasonLeaveRequired = extendLeaveForm.mgdReason.$error.required; validationPatterns.extendLeave.blur.reasonLeaveRequired = false;"
+                                            ng-blur="validationPatterns.extendLeave.blur.reasonLeaveRequired = extendLeaveForm.mgdReason.$error.required; validationPatterns.extendLeave.focus.reasonLeaveRequired = false;">
+                                        <option value="" selected ng-bind="::translation.leaveRequest.chooseReason"></option>
+                                        <option ng-repeat="item in extendedLeaveOfAbsenceValues.extendedLOACds" value="{{item}}" title="{{item.desc}}">{{item.value}}</option>
+                                    </select>
+                                    <Validation
+                                        condition="validationPatterns.extendLeave.focus.reasonLeaveRequired"
+                                        msg="{{translation.required_field}}"></Validation>
+                                </div>
+                                <div class="col-sm-4 no-pad extended-leave-absence" ng-if="isShow"
+                                     ng-controller="datePickerCtrl">
+                                    <div class="required-field">
+                                        <label for="returnFromLeaveDate"
+                                               ng-bind="fieldName"></label>
+                                    </div>
+                                    <div class="tn-calender-input"
+                                         ng-class="{'error-warning': (validationPatterns.extendLeave.focus.extendLeaveReturnFromLeaveDateRequired) || (validationPatterns.extendLeave.blur.extendLeaveReturnFromLeaveDateRequired)}">
+                                        <input type="text" class="form-control bg-white"
+                                               name="returnFromLeaveDate" id="returnFromLeaveDate"
+                                               datepicker-popup="{{format}}"
+                                               readonly="readonly"
+                                               ng-model="extendLeave.modleName" is-open="opened"
+                                               datepicker-options="dateOptions"
+                                               close-text="Close"
+                                               required="isShow"
+                                               ng-focus="validationPatterns.extendLeave.focus.extendLeaveReturnFromLeaveDateRequired = extendLeaveForm.returnFromLeaveDate.$error.required; validationPatterns.extendLeave.blur.extendLeaveReturnFromLeaveDateRequired = false;"
+                                               ng-blur="validationPatterns.extendLeave.blur.extendLeaveReturnFromLeaveDateRequired = extendLeaveForm.returnFromLeaveDate.$error.required; validationPatterns.extendLeave.focus.extendLeaveReturnFromLeaveDateRequired = false;"
+                                        />
+                                        <span class="calendar-icon" ng-click="open($event)">
+                                                   <i class="icon-icon_calendar blue bold"></i>
+                                        </span>
+                                        <Validation
+                                            condition="validationPatterns.extendLeave.focus.extendLeaveReturnFromLeaveDateRequired"
+                                            msg="{{translation.required_field}}"></Validation>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-pad" ng-if="selectedReason.key == 'WOR'">
+                                    <div class="tn-checkbox no-marg tn-fmla-qualification-checkbox">
+                                        <input id="reasonCode"
+                                               ng-model="extendLeave.leaveReason.isWorkersCompFiled" type="checkbox"
+                                               value="">
+                                        <label for="reasonCode">{{::translation.ex_leaves.work_related_injury}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="tn-horizontal-divider"></div>
+                            </div>
+                            <h4 class="proxima-nova-semibold">FMLA Qualification</h4>
+                            <div class="col-sm-12 no-pad">
+                                <div>
+                                    <label ng-bind="::translation.leaveRequest.fmlaLeaveQuestion"></label>
+                                </div>
+                                <div class="radio">
+                                    <input id="compOfferFMLAYes" type="radio"
+                                           ng-model="extendLeave.fmlaQualification.isFMLAPolicy" ng-value="true"
+                                           required/>
+                                    <label for="compOfferFMLAYes">{{::translation.yes}}</label>
+                                    <input id="compOfferFMLANo" type="radio"
+                                           ng-model="extendLeave.fmlaQualification.isFMLAPolicy"
+                                           ng-value="false" required/>
+                                    <label for="compOfferFMLANo">{{::translation.no}}</label>
+                                </div>
+                                <div>
+                                    <label ng-bind="::translation.leaveRequest.fmlaStateFamilyLeaveQuestion"></label>
+                                </div>
+                                <div class="radio">
+                                    <input id="compOfferFMLAYes1" type="radio"
+                                           ng-model="extendLeave.fmlaQualification.isOtherStateFMLA" ng-value="true"
+                                           required/>
+                                    <label for="compOfferFMLAYes1">{{::translation.yes}}</label>
+                                    <input id="compOfferFMLANo1" type="radio"
+                                           ng-model="extendLeave.fmlaQualification.isOtherStateFMLA"
+                                           ng-value="false" required/>
+                                    <label for="compOfferFMLANo1">{{::translation.no}}</label>
+                                </div>
+                                <div>
+                                    <label ng-bind="::translation.leaveRequest.fmlaContent"></label>
+                                </div>
+                                <div>
+                                    <label ng-bind="::translation.leaveRequest.fmlaContentTag"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 no-pad">
+                                <div class="tn-checkbox no-marg tn-fmla-qualification-checkbox">
+                                    <input type="checkbox" id="ex_leaves"
+                                           ng-model="extendLeave.fmlaQualification.isAcknowledged"
+                                           ng-required="extendLeave.fmlaQualification.isFMLAPolicy"
+                                           class="adj-checkbox" value="true">
+                                    <label for="ex_leaves" ng-bind="translation.ex_leaves.desc8"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="tn-horizontal-divider"></div>
+                            </div>
+                            <h4 class="proxima-nova-semibold"
+                                ng-bind="::translation.leaveRequest.flexibleSpendingAcc"></h4>
+                            <div class="col-sm-12 no-pad">
+                                <div>
+                                    <label ng-bind="::translation.leaveRequest.fsaContribut"></label>
+                                </div>
+                                <div class="radio horizontal-radio"
+                                     ng-class="item.isSelect ? 'isSelect': ''"
+                                     ng-repeat="item in extendedLeaveOfAbsenceValues.flexibleSpendingAcc">
+                                    <input id="flexibleSpendingAcc_{{$index}}" type="radio"
+                                           data-ng-model="item.isSelect"
+                                           ng-click="selectAndDeselect(extendedLeaveOfAbsenceValues.flexibleSpendingAcc, item, false)"
+                                           data-ng-value="true"/>
+                                    <label for="flexibleSpendingAcc_{{$index}}"
+                                           class="no-marg"><span>{{item.value}}</span></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="tn-horizontal-divider"></div>
+                            </div>
+                            <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.benefitPremium"></h4>
+                            <div class="col-sm-12 no-pad">
+                                <div class="radio horizontal-radio"
+                                     ng-class="item.isSelect ? 'isSelect': ''"
+                                     ng-repeat="item in extendedLeaveOfAbsenceValues.benefitPreRepayCds">
+                                    <input name="benefitPremiumRepayment" id="benefitPremiumRepayment_{{$index}}"
+                                           type="radio" data-ng-model="item.isSelect"
+                                           data-ng-value="true"
+                                           ng-click="selectAndDeselect(extendedLeaveOfAbsenceValues.benefitPreRepayCds, item, true)"/>
+                                    <label for="benefitPremiumRepayment_{{$index}}"
+                                           class="no-marg"><span compile="item.value"></span></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="tn-horizontal-divider"></div>
+                            </div>
+                            <h4 class="proxima-nova-semibold" ng-bind="::translation.leaveRequest.otherInfo"></h4>
+                            <div class="col-md-12 col-sm-12 form-return-plan">
+                                <div>
+                                    <label ng-if="!isAmbrose" for="comment" ng-bind="::translation.leaveRequest.notes"></label>
+                                    <label ng-if="isAmbrose" for="comment" ng-bind="::translation.leaveRequest.notesAmbrose"></label>
+                                </div>
+                                <div>
+                                    <textarea rows="5" id="comment"
+                                              maxlength="2000"
+                                              ng-model="extendLeave.notes"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-12 no-pad">
+                                <div class="tn-horizontal-divider"></div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 no-pad">
+                                <button type="button" id="togglebutton" class="tn-button tn-button-small tn-cancel-button"
+                                        ng-click="toggleExtendLeaveRequest(); submitLeaveRequestSubmitted = false;"
+                                        ng-bind="::translation.leaveRequest.cancel">
+                                </button>
+                                <button type="submit" class="tn-button tn-action-button tn-button-small"
+                                        id="submitToggleButton"
+                                        ng-disabled="(!extendLeave.benefitPremiumRepayment.benefitPremiumCode || !extendLeave.fsaContribution || !extendLeaveForm.$valid)"
+                                        ng-class="{'cursor-no-drop': (!extendLeave.benefitPremiumRepayment.benefitPremiumCode || !extendLeave.fsaContribution || !extendLeaveForm.$valid),'trinet-primary-action-btn':(extendLeave.benefitPremiumRepayment.benefitPremiumCode && extendLeave.fsaContribution && extendLeaveForm.$valid)}"
+                                        ng-click="submitLeaveRequest(extendLeave)">Submit
+                                </button>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div class="col-sm-3 secondary-section">
+
+        </div>
+    </div>
+</div>

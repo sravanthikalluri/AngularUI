@@ -1,0 +1,32 @@
+<div class="tn-onboarding-option-card" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label">
+    <div class="tn-onboarding-option-title-wrapper">
+        <h4 class="tn-onboarding-option-title proxima-nova-semibold" id="exampleModal1Label">{{translation.dashboard.onboardingOption.title}}</h4>
+    </div>
+    <div>
+        <div class="tn-onboarding-option-wrapper">
+            <label class="tn-onboarding-option" 
+                ng-class="{'tn-onboarding-selected': onboardingSelected == 'newHire'}" 
+                ng-click="selectOnboarding('newHire')">{{translation.dashboard.onboardingOption.newHire}}</label>
+            <label class="tn-onboarding-option" 
+                ng-class="{'tn-onboarding-selected':onboardingSelected=='k1'}" 
+                ng-click="selectOnboarding('k1')"
+                ng-if="onboardingK1">{{translation.dashboard.onboardingOption.k1}}</label>
+            <label class="tn-onboarding-option" 
+                ng-class="{'tn-onboarding-selected':onboardingSelected=='trustedAdvisor'}" 
+                ng-click="selectOnboarding('trustedAdvisor')"
+                ng-if="onboardingRole == 'HRAUTH' || onboardingRole == 'HRAUTH_R'">{{translation.dashboard.onboardingOption.trustedAdvisor}}</label>
+        </div>
+        <div class="tn-onboarding-hr-wrapper">
+            <hr class="tn-onboarding-hr">
+        </div>
+        <div class="tn-onboarding-option-button-wrapper">
+            <md-button id="onBoardingViewBtn" 
+                class="md-accent md-raised md-hue-3 tn-onboarding-widget-button" 
+                ng-class="{'tn-onboarding-active':onboardingSelected}"
+                ng-click="goToOnboarding(event)"
+                ng-disabled="!onboardingSelected">
+                <span ng-bind="translation.dashboard.continue"></span>
+            </md-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "chooseOptions": [
+    {
+      "name": "All",
+      "value": "all"
+    },
+    {
+      "name": "ThisYear",
+      "value": "1"
+    },
+    {
+      "name": "Last3Months",
+      "value": "3"
+    },
+    {
+      "name": "Last6Months",
+      "value": "6"
+    },
+    {
+      "name": "LastYear",
+      "value": "-1"
+    },
+    {
+      "name": "DateRange",
+      "value": "date"
+    }
+  ]
+}

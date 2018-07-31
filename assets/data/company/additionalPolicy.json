@@ -1,0 +1,36 @@
+{
+  "errorCode": null,
+  "resource": [
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "New File44444"
+    },
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "Test"
+    },
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "Test PDF"
+    },
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "test tes test"
+    },
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "test test"
+    },
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "Testing Logo"
+    },
+    {
+      "linkUrl": "assets/pdf/company/policies/empguidebook_Canada.pdf",
+      "linkName": "v2"
+    }
+  ],
+  "statusText": "OK",
+  "statusCode": "200",
+  "statusMessage": "Success"
+}

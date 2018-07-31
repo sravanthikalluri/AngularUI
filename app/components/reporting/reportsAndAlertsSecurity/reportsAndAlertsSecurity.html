@@ -1,0 +1,92 @@
+<alert-view></alert-view>
+<div class="reports-security-container">
+    <h2 class="no-pad marg-25">Reports and Alerts Security</h2>
+    <a ng-click="launchDefineUserAccess();" title="Link will open in a new window." ng-bind="::translation.reporting.defineUserAccessLinkText"></a>
+    <div class="tn-search-box-container">
+        <span class="tn-search-box-search-icon icon-icon_unified_search"></span>
+        <input id="searchText" type="text" class="tn-search-box"  ng-change="searchFilter();" placeholder="Search Employees..." ng-model="search" ng-model-options="{debounce:1000}">
+    </div>
+    <div class="reports-security-grid">
+        <div class="reports-security-grid-header">
+            <div>
+                <div ng-bind="::translation.reporting.headerEmployeeId"></div>
+                <div ng-bind="::translation.reporting.headerName"></div>
+                <div ng-bind="::translation.reporting.headerAlerts"></div>
+                <div ng-bind="::translation.reporting.headerDashboard"></div>
+                <div ng-bind="::translation.reporting.headerStandardReports"></div>
+                <div ng-bind="::translation.reporting.headerCustomReports"></div>
+                <div></div>
+            </div>
+        </div>
+        <div id="fixed-reports-security-grid"  when-scroll="loadData()">
+            <div class="reports-security-grid-body" ng-repeat="employee in filterByData | SearchCheckboxFilter:selection">
+                <div>
+                    <div class="reports-security-grid-text">{{employee.employeeId}}</div>
+                    <div class="reports-security-grid-text">{{employee.employeeName | addSpaceToComma}}</div>
+                    <div class="tn-toggle-container">
+                        <label class="tn-toggle hand">
+                            <input type="checkbox" ng-model="employee.alerts" ng-click="toggleSaveButton(employee, $index)" ng-disabled="!employee.canViewAlertRole">
+                            <div class="tn-toggle-track">
+                                <div class="tn-toggle-handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="tn-toggle-container">
+                        <label class="tn-toggle hand">
+                            <input type="checkbox" ng-model="employee.dashboards" ng-click="toggleSaveButton(employee, $index)">
+                            <div class="tn-toggle-track">
+                                <div class="tn-toggle-handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="tn-toggle-container">
+                        <label class="tn-toggle hand">
+                            <input type="checkbox" ng-model="employee.standardReports" ng-click="toggleSaveButton(employee, $index)">
+                            <div class="tn-toggle-track">
+                                <div class="tn-toggle-handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="tn-toggle-container">
+                        <label class="tn-toggle hand">
+                            <input type="checkbox" ng-model="employee.reportuser" ng-click="toggleSaveButton(employee, $index)">
+                            <div class="tn-toggle-track">
+                                <div class="tn-toggle-handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="reports-security-buttons">
+                        <button class="tn-reports-security-button tn-reports-security-save-button"
+                                ng-show="editMode[$index]" ng-hide="!editMode[$index]"
+                                ng-click="saveEmployeePermissions(employee, $index)">
+                            Save
+                        </button>
+
+                        <button class="tn-reports-security-button tn-reports-security-cancel-button"
+                                ng-show="editMode[$index]" ng-hide="!editMode[$index]"
+                                ng-click="cancelEdit($index, employee)">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="search.length >0">
+        <span id="totalCount" ng-if="activeData.length > 0">
+            {{::translation.reporting.showingText}}
+            {{(search.length > 0 ? (filterByData).length : offSet) }} {{::translation.reporting.ofText}} {{filterByData.length}}
+            {{::translation.reporting.employeesText}}
+        </span>
+    </div>
+    <div ng-if="!search.length >0">
+        <span id="totalCount1" ng-if="allEmpData.length > 0">
+            {{::translation.reporting.showingText}}
+            {{(search.length > 0 ? (filterByData).length : offSet) }} {{::translation.reporting.ofText}} {{globalCount}}
+            {{::translation.reporting.employeesText}}
+        </span>
+    </div>
+</div>
+
+
+

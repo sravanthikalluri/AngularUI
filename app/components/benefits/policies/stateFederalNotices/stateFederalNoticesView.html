@@ -1,0 +1,72 @@
+<!--
+Program: stateFederalNoticesView.html
+Description: It displays information to user about state fedaral notices.
+
+ -->
+<div class="panel-group benefits-accord-open-state benefit-policies-general" id="accordion">
+    <!--
+    ng-controller="dateController" -->
+    <!-- 	First Panel -->
+    <div ng-class="{'learnMoreStatic' :learn == true,'panel-expand':learn ==false }">
+
+        <div class="panel panel-default styling">
+            <div class="panel-heading">
+                <h4 class="panel-title" ng-bind="::translation.my_benefits.policies.protect_act"></h4>
+
+            </div>
+            <p class="magr-left-25">
+                <span ng-bind="::translation.my_benefits.policies.act_datafrst"></span></br>
+                </br><span ng-bind="::translation.my_benefits.policies.act_datascnd"></span> </br>
+                </br><span ng-bind="::translation.my_benefits.policies.act_datathrd"></span></br>
+                </br><span ng-bind="::translation.my_benefits.policies.act_datafrth"></span></br>
+                </br><span ng-bind="::translation.my_benefits.policies.act_datafifth"></span>
+            </p>
+        </div>
+        <div class="panel panel-default medium">
+            <div class="panel-heading">
+                <h4 class="panel-title" ng-bind="::translation.my_benefits.policies.right_women"></h4>
+
+            </div>
+            <p class="magr-left-25">
+                <span ng-bind="::translation.my_benefits.policies.womenone"></span></br> </br>
+                <span ng-bind="::translation.my_benefits.policies.womenscnd"></span>:</br>
+            </p>
+            <ol class="state-ordered-list">
+                <li ng-bind="::translation.my_benefits.policies.wmn_top"></li>
+                <li ng-bind="::translation.my_benefits.policies.wmn_midl"></li>
+                <li ng-bind="::translation.my_benefits.policies.wmn_bottom"></li>
+            </ol>
+            <p class="magr-left-25" ng-bind="::translation.my_benefits.policies.wmn_servce"></p>
+            <p class="magr-left-25" ng-bind="::translation.my_benefits.policies.wmn_subs"></p>
+            <p class="magr-left-25" ng-bind="::translation.my_benefits.policies.wmn_mastec"></p>
+
+        </div>
+    </div>
+    <a class="pull-right medium action pull-left marg-left-15" ng-click="learn =! learn" ng-hide="learn">{{::translation.my_benefits.legalNotices.learnMore}}
+        <span class="icon-icon_report_down small pad-5 pull-right"></span></a>
+    <a class="pull-right medium action pull-left marg-left-15" ng-click="learn =! learn" ng-show="learn">{{::translation.my_benefits.legalNotices.close}} <span
+            class="icon-icon_report_up small pad-right"></span></a>
+</div>
+<div class="clearfix"></div>
+<ul class="no-pad" ng-repeat="data in  innerTileData.reportsNotices">
+    <li class="block" ng-if="$index == 0">
+        <a id="currBooktwo{{$index}}1" ng-href="#/legalnotices/acaMarketPlaceView" data-target="_blank"
+           class="pull-left"
+           target="_blank">
+
+            <span id="currBookdatestwo{{$index}}1">{{::data.text}}	</span>
+        </a>
+    </li>
+    <li class="block" ng-if="$index !== 0">
+        <a id="currBooktwo{{$index}}" ng-href="{{data.url | contentUrl}}" class="pull-left"
+           target="_blank"><span class="icon-icon_pdf"></span>
+
+            <span id="currBookdatestwo{{$index}}">{{::data.text}}	</span>
+        </a>
+    </li>
+</ul>
+
+
+</div>
+
+

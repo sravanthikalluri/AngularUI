@@ -1,0 +1,112 @@
+<div class="tn-contact-trinet no-pad tn-background pull-left">
+    <h3 class="tn-page-heading" ng-bind="translation.contactTrinet.heading"></h3>
+    <div class="contact-trinet-container">
+        <div class="primary-container">
+            <md-card ng-if="contactDetails.supportContact">
+                <md-card-title>
+                    <md-card-title-text>
+                        <p class="tn-employee-card-title proxima-nova-semibold" > {{!companyId ? translation.contactTrinet.employees : translation.contactTrinet.colleagues}}</p>
+                        <p class="text-center tn-employee-card-sub-title"
+                              ng-if="!companyId" ng-bind="translation.contactTrinet.employeeCardTitle"></p>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p class="row contact-hr-title tn-employee-card-sub-title" ng-if="companyId" ng-bind="translation.contactTrinet.corporateHrTitle"></p>
+                    <div class="contact-card-contact-method ie11-contact-card-icon-conatiner" ng-if="showLiveChat">
+                        <div class="contact-card-icon-conatiner ">
+                            <i class="font-azure-blue icon-icon_chat tn-icon blue"></i>
+                            <div class="font-azure-blue contact-card-gray-label proxima-nova-semibold">
+                                <a id="liveagent_button_online_{{liveChatCode}}" class="liveChatUnique" href="javascript://Chat" ng-click="createDynamicOnlickEvent(liveChatCode)">{{translation.contactTrinet.chat}}</a></div>
+                        </div>
+                        <p class="proxima-nova-semibold">{{translation.contactTrinet.chatAvailabilityPeriod}}</p>
+                    </div>
+                    <div class="contact-card-contact-method" ng-if="!companyId">
+                        <div class="contact-card-icon-conatiner">
+                            <i class="icon-icon_phone tn-icon"></i>
+                            <div class="contact-card-gray-label proxima-nova-semibold" ng-bind="translation.contactTrinet.phone"></div>
+                        </div>
+                        <div class="tn-text-right proxima-nova-semibold">{{contactDetails.supportContact.phone}}</div>
+                    </div>
+                    <div class="contact-card-contact-method">
+                        <div class="contact-card-icon-conatiner">
+                            <i class="icon-icon_email tn-icon"></i>
+                            <div class="contact-card-gray-label proxima-nova-semibold" ng-bind="translation.contactTrinet.email"></div>
+                        </div>
+                        <a class="tn-text-right proxima-nova-semibold" href="mailto:{{contactDetails.supportContact.email}}">{{contactDetails.supportContact.email}}</a>
+                    </div>
+                    <div class="contact-card-contact-method" >
+                        <div class="contact-card-icon-conatiner">
+                            <i class="icon-icon_time tn-icon"></i>
+                            <div class="contact-card-gray-label proxima-nova-semibold" ng-bind="translation.contactTrinet.hoursOfOperation"></div>
+                        </div>
+                        <div class="tn-text-right proxima-nova-semibold">
+                            {{contactDetails.supportContact.hoursOfOperation.availDays}}&nbsp;
+                            {{contactDetails.supportContact.hoursOfOperation.fromTime}} - {{contactDetails.supportContact.hoursOfOperation.toTime}}&nbsp;
+                            {{contactDetails.supportContact.hoursOfOperation.timeZone }}
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card ng-if="contactDetails.businessContacts">
+                <md-card-title>
+                    <md-card-title-text>
+                        <p class="tn-employee-card-title proxima-nova-semibold" ng-bind="translation.contactTrinet.hrCardTitle"></p>
+                        <p class="tn-employee-card-sub-title" ng-bind="translation.contactTrinet.hrCardSubTitle"></p>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <div ng-repeat="contact in contactDetails.businessContacts">
+                        <md-card-title class="bussiness-contact-name">
+                            <md-card-title-text class="ie11-tn-employee-card-title proxima-nova-semibold">
+                                <p class="tn-employee-card-title proxima-nova-semibold"
+                                   ng-class="{ 'tn-unAssigned': contact.contactName === 'Not assigned'}">
+                                    {{contact.contactName}}
+                                    <a class="contact-card-gray-label proxima-nova-semibold" ng-if="isAmbrose" ng-href="./trinetGateway/services/v1.0/viewhraprofile" target="_blank">CSA Bio</a>
+                                </p>
+                                <p class="contact-card-gray-label proxima-nova-semibold tn-employee-card-sub-title"> {{contact.contactType}} </p>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <div class="contact-card-contact-method" ng-if="contact.phoneNumber">
+                            <div class="contact-card-icon-conatiner">
+                                <i class="icon-icon_phone tn-icon"></i>
+                                <div class="contact-card-gray-label proxima-nova-semibold" ng-bind="translation.contactTrinet.phone"></div>
+                            </div>
+                            <div class="tn-text-right proxima-nova-semibold">{{contact.phoneNumber | tel}}</div>
+                        </div>
+                        <div class="contact-card-contact-method" ng-if="contact.email">
+                            <div class="contact-card-icon-conatiner">
+                                <i class="icon-icon_email tn-icon"></i>
+                                <div class="contact-card-gray-label proxima-nova-semibold" ng-bind="translation.contactTrinet.email"></div>
+                            </div>
+                            <a class="tn-text-right proxima-nova-semibold" href="mailto:{{contact.email}}">{{contact.email}}</a>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div class="secondary-container">
+            <md-card class="caseManagement-card" ng-if="caseManagement">
+                <md-card-title class="">
+                    <md-card-title-text class="tn-employee-card-title proxima-nova-semibold text-left" >
+                        <span ng-bind="translation.contactTrinet.caseManagement"></span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content class="case-management-card-content ">
+                    <div class="contact-card-gray-label proxima-nova-semibold" ng-if="addCase">
+                        <a ng-href="{{ssoURL}}" ng-click="getUrl('addcase')" target="_blank" ng-bind="translation.contactTrinet.addCase"></a>
+                    </div>
+                    <div class="contact-card-gray-label proxima-nova-semibold"  ng-if="managecases">
+                        <a ng-href="{{ssoURL}}" ng-click="getUrl('managecases')" target="_blank" ng-bind="translation.contactTrinet.managecases"></a>
+                    </div>
+                    <div class="contact-card-gray-label proxima-nova-semibold" ng-if="mystats">
+                        <a ng-href="{{ssoURL}}" ng-click="getUrl('mystats')" target="_blank" ng-bind="translation.contactTrinet.mystats"></a>
+
+                    </div>
+                    <div class="contact-card-gray-label proxima-nova-semibold" ng-if="companystats">
+                        <a ng-href="{{ssoURL}}" ng-click="getUrl('companystats')" target="_blank" ng-bind="translation.contactTrinet.companystats"></a>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</div>

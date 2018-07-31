@@ -1,0 +1,170 @@
+<!--
+Program: workInboxView.html
+Description: It displays Information of workInbox details.
+ -->
+<div class="no-right-pad work-inbox pad-top-10">
+    <alert-view></alert-view>
+    <div class="row no-marg">
+
+        <!--tabs-->
+        <div class="col-md-12 no-pad">
+            <div class="no-pad workinbox">
+                <div class="col-md-12 col-lg-12 col-sm-12 no-right-pad">
+                    <div class="col-md-12 pannel-section">
+                        <h2>{{::translation.workinbox.title}}</h2>
+                        <div class="clearfix">&ensp;</div>
+                        <div class="clearfix">&ensp;</div>
+                        <div class="panel panel-primary no-border">
+                            <div class="panel-heading no-bg  no-border no-pad">
+                                <!-- Tabs -->
+                                <ul class="nav panel-tabs" id="mainTabs">
+                                    <li ng-click="workInboxDataFn(tab.key,false)" id="{{tab.key}}" ng-class="{active: tab.active}"
+                                        ng-repeat="tab in tabs">
+                                        <a href="javascript:void(0)" data-toggle="tab">{{::tab.title}}
+                                            <span class="badge" ng-if="tab.count > 0" ng-bind="tab.count"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body no-pad">
+
+                                <div class="tab-content">
+                                    <div class="clearfix"></div>
+                                    <div class="tab-pane active" id="MyTasks">
+                                        <div class="panel panel-primary no-border">
+                                            <div class="panel-heading no-bg  no-border no-pad" ng-if="workInbox">
+                                                <!-- Tabs -->
+                                                <ul class="nav panel-tabs no-border">
+                                                    <li ng-repeat="subMenuItem in workInbox"
+                                                        ng-class="{active: subMenuItem.isShow}"
+                                                        ng-click="setInnerTab($index)">
+                                                        <a href="" id="{{$index}}" data-toggle="tab">{{subMenuItem.name}} <span ng-if="subMenuItem.count">({{subMenuItem.count}})</span></a>
+                                                        <div class="triangle"></div>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="panel-body no-pad">
+                                                <div class="tab-content border block">
+                                                    <div class="clearfix"></div>
+                                                    <div class="tab-pane active">
+                                                        <div class="col-md-12 no-pad">
+                                                            <div class="bs-example">
+                                                                <div class="panel-group" id="accordion">
+                                                                    <no-records></no-records>
+                                                                    <div class="panel panel-default" ng-repeat="(innerKey, category) in selectedInboxData track by $index">
+                                                                        <div class="panel-heading accordion-toggle"
+                                                                             data-toggle="collapse"
+                                                                             data-parent="#accordion{{innerKey}}"
+                                                                             href="#collapse{{innerKey}}"
+                                                                             ng-click="resetData($index)">
+                                                                            <h4 class="panel-title">
+                                                                                <a>{{category.name}} ({{category.data.length}})
+                                                                                    <i  ng-class="category.isShow ? 'icon-icon_Disclosure_Expand' : 'icon-icon_Disclosure_Collapse' " class="indicator pull-right"></i>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id="collapse{{innerKey}}"
+                                                                             class="panel-collapse collapse"
+                                                                             ng-class="category.isShow ? 'in' : '' ">
+                                                                            <div class="panel-body">
+                                                                                <table class="table manage-table table-hover" ng-if="category.data.length > 0">
+                                                                                    <thead>
+                                                                                    <tr>
+                                                                                        <th ng-repeat="(key, value) in category.headerNames" class="relative">
+                                                                                            {{value}}
+                                                                                            <span ng-mouseleave="textboxhide()" ng-if="type === 'assignedToOthers' && selectedInnerTab === 'Tasks are waiting for others' && key === 'actorName'">
+                                                                                                <span class="icon-icon_filter no-pad-imp pull-right black" ng-click="searchPos(1)"></span>
+                                                                                                <div ng-show="searchbox == 1" class="group-change-filter-list">
+                                                                                                    <div ng-repeat="actorName in category.filterNames" class="list-sub-data">
+                                                                                                        <div class="action-checkbox">
+                                                                                                            <label for="{{actorName}}" class= "reg-font">
+                                                                                                                <p>
+                                                                                                                    <input  id="{{actorName}}"
+                                                                                                                            type="checkbox"
+                                                                                                                            name="name"
+                                                                                                                            value="{{actorName}}"
+                                                                                                                            class="pull-left"
+                                                                                                                            ng-click="toggleSelector(actorName,category.id);"/>{{actorName}}
+                                                                                                                </p>
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </span>
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+
+                                                                                    <tr class="border-btm" ng-repeat="d in category.data">
+                                                                                        <td  ng-repeat="(key, value) in category.headerNames" ng-if="key !== 'actions'">
+                                                                                            {{value === 'Manager Name' ? d.positionRelationName+' - '+ d.position : d[key]}}
+                                                                                        </td>
+
+                                                                                        <td class="text-center large no-pad-imp" ng-repeat="(key, value) in category.headerNames" ng-if="key === 'actions'">
+                                                                                            <work-inbox-actions lr-url="d.lrURL"  checkout="d.isCheckOut" section="category.id" selected-inner-tab="selectedInnerTab" re-initialize = "reInitializeWorkInbox(errorData,type)" error="alertError(errorData)"  actions="d[key]" data="d" type="type"></work-inbox-actions>
+                                                                                        </td>
+
+
+                                                                                    </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <div class="col-md-12 retirement-plan-enrolment" ng-if="category.data.length <= 0">
+                                                                                    <div class="no-enrolment">
+                                                                                        <h3>{{category.message}}</h3>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of tabs-->
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div><!--end of container-content-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{::translation.workinbox.confirmation}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{::translation.workinbox.conformationMessage}}</p>
+            </div>
+            <div class="modal-footer">
+                <button id="yesBtn" type="button" class="trinet-secondary-action-btn">{{::translation.workinbox.yes}}</button>
+                <button id="noBtn" type="button" class="trinet-secondary-action-btn" data-dismiss="modal">{{::translation.workinbox.close}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,165 @@
+<div class="tn-deptAndLoc tn-background">
+    <alert-view></alert-view>
+    <div class="row no-margin">
+        <div class="col-sm-12 no-padding">
+            <div class="flex-box space-between manage-departmentAndLocation-tabs">
+                <h3 class="tn-page-heading no-margin" ng-bind="::translation.manageDeptAndLoc.deptandloctitle"></h3>
+                <div class="tn-tab-section no-margin">
+                    <ul class="nav nav-pills nav-tabs no-border">
+                        <li ng-class="{ active: tab === 2}">
+                            <a ng-click="selectTab(2)" id="mgEmp_selectTabLocId"
+                               class="personal-tabs proxima-nova-semibold">
+                                {{ ::translation.manageDeptAndLoc.locations}}</a>
+                        </li>
+                        <li ng-class="{ active: tab === 1}">
+                            <a ng-click="selectTab(1)" id="mgEmp_selectTabDeptId"
+                               class="personal-tabs proxima-nova-semibold">
+                                {{ ::translation.manageDeptAndLoc.departments}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 no-padding">
+            <div class="flex-box">
+                <div class="add-button-section margin-right">
+                    <button ng-show="tab === 1" class="tn-button tn-action-button tn-button-small height-35"
+                            ng-click="addDepartment()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span>{{ ::translation.manageDeptAndLoc.addDept}}</span>
+                    </button>
+                    <button ng-show="tab === 2" class="tn-button tn-action-button height-35" ng-click="addlocation()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span>{{ ::translation.manageDeptAndLoc.addLoc}}</span>
+                    </button>
+                </div>
+                <div class="tn-search-box-container margin-right">
+                    <span class="tn-search-box-search-icon icon-icon_unified_search text-color-deptloc"></span>
+                    <input ng-show="tab === 1" id="mgEmp_searchDept" type="text" name="search"
+                           class="tn-search-box" placeholder="Search {{translation.manageDeptAndLoc.departments}}" ng-model="search"
+                           aria-invalid="false">
+                    <input ng-show="tab === 2" id="mgEmp_searchDept" type="text" name="search"
+                           class="tn-search-box" placeholder="Search {{translation.manageDeptAndLoc.locations}}" ng-model="search"
+                           aria-invalid="false">
+                </div>
+                <span id="totalCount2" class="font-light-gray proxima-nova-semibold"
+                      ng-if="tab === 1 && departments.length > 0">{{(departments |filter:search| SearchCheckboxFilter:selection).length }} {{ ::translation.manageDeptAndLoc.totalDepartments}}</span>
+                <span id="totalCount3" class="font-light-gray proxima-nova-semibold"
+                      ng-if="tab === 2 && locations.length > 0">{{(locations |filter:search).length }} {{ ::translation.manageDeptAndLoc.totalLocations}}</span>
+            </div>
+            <div class="col-sm-12 no-padding bg-white tn-profile-main tn-manage-Employee">
+                <div ng-if="tab === 1">
+                    <table class="table tn-table" id="manageDept">
+                        <!--table table-striped  manage-table no-marg dept-table-->
+                        <thead>
+                        <tr>
+                            <th ng-mouseleave="textboxhide()" class="relative">
+                                <h6>
+                                    <span>{{::translation.manageDeptAndLoc.departmentName}}</span>
+                                    <span class="grid-icon hand" ng-click="searchPos(1)">
+                                    <i class="icon-icon_filter black"></i>
+                                </span>
+                                    <div ng-show="searchbox == 1 && departments.length > 0"
+                                         class="group-change-filter-list">
+                                        <div class="tn-checkbox" ng-repeat="dept in departments | unique: 'deptName'|filter:departm">
+                                            <input type="checkbox" ng-hide="true"
+                                                   id="departName{{$index}}"
+                                                   name="name" value="{{dept.deptName}}"
+                                                   ng-model="selectchange"
+                                                   ng-click="toggleSelection(dept.deptName);"/>
+                                            <label for="departName{{$index}}" >
+                                                {{dept.deptName === null ? "(Blanks)" : dept.deptName}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </h6>
+
+                            </th>
+                            <th><h6>{{ ::translation.manageDeptAndLoc.code}}</h6></th>
+                            <th><h6>{{ ::translation.manageDeptAndLoc.shortDescription}}</h6></th>
+                            <th><h6>{{ ::translation.manageDeptAndLoc.totalEmployees}}</h6></th>
+                            <th><h6>{{ ::translation.manageDeptAndLoc.departmentManager}}</h6></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="dept in departments |filter:search|SearchCheckboxFilter:selection"
+                            id="mgEmp_EmployeeData">
+                            <td><p class="no-margin proxima-nova content-text">{{::dept.deptName}}</p></td>
+                            <td><p class="no-margin proxima-nova content-text">{{::dept.deptCode}}</p></td>
+                            <td><p class="no-margin proxima-nova content-text">{{::dept.shortDesc}}</p></td>
+                            <td><p class="no-margin proxima-nova content-text">{{::dept.deptEmployeeCount}}</p></td>
+                            <td><p class="no-margin proxima-nova content-text">{{::(dept.deptManagerName == null ? "" : dept.deptManagerName)}}</p></td>
+                            <td>
+                                <p class="no-margin proxima-nova content-text"><a id="deptmail" class="view-history-link no-marg text-right"
+                                       ng-click="$event.stopPropagation();editDepartmentFunc(dept)"> Edit</a></p>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <no-records></no-records>
+                    <!--<span id="totalCount2" class="medium employee-total-count-adjustment"
+                          ng-if="tab === 1 && departments.length > 0">{{(departments |filter:search| SearchCheckboxFilter:selection).length }} {{ ::translation.manageDeptAndLoc.totalDepartments}}</span>-->
+                </div>
+                <div ng-if="tab === 2">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="department manage-employee-table">
+                            <table class="table tn-table" id="manageLoc">
+                                <!--table  table-striped manage-table no-marg dept-table-->
+                                <thead>
+                                <tr>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.location}}</h6></th>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.code}}</h6></th>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.address}}</h6></th>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.city}}</h6></th>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.state}}</h6></th>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.country}}</h6></th>
+                                    <th><h6>PostalCode</h6></th>
+                                    <th><h6>{{ ::translation.manageDeptAndLoc.totalEmployees}}</h6></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-toggle="collapse" data-target=".dept{{$index}}"
+                                    class="dept-border-btm defalutPointer" ng-repeat="location in locations | filter:search"
+                                    id="mgEmp_EmployeeDataLoc">
+                                    <td><p class="no-margin proxima-nova content-text">{{::location.locationName}}</p></td>
+                                    <td><p class="no-margin proxima-nova content-text">{{::location.locationId}}</p></td>
+                                    <td class="">
+                                        <div>{{::location.address.address1}}</div>
+                                        <!-- If the address is null, the payload is as ("address2": "null") from API -->
+                                        <div ng-if="location.address.address2 !== 'null'">{{location.address.address2}}
+                                        </div>
+                                        <div ng-if="location.address.address3 !== 'null'">{{location.address.address3}}
+                                        </div>
+                                    </td>
+                                    <td><p class="no-margin proxima-nova content-text">{{::location.address.city}}</p></td>
+                                    <td><p class="no-margin proxima-nova content-text">{{::location.address.state}}</p></td>
+                                    <td><p class="no-margin proxima-nova content-text">{{::location.address.country}}</p></td>
+                                    <td><p class="no-margin proxima-nova content-text">{{::location.address.postalCode}}</p></td>
+                                    <td class="text-left">{{::location.locationEmployeeCount}}
+                                        <p class="text-right no-marg pull-right">
+                                <span ng-hide="true" id="mail1" class="icon-icon_Edit medium hide-icon hand"
+                                      ng-click="$event.stopPropagation();editlocatn(location)"></span>
+                                            <span id="mgEmp_phone{{$index}}"
+                                                  class="icon-icon_makeinactive medium hide-icon"></span>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <no-records></no-records>
+                        </div>
+                    </div>
+                    <!-- <span id="totalCount3" class="medium employee-total-count-adjustment"
+                           ng-if="tab === 2 && locations.length > 0">{{(locations |filter:search).length }} {{ ::translation.manageDeptAndLoc.totalLocations}}</span>-->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

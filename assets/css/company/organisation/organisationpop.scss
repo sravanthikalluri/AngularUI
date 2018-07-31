@@ -1,0 +1,165 @@
+@import '../../global';
+
+.radio-org {
+  font-size: 20px !important;
+  position: relative;
+  top: 2px;
+}
+
+.find-table {
+  .find-img {
+    height: 50px !important;
+    width: 50px !important;
+    display: inline-block;
+    margin-right: $margin+5;
+  }
+  a {
+    display: inline-block;
+    color: $Black;
+  }
+
+}
+
+#myModal2 {
+  .find-box {
+    height: 34px !important;
+  }
+}
+
+.trinet-secondary-action-btn {
+  margin-top: 0px;
+  /*line-height:30px;*/
+}
+
+.find-scroll {
+  max-height: 350px;
+  overflow-y: auto;
+
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+      @extend .block;
+      min-height: 50 xp;
+
+      .find-personal-details {
+        border-top: 1px solid $Trinet-gray;
+        padding-top: $padding*1.5;
+
+        .name {
+          @extend .block;
+          line-height: 16px;
+
+          a {
+            font-weight: 400;
+            font-size: 14px;
+            margin: 0;
+            float: left;
+            line-height: 15px;
+            text-decoaration: none;
+            color: $Trinet-gray;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          span {
+            font-size: 12px;
+            font-weight: 400;
+          }
+
+        }
+
+        .contact-details {
+
+          .icon-icon_contact {
+            padding-right: $padding*2;
+          }
+          .icon-icon_phone {
+            position: relative;
+            top: 1px;
+            padding-right: 3px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.dept-table {
+  tr {
+    td {
+      a {
+        color: $Black;
+      }
+    }
+  }
+}
+
+.organization-find-popup {
+  .modal-popup, .modal-content, modal-body {
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    float: left;
+    width: 100%;
+
+  }
+  .modal-dialog {
+    width: 100%;
+    margin: 0;
+  }
+  .modal-body {
+    input[type="radio"] {
+      float: left;
+      position: relative;
+      top: -6px;
+    }
+  }
+  .content-bg {
+    margin-bottom: $margin;
+  }
+
+  .model-body {
+    .profile-pics {
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+  .modal-content {
+    border: none;
+  }
+
+}
+
+.organization-popup {
+  .modal-body {
+    overflow: visible !important
+  }
+}
+
+.organization-chart-find-section {
+  a {
+    &:hover {
+      text-decoration: underline !important
+    }
+  }
+}
+
+.find-img {
+  width: 40px;
+  margin-top: 5px;
+}
+.popUp-text-align{
+    padding:2px 0px 0px 4px;
+}
+.pad-top-2{
+    padding-top:2px;
+}
+.pad-leftright-5{
+    padding:0 5px;
+}

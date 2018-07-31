@@ -1,0 +1,11 @@
+<div class="tn-menu-link">
+    <md-button
+            ng-if="section.type !== 'Widget'"
+            ng-class="{'active' : isSelected()}"
+            ng-href="{{redirectURL(section)}}"
+            ng-click="setPermissions(section.menuId);setMenuState(section.menuId);closeMenu(); stopRedirect($event, section);openView(section, $event);"
+            target="{{section.target}}" id="{{section.menuIdAttribute}}">
+        <md-icon ng-if="section.icon" md-font-icon="{{section.icon}}"></md-icon>
+        <span class="menu-link-name">{{section.name}}</span>
+    </md-button>
+</div>

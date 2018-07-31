@@ -1,0 +1,181 @@
+<div class="tn-modal tn-modal-fullHeight tn-create-payment-modal">
+    <!--    <div class="alert red-alert alert-danger col-md-12 col-sm-12" ng-if="errorCodeMsg">
+            <div class="col-md-1 col-sm-1 no-pad">
+                <i class="icon-icon_Error error-icon" data-dismiss="alert" ng-click="closeAlert($index)"></i>
+            </div>
+            <div class="col-md-11 no-pad col-sm-11">
+                <h5 class="no-marg" ng-bind="errorAlert._statusMessage"></h5>
+            </div>
+        </div>-->
+        <div class="tn-modal-header">
+            <h4 class="profile-heading proxima-nova-semibold text-center"
+                ng-bind="::translation.reports.create_pay"></h4>
+        </div>
+        <form class="tn-form" name="createPayForm" novalidate>
+            <div class="tn-modal-boby col-sm-12">
+                <div>
+                    <h4 class="proxima-nova-semibold"
+                        ng-bind="::translation.reports.pay_to"></h4>
+                    <p ng-bind="headerName"></p>
+                    <p>
+                        <span ng-bind="::translation.emp_id"></span>&nbsp;
+                        <span ng-bind="appUserId"></span>
+                    </p>
+
+                </div>
+                <div class="col-sm-12 marg-top-15 no-pad">
+                    <div class="required-field">
+                        <label for="earnTypeId"
+                               ng-class="{ 'has-error' : createPayForm.earnType.$invalid && (createPayForm.earnType.$dirty)}">
+                            {{translation.earn_type}}:
+                        </label>
+                    </div>
+                    <div>
+                        <select name="earnType" id="earnTypeId"
+                                class="form-control no-marg"
+                                ng-model="pay.earnType"
+                                ng-options="earnType.value for earnType in earnTypeData"
+                                ng-class="{'error-warning': earntTypeRequired}"
+                                ng-required="true">
+                            <option value='' disabled selected class="hidden"
+                                    ng-bind="::translation.manageGroup.selectEarnType"></option>
+                        </select>
+                        <Validation condition="earntTypeRequired"
+                                    msg="{{translation.earn_type+'\n '+translation.is_required}}"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-12 marg-top-15 no-pad">
+                    <div ng-class="pay.actionType === 'Begin' ? 'required-field':''">
+                        <label for="payFreqId"
+                               ng-class="{ 'has-error' : createPayForm.payFreq.$invalid && (createPayForm.payFreq.$dirty)}">
+                            {{::translation.reports.pay_freq}}
+                        </label>
+                    </div>
+                    <div>
+                        <select name="payFreq" id="payFreqId"
+                                class="form-control no-marg"
+                                ng-model="pay.paymentFrequency"
+                                ng-options="payFreq.value for payFreq in payFreqData"
+                                ng-class="{'error-warning': payentFrequecyRequired}"
+                                ng-required="pay.actionType === 'Begin'"
+                                ng-change="loadDates(pay.actionType)">
+
+                            <option value='' disabled selected class="hidden"
+                                    ng-bind="::translation.manageGroup.selectPayFrequency"></option>
+                        </select>
+                        <Validation condition="payentFrequecyRequired"
+                                    msg="{{translation.payment_freq+'\n '+translation.is_required}}"></Validation>
+                    </div>
+                </div>
+                <div class="col-sm-12 marg-top-15 no-pad">
+                    <div ng-class="pay.actionType == 'Begin' ? 'required-field':''">
+                        <label for="beginDateId"
+                               ng-class="{ 'has-error' : createPayForm.payFreq.$invalid && (createPayForm.payFreq.$dirty)}">
+                            Begin Payment Date:</label>
+                    </div>
+                    <div><select name="beginDate" id="beginDateId"
+                                 class="form-control no-marg"
+                                 ng-model="pay.beginDate"
+                                 ng-change="filterEndDates(pay.beginDate)"
+                                 ng-options="earnTypeDate.addlPageValue for earnTypeDate in payBeginDates"
+                                 ng-class="{'error-warning': beginDateRequired}"
+                                 ng-required="pay.actionType == 'Begin'">
+                        <option value="">{{selectBeginPaymentDateText}}</option>
+                        <option value='' disabled selected class="hidden"
+                                ng-bind="::translation.manageGroup.addlPageValue"></option>
+                    </select>
+                        <Validation condition="beginDateRequired"
+                                    msg="{{translation.earn_type+'\n '+translation.is_required}}"></Validation>
+                    </div>
+                </div>
+                <div ng-if="pay.earnType && pay.paymentFrequency" class="col-sm-12 marg-top-15 box-shadow">
+                    <p class="content-text">
+                        Begin Payment Dates are based on the Payment Frequency you selected. Change the Payment
+                        Frequency or contact your Client Services Associate.
+                    </p>
+                </div>
+                <div class="col-sm-12 marg-top-15 no-pad">
+                    <div>
+                        <label class="required-field">
+                            Repeat Payment untill:
+                        </label>
+                    </div>
+                    <div class="flex-box space-between">
+                        <div>
+                            <div>
+                                <label for="goalAmountId">{{translation.goal_amount + ' ' + translation.amount}}:</label>
+                            </div>
+                            <div class="tn-input-group-addon no-marg">
+                                <span class="add-on">$</span>
+                                <input my-currency max-length-before-decimal="8"
+                                       ng-required="pay.actionType == 'End' && pay.endDate == ''"
+                                       decimals-only="true" type="text" id="goalAmountId" name="goalAmount"
+                                       ng-model="pay.goalAmount"
+                                       ng-blur="checkFieldValid(pay.goalAmount)"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="visible-hide"></label>
+                            <h5>Or</h5>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="endDateId">Final Payment Date</label>
+                            </div>
+                            <div>
+                                <select name="endDateName" id="endDateId"
+                                        class="form-control no-marg"
+                                        ng-model="pay.endDate"
+                                        ng-change="checkFieldValid(pay.endDate)"
+                                        ng-required="pay.actionType == 'End' && pay.goalAmount == ''"
+                                        ng-options="earnTypeEndDate.addlPageValue for earnTypeEndDate in payEndDates | orderBy:'payBeginDate'">
+                                    <option value="">Select Final Payment Date</option>
+                                    <option value='' disabled selected class="hidden"
+                                            ng-bind="::translation.manageGroup.addlPageValue"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 marg-top-15 no-pad">
+                    **Enter Only One Of The Above Options
+                </div>
+                <div class="col-sm-12 marg-top-15 box-shadow"
+                     ng-if="(pay.actionType == 'End') || (pay.actionType == 'Begin' && pay.earnType && pay.paymentFrequency)">
+                    <p class="content-text">
+                        Final Payment Dates are based on the Payment Frequency you selected. Enter Goal Amount if
+                        desired end date is not available or contact your Client Services Associate.
+                    </p>
+                </div>
+                <div class="col-sm-12 marg-top-15 no-pad">
+                    <div ng-class="pay.actionType == 'Begin' ? 'required-field':''">
+                        <label for="earnAmountId1"
+                               ng-class="{ 'has-error' : createPayForm.earnAmount.$invalid && (createPayForm.earnAmount.$dirty)}">
+                            Earn Amount per pay freq selected:
+                        </label>
+                    </div>
+                    <div class="tn-input-group-addon">
+                        <span class="add-on">$</span>
+                        <input type="text" id="earnAmountId1" name="earnAmount" ng-model='pay.earnAmount'
+                               ng-class="{'error-warning': earnAmountRequired}"
+                               ng-required="pay.actionType == 'Begin'"
+                               my-currency max-length-before-decimal="8" decimals-only="true"
+                               class="form-control" validation>
+                        <Validation condition="earnAmountRequired"
+                                    msg="{{translation.earn_amount+'\n '+translation.is_required}}"
+                                    class="error-msg-pos"></Validation>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="tn-modal-footer text-right">
+                <button type="button" class="tn-button tn-action-button"
+                        data-dismiss="modal" ng-bind="::translation.save" id="validateDataId"
+                        ng-click="validateData(createPayForm)"
+                        ng-disabled="disableSaveButton || createPayForm.$invalid"></button>
+                <button type="button" class="tn-button tn-cancel-button" id="closePanelId"
+                        ng-bind="::translation.cancel" ng-click="closeThisDialog()"></button>
+            </div>
+        </form>
+    </div>

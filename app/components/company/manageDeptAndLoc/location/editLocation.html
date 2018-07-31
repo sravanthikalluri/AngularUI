@@ -1,0 +1,215 @@
+<div class="tn-modal tn-deptAndLoc-modal tn-emp-generate-form tn-modal-fullHeight" id="exampleModal1" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+
+    <div class="tn-modal-header">
+        <h4 class="proxima-nova-semibold text-center" id="exampleModal1Label" ng-bind-html="translation.edit_loc"></h4>
+    </div>
+    <form class="tn-form" name="editlocationForm" novalidate>
+        <div class="tn-modal-body">
+            <div class="col-sm-12 no-padding-left margin-bottom flex-box">
+                <div class="col-sm-3 no-padding-left margin-right">
+                    <h5 class="font-light-gray">{{::translation.locationtab.worklocation}}:</h5>
+                    <h5 class="font-slate">{{::addlocatn.locationId}}</h5>
+                </div>
+                <div class="col-sm-8 no-padding-left margin-left" ng-hide="true">
+                    <div class="tn-checkbox tn-checkbox-large">
+                        <input id="editlocationheadquarters" ng-hide="true" type="checkbox" ng-model="headquarters">
+                        <label for="editlocationheadquarters" ng-bind="::translation.locationtab.headquarters"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-fiel">
+                    <label for="editlocationlocDesc">{{::translation.locationtab.locdescription}}:</label>
+                </div>
+                <div class="relative">
+                    <input type="text" id="editlocationlocDesc" name="editlocationlocDesc"
+                           ng-model="editlocation.locationName"
+                           ng-class="{'error-warning': editlocationlocationlocDescRequired}"
+                           ng-required="true" maxlength="60"
+                           class="form form-control" validation>
+                    <Validation condition="editlocationlocationlocDescRequired"
+                                msg="{{translation.locationtab.locdescription+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field ">
+                    <label for="editlocationshortDesc">{{::translation.locationtab.description}}:</label>
+                </div>
+                <div class="relative">
+                    <input type="text" id="editlocationshortDesc" name="editlocationshortDesc"
+                           ng-model="editlocation.shortDesc"
+                           ng-class="{'error-warning': editlocationlocationshortDescRequired}"
+                           ng-required="true" maxlength="10"
+                           class="form form-control"
+                           validation>
+                    <Validation condition="editlocationlocationshortDescRequired"
+                                msg="{{translation.locationtab.description+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label>{{::translation.locationtab.remote}}:</label>
+                </div>
+                <div class="radio">
+                    <input id="editlocationremoteOfficeYesLabel" ng-hide="true" type="radio"
+                           ng-model="remoteOffice"
+                           name="editlocationremoteOffice" value="Y">
+                    <label for="editlocationremoteOfficeYesLabel">{{::translation.yes}}</label>
+                    <input id="editlocationremoteOfficeNoLabel" ng-hide="true" type="radio"
+                           ng-model="remoteOffice"
+                           name="editlocationremoteOffice" value="N">
+                    <label for="editlocationremoteOfficeNoLabel">{{::translation.no}}</label>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field ">
+                    <label for="editlocationcountry">{{::translation.locationtab.country}}:</label>
+                </div>
+                <div class="relative">
+                    <select name="editlocationcountry"
+                            id="editlocationcountry"
+                            class="txtfield_Style form form-control goal-amount-create-new"
+                            ng-class="{'error-warning': editlocationlocationcountryRequired}"
+                            ng-model="editlocation.address.country"
+                            ng-options=" countries.key as countries.value for countries in countriesData"
+                            ng-change="getStateCode(editlocation.address.country)"
+                            ng-init="getStateCode(editlocation.address.country)" ng-required="true"
+                            validation>
+                        <option value='' disabled selected class="hiddenprofile">Select Country</option>
+                    </select>
+                    <Validation condition="editlocationlocationcountryRequired"
+                                msg="{{translation.locationtab.country+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label for="editlocationaddLine1">{{::translation.locationtab.addressline}}1 :</label>
+                </div>
+                <div>
+                    <input type="text" id="editlocationaddLine1" name="editlocationaddLine"
+                           ng-model='editlocation.address.address1'
+                           ng-class="{'error-warning': editlocationlocationaddLineRequired}"
+                           maxlength="55"
+                           class="form goal-amount-create-new">
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label for="editlocationaddLine2">{{::translation.locationtab.addressline}} 2 :</label>
+                </div>
+                <div>
+                    <input type="text" id="editlocationaddLine2" name="editlocationaddLine2"
+                           ng-model='editlocation.address.address2' maxlength="55"
+                           class="form goal-amount-create-new">
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label for="editlocationaddLine3">{{::translation.locationtab.addressline}} 3 :</label>
+                </div>
+                <div>
+                    <input type="text" id="editlocationaddLine3" name="editlocationaddLine3"
+                           ng-model='editlocation.address.address3' maxlength="55"
+                           class="form goal-amount-create-new">
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left">
+                <div class="required-field">
+                    <label for="editlocationcity">{{::translation.locationtab.city}}:</label>
+                </div>
+                <div class="relative">
+                    <input type="text" id="editlocationcity" name="editlocationcity"
+                           ng-model='editlocation.address.city'
+                           ng-class="{'error-warning': editlocationlocationcityRequired}"
+                           ng-required="true" maxlength="50"
+                           class="form goal-amount-create-new"
+                           validation>
+                    <Validation condition="editlocationlocationcityRequired"
+                                msg="{{translation.locationtab.city+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label for="editlocationcounty">{{::translation.locationtab.county}}:</label>
+                </div>
+                <div>
+                    <input type="text" id="editlocationcounty" name="editlocationcounty"
+                           ng-model='editlocation.address.county' maxlength="50"
+                           class="form goal-amount-create-new">
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label for="editlocationstate">{{::translation.locationtab.state}}:</label>
+                </div>
+                <div>
+                    <select name="editlocationstate" id="editlocationstate"
+                            class="txtfield_Style form form-control goal-amount-create-new"
+                            ng-model="editlocation.address.state"
+                            ng-class="{'error-warning': editlocationlocationstatepRequired}"
+                            ng-options=" states.key as states.value for states in statesData"
+                            ng-click="checkCountry(editlocation.address.country)" ng-required="true"
+                            validation>
+                        <option value='' disabled selected class="hiddenprofile">Select State</option>
+                    </select>
+                    <Validation condition="editlocationlocationstatepRequired"
+                                msg="{{translation.locationtab.state+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 margin-bottom">
+                <div ng-class="remoteOffice !== undefined ? 'required-field' : ''">
+                    <label for="editlocationzip1"
+                           ng-if="editlocation.address.country =='US'">{{::translation.usPostalCodeName}}:</label>
+                    <label for="editlocationzip2"
+                           ng-if="editlocation.address.country =='CA'">{{::translation.canadaPostalCodeName}}:</label>
+                </div>
+                <div class="relative">
+                    <!-- US user-->
+                    <input type="text" id="editlocationzip1" name="editlocationzip"
+                           ng-model='editlocation.address.postalCode' ng-if="editlocation.address.country =='US'"
+                           ng-class="{'error-warning': editlocationlocationzipRequired}"
+                           ng-required="true" ng-pattern="/^(\d{5}|\d{9})$/"
+                           class="form goal-amount-create-new" ng-disabled="remoteOffice === undefined"
+                           validation>
+                    <Validation condition="editlocationlocationzipRequired"
+                                msg="{{translation.validation.zipCode}}"
+                                class="error-msg-pos"></Validation>
+                    <!-- canda user-->
+                    <input type="text" id="editlocationzip2" name="editlocationzip"
+                           ng-model='editlocation.address.postalCode' ng-if="editlocation.address.country =='CA'"
+                           ng-class="{'error-warning': editlocationlocationzipRequired}"
+                           ng-required="true" ng-pattern="/^[\w a-zA-Z0-9]*$/" minlength="6" maxlength="6"
+                           class="form goal-amount-create-new"
+                           validation>
+                    <Validation condition="editlocationlocationzipRequired"
+                                msg="{{translation.validation.postalCode}}"
+                                class="error-msg-pos"></Validation>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+            <button type="button"
+                    class="tn-button tn-action-button"
+                    ng-disabled="editlocationForm.$invalid"
+                    data-dismiss="modal" ng-bind="::translation.save" id="validateDataId"
+                    ng-click="closeDialog(editlocation,editlocationForm.$invalid);"></button>
+            <button type="button" class="tn-button tn-cancel-button" id="closePanelId"
+                    ng-bind="::translation.cancel" ng-click="closePanel(editlocation)"></button>
+        </div>
+    </form>
+</div>

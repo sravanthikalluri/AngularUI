@@ -1,0 +1,79 @@
+.no-marg {
+    margin: 0px;
+}
+
+.no-pad {
+    padding: 0px;
+}
+
+.errors .alert {
+    margin: 0 auto !important;
+    position: fixed;
+    z-index: 999;
+    top: 75px;
+}
+
+.errors .red-alert {
+    background: #FFD9E0;
+    color: #494949;
+    border: 2px solid #9E3039;
+    margin: 20px 16px;
+    width: 500px;
+    border-radius: 3px;
+}
+
+.errors .red-alert .error-icon {
+    font-size: 16px;
+    color: #9E3039;
+    margin-right: 5px;
+}
+
+.errors .orange-alert {
+    background: #FBEFD7;
+    color: #494949;
+    border: 2px solid #EEAF30;
+    margin: 20px 16px;
+    width: 500px;
+    min-height: 70px;
+    border-radius: 3px;
+}
+
+.errors .orange-alert .warning-icon {
+    font-size: 16px;
+    color: #E37222;
+    margin-right: 5px;
+}
+
+.errors .orange-alert .ok-btn {
+    background: #898989;
+    color: #fff;
+    min-width: 50px;
+    border-radius: 0px;
+    border-color: #898989;
+    padding: 2px 12px;
+    margin-right: 12px;
+}
+
+.errors .green-alert {
+    background: #F3F7EF;
+    color: #000;
+    border: 2px solid #60ae26;
+    margin: 20px 16px;
+    width: 500px;
+    min-height: 60px;
+    border-radius: 3px;
+}
+
+.errors .green-alert .tick-icon {
+    font-size: 16px;
+    color: #739600;
+    margin-right: 5px;
+}
+
+.errors .green-alert a .cross-mark {
+    color: #888888 !important;
+    font-size: 14px !important;
+    margin-right: 0px !important;
+}
+
+/*# sourceMappingURL=errors.css.map */

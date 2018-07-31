@@ -1,0 +1,14 @@
+{
+  "responseCode": null,
+  "status": null,
+  "message": null,
+  "statusCode": "200",
+  "statusMessage": "Success",
+  "resource": {
+    "objectId": "DEFAULT",
+    "prefValue": "empguidebook_Canada.pdf",
+    "prefName": "EMPE_HNDBK",
+    "countryView": "CA",
+    "objectType": "COMPANY"
+  }
+}

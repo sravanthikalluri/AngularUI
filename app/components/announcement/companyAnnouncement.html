@@ -1,0 +1,98 @@
+<div class="tn-background announcement pull-left">
+    <alert-view></alert-view>
+    <!--reapeat section-->
+    <div class="col-sm-12 no-pad" ng-if="!createNewAnnouncement && !editAnnouncementItem">
+    <div class="heading col-sm-12 no-pad">
+        <h2 class="bold no-marg"><button class="breadcomb-button">Company Announcements</button></h2>
+        <button class="tn-button tn-action-button pull-left" ng-click="createNew()">Create New</button>
+    </div>
+
+    <!--future Announcement-->
+    <div class="card col-sm-10 no-pad" ng-repeat="item in anouncementData.future | orderBy:'-effectiveDate'">
+        <div class="col-sm-7 no-pad">
+            <h3 class="heading-text">{{item.title}}</h3>
+            <h5 class="help-text no-marg-top">{{item.effectiveDate | date:'MMM dd, yyyy'}} - {{item.endDate | date:'MMM dd, yyyy'}}</h5>
+        </div>
+        <div class="col-sm-5 no-pad">
+            <div class="pull-right">
+                <button class="tn-button tn-edit-button bold" ng-click="editAnnouncement(item,$index)">Edit</button>
+                <button class="tn-button tn-delete-button bold" ng-if="getDeleteStatus(item.effectiveDate)" ng-click="deleteAnnouncement(item)">Delete</button>
+            </div>
+        </div>
+        <div class="col-sm-12 no-pad content-section">
+            <p>
+                {{item.body}}
+            </p>
+        </div>
+        <div class="col-sm-12 no-pad">
+            <h5 class="help-text no-marg">Display for: <span ng-if="item.filters.length === 0"> All Employees</span> </h5>
+            <div class="shared-section" ng-if="item.filters.length > 0">
+                <span ng-repeat="disp in item.filters">{{disp.filterValueDesc}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!--current Announcement-->
+    <div class="card col-sm-10 no-pad" ng-repeat="item in anouncementData.current | orderBy:'-effectiveDate'">
+        <div class="action no-marg font-color-dark-gray ">
+            <div>
+                <h3 class="heading-text">{{item.title}}</h3>
+                <h5 class="help-text no-marg-top">{{item.effectiveDate | date:'MMM dd, yyyy'}}-{{item.endDate | date:'MMM dd, yyyy'}}</h5>
+            </div>
+            <div class="button-section">
+                <button class="tn-button tn-edit-button bold"  ng-click="editAnnouncement(item,$index)">Edit</button>
+                <button class="tn-button tn-delete-button bold" ng-if="getDeleteStatus(item.effectiveDate)" ng-click="deleteAnnouncement(item)">Delete</button>
+            </div>
+        </div>
+
+        <div class="col-sm-12 no-pad content-section">
+            <p>
+                {{item.body}}
+            </p>
+        </div>
+        <div class="col-sm-12 no-pad">
+            <h5 class="help-text no-marg">Display for:<span ng-if="item.filters.length == 0"> All Employees</span> </h5>
+          <div class="shared-section" ng-if="item.filters.length >0">
+            <span ng-repeat="disp in item.filters">{{disp.filterValueDesc}}</span>
+          </div>
+        </div>
+    </div>
+
+
+
+    <!--History Announcement-->
+    <div class="col-sm-10 no-pad history-section" ng-if="anouncementData.history" >
+        <h4 class="text-center bold" >History</h4>
+        <hr>
+        <div class="card col-sm-12 no-pad" ng-repeat="item in anouncementData.history | orderBy:'-effectiveDate'">
+            <div class="action no-marg font-color-dark-gray ">
+                <div>
+                    <h3 class="heading-text">{{item.title}}</h3>
+                    <h5 class="help-text no-marg-top">{{item.effectiveDate | date:'MMM dd, yyyy'}}</h5>
+                </div>
+            </div>
+            <div class="col-sm-12 no-pad content-section">
+                <p>
+                    {{item.body}}
+                </p>
+            </div>
+            <div class="col-sm-12 no-pad">
+                <h5 class="help-text no-marg">Display for:<span ng-if="item.filters.length === 0">All Employees</span></h5>
+                <div class="shared-section" ng-if="item.filters.length > 0">
+                    <span ng-repeat="disp in item.filters">{{disp.filterValueDesc}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Create new Announcement-->
+    <div class="workinfo" ng-if="createNewAnnouncement">
+        <div ng-include="'app/components/announcement/createNewAnnouncement.html'"></div>
+    </div>
+
+    <!--Edit Announcement-->
+    <div class="workinfo" ng-if="editAnnouncementItem">
+        <div ng-include="'app/components/announcement/editAnnouncement.html'"></div>
+    </div>
+</div>

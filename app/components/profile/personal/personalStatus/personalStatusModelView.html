@@ -1,0 +1,68 @@
+<div class="tn-personal-status-modal tn-modal-fullHeight tn-modal" ng-controller='personalStatusModelCtrl'>
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.profile_personal.personal_status"></h4>
+    </div>
+    <form class="tn-form" name="personalStatusForm" id="personalStatusForm" ng-submit="submitForm()" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <div class="col-sm-5 no-pad-left marg-top-15">
+                <div>
+                    <label for="alternateId">{{translation.alternateId}}:</label>
+                </div>
+                <div>
+                    <input type="text" ng-model="alternateId"
+                           name="alternateId"
+                           id="alternateId"
+                           class="form-control form"
+                           maxlength="11"
+                    >
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-5 no-pad-left marg-top-15" ng-if="usCountrySSNStatus">
+                <div>
+                    <label for="personalInfoSsn" ng-if="usCountrySSNStatus"><span ng-bind="::translation.ssn"></span>:</label>
+                    <label for="personalInfoSsn" ng-if="canadaCountrySSNStatus"><span ng-bind="::translation.sin"></span>:</label>
+                </div>
+                <div>
+                    <input type="text" ng-model="ssn" id="personalInfoSsn"
+                           placeholder="*****1234"
+                           maxlength="9"
+                           ng-minlength="9"
+                           class="form-control form"
+                           ng-required="true"
+                           ng-change="changeSSN(ssn)"
+                           name="personalInfoSsn"
+                           ng-class="{'error-warning': (isPersonalStatusFormSubmitted && validationPatterns.personalStatus.focus.personalStatusFormSSNRequired) || (isPersonalStatusFormSubmitted && validationPatterns.personalStatus.blur.personalStatusFormSSNRequired) || isSsnValid || (isPersonalStatusFormSubmitted && validationPatterns.personalStatus.focus.ssnMinLength) || (isPersonalStatusFormSubmitted && validationPatterns.personalStatus.blur.ssnMinLength) || (isPersonalStatusFormSubmitted && validationPatterns.personalStatus.focus.ssnMaxLength) || (isPersonalStatusFormSubmitted && validationPatterns.personalStatus.blur.ssnMaxLength)}"
+                           ng-focus="validationPatterns.personalStatus.focus.personalStatusFormSSNRequired=personalStatusForm.personalInfoSsn.$error.required; validationPatterns.personalStatus.blur.personalStatusFormSSNRequired = false;
+                                                validationPatterns.personalStatus.focus.ssnMinLength=personalStatusForm.personalInfoSsn.$error.minlength; validationPatterns.personalStatus.blur.ssnMinLength = false;
+                                                  validationPatterns.personalStatus.focus.ssnMaxLength=personalStatusForm.personalInfoSsn.$error.minlength; validationPatterns.personalStatus.blur.ssnMaxLength = false;isSsnValid = false;"
+                           ng-blur="validationPatterns.personalStatus.blur.personalStatusFormSSNRequired=personalStatusForm.personalInfoSsn.$error.required; validationPatterns.personalStatus.focus.personalStatusFormSSNRequired = false;
+                                                validationPatterns.personalStatus.blur.ssnMinLength=personalStatusForm.personalInfoSsn.$error.minlength; validationPatterns.personalStatus.focus.ssnMinLength = false;
+                                                validationPatterns.personalStatus.blur.ssnMaxLength=personalStatusForm.personalInfoSsn.$error.minlength; validationPatterns.personalStatus.focus.ssnMaxLength = false;isSsnValid = changeSSN(ssn)">
+                    <Validation
+                        condition="isPersonalStatusFormSubmitted && validationPatterns.personalStatus.focus.personalStatusFormSSNRequired"
+                        msg="{{translation.required_field}}"></Validation>
+                    <Validation condition="isPersonalStatusFormSubmitted && isSsnValid" msg="Your entry contains invalid characters"></Validation>
+                    <Validation condition="(validationPatterns.personalStatus.focus.ssnMaxLength || isSsnValid)" msg="Please enter a valid Social Security Number"></Validation>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-5 no-pad-left marg-top-15">
+                <div>
+                    <label for="citizenship">{{translation.citizenship}}:</label>
+                </div>
+                <div>
+                    <input type="text" id="citizenship" class="form-control" ng-model="personalModelStatusData.citizenship" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+            <button type="reset" id="personalstatuscancel" name="cancel" ng-click="closeThisDialog()"
+                    class="tn-cancel-button tn-button" ng-bind="::translation.cancel"></button>
+            <button type="submit" id="personalstatussave" class="tn-action-button tn-button"
+                    ng-click="updatePersonalStatus(personalStatusForm)" ng-bind="::translation.save"></button>
+        </div>
+    </form>
+</div>

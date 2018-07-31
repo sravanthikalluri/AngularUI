@@ -1,0 +1,353 @@
+<div class="alert red-alert alert-danger" id="custom-alert"
+     ng-if="errorCodeBool">
+    <div class="col-md-1 col-sm-1 no-pad"><i class="icon-icon_Error error-icon" data-dismiss="alert"
+                                             ng-click="closeAlert($index)"></i></div>
+    <alert-view></alert-view>
+    <!--<div class="col-md-11 no-pad col-sm-11">
+        <h5 class="no-marg" ng-bind="errorResp"></h5>
+    </div>-->
+</div>
+<div class="qa-message-list " id="wallmessages" ng-repeat="detail in mydata | orderBy:'-effectiveDate'">
+    <div class="message-item effective-date" ng-if="detail.label == 'on'">
+        <div class="message-inner border-dotted">
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+                        <div class="col-md-7">
+                            <p class="full-range ellipsis" id="{{detail.firstName}}" ng-if='sectionType === "name"'>{{detail.firstName}}
+                                {{detail.middleName}}
+                                {{detail.lastName}}</p>
+                            <p class="full-range ellipsis" id="{{detail.address2}}" ng-if='sectionType === "address"'>
+                                <span class="block">{{detail.address1}}</span>
+                                <span class="block">{{detail.address2}}</span>
+                                <span class="block">{{detail.address3}}</span>
+                                <span class="block">{{detail.city}},</span>
+                                <span class="block">{{detail.state}}</span>
+                                <span class="block">{{detail.country.key}}</span>
+                                <span class="block">{{detail.postalCode}}</span>
+                            </p>
+                            <p class="full-range ellipsis"  id="{{detail.birthDate}}" ng-if='sectionType === "info"'>
+                                <span class="block">{{detail.gender}}</span>
+                                <span class="block">{{detail.militaryStatus}}</span>
+                                <span class="block">{{detail.maritalStatus}}</span>
+                         </p>
+                            <p class="full-range ellipsis" ng-if='sectionType === "retirementPlan"'> {{::translation.shared.rothCombination}} <br/> {{::translation.shared.waved}}<br/></p>
+                        </div>
+                        <div class="effective-date">
+                            <div class="col-md-5">
+                                <div id="effectiveDate{{detail.effectiveDate}}" ng-if='sectionType != "retirementPlan"'
+                                     class="time-line-date">{{(detail.effDate ||
+                                    detail.effectiveDate)}}
+                                </div>
+                                <div id="coverageBeginDt{{detail.coverageBeginDt}}"
+                                     ng-if='sectionType === "retirementPlan"' class="time-line-date">{{(detail.effdt ||
+                                    detail.coverageBeginDt)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-item" ng-if="detail.label == 'since'">
+        <div class="message-inner">
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="col-md-7">
+                            <p class="full-range ellipsis" id="name_{{$index}}" ng-if='sectionType === "name"'>{{detail.firstName}}
+                                {{detail.middleName}}
+                                {{detail.lastName}}</p>
+                            <p class="full-range ellipsis" id="address_{{$index}}" ng-if='sectionType === "address"'>
+                                <span class="block">{{detail.address1}}</span>
+                                <span class="block">{{detail.address2}}</span>
+                                <span class="block">{{detail.address3}}</span>
+                                <span class="block">{{detail.city}},{{detail.state}}</span>
+                                <span class="block">{{detail.country.key}}</span>
+                                <span class="block">{{detail.postalCode}}</span></p>
+                            <p class="full-range ellipsis" id="notDate_{{$index}}" ng-if='sectionType === "info"'>
+                                <span class="block">{{detail.gender}}</span>
+                                <span class="block">{{detail.militaryStatus}}</span>
+                                <span class="block">{{detail.maritalStatus}}</span>
+                            </p>
+                            <p class="full-range ellipsis" id="date_{{$index}}" ng-if='sectionType === "retirementPlan"'>
+                                <span class="block">{{::translation.shared.birthDate}}
+                                {{detail.birthDate}} </span>
+                                <span class="block">{{::translation.shared.gender}}
+                                {{detail.gender}}</span></p>
+                        </div>
+                        <div class="effective-date">
+                            <div class="col-md-5">
+                                <div id="effectiveDate1_{{$index}}" ng-if='sectionType != "retirementPlan"'
+                                     class="time-line-date">{{(detail.effDate ||
+                                    detail.effectiveDate)}}
+                                </div>
+                                <div id="coverageBeginDt1_{{$index}}" ng-if='sectionType === "retirementPlan"'
+                                     class="time-line-date">{{(detail.effdt ||
+                                    detail.coverageBeginDt)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-item proxima-nova" ng-if="detail.effectivestatus == 'effective on'">
+
+        <div class="message-inner border-dotted">
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="col-md-8">
+                            <p ng-if='sectionType === "employeementChange"'>
+                                <span class="col-sm-6 no-pad">{{detail.action}}</span>
+                                <span class="col-sm-6"> {{detail.reason}}</span></p>
+                            <a href="" id="showTimeliner5"
+                               ng-click="displayHistory(detail.effectiveDate,detail)"
+                               class="action"><span>View Change Details</span> <span
+                                    class="icon-icon_Dropdown_Arrow top-2"></span></a>
+
+                        </div>
+                        <div class="effective-date col-md-4">
+                            <div>
+                                <!--<div ng-if='sectionType === "employeementChange"' class="time-line-date" ng-hide="true">
+                                    <span ng-if="detail.submittedBy === null"></span> <span
+                                        ng-if="detail.submittedBy !== null">{{::translation.shared.submittedBy}} {{detail.submittedBy}}</span>
+                                </div>-->
+                                <div ng-if='sectionType === "employeementChange"' class="time-line-date">
+                                    {{detail.effec}} {{detail.effectiveDate | date : 'MM/dd/yyyy'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <table ng-if="detail.displayChangeData.length >= 1 && detail.showTable"
+                       class="table work-info-history-table">
+                    <thead>
+                    <tr>
+                        <th ng-bind="translation.shared.changeFields"></th>
+                        <th ng-bind="translation.shared.from"></th>
+                        <th ng-bind="translation.shared.to"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="displayChange in detail.displayChangeData" ng-if="displayChange.field !== 'Financial Split'">
+                        <td><span ng-if="displayChange.field === null"></span> <span
+                            ng-if="displayChange.field !== null">{{displayChange.field}}</span></td>
+
+                        <td><span ng-if="displayChange.prevValue === null"></span> <span ng-if="displayChange.prevValue !== null">{{displayChange.prevValue}}</span>
+                        </td>
+
+                        <td><span ng-if="displayChange.currentValue === null"></span> <span ng-if="displayChange.currentValue !== null">{{displayChange.currentValue}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="displayChange in detail.displayChangeData" ng-if="displayChange.field === 'Financial Split'">
+                        <td>{{displayChange.field}}</td>
+                        <td>
+                            <p class="font-dark split-department-section" ng-repeat="splitPrevdata in displayChange.prevValue" ng-if="displayChange.prevValue.length > 0">
+                                <span>{{splitPrevdata.departmentName}} <small> ({{splitPrevdata.departmentId}})</small></span>
+                                <span class="padding-left">{{splitPrevdata.splitPercentage}}%</span>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="font-dark split-department-section" ng-repeat="splitCurrentdata in displayChange.currentValue" ng-if="displayChange.currentValue.length > 0">
+                                <span>{{splitCurrentdata.departmentName}}<small> ({{splitCurrentdata.departmentId}})</small></span>
+                                <span class="padding-left">{{splitCurrentdata.splitPercentage}}%</span>
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div ng-if="detail.errorDisplayChnageData && detail.showTable">
+                    <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+                </div>
+            </div>
+			<div class="clearfix"></div>
+            <a href="" id="showTimeliner1"
+               ng-click="detail.showTable = false;"
+               ng-show="(detail.displayChangeData.length && !detail.showClose) || detail.showTable"
+               class="action clearfix">{{translation.close}} <span class="icon-icon_report_up small"></span></a>
+        </div>
+    </div>
+
+    <div class="message-item proxima-nova" ng-if="detail.effectivestatus == 'effective since'">
+        <div class="message-inner">
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="col-md-8">
+                            <p id="name1_{{$index}}" ng-if='sectionType === "employeementChange"'>
+                                <span class="col-sm-6 no-pad">{{detail.action}}</span>
+                                <span class="col-sm-6"> {{detail.reason}}</span>
+                            </p>
+                            <a href="" id="showTimeliner"
+                               ng-click="displayHistory(detail.effectiveDate,detail)"
+                               class="action"><span>View Change Details</span> <span
+                                    class="icon-icon_Dropdown_Arrow top-2"></span></a>
+
+                        </div>
+                        <div class="effective-date col-md-4">
+                            <div>
+                                <!--<div ng-if='sectionType === "employeementChange"' class="time-line-date" ng-hide="true">
+                                    <span ng-if="detail.submittedBy === null"></span> <span
+                                        ng-if="detail.submittedBy !== null">{{translation.shared.submittedBy}}{{detail.submittedBy}}</span>
+                                </div>-->
+                                <div id="date{{$index}}" ng-if='sectionType === "employeementChange"'
+                                     class="time-line-date">
+                                    {{detail.effec}} {{detail.effectiveDate | date : 'MM/dd/yyyy'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <table ng-if="detail.displayChangeData.length >= 1 && detail.showTable"
+                       class="table work-info-history-table">
+                    <thead>
+                    <tr>
+                        <th ng-bind="translation.shared.changeFields"></th>
+                        <th ng-bind="translation.shared.from"></th>
+                        <th ng-bind="translation.shared.to"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="displayChange in detail.displayChangeData" ng-if="displayChange.field !== 'Financial Split'">
+                            <td><span ng-if="displayChange.field === null"></span> <span
+                                    ng-if="displayChange.field !== null">{{displayChange.field}}</span></td>
+
+                            <td><span ng-if="displayChange.prevValue === null"></span> <span ng-if="displayChange.prevValue !== null">{{displayChange.prevValue}}</span>
+                            </td>
+
+                            <td><span ng-if="displayChange.currentValue === null"></span> <span ng-if="displayChange.currentValue !== null">{{displayChange.currentValue}}</span>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="displayChange in detail.displayChangeData" ng-if="displayChange.field === 'Financial Split'">
+                            <td>{{displayChange.field}}</td>
+                            <td>
+                                <p class="font-dark split-department-section" ng-repeat="splitPrevdata in displayChange.prevValue" ng-if="displayChange.prevValue.length > 0">
+                                    <span>{{splitPrevdata.departmentName}}<small> ({{splitPrevdata.departmentId}})</small></span>
+                                    <span class="padding-left">{{splitPrevdata.splitPercentage}}%</span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="font-dark split-department-section" ng-repeat="splitCurrentdata in displayChange.currentValue" ng-if="displayChange.currentValue.length > 0">
+                                    <span>{{splitCurrentdata.departmentName}}<small> ({{splitCurrentdata.departmentId}})</small></span>
+                                    <span class="padding-left">{{splitCurrentdata.splitPercentage}}%</span>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-if="detail.errorDisplayChnageData && detail.showTable">
+                    <no-records error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+                </div>
+            </div>
+			<div class="clearfix"></div>
+            <a href="" id="showTimeliner2"
+               ng-click="detail.showTable = false;"
+               ng-show="detail.displayChangeData.length || detail.showTable"
+               class="action clearfix"> {{translation.close}}<span class="icon-icon_report_up small"></span></a>
+        </div>
+    </div>
+
+    <div class="message-item effective-date history-item" ng-if="type === 'workInbox' && detail.status === 'Pending'">
+
+        <div class="message-inner border-dotted">
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="col-md-7 col-sm-7">
+                            <p>{{detail.role}} </p>
+                            <p ng-if="detail.position">Request for {{detail.position}} </p>
+                            <p>{{detail.status}}</p>
+                        </div>
+                        <div class="effective-date">
+                            <div class="col-md-5  col-sm-5 text-right">
+                                <div class="history-time-line-date">{{::translation.shared.waitingFor}} {{detail.completedBy}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-item history-item" ng-if="type === 'workInbox' && detail.status !== 'Pending'">
+        <div class="message-inner">
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="col-md-7 col-sm-7">
+                            <p>{{detail.type}} </p>
+                            <p ng-if="detail.position">Request for  {{detail.position}} </p>
+                            <p>{{detail.status}}</p>
+                        </div>
+                        <div class="effective-date">
+                            <div class="col-md-5 col-sm-5 text-right">
+                                <div class="history-time-line-date">{{::translation.shared.submitted}} {{detail.completedBy}}</div>
+                                <div class="history-time-line-date">{{::translation.shared.created}} {{ detail.dateEntered |
+                                    date:'MM/dd/yyyy'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-item enrollment-time-line"  ng-if="sectionType === 'retirement'">
+        <div class="message-inner" ng-class="{'border-dotted': detail.effectiveStatus}" >
+            <div class="row">
+                <div class="message-head clearfix">
+                    <div class="col-md-12 no-pad">
+
+                        <div class="col-md-7 col-sm-7">
+                            <p>{{detail.planDesc}} </p>
+                            <p ng-if="detail.effectiveType">{{detail.effectiveType == 'E' ? 'Elected' : 'Waive'}} Plan</p>
+                            <p ng-if="detail.flatDeduction || detail.percentGross">
+                                <span>Pre-tax Deduction:</span>
+                                <span ng-if="detail.flatDeduction">{{detail.flatDeduction | currencyFilter}} per check issued</span>
+                                <span ng-if="detail.percentGross">{{detail.percentGross}} % per check issued</span>
+                            </p>
+                            <p ng-if="detail.flatDeductionPostTax|| detail.percentGrossPostTax">
+                                <span>Roth Deduction:</span>
+                                <span ng-if="detail.flatDeductionPostTax">{{detail.flatDeductionPostTax | currencyFilter}} per check issued</span>
+                                <span ng-if="detail.percentGrossPostTax">{{detail.percentGrossPostTax}} % per check issued</span>
+                            </p>
+                            <p ng-if="detail.goalAmount">Goal Amount:
+                                <span>{{detail.goalAmount}}</span>
+                            </p>
+
+                        </div>
+                        <div class="effective-date">
+                            <div class="col-md-5 col-sm-5 text-right">
+
+                                <div class="history-time-line-date" ng-if="detail.effectiveStatus">Effective on {{detail.effectiveDate |
+                                    date:'MM/dd/yyyy'}}
+                                </div>
+
+                                <div class="history-time-line-date" ng-if="!detail.effectiveStatus">Effective since {{detail.effectiveDate |
+                                    date:'MM/dd/yyyy'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,93 @@
+<div class="tn-payroll-estimate-section" ng-controller="payrollEstimatesController">
+    <div class="heading-section">
+        <h4 class="bold profile-heading" ng-bind="::translation.moneyTab.payHeader"></h4>
+    </div>
+    <div>
+        <no-records></no-records>
+        <div ng-if="!payFrame && isShowPayrollEstimate">
+            <p class="content-text" ng-bind="translation.pay_estimates.desc"></p>
+            <ul class="no-pad">
+                <li ng-repeat="item in symmetryCalculators">
+                    <a class="view-history-link" ng-if="item.name !== 'w4-assistant'" href="#"
+                       ng-click="toggleSymmetryVisibility(item.name,$event)">
+                        <p>
+                            <span>{{item.title}} </span>
+                            <span class="tn-tooltip" tabindex="0" role="tooltip">
+                                <i class="icon-icon_UA blue"></i>
+                                <span class="tn-tooltip-content tooltip-top">
+                                    <span class="font-dark">{{item.desc}}</span>
+                                </span>
+                            </span>
+                        </p>
+                        <!--<p class="line-clamp" title="{{item.desc}}">{{item.desc}}</p>-->
+
+                    </a>
+                    <a class="view-history-link" ng-if="item.name === 'w4-assistant'" href="{{item.url}}"
+                       target="_blank">
+                        <p>
+                            <span>{{item.title}}</span>
+                            <span class="tn-tooltip" tabindex="0" role="tooltip">
+                                <i class="icon-icon_UA blue"></i>
+                                <span class="tn-tooltip-content tooltip-top">
+                                    <span class="font-dark">{{item.desc}}</span>
+                                </span>
+                            </span>
+                        </p>
+                        <!--<p class="line-clamp" title="{{item.desc}}">{{item.desc}}</p>-->
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--<symmetry-calculators is-bonus-pay-aggregate="isBonusPayAggregate" pay-frame="payFrame" selected-symmetry-calc="selectedSymmetryCalc" symmetry-paycheck-city-info="symmetryPaycheckCityInfo"></symmetry-calculators>-->
+        <div ng-if="payFrame" id="payFrame">
+            <a ng-click="hideCalc()"  href="" class="view-history-link hand">
+                <i class="icon-icon_back"></i> Pay Check
+            </a>
+            <div class="no-pad col-md-12 col-sm-12">
+                <div id="symmetry-salary" ng-class="selectedSymmetryCalc ===  'symmetry-salary' ? 'show':'hide'">
+                    <script defer
+                            src="https://calculators.symmetry.com/widget/js/salary.js?key=cktNK0JiSWtaVEtRMWowM3JzUTVQdW1UeStUd29KQ2s4azR4VmkvSzBxND0="
+                            data-defaults='{{symmetryPaycheckCityInfo}}'>
+                    </script>
+                </div>
+
+                <div id="symmetry-hourly" ng-class="selectedSymmetryCalc ===  'symmetry-hourly' ? 'show':'hide'">
+                    <script defer
+                            src="https://calculators.symmetry.com/widget/js/hourly.js?key=cktNK0JiSWtaVEtRMWowM3JzUTVQdW1UeStUd29KQ2s4azR4VmkvSzBxND0="
+                            data-defaults='{{symmetryPaycheckCityInfo}}'>
+
+                    </script>
+                </div>
+
+                <div id="symmetry-bonus-pay-aggregate" ng-if="isBonusPayAggregate"
+                     ng-class="selectedSymmetryCalc ===  'symmetry-bonus-pay-aggregate' ? 'show':'hide'">
+                    <script defer
+                            src="https://calculators.symmetry.com/widget/js/agbonus.js?key=cktNK0JiSWtaVEtRMWowM3JzUTVQdW1UeStUd29KQ2s4azR4VmkvSzBxND0="
+                            data-defaults='{{symmetryPaycheckCityInfo}}'>
+
+                    </script>
+                </div>
+
+                <div id="symmetry-bonus-pay-percent" ng-if="!isBonusPayAggregate"
+                     ng-class="selectedSymmetryCalc ===  'symmetry-bonus-pay-percent' ? 'show':'hide'">
+                    <script defer
+                            src="https://calculators.symmetry.com/widget/js/flatbonus.js?key=cktNK0JiSWtaVEtRMWowM3JzUTVQdW1UeStUd29KQ2s4azR4VmkvSzBxND0="
+                            data-defaults='{{symmetryPaycheckCityInfo}}'>
+
+                    </script>
+                </div>
+
+                <div id="symmetry-gross-up" ng-class="selectedSymmetryCalc ===  'symmetry-gross-up' ? 'show':'hide'">
+                    <script defer
+                            src="https://calculators.symmetry.com/widget/js/grossup.js?key=cktNK0JiSWtaVEtRMWowM3JzUTVQdW1UeStUd29KQ2s4azR4VmkvSzBxND0="
+                            data-defaults='{{symmetryPaycheckCityInfo}}'>
+
+                    </script>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>

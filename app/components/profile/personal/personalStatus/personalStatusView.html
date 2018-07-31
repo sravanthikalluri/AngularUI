@@ -1,0 +1,70 @@
+<div class="tn-personal-status-section" ng-controller="personalStatusCtrl">
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.personal_status"></h4>
+        <button id="personalinfodelete" type="reset" name="cancel" ng-hide='hideDelete'
+                class="tn-button tn-delete-button profile-edit-button" ng-click="deletePerson()"
+                ng-bind="::translation.delete"></button>
+        <button data-ng-if="!personalStatusSection" class="tn-edit-button tn-button profile-edit-button" ng-click="editPersonalView()">
+            Edit
+        </button>
+    </div>
+    <div data-ng-if="!personalStatusSection">
+        <div id="effectiveDate" class="tn-form section-header">
+            <select id="status_effective_date" class="effective-list no-marg" ng-hide='hideDelete'
+                    ng-model="selectedStatusData"
+                    ng-options="foa.effectiveDate for foa in personalStatusList"
+                    ng-change="dateChange();">
+            </select>
+        </div>
+        <div class="profile-section-view">
+            <div class="primary-name-view section-block">
+                <div class="employee-data" ng-if="usCountrySSNStatus">
+                    <h5 class="font-light-gray" >
+                        <!--<span ng-if="canadaCountrySSNStatus">{{::translation.sin}}:</span>-->
+                        <span >{{::translation.ssn}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{ssn}}
+                    </p>
+                </div>
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.alternateId}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{alternateId}}
+                    </p>
+                </div>
+            </div>
+            <div class="preferred-name-view section-block">
+                <div class="employee-data">
+                    <h5 class="font-light-gray">
+                        <span>{{::translation.citizenship}}:</span>
+                    </h5>
+                    <p class="proxima-nova-semibold font-dark">
+                        {{citizenShipInfo.citizenshipStatus}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="history-link-section" ng-hide='hideDelete'>
+                <a href id="showTimeline" ng-hide="showTimeline" class="view-history-link"
+                   ng-click="showHideTimeline();selectedObject();" ng-bind="translation.viewHistory">
+                </a>
+                <a href id="hideTimeline" class="view-history-link"
+                   ng-click="showHideTimeline()" ng-show="showTimeline">
+                    Close
+                </a>
+            </div>
+            <div ng-show="showTimeline" id="timeline">
+                <history-timeline data="statusDetails" datemsg="effective"></history-timeline>
+            </div>
+        </footer>
+    </div>
+    <div data-ng-if="personalStatusSection">
+        <no-records></no-records>
+    </div>
+    <div class="tn-horizontal-divider"></div>
+</div>
+

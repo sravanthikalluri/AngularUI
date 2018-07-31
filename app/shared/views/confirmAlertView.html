@@ -1,0 +1,36 @@
+<div class="tn-confirm-popup">
+   <!-- <div class="text-center">
+        <h3>{{::translation.shared.confirmation}}</h3>
+    </div>
+    <div class="modal-body conformPopUpBody col-md-12">
+        <h5 class="no-marg">
+            {{confirmMessage}}</h5>
+    </div>
+    <div class="modal-footer poupFooter clearfix no-pad">
+        <button name="save" class="tn-button tn-action-button"
+                type="button" ng-click="confirm(1)">{{yes_btn}}
+        </button>
+        <button class="tn-button tn-cancel-button" aria-hidden="true"
+                aria-label="Close" ng-click="closeThisDialog(0)" type="button">{{no_btn}}
+        </button>
+    </div>-->
+
+<!--    <div class="modal-header">
+        <i class="icon-close-temp" ng-click="$ctrl.cancel()"></i>
+    </div>-->
+
+    <div class="modal-title"><h3>{{::translation.shared.confirmation}}</h3 ></div>
+
+    <div class="modal-body no-border">
+        <h5 class="text-center">{{confirmMessage}}</h5>
+    </div>
+
+    <div class="modal-footer no-border">
+        <button name="save" class="tn-button tn-action-button"
+                type="button" ng-click="confirm(1)">{{yes_btn}}
+        </button>
+        <button class="tn-button tn-cancel-button" aria-hidden="true"
+                aria-label="Close" ng-click="closeThisDialog(0)" type="button">{{no_btn}}
+        </button>
+    </div>
+</div>

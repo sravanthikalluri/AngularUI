@@ -1,0 +1,18 @@
+<div class="col-md-3 col-sm-3 no-right-pad" ng-controller="dashboardCtrl">
+    <div class="col-md-12 no-pad dashboard-box">
+        <h3 class="dashboard-box-head"> {{::translation.shared.myProfile}}</h3>
+        <div class="mybox">
+            <div class="col-md-6 col-sm-6 no-pad">
+                <img src="assets/images/my_profile_complete.png"
+                     class="img-responsive">
+            </div>
+            <div class="col-md-6 col-sm-6 no-pad line-margin small">
+                {{::translation.shared.sectionCompleted}} <br>{{::translation.shared.requireFields}}
+
+                <div class="col-md-12 no-pad marg-top"><a href="#/profile/profile"
+                                                          class="small span-color marg-top" ><span ng-bind="::translation.shared.compProfile"></span></a></div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+<!--
+Description: This is landing page contains tabs to display about Termination & Add'l Begin/End Payment Details
+Author:Raghavendra Kumar Bonthala
+ -->
+
+<div class="benefit-policies-general" id="reportsId">
+    <alert-view></alert-view>
+    <div class="col-md-12 no-pad">
+
+        <div class="col-md-8 col-md-8 top-marg-10" id="header-bar">
+            <h2 ng-bind="::translation.reports.title"></h2>
+        </div>
+
+    </div>
+
+    <div class="col-md-12 row-top-margin row-pad no-pad reports-blocks">
+        <ul class="gridder manage-emp-reports-blocks">
+            <li ng-repeat="report in translation.reports.headers"
+                class="gridder-list">
+                <div class="title-block" id="list{{$index+1}}"
+                     ng-click="selectTab($index+1)">
+                    <h4 class="reports-title" ng-bind="::report.title"></h4>
+                    <p class="form-content-text" ng-bind="::report.desc"></p>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="row no-pad policies-data top-tile ">
+        <!--<div class="col-md-12 no-pad">
+
+            <div class="content-block no-pad tilePanel"
+                 id="list1" ng-show='isSelected(1)'>
+
+                <div class="col-md-4 col-sm-4 text-center">
+                    <div class="arrow-up-border"></div>
+                    <div class="arrow-up-white"></div>
+                </div>
+                <div id="termDetailGrid" class="policies-info-box">
+                    <div class="col-md-12">
+                        <button type="button" class="close" aria-label="Close"
+                                ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    &lt;!&ndash; Termination Grid Details display section&ndash;&gt;
+                    <p>{{::translation.reports.termHeader}}</p>
+                    &lt;!&ndash; <div class="col-md-2 text-right pull-right no-marg">
+                         <a id="terminationPrint" ng-click="PrintElem('termDetailGrid')"><span
+                                 class=" icon-icon_print_circle top-5">&nbsp;</span><span
+                                 class="medium reports-print-adj">{{translation.print}}</span></a>
+                     </div>&ndash;&gt;
+                    <div class="row">
+                        <div class="col-md-12 manage-group">
+                            <table id="termTable" class="table table-striped manage-table table-hover view-link">
+                                <thead>
+                                <tr>
+                                    <th id="empNameSort" height="40" width="22%"
+                                        ng-click="sortType = 'emplyoeeName'; sortReverse = !sortReverse"><span
+                                            ng-bind="::translation.emp_name"></span><span
+                                            ng-show="sortType == 'emplyoeeName' && !sortReverse"
+                                            class="icon-icon_a-z_sort pull-right"></span> <span
+                                            ng-show="sortType == 'emplyoeeName' && sortReverse"
+                                            class="icon-icon_z-a_sort pull-right"></span>
+                                    </th>
+                                    <th class="col-md-1" width="8%" ng-bind="::translation.position"></th>
+                                    <th class="col-md-1" width="10%" ng-bind="::translation.department"></th>
+                                    <th class="col-md-1" width="10%" ng-bind="::translation.loc"></th>
+                                    <th class="col-md-2" width="26%" ng-bind="::translation.dateSubmit"></th>
+                                    <th class="col-md-2" width="14%" ng-bind="::translation.submitted_by"></th>
+                                    <th class="col-md-2" width="10%"><span class="visible-hide" ng-bind="::translation.viewReport"></span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr id="report{{$index}}" ng-click="viewTermReport($index)"
+                                    ng-repeat="report in reportData | orderBy:sortType:sortReverse"
+                                    class="hand">
+                                    <td class="pad-td" width="22%">
+                                        <div ng-bind="::report.emplyoeeName" class="no-pad-imp pull-left"></div>
+                                        <br> <span ng-if="report.empId.length>0"
+                                                   class="sub-txt no-pad-imp" ng-bind="::translation.emp_id"></span><span
+                                            id="spanTermId{{$index}}"
+                                            class="sub-txt pad-5" ng-bind="::report.empId"></span></td>
+                                    <td width="8%">{{report.position==null?"-&#45;&#45;":report.position}}</td>
+                                    <td width="9%" ng-bind="::report.department"></td>
+                                    <td width="9%" ng-bind-html="report.location"></td>
+                                    <td width="20%"
+                                        ng-bind="(report.dateSubmitted ? (formatDate(report.dateSubmitted)): '-')"></td>
+                                    <td width="14%" ng-bind="::report.submittedBy"></td>
+                                    <td width="10%" class="text-center"><a class="view-details"
+                                                                           ng-bind="::translation.view_report"></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <no-records ng-if='reportData'></no-records>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="content-block no-pad tilePanel marg-top "
+             id="list2" ng-show='isSelected(1)'>
+
+            <div class="col-md-12 text-center">
+                <div class="col-md-6 text-center"><span class="arrow-up"></span></div>
+                <div class="col-md-6 text-center "><span class="arrow-up hidden"></span></div>
+
+            </div>
+            <div id="payDetailGrid" class="policies-info-box">
+                <div class="col-md-12">
+                    <button type="button" class="close" aria-label="Close"
+                            ng-click="closePanel()">
+                        <span aria-hidden="true" class="icon-close-temp"></span>
+                    </button>
+                </div>
+                <!-- Add'l Begin/End Payment Details display section-->
+                <p ng-bind="::translation.reports.payHeader"></p>
+                <div class="col-md-2 text-right pull-right no-marg">
+                    <a ng-click="PrintElem('payDetailGrid')" class="large"><span
+                        class="top-2 icon-icon_print_circle"></span><span class="reports-print-adj">{{translation.print}}</span></a>
+                  </div>
+                <div class="row">
+                    <div class="col-md-12 manage-group">
+                        <table id="payTable"
+                               class="table table-fixied table-striped manage-table table-hover view-details-visible-new view-link">
+                            <thead>
+                            <tr>
+                                <th height="40" width="22%"
+                                    ng-click="sortTypeSec = 'employeeName'; sortReverseSec = !sortReverseSec"><span
+                                        ng-bind="::translation.emp_name"></span><span
+                                        ng-show="sortTypeSec == 'employeeName' && !sortReverseSec"
+                                        class="icon-icon_a-z_sort pull-right"></span> <span
+                                        ng-show="sortTypeSec == 'employeeName' && sortReverseSec"
+                                        class="icon-icon_z-a_sort pull-right"></span>
+                                </th>
+                                <th height="40" ng-bind="::translation.begin_date"></th>
+                                <th height="40" ng-bind="::translation.end_date"></th>
+                                <th height="40" ng-bind="::translation.pay_frequency"></th>
+                                <th height="40" class="text-right no-top-pad"><span
+                                        ng-bind="::translation.earn_amount_head"></span>
+                                    <p class="ex-smsll no-marg" ng-bind="::translation.earn_tag"></p>
+                                </th>
+                                <th height="40"><span class="visible-hide" ng-bind="::translation.viewReport"></span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="secondreport{{$index}}" ng-click="viewPayReport(payReport)"
+                                ng-repeat="payReport in reportPayData | orderBy:sortTypeSec:sortReverseSec"
+                                class="hand">
+                                <td class="pad-td">
+                                    <div ng-bind="::payReport.employeeName" class="no-pad-imp"></div>
+                                    <span class="sub-txt no-pad-imp" ng-bind="::translation.emp_id"></span>
+                                    <span id="spanPayId{{$index}}" ng-bind="::payReport.beginEndDetails.payTo" class=" no-pad-imp"></span>
+                                </td>
+                                <td
+                                        ng-bind="(payReport.beginDate ? (payReport.beginDate | date:'MM/dd/yyyy') : '-')"></td>
+                                <td
+                                        ng-bind="(payReport.endDate ? (payReport.endDate | date:'MM/dd/yyyy') : 'No End Date')"></td>
+                                <td ng-bind="::payReport.payFrequency"></td>
+                                <td class="text-right" ng-bind="payReport.earnAmount | currencyFilter"></td>
+                                <td class="text-center"><a class="view-details" ng-bind="::translation.view_report"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <no-records ng-if='reportPayData'></no-records>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

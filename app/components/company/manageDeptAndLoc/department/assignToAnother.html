@@ -1,0 +1,81 @@
+<!-- This is page is used to assing one department to another
+Author: Raghavendra Kumar Bonthala
+ -->
+<div ng-controller="manageDeptAndLocCtrl">
+<div class="" id="assignToAnthor" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="exampleModal1Label">{{::translation.manageDeptAndLoc.makeDepartmentInactive}}</h4>
+    </div>
+    <div class="modal-body">
+        <form class="visible" name="assignToAnthorForm" valid-submit="sendForm()" novalidate>
+            <div class="col-md-12 col-sm-12">
+                <p class="dislayMessage">{{::translation.manageDeptAndLoc.selectDepartment}}</p>
+            </div>
+            <div class="col-md-12 col-sm-12 marg-btm">
+                <div class="col-md-4 col-sm-4 text-right"><label>
+                    <sup class="blue compel"><span class="asterisk">*</span></sup>{{::translation.manageDeptAndLoc.effectiveDate}}</label>
+                </div>
+                <div class="col-md-3 col-sm-5 no-pad" ng-controller="datePickerCtrl">
+                    <p class="input-group calendar-main no-marg no-pad"
+                       ng-class="{'error-warning': (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired) || (isPreferredNameSubmitted && validationPatterns.primaryNameEdit.blur.preferredNameFormeffDateRequired)}">
+                        <input type="text" class="form-control no-border name-edit-calander-adj bg-transparent clnder"
+                               name="effDate" readonly="readonly"
+                               id="name_edit_pre_effective_date" datepicker-popup="{{format}}"
+                               ng-model="preferredNameData.effectiveDate" is-open="opened" min-date="todaysDate"
+                               max-date="'12/31/2099'" ng-required="true" datepicker-options="dateOptions"
+                               close-text="Close"
+                               ng-focus="validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired=preferredNameForm.effDate.$error.required; validationPatterns.primaryNameEdit.blur.preferredNameFormeffDateRequired = false;"
+                               ng-blur="validationPatterns.primaryNameEdit.blur.preferredNameFormeffDateRequired=preferredNameForm.effDate.$error.required; validationPatterns.primaryNameEdit.focus.preferredNameFormeffDateRequired = false;"
+                                />
+                                <span class="input-group-btn pull-left">
+								<button type="button" class="btn btn-default no-bg-all bo-border"
+                                        id="namespreferredopen"
+                                        ng-click="open($event)">
+
+                                    <i class="glyphicon glyphicon-calendar blue"></i>
+                                </button>
+							</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 marg-btm">
+                <div class="col-md-3 col-sm-3 text-right"><label><sup class="blue compel"><span class="asterisk">*</span></sup>{{::translation.manageDeptAndLoc.department}}</label>
+                </div>
+                <div class="col-md-6 col-sm-7 no-pad">
+                    <!--<input type="text" id="earnAmountId" name="departmentdescription"
+                           ng-model='editDepartment.shortDesc'
+                           ng-class="{'error-warning': earnAmountRequired}"
+                           ng-required="true" maxlength="10"
+                           class="form goal-amount-create-new"
+                           validation>
+                    <Validation condition="departmentdescriptionRequired"
+                                msg="{{translation.departmenttab.description+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>-->
+                    <select class="form-control" ng-model="employmentChangeData.employeeTransfer.reasonId"
+                            ng-click="effectiveDateselectAlert(effective.effectiveDate);"
+                            ng-options= "dept in departments"
+                            ng-required="true">
+                        <option value='' disabled selected class="hiddenprofile">{{::translation.manageDeptAndLoc.chooseReason}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </form>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                ng-class="{'trinet-btn-dissable': assignToAnthorForm.$invalid, 'trinet-primary-action-btn': !assignToAnthorForm.$invalid}"
+                data-dismiss="modal" id="validateDataId"
+                ng-click="closeDialog(editDepartment)">{{::translation.manageDeptAndLoc.saveAndMakeInactive}}</button>
+        <button type="button" class="trinet-secondary-action-btn" id="closePanelId"
+                ng-bind="::translation.cancel" ng-click="closePanel()"></button>
+    </div>
+</div>
+</div>

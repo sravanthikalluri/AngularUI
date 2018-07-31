@@ -1,0 +1,85 @@
+<!-- This is page is used to display particular employee details
+Author: Raghavendra Kumar Bonthala
+ -->
+<alert-view></alert-view>
+<div id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="" role="document">
+        <div class="modal-content organization-popup">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="col-md-2 col-sm-3 profile-pic no-pad ">
+                    <img src="assets/images/default-user.png" alt="profile picture"
+                         class="pointer img-circle img-responsive organization-popup-profile-pic">
+                </div>
+                <div class="col-md-10 col-sm-9 profile-discription">
+                    <ul>
+                        <li>
+                            <span class="name" ng-if="manager.employeeDetails && manager.employeeDetails.preferredName">{{manager.employeeDetails.preferredName}}({{manager.employeeName}})</span>
+                            <span class="name" ng-if="!(manager.employeeDetails && manager.employeeDetails.preferredName)">{{manager.employeeName}}</span>
+
+                  <span class="{{manager.addActiveClass}}">
+                      <p ng-if="objAvailable.status.indexOf(manager.status) > -1"
+                         class="status available" ng-bind="::translation.active"></p>
+                      <p ng-if="objLeave.status.indexOf(manager.status) > -1"
+                         class="status leave" ng-bind="::translation.onLeave"></p>
+                      <p ng-if="objTerminated.status.indexOf(manager.status) > -1"
+                         class="status terminated" ng-bind="::translation.organizationchart.terminated"></p>
+                  </span>
+                        </li>
+                        <li><span class="full-name"></span></li>
+                        <li><span class="details">{{::manager.designation}} </span></li>
+                        <li><span class="details"> {{::manager.employeeDetails.department}}</span><span
+                                ng-show="manager.employeeDetails.department" class="details pad-leftright-5">|</span><span
+                                class="details">{{::manager.employeeDetails.address.city}}<span
+                                ng-show="manager.employeeDetails.address.city && manager.employeeDetails.address.state">, </span> {{manager.employeeDetails.address.state}}&nbsp;&nbsp;{{manager.employeeDetails.address.country}}&nbsp;&nbsp;{{manager.employeeDetails.address.postalCode}}</span>
+                      <span ng-if="manager.employeeDetails.address.city != null || manager.employeeDetails.address.state != null "
+                            class="icon-icon_location map">
+                         <div class="organisation-popup-tooltip">
+                             <h3 ng-bind="::translation.organizationchart.officeAddress"></h3>
+                             <a id="empDetailsLinkId" class="no-pad-imp" target="_blank"
+                                href="http://www.google.com/maps/search/{{manager.employeeDetails.address.city}}+ {{manager.employeeDetails.address.country}}+{{manager.employeeDetails.address.postalCode}}">
+                                 <p> {{::manager.employeeDetails.address.city}}<span ng-show="showComma">,</span> <span
+                                         ng-show="manager.employeeDetails.address.city && manager.employeeDetails.address.state">, </span>
+                                     {{::manager.employeeDetails.address.state}}
+                                     {{::manager.employeeDetails.address.country}}
+                                     {{::manager.employeeDetails.address.postalCode}}</p></a>
+                             <div class="arrow-down"></div>
+                             <div class="arrow-down-border"></div>
+                         </div>
+                      </span>
+                        </li>
+                        <li ng-if="manager.employeeDetails.email != null"><span class="icon-icon_contact medium"></span><a
+                                href="mailto:david.grossow@hidofco.com"
+                                target="_top">{{::manager.employeeDetails.email}}</a></li>
+                        <li ng-if="manager.employeeDetails.address.phone != null"><span
+                                class="icon-icon_phone medium phone-neg-adj"></span><span class="details">test12{{manager.employeeDetails.phone}}test</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row no-marg">
+                    <h3 ng-bind="::translation.organizationchart.employmentDetails"></h3>
+                    <div class="personal-information">
+                        <div class="row no-marg">
+                            <p>
+                            <div class="col-md-2 col-sm-2 no-pad"><label ng-bind="::translation.manager"></label></div>
+                            <div class="col-md-9 col-sm-9 information">
+                                {{manager.president}}
+                            </div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-2 col-sm-2 no-pad"><label ng-bind="::translation.division"></label></div>
+                            <div class="col-md-9 col-sm-9 information">{{::manager.employeeDetails.department}}</div>
+                        </div>
+
+                        <div class="row no-marg">
+                            <div class="col-md-2 col-sm-2 no-pad"><label ng-bind="::translation.seniority"></label></div>
+                            <div class="col-md-9 col-sm-9 information">{{::manager.employeeDetails.seniority}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

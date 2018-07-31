@@ -1,0 +1,52 @@
+<div class="tn-termination-reports tn-background pull-left">
+    <alert-view></alert-view>
+    <!--<div class="col-sm-12 col-md-12">
+        <h2 ng-bind="::translation.assignedRoles.heading"></h2>
+    </div>-->
+    <div class="col-sm-12 heading">
+        <h2 class="bold no-marg">
+            <button class="breadcomb-button no-border no-bg no-marg">{{translation.reports.title}}</button>
+            <span class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button no-border no-bg no-marg">{{translation.terminationReports.title}}</button>
+        </h2>
+    </div>
+    <div class="col-sm-12 col-md-12 no-pad-imp card" ng-if="loadData">
+        <table class="table tn-table tn-table-fixed">
+            <thead>
+            <tr>
+                <th ng-style="{width: autoWidth+ '%'}"
+                    ng-bind="::translation.terminationReports.header.date_submitted"></th>
+                <th ng-style="{width: autoWidth+ '%'}"
+                    ng-bind="::translation.terminationReports.header.submitted_by"></th>
+                <th ng-style="{width: autoWidth+ '%'}"
+                    ng-bind="::translation.terminationReports.header.subject"></th>
+                <th ng-style="{width: autoWidth+ '%'}" >
+                    <span class="visible-hide" ng-bind="::translation.terminationReports.header.details"></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="report{{$index}}" ng-repeat="report in terminationReportsData | orderBy:sortType:sortReverse">
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <h6 class="main-text bold"> {{report.dateSubmitted | date :  "MM/dd/yyyy" }}</h6>
+                </td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <h6 class="main-text bold"  ng-bind="report.submittedBy"></h6>
+                    <h6 class="sub-text">EMP ID :{{ report.submittedById}}</h6>
+                </td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <h6 class="main-text bold">{{report.emplyoeeName}}</h6>
+                    <h6 class="sub-text">EMP ID :{{ report.subjectId}}</h6>
+                </td>
+                <td ng-style="{width: autoWidth+ '%'}">
+                    <h6 class="main-text bold blue text-right" aria-hidden="true">
+                        <a class="hand" href ng-click="viewTermReport(report.subjectId)"
+                           ng-bind="::translation.details"></a>
+                    </h6>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <no-records  error-alert="errorAlert" no-records-alert="noRecordsAlert"></no-records>
+</div>

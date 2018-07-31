@@ -1,0 +1,12 @@
+<!-- This is page is used to Display Life Status Change
+Author: Raghavendra Kumar Bonthala
+-->
+<div>
+    <div ng-if="!lscLoaded">
+        <div>
+            <div class="spinning spinner-loader"></div>
+        </div>
+    </div>
+    <iframe id="lscIframe" class="extapp" style="overflow:hidden;height:1500px;width:900px;border:0px;"
+            border="0" marginwidth="0" marginheight="0" scrolling="{{scrolling}}" ng-src="{{url}}"></iframe>
+</div>

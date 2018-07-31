@@ -1,0 +1,207 @@
+{
+  "data": {
+    "2": [
+      {
+        "id": 4,
+        "name": "workinfo",
+        "url": "#",
+        "type": "tab",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": false,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": false,
+          "canFinalApprove": false
+        },
+        "subComponents": []
+      },
+      {
+        "id": 5,
+        "name": "money",
+        "url": "#",
+        "type": "tab",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": false,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": false,
+          "canFinalApprove": false
+        },
+        "subComponents": [
+          {
+          "id": 17,
+          "name": "payrollEstimates",
+          "url": "#",
+          "type": "section",
+          "external": "N",
+          "permission": {
+            "canView": true,
+            "canAdd": false,
+            "canEdit": true,
+            "canDelete": false,
+            "canPreliminaryApprove": false,
+            "canFinalApprove": false
+          },
+          "subComponents": []
+        }]
+      },
+      {
+        "id": 3,
+        "name": "personal",
+        "url": "#",
+        "type": "tab",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": false,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": false,
+          "canFinalApprove": false
+        },
+        "subComponents": [
+          {
+            "id": 14,
+            "name": "homeaddress",
+            "url": "#",
+            "type": "section",
+            "external": "N",
+            "permission": {
+              "canView": true,
+              "canAdd": false,
+              "canEdit": true,
+              "canDelete": false,
+              "canPreliminaryApprove": false,
+              "canFinalApprove": false
+            },
+            "subComponents": []
+          },
+          {
+            "id": 15,
+            "name": "contactmethods",
+            "url": "#",
+            "type": "section",
+            "external": "N",
+            "permission": {
+              "canView": true,
+              "canAdd": false,
+              "canEdit": true,
+              "canDelete": false,
+              "canPreliminaryApprove": false,
+              "canFinalApprove": false
+            },
+            "subComponents": []
+          },
+          {
+            "id": 16,
+            "name": "emergencycontact",
+            "url": "#",
+            "type": "section",
+            "external": "N",
+            "permission": {
+              "canView": true,
+              "canAdd": false,
+              "canEdit": true,
+              "canDelete": false,
+              "canPreliminaryApprove": false,
+              "canFinalApprove": false
+            },
+            "subComponents": []
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "requestExtendedLeave",
+        "url": "#",
+        "type": "button",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": false,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": false,
+          "canFinalApprove": false
+        },
+        "subComponents": []
+      },
+      {
+        "id": 12,
+        "name": "terminate",
+        "url": "#",
+        "type": "button",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": false,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": false,
+          "canFinalApprove": false
+        },
+        "subComponents": []
+      },
+      {
+        "id": 13,
+        "name": "returnFromLeave",
+        "url": "#",
+        "type": "button",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": false,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": false,
+          "canFinalApprove": false
+        },
+        "subComponents": []
+      }
+    ],
+    "81": [
+      {
+        "id": 2,
+        "name": "newHireId",
+        "url": "#",
+        "type": "Button",
+        "external": "N",
+        "permission": {
+          "canView": true,
+          "canAdd": true,
+          "canEdit": true,
+          "canDelete": false,
+          "canPreliminaryApprove": true,
+          "canFinalApprove": true
+        },
+        "subComponents": [
+          {
+            "id": 1,
+            "name": "SUBMIT",
+            "url": "#",
+            "type": "Button",
+            "external": "N",
+            "permission": {
+              "canView": true,
+              "canAdd": true,
+              "canEdit": true,
+              "canDelete": false,
+              "canPreliminaryApprove": true,
+              "canFinalApprove": true
+            },
+            "subComponents": []
+          }
+        ]
+      }
+
+    ]
+  },
+  "_requestId": "27647",
+  "_statusCode": "200",
+  "_statusText": "OK",
+  "_statusMessage": "Success"
+}

@@ -1,0 +1,464 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .manage-forms .form-content-block ul li {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.related-forms h4 {
+    border-bottom: 1px solid #888888;
+}
+
+.related-forms ul li {
+    background: #f9f9f9;
+    padding: 10px 0 0 0;
+    line-height: 20px;
+    margin: 4px;
+}
+
+.related-forms ul li:hover {
+    background: #f2f2f2;
+}
+
+.related-forms ul li .label-color {
+    color: #0039A6;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.manage-forms .triangle {
+    background: white;
+    border: 1px solid #B5B5B5;
+    border-width: 1px 1px 0 0;
+    transform: rotate(-45deg);
+    position: relative;
+    left: 139px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+}
+
+.manage-forms .gridder-padding {
+    width: 100%;
+    border: 1px solid #B5B5B5;
+}
+
+.manage-forms .gridder-padding .my-pad {
+    padding: 10px;
+}
+
+.manage-forms .form-content-block {
+    max-width: 926px;
+    min-width: 600px;
+    display: block;
+    padding: 0px 16px 16px 16px;
+    margin: 10px auto;
+    background-color: #ffffff;
+    overflow: hidden;
+    /* position:relative;
+     top:-70px;*/
+}
+
+.manage-forms .form-content-block .form-content {
+    margin: 10px 10px 24px 24px;
+    color: #494949;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.manage-forms .form-content-block button {
+    margin-top: 16px;
+}
+
+.manage-forms .form-content-block ul li {
+    background: #f2f2f2;
+    margin-top: 4px;
+    padding-left: 10px;
+    color: #0039A6;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.manage-forms .form-content-block ul li span {
+    color: #A09D9D;
+    padding-right: 10px;
+}
+
+.manage-forms .form-content-block h3 {
+    color: #494949;
+    font-size: 24px;
+    margin: 0;
+    padding: 0px 0px 0px 24px;
+}
+
+.manage-forms .row-top-margin {
+    margin: 30px 0 0 0;
+}
+
+.manage-forms .row-pad {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.manage-forms .column-pad {
+    padding-left: 0;
+    padding-right: 4px;
+}
+
+.manage-forms .title-block {
+    background: #f2f2f2;
+    padding: 5px 14px;
+    height: 110px;
+}
+
+.manage-forms .title-block:hover {
+    background: #0073CF;
+    color: #ffffff;
+}
+
+.manage-forms .title-block:hover h4 {
+    color: #ffffff;
+}
+
+.manage-forms .title-block:hover p {
+    color: #ffffff;
+}
+
+.manage-forms .title-block h4 {
+    color: #0073CF;
+}
+
+.manage-forms .title-block p {
+    color: #888888;
+    font-size: 12px;
+    overflow: hidden;
+    height: 51px;
+}
+
+.title-margin {
+    margin: 4px 0 0 0;
+}
+
+.manage-employee-icon [class*="icon-"] {
+    font-size: 38px;
+    color: #888888;
+}
+
+.liColor {
+    color: black;
+}
+
+.manage-employee-table-new tbody tr td span {
+    float: left;
+    padding: 0 !important;
+}
+
+/* Directory View */
+.directoryTable thead tr th {
+    width: 33.33% !important;
+}
+
+/*sssssssssssssssssssssssssssssssssssssssssssss*/
+.directoryDetails {
+    padding: 16px !important;
+    background: #f2f2f2 !important;
+    border: none !important;
+    width: 370px !important;
+}
+
+.directoryDetails .icon-close-temp {
+    font-size: 14px;
+}
+
+.directoryDetails.flyout {
+    top: 38px;
+}
+
+.directoryDetails img {
+    height: 90px;
+    width: 90px;
+}
+
+.directoryDetails .status.available {
+    background: #69BE28;
+}
+
+.directoryDetails .status {
+    height: 20px;
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    position: relative;
+    left: 8px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    top: -5px;
+}
+
+.directoryDetails .EmployeeDetails {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    min-height: 120px;
+}
+
+/*sssssssssssssssssssssssssssssssssssssssssssss*/
+/*----------------Hours Information page style starts-------------------*/
+.hourInformation .myfield-content {
+    background: #fff !important;
+    border: none !important;
+}
+
+.hourInformation .myfield-content label {
+    text-align: left !important;
+    margin-left: 25px !important;
+    margin-right: 0 !important;
+    width: 80px;
+}
+.hourInformation .hoursInfoDetails{
+    display: block;
+    float: left;
+    max-width: 250px;
+    overflow: hidden;
+    height: auto;
+    max-height: 95px;
+}
+.hourInformation .hoursInfoDetails span{ line-height: 24px;}
+.hourInformation .myfield-content .hoursMyInfoTabs {
+    border: 1px solid #888888;
+    min-height: 200px;
+}
+
+.hourInformation .myfield-content .hours_details {
+    margin: 8px 0;
+    position: relative;
+}
+.hoursInfoToolTip
+{
+    position: absolute;
+    left: 10px;
+    top: -11px;
+}
+.priority-hoursInfo
+{
+    bottom:-150px;
+    left: -8px;
+}
+.priority-hoursInfo .arrow-down
+{
+    top: -22px;
+    left: 7px;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid #888888;
+    border-top: 11px solid transparent;
+    bottom: -11px;
+    position: absolute;
+}
+.priority-hoursInfo .arrow-down-bg {
+    left: 9px;
+    top: -21px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid #ffffff;
+    border-top: 11px solid transparent;
+    bottom: -10px;
+    position: absolute;
+    z-index: 99;
+}
+
+.hourInformation .myfield-content .hours_details .ellipsis {
+    max-width: 180px;
+}
+
+.hourInformation .myfield-content .hoursOtherLocationsInfoTabs {
+    border: 1px solid #888888;
+    min-height: 100px;
+}
+.hoursMyInfoTabs .hours_details label { width:130px;}
+.monogram-directory{
+     width: 90px;
+       height: 90px;
+       display: inline-block;
+       border-radius: 100%;
+       border: 1px solid #e4ebf1;
+       background-color: #0073CF;
+       font-size: 24px;
+       line-height: 28px;
+       color: #ffffff;
+       margin-top: 20px;
+}
+a.org-mail-text{
+    color: #E37222 !important;
+  }
+.directory-emp-name{
+    font-size: 20px;
+    font-weight: 600;
+}
+.directory-emp-fullname{
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+.directory-seniorDirector{
+  color:#888888;
+}
+
+/*---------------Hours Information page style ends----------------------*/
+/*# sourceMappingURL=manageemployee-form.css.map */
+
+/*# sourceMappingURL=manageemployee-form.css.map */
+.border-style-right{
+    border-right-style: none !important;
+
+}
+.table-fixed thead{
+    background-color:#0073CF !important;
+    border: 0px !important;
+}
+
+.pad-top-3{
+    padding-top:3px !important;
+}
+
+.managerClass {
+    -moz-border-radius: 1%;
+    width: 230px;
+    height: 240px;
+    float: left;
+    margin: 10px 10px 10px 5px;
+    background-color: #fff;
+    padding: 35px 15px;
+    border-radius: 6px;
+    flex-basis: 25%;
+    box-shadow: 0 1px 3px rgba(49,51,58,.2);
+}
+.org-chart-divider{
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #d5dde5;
+    margin: 35px 0;
+}
+/*.hand {
+    cursor: pointer;
+}*/
+.icon-downward {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+.divider-icon {
+    background-color: #fff;
+    position: relative;
+    top:20px;
+    width: 40px;
+    height: 40px;
+    padding: 12px;
+    font-weight: 800!important;
+    font-size: 15px;
+    border: 1px solid #d5dde5;
+    border-radius: 20px;
+}
+[class*=" icon-"], [class^=icon-] {
+    font-family: icomoon!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.navigateHeading{
+    font-size:26px;
+    color:black;
+    font-weight:200;
+}
+.org-header-section{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.org-header-section .org-DirectManger{
+    flex-basis: 37.5%;
+}
+.org-header-section .assigned-count{
+    flex-basis: 37.5%;
+}
+.org-header-section .org-selected-employee{
+    background-color:#fff;
+    padding: 35px 15px 50px 15px;
+    border-radius: 6px;
+    flex-basis: 25%;
+    box-shadow: 0 1px 3px rgba(49,51,58,.2);
+}
+.Me-dept{
+    color:grey;
+    font-size:14px;
+}
+.assigned-count .count-class {
+    font-size:42px;
+}
+.assigned-count .assign-type {
+    font-size:14px;
+    font-weight:200;
+}
+.managerClass .assignes-type{
+    padding-top: 18px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.org-selected-employee .tn-avatar {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border-radius: 75%;
+    border: 1px solid #CFD3D7;
+    background-color: #E1E7EB;
+    font-size: 18px;
+    line-height: 46px;
+    padding-top:15px;
+}
+.managerClass .tn-avatar {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border-radius: 75%;
+    border: 1px solid #CFD3D7;
+    background-color: #E1E7EB;
+    font-size: 18px;
+    line-height: 46px;
+    padding-top:15px;
+}
+.org-DirectManger .assign-type {
+    font-size: 14px;
+    color: #30343C;
+    font-weight: 100; }
+
+.org-DirectManger .view-history-link {
+    font-size: 18px;
+    margin: 0; }
+
+.org-DirectManger .tn-horizontal-divider {
+    width: 45%;
+    margin: 25px auto; }
+

@@ -1,0 +1,62 @@
+<!--
+Program: benefitsGuideBookView.html
+Description: It provides information to user about required qualities to get benefits.
+ -->
+<div class="panel-group" id="accordion" ng-controller="benefitsGuideBookViewCtrl">
+    <alert-view></alert-view>
+    <!-- 	First Panel -->
+    <div class="panel panel-default">
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <!--non candian user-->
+
+            <!-- candian user-->
+            <div class="panel-body panel-body-background" ng-show="!hidecandian">
+                <ul class="no-pad benefits-summery-links" ng-repeat="pdfdata in candianPdfData">
+                    <li><a id="candianCurrentBook{{$index}}" class="pull-left"
+                           ng-href="{{pdfdata.url | contentUrl}} "
+                           target="_blank"> <span class="icon-icon_pdf"></span>
+                        <span class="benefit-text " id="bgcandiantext{{$index}}">{{::pdfdata.text}}</span>
+                        <span ng-if="pdfdata.date != null" id="bgcandiandate{{$index}}">{{::pdfdata.date}}</span>
+                    </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- list f plan-->
+            <p class="no-pad" ng-bind="::translation.my_benefits.policies.trinet_guidbook"></p>
+            <ul id="stats" class="medium">
+                <li ng-bind="::translation.my_benefits.policies.eligible_coverage"></li>
+                <li ng-bind="::translation.my_benefits.policies.enroll_taxed"></li>
+                <li ng-bind="::translation.my_benefits.policies.change_benefits"></li>
+                <li ng-bind="::translation.my_benefits.policies.benefits_appeals"></li>
+                <li ng-bind="::translation.my_benefits.policies.benefits_information"></li>
+                <li ng-bind="::translation.my_benefits.policies.cobra_information"></li>
+                <li ng-bind="::translation.my_benefits.policies.fsa_information"></li>
+                <li ng-bind="::translation.my_benefits.policies.hipaa_erisa"></li>
+                <li ng-bind="::translation.my_benefits.policies.required_notices"></li>
+            </ul>
+        </div>
+        <no-records></no-records>
+        <p>{{::translation.my_benefits.benefitGuideBook.benefitGuidDespt}}</p>
+        <div class="panel-body panel-body-background" ng-show="hidecandian">
+            <ul class="no-pad benefits-summery-links adj-benfitGuideBook" ng-repeat="pdfdata in nonCandianPdfData">
+                <li><a id="currentBook{{$index}}" class="inline no-float"
+                       ng-href="{{pdfdata.url | contentUrl}}"
+                       target="_blank"> <span class="icon-icon_pdf"></span>
+                    <span class="benefit-text" id="bgnoncandiantext{{$index}}">{{::pdfdata.text}}</span>
+
+                </a>
+                    <span class="pdf-dissabled-text inline" id="bgnoncandiandate{{$index}}">{{::pdfdata.date}}</span>
+                </li>
+
+            </ul>
+        </div>
+        <!--<p><span class="marg-5">{{::translation.my_benefits.benefitGuideBook.guidebook}}</span><a class="adobereader-icon"
+                                                                              href="http://www.adobe.com/products/acrobat/readstep.html"
+                                                                              target="_blank"><img
+                ng-src="assets/images/benefits/getacro.gif" width="88" height="31" border="0"></a></p>-->
+    </div>
+</div>
+
+
+

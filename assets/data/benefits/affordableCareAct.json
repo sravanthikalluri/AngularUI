@@ -1,0 +1,37 @@
+{
+    "data": {
+        "acaLargeEmployerStatus": {
+            "acaLargeEmployer": "N",
+            "allAdminPeriod": "0",
+            "allMeasurement": "0",
+            "allStability": "0",
+            "allStartDate": "01-JAN-1900",
+            "companyDescription": "Retrofit, Inc.",
+            "effectiveDate": "02-JUN-16",
+            "employeeClassCode": "N/A",
+            "employeeClassType": "N/A",
+            "hourlyAdminPeriod": "0",
+            "hourlyPeriodMeasurement": "0",
+            "hourlyPeriodStability": "0",
+            "hourlyPeriodStartDate": "01-JAN-1900",
+            "label": "ACA Applicable Large Employer (ALE) Status",
+            "salaryAdminPeriod": "0",
+            "salaryPeriodMeasurement": "0",
+            "salaryPeriodStability": "0",
+            "salaryPeriodStartDate": "01-JAN-1900",
+            "ALL_HRL_SAL": "N/A"
+        },
+        "acaHistoricalUpload": {
+            "label": "ACA Historical Upload",
+            "uploadHistorygateWayURL": "https://portaltest.soi.com/aca-upload/aca?brand=PASSPORT&clientId=CBK&userId=00000223332&email=DevEmailTesting@trinet.com&timestamp=2017-03-07T10:33:40Z&signature=a158175949d1336577cf00af16e13da45d037415ba77c2ff893bc52f5afdf4d1"
+        },
+        "equiFaxPDF": {
+            "equiFaxPDFURL": "/v1/extranet/Includes/Content/forms/PDF/Equifax_MS_Reporting_User_Guide.pdf",
+            "label": "Equifax Reporting Guide"
+        }
+    },
+    "_requestId": "eee76db5-446a-4e9b-b0bf-d012cbaa4252",
+    "_statusCode": "200",
+    "_statusText": "OK",
+    "_statusMessage": "Success"
+}

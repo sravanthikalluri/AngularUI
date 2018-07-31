@@ -1,0 +1,96 @@
+<i class="icon-close-temp icon-close-dialog" ng-click="cancelButton(cid)"></i>
+<div class="col-md-8 col-md-offset-2"
+     data-ng-if="saveAndCreateAlert">
+    <div class="alert red-alert alert-danger col-md-12 col-sm-12"
+         ng-if="saveAndCreateAlert._statusCode === '404' || saveAndCreateAlert._statusCode === '400' ">
+        <div class="col-md-1 col-sm-1 no-pad"><i class="icon-icon_Error error-icon" data-dismiss="alert"
+                                                 ng-click="closeAlert($index)"></i></div>
+
+        <div class="col-md-11 no-pad col-sm-11">
+            <h5 class="no-marg">{{saveAndCreateAlert._statusMessage}}</h5>
+        </div>
+    </div>
+    <div ng-class="{fade: startFade}" id="Success" class="alert green-alert alert-success col-md-12 col-sm-12"
+         ng-if="saveAndCreateAlert._statusCode === '200'" delayed-model="saveAndCreateAlert._statusMessage">
+        <div class="col-md-1 no-pad"><i class=" icon-icon_Check tick-icon"></i></div>
+        <div class="col-md-11 no-pad">
+            <h5 class="no-marg">
+                <a class="pull-right " data-dismiss="alert" aria-label="close">
+                    <i class="icon-icon_declined cross-mark" ng-click="closeAlert($index,'success',this)"></i></a>
+                <span ng-bind-html="saveAndCreateAlert._statusMessage"></span></h5>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="retirement-plan-popup-header" ng-if="save">
+    <h4 class="modal-title white text-left clearfix">{{::translation.manage_CustomFields.createField}}</h4>
+</div>
+<div class="retirement-plan-popup-header" ng-if="saveUpdate">
+    <h4 class="modal-title white text-left clearfix">{{::translation.manage_CustomFields.editField}}</h4>
+</div>
+<div class="modal-body retirement-plan-popup-body clearfix">
+    <form name="createCustomFieldsForm">
+        <div id="popupdiv">
+            <div class="option-block">
+                <label><sup class="mandatory">*</sup>{{::translation.manage_CustomFields.customField}}</label>
+                <div>
+                    <select class="custom" id="myselect" name="form_select" ng-model='fieldTypes'
+                            ng-change='fieldTypeChange(fieldTypes)' required="required">
+                        <option value="">{{::translation.manage_CustomFields.selectField}}</option>
+                        <option value="text">{{::translation.manage_CustomFields.customText}}</option>
+                        <option value="currency">{{::translation.manage_CustomFields.customCurrency}}</option>
+                        <option value="date">{{::translation.manage_CustomFields.customDate}}</option>
+                        <option value="number">{{::translation.manage_CustomFields.customNumber}}</option>
+                        <option value="note">{{::translation.manage_CustomFields.customNote}}</option>
+                    </select>
+                </div>
+            </div>
+            <div id="inputfield" class="option-block" ng-if="editShow">
+                <label><sup class="mandatory">*</sup>{{::translation.manage_CustomFields.customLabel}}</label>
+                <div>
+                    <input type="text" ng-model='fieldLabel'
+                           id="myField" name="inputfield" ng-change='textBoxChange(fieldLabel)'
+                           style="width: 100%; height: 30px;" maxlength="250" value="" required="required"/>
+                </div>
+            </div>
+            <div class="option-block" ng-if="fieldTypes === 'text'">
+                <label><sup class="mandatory">*</sup>{{::translation.manage_CustomFields.fLabelAnswers}}</label>
+                <div>
+                    <select class="custom" id="myselect1" name="form_select1" ng-model='answerChoice'
+                            ng-change='changeAnswerChoice(answerChoice)' required="required">
+                        <option value="">{{::translation.manage_CustomFields.selectFieldType}}</option>
+                        <option value="dropdown">{{::translation.manage_CustomFields.customDropDown}}</option>
+                        <option value="freetext">{{::translation.manage_CustomFields.freeText}}</option>
+                    </select>
+                </div>
+            </div>
+            <div ng-if="isAnswerDropdown" class="answerDropdownBlock option-block">
+                <label>Answer choices</label>
+                <div class="answerChoicesList">
+                    <div ng-repeat="item in answerChoicesList">
+                        <input type="text" name="{{item.name}}" ng-model="item.modelName" required="required"/>
+                        <button id="add" ng-click="addNewAnswer()"><img src='./assets/images/add.png'/></button>
+                        <button id="remove" ng-if="answerChoicesList.length > 1" ng-click="removeAnswer(item, $index)">
+                            <img src='./assets/images/remove.png'/></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer-security text-right col-md-12 col-sm-12">
+    <button class="trinet-secondary-action-btn" ng-click="cancelButton(cid)">{{::translation.cancel}}</button>
+    <button class="trinet-primary-action-btn" ng-show="saveAndAdd" ng-click="saveAndAddAnother()" type="reset"
+            ng-class="{'buttondisableforsave':createCustomFieldsForm.$invalid, 'selected-class-name': createCustomFieldsForm.$invalid }">
+        {{::translation.saveAnother}}
+    </button>
+    <button class="trinet-primary-action-btn" ng-if="save"
+            ng-class="{'buttondisableforsave':createCustomFieldsForm.$invalid, 'selected-class-name': createCustomFieldsForm.$invalid }"
+            ng-click="saveButton()">{{::translation.save}}
+    </button>
+    <button class="trinet-primary-action-btn" ng-if="saveUpdate"
+            ng-class="{'buttondisableforsave':createCustomFieldsForm.$invalid, 'selected-class-name': createCustomFieldsForm.$invalid }"
+            id="save1" ng-click="editCustomField()">{{::translation.save}}
+    </button>
+</div>
+

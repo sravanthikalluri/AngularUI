@@ -1,0 +1,25 @@
+<!-- This is page is used to display enrollment plan details
+Author:  Raghavendra Kumar Bonthala
+ -->
+
+
+<div class="my-money organisation-chart col-md-12 col-sm-12 no-pad visible">
+    <alert-view></alert-view>
+<div class="col-md-6 no-pad">
+    <div class="clearfix">&nbsp;</div>
+    <h2 class="no-pad-bottom" ng-bind="::translation.moneyTab.retHeader"></h2>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="col-md-12 panel-body panel-body-background no-pad-left no-pad retirement-plan-enrolment relative" ng-if="isLoadingCompleted">
+    <div ng-if="!noPlans">
+        <div class="no-enrolment">
+            <h3>  {{::translation.employee_money.enrollRetirement}}</h3>
+            <a id="createNewRetirementId" class="trinet-primary-action-btn" ng-click="createNewRetirement()">{{::translation.employee_money.enroll}}</a>
+        </div>
+    </div>
+    <div ng-if="noPlans">
+        <div ng-include="'app/components/payroll/retirementPlan/additionalEnrollmentPlanView.html'"></div>
+    </div>
+
+</div>
+</div>

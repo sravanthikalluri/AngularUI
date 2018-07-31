@@ -1,0 +1,61 @@
+<div class="employee-details-view-section" ng-if="compensationView">
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.work_info.compensation_details"></h4>
+    </div>
+    <div class="profile-section-view">
+        <div class="primary-name-view section-block">
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.emp_type}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark">
+                    {{$parent.workInfoData.employeeType}}
+                    <span ng-if="$parent.workInfoData.regularTemporary">&nbsp;({{$parent.workInfoData.regularTemporary}})</span>
+                </p>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.Std_hrs}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark">
+                    {{$parent.workInfoData.standardHours}}
+                </p>
+            </div>
+
+        </div>
+        <div class="preferred-name-view section-block">
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.compensation}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark">
+                    {{$parent.workInfoData.compensationRate | currency}}<span
+                    ng-if="workInfoData.compensationBasis">/</span><span
+                    ng-if="$parent.workInfoData.compensationBasis === 'Annual'" ng-bind="::translation.work_info.year"></span>
+                    <span ng-if="$parent.workInfoData.compensationBasis === 'Hourly'" ng-bind="::translation.work_info.hour"></span>
+                </p>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.work_info.cmp_effective_date}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark">{{$parent.workInfoData.effectiveDate | date: 'MM/dd/yyyy'}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="$parent.subSectionView('moneyCompensationHistory')">
+    <div class="tn-horizontal-divider" ng-if="compensationView"></div>
+    <a href="" id="showTimeline" ng-show="showHistoryTag"
+        ng-click="toggleTimeline();selectedObject(displayChangehistorydata);" class="view-history-link"><span
+        ng-bind="::translation.viewHistory"></span></a>
+    <a href="" id="hideTimeline" ng-click="toggleTimeline()" ng-hide="showTimeline" class="view-history-link"><span
+        ng-bind="::translation.close"></span></a>
+    <div class="col-md-12 col-sm-12 workinfo-history block" id="timeline" ng-hide="showTimeline">
+        <div class="col-md-6 col-sm-6">
+            <history-timeline data="details" section="'employeementChange'" translation ="translation"></history-timeline>
+        </div>
+    </div>
+</div>
+
+

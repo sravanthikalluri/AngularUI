@@ -1,0 +1,134 @@
+@import '../../global';
+
+.legal-notices-section {
+  .icon-icon_pdf {
+    float: left;
+    padding-right: $padding/2;
+    margin-top: 3px;
+  }
+    .icon-icon_pdf:before {
+        content: "\e006";
+        color: #f22323;
+        font-size: 15px;
+    }
+
+  .list {
+    display: block;
+    clear: both;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        margin: 0 0 7px;
+        padding: 7.33333px 10px;
+        @extend .block;
+        background: $Background;
+      }
+    }
+    pdf-text-col {
+      color: #888888;
+    }
+  }
+  .legal-block {
+    @extend .block;
+    padding: $padding 0 $padding*2;
+
+    .panel-group {
+      margin-bottom: 10px;
+    }
+  }
+  .state-development-section {
+    @extend .legal-block;
+
+    accordion {
+
+      .panel-group .panel.panel-default .panel-heading {
+
+        .icon-icon_Disclosure_Collapse:before {
+          content: "\a151";
+          color: #0073CF;
+          position: absolute;
+          top: 5px;
+          right: 4px;
+          font-size: 22px;
+        }
+
+        .icon-icon_Disclosure_Expand:before {
+          content: "\a150";
+          font-size: 20px;
+          color: #0073CF;
+          position: absolute;
+          right: 4px;
+          font-size: 22px;
+        }
+      }
+      .panel-group {
+        margin-bottom: $margin;
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+
+      .col-md-12.col-md-12.top-marg-10 {
+        padding: 0;
+
+        .panel-group {
+          margin-bottom: 0;
+          margin-top: $margin;
+          padding: 0 $padding*1.5;
+
+          .panel-body {
+            padding: $padding $padding*1.5 !important;
+
+          }
+        }
+      }
+    }
+
+  }
+
+  .panel-body {
+    padding: $padding $padding*1.5 !important;
+  }
+
+  .panel-title {
+    h5 {
+      display: inline-block !important;
+      margin: 0;
+    }
+    i {
+      position: relative;
+      top: -3px;
+    }
+    .icon-icon_Disclosure_Collapse {
+      font-size: 20px !important;
+
+    }
+  }
+  .panel-body {
+
+    h2 {
+      font-size: 18px !important;
+      font-weight: 600;
+      margin-bottom: $margin;
+      padding: 0 !important;
+    }
+  }
+}
+
+ul.bullet-list {
+  padding-left: 10px;
+  list-style: disc !important;
+  display: block;
+
+  li {
+    list-style: disc !important;
+    display: block;
+    padding: 5px 0;
+    font-size: 15px;
+    list-style-position: inside;
+  }
+}

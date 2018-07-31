@@ -1,0 +1,141 @@
+<alert-view></alert-view>
+<!-- Page Title -->
+<div layout="row">
+    <div flex="100">
+        <header>
+            <h2 class="page-title" ng-bind="translation.companyDashboard.heading"></h2>
+        </header>
+    </div>
+</div>
+<!-- Widget List -->
+<div layout="row" layout-xs="column" class="tn-dashboard-main proxima-nova">
+    <div flex="75">
+
+                <md-card ng-if="hasOnboarding">
+                <md-card-title>
+                <md-card-title-text>
+                            <span
+                                class="tn-widget-title proxima-nova-semibold">{{translation.dashboard.newHiring}}</span>
+                </md-card-title-text>
+            </md-card-title>
+                    <md-card-content>
+                <onboarding-widget id="onBoardingWidget"></onboarding-widget>
+            </md-card-content>
+                       <md-card-actions layout="row" layout-align="space-around center">
+                <md-button id="viewUnSubmittedBtn"
+                           class="md-accent md-raised md-hue-3 tn-widget-buttons-secondary"
+                           ng-click="showUnsubmittedView()"><span
+                    ng-bind="translation.dashboard.viewUnsubmitted"></span></md-button>
+                <md-button id="onBoardingBtn" class="md-accent md-raised md-hue-3 tn-widget-buttons"
+                           ng-click="goToOptionView()"><span
+                    ng-bind="translation.dashboard.addNewHiring"></span></md-button>
+            </md-card-actions>
+                 </md-card>
+
+                <md-card ng-if="showPayroll && hasNextPayDay">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold">{{translation.dashboard.payDay}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <next-pay-day-widget id="nextPayDayWidget"></next-pay-day-widget>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center" ng-hide="true">
+                        <md-button id="companyViewPayrollScheduleBtn"
+                                   class="md-accent md-raised md-hue-3 tn-widget-buttons" ng-href="#/payrollSchedule">
+                            View Payroll Schedule
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+
+                <md-card ng-if="showOpenEnrollmentStatus">
+            <md-card-title>
+                <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold"
+                                  ng-bind="::translation.openEnrollmentStats.openEnrollmentStatus"></span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <open-enrollment-stats-widget id="openEnrollmentStatusWidget"></open-enrollment-stats-widget>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center">
+                <md-button id="openEnrollmentStatusButton"
+                           class="md-accent md-raised md-hue-3 tn-widget-buttons"
+                           ng-href="#/openEnrollmentStatus"
+                           ng-bind="::translation.openEnrollmentStats.viewDetails"></md-button>
+            </md-card-actions>
+        </md-card>
+
+    </div>
+    <div flex="25">
+        <notice-event-base id="noticeEventBase"></notice-event-base>
+        <important-notices></important-notices>
+        <bi-alerts-card id="alertsCard" ng-if="showAlerts && alerts.length > 0" ></bi-alerts-card>
+        <manage-on-demand-workers-widget class="tn-independent-contractor" id="manageOnDemandWorkersWidget" ng-if="showIndependentContractor">
+        </manage-on-demand-workers-widget>
+        <md-card class="best-practices" ng-if="showBestPractices">
+            <md-card-title>
+                <md-card-title-text>
+                    <span
+                        class="tn-widget-title proxima-nova-semibold">{{translation.companyDashboard.bestPractices}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <dl>
+                    <dt>
+                        <a href='https://www.trinet.com/lp/webinars/client/'
+                           target='BODY'>{{translation.companyDashboard.executivesRoadmap}}
+                        </a>
+                    </dt>
+                    <dt>
+                        <a
+                            href='https://www.trinet.com/newsletters/trinet-hr-reporter/'
+                            target='BODY'>{{translation.companyDashboard.eNewsletter}}
+                        </a>
+                    </dt>
+                    <dt>
+                        <a
+                            href='https://www.trinet.com/hr-insights/blog/'
+                            target='BODY'> {{translation.companyDashboard.hRBlog}}
+                        </a>
+                    </dt>
+                </dl>
+            </md-card-content>
+        </md-card>
+        <md-card ng-if="showHoliday && hasHolidayWidget">
+            <md-card-title>
+                <md-card-title-text>
+                            <span class="tn-widget-title proxima-nova-semibold text-center no-margin"
+                                  ng-bind="translation.dashboard.nextPaidHoliday"></span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <holiday-calendar-widget id="nextPaidHolidayWidget"></holiday-calendar-widget>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center">
+                <md-button id="viewHolidayScheduleBtn" class="md-accent md-raised md-hue-3 tn-widget-buttons-secondary md-button md-trinet-theme md-ink-ripple"
+                           ng-click="holidayListRedirection();"><i class="icon-icon_calendar"></i><span class="margin-left"
+                                                                                                        ng-bind="translation.dashboard.viewHolidaySch"></span></md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>
+
+<div dashboard-sections></div>
+<script type="text/ng-template" id="firstDialogId">
+    <div class="ngdialog-message">
+        <h4 ng-bind="translation.dashboard.listWidgets"></h4>
+        <div ng-scrollable class="widget-height">
+            <div ng-repeat="section_items in sectionsDetails">
+                <input type="checkbox" ng-model="panelsData"
+                       ng-change="setselectedValues(section_items.title,$index,section_items,section_items.directive)">&nbsp;{{section_items.title}}
+            </div>
+        </div>
+    </div>
+    <div class="ngdialog-buttons">
+        <button type="button" ng-click="addWidget()" class="ngdialog-button ngdialog-button-secondary"
+                ng-bind="translation.dashboard.addWidget">
+        </button>
+    </div>
+</script>

@@ -1,0 +1,114 @@
+<!--
+Description: This is page to display about Individual Add'l Begin/End Payment detailed report
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="reportsCtrl">
+    <div class="modal-header">
+        <h4 class="modal-title" ng-bind="translation.reports.payDetailHeader"></h4>
+    </div>
+    <div class="modal-body content-modal manage-employee-popup">
+        <div class="col-md-12 no-pad marg10" id="printPayDiv">
+            <div class="col-md-12 content-bg no-pad">
+                <div class="col-md-10 no-pad">
+                    <div class="medium dissable-text"><span ng-bind="translation.submitted_by"></span> <span
+                            ng-bind="viewPayReportData.beginEndDetails.submittedByName"></span> {{translation.reports.on}} <span
+                            ng-bind="(viewPayReportData.beginEndDetails.submittedByTimestamp ? (viewPayReportData.beginEndDetails.submittedByTimestamp | date:'MM/dd/yyyy') : '-')"></span>
+                    </div>
+                </div>
+                <!-- print code commented due to client request -->
+                 <div class="col-md-2 text-right no-pad">
+                     <a ng-click="PrintElem('printPayDiv')" id="printdiv"><span
+                             class=" icon-icon_print_circle top-3 large"></span><span
+                             class="large" ng-bind="translation.print"></span></a>
+                 </div>
+            </div>
+            <table class="table generate-req-table medium  no-border">
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="translation.reports.pay_to"></td>
+                    <td class="text-left col-md-7">
+                        <span ng-bind="viewPayReportData.employeeName"></span><span class="dissable-text"> ({{translation.emp_id}}
+							{{viewPayReportData.beginEndDetails.payTo}})</span></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5">{{translation.effective_date}}:</td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewPayReportData.beginEndDetails.effectiveDate ? (viewPayReportData.beginEndDetails.effectiveDate | date:'MM/dd/yyyy') : '-')"></td>
+                </tr>
+            </table>
+
+            <h4 class="marg-top10 border-btm" ng-bind="translation.reports.empInfo"></h4>
+
+            <table class="table generate-req-table medium">
+                <tr>
+                    <td class="text-right col-md-5">{{translation.department}}:</td>
+                    <td class="text-left col-md-7" ng-bind="viewPayReportData.beginEndDetails.empInfo.department"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5">{{translation.loc}}:</td>
+                    <td class="text-left col-md-7" ng-bind-html="viewPayReportData.beginEndDetails.empInfo.location"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="translation.company"></td>
+                    <td class="text-left col-md-7" ng-bind="viewPayReportData.beginEndDetails.empInfo.company"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="translation.reports.pf_client"></td>
+                    <td class="text-left col-md-7" ng-bind="viewPayReportData.beginEndDetails.empInfo.pfClient"></td>
+                </tr>
+            </table>
+
+            <h4 class="marg-top10 border-btm" ng-bind="translation.reports.payDetails"></h4>
+
+            <table class="table generate-req-table medium">
+                <tr>
+                    <td class="text-right col-md-5">{{translation.begin_date}}:</td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewPayReportData.beginEndDetails.payDetails.beginDate ? (viewPayReportData.beginEndDetails.payDetails.beginDate | date:'MM/dd/yyyy') : '-')"></td>
+
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5">{{translation.end_date}}:</td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewPayReportData.beginEndDetails.payDetails.endDate ? (viewPayReportData.beginEndDetails.payDetails.endDate | date:'MM/dd/yyyy') : '-')"></td>
+
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="translation.reports.action_date"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="(viewPayReportData.beginEndDetails.payDetails.actionDate ? (viewPayReportData.beginEndDetails.payDetails.actionDate | date:'MM/dd/yyyy') : '-')"></td>
+
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="translation.reports.action"></td>
+                    <td class="text-left col-md-7" ng-bind="viewPayReportData.beginEndDetails.payDetails.action"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5">{{translation.goal_amount}}:</td>
+                    <td class="text-left col-md-7">{{viewPayReportData.beginEndDetails.payDetails.goalAmount |
+                        currencyFilter}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5">{{translation.earn_type}}:</td>
+                    <td class="text-left col-md-7" ng-bind="viewPayReportData.beginEndDetails.payDetails.earnType"></td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5"><span>{{translation.earn_amount}}</span>
+                        <p class="ex-smsll" ng-bind="translation.earn_tag"></p>
+                    </td>
+                    <td class="text-left col-md-7">{{viewPayReportData.beginEndDetails.payDetails.earnAmount
+                        |currencyFilter}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right col-md-5" ng-bind="translation.reports.pay_freq"></td>
+                    <td class="text-left col-md-7"
+                        ng-bind="viewPayReportData.beginEndDetails.payDetails.payFrequency"></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+

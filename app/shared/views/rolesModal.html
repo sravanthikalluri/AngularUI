@@ -1,0 +1,38 @@
+<div class="modal-body conformPopUpBody col-md-12 radiusCls">
+    <div class="btns col-md-12 text-right">
+        <i class="icon-close-temp iconClose" ng-click="closePanel()"></i>
+        <h3  class="HRAuthTitleCls">HR Authorization - Location Specific</h3>
+        <h5 class="noteCls">Note: Uncheck All Locations to select specific locations for this HR Authorizer.</h5>
+        <div class="clearfix">&nbsp;</div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+            <div class="locationCls">Choose Locations</div>
+            <div class="selectCls">Locations Selected</div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+            <div  class="chooseLctCls">
+                <div  ng-repeat="location in locations" ng-value='location.locationId' ng-if="location.locationName" >
+                    <div ><input class="stateChangedCls" type="checkbox" ng-model="location.value" ng-disabled="location.disable" ng-change="stateChanged(location, true, 0)">
+                        <span class="locationNameCls">{{location.locationName}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="selectedLctCls">
+                <div ng-repeat='selectedlocation in totalSelected'>
+                    <div class="clearfix"></div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div  ng-click="stateChanged(selectedlocation, false, 1)"><span class="locationNameSelectedCls">{{filterLocation(selectedlocation.locationId)}} &#10005;</span></div>
+                </div>
+            </div>
+        </div>
+        <button class="trinet-secondary-action-btn"  ng-click="closePanel()"> {{::translation.roles.cancel}}
+        </button>
+        <button class="trinet-primary-action-btn"  ng-click="confirmHRAuthRestricted()">Confirm
+        </button>
+    </div>
+
+</div>
+
+
+

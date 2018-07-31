@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .best-main .best-block {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.best-main h2 {
+    padding: 1px 0 15px 0px;
+    margin-top: 5px;
+}
+
+.best-main .best-text {
+    padding: 20px 0;
+    color: #494949;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.best-main .best-block span {
+    font-size: 48px;
+    color: #494949;
+}
+
+.best-main ul {
+    float: left;
+}
+
+.best-main li {
+    padding: 0px;
+}
+
+.best-main a {
+    border: 1px solid #ffffff;
+    float: left;
+    background: #f2f2f2;
+    text-decoration: none !important;
+    padding: 24px 10px;
+    height: 120px;
+}
+
+.best-main a h4 {
+    color: #0073CF;
+    font-size: 17px;
+    font-weight: 600;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0px 0 10px 0;
+}
+
+.best-main a p {
+    color: #888888;
+    font-size: 16px;
+    margin: 0px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.best-main a:hover {
+    border: 1px solid #0073CF;
+    background: #ffffff;
+}
+
+.best-main a:hover span {
+    color: #0073CF;
+}
+
+.best-main li:nth-of-type(odd) {
+    border: #ffffff 1px solid;
+    border-width: 0 2px 2px 0;
+}
+
+.best-main li:nth-of-type(even) {
+    border: #ffffff 1px solid;
+    border-width: 0 1px 2px 0;
+}
+
+/*# sourceMappingURL=bestpractice.css.map */

@@ -1,0 +1,117 @@
+<div class="tn-profile-main no-pad tn-background pull-left" >
+    <alert-view></alert-view>
+    <div ng-hide="manageEmpProfile" class="col-sm-12 col-md-12 no-pad">
+        <div class="col-sm-12 no-pad">
+            <h3 class="tn-page-heading">
+                <a ng-href="#/manageEmployee" ng-if="notMeTab" ng-bind="::translation.manageHeading"></a>
+                <i aria-hidden="true" class="icon-icon_forward"></i>
+                <a ng-class="headerName.length > 20 ? 'isEllipsis' : ''" href="">{{headerName}}</a>
+            </h3>
+        </div>
+        <div class="col-md-9 col-sm-12 no-pad">
+            <div class="col-md-12 col-sm-12 no-pad">
+                <md-card class="main-profile-card-section">
+                    <md-card-content>
+                        <profile-header userImage='userImage' monogram='monogram'
+                                        designation='designation' headerAddress='headerAddress' notMeTab='notMeTab'
+                                        headerEmail='headerEmail' headerPhno='headerPhno' empStatus='empStatus'
+                                        userPicture='userPicture' mimeType='mimeType' employeeClass="employeeClass"></profile-header>
+                    </md-card-content>
+                    <div class="tn-tab-section tn-header-tabs">
+                        <ul class="nav nav-pills nav-tabs">
+                            <li ng-class="{ active: tab == 'profile'}" ng-hide="true" class="personal">
+                                <a ng-click="setTab('profile')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.profile"></a>
+                            </li>
+                            <li ng-class="{ active: tab == 'workinfo'}" ng-hide="true" class="workinfo">
+                                <a ng-click="setTab('workinfo')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.work"></a>
+                            </li>
+                            <li ng-class="{ active: tab === 'money'}" ng-hide="true" class="money">
+                                <a ng-click="setTab('money')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.money"></a>
+                            </li>
+                            <li ng-class="{ active: tab === 'timeoff'}" ng-hide="true" class="timeoff">
+                                <a ng-click="setTab('timeoff')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.timeOff"></a>
+                            </li>
+                            <li ng-class="{ active: tab === 'benefits'}" ng-hide="true" class="benefits">
+                                <a ng-click="setTab('benefits')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.benefits"></a>
+                            </li>
+                            <li ng-class="{ active: tab === 'permissions'}" ng-hide="true" class="roles">
+                                <a ng-click="setTab('permissions')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.permissions"></a>
+                            </li>
+                            <li ng-class="{ active: tab === 'eforms'}" ng-hide="true" class="e-forms">
+                                <a ng-click="setTab('eforms')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.acknowledgements"></a>
+                            </li>
+                            <li ng-class="{ active: tab === 'customFields'}" ng-hide="true" class="customFields">
+                                <a ng-click="setTab('customFields')" class="personal-tabs proxima-nova-semibold"
+                                   ng-bind="::translation.profile_personal.customFields"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div id="profileSectionsScroll">
+                            <div ui-view="mainContent"></div>
+                        </div>
+                    </div>
+                </md-card>
+
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 secondary-section">
+            <a ng-if="subSectionView('orgChart')" class="tn-button tn-view-org-chart-button"
+               ng-click="navigateToOrg()">
+                {{translation.shared.organizChart}}
+            </a>
+            <md-card class="profile-service-section">
+                <md-card-content>
+                    <p class="text-center font-light-gray content-text proxima-nova-semibold">With {{currentCompanyName}} for</p>
+                    <p class="text-center service-years font-dark proxima-nova-semibold">{{years}} years</p>
+                    <p class="text-center service-months font-dark proxima-nova">{{months}} months</p>
+                </md-card-content>
+            </md-card>
+            <div ng-if="!IsRemoteEmployee">
+                <md-card class="profile-map-card">
+                <div class="profile-map">
+                    <ng-map center="{{officeAddress}}"
+                            zoom="12"
+                            default-style="false"
+                            disable-default-u-i="true"
+                            zoom-control="false"
+                            draggable ="false">
+                        <marker position="{{officeAddress}}"></marker>
+                    </ng-map>
+                </div>
+                <br>
+                <div class="profile-map-address-container" ng-if="currentData">
+                    <div class="profile-map-address">
+                        <i class="tn-icon icon-icon_location"></i>
+                        <div class="profile-location-label proxima-nova-semibold font-light-gray">Location</div>
+                        <address class="profile-location-value proxima-nova-semibold text-left font-dark" ng-bind-html="getOfficeAddress(currentData);"></address>
+                    </div>
+                </div>
+              </md-card>
+            </div>
+        </div>
+    </div>
+    <div ng-if="leaveFormDisplay">
+        <div
+            ng-include="'app/components/profile/leaveRequest/extendLeaveRequest.html'">
+        </div>
+    </div>
+    <div ng-if="returnFromLeave">
+        <div
+            ng-include="'app/components/profile/leaveRequest/returnFromLeave.html'">
+        </div>
+    </div>
+    <div ng-if="terminationFormDisplay">
+        <div id="terminationDOM">
+        </div>
+        <iframe ng-style="{'height': iFrameHeight}" id="requestTerminationFrame"
+                ng-src="{{terminationUrl}}" style="position:absolute; width: 100%;"></iframe>
+    </div>
+</div>

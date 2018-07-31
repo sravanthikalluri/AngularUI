@@ -1,0 +1,529 @@
+\@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .SummaryPlanDescriptionId accordion, .SummaryPlanDescriptionId accordion .panel-group .panel.panel-default .panel-heading h4, .SummaryPlanDescriptionId accordion .panel-group .panel-title a, .organisation-navigation {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.manage-group .req-btn {
+    background-color: #E37222;
+    color: #FFF;
+    border-radius: 0px;
+}
+
+.manage-group .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #FFF;
+}
+
+.manage-group .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #f2f2f2;
+}
+
+.manage-group .sub-heading {
+    margin-left: 5px;
+    color: #c0c0c0;
+}
+
+.manage-group .marg-left5 {
+    margin-left: 5px;
+}
+
+.manage-group .sub-txt {
+    color: #888888;
+    font-size: 10px;
+}
+
+.manage-group .manage-achr {
+    color: #E37222;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.manage-group .settings-marg {
+    margin-top: 3px;
+    margin-left: 5px;
+}
+
+.manage-group .manage-table {
+    margin-top: 10px;
+    min-width:100%;
+}
+
+.manage-group .manage-table th {
+    border-left: 1px solid;
+    border-bottom: none !important;
+    background: #0073CF;
+    color: #FFF;
+    font-weight: 500;
+}
+
+.manage-group .manage-table th:first-child {
+    border: none !important;
+}
+
+.manage-group .manage-table .icon-icon_filter {
+    font-size: 18px;
+}
+
+.manage-group .manage-table td {
+   /* padding: 15px 8px;*/
+    border: none !important;
+}
+
+.manage-group .manage-table .pad-td {
+    padding: 5px 8px !important;
+}
+
+.manage-group .manage-table .border-btm td {
+    border-bottom: 1px solid #B5B5B5 !important;
+}
+
+.manage-group .manage-table tbody tr:hover {
+    background: #D9EAF8 !important;
+}
+
+.manage-group .manage-table .icon-icon_checkmark_emptybox {
+    font-size: 18px;
+}
+
+.manage-group .manage-table .chkbox-li {
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.manage-group .manage-table .chk-box-th {
+    margin-right: 15px;
+}
+
+.manage-group .editmanage-group thead tr th:nth-child(2) {
+    border: none !important;
+}
+
+.modal-content {
+    background: #f2f2f2;
+}
+
+.modal-content .form-btn .btn {
+    border-radius: 0px;
+    padding: 5px !important;
+    font-size: 12px;
+}
+
+.modal-content .form-btn .req-btn {
+    background-color: #E37222;
+    color: #FFF;
+}
+
+.modal-content .form-btn .cancel-btn {
+    background-color: #494949;
+    color: #FFF;
+}
+
+.modal-content .content-modal {
+    background-color: #FFF !important;
+    padding: 15px;
+}
+
+.modal-content .content-modal .list-group-item {
+    background: #f2f2f2;
+    border-radius: 0px;
+    border: 2px solid #fff;
+}
+
+.modal-content .content-modal .list-group-item .icon-icon_checkmark_emptybox {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.modal-content .content-modal .list-group-item label {
+    font-weight: 500;
+    color: #494949;
+    font-size: 14px;
+}
+
+.modal-content .content-modal .list-group-item p {
+    margin: 0px;
+    font-size: 12px;
+    color: #888888;
+}
+
+.top-5 {
+    position: relative;
+    top: 5px;
+}
+
+.search-box {
+    background: #fff;
+    border: 1px solid #494949;
+    width: 100%;
+    padding: 2px;
+}
+
+.search-box input {
+    width: 84% !important;
+    color: black;
+}
+
+.manage-employee-table tr th {
+    position: relative;
+}
+
+.visible {
+    overflow: visible !important;
+}
+
+.change-group-pop-adj {
+    position: relative;
+    top: -11px;
+    margin-left: 5px;
+}
+
+.SummaryPlanDescriptionId accordion {
+    background: #f2f2f2;
+    margin-bottom: 5px;
+}
+
+.SummaryPlanDescriptionId accordion .panel-group .panel.panel-default .panel-heading h4 a b {
+    line-height: 25px;
+}
+
+.SummaryPlanDescriptionId accordion .panel-group {
+    margin: 0 !important;
+}
+
+.SummaryPlanDescriptionId accordion .panel-group .icon-icon_Disclosure_Collapse {
+    position: relative;
+    top: 0px;
+}
+
+.SummaryPlanDescriptionId accordion .panel-group [class*=" icon-"] {
+    margin: 0;
+}
+
+.mail-adj {
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+}
+
+.organisation-navigation {
+    margin: 10px 0 !important;
+}
+
+.manage-emp-drop-list {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background: #fff;
+    padding: 10px;
+    z-index: 99;
+    min-width: 200px;
+}
+
+.manage-emp-drop-list label input {
+    float: left;
+}
+
+.manage-emp-drop-list label span {
+    padding-left: 18px;
+    display: block;
+    margin-top: 5px;
+    width: 180px;
+}
+
+.group-change-filter-list {
+    position: absolute;
+    z-index: 99;
+    background: #ffffff;
+    color: #888888;
+    width: auto;
+    height: 300px;
+    overflow: auto;
+    right: 0;
+    padding: 5px;
+    min-width: 220px;
+    max-width: 350px;
+    border: 1px solid;
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.group-change-filter-list .list-sub-data {
+    padding: 0;
+    margin: 0;
+}
+
+.group-change-filter-list .list-sub-data :hover {
+    background: #D9EAF8;
+}
+
+.group-change-filter-list .list-sub-data .action-checkbox label {
+    margin-bottom: 0px !important;
+}
+
+.group-change-filter-list .list-sub-data .action-checkbox label p {
+    font-size: 12px !important;
+}
+
+.group-change-filter-list input[type="checkbox"] {
+    height: 15px;
+    position: relative;
+    top: 1px;
+    width: 17px;
+    margin: 0 4px 10px 4px;
+}
+
+.group-change-filter-list .active {
+    background: #D9EAF8;
+}
+
+.change-group-list-new ul {
+    padding: 0;
+}
+
+.change-group-list-new ul li {
+    border: none !important;
+    background: #f2f2f2;
+    display: block;
+    clear: both;
+    margin: 3px;
+}
+
+.change-group-list-new ul li .effect-title {
+    padding-left: 28px;
+}
+
+.customed-calendar {
+    background: #ffffff;
+    padding: 2px;
+}
+
+.manage-group-calendar {
+    background: #ffffff;
+    border: 1px solid #494949;
+    width: 115px;
+    padding: 2px;
+    margin-left: 10px;
+}
+
+.manage-group-calendar input {
+    width: 77% !important;
+    padding-right: 0 !important;
+}
+
+.manage-group-calendar button {
+    padding-left: 0;
+    margin-top: 2px;
+}
+
+.bg-light-blur {
+    background: #D9EAF8 !important;
+}
+
+#manage-group-tabel .manage-group-tbody tr td {
+    padding: 10px 15px !important;
+}
+/*#manage-group-tabel .manage-group-tbody tr td:last-child{
+    padding-Right: 35px !important;;
+}*/
+#manage-group-tabel .group-change-filter-list ,.manageGroupsTable .group-change-filter-list{
+    min-height: 30px;
+    height: auto;
+    top: 38px;
+    max-width:250px;
+}
+#manage-group-tabel .group-change-filter-list .profile-checkbox ,.manageGroupsTable .group-change-filter-list .profile-checkbox {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+}
+#manage-group-tabel thead tr th:last-child {
+    width:20% !important;
+}
+#manage-group-tabel .manage-group-tbody tr:hover {
+    background: #D9EAF8 !important;
+}
+#manage-group-tabel.table-fixed thead tr th{
+    border-right-style: none;
+}
+
+
+/*crate group-cahnge start*/
+
+/*crate group-cahnge End */
+#ngdialog1 .ngdialog-close {
+    top: 16px !important;
+}
+
+.managegrup {
+    position: relative;
+}
+
+.managegrup h5 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.custom-table-create-group .manage-employee-table .bg-light-blue {
+    background: #D9EAF8 !important;
+}
+.adjManageTable thead tr th{ border-right-style: none !important;}
+.top-0 {
+    top: 0 !important;
+}
+/* Drectory table view style starts */
+
+.DirectorySearch span.search-box{border:1px solid #c0c0c0 !important;}
+.DirectorySearch span input{height:40px !important;box-shadow:none;}
+.DirectorySearch span input:focus{box-shadow:none;}
+.DirectorySearch button.searchIcon{top:8px;position:relative;}
+.top-6{top:6px;}
+#directoryViewTable .activeDirectory{background:#FFF9DF !important;}
+#directoryViewTable thead th{padding:7px 5px;}
+
+.showAll{min-width: 164px;text-align: right;}
+/* Drectory table view style end */
+
+.totalCount{
+    margin:10px 0 20px 0;
+    color:#000;
+}
+
+/*crate group-cahnge Start */
+.manageGroupsTable{
+    overflow-x:auto;
+    overflow-y:auto;
+    display: flex;
+    flex-direction: column;
+}
+.manageGroupsTable.isLeavePlan .manage-select-custom select{
+    width: 80%;
+}
+.manageGroupsTable .manage-select-custom select.adjust-select{
+    min-width: 60%;
+}
+.manageGroupsTable.isLeavePlan .manageGroupsHeadings {
+  font-size: 12px;
+}
+.manageGroupsTable .manage-select-custom {
+  display: flex;
+}
+.manageGroupsTable .manageGroupsHeadings {
+  min-height: 40px;
+  background: #0073CF;
+  color: #FFF;
+  font-weight: 500;
+}
+.manageGroupsTable .manageGroupsHeadings > div:not(.customCheckBox) {
+  border-left: 1px solid #fff;
+  margin: 0px 10px;
+}
+.manageGroupsTable .manageGroupsHeadings .empDirectManger {
+  padding: 10px 5px;
+}
+.manageGroupsTable .manageGroupsHeadings, .manageGroupsTable .manageGroupsBody {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.manageGroupsTable.isLeavePlan .manageGroupsHeadings .empName, .manageGroupsTable.isLeavePlan .manageGroupsHeadings .empPosition {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.manageGroupsTable .manageGroupsHeadings > div:not(.customCheckBox), .manageGroupsTable .manageGroupsBody > div:not(.customCheckBox) {
+  flex: 10%;
+  padding: 10px 5px;
+}
+.manageGroupsTable .manageGroupsHeadings > div:last-child{
+ padding: 10px 15px !important;
+}
+.manageGroupsTable .manageGroupsBody.adjColumns > div:not(.customCheckBox) {
+    margin: 0 10px;
+    flex:9%;
+}
+.manageGroupsTable .manageGroupsBody.adjColumns .empName{
+    flex:6% !important;
+}
+.manageGroupsTable .manageGroupsBody.adjColumns .empPosition{
+    flex:7% !important;
+}
+.manageGroupsTable .manageGroupsHeadings .customCheckBox, .manageGroupsTable .manageGroupsBody .customCheckBox {
+  margin: 0 10px;
+}
+.manageGroupsTable .manageGroupsHeadings .empDept.adjSelect, .manageGroupsTable .manageGroupsHeadings .empLoc.adjSelect, .manageGroupsTable .manageGroupsBody .empDept.adjSelect, .manageGroupsTable .manageGroupsBody .empLoc.adjSelect {
+  padding: 0 5px;
+}
+.manageGroupsTable .manageGroupsBody {
+  font-size: 12px;
+  color: #000;
+}
+.manageGroupsTable p{
+ font-size: 12px;
+}
+.manageGroupsTable .noborder{border:none !important}
+.manageGroupsTable .manageGroupsBody > div:not(.customCheckBox) {
+  margin: 0px 15px;
+}
+.manageGroupsTable .manageGroupsBody:hover {
+  background: #D9EAF8 !important;
+}
+.manageGroupsTable .bg-light-blue {
+  background: #D9EAF8 !important;
+}
+.manageGroupsTable #manageGroupsBodySection {
+     height: auto;
+     overflow-y: auto;
+     max-height: 500px;
+}
+#manageGroupsBodySection::-webkit-scrollbar {
+    width: 5px;
+}
+
+#manageGroupsBodySection::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#manageGroupsBodySection::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.groupButtonSection {
+            margin-top: 10px;
+            border-top: 1px solid #e5e5e5;
+        }
+.customed-calendar .input-tooltip-main .input-tooltip{
+    top:100%;
+}
+.popUp-alert{
+    width: 75%;
+    text-align: center;
+    top: 5%;
+    margin: 10px 13% !important;
+}
+.manage-group-title {
+    width : 12%;
+}
+.manageGroupsHeadings,#manageGroupsBodySection{
+    min-width: 100%;
+}
+
+/*crate group-cahnge End */
+/*# sourceMappingURL=manage-group.css.map */
+

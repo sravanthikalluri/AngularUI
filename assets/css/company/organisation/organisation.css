@@ -1,0 +1,916 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .organisation-chart, .org-chart-popup, .organisation-chart .organization-popup .modal-body .personal-information, .org-chart-popup .organization-popup .modal-body .personal-information {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block, .organisation-chart .employee p.status, .org-chart-popup .employee p.status, .organisation-chart .organization-popup .modal-body .personal-information label, .org-chart-popup .organization-popup .modal-body .personal-information label, .organisation-chart .organization-popup .modal-body .personal-information .information, .org-chart-popup .organization-popup .modal-body .personal-information .information {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.organisation-chart, .org-chart-popup {
+    /***********************************************
+                  outside CSS
+    ************************************************/
+}
+
+.organisation-chart .saperator, .org-chart-popup .saperator {
+    font-size: 12px;
+}
+
+.organisation-chart .manage-employee, .org-chart-popup .manage-employee {
+    display: block;
+}
+
+.organisation-chart .manage-employee .view-details, .org-chart-popup .manage-employee .view-details {
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.organisation-chart .manage-employee h3, .org-chart-popup .manage-employee h3 {
+    color: #0073CF;
+    font-size: 24px;
+    margin: 0;
+    padding: 0 !important;
+}
+
+.organisation-chart .manage-employee a, .org-chart-popup .manage-employee a {
+    color: #0073CF;
+    font-size: 14px;
+    margin: 0;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0;
+}
+
+.organisation-chart .manage-employee a.doc-link, .org-chart-popup .manage-employee a.doc-link {
+    color: #E37222;
+    font-size: 14px;
+    margin: 0;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0;
+}
+
+.organisation-chart .manage-employee [class*="icon-"], .org-chart-popup .manage-employee [class*="icon-"] {
+    font-size: 24px;
+    padding-right: 8px;
+    position: relative;
+    top: 4px;
+}
+
+.organisation-chart .members-head h2, .org-chart-popup .members-head h2 {
+    color: #494949 !important;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.organisation-chart .employee, .org-chart-popup .employee {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    opacity: .5;
+}
+
+.organisation-chart .employee p.department, .org-chart-popup .employee p.department {
+    font-size: 12px;
+    color: #888888;
+    font-weight: 300;
+    opacity: 0;
+}
+
+.organisation-chart .employee h2, .org-chart-popup .employee h2 {
+    color: #494949 !important;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.organisation-chart .employee img, .org-chart-popup .employee img {
+    width: 110px;
+    height: 110px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.organisation-chart .employee h3, .org-chart-popup .employee h3 {
+    font-size: 18px;
+    color: #494949;
+}
+
+.organisation-chart .employee h3 a:hover, .org-chart-popup .employee h3 a:hover {
+    text-decoration: underline;
+}
+
+.organisation-chart .employee p.manager-of, .org-chart-popup .employee p.manager-of {
+    font-size: 18px;
+    color: #494949;
+}
+
+.organisation-chart .employee [class*="icon-"], .org-chart-popup .employee [class*="icon-"] {
+    font-size: 24px;
+    padding-right: 8px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #0073CF;
+    opacity: 0;
+}
+
+.organisation-chart .employee a, .org-chart-popup .employee a {
+    text-decoration: none;
+}
+
+.organisation-chart .employee a:hover, .organisation-chart .employee a:visited, .organisation-chart .employee a:focus, .org-chart-popup .employee a:hover, .org-chart-popup .employee a:visited, .org-chart-popup .employee a:focus {
+    text-decoration: underline !important;
+}
+
+.organisation-chart .employee p.status, .org-chart-popup .employee p.status {
+    height: 20px;
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    position: absolute;
+    right: 5px;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+.organisation-chart .employee p.status.leave, .org-chart-popup .employee p.status.leave {
+    background: #EAD0AA;
+}
+
+.organisation-chart .employee p.status.available, .org-chart-popup .employee p.status.available {
+    background: #69BE28;
+}
+
+.organisation-chart .employee p.status.terminated, .org-chart-popup .employee p.status.terminated {
+    background: red;
+}
+
+.organisation-chart .organization-popup, .org-chart-popup .organization-popup {
+    padding: 16px;
+    background: #f2f2f2;
+    margin-top: 20%;
+    width: 650px !important;
+}
+
+.organisation-chart .organization-popup .modal-header, .org-chart-popup .organization-popup .modal-header {
+    border: 0;
+    padding: 0;
+    position: absolute;
+    right: 15px;
+    z-index: 999;
+    background: none;
+}
+
+.organisation-chart .organization-popup .modal-header span, .org-chart-popup .organization-popup .modal-header span {
+    color: #494949;
+}
+
+.organisation-chart .organization-popup .modal-body, .org-chart-popup .organization-popup .modal-body {
+    padding: 0;
+    background: none !important;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-pic, .org-chart-popup .organization-popup .modal-body .profile-pic {
+    display: inline-block;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription, .org-chart-popup .organization-popup .modal-body .profile-discription {
+    display: block;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul, .org-chart-popup .organization-popup .modal-body .profile-discription ul {
+    margin: 0;
+    padding: 0;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li, .org-chart-popup .organization-popup .modal-body .profile-discription ul li {
+    list-style: none;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li .details, .org-chart-popup .organization-popup .modal-body .profile-discription ul li .details {
+    font-size: 14px;
+    line-height: 18px;
+    color: #494949;
+    font-weight: 400;
+    padding: 0;
+    /* padding-left:$padding/2;*/
+    display: inline-block;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li a, .org-chart-popup .organization-popup .modal-body .profile-discription ul li a {
+    text-decoration: none;
+    color: #E37222;
+    display: inline-block;
+    padding-left: 5px;
+    margin-bottom: 4px;
+    max-width: 84%;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li .name, .org-chart-popup .organization-popup .modal-body .profile-discription ul li .name {
+    display: inline-block;
+    font-size: 21pt;
+    color: #494949;
+    font-weight: 600;
+    max-width: 88%;
+    padding-right: 10px;
+
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li .status, .org-chart-popup .organization-popup .modal-body .profile-discription ul li .status {
+    display: inline-block;
+    height: 20px;
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    position: absolute;
+    padding: 0 10px;
+    text-transform: uppercase;
+    top: 5px;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li .status.available, .org-chart-popup .organization-popup .modal-body .profile-discription ul li .status.available {
+    background: #69BE28;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li .status.leave, .org-chart-popup .organization-popup .modal-body .profile-discription ul li .status.leave {
+    background: #EAD0AA;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li label, .org-chart-popup .organization-popup .modal-body .profile-discription ul li label {
+    font-size: 12pt;
+    color: #494949;
+    font-weight: 600;
+}
+
+.organisation-chart .organization-popup .modal-body .profile-discription ul li .full-name, .org-chart-popup .organization-popup .modal-body .profile-discription ul li .full-name {
+    font-size: 12pt;
+    color: #494949;
+    font-weight: 600;
+}
+
+.organisation-chart .organization-popup .modal-body h3, .org-chart-popup .organization-popup .modal-body h3 {
+    font-size: 16pt;
+    color: #494949;
+    font-weight: 600;
+}
+
+.organisation-chart .organization-popup .modal-body .personal-information, .org-chart-popup .organization-popup .modal-body .personal-information {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    min-height: 100px;
+}
+
+.organisation-chart .organization-popup .modal-body .personal-information .row, .org-chart-popup .organization-popup .modal-body .personal-information .row {
+    margin-top: 10px !important;
+}
+
+.organisation-chart .organization-popup .modal-body .personal-information label, .org-chart-popup .organization-popup .modal-body .personal-information label {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    color: #494949;
+    min-width: 71px;
+}
+
+.organisation-chart .organization-popup .modal-body .personal-information .information, .org-chart-popup .organization-popup .modal-body .personal-information .information {
+    font-size: 16px;
+    font-weight: 400;
+    color: #494949;
+}
+
+.organisation-chart #quote-carousel .carousel-indicators .active, .org-chart-popup #quote-carousel .carousel-indicators .active {
+    background: #0073CF !important;
+    position: relative;
+}
+
+.organisation-chart .icon-icon_location, .org-chart-popup .icon-icon_location {
+    font-size: 20px;
+    color: #0073CF;
+}
+
+.organisation-chart .map, .org-chart-popup .map {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+}
+
+.organisation-chart .map .organisation-popup-tooltip, .org-chart-popup .map .organisation-popup-tooltip {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #888888;
+    bottom: 29px;
+    min-width: 150px;
+    left: -65px;
+}
+
+.organisation-chart .map .organisation-popup-tooltip h3, .org-chart-popup .map .organisation-popup-tooltip h3 {
+    color: #494949;
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.organisation-chart .map .organisation-popup-tooltip p, .org-chart-popup .map .organisation-popup-tooltip p {
+    color: #0039A6;
+    padding: 0;
+    line-height: 20px;
+    margin: 0;
+}
+
+.organisation-chart .map .organisation-popup-tooltip .arrow-down, .org-chart-popup .map .organisation-popup-tooltip .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 9px solid #ffffff;
+    position: absolute;
+    z-index: 5;
+    left: 44%;
+    bottom: -9px;
+}
+
+.organisation-chart .map .organisation-popup-tooltip .arrow-down-border, .org-chart-popup .map .organisation-popup-tooltip .arrow-down-border {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #888888;
+    position: absolute;
+    z-index: 4;
+    left: 43%;
+    bottom: -10px;
+}
+
+.organisation-chart .map:hover > .organisation-popup-tooltip, .org-chart-popup .map:hover > .organisation-popup-tooltip {
+    display: block;
+}
+
+.organisation-chart .view-profile, .org-chart-popup .view-profile {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.organisation-chart .view-profile a, .org-chart-popup .view-profile a {
+    text-decoration: none;
+}
+
+.organisation-chart .view-profile a img, .org-chart-popup .view-profile a img {
+    height: 40px;
+    width: 40px;
+    border: 2px solid #ffffff;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    border-radius: 40px;
+}
+
+.organisation-chart .view-profile a img:hover, .org-chart-popup .view-profile a img:hover {
+    border: 2px solid #0073CF;
+}
+
+.organisation-chart .view-profile a h3, .org-chart-popup .view-profile a h3 {
+    font-size: 14px;
+    color: #494949;
+}
+
+.organisation-chart .org-list, .org-chart-popup .org-list {
+    display: block;
+}
+
+.organisation-chart .org-list .chart-drop-menu-list, .org-chart-popup .org-list .chart-drop-menu-list {
+    display: none;
+    background: #ffffff;
+    padding: 5px;
+    border: 1px solid #888888;
+    z-index: 999;
+    top: 35px;
+    position: absolute;
+    right: 5px;
+}
+
+.organisation-chart .org-list .chart-drop-menu-list ul, .org-chart-popup .org-list .chart-drop-menu-list ul {
+    padding: 0;
+    margin: 0;
+    max-height: 260px;
+    overflow-y: auto;
+    width: auto;
+    overflow-x: hidden;
+}
+
+.organisation-chart .org-list .chart-drop-menu-list ul li, .org-chart-popup .org-list .chart-drop-menu-list ul li {
+    list-style: none;
+    padding: 2px 0;
+}
+
+.organisation-chart .phone-neg-adj, .org-chart-popup .phone-neg-adj {
+    position: relative;
+    top: -3px;
+}
+
+.organisation-chart .organization-chart-find-section, .org-chart-popup .organization-chart-find-section {
+        display: block;
+        max-height: 380px;
+        overflow: hidden;
+        overflow-y: auto
+}
+
+.organization-chart-find-section {
+        display: block;
+        max-height: 380px;
+        overflow: hidden;
+        overflow-y: auto
+}
+/* Let's get this party started */
+.organization-chart-find-section::-webkit-scrollbar {
+    width: 8px;
+}
+/* Track */
+.organization-chart-find-section::-webkit-scrollbar-track {
+    background:#ADAEAE;
+}
+/* Handle */
+.organization-chart-find-section::-webkit-scrollbar-thumb {
+    background:#888888;
+}
+.organization-chart-find-section::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4);
+}
+.organisation-chart .organization-chart-find-section .generate-req-table tbody tr, .org-chart-popup .organization-chart-find-section .generate-req-table tbody tr {
+    border-bottom: 1px solid #888888;
+}
+
+.organisation-chart .organization-chart-find-section .generate-req-table tbody tr:first-child, .org-chart-popup .organization-chart-find-section .generate-req-table tbody tr:first-child {
+    border-top: 1px solid #888888;
+}
+
+.organisation-chart .bordered-circle, .org-chart-popup .bordered-circle {
+    width: 90px;
+    height: 90px;
+    border: 1px solid transparent;
+    text-align: center;
+    line-height: 90px;
+    font-size: 36px;
+    font-weight: 400;
+    display: inline-block;
+    letter-spacing: -6px;
+    background:#f4f4f4;
+}
+.organisation-chart .bordered-circle:hover, .org-chart-popup .bordered-circle:hover
+{
+     border: 1px solid #0073CF;
+}
+.organisation-chart .bordered-circle-mini, .org-chart-popup .bordered-circle-mini {
+    width: 50px;
+    height: 50px;
+    line-height: 35px;
+    display: inline-block;
+    border: 1px solid transparent;
+    font-weight: bold;
+    text-align: center;
+    background:#f4f4f4;
+}
+.organisation-chart .bordered-circle-mini:hover, .org-chart-popup .bordered-circle-mini:hover
+{
+     border: 1px solid #0073CF;
+}
+
+.organisation-chart .organization-popup-profile-pic, .org-chart-popup .organization-popup-profile-pic {
+    width: 80px;
+    height: 80px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.organisation-chart .organization-chart-find-section img, .org-chart-popup .organization-chart-find-section img {
+    max-width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.organisation-chart .chart-drop-menu-list, .org-chart-popup .chart-drop-menu-list {
+    /* display: none;*/
+    background: #ffffff;
+    padding: 5px;
+    border: 1px solid #888888;
+    z-index: 999;
+    top: 35px;
+    position: absolute;
+    right: 5px;
+}
+.organisation-chart .chart-drop-menu-list ul, .org-chart-popup .chart-drop-menu-list ul {
+    padding: 0px;
+    margin: 0;
+    max-height: 260px;
+    overflow-y: auto;
+    width: auto;
+    overflow-x: hidden;
+}
+
+.organisation-chart .chart-drop-menu-list ul li, .org-chart-popup .chart-drop-menu-list ul li {
+    list-style: none;
+    padding: 5px;
+}
+.organisation-chart .chart-drop-menu-list ul li:hover, .org-chart-popup .chart-drop-menu-list ul li:hover {
+  background: #D9EAF8 !important;
+}
+.organisation-chart .chart-drop-menu-list ul li a, .org-chart-popup .chart-drop-menu-list ul li a {
+    color: #494949;
+}
+.organisation-chart .organisation-chart .carousel-indicators, .org-chart-popup .organisation-chart .carousel-indicators {
+    bottom: -5px !important;
+}
+
+.organisation-chart .find-popup-adj, .org-chart-popup .find-popup-adj {
+    position: relative;
+    top: -17px;
+}
+
+.organisation-chart .modal-dialog, .org-chart-popup .modal-dialog {
+    width: auto;
+    margin: 0;
+}
+
+.organisation-chart .holder_bu_awayR6, .organisation-chart .holder_bu_awayR7,
+.organisation-chart .holder_bu_awayL7, .organisation-chart .holder_bu_awayL6, .org-chart-popup .holder_bu_awayR6, .org-chart-popup .holder_bu_awayR7,
+.org-chart-popup .holder_bu_awayL7, .org-chart-popup .holder_bu_awayL6 {
+    display: none;
+}
+
+.organisation-chart .holder_bu .viewdetails, .org-chart-popup .holder_bu .viewdetails {
+    display: none;
+}
+
+.organisation-chart .holder_bu_center .viewdetails, .org-chart-popup .holder_bu_center .viewdetails {
+    display: block;
+}
+
+.organisation-chart .findEmployeeInput, .org-chart-popup .findEmployeeInput {
+    position: relative;
+    top: 10px;
+}
+
+.organisation-chart .eform-adj, .org-chart-popup .eform-adj {
+    margin-top: 1.5em !important;
+    margin-bottom: 1.5em !important;
+    display: block;
+    overflow: hidden;
+}
+
+.organisation-chart table.eform-head thead, .org-chart-popup table.eform-head thead {
+    background: #0073CF;
+}
+
+.organisation-chart table.eform-head thead tr td, .org-chart-popup table.eform-head thead tr td {
+    font-size: 14px;
+    color: #fff;
+}
+
+.organisation-chart .green-icon, .org-chart-popup .green-icon {
+    font-size: 24px !important;
+    color: #69BE28;
+}
+
+.organisation-chart .red-icon, .org-chart-popup .red-icon {
+    font-size: 24px !important;
+    color: #BE2833;
+}
+
+.organisation-chart .loading, .org-chart-popup .loading {
+    padding-left: 43%;
+    padding-top: 15%;
+}
+
+.organisation-chart .sk-fading-circle, .org-chart-popup .sk-fading-circle {
+    margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle, .org-chart-popup .sk-fading-circle .sk-circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle:before, .org-chart-popup .sk-fading-circle .sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle2, .org-chart-popup .sk-fading-circle .sk-circle2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle3, .org-chart-popup .sk-fading-circle .sk-circle3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle4, .org-chart-popup .sk-fading-circle .sk-circle4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle5, .org-chart-popup .sk-fading-circle .sk-circle5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle6, .org-chart-popup .sk-fading-circle .sk-circle6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle7, .org-chart-popup .sk-fading-circle .sk-circle7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle8, .org-chart-popup .sk-fading-circle .sk-circle8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle9, .org-chart-popup .sk-fading-circle .sk-circle9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle10, .org-chart-popup .sk-fading-circle .sk-circle10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle11, .org-chart-popup .sk-fading-circle .sk-circle11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle12, .org-chart-popup .sk-fading-circle .sk-circle12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+
+.organisation-chart .sk-fading-circle .sk-circle2:before, .org-chart-popup .sk-fading-circle .sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle3:before, .org-chart-popup .sk-fading-circle .sk-circle3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle4:before, .org-chart-popup .sk-fading-circle .sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle5:before, .org-chart-popup .sk-fading-circle .sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle6:before, .org-chart-popup .sk-fading-circle .sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle7:before, .org-chart-popup .sk-fading-circle .sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle8:before, .org-chart-popup .sk-fading-circle .sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle9:before, .org-chart-popup .sk-fading-circle .sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle10:before, .org-chart-popup .sk-fading-circle .sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle11:before, .org-chart-popup .sk-fading-circle .sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+
+.organisation-chart .sk-fading-circle .sk-circle12:before, .org-chart-popup .sk-fading-circle .sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+
+@-webkit-keyframes sk-circleFadeDelay {
+    0%, 39%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
+@keyframes sk-circleFadeDelay {
+    0%, 39%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
+.organisation-chart .left_rotated_dotted_line, .org-chart-popup .left_rotated_dotted_line {
+    border-left: 2px dotted black;
+    height: 61px;
+    /* margin-left: 100px; */
+    position: relative;
+    top: 48px;
+    left: 433px;
+    width: 336px;
+    -ms-transform: rotate(48deg);
+    -webkit-transform: rotate(48deg);
+    transform: rotate(48deg);
+}
+
+.organisation-chart .right_rotated_dotted_line, .org-chart-popup .right_rotated_dotted_line {
+    border-left: 2px dotted black;
+    height: 61px;
+    /* margin-left: 100px; */
+    position: relative;
+    top: 61px;
+    left: 163px;
+    width: 336px;
+    -ms-transform: rotate(131deg);
+    -webkit-transform: rotate(131deg);
+    transform: rotate(131deg);
+    display: inline-grid;
+}
+
+.organisation-chart .right_rotated_solid_line, .org-chart-popup .right_rotated_solid_line {
+    border-left: 1px solid black;
+    height: 61px;
+    /* margin: -7px -457px 0px 0px; */
+    position: relative;
+    top: 119px;
+    left: 431px;
+    width: 336px;
+    -ms-transform: rotate(48deg);
+    -webkit-transform: rotate(48deg);
+    transform: rotate(48deg);
+}
+
+.organisation-chart .left_rotated_solid_line, .org-chart-popup .left_rotated_solid_line {
+    border-left: 1px solid black;
+    height: 61px;
+    /* margin: -7px -457px 0px 0px; */
+    position: relative;
+    top: 111px;
+    left: 164px;
+    width: 336px;
+    -ms-transform: rotate(131deg);
+    -webkit-transform: rotate(131deg);
+    transform: rotate(131deg);
+    display: inline-grid;
+}
+
+.organisation-chart .vertical_solid_line, .org-chart-popup .vertical_solid_line {
+    border-left: 1px solid black;
+    height: 20px;
+    margin: -7px -457px 0px 0px;
+    position: relative;
+    top: 0px;
+    left: 457px;
+    width: 336px;
+    display: inline-grid;
+}
+
+.organisation-chart .closedept i, .org-chart-popup .closedept i {
+    color: black;
+    font-size: 14px !important;
+
+}
+#closedept{
+    visibility: hidden;
+
+} #closedept i{ position: relative;
+           top: 2px;
+           padding-left: 5px;}
+.view-details:hover #closedept{
+    visibility: visible !important;
+
+}
+.organisation-chart .ngdialog.ngdialog-theme-default.ng-scope .ngdialog-content .ngdialog-close:before, .org-chart-popup .ngdialog.ngdialog-theme-default.ng-scope .ngdialog-content .ngdialog-close:before {
+    color: #0039A6 !important;
+}
+
+.org-chart-company-filter {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.org-chart-company-filter-block {
+    padding-right: 5px;
+}
+
+.oc-carousel-name-adj {
+    letter-spacing: -3px !important;
+}
+
+.overide-pad {
+    padding-right: 2px !important;
+}
+.org-right-solidLine{
+    border-left: 1px solid black;
+    height: 61px;
+    position: relative;
+    top: 47px;
+    left: 437px;
+    width: 336px;
+    -ms-transform: rotate(48deg);
+    -webkit-transform: rotate(48deg);
+    transform: rotate(48deg);
+}
+.pad-top-4{
+    padding-top:4px;
+}
+.tn-button.tn-search-btn{
+    color:rgba(0,0,0,0.87);
+}
+.tn-search-btn .tn-search-button-search-icon{
+    margin-right:10px;
+}
+.orgBody .heading{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+}
+.orgBody .department-name{
+    position: absolute;
+    top: -10px;
+    right: 25px;
+    font-size: 18px;
+    margin: 0;
+}
+.orgBody .department-name i{
+    position: relative;
+    top: 2px;
+}
+.organization-find-popup .manage-employee-popup{
+    height:auto;
+}
+.organization-find-popup .organization-chart-find-section{
+    min-height:90px;
+}
+/*# sourceMappingURL=organisation.css.map */

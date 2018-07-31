@@ -1,0 +1,24 @@
+<div id="main" ui-sortable ng-model="sectionsCountDetails" >
+<div class="col-md-4 col-sm-6 no-pad" ng-repeat="section_count in sectionsCountDetails | limitTo:pageSize" >
+        <div ng-if="section_count.id=='sec_0'">
+      	 <div id="{{section_count.id1}}" class="panel-body" class="dashboard-widgets">
+      	<img  src="assets/images/plus.png"
+        ng-dialog="firstDialogId"
+        ng-dialog-controller="dashboardCtrl"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-scope="this"
+        ng-dialog-pre-close-callback="directivePreCloseCallback"
+        ng-dialog-show-close="true"/></div> </div>
+        <div ng-if="section_count.id!='sec_0'">
+        <div id="{{section_count.id}}" class="panel-body" class="dashboard-widgets">
+        
+      	   <img  ng-show={{myVar}} id="test_{{section_count.id}}" src="assets/images/plus.png"
+	        ng-dialog="firstDialogId"
+	        ng-dialog-controller="dashboardCtrl"
+	        ng-dialog-class="ngdialog-theme-default"
+	        ng-dialog-scope="this"
+	        ng-dialog-pre-close-callback="directivePreCloseCallback"
+	        ng-dialog-show-close="true"/></div>
+        </div>
+</div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "errorCode": null,
+  "resource": {
+    "policyMenuId": "2",
+    "managerMenuId": "3",
+    "additionalFormsMenuId": "4",
+    "benefitsMenuId": "86266",
+    "benefitIndicator": false
+  },
+  "statusCode": "200",
+  "statusMessage": "Success"
+}

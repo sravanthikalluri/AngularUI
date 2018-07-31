@@ -1,0 +1,54 @@
+<alert-view></alert-view>
+<div class="open-enrollment-stats-container">
+    <h2 class="no-pad marg-25">{{::translation.openEnrollmentStats.openEnrollment}} {{currentYear}} {{::translation.openEnrollmentStats.statusReport}}</h2>
+    <md-card style="width:70%">
+        <div class="proxima-nova-semibold pad-30">
+            <div class="col-sm-12 pad-30">
+                <div class="col-md-4 right-border center-text">
+                    <div class="tn-widget-numeric-label-medium" id="oeTotalBenefitsEligible" ng-bind="eligibleCount"></div>
+                    <div class="tn-widget-text" ng-bind="::translation.openEnrollmentStats.totalBenefitsEligible"></div>
+                </div>
+                <div class="col-md-4 right-border center-text">
+                    <div class="tn-widget-numeric-label-medium" id="oeTotalLoggedIn" ng-bind="loggedInCount"></div>
+                    <div class="tn-widget-text" ng-bind="::translation.openEnrollmentStats.totalLoggedIn"></div>
+                </div>
+                <div class="col-md-4 center-text">
+                    <div class="tn-widget-numeric-label-medium" id="oeTotalSubmissions" ng-bind="submissionsCount"></div>
+                    <div class="tn-widget-text" ng-bind="::translation.openEnrollmentStats.totalSubmissions"></div>
+                </div>
+            </div>
+            <div class="col-sm-12 pad-30">
+                <div class="col-md-4">
+                    <div class="open-enrollment-heading" ng-bind="::translation.openEnrollmentStats.submittedElections"></div>
+                    <div class="open-enrollment-list">
+                        <ul ng-if="submittedDetails.length > 0">
+                            <li ng-repeat="item in submittedDetails track by $index" ng-bind="item"></li>
+                        </ul>
+                        <span ng-if="submittedDetails.length === 0" ng-bind="::translation.openEnrollmentStats.noEmployeesFound"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="open-enrollment-heading" ng-bind="::translation.openEnrollmentStats.loggedInButNotSubmitted"></div>
+                    <div class="open-enrollment-list">
+                        <ul ng-if="notSubmittedDetails.length > 0">
+                            <li ng-repeat="item in notSubmittedDetails track by $index" ng-bind="item"></li>
+                        </ul>
+                        <span ng-if="notSubmittedDetails.length === 0" ng-bind="::translation.openEnrollmentStats.noEmployeesFound"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="open-enrollment-heading" ng-bind="::translation.openEnrollmentStats.haveNotLoggedIn"></div>
+                    <div class="open-enrollment-list">
+                        <ul ng-if="notLoggedInDetails.length > 0">
+                            <li ng-repeat="item in notLoggedInDetails track by $index" ng-bind="item"></li>
+                        </ul>
+                        <span ng-if="notLoggedInDetails.length === 0" ng-bind="::translation.openEnrollmentStats.noEmployeesFound"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-card>
+</div>
+
+
+

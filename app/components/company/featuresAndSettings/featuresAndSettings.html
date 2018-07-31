@@ -1,0 +1,42 @@
+<alert-view></alert-view>
+<div class="tn-background pull-left no-pad tn-features-and-settings">
+    <div class="col-sm-12">
+        <h2 class="tn-page-heading h3 proxima-nova-bold">
+            <span ng-bind="::translation.featuresAndSettings.companyAdmin"></span>
+            <i aria-hidden="true" class="icon-icon_forward"></i>
+            <span ng-bind="::translation.featuresAndSettings.featuresAndSettingsTitle"></span>
+        </h2>
+    </div>
+    <div class="col-sm-9 no-pad">
+        <md-card>
+            <md-card-content>
+                <div class="col-sm-12 tn-settings-block" ng-repeat="data in featuresAndSettingsRecords">
+                    <div class="col-sm-9 no-padding-right">
+                        <p class="h4 proxima-nova-semibold" id="featuresAndSettingsCtrlTitle{{$index}}">
+                            {{data.title}}
+                        </p>
+                        <p class="content-text">{{data.description}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="switch margin-top pull-right"
+                               aria-labelledby="featuresAndSettingsTitle{{$index}}">
+                            <span class="switch-state">
+                                <span>{{data.isChecked ? "Show" : "Hide"}}</span>
+                            </span>
+                            <input type="checkbox" name="featuresAndSettings{{$index}}"
+                                   id="featuresAndSettings{{$index}}"
+                                   ng-model="data.isChecked"
+                                   ng-click="settingsChanged(data)">
+                            <div class="switch__slider"></div>
+                        </label>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+</div>
+
+

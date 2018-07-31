@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.gridder {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.gridder-list {
+    display: inline-block;
+    vertical-align: top;
+    width: 32.3333%;
+    cursor: pointer;
+}
+
+.gridder-list:nth-child(n) {
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.gridder-list:nth-of-type(6n) {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.gridder-list:afer {
+    opacity: 0.8;
+}
+
+.gridder-show {
+    display: block;
+    float: left;
+    width: 99%;
+    position: relative;
+    background: #e1e1e1 no-repeat center;
+    background: #ffffff;
+    margin-bottom: 1%;
+}
+
+.gridder-show.loading {
+    background: #e1e1e1 no-repeat center;
+}
+
+.gridder-content {
+    display: none;
+}
+
+@media all and (max-width: 998px) {
+    .gridder-list {
+        width: 49%;
+    }
+}
+
+.hasSelectedItem .gridder-list.selectedItem {
+    opacity: 1;
+}
+
+.hasSelectedItem .gridder-list.selectedItem .title-block {
+    background: #0073CF;
+}
+
+.hasSelectedItem .gridder-list.selectedItem .title-block h4 {
+    color: #ffffff;
+}
+
+/*# sourceMappingURL=demo.css.map */

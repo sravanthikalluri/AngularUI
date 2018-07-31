@@ -1,0 +1,54 @@
+<div class="tn-address-section" ng-controller="addressCtrl">
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.address"></h4>
+        <div>
+            <button id="addressdelete" type="reset" name="cancel" ng-hide="AddressHideDelete"
+                    ng-class="$parent.canDelete('homeaddress') ? 'visible-hide' : ''"
+                    class="tn-button tn-delete-button profile-edit-button" ng-click="deleteAddress()"
+                    ng-bind="::translation.delete"></button>
+            <button ng-class="$parent.canEdit('homeaddress') ? 'visible-hide' : ''" class="tn-edit-button tn-button profile-edit-button" ng-click="editAddress()">
+                Edit
+            </button>
+        </div>
+    </div>
+    <div class="profile-section-view">
+        <div id="effectiveDate" class="tn-form section-header ">
+            <select id="address_effective_date" class="effective-list no-marg"
+                    ng-model="selectedAddressData" ng-if='addressList.length > 1'
+                    ng-options="foa.effDateLabel for foa in addressList"
+                    ng-change="dateChange(selectedAddressData);">
+            </select>
+        </div>
+        <div class="address-view">
+            <p>{{selectedAddressData.address1}}</p>
+            <p>{{selectedAddressData.address2}} {{selectedAddressData.address3}}</p>
+            <p>{{selectedAddressData.city}}<span
+                data-ng-if="selectedAddressData.state && selectedAddressData.city">,</span>
+                {{selectedAddressData.state}}
+            <p>
+            <p>{{selectedAddressData.country.key}}
+                {{selectedAddressData.postalCode}}</p>
+        </div>
+        <div ng-if="addressList.length == 0" class="no-records">
+            <h4 class="proxima-nova-semibold no-data">
+                No records found for the home address.
+            </h4>
+        </div>
+        <footer>
+            <div class="history-link-section">
+                <a id="showTimeline" ng-hide="showTimeline"
+                   class="view-history-link" ng-bind="::translation.viewHistory"
+                   ng-click="showHideTimeline();selectedObject();">
+                </a>
+                <a id="hideTimeline" class="view-history-link"
+                   ng-click="showHideTimeline()" ng-show="showTimeline"
+                   ng-bind="::translation.close">
+                </a>
+            </div>
+        </footer>
+        <div ng-show="showTimeline" class="block tn-history-view">
+            <history-timeline data="addressDetailTimeline" section="section"></history-timeline>
+        </div>
+    </div>
+    <div class="tn-horizontal-divider"></div>
+</div>

@@ -1,0 +1,90 @@
+<!--
+Description: This page is used to modify the contact information
+Author:Raghavendra Kumar Bonthala
+-->
+<div class="tn-contact-section-modal tn-modal-fullHeight tn-modal" ng-controller='contactMethodsModelCtrl'>
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center">Edit Contact Methods</h4>
+    </div>
+    <!-- contacts edit start-->
+    <form class="tn-form" name="contactMethodForm" id="contactMethodForm" ng-submit="submitForm()" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <h4 class="profile-heading proxima-nova-semibold" ng-bind="::translation.email"></h4>
+            <div class="clearfix"></div>
+            <div class="flex-box" ng-repeat="contact in contactMethodData" ng-if="contact.media === 'Email'">
+                <select
+                    class="form-control" id="contactmethodmodelacesstypes_{{$index}}"
+                    ng-change="contact.accessType = contact.emailType.key;updateEffectiveDate($index);"
+                    ng-options="email.value for email in emailAccessTypes"
+                    ng-model='contact.emailType'>
+                </select>
+                <div class="relative">
+                    <input type="email" class="form-control"
+                           name='email_{{$index}}' id="contactmethodsmodalemail"
+                           ng-model='contact.url' maxlength='128'
+                           ng-keyup="updateEffectiveDate($index);"
+                           ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,18}(?:\.[a-z]{2})?)$/i"
+                           ng-required="true" placeholder="Enter your email address…"
+                           ng-class="{'error-warning': (formSubmitted && contactMethodForm['email_' + $index].$invalid) || (contactMethodForm['email_' + $index].$error.pattern)}"
+                           ng-focus="isEmailFocused = true; validationPatterns.emailData.blur.emailRequired= false; validationPatterns.emailData.blur.emailPattern = false;
+                                                                        validationPatterns.emailData.focus.emailRequired=contactMethodForm['email_' + $index].$invalid; validationPatterns.emailData.focus.emailPattern=contactMethodForm['email_' + $index].$error.pattern;"
+                           ng-blur="isEmailFocused = false; validationPatterns.emailData.focus.emailRequired= false; validationPatterns.emailData.focus.emailPattern = false;
+                                                                        validationPatterns.emailData.blur.emailRequired=contactMethodForm['email_' + $index].$error.required; validationPatterns.emailData.blur.emailPattern=contactMethodForm['email_' + $index].$error.pattern;"
+                    >
+                    <Validation
+                        condition="(isEmailFocused && formSubmitted && contactMethodForm['email_' + $index].$error.required)"
+                        msg="{{translation.required_field}}"></Validation>
+                    <validation condition="isEmailFocused && contactMethodForm['email_' + $index].$error.pattern"
+                                msg="{{translation.validation.compEmailFormat}}"></validation>
+
+
+                </div>
+
+                <span href class="remove-link"
+                      ng-click="removeField($index)"
+                      ng-class="$parent.canDelete('contactmethods') || $index == emailStart ? 'visible-hide' : ''">Delete</span>
+            </div>
+            <div class="col-sm-12 no-pad">
+                <a href ng-click="addNewEmailField()" id="contactmethodsmodaladdanmail" class="view-history-link"
+                   ng-bind="::translation.profile_personal.add_another_email"></a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="tn-horizontal-divider"></div>
+            <div class="clearfix"></div>
+            <h4 class="profile-heading proxima-nova-semibold" ng-bind="::translation.profile_personal.phone_number"></h4>
+            <div class="clearfix"></div>
+            <div class="flex-box contact-phone-edit-section" ng-repeat="contact in contactMethodData" ng-if="checkPhoneMedia(contact.media)">
+                <select class="form form-control"
+                        id="contactmethodsmodalaccessType_{{$index}}"
+                        ng-change="changePhone(contact)"
+                        ng-model='contact.phoneType'
+                        ng-options="phone.value for phone in phoneAccessTypes">
+                </select>
+                <div class="relative">
+
+                    <phone-format id="preferredPhone" placeholder="'999-999-9999'" model='contact.telephoneNumber' is-required="true" is-form-submitted="formSubmitted"></phone-format>
+                    <span class="phoneHintText">(123) 123-1234</span>
+
+
+                </div>
+                <span href
+                    class="remove-link"
+                    ng-click="removeField($index)"
+                    ng-class="$parent.canDelete('contactmethods') || $index == phoneStart ? 'visible-hide' : ''">Delete</span>
+
+            </div>
+            <div class="col-sm-12 no-pad">
+                <a href ng-click="addNewPhoneField()" id="contactmethodsmodaladdnewphfield" class="view-history-link"
+                   ng-bind="::translation.profile_personal.add_phno"></a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+
+            <button name="cancel" ng-click="cancel()" id="contactmethodscancel"
+                    class="tn-button tn-cancel-button" ng-bind="::translation.cancel"></button>
+            <button type="submit" name="save" ng-click="updateData()" id="contactmethodssave"
+                    class="tn-button tn-action-button" ng-bind="::translation.save"></button>
+        </div>
+    </form>
+</div>

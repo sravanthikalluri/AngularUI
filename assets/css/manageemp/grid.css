@@ -1,0 +1,76 @@
+
+.gridder {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none
+}
+
+.gridder-list {
+    display: inline-block;
+    vertical-align: top
+}
+
+.gridder-show {
+    display: block;
+    float: left;
+    width: 99%;
+    position: relative;
+    background: #EEE no-repeat center
+}
+
+.gridder-show.loading {
+    background: #EEE no-repeat center
+}
+
+.gridder-content {
+    display: none
+}
+
+.gridder-list {
+    width: 32.65%
+}
+
+.gridder-list:nth-child(n) {
+    margin-bottom: 5px;
+    margin-right: 5px
+}
+
+.gridder-list:nth-of-type(6n) {
+    margin-right: 0;
+    margin-bottom: 0
+}
+
+.gridder-show {
+    background: #FFF;
+    margin-bottom: 1%
+}
+
+.gridder-list {
+    cursor: pointer
+}
+
+.gridder-list:afer {
+    opacity: 0.8
+}
+
+.hasSelectedItem .gridder-list.selectedItem {
+    opacity: 1;
+
+}
+
+.hasSelectedItem .gridder-list.selectedItem .title-block {
+    background: #0073CF;
+}
+
+.hasSelectedItem .gridder-list.selectedItem .title-block h4 {
+    color: #fff;
+    font-size: 16px !important;
+}
+
+/*# sourceMappingURL=demo.css.map */
+
+@media all and (max-width: 998px) {
+    .gridder-list {
+        width: 49%
+    }
+}

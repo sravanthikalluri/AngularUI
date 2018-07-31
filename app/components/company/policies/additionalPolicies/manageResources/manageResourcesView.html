@@ -1,0 +1,34 @@
+<!--
+Program: manageResourcesView.html
+Description: It displays Information of manage resources forms plan types.
+ -->
+<div>
+    <h1 class="large"><strong>{{::translation.policies.managerResources}}</strong></h1>
+
+    <div class="clearfix">&nbsp;</div>
+    <hr>
+    <div class="clearfix">&nbsp;</div>
+    <div ng-show="isAdditionalPoliciesData">
+        <p class="medium" ng-bind="::translation.policies.manageRespra"></p>
+        <ul class="table medium">
+
+            <li valign="top">
+                <ul ng-repeat="a in additionalPoliciesManageData" class="disc">
+                    <li class="additional-policies"><a id="procedure{{$index}}"
+                                                       href='{{a.url | contentUrl}}'
+                                                       target="_blank">{{::a.linkName}} </a></li>
+                </ul>
+            </li>
+            <div class="clearfix">&nbsp;</div>
+            <hr>
+        </ul>
+    </div>
+
+    <div ng-hide="isAdditionalPoliciesData">
+        <div class="clearfix">&nbsp;</div>
+        <li class="text-center medium">
+            {{::translation.policies.noListForNow}}
+        </li>
+        </ul>
+    </div>
+</div>

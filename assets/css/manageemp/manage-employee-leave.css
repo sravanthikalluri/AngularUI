@@ -1,0 +1,593 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .create-leave-request .date-status, .employee-change-list, .reason-for-leave, .retirement-plan-popup-checkbox, .extend-leave-open-title, .return-from-leave-title-adj, .currentdependent-popup .modal-header {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.create-leave-request {
+    /*label{font-weight:normal;}*/
+}
+
+.create-leave-request h3 {
+    color: #494949;
+    font-size: 24px;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.create-leave-request p {
+    font-weight: 400;
+}
+
+.create-leave-request label {
+    display: inline-block !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+
+}
+
+.create-leave-request label.reason-for-leave-option {
+    float: left !important;
+    position: relative;
+    top: 8px;
+    padding: 0;
+}
+
+.create-leave-request .icon-icon_radiobutton_select {
+    color: #0073CF;
+}
+
+.create-leave-request .note-textarea {
+    height: 100px !important;
+    resize: none;
+}
+
+.create-leave-request .dropdown-border {
+    border: 1px solid #494949;
+    display: inline;
+    width: 100%;
+    position: relative;
+    top: 10px;
+}
+
+.create-leave-request .dropdown-border .dropdown-toggle {
+    padding: 4px 5px;
+    font-size: 14px;
+    color: #494949 !important;
+}
+
+.create-leave-request .dropdown-border .dropdown-toggle span {
+    font-size: 13px !important;
+    color: #888888;
+}
+
+.create-leave-request .dropdown-border .dropdown-toggle img {
+    position: relative;
+    top: 7px;
+}
+
+.create-leave-request .dropdown-border .add-new {
+    position: relative;
+    top: 10px;
+}
+
+.create-leave-request .marg-top-15 {
+    margin-top: 15px;
+}
+
+.create-leave-request .top-15 {
+    position: relative;
+    top: 15px;
+}
+
+.create-leave-request .top-10 {
+    position: relative;
+    top: 10px;
+}
+
+.create-leave-request .top-20 {
+    position: relative;
+    top: 20px;
+}
+
+.create-leave-request .add-new {
+    position: relative;
+    top: 12px;
+}
+
+.create-leave-request .add-new a {
+    padding: 0 5px;
+}
+
+.create-leave-request .date-border {
+    border: 1px solid #494949;
+    display: inline-block;
+    margin: 0 0 5px 0;
+    height: 30px;
+    overflow: hidden;
+}
+
+.create-leave-request .date-border input {
+    width: 107px;
+}
+
+.create-leave-request .date-border .cal {
+    position: relative;
+    top: 1px;
+}
+
+.create-leave-request .date-border .cal span {
+    font-size: 20px;
+}
+
+.create-leave-request .leave-active {
+    border: 3px solid #0073CF !important;
+}
+
+.create-leave-request .leave-active span {
+    color: #0073CF;
+}
+
+.create-leave-request .text-padding {
+    /*padding-left:$padding*4;*/
+    font-size: 16px;
+}
+
+.create-leave-request .well {
+    margin-top: 15px;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.create-leave-request .req-align {
+    color: #494949;
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 10px;
+    /*margin-left: ($margin*3)+5;*/
+}
+
+.create-leave-request .jennif-align {
+    font-weight: 700;
+    position: relative;
+    top: -1px;
+}
+
+.create-leave-request .emp-align {
+    color: #B5B5B5;
+}
+
+.create-leave-request .myfield-content {
+    border-top: 1px solid #B5B5B5;
+    padding: 20px 30px 30px 20px;
+    margin-bottom: 10px;
+    background: #f2f2f2;
+}
+
+.create-leave-request .profile-details {
+    padding: 15px 0;
+    margin: 10px 0 0 0;
+    background: #ffffff !important;
+}
+
+.create-leave-request .profile-details p {
+    padding-top: 8px;
+}
+
+.create-leave-request .date-status ul {
+    padding: 0;
+}
+
+.create-leave-request .date-status ul li {
+    margin-bottom: 5px;
+    display: -webkit-box;
+    clear: both;
+}
+
+.create-leave-request .star {
+    color: #0073CF;
+    font-size: 18px;
+}
+
+.create-leave-request .circle-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.create-leave-request label {
+    color: #494949;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+.create-leave-request .radio-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+}
+
+.create-leave-request .pad22 {
+    padding-left: 22px;
+}
+
+.create-leave-request .para-style {
+    margin-top: 20px !important;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.create-leave-request .marg-bottom {
+    margin-bottom: 10px;
+}
+
+.create-leave-request .marg-top {
+    margin-top: 17px;
+}
+
+.create-leave-request .marg-hrs {
+    margin-right: 20px;
+}
+
+.create-leave-request .additional-box {
+    height: 30px;
+    padding: 0 10px !important;
+    position: relative;
+    text-align: right;
+    width: 70px;
+}
+
+.create-leave-request .dd-larg {
+    border: 1px solid #494949;
+    display: inline;
+    width: 100%;
+    position: relative;
+    top: 0px;
+}
+
+.create-leave-request .dd-larg .dropdown-toggle {
+    padding: 4px 5px;
+    font-size: 14px;
+    color: #494949 !important;
+}
+
+.create-leave-request .dd-larg .dropdown-toggle span {
+    font-size: 15px !important;
+    color: #888888;
+}
+
+.create-leave-request .dd-larg .dropdown-toggle img {
+    position: relative;
+    top: 7px;
+}
+
+.create-leave-request select {
+    border: 1px solid #888888;
+}
+
+.create-leave-request .learn-color {
+    color: #E37222;
+    position: relative;
+    padding: 0;
+    top: 6px;
+}
+
+.create-leave-request .learn-color [class*="icon-"] {
+    font-size: 12px;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+}
+
+.create-leave-request .icon-icon_checkmarkwithbox {
+    color: #0073CF;
+    font-weight: 600;
+}
+
+.create-leave-request .additional-box2 {
+    height: 30px;
+    padding: 0 10px !important;
+    position: relative;
+    text-align: right;
+    top: 2px;
+    width: 60px;
+}
+
+.create-leave-request .icon-icon_trash {
+    color: #888888;
+}
+
+.container-content h3 {
+    font-weight: 600;
+}
+
+.container-content .disabled {
+    opacity: 0.5;
+}
+
+.employee-change-list ul {
+    padding: 0;
+    margin: 0;
+}
+
+.employee-change-list ul li {
+    list-style: none;
+    display: table;
+    width: 100%;
+    margin: 5px 0 10px;
+}
+
+.employee-change-list ul li ul {
+    padding: 0;
+    margin: 0;
+}
+
+.employee-change-list ul li ul li {
+    margin: 0;
+}
+
+.employee-change-list ul li ul li .icon-icon_Dropdown_Arrow {
+    margin-top: 5px;
+}
+
+.request-leave-adjust {
+    margin-left: 33px;
+}
+
+.label-adjustment {
+    position: relative;
+    top: -11px;
+}
+
+.leave-type {
+    margin-bottom: 3px;
+}
+
+.leave-type p.marg-hrs {
+    padding-top: 5px;
+}
+
+.leave-type .icon-icon_trash {
+    padding-top: 7px;
+    float: left;
+}
+
+.reason-for-leave {
+    margin-bottom: 5px;
+}
+
+.reason-for-leave-option {
+    padding-left: 80px;
+    float: left !important;
+}
+
+.marg-top-7 {
+    margin-top: 7px;
+}
+
+.return-from-leave label {
+    float: left !important;
+    text-align: left;
+}
+
+.retirement-plan-popup-checkbox input[type="checkbox"],
+.retirement-plan-popup-checkbox input[type="radio"] {
+    float: left !important;
+    margin-right: 5px !important;
+    margin-top: 0 !important;
+}
+
+.hr-det {
+    color: #B5B5B5;
+    font-size: 15px;
+}
+
+.disabled-date-adjustment {
+    margin-left: 5px;
+}
+
+.fsa-adj .imp-left {
+    position: relative;
+    top: 8px;
+    margin-left: 20px;
+}
+
+.fsa-adj .White-bg {
+    border: 3px solid #ffffff;
+}
+
+.marg-top-10-imp {
+    margin-top: 10px !important;
+}
+
+.left-leave-pad {
+    padding-left: 2px !important;
+}
+
+.text-left-imp {
+    text-align: left !important;
+}
+
+.extend-leave-open-title {
+    font-weight: bold;
+    margin: 10px 0 !important;
+}
+
+.return-from-leave-title-adj {
+    padding: 15px 10px !important;
+    line-height: auto;
+    float: left !important;
+    width: 100% !important;
+    line-height: 40px !important;
+    margin: auto;
+}
+
+.date-pick {
+    border: 1px solid #000;
+    margin-bottom: 5px;
+}
+
+select:required:invalid {
+    color: #888888;
+    font-weight:100;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+option {
+    color: black;
+    padding: 10px !important;
+    white-space: pre;
+    min-height: 1.2em;
+}
+
+.marg-top-3 {
+    margin-top: 3px;
+}
+
+.currentdependent {
+    font-size: 28px !important;
+}
+
+.currentdependent-popup {
+    display: block;
+}
+
+.currentdependent-popup .modal-header .Trinet-dark-blue {
+    color: #0039A6;
+}
+
+#demotiondetails label, #employeetransferdetails label {
+    position: relative;
+    top: 5px;
+}
+.return-leave-plan-form .calender-input{
+    width: 145px;
+    border:1px solid #ddd;
+}
+
+.return-leave-plan-form  .checkbox-inline{
+    font-size: 12px !important;
+    margin-top: -6px;
+}
+.return-leave-plan-form label{
+    margin-top: 6px;
+}
+.return-leave-plan-form .form-group{
+    width: 100%;
+    padding: 20px;
+    margin: 10px;
+    background: #fff;
+}
+.return-leave-plan-form .form-return-plan{
+    border-top:1px solid #ddd;
+    background: #f5f5f5;
+}
+.return-leave-plan-form .form-return-plan .innerSections .form-label{
+    min-width: 250px;
+}
+
+.return-leave-plan-form .form-return-plan .innerSections{
+    margin: 5px 0 15px 0;
+}
+.return-leave-plan-form .tooltip{
+    width: 170px;
+}
+.return-leave-plan-form .input-mini{
+    width: 65px;
+    margin: 0 10px;
+}
+.return-leave-plan-form .input-midium
+{
+    width: 120px;
+    margin: 0 0 0 10px;
+}
+.return-leave-plan-form .delete-icon{
+    display: inline-block;
+    margin: 0 10px;
+}
+.vertical-top{
+    vertical-align: top;
+}
+.return-leave-plan-form .send-mail{
+    display: inline-block;
+    color: #E37222;
+}
+.return-leave-plan-form  .addPiadHours{
+    margin-bottom:10px;
+}
+.return-leave-plan-form  .input-tooltip{
+    top:100%;
+    left: 0 !important;
+}
+.return-leave-plan-form .radio label{
+    width: 100px;
+}
+.return-leave-plan-form .checkbox-inline .adj-checkbox{
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 3px;
+    right: 6px;
+}
+.return-leave-plan-form select{
+    max-width: 300px;
+}
+.return-leave-plan-form .horizontal-radio label{
+    width: 100%;
+    display: flex !important;
+    align-items: center;
+
+}
+.adjHintText{
+    position: absolute;
+    left:0;
+    top:100%;
+}
+.return-leave-plan-form .horizontal-radio label > span{
+    display: inline-block;
+    margin-top: 7px;
+    font-size: 14px;
+    margin-left: 30px;
+}
+.return-leave-plan-form .horizontal-radio{
+    border: 3px solid transparent;
+}
+.return-leave-plan-form .horizontal-radio.isSelect{
+    border: 3px solid #0073CF;
+}
+.return-leave-plan-form .form-control-textArea{
+    height: auto !important;
+    width: 65%;
+}
+.extendRequestTerms {
+    padding-left: 15px;
+}
+.extendRequestTerms li{
+    list-style-type: disc;
+}
+.benefitPremiumRepayment{
+    display: inline-block;
+}
+.asterisk.adjAsterisk {
+    right: -4px;
+    top: 20px;
+}
+/*# sourceMappingURL=manage-employee-leave.css.map */

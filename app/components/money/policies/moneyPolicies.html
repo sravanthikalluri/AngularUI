@@ -1,0 +1,27 @@
+<div class="manage-forms my-money col-md-12 col-sm-12 no-pad col-sm-12 visible" id="policiesId">
+    <alert-view></alert-view>
+    <div class="col-md-12 col-md-12 no-pad">
+        <div class="clearfix">&nbsp;</div>
+    </div>
+    <div id="loadtabs">
+
+        <div class="row general-info " ng-repeat="form in moneyPoliciesData">
+            <h4 class="general">{{form.title}}</h4>
+            <!-- To display object as section-->
+            <div class="marg-bot-5 col-md-4 no-pad-imp" ng-repeat="companyDataObject in form.pdfs">
+                <div id="{{companyDataObject.label |  lowercase}}other"
+                     class="column-pad tile company-policies-selected">
+                    <div class="title-block" id="sidebar{{companyDataObject.id}}other">
+                        <a ng-href="{{companyDataObject.url | contentUrl}}" target="_blank">
+                            <h4>{{companyDataObject.label}}</h4>
+                            <p class="content-text">{{companyDataObject.description}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <no-records></no-records>
+</div>
+<!--end of container-content-->

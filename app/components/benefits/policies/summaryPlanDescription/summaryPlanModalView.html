@@ -1,0 +1,152 @@
+<!--
+Program: summaryPlanModalView.html
+Description: It displays information to user about each plan type details of Carrier Certificate and Summary of Benefits and Coverages Toggle.
+ -->
+
+<div ng-cloak class="u-wideWrapper u-paddingHm u-paddingTl">
+    <div class="Grid-cell u-marginBl">
+        <h4 class="bp-accord-title">{{::planType}} - {{::planName}}</h4>
+        <v-accordion id="accordionB" class="vAccordion--default" multiple control="accordionB">
+
+            <v-pane id="{{ ::pane.id }}" ng-repeat="pane in planData.sub" expanded="$first" class="bp-accord-structure">
+                <v-pane-header id="{{ ::pane.id }}-header" aria-controls="{{ ::pane.id }}-header">
+                    <h5>{{::pane.header}}</h5>
+                </v-pane-header>
+
+                <v-pane-content id="{{ ::pane.id }}-content" aria-labelledby="{{ ::pane.id }}-content">
+
+                    <div class="bp-accord-inner-structure">
+                        <table class="table table-striped" ng-if="pane.subpanes">
+                            <thead>
+                            <tr>
+                                <th class="col-md-4 col-sm-4">Plans</th>
+                                <th class="col-md-4 col-sm-4" ng-if="sbcValue !== 'sbc'">{{::translation.my_benefits.planCarrier.carrierCertificate}}</th>
+                                <th class="col-md-4 col-sm-4" ng-if="sbcValue !== 'cc'"
+                                    ng-hide="planType === 'Vision' || planType ==='Life' || planType ==='Dental' || planType === 'Disability'">
+                                    {{::translation.my_benefits.planCarrier.summary_benfCovg}}
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="x in pane.subpanes">
+                                <td class="col-md-4 col-sm-4">{{x.plans}}</td>
+                                <td class="col-md-4 col-sm-4" ng-if="sbcValue !== 'sbc'">
+                                    <span ng-if="x.CCCurYearUrl !== '' && x.CCCurYearUrl !== 'NA' ">
+                                        <a href="{{x.CCCurYearUrl | contentUrl}}" target="_blank"
+                                           id="subplanesLink{{pane.header}}{{$index}}">
+                                            <span class="icon-icon_pdf pull-left"></span>
+                                            <span id="subplanes{{pane.header}}{{$index}}">{{summaryPlanPdfData.thisPlanYearStartDate}} - {{summaryPlanPdfData.thisPlanYearEndDate}}</span>
+                                        </a>
+                                    </span>
+                                    <span class="marg-left-20" ng-if="x.CCCurYearUrl === 'NA'">{{x.CCCurYearUrl}}</span>
+                                    <span ng-if="x.CCPrevYearUrl !== '' && x.CCPrevYearUrl !== 'NA'">
+                                        <a href="{{x.CCPrevYearUrl | contentUrl}}" target="_blank"
+                                           id="subplanesCCYearLink{{pane.header}}{{$index}}">
+                                            <span class="icon-icon_pdf pull-left"></span>
+                                            <span id="subplanesCCYear{{pane.header}}{{$index}}">{{summaryPlanPdfData.prevPlanYearStartDate}} - {{summaryPlanPdfData.prevPlanYearEndDate}}</span>
+                                        </a>
+                                    </span>
+                                    <span class="marg-left-20"
+                                          ng-if="x.CCPrevYearUrl === 'NA'">{{x.CCPrevYearUrl}}</span>
+
+                                </td>
+                                <td class="col-md-4 col-sm-4" ng-if="sbcValue !== 'cc'"
+                                    ng-if="planType !== 'Vision' || planType!=='Life' || planType!=='Dental' || planType!== 'Disability'">
+                                    <span ng-if="x.SBCCurYearUrl !== '' && x.SBCCurYearUrl !== 'NA' ">
+                                        <a href="{{x.SBCCurYearUrl | contentUrl}}" target="_blank"
+                                           id="subplaneYearLink{{pane.header}}{{$index}}">
+                                            <span class="icon-icon_pdf pull-left"></span>
+                                            <span id="subplaneSD{{pane.header}}{{$index}}">{{summaryPlanPdfData.thisPlanYearStartDate}} - {{summaryPlanPdfData.thisPlanYearEndDate}}</span>
+                                        </a>
+                                    </span>
+                                    <span class="marg-left-20"
+                                          ng-if="x.SBCCurYearUrl === 'NA'">{{x.SBCCurYearUrl}}</span>
+                                    <span ng-if="x.SBCPrevYearUrl !== '' && x.SBCPrevYearUrl !== 'NA' ">
+                                        <a href="{{x.SBCPrevYearUrl | contentUrl}}" target="_blank"
+                                           id="subplanePrevLink{{pane.header}}{{$index}}">
+                                            <span class="icon-icon_pdf pull-left"></span>
+                                            <span id="subplanePrevSBC{{pane.header}}{{$index}}">{{summaryPlanPdfData.prevPlanYearStartDate}} - {{summaryPlanPdfData.prevPlanYearEndDate}}</span>
+                                        </a>
+                                    </span>
+                                    <span class="marg-left-20"
+                                          ng-if="x.SBCPrevYearUrl === 'NA'">{{x.SBCPrevYearUrl}}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <v-accordion id="nestedAccordionB" multiple ng-if="pane.subheader">
+                        <v-pane id="{{ ::subpane.id }}" ng-repeat="subpane in pane.subheader" expanded="$first"
+                                class="bp-accord-structure">
+                            <v-pane-header id="{{ ::subpane.id }}-header" aria-controls="{{ ::subpane.id }}-header">
+                                <h5>{{ subpane.heading }}</h5>
+                            </v-pane-header>
+                            <v-pane-content id="{{ ::subpane.id }}-content"
+                                            aria-labelledby="{{ ::subpane.id }}-content">
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-md-4 col-sm-4">{{::translation.my_benefits.policies.plans}}</th>
+                                        <th class="col-md-4 col-sm-4" ng-if="sbcValue !== 'sbc'">{{::translation.my_benefits.planCarrier.carrierCertificate}}
+                                        </th>
+                                        <th class="col-md-4 col-sm-4" ng-if="sbcValue !== 'cc'"
+                                            ng-hide="planType === 'Vision' || planType =='Life' || planType ==='Dental' || planType === 'Disability'">
+                                            {{::translation.my_benefits.planCarrier.summary_benfCovg}}
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in subpane.sub">
+                                        <td class="col-md-4 col-sm-4">{{x.plans}}</td>
+                                        <td class="col-md-4 col-sm-4" ng-if="sbcValue !== 'sbc'">
+                                            <span ng-if="x.CCCurYearUrl !== '' ">
+                                                <a href="{{x.CCCurYearUrl | contentUrl}}" target="_blank"
+                                                   id="summNestYearLink{{$index}}">
+                                                    <span class="icon-icon_pdf pull-left"></span>
+                                                    <span id="summNestYearLb{{$index}}">{{summaryPlanPdfData.thisPlanYearStartDate}} - {{summaryPlanPdfData.thisPlanYearEndDate}}</span>
+                                                </a>
+                                            </span>
+                                            <span ng-if="x.CCPrevYearUrl !== '' ">
+                                                <a href="{{x.CCPrevYearUrl | contentUrl}}" target="_blank"
+                                                   id="summNestPrevYearLink{{$index}}">
+                                                    <span class="icon-icon_pdf pull-left"></span>
+                                                    <span id="summNestPrevYearLb{{$index}}">{{summaryPlanPdfData.prevPlanYearStartDate}} - {{summaryPlanPdfData.prevPlanYearEndDate}}</span>
+                                                </a>
+                                            </span>
+                                        </td>
+                                        <td class="col-md-4 col-sm-4" ng-if="sbcValue !== 'cc'">
+                                            <span ng-if="x.SBCCurYearUrl !== '' ">
+                                                <a href="{{x.SBCCurYearUrl | contentUrl}}" target="_blank"
+                                                   id="summNestCCYearLink{{$index}}">
+                                                    <span class="icon-icon_pdf pull-left"></span>
+                                                    <span id="summNestCCYearLb{{$index}}">{{summaryPlanPdfData.thisPlanYearStartDate}} - {{summaryPlanPdfData.thisPlanYearEndDate}}</span>
+                                                </a>
+                                            </span>
+                                            <span ng-if="x.SBCPrevYearUrl !== '' ">
+                                                <a href="{{x.SBCPrevYearUrl | contentUrl}}" target="_blank"
+                                                   id="summNestSBCYearLink{{$index}}">
+                                                    <span class="icon-icon_pdf pull-left"></span>
+                                                    <span id="summNestSBCYearLb{{$index}}">{{summaryPlanPdfData.prevPlanYearStartDate}} - {{summaryPlanPdfData.prevPlanYearEndDate}}</span>
+                                                </a>
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </v-pane-content>
+                        </v-pane>
+                    </v-accordion>
+                </v-pane-content>
+            </v-pane>
+
+        </v-accordion>
+    </div>
+</div>

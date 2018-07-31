@@ -1,0 +1,26 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.loader-container {
+    height: 100px;
+    width: 100%;
+    position: relative;
+    border: 1px solid #CCCCCC;
+    overflow: hidden;
+}
+
+.loader-container.sm {
+    width: 25%;
+    float: left;
+}
+
+/* button {
+  margin: 20px auto;
+  display: block;
+} */
+
+button {
+    margin: 0px auto;
+    display: block;
+}

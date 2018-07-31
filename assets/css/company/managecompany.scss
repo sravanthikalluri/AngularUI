@@ -1,0 +1,475 @@
+@import '../global';
+
+.related-forms {
+  h4 {
+    border-bottom: 1px solid $Trinet-gray;
+  }
+  ul {
+    li {
+      background: #f9f9f9;
+      padding: $margin 0 0 0;
+      line-height: 20px;
+      margin: 4px;
+
+      &:hover {
+        background: $Background;
+      }
+
+      .label-color {
+        color: $Trinet-dark-blue;
+      }
+
+    }
+
+  }
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.manage-forms {
+  .triangle {
+    background: white;
+    border: 1px solid #B5B5B5;
+    border-width: 1px 1px 0 0;
+    transform: rotate(-45deg);
+    position: relative;
+    left: 139px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+  }
+  .gridder-padding {
+    width: 100%;
+    border: 1px solid #B5B5B5;;
+    .my-pad {
+      padding: 10px;
+    }
+
+  }
+  .form-content-block {
+    max-width: 926px;
+    min-width: 600px;
+    display: block;
+    padding: 0px $padding+6 $padding+6 $padding+6;
+    margin: $margin auto;
+    background-color: #ffffff;
+    overflow: hidden;
+    /* position:relative;
+     top:-70px;*/
+
+    .form-content {
+      margin: $margin $margin ($margin*2)+4 ($margin*2)+4;
+      color: $Trinet-dark-gray;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    button {
+      margin-top: $margin+6;
+    }
+    ul {
+      li {
+        background: $Background;
+        margin-top: 4px;
+        padding-left: 10px;
+        color: #0039A6;
+        font-size: 16px;
+        font-weight: 400;
+        @extend .block;
+
+        span {
+          color: #A09D9D;
+          padding-right: 10px;
+        }
+
+      }
+    }
+    h3 {
+      color: $Trinet-dark-gray;
+      font-size: 24px;
+      margin: 0;
+      padding: 0px 0px 0px ($padding*2)+4;
+    }
+
+  }
+
+  .row-top-margin {
+    margin: $margin*3 0 0 0;
+  }
+  .row-pad {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .column-pad {
+    padding-left: 0;
+    padding-right: 4px;
+  }
+  .title-block {
+    background: $Background;
+    padding: $padding/2 $padding+4;
+    height: 110px;
+
+    &:hover {
+      background: $Trinet-blue;
+      color: $White;
+      h4 {
+        color: $White;
+      }
+      p {
+        color: $White;
+      }
+
+    }
+
+    h4 {
+      color: $Trinet-blue;
+    }
+    p {
+      color: $Trinet-gray;
+      font-size: 12px;
+      overflow: hidden;
+      height: 51px;
+    }
+  }
+
+}
+
+.title-margin {
+  margin: 4px 0 0 0;
+}
+
+.manage-employee-icon {
+  [class*="icon-"] {
+    font-size: 38px;
+    color: $Trinet-gray;
+  }
+}
+
+.liColor {
+  color: black;
+}
+
+.manage-employee-table-new {
+  tbody {
+    tr {
+      td {
+        span {
+          float: left;
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+/* Directory View */
+.directoryTable {
+  thead {
+    tr {
+      th {
+        width: 33.33% !important;
+      }
+    }
+  }
+}
+
+/*sssssssssssssssssssssssssssssssssssssssssssss*/
+.directoryDetails {
+  &.flyout {
+    top: 38px;
+  }
+  padding: 16px !important;
+  background: #f2f2f2 !important;
+  border: none !important;
+  width: 400px !important;
+  .icon-close-temp {
+    font-size: 14px;
+  }
+  .status {
+    &.available {
+      background: #69BE28;
+    }
+  }
+  img {
+    height: 90px;
+    width: 90px;
+  }
+  .status {
+    height: 20px;
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    position: relative;
+    left: 8px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    top: -5px;
+  }
+  .EmployeeDetails {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    min-height: 120px;
+  }
+
+}
+
+/*sssssssssssssssssssssssssssssssssssssssssssss*/
+/*----------------Hours Information page style starts-------------------*/
+.hourInformation {
+  .myfield-content {
+    background: #fff !important;
+    border: none !important;
+    label {
+      text-align: left !important;
+      margin-left: 25px !important;
+      margin-right: 0 !important;
+      width: 80px;
+    }
+    .hoursMyInfoTabs {
+      border: 1px solid #888888;
+      min-height: 200px;
+    }
+    .hours_details {
+      margin: 8px 0;
+      position: relative;
+        .hoursInfoDetails
+        {
+            display: block;
+            float: left;
+            max-width: 250px;
+            overflow: hidden;
+            height: auto;
+            max-height: 95px;
+            span{
+                line-height: 24px;
+            }
+        }
+        .ellipsis {
+            max-width: 180px;
+        }
+    }
+    .hoursOtherLocationsInfoTabs {
+      border: 1px solid #888888;
+      min-height: 100px;
+    }
+  }
+
+}
+.hoursInfoToolTip {
+  position: absolute;
+  left: 10px;
+  top: -11px;
+}
+.priority-hoursInfo {
+  bottom: -150px;
+  left: -8px;
+  .arrow-down {
+    top: -22px;
+    left: 7px;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid #888888;
+    border-top: 11px solid transparent;
+    bottom: -11px;
+    position: absolute;
+  }
+  .arrow-down-bg {
+    left: 9px;
+    top: -21px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid  #ffffff;
+    border-top: 11px solid transparent;
+    bottom: -10px;
+    position: absolute;
+    z-index: 99;
+  }
+}
+.hourInformation .myfield-content .hours_details {
+  margin: 8px 0;
+  position: relative;
+}
+.hoursMyInfoTabs {.hours_details {label { width:130px;}}}
+
+.monogram-directory{
+       width: 90px;
+       height: 90px;
+       display: inline-block;
+       border-radius: 100%;
+       border: 1px solid #e4ebf1;
+       background-color: #0073CF;
+       font-size: 24px;
+       line-height: 28px;
+       color: #ffffff;
+       margin-top: 20px;
+}
+a{
+  .org-mail-text{
+    color: $Trinet-orange !important;
+  }
+}
+.directory-emp-name{
+  font-size: 20px;
+  font-weight: $fontWeight-600;
+}
+.directory-emp-fullname{
+    font-weight: $fontWeight-400;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+.directory-seniorDirector{
+  color:$Trinet-gray;
+}
+
+.border-style-right{
+  border-right-style: none !important;
+}
+.table-fixed {
+  thead{
+    background-color:$Trinet-blue !important;
+    border: 0px !important;
+  }
+}
+.pad-top-3{
+    padding-top:3px !important;
+}
+
+.managerClass {
+    -moz-border-radius: 1%;
+    width: 230px;
+    height: 240px;
+    float: left;
+    margin: 10px 10px 10px 5px;
+    background-color: #fff;
+    padding: 35px 15px;
+    border-radius: 6px;
+    flex-basis: 25%;
+    box-shadow: 0 1px 3px rgba(49,51,58,.2);
+}
+.org-chart-divider{
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #d5dde5;
+    margin: 35px 0;
+}
+/*.hand {
+    cursor: pointer;
+}*/
+.icon-downward {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+.divider-icon {
+    background-color: #fff;
+    position: relative;
+    top:20px;
+    width: 40px;
+    height: 40px;
+    padding: 12px;
+    font-weight: 800!important;
+    font-size: 15px;
+    border: 1px solid #d5dde5;
+    border-radius: 20px;
+}
+[class*=" icon-"], [class^=icon-] {
+    font-family: icomoon!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.navigateHeading{
+    font-size:26px;
+    color:black;
+    font-weight:200;
+}
+.org-header-section{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.org-header-section .org-DirectManger{
+    flex-basis: 37.5%;
+}
+.org-header-section .assigned-count{
+    flex-basis: 37.5%;
+}
+.org-header-section .org-selected-employee{
+    background-color:#fff;
+    padding: 35px 15px 50px 15px;
+    border-radius: 6px;
+    flex-basis: 25%;
+    box-shadow: 0 1px 3px rgba(49,51,58,.2);
+}
+.Me-dept{
+    color:grey;
+    font-size:14px;
+}
+.assigned-count .count-class {
+    font-size:42px;
+}
+.assigned-count .assign-type {
+    font-size:14px;
+    font-weight:200;
+}
+.managerClass .assignes-type{
+    padding-top: 18px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.org-selected-employee .tn-avatar {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border-radius: 75%;
+    border: 1px solid #CFD3D7;
+    background-color: #E1E7EB;
+    font-size: 18px;
+    line-height: 46px;
+    padding-top:15px;
+}
+.managerClass .tn-avatar {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border-radius: 75%;
+    border: 1px solid #CFD3D7;
+    background-color: #E1E7EB;
+    font-size: 18px;
+    line-height: 46px;
+    padding-top:15px;
+}
+.org-DirectManger .assign-type{
+    font-size: 14px;
+    color: $font-color;
+    font-weight: 100;
+}
+.org-DirectManger .view-history-link {
+    font-size: 18px;
+    margin: 0;
+}
+.org-DirectManger .tn-horizontal-divider{
+    width: 45%;
+    margin: 25px auto;
+}
+/*---------------Hours Information page style ends----------------------*/
+
+
+
+
+
+

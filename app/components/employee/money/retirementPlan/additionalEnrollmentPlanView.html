@@ -1,0 +1,95 @@
+<div class="">
+    <div class="flex-box flex-end" ng-if="uniquePlantypes.length !== contributions.length && isThirdPartyEnrolled">
+        <button class="tn-button tn-action-button"
+                id="addAdditionalPlanId"
+                ng-class="$parent.canAdd('savingsEnrollment') ? 'visible-hide' : ''"
+                ng-click="addAdditionalPlan()">{{::translation.manageGroup.addAdditionalPlan}}
+        </button>
+    </div>
+    <div>
+        <table class="tn-table table">
+            <!--<caption>
+                 <h6>
+                     <span class="bold" ng-bind="::translation.manageGroup.currentPlanYear"></span>
+                     <span>{{contributions.selectedEffectiveData.quarter}}</span>
+                 </h6>
+            </caption>-->
+            <thead>
+            <tr>
+                <th width="21%" class="no-padding-left no-padding-right">Effective Date</th>
+                <th width="15%">Plan Type</th>
+                <th width="18%">Election Type</th>
+                <th width="25%">Payroll Deduction</th>
+                <th width="22%">Limited Amount Allowed</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="retireData in contributions">
+                <td class="no-padding-left no-padding-right">
+                    <div class="tn-form">
+                        <select id="retirement_plan_effective_date"
+                                class="no-marg" ng-model="retireData.effectiveLabel"
+                                ng-change="dateChange($index,retireData.effectiveLabel)"
+                                ng-options="item.key as item.key for item in retireData.dataAsArray">
+                        </select>
+                    </div>
+                </td>
+                <td class="no-padding-right">
+                    <h6>{{retireData.planDesc}} {{retireData.benefitPlanDesc ? '('+retireData.benefitPlanDesc+')' : ""}}</h6>
+                </td>
+                <td>
+                    <h6 ng-if="retireData.selectedEffectiveData.effectiveType === 'E'">
+                        {{::translation.manageGroup.elected}}
+                    </h6>
+                    <h6 ng-if="retireData.selectedEffectiveData.effectiveType === 'W'">
+                        {{::translation.manageGroup.waived}}
+                    </h6>
+                </td>
+                <td>
+                    <h6 id="preTax" ng-if="retireData.selectedPlan.beforeTaxPercent > 0">
+                        <span ng-if="(retireData.selectedPlan.beforeTaxPercent > 0) && (retireData.selectedPlan.afterTaxPercent > 0)">
+                            Pre-tax: </span>
+                        <span ng-if="retireData.selectedEffectiveData.percentGrossDeductionPreTax === 0">{{retireData.selectedEffectiveData.flatDeductionAmountPreTax | currency}}</span>
+                        <span ng-if="retireData.selectedEffectiveData.percentGrossDeductionPreTax !== 0">{{retireData.selectedEffectiveData.percentGrossDeductionPreTax }}%</span>
+                        <span>{{::translation.manageGroup.perCheckIssued}}</span>
+                    </h6>
+                    <h6 id="postTax" ng-if="retireData.selectedPlan.afterTaxPercent > 0">
+                        <span ng-if="(retireData.selectedPlan.beforeTaxPercent > 0) && (retireData.selectedPlan.afterTaxPercent > 0)">
+                            Roth: </span>
+                        <span ng-if="retireData.selectedEffectiveData.percentGrossDeductionPostTax === 0">{{retireData.selectedEffectiveData.flatDeductionAmountPostTax | currency}}</span>
+                        <span ng-if="retireData.selectedEffectiveData.percentGrossDeductionPostTax !== 0">{{retireData.selectedEffectiveData.percentGrossDeductionPostTax }}%</span>
+                        <span>{{::translation.manageGroup.perCheckIssued}}</span>
+                    </h6>
+                    <h6 ng-if="(retireData.selectedPlan.beforeTaxPercent <= 0 && retireData.selectedPlan.afterTaxPercent <= 0 ) || retireData.details.effectiveType === 'W'">
+                        <span>$ 0.00</span>
+                        <span>{{::translation.manageGroup.perCheckIssued}}</span>
+                    </h6>
+                </td>
+                <td>
+                    <h6 class="no-marg flex-box">
+                        {{retireData.selectedEffectiveData.goalAmount | currency}}
+                        <button ng-if="isThirdPartyEnrolled"
+                                class="tn-edit-button tn-button tn-button-small"
+                                id="retireEditId"
+                                ng-class="$parent.canEdit('savingsEnrollment') ? 'visible-hide' : ''"
+                                ng-click="editRetirement($index)">Edit</button>
+                    </h6>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="history.length > 0"> <!-- preferred view history -->
+        <a id="enrollment_showTimeline" ng-show="enrollment_showTimeline" ng-click="toggleEnrollmentTimeline()"
+           class="view-history-link" href>
+            <span ng-bind="::translation.viewHistory"></span>
+        </a>
+        <a id="enrollment_hideTimeline" ng-click="toggleEnrollmentTimeline()" ng-hide="enrollment_showTimeline"
+           class="view-history-link" href>
+            <span ng-bind="::translation.close"></span>
+        </a>
+    </div>
+    <div ng-hide="enrollment_showTimeline" class="block tn-history-view">
+        <history-timeline data="history" section="section" ng-hide="enrollment_showTimeline"></history-timeline>
+    </div>
+</div>

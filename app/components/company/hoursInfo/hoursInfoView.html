@@ -1,0 +1,99 @@
+<!--
+Description: This is page to display of locations and headquarters information.
+Author:Raghavendra Kumar Bonthala
+ -->
+
+<div class="hourInformation no-top-pad">
+    <div class="row no-marg">
+        <!--My locations and Headquarters tabs stats-->
+        <div class="col-md-12 col-sm-12 no-pad myfield-content">
+            <div class="col-md-6 no-pad-left ">
+                <h3>{{::translation.hoursInfo.headquarters}}</h3>
+                <div class="col-md-12 no-pad hoursMyInfoTabs ">
+                    <div class="hours_details">
+                        <label><strong>{{::translation.hoursInfo.address}}</strong></label>
+                        <span class="personal-details ellipsis">
+
+                            <span class="block ellipsis" ng-if="headquarter.addressLine">{{::headquarter.addressLine}}</span>
+
+                            <span class="block ellipsis" ng-if="headquarter.addressInfo">{{::headquarter.addressInfo}}</span>
+                            </span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="hours_details">
+                        <label><strong>{{::translation.hoursInfo.telephone}}</strong></label>
+                        <span class="personal-details ellipsis" ng-bind="headquarter.phone | telFormat"></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="hours_details">
+                        <label>
+                            <span id="businessInfo" class="tooltip-right hoursInfoToolTip">
+                                                <i class="icon-icon_UA blue small question-mark tax-hint-adj no-pad"></i>
+                                                <div class="tooltip-right-content  priority-hoursInfo  medium">
+                                                    <p>{{::translation.hoursInfo.businessHours}}. {{::translation.hoursInfo.workSchedule}}. <br/><br/>
+                                                        {{::translation.hoursInfo.workDay}}. {{::translation.hoursInfo.workWeek}}.</p>
+                                                    <div class="arrow-down"></div>
+                                                    <div class="arrow-down-bg"></div>
+                                                </div>
+							                 </span>
+                            <strong>{{::translation.hoursInfo.businessHoursLabel}}</strong></label>
+                        <div class="hoursInfoDetails">
+                            <span class="personal-details " ng-bind="headquarter.officeHours"></span>
+                        </div>
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 no-pad-left">
+                <h3>{{::translation.hoursInfo.myLocation}}</h3>
+                <div class="col-md-12 no-pad hoursMyInfoTabs">
+                    <div class="hours_details">
+                        <label><strong>{{::translation.hoursInfo.address}}</strong></label>
+                        <span class="personal-details ellipsis">
+                            <span class="block ellipsis" ng-if="myLocation.addressLine">{{myLocation.addressLine}}</span>
+                            <span class="block ellipsis" ng-if="myLocation.addressInfo">{{myLocation.addressInfo}}</span></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="hours_details">
+                        <label><strong>{{::translation.hoursInfo.telephone }}</strong></label>
+                        <span class="personal-details ellipsis" ng-bind="myLocation.phone | telFormat"></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--My locations and Headquarters tabs ends-->
+        <div class="clearfix"></div>
+        <!--other location tabs starts-->
+        <div class="col-md-12 no-pad myfield-content">
+            <h3>{{::translation.hoursInfo.otherLocations}}</h3>
+            <div class="col-md-4 col-sm-6 no-pad-left marg-top marg-bottom " ng-repeat="location in otherLocations">
+                <div class="hoursOtherLocationsInfoTabs">
+                    <div class="hours_details">
+                        <label><strong>{{::translation.hoursInfo.address}}</strong></label>
+                        <span class="personal-details ellipsis">
+
+                            <span class="block ellipsis" title="{{location.addressLine}}" ng-if="location.addressLine">{{location.addressLine}}</span>
+
+                            <span class="block ellipsis" title="{{location.addressInfo}}" ng-if="location.addressInfo">{{location.addressInfo}}</span>
+                        </span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="hours_details">
+                        <label><strong>{{::translation.hoursInfo.telephone}}</strong></label>
+                        <span class="personal-details ellipsis" ng-bind-html="location.phone | telFormat"></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

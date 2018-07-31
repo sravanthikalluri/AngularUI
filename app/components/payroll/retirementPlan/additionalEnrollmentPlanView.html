@@ -1,0 +1,74 @@
+<!-- This is page is used to display additional Enrollment plan details
+Author:  Raghavendra Kumar Bonthala
+ -->
+<div class="background-bg col-md-12 col-sm-12 retirement-block" ng-repeat="retireData in contributions">
+    <div class="col-md-8 col-sm-8">
+        <h3>
+            {{retireData.planType}}
+        </h3>
+
+        <p class="current-plan">
+            <label  ng-bind="::translation.manageGroup.currentPlanYear"></label> {{retireData.selectedEffectiveData.quarter}}
+        </p>
+        <div class="col-md-5 col-sm-6 no-border effective-list">
+
+            <select id="retirement_plan_effective_date"
+                    class="pull-left medium no-bg no-border" ng-model="retireData.effectiveLabel" ng-change="dateChange($index,retireData.effectiveLabel)"
+                    ng-options="k as k for (k, v) in retireData.data">
+            </select>
+        </div>
+        <span id="datemenuhelp"
+              class=" icon-icon_UA question-mark small no-pad marg-left-5 marg-top"
+              data-toggle="tooltip" tooltip="Effective Date"
+              tooltip-placement="right"></span>
+        <div class="pull-left">
+            <a class="pointerEvent" ng-class="retireData.selectedEffectiveData.effectiveType === 'W' ? 'waived' : 'elected'">{{::translation.manageGroup.elected}}</a>
+        </div>
+
+        <!------option change----------->
+        <div class="clearfix"></div>
+        <!------option change end----------->
+    </div>
+    <div class="col-md-4 col-sm-4 text-right">
+        <a type="" class="trinet-secondary-action-btn trinet-secondary-btn-line-height" name="edit"
+           data-toggle="modal" id="retireEditId" data-target="#editRetirementModal"
+           data-whatever="@fat" ng-click="editRetirement($index)">{{::translation.manageGroup.edit}}</a>
+    </div>
+    <div class="col-md-12 white-bg price-block">
+        <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+            <p>{{::translation.manageGroup.payrollDeduction}}</p>
+            <div class="clearfix"></div>
+            <span class="price" ng-if="retireData.selectedEffectiveData.flatDeductionAmount != 0">{{retireData.selectedEffectiveData.flatDeductionAmount | currencyFilter}}</span>
+            <span>
+                <p ng-if="retireData.selectedEffectiveData.flatDeductionAmount != 0">{{::translation.manageGroup.perCheckIssued}}</p>
+            </span>
+            <span class="price" ng-if="retireData.selectedEffectiveData.percentGrossDeduction != 0">{{retireData.selectedEffectiveData.percentGrossDeduction }}%</span>
+            <span>
+                <p ng-if="retireData.selectedEffectiveData.percentGrossDeduction != 0">{{::translation.manageGroup.perCheckIssued}}</p>
+            </span>
+        </div>
+        <div class="col-md-5 col-sm-5 text-right">
+            <p>
+                {{::translation.manageGroup.goalAmount}}
+            </p>
+            <div class="clearfix"></div>
+            <span class="price">{{retireData.selectedEffectiveData.limitedAmount}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 no-pad-right timeline" id="enrollment-time-line">
+    <div class="col-md-12 col-sm-12 preferred-name-timeline time-line-adj" ng-hide="enrollment_showTimeline">
+        <history-timeline data="history" section="section" ng-hide="enrollment_showTimeline"></history-timeline>
+    </div>
+    <div class="col-sm-12 no-pad no-bg-all" ng-if="history.length > 0"> <!-- preferred view history -->
+        <a id="enrollment_showTimeline" ng-show="enrollment_showTimeline" ng-click="toggleEnrollmentTimeline()" class="action pointer-visible no-pad-left-imp">
+            <span ng-bind="::translation.viewHistory" class="pull-left underline"></span>
+            <span class="icon-icon_report_down small pad-5 formerNames pull-left"></span>
+        </a>
+        <a id="enrollment_hideTimeline" ng-click="toggleEnrollmentTimeline()" ng-hide="enrollment_showTimeline" class="action pointer-visible">
+            <span ng-bind="::translation.close" class="pull-left underline"></span>
+            <span class="icon-icon_report_up small top-5 pull-left pad-left-5"></span>
+        </a>
+    </div>
+</div>

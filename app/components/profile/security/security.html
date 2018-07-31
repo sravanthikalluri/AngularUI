@@ -1,0 +1,372 @@
+<!--
+Description: This page is used to view the security information
+Author:Jaya Krishna Pulipati
+-->
+<div ng-controller="securityViewCtrl">
+    <!--<form name="securityForm" ng-submit="submitForm()" novalidate>-->
+
+    <div class="tab-pane active">
+        <!--start of name section-->
+        <div class="col-md-12 no-pad" id="custIDPwd" ng-hide="true">
+            <!--trinet-header-bar-->
+            <div class="my-field">
+                <h3 class="no-border" data-toggle="modal" data-target="#exampleModal3" data-whatever="@fat" ng-bind="::translation.security.custPassword"></h3>
+            </div>
+            <div ng-if="!customerInformattionSection">
+                <div class="myfield-content security clearfix" id="preferredNameEdit">
+                    <div class="col-md-12 col-sm-12 no-pad">
+                        <div class="security-details marg-top-20" ng-if="showEmployeeInfo">
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 no-pad">
+                                <label class="top-1 default-font" ng-bind="::translation.security.empId"></label>
+
+                                <div class="col-md-8 col-sm-8 no-pad">
+                                    <p class="no-pad-imp default-font top-1" ng-bind="::appUserId"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 no-pad">
+                                <label class="custom-id default-font" ng-bind="::translation.security.custId"></label>
+
+                                <div class="col-md-8 col-sm-8 no-pad">
+                                    <p>
+                                        <a href="#" ng-click="showCustomSetUp($event)"
+                                          ng-hide="showSetupButton"
+                                          class="trinet-primary-action-btn no-marg security-customer-id-adj" ng-bind="::translation.security.setupCustom">
+                                        </a>
+                                        <span ng-show="showSetupButton" class="default-font"
+                                                     ng-model="custIdInfo.customerId">{{custIdInfo.customerId}}</span>
+                                        <a href="#"
+                                            ng-click="editCustomSetUp($event)" ng-show="showSetupButton"
+                                            class="action top-3" ng-bind="::translation.security.edit"></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 no-pad">
+                                <label class="top-4 default-font" ng-bind="::translation.security.password"></label>
+
+                                <div class="col-md-8 col-sm-8 no-pad">
+                                    <p class=""><span class="default-font">{{::translation.security.lastChanged}} {{formattedDate}}</span><a
+                                            href="javascript:;" ng-click="showPasswordSection()"
+                                            class="action pad-5 top-2" ng-bind="::translation.security.changePassword"></a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="security-details marg-top-20" ng-if="customLoginInformation">
+                            <form name="customIdForm" id="custom_id_form" novalidate>
+                                <div class="col-md-6 col-sm-7 no-pad">
+                                    <label class="custom-id default-font" ng-bind="::translation.security.custId"></label>
+
+                                    <div class="col-md-6 col-sm-5 no-pad">
+                                        <div class="col-md-10 col-sm-10 no-pad">
+                                            <input type="text" name="customerId" class="form-control"
+                                                   id="customerId"
+                                                   ng-model="custIdInfo.customId" placeholder="jenblaire"
+                                                   ng-pattern="/^[\w a-zA-Z0-9\_\-.@]*$/" ng-required="true"
+                                                   ng-class="{'error-warning': (customIdSubmitted && validationPatterns.customId.focus.customIdRequired) || (customIdSubmitted && validationPatterns.customId.blur.customIdRequired) || validationPatterns.customId.focus.customIdPattern || validationPatterns.customId.blur.customIdPattern}"
+                                                   ng-focus="onFocus('customId', validationPatterns.customId.focus); validationPatterns.customId.blur.customIdRequired= false; validationPatterns.customId.blur.customIdPattern = false;
+                                                        validationPatterns.customId.focus.customIdRequired=customIdForm.customerId.$error.required; validationPatterns.customId.focus.customIdPattern = customIdForm.customerId.$error.pattern;"
+                                                   ng-blur="validationPatterns.customId.focus.customIdRequired= false; validationPatterns.customId.focus.customIdPattern = false;
+                                                   validationPatterns.customId.blur.customIdRequired=customIdForm.customerId.$error.required; validationPatterns.customId.blur.customIdPattern=customIdForm.customerId.$error.pattern"
+                                            />
+                                            <Validation
+                                                    condition="(customIdSubmitted && validationPatterns.customId.focus.customIdRequired)"
+                                                    msg="{{translation.required_field}}"></Validation>
+                                            <validation condition="validationPatterns.customId.focus.customIdPattern"
+                                                        msg="{{translation.validation.changeCustomIdMsg}}"></validation>
+                                        </div>
+                                        <button type="submit" class="trinet-primary-action-btn" name="save"
+                                                ng-click="saveCustomId(customIdForm)" ng-bind="::translation.security.save">
+                                        </button>
+                                        <button type="reset" name="cancel" ng-click="removeCustomSetUp()"
+                                                class="trinet-secondary-action-btn" ng-bind="::translation.security.cancel">
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-md-6 col-sm-6 instructions">
+                                <h3 ng-bind="::translation.security.createcustID"></h3>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <ul>
+                                        <li><span ng-bind="::translation.security.uppercase_letters"></span></li>
+                                        <li><span ng-bind="::translation.security.lowercase_letters"></span></li>
+                                        <li><span ng-bind="::translation.security.number"></span></li>
+                                        <li><span ng-bind="::translation.security.hyphens"></span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <ul>
+                                        <li><span ng-bind="::translation.security.underscores"></span></li>
+                                        <li><span ng-bind="::translation.security.periods"></span></li>
+                                        <li><span ng-bind="::translation.security.symbols"></span></li>
+                                        <li><span ng-bind="::translation.security.spaces"></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <form name="passwordForm" id="password_form" novalidate>
+                                <div class="security-details marg-top-20" ng-if="passwordInformation">
+                                    <div class="col-md-6 col-sm-6 no-pad">
+                                        <div class="col-md-12 col-sm-12 no-pad">
+                                            <label class="default-font no-pad-imp" ng-bind="::translation.security.changePwdFor"></label>
+
+                                            <div class="col-md-6 col-sm-5 no-pad">
+                                                <p class="default-font no-pad-imp">{{headerName}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 no-pad marg-top-5 visible">
+                                            <label class="default-font" ng-bind="::translation.security.currentPassword"></label>
+
+                                            <div class="col-md-6 col-sm-5 no-pad">
+                                                <div class="col-md-10 col-sm-10 no-pad">
+                                                    <input type="password" name="currentPassword" id="currentPassword"
+                                                           ng-model="passwordInfo.currentPassword" class="form-control"
+                                                           placeholder=""
+                                                           ng-required="true"
+                                                           ng-class="{'error-warning': (isChangePasswordFormSubmitted && validationPatterns.password.focus.securityFormcurrentPasswordRequired) || (isChangePasswordFormSubmitted && validationPatterns.password.blur.securityFormcurrentPasswordRequired)}"
+                                                           ng-focus="onFocus('password', validationPatterns.password.focus); validationPatterns.password.focus.securityFormcurrentPasswordRequired=passwordForm.currentPassword.$error.required;
+                                                           validationPatterns.password.blur.securityFormcurrentPasswordRequired = false;"
+                                                           ng-blur="validationPatterns.password.blur.securityFormcurrentPasswordRequired=passwordForm.currentPassword.$error.required;
+                                                           validationPatterns.password.focus.securityFormcurrentPasswordRequired = false;"
+                                                    />
+                                                    <Validation
+                                                            condition="(isChangePasswordFormSubmitted && validationPatterns.password.focus.securityFormcurrentPasswordRequired)"
+                                                            msg="{{translation.required_field}}"></Validation>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 no-pad marg-top-5 visible">
+                                            <label class="default-font" ng-bind="::translation.security.newPassword"></label>
+
+                                            <div class="col-md-6 col-sm-5 no-pad">
+                                                <div class="col-md-10 col-sm-10 no-pad">
+                                                    <input type="password" name="newPassword"
+                                                           id="newPassword"
+                                                           ng-model="passwordInfo.newPassword" class="form-control"
+                                                           ng-minlength="8" ng-maxlength="128"
+                                                           placeholder=""
+                                                           ng-required="true"
+                                                           ng-pattern="/^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[! @ # % ^ & * . : ; , ' _ ]).*$/"
+                                                           ng-class="{'error-warning': (isChangePasswordFormSubmitted && validationPatterns.password.focus.securityFormnewPasswordRequired) || (isChangePasswordFormSubmitted && validationPatterns.password.blur.securityFormnewPasswordRequired) || validationPatterns.password.focus.newPasswordValidation || validationPatterns.password.blur.newPasswordValidation}"
+                                                           ng-model-options="{allowInvalid: true}"
+                                                           ng-change="checkNewPassword()"
+                                                           ng-focus="onFocus('password', validationPatterns.password.focus); validationPatterns.password.blur.securityFormnewPasswordRequired = false; validationPatterns.password.blur.newPasswordValidation = false;
+                                                                        validationPatterns.password.focus.securityFormnewPasswordRequired=passwordForm.newPassword.$error.required; validationPatterns.password.focus.newPasswordValidation=passwordForm.newPassword.$error.pattern;
+                                                                        validationPatterns.password.focus.pwdminlength=passwordForm.newPassword.$error.minlength;validationPatterns.password.blur.pwdminlength=false;validationPatterns.password.focus.pwdmaxlength=passwordForm.newPassword.$error.maxlength;validationPatterns.password.blur.pwdmaxlength=false;"
+                                                           ng-blur="validationPatterns.password.focus.securityFormnewPasswordRequired = false; validationPatterns.password.focus.newPasswordValidation = false;
+                                                                        validationPatterns.password.blur.securityFormnewPasswordRequired=passwordForm.newPassword.$error.required; validationPatterns.password.blur.newPasswordValidation=passwordForm.newPassword.$error.pattern"
+                                                    />
+                                                    <Validation
+                                                            condition="(isChangePasswordFormSubmitted && validationPatterns.password.focus.securityFormnewPasswordRequired)"
+                                                            msg="{{translation.required_field}}"></Validation>
+                                                    <validation
+                                                            condition="validationPatterns.password.focus.newPasswordValidation"
+                                                            msg="{{translation.validation.passwordReqMsg}}"></validation>
+                                                    <Validation condition="validationPatterns.password.focus.pwdminlength" msg="{{translation.validation.pwdMinLength}}"></Validation>
+                                                    <Validation condition="validationPatterns.password.focus.pwdmaxlength" msg="{{translation.validation.pwdMaxLength}}"></Validation>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 no-pad marg-top-5 visible">
+                                            <label class="default-font"  ng-bind="::translation.security.confirmNewPwd"></label>
+
+                                            <div class="col-md-6 col-sm-5 no-pad">
+                                                <div class="col-md-10 col-sm-10 no-pad">
+                                                    <input type="password" name="confirmNewPassword"
+                                                           id="confirmNewPassword"
+                                                           ng-model="passwordInfo.confirmNewPassword"
+                                                           class="form-control top-margin"
+                                                           placeholder=""
+                                                           ng-required="true"
+                                                           pw-check="newPassword"
+                                                           ng-class="{'error-warning': (isChangePasswordFormSubmitted && validationPatterns.password.focus.securityFormconfirmNewPasswordRequired) || (isChangePasswordFormSubmitted && validationPatterns.password.blur.securityFormconfirmNewPasswordRequired) || validationPatterns.password.focus.confirmNewPwdError || validationPatterns.password.blur.confirmNewPwdError}"
+                                                           ng-focus="onFocus('password', validationPatterns.password.focus); validationPatterns.password.blur.securityFormconfirmNewPasswordRequired = false; validationPatterns.password.blur.confirmNewPwdError = false;
+                                                                                validationPatterns.password.focus.securityFormconfirmNewPasswordRequired=passwordForm.confirmNewPassword.$error.required; validationPatterns.password.focus.confirmNewPwdError= passwordForm.confirmNewPassword.$error.pwmatch"
+                                                           ng-blur="validationPatterns.password.focus.securityFormconfirmNewPasswordRequired = false; validationPatterns.password.focus.confirmNewPwdError = false;
+                                                                    validationPatterns.password.blur.securityFormconfirmNewPasswordRequired=passwordForm.confirmNewPassword.$error.required; validationPatterns.password.blur.confirmNewPwdError= passwordForm.confirmNewPassword.$error.pwmatch"
+                                                    />
+                                                    <Validation
+                                                            condition="(isChangePasswordFormSubmitted && validationPatterns.password.focus.securityFormconfirmNewPasswordRequired)"
+                                                            msg="{{translation.required_field}}"></Validation>
+                                                    <validation
+                                                            condition="validationPatterns.password.focus.confirmNewPwdError"
+                                                            msg="{{translation.validation.confirmPwdMsg}}"></validation>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <label>&nbsp;</label>
+
+                                        <div class="no-pad">
+                                            <button type="submit" class="trinet-primary-action-btn" name="save"
+                                                    ng-click="changePassword(passwordForm)" ng-bind="::translation.security.changePassword">
+                                            </button>
+                                            <button type="reset" name="cancel" class="trinet-secondary-action-btn"
+                                                    ng-click="cancelChangePassword()" ng-bind="::translation.security.cancel">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 instructions">
+                                        <h3 ng-bind="::translation.security.passwordContain"></h3>
+
+                                        <div class="col-md-12 col-sm-12 options-check">
+                                            <ul>
+                                                <li class="{{lenghtOfPassword ? 'check': 'uncheck'}}">
+                                                    <span ng-bind="::translation.security.eightChar"></span>
+                                                </li>
+                                                <li class="{{oneUpperCaseLetter? 'check': 'uncheck'}}">
+                                                    <span ng-bind="::translation.security.uppercaseLetter"></span>
+                                                </li>
+                                                <li class="{{oneLowerCaseLetter? 'check': 'uncheck'}}">
+                                                    <span ng-bind="::translation.security.lowercaseLetter"></span>
+                                                </li>
+                                                <li class="{{oneNumber? 'check': 'uncheck'}}">
+                                                    <span ng-bind="::translation.security.oneNumber"></span>
+                                                </li>
+                                                <li class="{{oneSpecialCharacter? 'check': 'uncheck'}}">
+                                                    <span>{{::translation.security.specialChar}} ! @ # % ^ &amp; * . : ; , ' / _ - or space</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-if="customerInformattionSection">
+                <no-records></no-records>
+            </div>
+        </div>
+        <!--end of name section-->
+
+        <!--start of Q&A section-->
+        <div class="col-md-12 no-pad" id="secQueAns" ng-hide="true">
+            <form name="securityQuestionsForm" id="sec_ques_form" novalidate>
+                <div class="my-field">
+                    <h3 class="no-border" >{{::translation.security.securityQues}} &amp; {{::translation.security.answer}}</h3>
+                </div>
+                <div ng-if="!securityQuestionsInformattionSection">
+                    <div class="myfield-content security clearfix">
+                        <div class="security-details marg-top-20 visible">
+                            <p class="default-font" ng-bind="::translation.security.selectSecurityQuestion"></p>
+
+                            <div class="col-md-12 col-sm-12 no-pad">
+                                <label class="default-font"  >{{::translation.security.securityQues}}:</label>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <select class="form form-control" ng-model="questionsData.securityQuestion"
+                                            name="secQuestion" id="secQuestion" ng-required="true"
+                                            ng-class="{'error-warning': (isSecQuesFormSubmitted && validationPatterns.secQuestion.focus.securityFormsecQuestionRequired) || (isSecQuesFormSubmitted && validationPatterns.secQuestion.blur.securityFormsecQuestionRequired)}"
+                                            ng-focus="onFocus('secQuestion', validationPatterns.secQuestion.focus); validationPatterns.secQuestion.blur.securityFormsecQuestionRequired = false;
+                                            validationPatterns.secQuestion.focus.securityFormsecQuestionRequired=securityQuestionsForm.secQuestion.$error.required"
+                                            ng-blur="validationPatterns.secQuestion.focus.securityFormsecQuestionRequired = false;
+                                            validationPatterns.secQuestion.blur.securityFormsecQuestionRequired=securityQuestionsForm.secQuestion.$error.required"
+                                    >
+                                        <option value="" selected="selected" ng-bind="::translation.security.selectSecQues"></option>
+                                        <option ng-repeat="questionObj in secQuestionsList"
+                                                value="{{questionObj.question}}">{{questionObj.question}}
+                                        </option>
+                                        <option value="own" ng-bind="::translation.security.ownQuestion"></option>
+                                    </select>
+
+
+                                    <Validation
+                                            condition="(isSecQuesFormSubmitted && validationPatterns.secQuestion.focus.securityFormsecQuestionRequired)"
+                                            msg="{{translation.required_field}}"></Validation>
+                                </div>
+                                <div class="col-md-12 col-sm-12 no-pad marg-top-5 visible"
+                                     ng-if="questionsData.securityQuestion === 'own'">
+                                    <label>&nbsp;</label>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" name="question" id="question" class="form-control"
+                                               ng-model="questionsData.secQuestion" ng-required="true"
+                                               ng-class="{'error-warning': (isSecQuesFormSubmitted && validationPatterns.secQuestion.focus.securityFormquestionRequired) || (isSecQuesFormSubmitted && validationPatterns.secQuestion.blur.securityFormquestionRequired)}"
+                                               ng-focus="onFocus('secQuestion', validationPatterns.secQuestion.focus); validationPatterns.secQuestion.blur.securityFormquestionRequired = false;
+                                            validationPatterns.secQuestion.focus.securityFormquestionRequired=securityQuestionsForm.question.$error.required"
+                                               ng-blur="validationPatterns.secQuestion.focus.securityFormquestionRequired = false;
+                                            validationPatterns.question.blur.securityFormquestionRequired=securityQuestionsForm.question.$error.required"
+                                        >
+                                        <Validation
+                                                condition="(isSecQuesFormSubmitted && validationPatterns.secQuestion.focus.securityFormquestionRequired)"
+                                                msg="{{translation.required_field}}"></Validation>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 no-pad marg-top-5 visible">
+                                <label class="default-font">{{::translation.security.answer}}:</label>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" name="secAnswer" id="secAnswer" class="form-control"
+                                           ng-model="questionsData.answer"
+                                           ng-required="true"
+                                           ng-class="{'error-warning': (isSecQuesFormSubmitted && validationPatterns.secQuestion.focus.securityFormsecAnswerRequired) || (isSecQuesFormSubmitted && validationPatterns.secQuestion.blur.securityFormsecAnswerRequired)}"
+                                           ng-focus="onFocus('secQuestion', validationPatterns.secQuestion.focus); validationPatterns.secQuestion.focus.securityFormsecAnswerRequired=securityQuestionsForm.secAnswer.$error.required;
+                                           validationPatterns.secQuestion.blur.securityFormsecAnswerRequired = false; "
+                                           ng-blur="validationPatterns.secQuestion.blur.securityFormsecAnswerRequired=securityQuestionsForm.secAnswer.$error.required;
+                                           validationPatterns.secQuestion.focus.securityFormsecAnswerRequired = false;"
+                                    >
+                                    <Validation
+                                            condition="(isSecQuesFormSubmitted && validationPatterns.secQuestion.focus.securityFormsecAnswerRequired)"
+                                            msg="{{translation.required_field}}"></Validation>
+
+                                    <button type="submit" class="trinet-primary-action-btn marg-top"
+                                            ng-click="saveSecurityQuestionInfo(securityQuestionsForm)" ng-bind="::translation.security.submit">
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="securityQuestionsInformattionSection" class="block">
+                    <div class="col-md-12 myfield-content security marg-top-20 no-marg-top" id="securityQuestion">
+                     <no-records></no-records>
+                        <div class="col-md-12 no-pad-imp text-center security-details">
+                            <button class="trinet-primary-action-btn" ng-click="securityQuestioninfo()" ng-bind="::translation.security.selectQuestion"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--end of Q&A section-->
+
+        <!--start of MFA section-->
+        <div id="mfaPageDiv" class="col-md-12 no-pad" ng-hide="true">
+
+        </div>
+        <!--<iframe ng-src="{{mfaURL}}" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>-->
+        <!--<div id="mfaFrame">
+            <iframe id="mfaLoadFrame" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>
+             &lt;!&ndash;<iframe id="mfaLoadFrame" style="overflow:hidden;height:900px;width:100%;border:0px;" border="0"
+                    name="mfaLoadFrame"
+                    marginwidth="0" marginheight="0" scrolling="true"></iframe>&ndash;&gt;
+        </div>-->
+        <!--<div ng-include="mfaURL"></div>-->
+        <!--end of MFA section-->
+
+        <!--start of Roles section-->
+        <div class="col-md-12 no-pad" id="myRoles" ng-hide="true">
+            <div class="my-field">
+                <div class="col-md-8 col-sm-8 no-pad">
+                    <h3 class="no-border" ng-bind="::translation.security.myrole"></h3>
+                </div>
+
+            </div>
+
+            <div ng-include="'app/components/employee/roles/roles.html'">
+            </div>
+        </div>
+    </div>
+    <!--</form>-->
+</div>

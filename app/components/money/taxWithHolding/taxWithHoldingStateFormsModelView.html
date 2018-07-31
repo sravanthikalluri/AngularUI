@@ -1,0 +1,16 @@
+
+
+<div class="" id="stateForms" tabindex="-1" role="dialog" aria-labelledby="stateFormsModalLabel">
+    <div class="retirement-plan-election">
+        <div class="modal-header">
+            <h4 class="modal-title" id="newEnrollmentModalLabel"> {{stateData.payDedCode}} {{::translation.money.tax_With_Holding.state_tax_forms}}</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+                 <div class="marg-btm-10" ng-repeat="pdfItem in stateData.pdfURL track by $index">
+                     <a class="taxAction top-marg-1" target="_blank" ng-href="{{pdfItem.url | contentUrl}}">{{pdfItem.text}}</a><br>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<!-- This is page is used to do display individual details of employee dependents information
+Author: Raghavendra Kumar Bonthala
+ -->
+<div id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+    <div class="benefits-popup" role="document">
+        <div class="modal-content currentdependent-popup">
+            <div class="marg-left marg-right">
+                <div class="col-md-12 col-sm-12 no-pad popup-head-adj">
+                    <div class="col-md-6 col-sm-6 no-pad">
+                        <h3 class="ellipsis full-range">{{::detailsData.dependentName}}</h3>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6 no-pad status-adjustment">
+                        <span class="beneficiary ex-small" ng-if="splitKeyValue(detailsData.dependentBeneficiaryType,1).length > 0">{{splitKeyValue(detailsData.dependentBeneficiaryType,1) | uppercase}}</span>
+                        <span class="dependent ex-small" ng-if="splitKeyValue(detailsData.dependentBeneficiaryType,0).length > 0">{{splitKeyValue(detailsData.dependentBeneficiaryType,0) | uppercase}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+
+                <div class="row no-marg">
+
+                    <div class="personal-information">
+                        <div class="row no-marg">
+                            <p>
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.relation"></label></div>
+
+                            <div class="col-md-6 col-sm-6 information">{{::detailsData.relationship}}</div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.ssn"></label></div>
+                            <div class="col-md-6 col-sm-6 information">{{::detailsData.nationalId}}</div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.dateBirth"></label></div>
+                            <div class="col-md-6 col-sm-6 information">{{::detailsData.birthdate | date:'MM/dd/yyyy'}}</div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.gender"></label></div>
+                            <div class="col-md-6 col-sm-6 information">{{::detailsData.sex}}</div>
+
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.maritalStatus"></label></div>
+                            <div class="col-md-6 col-sm-6 information">
+                                {{::detailsData.maritalStatus}}
+                            </div>
+                        </div>
+
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.fullTimeStd"></label></div>
+                            <div class="col-md-6 col-sm-6 information" ng-if="detailsData.student === 'N'">{{::translation.my_benefits.currentBenefits.no}}</div>
+                            <div class="col-md-6 col-sm-6 information" ng-if="detailsData.student === 'Y'">{{::translation.my_benefits.currentBenefits.Yes}}</div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.homeAddr"></label></div>
+                            <div class="col-md-6 col-sm-6 information"><span
+                                    class="clearfix">{{::detailsData.address1}}</span>
+                                <span class="clearfix">{{::detailsData.city}}</span>
+                                <span class="clearfix">{{::detailsData.state}},{{::detailsData.country}} {{::detailsData.postal}}</span></div>
+                        </div>
+                        <div class="row no-marg">
+                            <div class="col-md-6 col-sm-6 text-right no-pad"><label ng-bind="::translation.my_benefits.currentBenefits.phone"></label></div>
+                            <div class="col-md-6 col-sm-6 information">{{::detailsData.phone}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

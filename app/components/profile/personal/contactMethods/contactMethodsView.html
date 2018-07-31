@@ -1,0 +1,35 @@
+<div class="tn-contact-section" ng-controller='contactMethodsCtrl' >
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.contact_method"></h4>
+        <button ng-class="$parent.canEdit('contactmethods') ? 'visible-hide' : ''" class="tn-edit-button tn-button profile-edit-button" ng-click="editView()">
+            Edit
+        </button>
+    </div>
+    <div ng-if="!contactsSection">
+        <div class="profile-section-view">
+            <div class="email-view section-block">
+                <div class="names-view">
+                    <div ng-repeat='contact in emailData' ng-if="$first">
+                        <h5><span ng-bind="translation.profile_personal.email">:</span></h5>
+                        <h4 class="proxima-nova-semibold font-dark">{{contact.url}} </h4>
+                    </div>
+                </div>
+                <div ng-if="emailData.length == 0" class="no-records no-border">
+                    <h4 class="proxima-nova-semibold no-data" ng-bind="translation.profile_personal.noEmailData"></h4>
+                </div>
+            </div>
+            <div class="mobile-view section-block">
+                <div class="names-view">
+                    <div ng-repeat="contact in phoneData | orderBy:'-media'" ng-if="$first">
+                        <h5><span ng-bind="translation.profile_personal.phone">:</span></h5>
+                        <h4 class="proxima-nova-semibold font-dark">{{contact.phone | telFormat}}</h4>
+                    </div>
+                </div>
+                <div ng-if="phoneData.length == 0" class="no-records no-border">
+                    <h4 class="proxima-nova-semibold no-data" ng-bind="translation.profile_personal.noPhoneData"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tn-horizontal-divider"></div>
+</div>

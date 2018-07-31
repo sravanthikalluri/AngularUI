@@ -1,0 +1,36 @@
+{
+  "errorCode": null,
+  "resource": [
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/New_Customer_Advisements_Mktg_Approved.pdf",
+      "linkName": "New File44444"
+    },
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/TriNet.doc",
+      "linkName": "Test"
+    },
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/This is a Test This is a Test.PDF",
+      "linkName": "Test PDF"
+    },
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/$20_.pdf",
+      "linkName": "test tes test"
+    },
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/This is a Test This is a Test.pdf",
+      "linkName": "test test"
+    },
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/Garnishment Child Support.doc",
+      "linkName": "Testing Logo"
+    },
+    {
+      "linkUrl": "/CustomFolders/Objects/Company/31T/ADDL_POLC/policy/pdf_doc/TriNetMenu2.pdf",
+      "linkName": "v2"
+    }
+  ],
+  "statusText": "OK",
+  "statusCode": "200",
+  "statusMessage": "Success"
+}

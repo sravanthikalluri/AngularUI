@@ -1,0 +1,169 @@
+<div class="col-md-12 no-pad my-money visible" ng-controller="reimbursementsCtrl">
+
+    <div class="tab-pane" id="tab2">
+        <div class="col-md-12 marg-top no-pad mymoney-reimbursements">
+
+            <div id="edit-details" class="col-md-12 no-pad">
+
+                <div class="col-md-5 pull-right no-pad" ng-hide="visble">
+                    <div class="row no-marg">
+                        <button id="reimedit"
+                                class="trinet-secondary-action-btn pull-right no-marg"
+                                ng-click="toggleEditReimbursement(selectedEffectiveDate)" ng-bind="::translation.edit_account"></button>
+                    </div>
+                </div>
+                <div>
+
+                    <div class="col-md-3 no-pad-imp" ng-hide="hidden">
+
+                        <label class="select-custom-lable">
+                            <select id='reimdate' ng-model="selectedEffectiveDate" ng-change="effectiveDetails(selectedEffectiveDate)"
+                                    class="medium inline pull-left custom-select"  ng-options="k as k for (k, v) in reimbursementsList">
+                                </select>
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="form-group no-marg" ng-show="visble">
+
+
+                    <div class="col-md-5 col-sm-6 no-pad medium" ng-controller="datePickerCtrl">
+                        <span class="col-md-3 col-sm-4 no-pad top-2"><label
+                                ng-bind="::translation.money.direct_deposit.effective"></label>:</span>
+						<span class="input-group calender-border col-md-5 col-sm-5 customed-calendar no-pad pull-left">
+							<span class="col-md-9 col-sm-9 col-xs-9 no-pad">
+							<input type="text" class="ddCalender no-border" name="effDate"
+                                   id="name_edit_effective_date" datepicker-popup="{{format}}"
+                                   ng-model="calSelectedEffectiveDate" is-open="opened" min-date='reimMinDate'
+                                   max-date="'2099-12-31'" datepicker-options="dateOptions"
+                                   ng-click="open($event)"
+                                   date-disabled="disabled(date, mode)" ng-required="true"
+                                   close-text="Close" readonly/>
+								</span>
+								<span class="col-md-2 col-sm-2 no-pad">
+								
+								<button id="reimsaveBtn" type="button"
+                                        class="btn no-bg-all bo-border btn-default Trinet-blue Trinet-calendar"
+                                        ng-click="open($event)">
+                                    <i id="helpreimcalender" class="glyphicon glyphicon-calendar"></i>
+                                </button>
+							
+							</span>
+							
+						</span>
+                        <label ng-bind="::translation.money.direct_deposit.success_msg"></label>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-12 text-center money-bag">
+                <i class="icon-icon_reimbursement"></i>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 black">
+            <div class="col-md-1"></div>
+            <form id="reimform" name="reimbersmentForm">
+                <div class="col-md-10 col-sm-10 black allocations auto-height-150">
+
+
+                    <div class="col-md-12">
+                        <div class="col-md-12 money-borderlast adjust-reimbursement no-pad">
+
+                            <div class="col-md-6 col-sm-6 no-pad"><span class="medium top-5"
+                                                                        ng-bind="::translation.money.direct_deposit.fsa"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 no-pad">
+                                <ul id="reimdropdownview" class="nav">
+                                    <li class="dropdown open no-bg">
+	                              <span id="FSADrop" data-toggle="dropdown"
+                                        class="dropdown-toggle my-all-border block action rembersement-list-drop "
+                                        ng-class="visble ? '' : 'no-border'"
+                                        href="#" aria-expanded="true"><span class="medium">{{fsaSelected}}</span>
+	                                <span class="icon-icon_Dropdown_Arrow pull-right"></span>
+	                                 </span>
+
+                                        <ul class="dropdown-menu dropdown-list auto-height-110-overflow col-md-12"
+                                            ng-show="visble">
+                                           <!-- <li value="new" ng-click=openAccount('new','fsa')><a href="javascript:;"
+                                                                                                 class="no-pad-imp">
+                                                <span id="FSAList"
+                                                      ng-bind="::translation.money.direct_deposit.new_account"></span></a>
+                                            </li>-->
+                                            <li ng-model="bonus" ng-click="selectFSAAccount($index)"
+                                                ng-repeat="res in selectedReimbursmentData">
+                                                <a href="javascript:;"
+                                                   class="no-pad-imp"><span>{{res.accountName}}</span>
+                                                    <span class="small input-label">{{res.accountType}}{{res.accountNumber | checkFilter}}</span>
+                                                </a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 money-borderlast adjust-reimbursement no-pad">
+
+                            <div class="col-md-6 col-sm-6 no-pad-imp"><span class="medium top-5"
+                                                                            ng-bind="::translation.money.direct_deposit.ap"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 no-pad-imp">
+                                <ul id="reimdropdownedit" class="nav">
+                                    <li class="dropdown open no-bg"><span data-toggle="dropdown"
+                                                                          ng-class="visble ? '' : 'no-border'"
+                                                                          class="dropdown-toggle my-all-border block action rembersement-list-drop no-border"
+                                                                          href="#" aria-expanded="true"><span
+                                            class="medium">{{apSelected}}</span>
+	                              <span id="APDrop" class="icon-icon_Dropdown_Arrow pull-right"></span></span>
+                                        <ul class="dropdown-menu dropdown-list auto-height-110-overflow col-md-12"
+                                            ng-show="visble">
+
+                                           <!-- <li value="new" ng-click=openAccount('new','ap')><a href="javascript:;"
+                                                                                                class="no-pad-imp">
+                                                <span id="ApList"
+                                                      ng-bind="::translation.money.direct_deposit.new_account"></span></a>
+                                            </li>-->
+                                            <li ng-model="bonus" ng-click="selectAPAccount($index)"
+                                                ng-repeat="res in selectedReimbursmentData">
+                                                <a href="javascript:;"
+                                                   class="no-pad-imp"><span>{{res.accountName}}</span>
+                                                    <span class="small input-label">{{res.accountType}} {{res.accountNumber | checkFilter}}</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-1"></div>
+
+
+                    </div>
+
+
+                </div>
+            </form>
+            <div class="col-md-12 col-sm-12 text-right" ng-hide="enableSave">
+                <button id="reimsave" name="save"
+                        ng-class="{'trinet-btn-dissable pointerEvent': !enableReimburse , 'trinet-primary-action-btn': enableReimburse }"
+                        ng-enabled="enableReimburse "
+                        type="submit" data-toggle="modal" data-target="#myConfirmation"
+                        ng-click="insertReimbursementAccount()"
+                        ng-bind="translation.save"></button>
+                <button id="reimcancel" class="trinet-secondary-action-btn" aria-hidden="true"
+                        data-dismiss="modal" aria-label="Close" ng-click="cancelReimbursement()"
+                        ng-bind="::translation.cancel"></button>
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+
+        <div class="col-md-12 "></div>
+    </div>
+</div>
+

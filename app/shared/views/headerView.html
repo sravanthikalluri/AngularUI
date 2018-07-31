@@ -1,0 +1,54 @@
+<div class="tn-profile-header-bar">
+    <div class="tn-profile-avatar">
+        <img ng-src="{{userPicture}}" class="img-responsive img-circle"
+             ng-if="userPicture !== ''"/>
+             <span ng-if='(userPicture === "") && monogram' ng-bind="monogram" class="no-marg"></span>
+    </div>
+    <div class="tn-employee-header-details">
+        <h3 class="font-dark proxima-nova-semibold user-name" title="{{headerName}}">
+            {{headerName}}
+        </h3>
+        <div class="profile-info-section">
+            <div class="marg-right-15 employee-details-section">
+                <p ng-if="designation" class="content-text no-margin font-light-gray">{{designation}}</p>
+                <p ng-if="headerAddress" class="content-text no-margin font-light-gray">{{headerAddress}}</p>
+            </div>
+            <div ng-if="(designation || headerAddress) && (headerEmail || headerPhno)"
+                 class="tn-vertical-divider marg-right-15"></div>
+            <div class="employee-contact-section">
+                <p ng-if="headerEmail" ng-class="(headerEmail.length > 30 && designation.length > 40)? 'isEllipsis': ''" class="content-text no-margin font-light-gray" title="{{headerEmail}}">{{headerEmail}}</p>
+                <span ng-if="headerPhno" class="content-text no-margin font-light-gray" title="{{headerPhno}}">{{headerPhno}}</span>
+                <span ng-if="extension" class="content-text no-margin font-light-gray" title="extensionTitle" ng-bind="::translation.shared.Ext"></span>
+                <span ng-if="extension" class="content-text no-margin font-light-gray" title="{{extension}}">{{extension}}</span>
+            </div>
+        </div>
+    </div>
+    <span class="empStatus" data-ng-if="notMeTab">
+                <span ng-if='empStatus === "A"' class="status available" ng-bind="::translation.shared.Active"></span>
+                <span ng-if='empStatus === "L" || empStatus === "P"' class="status leave"
+                      ng-bind="::translation.shared.onLeave"></span>
+                <span ng-if='empStatus && empStatus === "T" || empStatus === "U" || empStatus === "V"' class="status terminated"
+                      ng-bind="::translation.shared.terminated">
+                </span>
+    </span>
+
+</div>
+<div class="tn-header-buttons">
+   <button  ng-hide="true"  id="requestEmploymentChange"  ng-class="visible-hide" class="tn-button tn-edit-button" ng-click="chooseWorkDetails()" >
+        Change Work Details
+    </button>
+    <button ng-if="((empStatus === 'A') && ((employeeClass !== 'K1D') && (employeeClass !== 'K1E'))) && subSectionView('requestExtendedLeave')"
+            class="tn-button tn-edit-button" ng-click="toggleExtendLeaveRequest()"
+            id="requestExtendedLeave" name="requestExtendedLeave"
+            ng-bind="::translation.shared.requestExtendedLeave">
+    </button>
+    <button ng-if="(((empStatus === 'L') || (empStatus === 'P')) && ((employeeClass !== 'K1D') && (employeeClass !== 'K1E'))) && subSectionView('returnFromLeave')"
+        name="returnFromLeave" id="returnFromLeave"
+        class="tn-button tn-edit-button" ng-click="toggleReturnFromLeave()"
+        ng-bind="::translation.shared.returnLeave">
+    </button>
+    <button ng-if="empStatus && empStatus !== 'T' && subSectionView('terminate')" id="terminate" name="terminate"
+            class="tn-button tn-edit-button" ng-click="requestTermination()"
+            ng-bind="::translation.shared.requestTermination">
+    </button>
+</div>

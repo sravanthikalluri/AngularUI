@@ -1,0 +1,119 @@
+<div class="manage-group manage-employee no-top-pad">
+    <alert-view></alert-view>
+    <input type="hidden" value="manage" id="customType"/>
+    <div class="row no-marg">
+        <div class="col-sm-12 manageCustomFieldCls">
+            <h3 class="manageCustomCls" ng-if='itemslength !== 0  || csaUser'>{{::translation.manage_CustomFields.manageCustomFields}}</h3>
+            <div class="col-sm-12" ng-if='itemslength !== 0 && !csaUser'>
+                <div class="pull-right">
+                    <button class="customFieldsButton customButton" id="add" ng-click="addBulkUpload()">{{::translation.manage_CustomFields.uploadFields}}</button>
+                    <button class="customFieldsButton" id="add" ng-click="addCutomField()">{{::translation.manage_CustomFields.createManually}}</button>
+                </div>
+            </div>
+            <div  class="col-md-12 col-sm-12 no-pad marg-top csaUserForCustomFields" ng-if="csaUser">
+                <div class="col-md-4 col-sm-4 no-pad text-right">Select Company</div>
+                <div class="col-md-8 col-sm-8">
+                    <select ng-model="selectedCompanyCSAUser" class="pull-left medium CSAUserSelect"
+                            ng-required="true" ng-options="company as company.companyName for company in companies">
+                        <option value='' ng-bind="::translation.profile_personal.select"></option>
+                    </select>
+                </div>
+                <div class="btns col-md-12 text-center">
+                    <button class="trinet-primary-action-btn" id="save1" ng-click='goToManageCustomFields(selectedCompanyCSAUser.companyId);'>Submit</button>
+                </div>
+            </div>
+            <div class="col-sm-12" ng-if="EmployeeStatus">
+                <div class="manage-custom-filed" ng-if='items.length === 0'>
+                    <h2 id="heading1">{{::translation.manage_CustomFields.collectInformation}}</h2>
+                    <h3 id="heading2">{{::translation.manage_CustomFields.viewCustomFields}}</h3>
+                    <h3 id="heading2">{{::translation.manage_CustomFields.specificInformation}}</h3>
+                    <h2 class="heading3">{{::translation.manage_CustomFields.createYourCustomFields}}</h2>
+                    <div class="firstUploadCls">
+                        <div>
+                            <button class="no-bg no-border bulkAndManualUploadBtn" id="add" ng-click="addBulkUpload()">
+                                <img src="./assets/images/Upload.svg" height="120" width="120"><span>{{::translation.manage_CustomFields.upload}}</span></button>
+                        </div>
+                        <div>
+                            <button class="no-bg no-border bulkAndManualUploadBtn" id="add" ng-click="addCutomField()">
+                                <img src="./assets/images/Manual.svg" height="120" width="120">
+                                <span>{{::translation.manage_CustomFields.manually}}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 isScroll" ng-if='itemslength !== 0 && !csaUser'>
+                <div ng-repeat="abc in items" class="contentRightCls">
+                    <div class="custom-fields col-sm-8" ng-if='abc.fieldType==="note"'>
+                        <div class="edit-links text-right">
+                            <a class='action'  ng-href='' ng-click="deleteRecord(abc.cid)">{{::translation.delete}}</a>
+                            <a ng-href='' class='action'  ng-click="editCustomRecord(abc.cid,abc.fieldType,abc.fieldLabel,abc.company,abc.fieldAnswer,'')">{{::translation.edit}}</a>
+                        </div>
+                        <div class="content dissabled-block">
+                            <label class="col-sm-6 dataFiledLabel">{{abc.fieldLabel}} :</label>
+                            <div class="col-sm-6">
+                                <textarea ng-model="abc.fieldAnswer" ng-maxlength="maxLength" cols="50" rows="5" class="textWidthCls" value='{{abc.fieldAnswer}}' disabled></textarea>
+                                <div id="characters">
+                                    <span>{{maxLength - message.length}} {{::translation.manage_CustomFields.charLimit}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-fields col-sm-8" ng-if='abc.fieldType==="currency"'>
+                        <div class="edit-links text-right">
+                            <a class='action'  ng-href='' ng-click="deleteRecord(abc.cid)">{{::translation.delete}}</a>
+                            <a ng-href='' class='action'  ng-click="editCustomRecord(abc.cid,abc.fieldType,abc.fieldLabel,abc.company,abc.fieldAnswer,'')">{{::translation.edit}}</a>
+                        </div>
+                        <div class="content dissabled-block">
+                            <label class="col-sm-6 dataFiledLabel">{{abc.fieldLabel}} :</label>
+                            <div class="col-sm-6">
+                                <span class="dollar">$</span>
+                                <input type="text" id="value" style="text-align:right" placeholder="" class="textWidthCls" value='{{abc.fieldAnswer}}'  disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-fields col-sm-8" ng-if='abc.fieldType==="text"'>
+                        <div class="edit-links text-right">
+                            <a class='action'  ng-href='' ng-click="deleteRecord(abc.cid)">{{::translation.delete}}</a>
+                            <a ng-href='' class='action'  ng-click="editCustomRecord(abc.cid,abc.fieldType,abc.fieldLabel,abc.company,abc.fieldAnswer,abc.answerChoices)">{{::translation.edit}}</a>
+                        </div>
+                        <div class="content dissabled-block">
+                            <label class="col-sm-6 dataFiledLabel">{{abc.fieldLabel}} :</label>
+
+                            <div class="col-sm-6">
+                                <span class="dollar"></span>
+                                <input type="text" id="value" placeholder="" class="textWidthCls" value='{{abc.fieldAnswer}}'  disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-fields col-sm-8" ng-if='abc.fieldType==="date"'>
+                        <div class="edit-links text-right">
+                            <a class='action'  ng-href='' ng-click="deleteRecord(abc.cid)">{{::translation.delete}}</a>
+                            <a ng-href='' class='action'  ng-click="editCustomRecord(abc.cid,abc.fieldType,abc.fieldLabel,abc.company,abc.fieldAnswer,'')">{{::translation.edit}}</a>
+                        </div>
+                        <div class="content dissabled-block">
+                            <label class="col-sm-6 dataFiledLabel">{{abc.fieldLabel}} :</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control dataFiled textWidthCls customFieldFloat"  ng-model='abc.fieldAnswer' is-open="popup1.opened"  close-text="Close"  placeholder="MM/DD/YYYY" value='{{abc.fieldAnswer}}' disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-fields col-sm-8" ng-if='abc.fieldType==="number"'>
+                        <div class="edit-links text-right">
+                            <a class='action'  ng-href='' ng-click="deleteRecord(abc.cid)">{{::translation.delete}}</a>
+                            <a ng-href='' class='action'  ng-click="editCustomRecord(abc.cid,abc.fieldType,abc.fieldLabel,abc.companyId,abc.fieldAnswer,'')">{{::translation.edit}}</a>
+                        </div>
+                        <div class="content dissabled-block">
+                            <label class="col-sm-6 dataFiledLabel">{{abc.fieldLabel}} :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="value" class="textWidthCls" style="text-align:right" value='{{abc.fieldAnswer}}' placeholder="" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,27 @@
+<!--
+Program: approveAndDeclineView.html
+Description: It displays Information of approve And Decline data.
+ -->
+<!-- Modal -->
+<div class="modal-dialog  modal-sm workinbox-new-popup">
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title" ng-if="selectedType === approveText" ng-bind="::approveMyOwnModelTitle"></h4>
+            <h4 class="modal-title" ng-if="selectedType === declineText" ng-bind="::declainMyOwnModelTitle"></h4>
+        </div>
+        <div class="modal-body">
+            <lable class="medium pull-left">{{::translation.workinbox.comment}}</lable>
+            <textarea ng-model="$parent.approveMyOwnComment" class="medium"></textarea>
+
+        </div>
+        <div class="modal-footer no-pad">
+            <button type="button" ng-if="selectedType === approveText" class="trinet-primary-action-btn"
+                    ng-click="approveMyOwnTask()">Approve
+            </button>
+            <button type="button" ng-if="selectedType === declineText" class="trinet-primary-action-btn"
+                    ng-click="declineMyOwnTask()">Decline
+            </button>
+            <button type="button" class="trinet-secondary-action-btn" ng-click="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,226 @@
+<div class="tn-address-section-modal tn-modal-fullHeight tn-modal" ng-controller='addressModelCtrl'>
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center">Home Address</h4>
+    </div>
+    <form class="tn-form" name="addressForm" id="address_form" ng-submit="submitForm()" novalidate>
+        <div class="tn-modal-boby col-sm-12">
+            <div class="required-field">
+                <label>{{::translation.effective_date}}:</label>
+            </div>
+            <div class="tn-calender-input" ng-controller="datePickerCtrl">
+                <input type="text" class="form-control bg-white" name="effectiveDate"
+                       id="address_edit_effective_date" datepicker-popup="{{format}}"
+                       ng-model="editSelectedData.effectiveDate" is-open="opened"
+                       ng-required="true" datepicker-options="dateOptions"
+                       onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode==47 || event.charCode==8"
+                       close-text="Close" ng-init="initialize()"
+                       ng-change="getDate(editSelectedData.effectiveDate);"
+                       ng-focus="validationPatterns.addressEdit.focus.addressFormeffectiveDateRequired=addressForm.effectiveDate.$error.required ; validationPatterns.addressEdit.blur.addressFormeffectiveDateRequired = false; validationPatterns.addressEdit.focus.addressFormpastdate = checkDateThirtyDates(editSelectedData.effectiveDate); validationPatterns.addressEdit.blur.addressFormpastdate = false; validationPatterns.addressEdit.focus.addressFormDateFormat = checkDateFormat(editSelectedData.effectiveDate);validationPatterns.addressEdit.blur.addressFormDateFormat = false; validationPatterns.addressEdit.focus.addressFormFuturedate = checkDateSixtyDates(editSelectedData.effectiveDate); validationPatterns.addressEdit.blur.addressFormFuturedate = false;"
+                       ng-blur="validationPatterns.addressEdit.blur.addressFormeffectiveDateRequired=addressForm.effectiveDate.$error.required ; validationPatterns.addressEdit.focus.addressFormeffectiveDateRequired = false; validationPatterns.addressEdit.blur.addressFormpastdate = checkDateThirtyDates(editSelectedData.effectiveDate); validationPatterns.addressEdit.focus.addressFormpastdate = false;  validationPatterns.addressEdit.focus.addressFormDateFormat = false;validationPatterns.addressEdit.blur.addressFormDateFormat = checkDateFormat(editSelectedData.effectiveDate);validationPatterns.addressEdit.blur.addressFormFuturedate = checkDateSixtyDates(editSelectedData.effectiveDate); validationPatterns.addressEdit.focus.addressFormFuturedate = false;"
+                />
+                <Validation
+                    condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormeffectiveDateRequired"
+                    msg="{{translation.validation.effDateEmp}}"></Validation>
+                <Validation
+                    condition="isAddressFormSubmitted &&  validationPatterns.addressEdit.focus.addressFormDateFormat"
+                    msg="Enter a date in MM/DD/YYYY format"></Validation>
+                <Validation
+                    condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormpastdate"
+                    msg="Date cannot be more than 30 days in the past"></Validation>
+                <Validation
+                    condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormFuturedate"
+                    msg="Date cannot be more than 60 days in the future"></Validation>
+                <span class="calendar-icon" ng-click="open($event)">
+                      <i class="icon-icon_calendar blue bold"></i>
+                </span>
+            </div>
+            <div class="tn-horizontal-divider"></div>
+            <div class="home-address-section col-sm-12 no-pad">
+                <h4 class="profile-heading proxima-nova-semibold">Home Address</h4>
+                <div class="marg-top-15">
+                    <div class="required-field">
+                        <label>Country</label>
+                    </div>
+                    <div>
+                        <select ng-model="editSelectedData.country" id="addressmodelcountries"
+                                name="country"
+                                ng-selected="editSelectedData.country.value == foa.value"
+                                ng-options="foa.value for foa in countriesData track by foa.value"
+                                class="form-control" name="country"
+                                ng-change='getStates(editSelectedData.country, "edit")'
+                                ng-required="true"
+                                ng-class="{'error-warning': validationPatterns.addressEdit.focus.addressFormcountryRequired || validationPatterns.addressEdit.blur.addressFormcountryRequired}"
+                                ng-focus="validationPatterns.addressEdit.focus.addressFormcountryRequired=addressForm.country.$error.required; validationPatterns.addressEdit.blur.addressFormcountryRequired = false;"
+                                ng-blur="validationPatterns.addressEdit.blur.addressFormcountryRequired=addressForm.country.$error.required; validationPatterns.addressEdit.focus.addressFormcountryRequired = false;"
+                        >
+
+                            <option value="" label="Select" selected
+                                    ng-bind="::translation.profile_personal.selectCountry"></option>
+                        </select>
+
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormcountryRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                </div>
+
+                <div class="marg-top-15">
+                    <div class="required-field">
+                        <label>Street Name</label>
+                    </div>
+                    <div>
+                        <!-- ng-class="{ 'has-error' : addressForm.line1.$invalid && (addressForm.line1.$dirty || submitted)}">-->
+                        <input type="text" name="line1" id="addressmodelline1"
+                               ng-model='editSelectedData.address1' class="form-control"
+                               ng-required="true" maxlength="55"
+                               ng-class="{'error-warning': validationPatterns.addressEdit.focus.addressFormstreetRequired || validationPatterns.addressEdit.blur.addressFormstreetRequired}"
+                               ng-focus="validationPatterns.addressEdit.focus.addressFormstreetRequired=addressForm.line1.$error.required; validationPatterns.addressEdit.blur.addressFormstreetRequired = false;"
+                               ng-blur="validationPatterns.addressEdit.blur.addressFormstreetRequired=addressForm.line1.$error.required; validationPatterns.addressEdit.focus.addressFormstreetRequired = false;"
+                        />
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormstreetRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+                    <div>
+                        <input type="text" name="line2" id="addressmodelline2"
+                               ng-model='editSelectedData.address2' class="form-control marg-top-15"
+                               maxlength="55"/>
+                    </div>
+                    <div>
+                        <input type="text" name="line3" id="addressmodelline3"
+                               ng-model='editSelectedData.address3'
+                               class="form-control marg-top-15" maxlength="55"/>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-sm-6 no-pad-left marg-top-15">
+                    <div class="required-field">
+                        <label ng-bind="::translation.city"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="city" ng-model='editSelectedData.city'
+                               id="addressmodelcity"
+                               class="form form-control no-marg-imp" ng-required="true" maxlength="50"
+                               ng-class="{'error-warning': validationPatterns.addressEdit.focus.addressFormcityRequired || validationPatterns.addressEdit.blur.addressFormcityRequired}"
+                               ng-focus="validationPatterns.addressEdit.focus.addressFormcityRequired=addressForm.city.$error.required; validationPatterns.addressEdit.blur.addressFormcityRequired = false;"
+                               ng-blur="validationPatterns.addressEdit.blur.addressFormcityRequired=addressForm.city.$error.required; validationPatterns.addressEdit.focus.addressFormcityRequired = false;"
+                        />
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormcityRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+
+                </div>
+                <div ng-if="isUSCountry" class="col-sm-6 no-pad-left marg-top-15">
+                    <div class="required-field">
+                        <label ng-bind="::translation.usStateName"></label>
+                    </div>
+                    <div>
+                        <select ng-model="editSelectedData.stateProvince"
+                                class="form-control" id="stateProvince"
+                                name="stateProvince"
+                                ng-options="foa.value for foa in statesData track by foa.value"
+                                ng-required="true"
+                                ng-class="{'error-warning': validationPatterns.addressEdit.focus.stateProvinceRequired || validationPatterns.addressEdit.blur.stateProvinceRequired}"
+                                ng-focus="validationPatterns.addressEdit.focus.stateProvinceRequired=addressForm.stateProvince.$error.required; validationPatterns.addressEdit.blur.stateProvinceRequired = false;"
+                                ng-blur="validationPatterns.addressEdit.blur.stateProvinceRequired=addressForm.stateProvince.$error.required; validationPatterns.addressEdit.focus.stateProvinceRequired = false;"
+                        >
+                            <option value="" label="Select" selected
+                                    ng-bind="::translation.profile_personal.select"></option>
+                        </select>
+
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.stateProvinceRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                    </div>
+
+                </div>
+                <div ng-if="isCACountry" class="col-sm-6 no-pad-left marg-top-15">
+                    <div class="required-field" ng-if="editSelectedData.country.key == 'CA'">
+                        <label ng-bind="::translation.canadaStateName"></label>
+                    </div>
+                    <div>
+                        <select ng-model="editSelectedData.stateProvince"
+                                class="form-control" id="stateProvince1"
+                                name="stateProvince"
+                                ng-options="foa.value for foa in statesData track by foa.value"
+                                ng-required="true"
+                                ng-class="{'error-warning': validationPatterns.addressEdit.focus.stateProvinceRequired || validationPatterns.addressEdit.blur.stateProvinceRequired}"
+                                ng-focus="validationPatterns.addressEdit.focus.stateProvinceRequired=addressForm.stateProvince.$error.required; validationPatterns.addressEdit.blur.stateProvinceRequired = false;"
+                                ng-blur="validationPatterns.addressEdit.blur.stateProvinceRequired=addressForm.stateProvince.$error.required; validationPatterns.addressEdit.focus.stateProvinceRequired = false;"
+                        >
+                            <option value="" label="Select" selected
+                                    ng-bind="::translation.profile_personal.select"></option>
+                        </select>
+
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.stateProvinceRequired"
+                            msg="{{translation.validation.selectState}}"></Validation>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div ng-if="isUSCountry" class="marg-top-15">
+                    <div class="required-filed">
+                        <label ng-bind="::translation.usPostalCodeName"></label>
+                    </div>
+                    <div>
+                        <input type="text" name="postalCode" id="addressmodelpostalcode"
+                               class="form-control"
+                               ng-pattern="/^(\d{5}|\d{9})$/"
+                               ng-pattern="/^(\d{5}|\d{9})$/"
+                               ng-model='editSelectedData.postalCode'
+                               class="form form-control" ng-required="true" ng-minlength="5" ng-maxlength="9"
+                               ng-class="{'error-warning': validationPatterns.addressEdit.focus.addressFormpostalCodeRequired || validationPatterns.addressEdit.blur.addressFormpostalCodeRequired || validationPatterns.addressEdit.focus.addressFormpostalCodePattern || validationPatterns.addressEdit.blur.addressFormpostalCodePattern || validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength || validationPatterns.addressEdit.blur.addressFormpostalCodeMinLength || validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength || validationPatterns.addressEdit.blur.addressFormpostalCodeMaxLength}"
+                               ng-focus="onFocus('addressEdit', validationPatterns.addressEdit.focus); validationPatterns.addressEdit.focus.addressFormpostalCodeRequired=addressForm.postalCode.$error.required; validationPatterns.addressEdit.blur.addressFormpostalCodeRequired = false; validationPatterns.addressEdit.blur.addressFormpostalCodePattern = false; validationPatterns.addressEdit.focus.addressFormpostalCodePattern = addressForm.postalCode.$error.pattern;validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength=addressForm.postalCode.$error.minlength;validationPatterns.addressEdit.blur.addressFormpostalCodeMinLength=false;validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength=addressForm.postalCode.$error.maxlength;validationPatterns.addressEdit.blur.addressFormpostalCodeMaxLength=false;"
+                               ng-blur="validationPatterns.addressEdit.blur.addressFormpostalCodeRequired=addressForm.postalCode.$error.required; validationPatterns.addressEdit.focus.addressFormpostalCodeRequired = false; validationPatterns.addressEdit.focus.addressFormpostalCodePattern = false; validationPatterns.addressEdit.blur.addressFormpostalCodePattern = addressForm.postalCode.$error.pattern; validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength=false;validationPatterns.addressEdit.blur.addressFormpostalCodeMinLength=addressForm.postalCode.$error.minlength;validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength=false;validationPatterns.addressEdit.blur.addressFormpostalCodeMaxLength=addressForm.postalCode.$error.maxlength;"
+                        />
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormpostalCodeRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                        <Validation condition="validationPatterns.addressEdit.focus.addressFormpostalCodePattern"
+                                    msg="ZIP Code must be five or nine digits"></Validation>
+                        <Validation condition="validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength"
+                                    msg="ZIP Code must be five or nine digits"></Validation>
+                        <Validation condition="validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength"
+                                    msg="ZIP Code must be five or nine digits"></Validation>
+                    </div>
+
+                </div>
+                <div ng-if="isCACountry" class="marg-top-15">
+                   <div class="required-filed">
+                       <label ng-bind="::translation.canadaPostalCodeName"></label>
+                   </div>
+                    <div>
+                        <input type="text" name="postalCode" id="addressmodelpostalcode1"
+                               class="form-control"
+                               ng-pattern="/^([a-zA-Z]\d[a-zA-Z]\s\d[a-zA-Z]\d|[a-zA-Z]\d[a-zA-Z]\d[a-zA-Z]\d)$/"
+                               ng-model='editSelectedData.postalCode'
+                               class="form form-control" ng-required="true" ng-minlength="6" ng-maxlength="7"
+                               ng-class="{'error-warning': validationPatterns.addressEdit.focus.addressFormpostalCodeRequired || validationPatterns.addressEdit.blur.addressFormpostalCodeRequired || validationPatterns.addressEdit.focus.addressFormpostalCodePattern || validationPatterns.addressEdit.blur.addressFormpostalCodePattern || validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength || validationPatterns.addressEdit.blur.addressFormpostalCodeMinLength || validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength || validationPatterns.addressEdit.blur.addressFormpostalCodeMaxLength}"
+                               ng-focus="onFocus('addressEdit', validationPatterns.addressEdit.focus); validationPatterns.addressEdit.focus.addressFormpostalCodeRequired=addressForm.postalCode.$error.required; validationPatterns.addressEdit.blur.addressFormpostalCodeRequired = false; validationPatterns.addressEdit.blur.addressFormpostalCodePattern = false; validationPatterns.addressEdit.focus.addressFormpostalCodePattern = addressForm.postalCode.$error.pattern;validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength=addressForm.postalCode.$error.minlength;validationPatterns.addressEdit.blur.addressFormpostalCodeMinLength=false;validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength=addressForm.postalCode.$error.maxlength;validationPatterns.addressEdit.blur.addressFormpostalCodeMaxLength=false;"
+                               ng-blur="validationPatterns.addressEdit.blur.addressFormpostalCodeRequired=addressForm.postalCode.$error.required; validationPatterns.addressEdit.focus.addressFormpostalCodeRequired = false; validationPatterns.addressEdit.focus.addressFormpostalCodePattern = false; validationPatterns.addressEdit.blur.addressFormpostalCodePattern = addressForm.postalCode.$error.pattern; validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength=false;validationPatterns.addressEdit.blur.addressFormpostalCodeMinLength=addressForm.postalCode.$error.minlength;validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength=false;validationPatterns.addressEdit.blur.addressFormpostalCodeMaxLength=addressForm.postalCode.$error.maxlength;"
+                        />
+                        <Validation
+                            condition="isAddressFormSubmitted && validationPatterns.addressEdit.focus.addressFormpostalCodeRequired"
+                            msg="{{translation.required_field}}"></Validation>
+                        <Validation condition="validationPatterns.addressEdit.focus.addressFormpostalCodePattern"
+                                    msg="Invalid characters"></Validation>
+                        <Validation condition="validationPatterns.addressEdit.focus.addressFormpostalCodeMinLength"
+                                    msg="Postal Code must be six digits"></Validation>
+                        <Validation condition="validationPatterns.addressEdit.focus.addressFormpostalCodeMaxLength"
+                                    msg="Postal Code must be six digits"></Validation>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+
+            <button name="cancel" class="tn-button tn-cancel-button" id="addressmodelcancel"
+                    ng-click="closeThisDialog()" ng-bind="::translation.cancel"></button>
+            <button type="submit" name="save" ng-click="updateData(addressForm)" id="addressmodelsave"
+                    class="tn-button tn-action-button" ng-bind="::translation.save"></button>
+        </div>
+    </form>
+</div>

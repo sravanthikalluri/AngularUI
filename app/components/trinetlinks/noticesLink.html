@@ -1,0 +1,115 @@
+<div class="tn-background tn-notices pull-left">
+    <alert-view></alert-view>
+    <!--reapeat section-->
+    <div class="col-sm-12 no-pad" ng-if="isNotices">
+    <div class="heading col-sm-12 no-pad">
+        <h2 class="bold no-marg"><button class="breadcomb-button">TriNet Only Links</button>
+            <span class="icon-heading icon-icon_forward"></span>
+            <button class="breadcomb-button">Notices</button>
+        </h2>
+        <button class="tn-button tn-action-button pull-left" ng-click="createNewNotice()" ng-if="isShowNoticesRole">Create New</button>
+    </div>
+
+    <!--future Announcement-->
+        <div class="card col-sm-10 no-pad" ng-repeat="item in noticesPublishArray | orderBy: ['priority','-effectiveDate']">
+            <div class="notice-card">
+                <div class="notice-info">
+                    <h3 class="heading-text bold">{{item.title}}</h3>
+                    <h5 class="help-text no-marg-top">
+                                <span ng-repeat="(key,value) in prorityType" ng-if="getPriority(key,item)">{{value}} Priority -</span>
+                        {{item.effectiveDate | date:'MMM dd, yyyy'}} -{{item.endDate | date:'MMM dd, yyyy'}}
+                    </h5>
+                </div>
+                <div class="notice-action">
+                    <button class="tn-button tn-edit-button bold" ng-click="editNoticeData(item,$index)" ng-if="isShowNoticesRole">Edit</button>
+                    <button class="tn-button tn-delete-button bold" ng-if="isShowNoticesRole && getDeleteStatus(item.effectiveDate)" ng-click="deleteSelectedRecord(item)">Delete</button>
+                </div>
+            </div>
+            <div class="col-sm-12 no-pad">
+                <p class="notice-body" ng-bind-html="getBodyParseValue(item.body)">
+                </p>
+            </div>
+            <div class="col-sm-12 no-pad notice-filter">
+                <h5 class="help-text no-marg">Shared with:</h5>
+                <span ng-if="item.filters.length === 0">All Employees</span>
+                <div class="shared-section" ng-if="item.filters.length > 0">
+                    <span ng-repeat="disp in item.filters"><span class="filter-value">{{disp.filterValueDesc}}</span><i class="icon-icon_plus"></i></span>
+                </div>
+            </div>
+        </div>
+    <!--Draft View-->
+        <div class="col-sm-10 no-pad history-section" ng-if="noticesDraftArray.length > 0" >
+            <h4 class="text-center bold" >Draft</h4>
+            <hr class="gray-divder">
+            <div class="card col-sm-12 no-pad" ng-repeat="item in noticesDraftArray | orderBy:['priority','-effectiveDate']">
+                <div class="notice-card">
+                    <div class="notice-info">
+                        <h3 class="heading-text bold">{{item.title}}</h3>
+                        <h5 class="help-text no-marg-top">
+                            <span ng-repeat="(key,value) in prorityType" ng-if="getPriority(key,item)">{{value}} Priority -</span>
+                            {{item.effectiveDate | date:'MMM dd, yyyy'}} -{{item.endDate | date:'MMM dd, yyyy'}}
+                        </h5>
+                    </div>
+                    <div class="notice-action">
+                        <button class="tn-button tn-edit-button bold" ng-click="editNoticeData(item,$index)" ng-if="isShowNoticesRole">Edit</button>
+                        <button class="tn-button tn-delete-button bold"  ng-click="deleteSelectedRecord(item)" ng-if="isShowNoticesRole">Delete</button>
+                    </div>
+                </div>
+                <div class="col-sm-12 no-pad">
+                    <p class="notice-body" ng-bind-html="getBodyParseValue(item.body)">
+
+                    </p>
+                </div>
+                <div class="col-sm-12 no-pad notice-filter">
+                    <h5 class="help-text no-marg">Shared with:</h5>
+                    <span ng-if="item.filters.length === 0">All Employees</span>
+                    <div class="shared-section" ng-if="item.filters.length > 0">
+                        <span ng-repeat="(key,value) in prorityType">{{key === item.priority ?  value: ''}}</span>
+                        <span ng-repeat="disp in item.filters"><span class="filter-value">{{disp.filterValueDesc}}</span><i class="icon-icon_plus"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!--History Announcement-->
+    <div class="col-sm-10 no-pad history-section" ng-if="noticesHistory.length > 0" >
+        <h4 class="text-center bold" >History</h4>
+        <hr class="gray-divder">
+        <div class="card col-sm-12 no-pad" ng-repeat="item in noticesHistory | orderBy:['priority','-effectiveDate']">
+            <div class="notice-card">
+                <div class="notice-info">
+                    <h3 class="heading-text bold">{{item.title}}</h3>
+                    <h5 class="help-text no-marg-top">
+                        <span ng-repeat="(key,value) in prorityType" ng-if="getPriority(key,item)">{{value}} Priority -</span>
+                        {{item.effectiveDate | date:'MMM dd, yyyy'}} -{{item.endDate | date:'MMM dd, yyyy'}}
+                    </h5>
+                </div>
+            </div>
+            <div class="col-sm-12 no-pad">
+                <p class="notice-body" ng-bind-html="getBodyParseValue(item.body)">
+
+                </p>
+            </div>
+            <div class="col-sm-12 no-pad notice-filter">
+                <h5 class="help-text no-marg">Shared with:</h5>
+                <span ng-if="item.filters.length === 0">All Employees</span>
+                <div class="shared-section" ng-if="item.filters.length > 0">
+                    <span ng-repeat="disp in item.filters"><span class="filter-value">{{disp.filterValueDesc}}</span><i class="icon-icon_plus"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Create new Announcement-->
+    <div ng-if="createNotice">
+        <div ng-include="'app/components/trinetlinks/createNotice.html'"></div>
+    </div>
+
+    <!--Edit Announcement-->
+    <div ng-if="editNotice">
+        <div ng-include="'app/components/trinetlinks/editNotices.html'"></div>
+    </div>
+</div>

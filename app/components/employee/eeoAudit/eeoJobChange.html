@@ -1,0 +1,37 @@
+<form name="assignJobForm" novalidate class="tn-change-request tn-form">
+    <h5 class="title text-center">
+        <span class="bold" ng-bind="::translation.eeoAudit.change_job_details"></span>
+    </h5>
+
+    <div class="col-sm-12 col-md-12 eeo-change-margin">
+            <span class="eeo-employee-label" ng-bind="::translation.eeoAudit.employee"></span>
+            <span class="eeo-employee-name">{{assignEEOChangeData.lastName}}, {{assignEEOChangeData.firstName}}</span>
+    </div>
+
+    <div class="section">
+        <div class="col-sm-12 col-md-12">
+            <span class="bold">Job</span>
+            <div class="relative input-auto-complete">
+                <select id="eeoJobChange"
+                        name="jobClassDesc"
+                        ng-model="newJobId"
+                        ng-options="job as job.value for job in jobClassList | orderBy:'value' | filter: {key: '!' + '{{assignEEOChangeData.jobId}}'}"
+                        ng-change="changeValue(newJobId,'job')">
+                <option value='' disabled selected class="hiddenprofile" ng-bind="assignEEOChangeData.jobDesc === 'Full-Time' ? ' ' : assignEEOChangeData.jobDesc">{{assignEEOChangeData.jobDesc}}</option></select>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-sm-12 col-md-12">
+        <button type="submit" id="assignSaveBtnId" name="save" ng-click="updateData('job')"
+                ng-disabled="!isJobIdChange"
+                class="tn-button tn-action-button pull-right" ng-bind="::translation.eeoAudit.save">
+        </button>
+        <button ng-click="close();" id="cancelBtnId" name="cancel"
+                class="tn-button tn-cancel-button pull-right" ng-bind="::translation.cancel"
+                ng-bind="::translation.eeoAudit.cancel">
+        </button>
+    </div>
+        <div class="clearfix"></div>
+</form>

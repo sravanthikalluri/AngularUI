@@ -1,0 +1,50 @@
+{
+  "annualNotices": [
+    {
+      "MedicarePart_D_Notices": [
+        {
+          "text": "2013-2014 Medicare Part D Creditable Coverage Notice",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2013-2014MedicarePartDCreditableCoverageNotice.pdf/pdf"
+        },
+        {
+          "text": "2012-2013 Medicare Part D Creditable Coverage Notice",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2012-2013MedicarePartDCreditableCoverageNotice.pdf/pdf"
+        },
+        {
+          "text": "2011-2012 Medicare Part D Creditable Coverage Notice",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2011-2012MedicarePartDCreditableCoverageNotice.pdf/pdf"
+        },
+        {
+          "text": "2010-2011 Medicare Part D Creditable Coverage Notice",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2010-2011MedicarePartDCreditableCoverageNotice.pdf/pdf"
+        },
+        {
+          "text": "2009-2010 Medicare Part D Creditable Coverage Notice",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2009-2010MedicareNotice_CreditableCoverage_%20PrescriptionDrug.pdf/pdf"
+        }
+      ],
+      "summary_Annual_Reports": [
+        {
+          "text": "2013 - 2014 Summary Annual Report",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2013-2014_Plan_SAR.pdf/pdf"
+        },
+        {
+          "text": "2012 - 2013 Summary Annual Report",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2012-2013_Plan_SAR.pdf/pdf"
+        },
+        {
+          "text": "2011 - 2012 Summary Annual Report",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2011-2012_Plan_SAR.pdf/pdf"
+        },
+        {
+          "text": "2010 - 2011 Summary Annual Report",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2010-2011_Plan_SAR.pdf/pdf"
+        },
+        {
+          "text": "2009 - 2010 Summary Annual Report",
+          "url": "http://172.31.47.207/api-content/v1/benefits/policies/Annual_General_Notice/2009-2010_Plan_SAR.pdf/pdf"
+        }
+      ]
+    }
+  ]
+}

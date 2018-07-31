@@ -1,0 +1,18 @@
+<div id="tn-widget-next-pay-date" layout="row" layout-align="center center">
+
+    <div class="tn-widget-next-pay-date col-md-6 "><!--right-border-->
+        <div>
+            <div id="nextHolidayMonth" class="tn-next-pay-date-month-label tn-widget-caps">
+                {{nextHolidayDt | date:'MMM'}}
+            </div>
+            <div  id="nextHolidayDate" class="tn-widget-numeric-label proxima-nova-semibold">
+                {{nextHolidayDt | date:'d'}}
+            </div>
+        </div>
+        <div id="nextHolidayDays" class="tn-widget-text proxima-nova-semibold">{{holidayInHowManyDays}}</div>
+    </div>
+   <!-- <div class="col-md-6">
+        <div id="nextHolidayName" class="tn-widget-holiday-text proxima-nova-semibold">{{holidayName}}</div>
+        <div>&nbsp;</div>
+    </div>-->
+</div>

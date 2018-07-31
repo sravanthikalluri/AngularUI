@@ -1,0 +1,115 @@
+<!-- This is page is used to Display Payroll Schedule details
+Author: Raghavendra Kumar Bonthala
+ -->
+
+<div class="my-money organisation-chart col-md-12 col-sm-12 no-pad visible">
+    <alert-view></alert-view>
+    <!-- Payroll Schedule start -->
+    <div class="payrollFixedHeader">
+        <div class="col-md-6 no-pad">
+            <div class="clearfix">&nbsp;</div>
+            <h2 class="no-pad-bottom" ng-bind="::translation.money.payrollSchedule.title"></h2>
+            <label class="medium pad-left-10" ng-bind="currentDate"></label>
+        </div>
+        <div class="col-md-12 no-pad-imp ">
+            <a id="printBenefitsData" class="pull-right printpayrolesection" ng-click="printPDF()">
+                <span class="icon-icon_print_circle payrollprintIcon large top-5"></span>
+                <span class="no-pad-imp payrollPrint" ng-bind="::translation.money.payrollSchedule.printCal"></span></a>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+    </div>
+    <div class="payrollMainContent">
+        <div class="col-md-6 no-pad">
+            <h4 class="pad-top-30 pad-left-10 visible">{{::translation.money.payrollSchedule.payFreqLbl}}:
+                <strong ng-bind="::scheduleInfo.title"></strong>
+               <span class="tooltip-right"
+                     ng-if="scheduleInfo.payFrequencyName === 'Biweekly' ||
+                            scheduleInfo.payFrequencyName === 'Weekly' ||
+                            scheduleInfo.payFrequencyName === 'Semimonthly' ||
+                            scheduleInfo.payFrequencyName === 'Monthly'">
+                   <i id="payFreqHelp" class="icon-icon_UA blue small no-pad"></i>
+                    <div class="tooltip-right-content payrollpriority medium weekleyOverlay">
+                        <p compile="scheduleInfo.message"></p>
+                        <div class="left-arrow-bg"></div>
+                        <div class="left-arrow"></div>
+                    </div>
+
+                </span>
+            </h4>
+        </div>
+        <div class="col-md-6 col-sm-3 no-pad-imp pull-right ">
+            <p ng-bind="::translation.your_next_pay_date" class="text-right media payroll-next-pay"></p>
+
+            <h2 class="pull-right date ng-binding payroledate no-pad-imp top-margin">{{payDate}}</h2>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 no-pad-left no-pad-right top-15">
+            <hr class="benefit-divider no-marg"/>
+        </div>
+        <div class="col-md-12 no-pad-imp proiortyHW">
+            <div class="three-d-prespective payrole-sechedule-calender-adj">
+                <div class="container-fluid no-pad-imp">
+                    <div id="wrapper_pay" class="magr-left-25">
+                        <div ng-repeat="calendar in payrollMonthData track by $index" id="calendarDivId{{$index}}"
+                             ng-class="calendar.class">
+                            <div class="employee no-pad-imp"
+                                 ng-if="calendar.class === 'holder_bu_awayR1 holder_bu ' || calendar.class === 'holder_bu_awayL1 holder_bu ' "
+                                 ng-click="change($index);onMonthCoverflowSelect($index)">
+                                <datepicker id="calendar{{$index}}" max-mode="day" date-disabled="true"
+                                            ng-model="calendar.firstDateOfMonth" min-date="calendar.startDateOfMonth"
+                                            max-date="calendar.endDateOfMonth" class="payslide"
+                                            custom-class="getDayClass($index, date, calendar, mode)"></datepicker>
+                            </div>
+                            <div class="employee no-pad-imp"
+                                 ng-if="calendar.class != 'holder_bu_awayR1 holder_bu ' || calendar.class != 'holder_bu_awayL1 holder_bu ' ">
+                                <datepicker id="calendar{{$index}}" max-mode="day" date-disabled="true"
+                                            ng-model="calendar.firstDateOfMonth" min-date="calendar.startDateOfMonth"
+                                            max-date="calendar.endDateOfMonth" class="payslide"
+                                            custom-class="getDayClass($index, date, calendar, mode)"></datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!------------ Payroll Schedule end---------------->
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 no-pad-imp">
+            <hr class="benefit-divider no-marg"/>
+        </div>
+        <div class="col-md-12 col-sm-12 top-5 pad-10 text-center">
+            <p  ng-bind="::translation.money.payrollSchedule.helpInfo" ></p>
+        </div>
+        <div class="col-md-12 col-sm-12 top-5">
+            <div class="col-md-7 no-pad col-sm-8 col-sm-offset-4  col-md-offset-5 payrollstatus">
+                <div class="pad1 marg-TB-10" ng-repeat="footer in footerData">
+                    <div ng-if="footer.color != 'noBenefitDeductionsIndication'">
+                        <p class="circle {{footer.color}}"></p>
+
+                        <p ng-bind="footer.value" class="marg-bottom-5 visible"></p>
+                    </div>
+                    <div ng-if="footer.color === 'noBenefitDeductionsIndication'">
+                        <p class="circle {{footer.color}}"></p>
+
+                        <p class="pull-left" ng-bind="footer.value"></p>
+                           <span class="tooltip-right marg-left-5 visible">
+                               <i id="deductionHelp" class="icon-icon_UA blue small no-pad"
+                                  style="line-height: 20px;"></i>
+                                    <div class="tooltip-right-content priority medium">
+                                        <p ng-if="scheduleInfo.payFrequencyName === 'Biweekly'"
+                                           ng-bind="translation.money.payrollSchedule.noDeductBiWeekHelp"></p>
+
+                                        <p ng-if="scheduleInfo.payFrequencyName === 'Weekly'"
+                                           ng-bind="translation.money.payrollSchedule.noDeductWeekHelp"></p>
+
+                                        <div class="arrow-down"></div>
+                                        <div class="arrow-down-bg"></div>
+                                    </div>
+                                </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Payroll Schedule end -->

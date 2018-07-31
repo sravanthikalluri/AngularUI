@@ -1,0 +1,374 @@
+<div id="visiblePanel" class="my-money tax-withholding col-md-12 col-lg-12 col-sm-12 no-pad no-marg"
+     ng-controller="taxWithHoldingCtrl">
+    <alert-view></alert-view>
+    <div class="col-md-8 col-md-8 no-pad" id="header-bar">
+        <div class="clearfix">&nbsp;</div>
+        <h2 class="Trinet-blue top-marg-20x" ng-bind="::translation.money.tax_With_Holding.title"></h2>
+    </div>
+    <no-records></no-records>
+
+    <div id="visibleView" ng-if="!noData">
+        <div class="clearfix"></div>
+        <div ng-hide="visibletaxWithholdingsNew" class="col-md-12 pannel-section">
+            <div class="col-md-5 col-sm-6 effective-list">
+                <!-- Currently Effective -->
+                <span id="taxeffective" class="effective medium text-right pointer">{{date_label}}</span>
+                <span id="helptaxeffective" ng-if="taxWithHoldingDateLength > 1" data-toggle="dropdown"
+                      class="icon-icon_Dropdown_Arrow medium pointer"></span>
+
+                <ul class="dropdown-menu">
+                    <li id="datemenu" ng-repeat="dateMenuObjectValue in dateMenuObject">
+                        <a class="date-menu" ng-click="taxWithHoldingDataDisplay($index)">{{dateMenuObjectValue}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 col-sm-6 pull-right text-right">
+                <button id="taxWithHoldingEditBtnId" ng-show="i9DataValue" type="button" ng-class="$parent.canEdit('manageTax') ? 'visible-hide' : ''"
+                        ng-click="taxWithHoldingsEditForm()" class=" trinet-primary-action-btn" ng-bind="::translation.edit">
+                </button>
+            </div>
+            <div class="clearfix">&ensp;</div>
+            <div class="clearfix">&ensp;</div>
+            <div id="taxdynamicdata" ng-if="taxWithHoldingDataLength >= 1"
+                 ng-repeat="taxWithHoldingData in taxWithHolingDataObject track by $index">
+                <div ng-if="taxWithHoldingDataLength === 2 ||  taxWithHoldingDataLength === 1 || taxWithHoldingDataLength === 4"
+                     class="col-md-6 federal-border">
+                    <!-- Header section start here -->
+                    <div class="col-md-12 col-sm-12 federal-block no-marg">
+                        <div class="col-md-7 col-sm-7 text-left">
+                            <h3 id="taxdynamicfederal" ng-if="taxWithHoldingData.type=='Federal tax'"
+                                class="federal-text myfont-30" ng-bind="::translation.money.tax_With_Holding.federal_tax"></h3>
+                            <h3 id="taxdynamicstate" ng-if="taxWithHoldingData.type=='State tax'"
+                                class="federal-text myfont-30"> {{taxWithHoldingData.payDedCode}} {{::translation.money.tax_With_Holding.state_tax}}</h3>
+                            <h3 id='taxdynmiclocal' ng-if="taxWithHoldingData.type=='Local tax'"
+                                class="federal-text myfont-30" ng-bind="::translation.money.tax_With_Holding.local_tax"></h3>
+                        </div>
+
+                        <div class="col-md-5 col-sm-5 text-right no-pad span-color">
+                            <div id="taxstatetax1" ng-if="taxWithHoldingData.type=='State tax'">
+                            <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length == 1">
+                                  <a  class="action top-marg-1" target="_blank"
+                                      ng-href="{{taxWithHoldingData.pdfURL[0].url}}">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_form}}</a>
+                            </span>
+                                <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length > 1">
+                                <a  class="action top-marg-1" ng-click="showAllStateForms($index)">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_forms}}</a>
+                            </span><br>
+                            </div>
+                            <div id="taxfederaltax" ng-if="taxWithHoldingData.type=='Federal tax'">
+                            <span ng-if="taxWithHoldingData.isPDFAvailable  === 'true'">
+                                <a target="_blank" class="action span-color"
+                                   ng-href="{{taxWithHoldingData.pdfURL.url}}"
+                                   ng-bind="::translation.money.tax_With_Holding.w4_form"></a>
+                            </span>
+
+                            <span>
+                                <a target="_blank" class="action span-color"
+                                   href="http://www.irs.gov/Individuals/IRS-Withholding-Calculator"
+                                   ng-bind="::translation.money.tax_With_Holding.irs_cal"></a>
+                            </span>
+                            </div>
+                            <div id="taxlocaltax" ng-if="taxWithHoldingData.type=='Local tax'">
+                                <span>&nbsp;</span>
+                                <span>&nbsp;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Header section end here -->
+
+                    <!-- Content section start here -->
+                    <div id="taxrequest"
+                         ng-if="taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax' || taxWithHoldingData.type=='Local tax'"
+                         class="row">
+                        <div ng-if="taxWithHoldingData.type=='Local tax' ||  taxWithHoldingData.type=='Federal tax'" class="col-md-4 col-sm-5 no-pad  text-right allowance">
+                            <h4 >{{::translation.money.tax_With_Holding.allowance}}</h4>
+                        </div>
+                        <div ng-if="taxWithHoldingData.type=='State tax' && !havingGA" class="col-md-4 col-sm-5 no-pad  text-right allowance">
+                            <h4>{{::translation.money.tax_With_Holding.allowance}}</h4>
+                        </div>
+                        <div id="taxfederalrequest" ng-if="taxWithHoldingData.type=='Federal tax'"
+                             class="row clearfix bottom-border text-center bg-federal-tax">
+                            <label class="number-font">{{taxWithHoldingData.allowancesRequested}}</label>
+                        </div>
+                        <div id="taxstaterequest" ng-if="taxWithHoldingData.type=='State tax' && !havingGA"
+                             class="row clearfix bottom-border text-center bg-ny-state-tax">
+                            <label class="number-font">{{taxWithHoldingData.allowancesRequested}}</label>
+                        </div>
+                        <div id='taxlocalrequest' ng-if="taxWithHoldingData.type=='Local tax'"
+                             class="row clearfix bottom-border text-center bg-local-tax">
+                            <label class="number-font">{{taxWithHoldingData.allowancesRequested}}</label>
+                        </div>
+
+                        <div id="{{taxWithHoldingData.type.split(' ').join('') + '-taxoptions_'+$index}}"
+                             ng-if="taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax'"
+                             class="col-md-12 col-sm-12 col-sm-12">
+                            <div class="col-sm-7 no-pad additional text-right">
+                                <ul class="left-pad">
+                                    <li>{{::translation.money.tax_With_Holding.additionalAmount}}</li>
+                                    <li>{{::translation.money.tax_With_Holding.maritalStatus}}</li>
+                                    <li>{{::translation.money.tax_With_Holding.exempt}}</li>
+                                    <li ng-if="taxWithHoldingData.dependentAllowances !== null">{{::translation.money.tax_With_Holding.deptAllowances}}</li>
+                                    <li ng-if="taxWithHoldingData.maritalAllowance !== null">{{::translation.money.tax_With_Holding.maritalStatusAllowances}}</li>
+                                    <li ng-if="taxWithHoldingData.marriedFileSingle !== null">{{::translation.money.tax_With_Holding.marriedFilling}}
+                                    </li>
+                                    <li ng-if="taxWithHoldingData.additionalAllowances !== null">{{::translation.money.tax_With_Holding.additionalAllownaces}}</li>
+                                    <li ng-if="taxWithHoldingData.percentageGross && taxWithHoldingData.percentageGross !== 0 ">
+                                        {{::translation.money.tax_With_Holding.taxableGrossWage}}:
+                                    </li>
+                                    <li ng-if="taxWithHoldingData.annualExemptionAmount !== null">{{::translation.money.tax_With_Holding.annualExemption}}</li>
+                                </ul>
+
+                            </div>
+                            <div class="col-sm-5 additional no-pad-right">
+                                <ul id="taxoptionslit" class="no-pad">
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.addlAmount === null ||  taxWithHoldingData.addlAmount === '' || taxWithHoldingData.addlAmount === '0' || taxWithHoldingData.exempt === 'Yes'">
+                                        $0.00
+                                    </li>
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.addlAmount !== null && taxWithHoldingData.addlAmount !== '' &&  taxWithHoldingData.addlAmount !== '0' && taxWithHoldingData.exempt !== 'Yes'">
+                                        ${{taxWithHoldingData.addlAmount | number : 2}}
+                                    </li>
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.type=='Federal tax' && (taxWithHoldingData.maritalStatus === '' || taxWithHoldingData.maritalStatus === null || taxWithHoldingData.exempt == 'Yes') ">
+                                        {{::translation.money.tax_With_Holding.single}}
+                                    </li>
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.type=='State tax' && (taxWithHoldingData.maritalStatus === '' || taxWithHoldingData.maritalStatus === null || taxWithHoldingData.exempt == 'Yes')">
+                                        {{::translation.money.tax_With_Holding.singleMarried}}
+                                    </li>
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.maritalStatus !== '' && taxWithHoldingData.maritalStatus !== null && taxWithHoldingData.exempt != 'Yes'">
+                                        {{taxWithHoldingData.maritalStatus}}
+                                    </li>
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.exempt === null || taxWithHoldingData.exempt === '' ">
+                                        {{::translation.money.tax_With_Holding.no}}
+                                    </li>
+                                    <li ng-if="taxWithHoldingData.exempt !== null && taxWithHoldingData.exempt !== '' && taxWithHoldingData.payDedCode ===  'AL'" style="line-height: 22px">
+                                        <p> {{::translation.money.tax_With_Holding.alabamaTaxPayers}}</p>
+                                    </li>
+
+                                    <li class="ellipsis" ng-if="taxWithHoldingData.exempt !== null && taxWithHoldingData.exempt !== '' && taxWithHoldingData.payDedCode !==  'AL' ">
+                                        <span ng-bind="taxWithHoldingData.exempt"></span>
+                                    </li>
+
+                                    <li class="ellipsis" ng-if="taxWithHoldingData.dependentAllowances !== null"
+                                        ng-bind="taxWithHoldingData.dependentAllowances"></li>
+                                    <li class="ellipsis" ng-if="taxWithHoldingData.maritalAllowance !== null"
+                                        ng-bind="taxWithHoldingData.maritalAllowance"></li>
+                                    <li class="ellipsis" ng-if="taxWithHoldingData.marriedFileSingle !== null"
+                                        ng-bind="taxWithHoldingData.marriedFileSingle"></li>
+                                    <li class="ellipsis"
+                                        ng-if="taxWithHoldingData.percentageGross !== null && taxWithHoldingData.percentageGross !== 0 ">
+                                        {{taxWithHoldingData.percentageGross}} %
+                                    </li>
+                                    <li class="ellipsis" ng-if="taxWithHoldingData.annualExemptionAmount !== null"
+                                        ng-bind="taxWithHoldingData.annualExemptionAmount"></li>
+                                    <li class="ellipsis" ng-if="taxWithHoldingData.additionalAllowances !== null">
+                                        <p class="additionalAllowances wordBreakAll proxima-nova-semibold">
+                                            <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.additionalAllowancesPrag}}</span>
+                                            <span style="color:#398ed4;">{{::translation.money.tax_With_Holding.georgiaEmp}}</span>
+                                            <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.withHoldingFormsEmail}}</span>
+                                        </p>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div ng-if="taxWithHoldingData.type=='Local tax'" class="col-md-12 col-sm-12 col-sm-12">
+                            <div class="col-md-12 no-pad  additional ">
+                                <ul class="left-pad">
+                                    <li class="" ng-if="taxWithHoldingData.desc !== null && taxWithHoldingData.desc !== ''"
+                                        ng-bind="taxWithHoldingData.desc"></li>
+                                </ul>
+                                <div class="col-md-6 col-sm-6 no-pad additional text-right">
+                                    <ul class="left-pad">
+                                        <li>{{::translation.money.tax_With_Holding.additionalAmount}}
+                                            </sup>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 additional  pull-left">
+                                    <ul class="no-pad">
+                                        <li class="ellipsis"
+                                            ng-if="taxWithHoldingData.addlAmount === null ||  taxWithHoldingData.addlAmount === '' || taxWithHoldingData.addlAmount === '0' || taxWithHoldingData.exempt === 'Yes'">
+                                            $0.00
+                                        </li>
+                                        <li class="ellipsis"
+                                            ng-if="taxWithHoldingData.addlAmount !== null ||  taxWithHoldingData.addlAmount !== '' || taxWithHoldingData.addlAmount !== '0' || taxWithHoldingData.exempt !== 'Yes'">
+                                            ${{taxWithHoldingData.addlAmount | number : 2}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Content section end here -->
+                </div>
+
+
+                <div ng-if="taxWithHoldingDataLength === 3 || taxWithHoldingDataLength > 4"
+                     class="col-md-4 col-sm-4 federal-border">
+                    <div ng-if="taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax' || taxWithHoldingData.type=='Local tax'"
+                         class="col-md-12 col-sm-12 no-pad federal-block no-m arg">
+                        <div class="col-md-7 col-sm-7 text-left no-pad">
+                            <h3 ng-if="taxWithHoldingData.type=='Federal tax'" class="federal-text medium top-marg-10" ng-bind="::translation.money.tax_With_Holding.federal_tax"></h3>
+                            <h3 ng-if="taxWithHoldingData.type=='State tax'"
+                                class="federal-text no-pad medium top-marg-10"> {{taxWithHoldingData.payDedCode}} {{::translation.money.tax_With_Holding.state_tax}}</h3>
+                            <h3 ng-if="taxWithHoldingData.type=='Local tax'" class="federal-text medium top-marg-10" ng-bind="::translation.money.tax_With_Holding.local_tax"></h3>
+                        </div>
+                        <div ng-if="taxWithHoldingData.type=='Federal tax'"
+                             class="col-md-5 col-sm-5 span-color text-right no-pad single-twh-link">
+                            <span class="small" ng-if="taxWithHoldingData.isPDFAvailable === 'true'">
+                                <a id="pdflink" target="_blank" class="action span-color no-pad-imp"
+                                   ng-href="{{taxWithHoldingData.pdfURL.url}}"
+                                   ng-bind="::translation.money.tax_With_Holding.w4_form">
+                                </a>
+                            </span>
+                             <span class="small">
+                               <a id="irslink" target="_blank" class="action span-color no-pad-imp"
+                                  href="http://www.irs.gov/Individuals/IRS-Withholding-Calculator"
+                                  ng-bind="::translation.money.tax_With_Holding.irs_cal"></a>
+                            </span>
+
+                        </div>
+                        <div ng-if="taxWithHoldingData.type=='State tax'"
+                             class="col-md-5 col-sm-5 span-color text-right no-pad single-twh-link">
+
+                            <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length == 1">
+                                  <a  class="action top-marg-1" target="_blank"
+                                   ng-href="{{taxWithHoldingData.pdfURL[0].url}}">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_form}}</a>
+                            </span>
+                            <span class="small" ng-if="taxWithHoldingData.isPDFAvailable  === 'true' && taxWithHoldingData.pdfURL.length > 1">
+                                <a  class="action top-marg-1" ng-click="showAllStateForms($index)">{{taxWithHoldingData.payDedCode}}
+                                {{::translation.money.tax_With_Holding.state_tax_forms}}</a>
+                            </span>
+                            <br>
+                        </div>
+                        <div ng-if="taxWithHoldingData.type=='Local tax'"
+                             class="col-md-5 col-sm-5 span-color text-right no-pad single-twh-link">
+                            <span class="small"> </span>
+                        </div>
+
+                    </div>
+
+                    <div ng-if="taxWithHoldingData.type=='Federal tax' || taxWithHoldingData.type=='State tax' || taxWithHoldingData.type=='Local tax'"
+                         class="col-ms-12 col-sm-12 no-pad">
+                        <div class="col-md-5 col-sm-5 no-pad text-right allowance"  >
+                            <h4> {{::translation.money.tax_With_Holding.allowance}}
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div id="allowancereq" ng-if="taxWithHoldingData.type=='Federal tax'"
+                         class="row clearfix bottom-border text-center bg-federal-tax">
+                        <label class="number-font ferearl-img">{{taxWithHoldingData.allowancesRequested}}</label>
+                    </div>
+                    <div id="statereq" ng-if="taxWithHoldingData.type=='State tax' && !havingGA"
+                         class="row clearfix bottom-border text-center bg-ny-state-tax">
+                        <label class="number-font">{{taxWithHoldingData.allowancesRequested}}</label>
+                    </div>
+                    <div id="localreq" ng-if="taxWithHoldingData.type=='Local tax'"
+                         class="row clearfix bottom-border text-center bg-local-tax">
+                        <label class="number-font">{{taxWithHoldingData.allowancesRequested}}</label>
+                    </div>
+                    <div id="{{taxWithHoldingData.type.split(' ').join('') + '-taxoptions_'+$index}}"
+                         ng-if="taxWithHoldingData.type=='State tax' || taxWithHoldingData.type=='Federal tax'"
+                         class="row">
+                        <div class="col-md-7  no-pad additional text-right">
+                            <ul class="no-pad">
+                                <li>
+                                    {{::translation.money.tax_With_Holding.addAmount}}
+                                    </sup>
+                                </li>
+                                <li>{{::translation.money.tax_With_Holding.maritalStatus}}
+                                </li>
+                                <li>{{::translation.money.tax_With_Holding.exempt}}
+                                </li>
+
+                                <li ng-if="taxWithHoldingData.dependentAllowances !== null">{{::translation.money.tax_With_Holding.dependentAllowances}}</li>
+                                <li ng-if="taxWithHoldingData.maritalAllowance !== null">{{::translation.money.tax_With_Holding.maritalStatusAllowances}}</li>
+                                <li ng-if="taxWithHoldingData.marriedFileSingle !== null">{{::translation.money.tax_With_Holding.marriedFiling}}</li>
+                                <li ng-if="taxWithHoldingData.additionalAllowances !== null">{{::translation.money.tax_With_Holding.additionalAllownaces}}</li>
+                                <li ng-if="taxWithHoldingData.percentageGross !== null && taxWithHoldingData.percentageGross !== 0 ">
+                                    {{::translation.money.tax_With_Holding.annualExemption}}
+                                </li>
+                                <li ng-if="taxWithHoldingData.annualExemptionAmount !== null">{{::translation.money.tax_With_Holding.annualExemption}}</li>
+
+                            </ul>
+
+                        </div>
+                        <div class="col-md-5 col-sm-5 no-pad-right additional">
+                            <ul class="no-pad" id="taxoptionslit">
+                                <li class="ellipsis"
+                                    ng-if="taxWithHoldingData.addlAmount === null || taxWithHoldingData.addlAmount === '' ||  taxWithHoldingData.addlAmount === '0' ">
+                                    $0.00
+                                </li>
+                                <li class="ellipsis"
+                                    ng-if="taxWithHoldingData.addlAmount !== null && taxWithHoldingData.addlAmount !== '' &&  taxWithHoldingData.addlAmount !== '0' ">
+                                    ${{taxWithHoldingData.addlAmount | number : 2}}
+                                </li>
+                                <li class="ellipsis"
+                                    ng-if="taxWithHoldingData.maritalStatus === ' ' || taxWithHoldingData.maritalStatus === null">
+                                    {{::translation.money.tax_With_Holding.single}}
+                                </li>
+                                <li class="ellipsis"
+                                    ng-if="taxWithHoldingData.maritalStatus !== '' && taxWithHoldingData.maritalStatus !== null">
+                                    {{taxWithHoldingData.maritalStatus}}
+                                </li>
+                                <li class="ellipsis"
+                                    ng-if="taxWithHoldingData.exempt === null || taxWithHoldingData.exempt === '' ">{{::translation.money.tax_With_Holding.no}}
+                                </li>
+                                <li ng-if="taxWithHoldingData.exempt !== null && taxWithHoldingData.exempt !== '' && taxWithHoldingData.payDedCode ===  'AL'" style="line-height: 22px">
+                                    <p>{{::translation.money.tax_With_Holding.alabamaTaxpayers}}</p>
+                                </li>
+
+                                <li class="ellipsis" ng-if="taxWithHoldingData.exempt !== null && taxWithHoldingData.exempt !== '' && taxWithHoldingData.payDedCode !==  'AL' ">
+                                    <span ng-bind="taxWithHoldingData.exempt"></span>
+                                </li>
+
+                                <li class="ellipsis" ng-if="taxWithHoldingData.dependentAllowances !== null"
+                                    ng-bind="taxWithHoldingData.dependentAllowances"></li>
+                                <li class="ellipsis" ng-if="taxWithHoldingData.maritalAllowance !== null"
+                                    ng-bind="taxWithHoldingData.maritalAllowance"></li>
+                                <li class="ellipsis" ng-if="taxWithHoldingData.marriedFileSingle !== null"
+                                    ng-bind="taxWithHoldingData.marriedFileSingle"></li>
+                                <li class="ellipsis"
+                                    ng-if="taxWithHoldingData.percentageGross !== null && taxWithHoldingData.percentageGross !== 0">
+                                    {{taxWithHoldingData.percentageGross }} %
+                                </li>
+                                <li class="ellipsis" ng-if="taxWithHoldingData.annualExemptionAmount !== null"
+                                    ng-bind="taxWithHoldingData.annualExemptionAmount"></li>
+                                <li class="ellipsis" ng-if="taxWithHoldingData.additionalAllowances !== null">
+                                    <p class="additionalAllowances wordBreakAll proxima-nova-semibold">
+                                        <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.additionalAllowancesPrag}}</span>
+                                        <span style="color:#398ed4;">{{::translation.money.tax_With_Holding.georgiaEmp}}</span>
+                                        <span style="color:#b34b55;">{{::translation.money.tax_With_Holding.withHoldingFormsEmail}}</span>
+                                    </p>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div ng-if="taxWithHoldingData.type=='Local tax'" class="row">
+                        <div class="col-md-10 col-md-offset-2 no-pad  additional ">
+                                <li class="" ng-if="taxWithHoldingData.desc !== null && taxWithHoldingData.desc !== ''"
+                                    ng-bind="taxWithHoldingData.desc"></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--end of tabs-->
+        <div ng-if="visibletaxWithholdingsNew"
+             ng-include="'app/components/money/taxWithHolding/taxWithholdingEditModelView.html'">
+        </div>
+    </div>
+</div>

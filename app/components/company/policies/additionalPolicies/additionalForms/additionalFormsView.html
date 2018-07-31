@@ -1,0 +1,35 @@
+<!--
+Program: additionalFormsView.html
+Description: It displays Information of additional forms plan types.
+ -->
+
+<div>
+    <h1 class="large"><strong ng-bind="::translation.policies.additionalForms"></strong></h1>
+
+    <div class="clearfix">&nbsp;</div>
+    <hr>
+    <div class="clearfix">&nbsp;</div>
+    <div ng-show="isAdditionalPoliciesData">
+        <p class="medium" ng-bind="::translation.policies.addFormsPra"></p>
+        <ul class="table medium">
+
+            <li valign="top">
+                <ul ng-repeat="a in additionalPoliciesFormsData" class="disc">
+                    <li class="additional-policies"><a id="procedure{{$index}}"
+                                                       href='{{a.url | contentUrl}}'
+                                                       target="_blank">{{::a.linkName}} </a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clearfix">&nbsp;</div>
+        <hr>
+    </div>
+
+    <div ng-hide="isAdditionalPoliciesData">
+        <div class="clearfix">&nbsp;</div>
+        <li class="text-center medium">
+            {{::translation.policies.noListForNow}}
+        </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="employee-details-view-section" ng-if="!employeeDetailsSection">
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.work_info.employee_details"></h4>
+    </div>
+    <div class="profile-section-view">
+        <div class="primary-name-view section-block">
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.business_title}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark" ng-bind="$parent.workInfoData.businessTitle"></p>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.job}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark" ng-bind="$parent.workInfoData.jobCode"></p>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.employee_id}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark">{{appUserId}}</p>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.employee_status}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark" ng-bind="$parent.workInfoData.employeeStatus"></p>
+            </div>
+            <div class="employee-data" ng-if="$parent.workInfoData.workSupervisor">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.workSupervisor}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark" ng-bind="$parent.workInfoData.workSupervisor"></p>
+            </div>
+
+        </div>
+        <div class="preferred-name-view section-block">
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.department}}:</span>
+                </h5>
+                <div class="margin-top margin-bottom">
+                    <h5 class="proxima-nova-semibold font-dark">
+                        <span>{{::translation.job_department}} &ndash;</span>
+                    </h5>
+                    <p class="proxima-nova font-dark" ng-bind="$parent.workInfoData.deptId"></p>
+                </div>
+                <div class="margin-top margin-bottom" ng-if="$parent.workInfoData.financialSplit.length && $parent.workInfoData.earnsDistType != 'N'">
+                    <h5 class="proxima-nova-semibold font-dark">
+                        <span>{{::translation.financial_split}} &ndash;</span>
+                    </h5>
+                    <p class="proxima-nova font-dark split-department-section" ng-repeat="splitdata in $parent.workInfoData.financialSplit | orderBy: '-splitPercentage'">
+                        <span>{{splitdata.deptName}}<small> ({{splitdata.deptId}})</small></span> <span class="proxima-nova-semibold padding-left">{{splitdata.splitPercentage}}%</span>
+                    </p>
+                </div>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.loc}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark" ng-bind="$parent.workInfoData.locationId"></p>
+            </div>
+            <div class="employee-data">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.service_date}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark">
+                    <span>{{$parent.workInfoData.serviceDate | date:'MM/dd/yyyy'}}</span>
+                    <span class="tn-tooltip" tabindex="0" role="tooltip">
+                        <i class="icon-icon_UA blue"></i>
+                        <span class="tn-tooltip-content tooltip-top">
+                            <span ng-bind="::translation.work_info.hireDateBenefits"></span>
+                        </span>
+                    </span>
+                </p>
+            </div>
+            <div class="employee-data" ng-if="$parent.workInfoData.supervisorId">
+                <h5 class="font-light-gray">
+                    <span>{{::translation.direct_manager}}:</span>
+                </h5>
+                <p class="proxima-nova-semibold font-dark" ng-bind="$parent.workInfoData.supervisorId"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tn-horizontal-divider" ng-if="!employeeDetailsSection"></div>

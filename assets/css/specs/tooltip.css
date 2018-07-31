@@ -1,0 +1,439 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+body {
+    padding: 120px;
+    box-sizing: border-box;
+}
+
+.block {
+    display: block;
+    overflow: hidden;
+}
+
+.arrow-right, .arrow-right-top, .arrow-left-top, .arrow-left {
+    display: none;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new {
+    display: block;
+    position: relative;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new p {
+    font-size: 14px;
+    padding: 20px;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new .trinet-tooltip-left {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    z-index: 99;
+    background: #ffffff;
+    border: 1px solid #888888;
+    top: 0;
+    left: -80px;
+    max-width: 350px;
+    color: #000;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new .trinet-tooltip-left h3 {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #888888;
+    font-size: 18px;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new .trinet-tooltip-left .arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #888888;
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    display: block !important;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new .trinet-tooltip-left .arrow-right-top {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #ffffff;
+    position: absolute;
+    right: -8px;
+    top: 10px;
+    display: block !important;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new .trinet-tooltip-left p {
+    color: #000;
+    padding: 0;
+    margin: 0;
+    line-height: 22px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.Trinet-tool-tip .tooltip-left-content-new:hover > .trinet-tooltip-left {
+    display: block !important;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new {
+    display: block;
+    position: relative;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new p {
+    font-size: 14px;
+    padding: 20px;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new .trinet-tooltip-right {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    z-index: 99;
+    background: #ffffff;
+    border: 1px solid #888888;
+    top: -50px;
+    right: 0;
+    color: #000;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new .trinet-tooltip-right h3 {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #888888;
+    font-size: 18px;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new .trinet-tooltip-right p {
+    color: #000;
+    padding: 0;
+    margin: 0;
+    line-height: 22px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new .trinet-tooltip-right .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #888888;
+    position: absolute;
+    left: -10px;
+    display: block !important;
+    top: 51px;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new .trinet-tooltip-right .arrow-left-top {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    display: block !important;
+    border-right: 8px solid #ffffff;
+    position: absolute;
+    left: -8px;
+    top: 53px;
+}
+
+.Trinet-tool-tip .tooltip-right-content-new:hover > .trinet-tooltip-right {
+    display: block !important;
+}
+
+.Trinet-tool-tip .tooltip-top-content-new {
+    display: block;
+    position: relative;
+}
+
+.Trinet-tool-tip .tooltip-top-content-new p {
+    font-size: 14px;
+    padding: 20px;
+}
+
+.Trinet-tool-tip .tooltip-top-content-new .trinet-tooltip-top {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    z-index: 99;
+    background: #ffffff;
+    border: 1px solid #888888;
+    top: -50px;
+    left: 20px;
+    color: #000;
+}
+
+.Trinet-tool-tip .tooltip-top-content-new .trinet-tooltip-top p {
+    color: #000;
+    padding: 0;
+    margin: 0;
+    line-height: 22px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.Trinet-tool-tip .tooltip-top-content-new .trinet-tooltip-top h3 {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #888888;
+    font-size: 18px;
+}
+
+.Trinet-tool-tip .tooltip-top-content-new:hover > .trinet-tooltip-top {
+    display: block !important;
+}
+
+.Trinet-tool-tip .tooltip-bottom-content-new {
+    display: block;
+    position: relative;
+}
+
+.Trinet-tool-tip .tooltip-bottom-content-new p {
+    font-size: 14px;
+    padding: 20px;
+}
+
+.Trinet-tool-tip .tooltip-bottom-content-new .trinet-tooltip-bottom {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    z-index: 99;
+    background: #ffffff;
+    border: 1px solid #888888;
+    bottom: -50px;
+    left: 20px;
+    color: #000;
+}
+
+.Trinet-tool-tip .tooltip-bottom-content-new .trinet-tooltip-bottom p {
+    color: #000;
+    padding: 0;
+    margin: 0;
+    line-height: 22px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.Trinet-tool-tip .tooltip-bottom-content-new .trinet-tooltip-bottom h3 {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #888888;
+    font-size: 18px;
+}
+
+.Trinet-tool-tip .tooltip-bottom-content-new:hover > .trinet-tooltip-bottom {
+    display: block !important;
+}
+
+.arrow-top {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #888888;
+    position: absolute;
+    left: 10px;
+    top: -20px;
+    left: 20px;
+}
+
+.arrow-top-top {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #ffffff;
+    position: absolute;
+    left: 10px;
+    top: -19px;
+    left: 20px;
+}
+
+.arrow-bottom {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #888888;
+    position: absolute;
+    right: -10px;
+    bottom: -20px;
+    left: 20px;
+}
+
+.arrow-bottom-top {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #ffffff;
+    position: absolute;
+    right: -10px;
+    bottom: -19px;
+    left: 20px;
+}
+
+.right-tool-tip-content {
+    right: -200px !important;
+    line-height: 20px;
+    max-width: 200px;
+    display: none;
+}
+
+.left-tool-tip-content {
+    left: -210px !important;
+    line-height: 20px;
+    width: 200px;
+    display: none;
+}
+
+.tooltip-right {
+    display: inline-block;
+    position: relative;
+}
+
+.tooltip-right:hover > .tooltip-right-content {
+    display: block !important;
+}
+
+.tooltip-right-content {
+    max-width: 447px;
+    min-width: 300px;
+    position: absolute;
+    z-index: 99999;
+    background: #ffffff;
+    color: #000;
+    padding: 10px;
+    border: 1px solid #888888;
+    display: block;
+    bottom: 27px;
+    left: -51px;
+    padding-bottom: 0;
+}
+
+.tooltip-right-content p {
+    color: #494949 !important;
+    margin-bottom: 15px !important;
+    font-size: 12px !important;;
+    line-height: 17px !important;;
+}
+
+.tooltip-right-content h3 {
+    font-weight: 600;
+    padding: 0;
+    color: #494949;
+    margin-bottom: 10px;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 11px solid #888888;
+    bottom: -11px;
+    position: absolute;
+    left: 58px;
+}
+
+.arrow-down-bg {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid #ffffff;
+    bottom: -10px;
+    position: absolute;
+    z-index: 99;
+    left: 60px;
+}
+
+.input-tooltip-main {
+    margin-top: 35px;
+}
+
+.input-tooltip-main .input-tooltip {
+    position: relative;
+    display: block;
+    padding: 15px;
+    text-align: left;
+    font-size: 12pt;
+    color: #494949;
+    background: #FFD9E0;
+    border: 1px solid #9E3039;
+    position: absolute;
+    width: 250px;
+    margin-bottom: 15px;
+    -webkit-transition: opacity 0.5s linear;
+    -moz-transition: opacity 0.5s linear;
+    -ms-transition: opacity 0.5s linear;
+    -o-transition: opacity 0.5s linear;
+    transition: opacity 0.5s linear;
+    z-index: 9999;
+    margin-top: 10px;
+}
+
+.input-tooltip-main .input-tooltip:before, .input-tooltip-main .input-tooltip:after {
+    content: "";
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    top: -10px;
+    left: 11%;
+    margin-left: -10px;
+}
+
+.input-tooltip-main .input-tooltip:before {
+    border-bottom: 10px solid #9E3039;
+    top: -11px;
+}
+
+.input-tooltip-main .input-tooltip:after {
+    border-bottom: 10px solid #FFD9E0;
+    margin-bottom: -2px;
+    z-index: 1;
+}
+
+.input-tooltip-main .input-tooltip i {
+    font-size: 16px;
+    color: #9E3039;
+}
+
+.error-msg-pos {
+    /*position: relative;*/
+}
+
+.error-msg-pos .input-tooltip {
+    left: 0;
+    top: 32px;
+}
+
+.error-warning {
+    border: 1px solid #9E3039 !important;
+}
+
+.large-tool-tip {
+    width: 550px;
+}
+
+/*# sourceMappingURL=tooltip.css.map */

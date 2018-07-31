@@ -1,0 +1,218 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../../fonts/sourcesanspro-regular.eot");
+    src: url("../../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .help-support, .help-support .section-block, .help-support .section-block .title, .help-support .section-block .employee-enquiry, .help-support .section-block .co-ordinator, .help-support .section-block .co-ordinator .details .email, .help-support .section-block .case-star, .help-support .suggestion, .help-support .claculator-titles, .help-support .claculator-titles ul {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block, .help-support .claculator-titles ul li {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.help-support h3 {
+    font-size: 24px;
+    color: #0073CF !important;
+    margin: 0;
+    font-weight: 600;
+    padding-left: 0 !important;
+}
+
+.help-support .section-block .title {
+    border-bottom: 1px solid #888888;
+    padding: 0 5 0 !important;
+    font-size: 20px;
+    color: #494949;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.help-support .section-block .panel-heading {
+    border: none;
+    font-size: 14px;
+}
+
+.help-support .section-block .panel-body {
+    border: 1px solid #B5B5B5;
+    padding: 15px;
+    background: #f2f2f2;
+}
+
+.help-support .section-block .employee-enquiry p {
+    color: #494949;
+    font-size: 14px;
+}
+
+.help-support .section-block .employee-enquiry h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #494949 !important;
+}
+
+.help-support .section-block .employee-enquiry ul {
+    padding: 0;
+}
+
+.help-support .section-block .employee-enquiry ul li {
+    list-style: disc;
+    list-style-position: inside;
+    color: #494949;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.help-support .section-block .co-ordinator {
+    border: 1px solid #B5B5B5;
+    padding: 16px;
+    background: #ffffff;
+}
+
+.help-support .section-block .co-ordinator .title {
+    border-bottom: 1px solid #888888;
+    padding-bottom: 10px !important;
+}
+
+.help-support .section-block .co-ordinator .title img {
+    width: 45px;
+    height: 45px;
+    margin-right: 12px;
+}
+
+.help-support .section-block .co-ordinator .title h3 {
+    font-size: 24px;
+    color: #494949 !important;
+    margin: 0;
+    font-weight: 600;
+    padding: 0;
+}
+
+.help-support .section-block .co-ordinator .title p {
+    font-size: 14px;
+    color: #494949 !important;
+    margin: 0;
+    font-weight: 400;
+}
+
+.help-support .section-block .co-ordinator .details {
+    padding: 10px;
+    color: #494949 !important;
+    font-size: 14px;
+}
+
+.help-support .section-block .co-ordinator .details .email {
+    margin-top: 10px;
+    padding: 0;
+}
+
+.help-support .section-block .co-ordinator .details [class*="icon-"] {
+    font-size: 20px;
+    color: #494949 !important;
+    margin-right: 10px;
+    width: 22px !important;
+    height: 20px;
+    display: inline-block;
+}
+
+.help-support .section-block .co-ordinator .details a {
+    color: #E37222;
+    display: inline-block;
+}
+
+.help-support .section-block .co-ordinator .details a:hover {
+    color: #E37222;
+    text-decoration: underline;
+}
+
+.help-support .section-block .case-star p {
+    margin: 5px 0;
+}
+
+.help-support .suggestion p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.help-support .suggestion p a {
+    color: #E37222;
+}
+
+.help-support .suggestion p a:hover {
+    color: #E37222;
+    text-decoration: underline;
+}
+
+.help-support .email-pos-adjustment {
+    position: relative;
+    top: 3px;
+}
+
+.help-support .claculator-titles h3 {
+    color: #0073CF;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 5px;
+}
+
+.help-support .claculator-titles p {
+    font-size: 12px;
+    color: #888888;
+    height: 50px;
+    overflow: hidden;
+}
+
+.help-support .claculator-titles ul {
+    padding: 0;
+}
+
+.help-support .claculator-titles ul li {
+    list-style: none;
+    padding: 0;
+    border-right: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+}
+
+.help-support .claculator-titles ul li .calculator-block {
+    background: #f2f2f2;
+    height: 60px;
+    padding: 10px 15px;
+    border: 1px solid #f2f2f2;
+}
+
+.help-support .claculator-titles ul li .calculator-block:hover {
+    background: #ffffff;
+    border: 1px solid #0073CF;
+}
+
+.help-support .help-support .section-block .panel.panel-primary .empty-head-adj-45 {
+    margin-bottom: 35px;
+}
+
+.help-support .help-support-title {
+    font-size: 20px;
+    color: #494949;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.help-support .help-support-solution-section {
+    padding: 15px 15px 15px 0;
+    background: #f2f2f2;
+    border: 1px solid #B5B5B5;
+}
+
+.help-support-title-block {
+    background: #f2f2f2;
+    padding: 0 15px;
+    border-bottom: 1px solid #ffffff;
+    border-left: 2px solid #ffffff;
+}
+
+.case-stats {
+    padding: 7px 0 0 2px !important;
+}
+
+/*# sourceMappingURL=help-support.css.map */

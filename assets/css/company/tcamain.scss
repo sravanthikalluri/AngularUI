@@ -1,0 +1,38 @@
+.tcamain {
+  padding-top: 40px;
+  .ui-accordion-content {
+    padding: 0 10px !important;
+    .panel-collapse {
+      padding: 0 !important;
+
+    }
+  }
+  [class*="icon-"] {
+    margin: 0;
+    font-size: 20px !important;
+  }
+  p {
+    font-size: 15px;
+    padding: 10px 0;
+    margin: 0;
+  }
+  .sub-list {
+    padding: 0 15px;
+    h3 {
+      font-size: 15px !important;
+    }
+    .panel-body {
+      padding: 0 10px !important;
+    }
+  }
+}
+
+.tca-acc-trinet {
+  .panel-group {
+    margin-bottom: 10px !important;
+  }
+}
+
+.trient-tca-head {
+  margin: 5px 0px 5px 0px !important;
+}

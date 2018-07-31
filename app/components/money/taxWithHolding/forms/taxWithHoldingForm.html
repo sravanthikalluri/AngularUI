@@ -1,0 +1,22 @@
+<div class=" benefit-policies-general col-md-12 col-sm-12 no-pad col-sm-12 visible" id="policiesId">
+    <alert-view></alert-view>
+
+    <div class="col-md-12 col-md-12 no-pad">
+        <div class="clearfix">&nbsp;</div>
+    </div>
+
+    <div class="row general-info ">
+        <!-- To display object as section-->
+        <div class="marg-bot-5 col-md-6 no-pad-imp" ng-repeat="form in taxFormData" id="selected{{$index}}">
+            <div class="column-pad tile company-policies-selected"
+                    ng-click="getSelectedTabData(form.urlType,$index)">
+                <div class="title-block" id="sidebar{{form.title}}">
+                    <h4>{{form.title}}</h4>
+                    <p class="content-text">{{form.desc}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

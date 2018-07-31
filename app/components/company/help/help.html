@@ -1,0 +1,177 @@
+<!-- 
+Description: This is page to display of Speak to contact and enter support case case information.
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="col-md-12 help-support col-sm-12 marg-top">
+
+    <div class="row"><h2>{{::translation.support.title}}</h2></div>
+    <div class="section-block clearfix">
+        <div class="title col-md-12">{{::translation.support.heading}}</div>
+        <div class="panel panel-primary no-border clearfix">
+            <div class="panel-heading no-bg no-pad">
+                <!-- Speak to contact display section-->
+                <ul class="nav panel-tabs no-border notification-tabs-lables">
+                    <li ng-class="{ active: selectedTab == 'empolyee'}" active><a
+                            href="#/support/empolyee">{{::translation.support.tab1.title}}</a></li>
+                    <li ng-class="{  active:selectedTab == 'hrfinance'}"><a
+                            href="#/support/hrfinance">{{::translation.support.tab2.title}}</a></li>
+                    <li ng-class="{  active:selectedTab == 'c-levelmanager'}"><a
+                            href="#/support/c-levelmanager">{{::translation.support.tab3.title}}</a></li>
+                    <li ng-class="{  active:selectedTab == 'c-level'}"><a
+                            href="#/support/c-level">{{::translation.support.tab4.title}}</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix empty-head-adj-45"></div>
+
+            <div class="content-block no-pad tilePanel" id="support">
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                </div>
+
+            </div>
+            <div>
+                <div ng-include="'app/components/company/help/empfinance.html'"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="section-block clearfix">
+    <!-- Enter support case display section-->
+    <div class="col-md-12 case-star">
+        <div class="large bold border-btm col-md-12">{{::translation.support.cases}}</div>
+        <div class="col-md-12"><p class="case-stats">{{::translation.support.suggestion}}</p></div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+
+        <div ng-repeat="headers in translation.support.tileHeaders|limitTo:2:2"
+             class="col-md-6 col-sm-6 top-mrg no-pad">
+            <div class="title-block help-support-title-block help-support" id="help{{$index+1}}"
+                 ng-click="selectTab($index+1)">
+                <h3 class="large hand">{{::headers.title}}</h3>
+                <div class="clearfix">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div id="manageMyCase" class="content-block no-pad tilePanel" id="help1" ng-show='isSelected(1)'>
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                </div>
+                <div class="policies-info-box">
+                    <div class="col-md-12">
+                        <button type="button" class="close" aria-label="Close" ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 manage-group">
+                            <iframe width="100%"
+                                    ng-src="https://crmqa.hrpassport.com/psc/crqec/CUSTOMER/CRM/c/RC_SELF_SERVICE.RC_CASE_SW_SS_SRCH.GBL?DISP_TMPL_FAM_CD=RC_SUPPORT&FolderPath=PORTAL_ROOT_OBJECT.CR_RC_CUST_CARE.CR_RC_CASE_SW_SS_SRCH_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="addCase" class="content-block no-pad tilePanel" id="help2" ng-show='isSelected(2)'>
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                </div>
+                <div class="policies-info-box">
+                    <div class="col-md-12">
+                        <button type="button" class="close" aria-label="Close" ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 manage-group">
+                            <iframe width="100%"
+                                    ng-src="https://crmqa.hrpassport.com/psc/crqec/CUSTOMER/CRM/c/RC_SELF_SERVICE.RC_CASE_SW_SS_RPT.GBL?DISP_TMPL_FAM_CD=RC_SUPPORT&FolderPath=PORTAL_ROOT_OBJECT.CR_RC_CUST_CARE.CR_RC_CASE_SW_SS_RPT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-12">
+
+        <div ng-repeat="headers in translation.support.tileHeaders.slice(2,4)" class="col-md-6 col-sm-6 top-mrg no-pad">
+            <div class="title-block help-support-title-block help-support" id="help{{$index+3}}"
+                 ng-click="selectTab($index+3)">
+                <h3 class="large hand">{{::headers.title}}</h3>
+                <div class="clearfix">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="mySupportStat" class="content-block no-pad tilePanel" id="help3" ng-show='isSelected(3)'>
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                </div>
+                <div class="policies-info-box">
+                    <div class="col-md-12">
+                        <button type="button" class="close" aria-label="Close" ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 manage-group">
+                            <iframe width="100%"
+                                    ng-src="https://crmqa.hrpassport.com/psc/crqec/CUSTOMER/CRM/c/RC_SELF_SERVICE.RC_CASE_SW_SS_RPT.GBL?DISP_TMPL_FAM_CD=RC_SUPPORT&FolderPath=PORTAL_ROOT_OBJECT.CR_RC_CUST_CARE.CR_RC_CASE_SW_SS_RPT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="companyStats" class="content-block no-pad tilePanel" id="help4" ng-show='isSelected(4)'>
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                </div>
+                <div class="policies-info-box">
+                    <div class="col-md-12">
+                        <button type="button" class="close" aria-label="Close" ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 manage-group">
+                            <iframe width="100%"
+                                    ng-src="https://crmqa.hrpassport.com/psc/crqec/CUSTOMER/CRM/c/RC_SELF_SERVICE.RC_CASE_SW_SS_RPT.GBL?DISP_TMPL_FAM_CD=RC_SUPPORT&FolderPath=PORTAL_ROOT_OBJECT.CR_RC_CUST_CARE.CR_RC_CASE_SW_SS_RPT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

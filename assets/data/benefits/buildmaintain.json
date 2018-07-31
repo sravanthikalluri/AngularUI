@@ -1,0 +1,12 @@
+{
+  "errorCode": null,
+  "resource": {
+    "company": "31T",
+    "states": [
+      "NY"
+    ],
+    "payFrequency": "S"
+  },
+  "statusCode": "200",
+  "statusMessage": "Success"
+}

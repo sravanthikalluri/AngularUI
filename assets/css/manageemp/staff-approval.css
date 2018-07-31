@@ -1,0 +1,248 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .staff-approvel .payroll-details, .staff-approvel .split-department-details .left-section, .staff-approvel .split-department-details .right-section {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.no-marg {
+    margin: 0;
+}
+
+.staff-approvel {
+    /*.table-condensed > tbody > tr > td{padding:$padding+2 0px !important;}*/
+}
+
+.staff-approvel a.back {
+    color: #E37222;
+    padding: 15px;
+}
+
+.staff-approvel .heading {
+    color: #0073CF !important;
+    padding: 30px 0 0 10px !important;
+    font-size: 28px !important;
+}
+
+.staff-approvel .your-invoice {
+    margin: 0;
+    padding-left: 10px;
+    color: #B5B5B5;
+    font-size: 12px;
+}
+
+.staff-approvel h5 {
+    margin: 5px 0 0;
+    padding-left: 10px;
+    color: #B5B5B5 !important;
+}
+
+.staff-approvel h6 {
+    color: #494949;
+    padding-left: 10px;
+}
+
+.staff-approvel .name {
+    margin: 0;
+    padding-left: 10px;
+    color: #494949;
+    margin-bottom: 10px;
+}
+
+.staff-approvel .invoice {
+    color: #494949;
+    margin-top: 0;
+    padding: 0 0 0 10px;
+    font-size: 28px !important;
+}
+
+.staff-approvel .view {
+    color: #E37222;
+    padding-left: 10px;
+}
+
+.staff-approvel .box {
+    width: 14.3%;
+    float: left;
+}
+
+.staff-approvel .text-box-pad {
+    border: 1px solid #888888;
+    padding: 5px;
+    background: #f5f6f7;
+    color: #494949;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.staff-approvel .text-box-pad h4 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.staff-approvel .text-box-1 {
+    min-width: 14%;
+    float: left;
+    margin: 0 2px 5px;
+}
+
+.staff-approvel .text-box-2 {
+    min-width: 16%;
+    float: left;
+    margin: 0 2px 5px;
+}
+
+.staff-approvel .text-box-3 {
+    min-width: 18%;
+    float: left;
+    margin: 0 2px 5px;
+}
+
+.staff-approvel .text-box-4 {
+    min-width: 20%;
+    float: left;
+    margin: 0 2px 5px;
+}
+
+.staff-approvel .pay-categories {
+    margin-top: 88px;
+}
+
+.staff-approvel .payroll-table {
+    /* .table-body{height:200px;overflow-y:auto;}*/
+}
+
+.staff-approvel .payroll-table .table-head-color {
+    background: #0073CF;
+    color: #fff;
+    border-top: 5px solid #0073CF;
+    border-bottom: 5px solid #0073CF;
+    border-right: 5px solid #0073CF;
+}
+
+.staff-approvel .payroll-table .table-head-color > tr > th {
+    vertical-align: middle;
+    font-weight: 600;
+    border-left: 1px solid #fff;
+    padding: 0 5px !important;
+    font-size: 14px;
+}
+
+.staff-approvel .payroll-table .table-head-color > tr > th:first-child {
+    border: none;
+}
+
+.staff-approvel .payroll-table .table-head-color > tr > th .icon-icon_z-a_sort {
+    padding: 3px 0 0 5px;
+}
+
+.staff-approvel .payroll-table .disclosure-expand {
+    font-size: 18px !important;
+}
+
+.staff-approvel .empid {
+    font-size: 12px;
+    color: #888888;
+}
+
+.staff-approvel .radio {
+    display: inline;
+    position: relative;
+    top: 10px;
+}
+
+.staff-approvel .format {
+    display: inline-block;
+    margin: 0 1px;
+    float: left;
+}
+
+.staff-approvel .format ul {
+    padding-left: 0;
+}
+
+.staff-approvel .payroll-details {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.staff-approvel .payroll-options {
+    position: absolute;
+    right: 23px;
+    margin: 38px 0 0;
+}
+
+.staff-approvel .payroll-options .trinet-secondary-action-btn {
+    margin-bottom: 0;
+}
+
+.staff-approvel .payroll-options ul.categories {
+    margin: 0;
+}
+
+@media all and (max-width: 991px) {
+    .staff-approvel .payroll .pay-categories {
+        margin-top: 10px;
+    }
+
+    .staff-approvel .payroll-options {
+        margin-top: 25px;
+    }
+}
+
+.staff-approvel input.search-filter {
+    font-size: 12px;
+}
+
+.staff-approvel .split-department-details {
+    background: #f2f2f2;
+    padding: 10px;
+    clear: both;
+}
+
+.staff-approvel .split-department-details table.net-details thead {
+    border-bottom: 1px solid #494949;
+}
+
+.staff-approvel .split-department-details table.net-details tbody tr td {
+    padding: 0 5px;
+}
+
+.staff-approvel .split-department-details .min-font {
+    font-size: 9px;
+}
+
+.staff-approvel .split-department-details .left-section {
+    width: 60%;
+    float: left;
+}
+
+.staff-approvel .split-department-details .right-section {
+    width: 40%;
+    float: left;
+}
+
+.staff-approvel .split-department-details .right-section table tbody tr td {
+    vertical-align: top;
+}
+
+.staff-approvel .deduction-values {
+    margin-top: 22px;
+}
+
+.staff-approvel .deduction-values tbody tr td {
+    padding: 0 5px;
+}
+
+/*# sourceMappingURL=staff-approval.css.map */

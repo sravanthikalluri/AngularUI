@@ -1,0 +1,101 @@
+<!--
+Description: This is page to display of company forms details.
+Author:Krishnam Raju kollu
+ -->
+<div class="manage-forms my-money col-md-12 col-sm-12 no-pad col-sm-12 visible companyFormsAdjust" id="policiesId">
+    <alert-view></alert-view>
+    <div class="col-md-12 col-md-12 no-pad">
+        <div class="clearfix">&nbsp;</div>
+    </div>
+    <div id="loadtabs">
+
+
+        <div class="row general-info " ng-repeat="form in companyFormData">
+            <h4 class="general">{{::form.title}}</h4>
+            <!-- To display object as section-->
+            <div class="marg-bot-5 col-md-4 no-pad-imp" ng-if="form.title == 'Company Forms' " ng-repeat="companyDataObject in form.pdfs"
+                 >
+                <div id="{{companyDataObject.label |  lowercase}}other0"
+                     class="column-pad tile company-policies-selected"
+                     ng-click="selectTab($event,'{{companyDataObject.id}}')">
+                    <div class="title-block" id="sidebar{{companyDataObject.id}}other0">
+                        <a ng-href="{{companyDataObject.url | contentUrl}}" target="_blank">
+                            <h4>{{::companyDataObject.label}}</h4>
+                            <p class="content-text">{{::companyDataObject.description}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="marg-bot-5 col-md-4 no-pad-imp" ng-repeat="companyDataObject in form.pdfs.sub"
+                 ng-if="form.pdfs.sub && form.title !=='Payroll Forms' && form.title !== 'Company Forms'">
+                <div id="{{companyDataObject.label |  lowercase}}other"
+                     class="column-pad tile company-policies-selected"
+                     ng-click="selectTab($event,'{{companyDataObject.id}}')">
+                    <div class="title-block" id="sidebar{{companyDataObject.id}}other">
+                        <a ng-href="{{companyDataObject.url | contentUrl}}" target="_blank">
+                            <h4>{{::companyDataObject.label}}</h4>
+                            <p class="content-text">{{::companyDataObject.description}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="form.pdfs.length == 0" class="myfield-content security clearfix ng-scope" >
+                <div class="security-details marg-top-20 text-center">
+                    <h3 class="default-text no-border"> {{::translation.noCompanyForms}}</h3></h3>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row general-info " ng-repeat="form in companyFormData"
+             ng-if="form.pdfs.sub && form.title =='Payroll Forms'">
+            <div class="marg-bot-5 col-md-4 no-pad-imp"
+                 ng-repeat="benefitsPoliciesDataObject in form.pdfs.sub.slice(0,2)" ng-if="form.pdfs.sub ">
+                <div id="other2" class="column-pad tile company-policies-selected"
+                >
+                    <div class="title-block" id="othersub2">
+                        <a ng-href="{{benefitsPoliciesDataObject.url | contentUrl}}" target="_blank">
+                            <h4>{{benefitsPoliciesDataObject.label}}</h4>
+                            <p class="content-text">{{benefitsPoliciesDataObject.description}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="marg-bot-5 col-md-12 no-pad-imp"
+                 ng-repeat="companyDataObjectPay in form.pdfs.sub.slice(2,form.pdfs.sub.length)" ng-if="form.pdfs.sub ">
+                <div id="moneyForm-acc" class="column-pad tile company-policies-selected "
+                     ng-click="selectTab($event,'{{companyDataObjectPay.id}}')">
+                    <div class="col-md-12 no-pad-imp">
+                        <accordion class="panel-group-acc" close-other="true">
+                            <accordion-group is-open="isopen">
+                                <accordion-heading>
+                                    <span class="medium" id="{{companyDataObjectPay.label}}">{{::companyDataObjectPay.label}} ({{::companyDataObjectPay.count}})</span><i
+                                        class="pull-right icon-icon_Disclosure_Collapse"
+                                        ng-class="{'icon-icon_Disclosure_Expand': !isopen, 'icon-icon_Disclosure_Collapse': isopen}"></i>
+                                </accordion-heading>
+                                <div id="PayrollBenefitsMain">
+                                    <div class="marg-bot-5 col-md-6 no-pad-imp selectPay" id="selectPay{{$index}}"
+                                         ng-repeat="acc in companyDataObjectPay.sub ">
+                                        <div id="PayrollBenefitsData{{$index}}"
+                                             class="column-pad tile company-policies-selected"
+                                             ng-click="selectTabAcc($index ,acc,$event)">
+                                            <div class="title-block" id="othersub2{{$index}}" >
+                                                <h4 class="line-clamp">{{::acc.label}}</h4>
+                                                <p class="content-text">{{::acc.description}}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </accordion-group>
+                        </accordion>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of container-content-->

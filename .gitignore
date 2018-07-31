@@ -1,0 +1,11 @@
+/.settings
+/node_modules
+/bower_components
+/build
+/dist
+.sass-cache
+/bin/
+/test-reports
+/.idea
+/.tmp
+app/templates.js

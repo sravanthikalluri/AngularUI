@@ -1,0 +1,27 @@
+[
+  {
+    "deptId": "1",
+    "deptName": "Sales"
+  },
+  {
+    "deptId": "2",
+    "deptName": "Accounts"
+  },
+  {
+    "deptId": "3",
+    "deptName": "Medical"
+  },
+  {
+    "deptId": "4",
+    "deptName": "Sales11"
+  },
+  {
+    "deptId": "5",
+    "deptName": "Accounts2"
+  },
+  {
+    "deptId": "6",
+    "deptName": "Consulting"
+  }
+]
+

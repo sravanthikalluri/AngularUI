@@ -1,0 +1,281 @@
+@import 'buttons';
+
+.my-tooltip {
+    position: relative;
+    cursor: pointer;
+    color: white;
+    display: inline-block;
+    .tooltip {
+        color: black;
+        background: #EEE;
+        border: 1px solid #111;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        position: absolute;
+        width: 250px;
+        left: 198%;
+        margin-left: -125px;
+        padding: 10px 0;
+        bottom: 80%;
+        margin-bottom: 15px;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: opacity 0.5s linear;
+        -moz-transition: opacity 0.5s linear;
+        -ms-transition: opacity 0.5s linear;
+        -o-transition: opacity 0.5s linear;
+        transition: opacity 0.5s linear;
+        &:before, &:after {
+            content: "";
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+        }
+        &:before {
+            border-top: 10px solid #111;
+            border-top: 10px solid rgba(0, 0, 0, 0.5);
+        }
+        &:after {
+            border-top: 10px solid #EEE;
+            margin-top: -2px;
+            z-index: 1;
+        }
+    }
+    &:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .tooltip2 {
+        color: black;
+        background: #EEE;
+        border: 1px solid #111;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        position: absolute;
+        width: 250px;
+        left: 80%;
+        margin-left: -195px;
+        padding: 10px 0;
+        bottom: 58%;
+        margin-bottom: 15px;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: opacity 0.5s linear;
+        -moz-transition: opacity 0.5s linear;
+        -ms-transition: opacity 0.5s linear;
+        -o-transition: opacity 0.5s linear;
+        transition: opacity 0.5s linear;
+        &:before, &:after {
+            content: "";
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            top: 100%;
+            left: 30%;
+            margin-left: -10px;
+        }
+        &:before {
+            border-top: 10px solid #111;
+            border-top: 10px solid rgba(0, 0, 0, 0.5);
+        }
+        &:after {
+            border-top: 10px solid #EEE;
+            margin-top: -2px;
+            z-index: 1;
+        }
+    }
+    &:hover .tooltip2 {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .tooltip-right {
+        color: black;
+        background: #EEE;
+        border: 1px solid #111;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        position: absolute;
+        width: 350px;
+        left: 80%;
+        padding: 10px 0;
+        bottom: 65%;
+        margin-bottom: 15px;
+        visibility: hidden;
+        -webkit-transition: opacity 0.5s linear;
+        -moz-transition: opacity 0.5s linear;
+        -ms-transition: opacity 0.5s linear;
+        -o-transition: opacity 0.5s linear;
+        transition: opacity 0.5s linear;
+        &:before, &:after {
+            content: "";
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+
+            left: -1.5%;
+            margin-left: -10px;
+            top: 36%;
+            transform: rotate(90deg);
+        }
+        &:before {
+            border-top: 10px solid #111;
+            border-top: 10px solid rgba(0, 0, 0, 0.5);
+        }
+        &:after {
+            border-top: 10px solid #EEE;
+            margin-top: -2px;
+            z-index: 1;
+        }
+    }
+    &:hover .tooltip-right {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.marg-top {
+    margin-top: $margin;
+    display: inline;
+}
+
+.marg-top-inherit {
+    margin-top: $margin;
+    display: inherit;
+}
+
+.addBorder {
+    border: 1px solid $Trinet-blue !important;
+}
+
+.btn-cursor {
+    cursor: auto !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.radio {
+    input[type=radio] {
+        position: absolute;
+        left: -999999px;
+        &:focus,&:hover{
+            + {
+                label {
+                    &:before,&:after {
+                        color: $azure-blue !important;
+                    }
+                }
+            }
+        }
+        &[disabled]{
+            + {
+                label {
+                    cursor: default;
+                    &:before,&:after {
+                       opacity: 0.3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.radio {
+    input[type='radio'] {
+        + {
+            label {
+                &:before {
+                    content: "\a156";
+                    font-family: 'icomoon' !important;
+                    speak: none;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    position: relative;
+                    left: -7px;
+                    top: 0;
+                    font-size: 20px;
+                }
+            }
+        }
+        &:checked {
+            + {
+                label {
+                    &:before {
+                        content: "\a155";
+                        font-family: 'icomoon' !important;
+                        speak: none;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-variant: normal;
+                        text-transform: none;
+                        line-height: 1;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        position: relative;
+                        left: -7px;
+                        top: 0;
+                        color: #0073CF;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.check {
+    display: inline-flex;
+    margin-left: 10px;
+    label {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        color: #494949 !important;
+        font-size: 12px !important;
+    }
+    input[type=checkbox ] {
+        position: absolute;
+        left: -99999px;
+    }
+}
+
+.check {
+    input[type='checkbox'] {
+        + {
+            label {
+                &:before {
+                    content: "\a154";
+                    font-family: 'icomoon' !important;
+                    speak: none;
+                    text-transform: none;
+                    line-height: 1;
+                    font-size: 15px;
+                    margin-right: 10px;
+                }
+            }
+        }
+        &:checked {
+            + {
+                label {
+                    &:before {
+                        content: "\a152";
+                        font-family: 'icomoon' !important;
+                        text-transform: none;
+                        line-height: 1;
+                        color: #0073CF;
+                        font-size: 15px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+
+      <div id="tn-widget-next-pay" layout="row" layout-align="center center">
+           <div class="tn-widget-next-pay-date col-md-6 right-border">
+              <div class="tn-widget-text proxima-nova-semibold">Last Paycheck</div>
+              <div>
+                <div  id="lastPaycheckMonth" class="tn-next-pay-date-month-label tn-widget-caps proxima-nova-semibold">
+                      {{previousCheckDt | date:'MMMM'}}
+                </div>
+                <div id="lastPaycheckDate" class="tn-widget-numeric-label proxima-nova-semibold">
+                    {{previousCheckDt | date:'d'}}
+                </div>
+              </div>
+              <div id="lastPaycheckDays" class="tn-widget-text proxima-nova-semibold">{{lastPayDayText}}</div>
+          </div>
+          <div class="tn-widget-next-pay-date col-md-6">
+            <div class="tn-widget-text proxima-nova-semibold">Next Paycheck</div>
+              <div>
+                  <div id="nextPaycheckMonth" class="tn-next-pay-date-month-label tn-widget-caps proxima-nova-semibold">
+                      {{nextCheckDt | date:'MMMM'}}
+                  </div>
+                  <div id="nextPaycheckDate" class="tn-widget-numeric-label proxima-nova-semibold">
+                      {{nextCheckDt | date:'d'}}
+                  </div>
+              </div>
+              <div id="nextPaycheckDays" class="tn-widget-text proxima-nova-semibold">{{inHowManyDays}}</div>
+          </div>
+      </div>

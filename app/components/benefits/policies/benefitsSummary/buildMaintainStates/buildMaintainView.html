@@ -1,0 +1,307 @@
+<!--
+Program: buildMaintainView.html
+Description: It provides state list to user to make him availability of his plans at different states.
+ -->
+<div>
+    <table width="80%" height="413" cellspacing="0" cellpadding="2" border="0" align="center">
+        <alert-view></alert-view>
+
+        <div class="clearfix">&nbsp;</div>
+        <tbody class="policies-forms small">
+        <tr>
+            <td valign="top" colspan="2">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h2 class="headlines-lg-BluBerry large no-left-pad">{{translation.my_benefits.policies.chart_builder}} for {{companyName}}</h2>
+                            <p class="bodytext medium" ng-bind="::translation.my_benefits.policies.trinet_offers"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="bodybold" ng-bind="::translation.my_benefits.policies.select_build"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="buildMaintainView medium">
+                                <tbody>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateAL" type="checkbox" value="AL" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.alabama"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateFLS" type="checkbox" value="FLS" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.florida_south"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMA" type="checkbox" value="MA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.massachusetts"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNC" type="checkbox" value="NC" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.north_carolina"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateTXD" type="checkbox" value="TXD" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.texas_dallas"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateAK" type="checkbox" value="AK" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.alaska"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateGA" type="checkbox" value="GA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.georgia"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMI" type="checkbox" value="MI" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.michigan"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateND" type="checkbox" value="ND" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.north_dakota"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateTXH" type="checkbox" value="TXH" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.texas"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateAZ" type="checkbox" value="AZ" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.arizona"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateHI" type="checkbox" value="HI" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.hawaii"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMN" type="checkbox" value="MN" class="states">
+                                        <span ng-bind="translation.my_benefits.policies.minnesota"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateOH" type="checkbox" value="OH" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.ohio"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateUT" type="checkbox" value="UT" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.utah"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateAR" type="checkbox" value="AR" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.arkansas"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateID" type="checkbox" value="ID" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.idaho"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMS" type="checkbox" value="MS" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.mississippi"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateOK" type="checkbox" value="OK" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.oklahoma"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateVT" type="checkbox" value="VT" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.vermont"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateCAN" type="checkbox" value="CAN" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.california_northern"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateIL" type="checkbox" value="IL" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.illinois"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMO" type="checkbox" value="MO" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.missouri"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateOR" type="checkbox" value="OR" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.oregon"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateVA" type="checkbox" value="VA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.virginia"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateCAS" type="checkbox" value="CAS" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.california_southern"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateIN" type="checkbox" value="IN" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.indiana"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMT" type="checkbox" value="MT" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.montana"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="statePA" type="checkbox" value="PA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.pennsylvania"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateWA" type="checkbox" value="WA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.washington"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateCO" type="checkbox" value="CO" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.colorado"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateIA" type="checkbox" value="IA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.iowa"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNE" type="checkbox" value="NE" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.nebraska"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="statePR" type="checkbox" value="PR" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.puerto_rico"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateWV" type="checkbox" value="WV" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.west_virginia"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateCT" type="checkbox" value="CT" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.connecticut"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateKS" type="checkbox" value="KS" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.kansas"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNV" type="checkbox" value="NV" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.nevada"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateRI" type="checkbox" value="RI" class="states"
+                                               ng-model="$scope.checked">
+                                        <span ng-bind="::translation.my_benefits.policies.rhode_island"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateWI" type="checkbox" value="WI" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.wisconsin"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateDE" type="checkbox" value="DE" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.delaware"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateKY" type="checkbox" value="KY" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.kentucky"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNH" type="checkbox" value="NH" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.new_hampshire"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateSC" type="checkbox" value="SC" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.south_carolina"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateWY" type="checkbox" value="WY" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.wyoming"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateDC" type="checkbox" value="DC" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.district_columbia"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateLA" type="checkbox" value="LA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.louisiana"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNJ" type="checkbox" value="NJ" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.new_jersey"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateSD" type="checkbox" value="SD" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.south_dakota"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateFLN" type="checkbox" value="FLN" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.florida_north"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateME" type="checkbox" value="ME" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.maine"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNM" type="checkbox" value="NM" class="states">
+                                        <span ng-bind="translation.my_benefits.policies.new_mexico"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateTN" type="checkbox" value="TN" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.tennessee"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodytext">
+                                        <input id="stateFLC" type="checkbox" value="FLC" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.florida_central"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateMD" type="checkbox" value="MD" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.maryland"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateNY" type="checkbox" value="NY" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.new_york"></span>
+                                    </td>
+                                    <td class="bodytext">
+                                        <input id="stateTXA" type="checkbox" value="TXA" class="states">
+                                        <span ng-bind="::translation.my_benefits.policies.texas_austin"></span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td> &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <input id="buildSubmit" type="button" ng-click="submitForm()"
+                                   value="Save" class="tn-button tn-action-button">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>

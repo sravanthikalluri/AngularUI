@@ -1,0 +1,53 @@
+<div class="policies-general my-money col-md-12 col-sm-12 no-pad col-sm-12 visible">
+    <alert-view></alert-view>
+
+    <div class="col-md-8 col-md-8 no-pad" id="header-bar">
+        <div class="clearfix">&nbsp;</div>
+        <h2 ng-bind="::translation.money.verifyEmp.title"></h2>
+    </div>
+    <no-records></no-records>
+    <div class="row">
+        <div class="col-md-12 no-pad">
+            <div class="panel-body panel-body-background">
+                <p ng-bind="verification.text"></p>
+
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <p><a id="employeeVerification" class="medium action inline"
+                  ng-href='{{verification.employeeVerification.url | contentUrl}}'
+                  target="_blank"
+                  ng-bind="verification.employeeVerification.label"></a> {{verification.employeeVerification.subText}}
+            </p>
+            <p><a id="entityVerification" class=" medium action inline"
+                  ng-href="{{verification.entityVerification.url | contentUrl}}"
+                  target="_blank"
+                  ng-bind="verification.entityVerification.label"></a>{{verification.entityVerification.subText}} </p>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

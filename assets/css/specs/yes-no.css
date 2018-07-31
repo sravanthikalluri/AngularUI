@@ -1,0 +1,82 @@
+.toggle-button-prop, .yesNoswitch-inner:before, .yesNoswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 21px;
+    font-size: 10px;
+    color: #ffffff;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.yesNoswitch {
+    position: relative;
+    width: 40px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.yesNoswitch-checkbox {
+    display: none;
+}
+
+.yesNoswitch-checkbox:checked + .yesNoswitch-label .yesNoswitch-inner {
+    margin-left: 0;
+}
+
+.yesNoswitch-checkbox:checked + .yesNoswitch-label .yesNoswitch-switch {
+    right: 0;
+}
+
+.yesNoswitch-label {
+    height: 20px;
+    width: 40px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    /*border: 2px solid $color_mountain_mist_approx;*/
+    border-radius: 20px;
+}
+
+.yesNoswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.yesNoswitch-inner:before {
+    content: "On";
+    padding-left: 3px;
+    text-align: left;
+    background-color: #69BE28;
+    color: #ffffff;
+}
+
+.yesNoswitch-inner:after {
+    content: "Off";
+    padding-right: 6px;
+    background-color: #888888;
+    color: #ffffff;
+    text-align: right;
+}
+
+.yesNoswitch-switch {
+    display: block;
+    width: 14px;
+    height: 16px;
+    margin: 2px;
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 22px;
+    transition: all 0.3s ease-in 0s;
+}
+
+/*# sourceMappingURL=yes-no.css.map */

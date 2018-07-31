@@ -1,0 +1,22 @@
+{
+  "respnoseCode": null,
+  "status": null,
+  "message": null,
+  "statusCode": "200",
+  "statusMessage": "Success",
+  "resource": {
+    "tXHealth": true,
+    "txHealthUrl": "TX_Healthcare_Letter.pdf",
+    "coventryTxHealth": true,
+    "coventryTxHealthUr": "TX_Coventry_HCN_Employee_Notification-Eng_6_10.pdf",
+    "txCoventryHCN": true,
+    "txCoventryHCNUrl": "TX_Coventry_HCN_Employee_Notification-SP_6_10.pdf",
+    "InfoVeterans": true,
+    "infoVeteransUrl": "VetsPoster.pdf",
+    "scheduleDueDate": true,
+    "scheduleDueDateUrl": "TriNet_Schedule_of_Due_Dates_and_Special_Fees.pdf",
+    "federalContractors": true,
+    "otherRelevantInfo": true,
+    "otherRelevantInfoURL": "TriNet_RatesAndLimits_Canada.pdf"
+  }
+}

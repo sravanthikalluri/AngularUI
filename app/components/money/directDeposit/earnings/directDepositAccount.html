@@ -1,0 +1,58 @@
+<form id="DDAccount" class="digits" name="depositAccountForm" ng-controller="newAccountCtrl">
+    <div class="json-overlay ddloader" id="ddLoader">
+        <span class="spinner"></span>
+    </div>
+    <div class="" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+						<span aria-hidden="true" class="pull-right hand large"
+                              data-dismiss="modal" aria-label="Close">&times;</span>
+            <h4 class="modal-title" id="myModalLabel" ng-bind="::translation.money.direct_deposit.new_dd"></h4>
+        </div>
+        <div class="modal-body col-md-12">
+            <label class="col-md-2 top-margin no-pad small"><span class="asterisk">*</span><span ng-bind="::translation.acc_type"></span>:</label>
+            <select id="chooseDDAccountType" class="col-md-5" ng-model="drpsel" ng-init="drpsel=3">
+                <option id="selection" value="3">{{::translation.money.direct_deposit.select}}</option>
+                <option id="checking" value="checking">{{::translation.money.direct_deposit.checkingAccount}}</option>
+                <option id="savings" value="savings">{{::translation.money.direct_deposit.savingAccount}}</option>
+            </select>
+            <div class="clearfix">&nbsp;</div>
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <p class="ex-small" ng-bind="::translation.money.direct_deposit.route_no"></p>
+                <img id="cardImage" class="img-responsive" src="assets/images/my_nums.jpg">
+                <p class="ex-small" ng-bind="::translation.money.direct_deposit.no_reverse"></p>
+            </div>
+            <div class="col-md-12 no-pad">
+                <div class="col-md-6 col-sm-6 no-pad">
+                    <label class="small top-margin text-left"><span class="asterisk">*</span><span
+                            ng-bind="::translation.money.direct_deposit.routing_no"></span>:</label>
+                    <input id="DDroutingNumber" type="text" name="nums" ng-model="routingNumber"
+                           class="form for-control check-inputs" maxlength="9"
+                           ng-pattern="/^[0-3]|[0|1|2|3]([0-9])$/" required> <span
+                        ng-show="digits.routingnumber.$error.required && digits.routingnumber.$dirty"
+                        ng-bind="::translation.money.direct_deposit.required"></span>
+                    <label class="alert" ng-show="digits.nums.$error.pattern"
+                           ng-bind="::translation.money.direct_deposit.route_no-req"></label>
+                </div>
+                <div class="col-md-6 col-sm-6 no-pad">
+                    <label class="small top-margin text-left"><span class="asterisk">*</span><span
+                            ng-bind="::translation.money.direct_deposit.acc_no"></span>:</label>
+                    <input id="DDaccountNumber" type="text" ng-model="accountNumber"
+                           class="form for-control check-inputs" maxlength="17" required>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="DDsaveBtn" name="save" data-dismiss="modal"
+                    class="trinet-primary-action-btn" type="submit"
+                    ng-click="validateNewAccount('')" ng-bind="::translatio.save"></button>
+            <button id="DDcancelBtn" class="trinet-secondary-action-btn" ng-click="cancel()"
+                    aria-hidden="true" data-dismiss="modal" aria-label="Close" ng-bind="::translatio.cancel"></button>
+        </div>
+    </div>
+    </div>
+    </div>
+</form>
+
+<!-- createDirectDeposit(drpsel,routingNumber,accountNumber,effectiveDate) -->

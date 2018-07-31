@@ -1,0 +1,85 @@
+<div class="container-content manage-group manage-employee no-top-pad">
+    <div ng-show="groupChangeScreen">
+        <div><h5>
+            <a ng-click="visibleManageGroups()" id="showMngGrpTextId" class=" Trinet-orange bottom-pad block medium"
+               ng-show="groupChangeRequest">&lt;
+                {{::translation.manageGroup.mangeGroups}}</a></h5></div>
+
+        <div class="row no-marg" ng-hide="groupChangeRequest">
+            <div class="col-md-12 col-md-12 no-pad">
+                <h2 class="no-pad">{{::translation.manageGroup.mangeGroups}}</h2>
+                <h5 ng-bind="::companyName"></h5>
+                <input class="trinet-primary-action-btn pull-right" id="smg_save" type="button" name="save"
+                       data-toggle="modal" data-target="#exampleModal1" data-whatever="@fat"
+                       value="Request a Group Change" ng-click="requestGroupChange()"/>
+            </div>
+            <div>
+                <div class="clearfix"></div>
+                <hr class="no-marg">
+                <div class="clearfix">&nbsp;</div>
+                <div class="panel-body no-pad">
+                    <div class="tab-content">
+                        <div class="clearfix"></div>
+
+                        <div class="tab-pane active">
+                            <div class="col-md-12 col-sm-12 no-pad">
+
+                                <table
+                                        class="table table-striped manage-table table-hover no-marg manage-employee-table">
+                                    <thead>
+                                    <tr>
+                                        <th ng-bind="::translation.manageGroup.status"></th>
+                                        <th ng-mouseleave="textboxhide()">{{::translation.manageGroup.changeTypes}}<span
+                                                class="icon-icon_filter pull-right black"
+                                                ng-click="searchPos(1)"></span>
+                                            <div ng-show="searchbox == 1" class="black">
+                                                <input type="text" id="smg_search" name="search"
+                                                       ng-model="search.changeTypes"
+                                                       class="no-border" placeholder="Filter Position">
+                                            </div>
+                                        </th>
+                                        <th ng-bind="::translation.manageGroup.effectDate"></th>
+                                        <th ng-bind="::translation.manageGroup.numberEmployee"></th>
+                                        <th  ng-bind="::translation.manageGroup.submittedOn"></th>
+                                        <th ng-bind="::translation.manageGroup.submitBy"></th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div class="table-content-block">
+                                    <table
+                                            class="table table-striped manage-table table-fixed-header table-hover">
+
+                                        <tbody class="manage-employee-table">
+                                        <tr id="report{{$index}}" ng-click="visibleGroupChange($index)" class="hand"
+                                            ng-repeat="allEmp in manageGroupData | filter:search | orderBy:sortTypeEmp:sortReverse">
+                                            <td ng-bind="allEmp.status"></td>
+                                            <td ng-bind="allEmp.changeTypes"></td>
+                                            <td ng-bind="allEmp.effectiveDate"></td>
+                                            <td ng-bind="allEmp.numberOfEmployees"></td>
+                                            <td ng-bind="allEmp.submittedOn"></td>
+                                            <td ng-bind="allEmp.submittedBy"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div ng-show="groupChangeRequest">
+            <div
+                    ng-include="'app/components/employee/manageGroups/groupChangeRequestView.html'">
+            </div>
+        </div>
+    </div>
+    <div ng-show="createGroupChangeRequest">
+        <div
+                ng-include="'app/components/employee/manageGroups/createGroupChangeView.html'">
+        </div>
+    </div>
+</div>

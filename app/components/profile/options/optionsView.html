@@ -1,0 +1,107 @@
+<div ng-controller="optionsViewCtrl">
+    <div class="col-md-12 col-sm-12">
+        <div class="clearfix">&nbsp;</div>
+        <div class="form-content-block">
+
+            <!--start of Q&A section-->
+            <div class="col-md-12 no-pad">
+                <div class="my-field">
+                    <h3 class="no-border" ng-bind="::translation.options.emailOption"></h3>
+                </div>
+                <div class="myfield-content security clearfix">
+                    <div class="security-details marg-top-20 contact-email-bg alignVCenter justCenter">
+                        <div class="col-md-8 col-sm-6">
+                            <p class="default-font no-marg no-pad-imp" ng-bind="::translation.options.receiveEmails"></p>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="onoff-toogle">
+
+                                <div class="onoffswitch ">
+                                    <input type="checkbox" name="onoffswitch_{{emailOption}}" ng-model="emailOption"
+                                           ng-change="trinetServicesDialog(emailOption)"
+                                           class="onoffswitch-checkbox" id="trinetServicesId" ng-true-value="'Yes'"
+                                           ng-false-value="'No'">
+                                    <label class="onoffswitch-label" for="trinetServicesId">
+                                        <span class="onoffswitch-inner small"></span>
+                                        <span class="onoffswitch-switch small"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 no-pad">
+                <div class="my-field">
+                    <h3 class="no-border" ng-bind="::translation.options.otherNotices"></h3>
+                </div>
+                <div class="myfield-content security clearfix">
+                    <div class="security-details marg-top-20 ">
+                        <div class="col-md-7 col-sm-6 marg-top">
+                            <span class="default-font" ng-bind="::translation.options.delivery"></span>
+                            <span class="left-pad default-font dark-grey">{{noticeLabel}}</span>
+                        </div>
+                        <div class="col-md-3 col-sm-4 no-pad">
+
+                            <button type="reset" name="Request Extended Leave" data-toggle="modal"
+                                    ng-click="openNoticeDelivery()" data-whatever="@mdo"
+                                    class="trinet-secondary-action-btn">{{noticeBtnLabel}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id ="annualWage" class="col-md-12 no-pad">
+                <div class="my-field">
+                    <h3 class="no-border">{{w2HeaderName}}</h3>
+                </div>
+                <div class="myfield-content security clearfix">
+                    <div class="security-details marg-top-20">
+                        <div class="col-md-7 col-sm-6 marg-top">
+                            <span class="default-font" ng-bind="::translation.options.delivery"></span>
+                            <span class="left-pad default-font dark-grey">{{w2Label}}</span>
+                        </div>
+                        <div class="col-md-3 col-sm-4 no-pad">
+                            <button type="reset" name="Request Extended Leave" ng-click="openW2Delivery()"
+                                    data-whatever="@mdo" class="trinet-secondary-action-btn">{{w2BtnLabel}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 no-pad">
+                <div class="my-field">
+                    <h3 class="no-border" ng-bind="::translation.options.workflowNotification"></h3>
+                </div>
+                <div class="myfield-content security clearfix" id="contactDetails">
+                    <div class="security-details marg-top-20">
+                        <div class="col-md-8 col-sm-6">
+                            <p class="default-font" ng-bind="::translation.options.receiveEmailItems"></p>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="onoff-toogle">
+
+                                <div class="onoffswitch ">
+                                    <input type="checkbox" name="onoffswitch_{{$index}}" ng-model="pendingWorkFlow"
+                                           ng-change="pendingWorkFlowDialog(pendingWorkFlow)"
+                                           class="onoffswitch-checkbox" id="pendingWorkFlowId" ng-true-value="'Yes'"
+                                           ng-false-value="'No'">
+                                    <label class="onoffswitch-label" for="pendingWorkFlowId">
+                                        <span class="onoffswitch-inner small"></span>
+                                        <span class="onoffswitch-switch small"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of Q&A section-->
+    </div>
+</div>
+</div>
+

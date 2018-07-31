@@ -1,0 +1,173 @@
+<form name="assignManagerForm" novalidate class="tn-change-request no-pad-imp  tn-modal-fullHeight tn-modal tn-form">
+    <div class="tn-modal-header">
+        <h4 class="profile-heading proxima-nova-semibold text-center"
+            ng-bind="::translation.assignmanager.change_req_details">
+        </h4>
+    </div>
+    <div class="tn-modal-boby col-sm-12">
+        <div class="col-sm-12 no-padding">
+            <div class="col-sm-6 col-xs-6">
+                <p class="proxima-nova-semibold font-light-gray"
+                   ng-bind="::translation.assignmanager.manager_change"></p>
+                <p>{{assignManagerchangeData.fullName}}</p>
+                <p>({{::translation.assignmanager.empId}}{{assignManagerchangeData.employeeId}})</p>
+            </div>
+            <div class="col-sm-6 col-xs-6">
+                <div>
+                    <label for="assignmanger_effDate">
+                        <p class="proxima-nova-semibold font-light-gray"
+                              ng-bind="::translation.assignmanager.effdate"></p>
+                    </label>
+                    {{maxDate}}
+                </div>
+                <div class="tn-calender-input" ng-controller="datePickerCtrl">
+                    <input type="text" class="form-control bg-white" readonly placeholder="MM/DD/YYYY"
+                           name="effDate" id="assignmanger_effDate" datepicker-popup="{{format}}"
+                           ng-model="newDate" is-open="opened" ng-required="true"
+                           min-date="currentDate" max-date="nextMonthValue"
+                           ng-change="changeDate(newDate)"
+                           datepicker-options="dateOptions" close-text="Close"
+                           ng-class="{'error-warning': effectiveDateRequired}"
+                           ng-blur="effectiveDateRequired=assignManagerForm.effDate.$error.required;">
+                    <span class="calendar-icon" ng-click="open($event)">
+                      <i class="icon-icon_calendar blue bold"></i>
+                    </span>
+                    <Validation condition="effectiveDateRequired"
+                                msg="{{translation.effective_date+'\n '+translation.is_required}}"></Validation>
+                </div>
+            </div>
+        </div>
+        <div class="pull-left tn-horizontal-divider"></div>
+        <div class="col-sm-12 no-padding">
+            <div class="col-sm-12 no-pad marg-top-15 marg-btm-10">
+                <div class="col-sm-6 col-xs-6">
+                    <p class="proxima-nova-semibold font-light-gray">
+                        <span ng-bind="::translation.assignmanager.position"></span>:
+                    </p>
+                    <p>
+                        <span>{{assignManagerchangeData.positionDesc}}</span>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <p class="proxima-nova-semibold font-light-gray">
+                        <span ng-bind="::translation.assignmanager.status"></span>:
+                    </p>
+                    <p>
+                        <span ng-if="assignManagerchangeData.employmentStatus=='A'" ng-bind="::translation.assignmanager.empActive"></span>
+                        <span ng-if="assignManagerchangeData.employmentStatus=='L'" ng-bind="::translation.assignmanager.empLeave"></span>
+                        <span ng-if="assignManagerchangeData.employmentStatus=='P'" ng-bind="::translation.assignmanager.empLeaveWithPay"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-12 no-pad marg-top-15 marg-btm-10">
+                <div class="col-sm-6 col-xs-6">
+                    <p class="proxima-nova-semibold font-light-gray">
+                        <span ng-bind="::translation.assignmanager.department"></span>:
+                    </p>
+                    <p>
+                        <span>{{assignManagerchangeData.departmentDesc}}</span>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <p class="proxima-nova-semibold font-light-gray">
+                        <span ng-bind="::translation.loc"></span>:
+                    </p>
+                    <p>
+                        <span>{{assignManagerchangeData.locationDesc}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="pull-left tn-horizontal-divider"></div>
+        <div class="col-sm-12">
+            <h5 class="col-sm-12 default-font no-pad profile-heading proxima-nova-semibold"
+                ng-bind="::translation.assignmanager.direct_manager">
+            </h5>
+            <div class="col-sm-12 no-pad marg-top marg-btm-10">
+                <p class="proxima-nova-semibold font-light-gray">
+                    <span  ng-bind="::translation.assignmanager.current_direct_manager"></span>
+                </p>
+                <p>
+                    <span>{{assignManagerchangeData.directManagerName}}</span>
+                    <!--<span class="check" ng-if="$parent.eTagRole"><input type="checkbox" id="directManager"  ng-model="checked" ng-click="selectedValue(item,'assignDirect',checked)"><label for="directManager">Assign To Me</label> </span>-->
+                </p>
+            </div>
+            <div class="col-sm-12 no-pad marg-btm-10">
+                <p class="proxima-nova-semibold font-slate"
+                   ng-bind="::translation.assignmanager.new_direct_manager">
+                </p>
+                <button ng-if="$parent.eTagRole"
+                        class="tn-currentSiteLinkButton margin-classic md-button md-trinet-theme md-ink-ripple tn-button-assign pull-left"
+                        type="button" id="assign-manager1" ng-click="assignToMeSelection('assignDirect')"
+                        ng-disabled="assignToMeDirect">
+                    {{::translation.assignmanager.assignToMe}}
+                </button>
+                <div class="tn-input-group-addon input-auto-complete" ng-show="$parent.adminRole">
+                    <input type="text" name="directManagerName" ng-model="$parent.directMangerQuery"
+                           ng-focus="resetSelectedValue('directManager')"
+                           ng-change="changeValue(directMangerQuery,'directManagerName','direct')">
+                    <span class="add-on add-on-right font-light-gray">
+                                <i class="icon-icon_unified_search"></i>
+                        </span>
+                    <ul class="dropdown-menu dropdown-menu-adjust" ng-class="{'block':displayBlock ==='direct'}"
+                        ng-if="displayBlock ==='direct'">
+                        <li ng-repeat="item in $parent.directManagerData"><a title="{{item.fullName}}"
+                            ng-click="selectedValue(item,'direct')">{{item.fullName}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pull-left tn-horizontal-divider"></div>
+        <div class="col-sm-12">
+            <h5 class="col-sm-12 no-pad profile-heading default-font proxima-nova-semibold"
+                ng-bind="::translation.assignmanager.work_supervisor"></h5>
+            <div class="col-sm-12 no-pad marg-top marg-btm-10">
+                <p class="proxima-nova-semibold font-light-gray"
+                   ng-bind="::translation.assignmanager.current_work_supervisor">
+                </p>
+                <p>
+                    <span>{{assignManagerchangeData.workSupervisorName}}</span>
+                    <!--<span class="check" ng-if="$parent.eTagRole"><input type="checkbox" id="supervisor" ng-model="checked" ng-click="selectedValue(item,'assignSuper',checked)"><label for="supervisor">Assign To Me</label> </span>-->
+
+                </p>
+            </div>
+            <div class="col-sm-12 no-pad marg-btm-10">
+                <p class="proxima-nova-semibold font-slate"
+                   ng-bind="::translation.assignmanager.new_work_supervisor">
+                </p>
+                <button ng-if="$parent.eTagRole"
+                        class="tn-currentSiteLinkButton margin-classic md-button md-trinet-theme md-ink-ripple tn-button-assign pull-left"
+                        type="button" id="assign-manager" ng-click="assignToMeSelection('assignWorkSuperDirect')"
+                        ng-disabled="assignToMeSupervisor">
+                    {{::translation.assignmanager.assignToMe}}
+                </button>
+                <div class="tn-input-group-addon input-auto-complete" ng-show="$parent.adminRole">
+                    <input type="text" name="supervisorName" ng-model="$parent.workSupervisorsQuery"
+                           ng-focus="resetSelectedValue('supervisor')"
+                           ng-change="changeValue($parent.workSupervisorsQuery,'supervisorName','super')">
+                    <span class="add-on add-on-right font-light-gray">
+                                <i class="icon-icon_unified_search"></i>
+                        </span>
+                    <ul class="dropdown-menu dropdown-menu-adjust" ng-class="{'block':displayBlock ==='super'}"
+                        ng-if="displayBlock ==='super'">
+                        <li ng-repeat="item in $parent.superDirectManagerData "><a title="{{item.fullName}}"
+                            ng-click="selectedValue(item,'super')">{{item.fullName}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="tn-modal-footer text-right">
+        <button ng-click="close();" id="cancelBtnId" name="cancel"
+                class="tn-button tn-cancel-button" ng-bind="::translation.cancel"
+                ng-bind="::translation.assignmanager.cancel">
+        </button>
+        <button type="submit" id="assignSaveBtnId" name="save" ng-click="updateData(assignManagerForm)"
+                ng-disabled="!assignManagerchangeData.isValid"
+                class="tn-button tn-action-button" ng-bind="::translation.assignmanager.submit">
+        </button>
+    </div>
+</form>

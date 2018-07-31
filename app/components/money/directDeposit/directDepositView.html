@@ -1,0 +1,40 @@
+<div id="border" class="my-money col-md-12 col-sm-12 no-pad col-sm-12">
+    <alert-view></alert-view>
+    <div class="col-md-9 col-md-9 no-pad">
+        <div class="clearfix">&nbsp;</div>
+        <h2 ng-bind="::translation.money.direct_deposit.dd_title"></h2>
+    </div>
+
+    <section id="DDsectionTab" class="tab section-default col-md-12 ">
+        <div class="mytab-heading title-bg fix">
+            <ul class="nav nav-pills nav-tabs">
+                <li id="secondaryEarnigTab" ng-class="{ active: selectedTab == 'earnings'}" active
+                    ng-click="activeLink('earnings')">
+                    <a class="money-tabs" ng-bind="::translation.money.direct_deposit.earnings"></a></li>
+                <li id="secondaryReimbursmentTab" ng-class="{  active:selectedTab == 'reimbursements'}"
+                    ng-click="activeLink('reimbursements')">
+                    <a class="money-tabs" ng-bind="::translation.money.direct_deposit.reimbursements"></a></li>
+                <li class="pull-right">
+                    <div class="text-right profile-view">
+
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+
+        <div ng-controller="screenSizeCtrl">
+            <div ng-init="getWindowDimensions()">
+                <div class="clearfix empty-head-adj-45"></div>
+                <div ng-if="selectedTab == 'earnings'">
+                    <div ng-include="'app/components/money/directDeposit/earnings/earningsView.html'"></div>
+                </div>
+                <div ng-if="selectedTab == 'reimbursements'">
+                    <div ng-include="'app/components/money/directDeposit/reimbursements/reimbersmentView.html'"></div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

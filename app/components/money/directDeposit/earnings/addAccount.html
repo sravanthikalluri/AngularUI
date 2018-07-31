@@ -1,0 +1,276 @@
+<form name="addAccountForm" class="add-new-account" id="add_account_form" ng-controller="newAccountCtrl" novalidate>
+    <alert-view></alert-view>
+    <div>
+        <div class="modal-header">
+            <!-- <span aria-hidden="true" class="pull-right hand large "
+            data-dismiss="modal" aria-label="Close">&times;</span> -->
+            <h4 class="modal-title marg-left" id="myModalLabel"
+                ng-bind="::translation.money.direct_deposit.add_account"></h4>
+        </div>
+        <div class="modal-body col-md-12">
+            <!--
+            <div class="col-md-12 no-pad-left">
+                <label class="col-md-3 col-sm-3 dd-add-account-pop-adj text-right small no-left-pad">*<span
+                        ng-bind="translation.name"></span>:</label>
+                <div class="col-md-4 col-sm-6 no-pad">
+                    <input id="addAccountName"
+                           type="text"
+                           class="form left-marg for-control"
+                           ng-model="addAccountData.accountName"
+                           ng-required="true"
+                           name="accountName"
+                           ng-class="{'error-warning': (isFormSubmited && validationPatterns.addAccount.focus.addAccountNameRequired) || validationPatterns.addAccount.focus.accountNamePattern || (isFormSubmited && validationPatterns.addAccount.blur.addAccountNameRequired) || validationPatterns.addAccount.blur.accountNamePattern}"
+                           ng-pattern="/^[a-zA-Z0-9 ]*$/"
+                           ng-maxlength='9'
+                           ng-trim="true"
+                           ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.addAccountNameRequired = false;validationPatterns.addAccount.blur.accountNamePattern = false;validationPatterns.addAccount.focus.addAccountNameRequired=addAccountForm.accountName.$error.required;validationPatterns.addAccount.focus.accountNamePattern = addAccountForm.accountName.$error.pattern"
+                           ng-blur="validationPatterns.addAccount.focus.addAccountNameRequired = false;validationPatterns.addAccount.focus.accountNamePattern = false;validationPatterns.addAccount.blur.addAccountNameRequired=addAccountForm.accountName.$error.required;validationPatterns.addAccount.blur.accountNamePattern = addAccountForm.accountName.$error.pattern;">
+                    <Validation condition="isFormSubmited && validationPatterns.addAccount.focus.addAccountNameRequired"
+                                msg="{{translation.required_field}}"
+                                class="add-account-tooltip-adj"></Validation>
+                    <Validation condition="validationPatterns.addAccount.focus.accountNamePattern"
+                                msg="Please enter numbers/letters and spaces only"
+                                class="add-account-tooltip-adj"></Validation>
+                </div>
+            </div>
+            -->
+            <div class="col-md-12 no-pad-left">
+                <label class="col-md-3 col-sm-3 dd-add-account-pop-adj text-right small no-left-pad"><span class="asterisk">*</span><span
+                        ng-bind="::translation.acc_type"></span>:</label>
+                <select ng-required="true"
+                        name="chooseAccountType"
+                        id="chooseAccountType"
+                        ng-change="addAccChange(addAccountData.accountType);validationPatterns.addAccount.focus.addAccountTypeRequired =  false;validationPatterns.addAccount.blur.addAccountTypeRequired=addAccountForm.chooseAccountType.$error.required;"
+                        ng-model="addAccountData.accountType"
+                        ng-class="{'error-warning': (isFormSubmited && validationPatterns.addAccount.focus.addAccountTypeRequired) || (isFormSubmited &&validationPatterns.addAccount.blur.addAccountTypeRequired)}"
+                        ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.addAccountTypeRequired =  false;validationPatterns.addAccount.focus.addAccountTypeRequired=addAccountForm.chooseAccountType.$error.required;"
+                        ng-click="validationPatterns.addAccount.focus.addAccountTypeRequired =  false;validationPatterns.addAccount.blur.addAccountTypeRequired=addAccountForm.chooseAccountType.$error.required;"
+                        ng-blur="validationPatterns.addAccount.focus.addAccountTypeRequired =  false;validationPatterns.addAccount.blur.addAccountTypeRequired=addAccountForm.chooseAccountType.$error.required;"
+                        class="selectStyle col-md-3 col-sm-5 left-marg hand"
+                        ng-options="option.accountTypeChanged.value for option in addAccountsListData">
+                    <option value="" default selected>{{::translation.money.direct_deposit.selectAccountType}}</option>
+                    <!--   <option id="newCheck" value="Checking">New Checking Account</option>
+                     <option id="newsave" value="Savings">New Savings Account</option>-->
+                </select>
+                <div class="addAccountType">
+                    <Validation condition="isFormSubmited && validationPatterns.addAccount.focus.addAccountTypeRequired"
+                                msg="{{translation.required_field}}"
+                                class="add-account-tooltip-adj"></Validation>
+                </div>
+                <label class="col-md-6 small no-right-pad hidden"><span class="icon-icon_checkmarkwithbox small"></span><span
+                        ng-bind="::translation.money.direct_deposit.remaining_amt"></span></label>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-9" ng-hide="showImg">
+                <p class="ex-small"></p>
+                <img id="cardImage" class="img-responsive" src="assets/images/my_nums.jpg">
+                <p class="ex-small" ng-bind="::translation.money.direct_deposit.no_reverse"></p>
+            </div>
+            <div class="col-md-12 no-pad">
+                <div ng-if="!canadianFields" class="col-md-6 col-sm-6 no-pad">
+                    <div class="col-md-4 col-sm-4 no-pad">
+                        <label class="small top-margin text-left"><span class="asterisk">*</span><span
+                                ng-bind="::translation.money.direct_deposit.routing_number"></span>:</label>
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        <input id="newroutingnum"
+                               only-digits
+                               ng-trim="false"
+                               ng-minLength="9"
+                               maxlength='9'
+                               type="text"
+                               ng-model="addAccountData.routingNumber"
+                               name="routingNumber"
+                               ng-pattern="/^[0-9\.]+$/"
+                               class="form for-control check-inputs medium"
+                               ng-class="{'error-warning': (isFormSubmited && validationPatterns.addAccount.focus.routingNumberRequired) || validationPatterns.addAccount.focus.smallRoutingNumberRequired || validationPatterns.addAccount.focus.routingNumberPattern || validationPatterns.addAccount.focus.transitRouting || (isFormSubmited && validationPatterns.addAccount.blur.routingNumberRequired) || validationPatterns.addAccount.blur.smallRoutingNumberRequired || validationPatterns.addAccount.blur.routingNumberPattern || validationPatterns.addAccount.blur.transitRouting}"
+                               ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.routingNumberRequired = false;validationPatterns.addAccount.blur.smallRoutingNumberRequired = false; validationPatterns.addAccount.blur.routingNumberPattern = false;validationPatterns.addAccount.blur.transitRouting = false;validationPatterns.addAccount.focus.routingNumberRequired=addAccountForm.routingNumber.$error.required;validationPatterns.addAccount.focus.smallRoutingNumberRequired= (!validationPatterns.addAccount.focus.routingNumberRequired) &&   addAccountForm.routingNumber.$error.minlength;validationPatterns.addAccount.focus.routingNumberPattern = (!validationPatterns.addAccount.focus.routingNumberPattern && !validationPatterns.addAccount.focus.routingNumberRequired ) && addAccountForm.routingNumber.$error.pattern;validationPatterns.addAccount.focus.transitRouting= (!validationPatterns.addAccount.focus.routingNumberPattern && !validationPatterns.addAccount.focus.routingNumberRequired && !validationPatterns.addAccount.focus.smallRoutingNumberRequired ) && verifyRoutingNum(addAccountData.routingNumber)"
+                               ng-blur="validationPatterns.addAccount.focus.routingNumberRequired = false;validationPatterns.addAccount.focus.smallRoutingNumberRequired = false; validationPatterns.addAccount.focus.routingNumberPattern = false;validationPatterns.addAccount.focus.transitRouting = false;validationPatterns.addAccount.blur.routingNumberRequired=addAccountForm.routingNumber.$error.required;validationPatterns.addAccount.blur.smallRoutingNumberRequired=(!validationPatterns.addAccount.blur.routingNumberRequired )&&  addAccountForm.routingNumber.$error.minlength;validationPatterns.addAccount.blur.routingNumberPattern = (!validationPatterns.addAccount.blur.routingNumberPattern && !validationPatterns.addAccount.blur.routingNumberRequired ) && addAccountForm.routingNumber.$error.pattern;validationPatterns.addAccount.blur.transitRouting= (!validationPatterns.addAccount.blur.routingNumberPattern && !validationPatterns.addAccount.blur.routingNumberRequired && !validationPatterns.addAccount.blur.smallRoutingNumberRequired ) && verifyRoutingNum(addAccountData.routingNumber)"
+                               ng-required="true">
+                        <Validation
+                                condition="isFormSubmited && validationPatterns.addAccount.focus.routingNumberRequired"
+                                msg="{{translation.required_field}}"></Validation>
+                        <Validation
+                                condition="!validationPatterns.addAccount.focus.routingNumberRequired &&  validationPatterns.addAccount.focus.routingNumberPattern"
+                                msg="{{translation.money.direct_deposit.validations.numbersOnly}}"
+                                class="add-account-tooltip-adj"></Validation>
+                        <Validation
+                                condition="(!validationPatterns.addAccount.focus.routingNumberPattern && !validationPatterns.addAccount.focus.routingNumberRequired ) && validationPatterns.addAccount.focus.smallRoutingNumberRequired"
+                                msg="{{translation.money.direct_deposit.validations.minRoutingNumber}}"></Validation>
+
+                        <Validation
+                                condition="(!validationPatterns.addAccount.focus.routingNumberPattern && !validationPatterns.addAccount.focus.routingNumberRequired && !validationPatterns.addAccount.focus.smallRoutingNumberRequired ) && validationPatterns.addAccount.focus.transitRouting"
+                                msg="{{msg}}"
+                                class="add-account-tooltip-adj"></Validation>
+                    </div>
+                </div>
+                <div ng-if="canadianFields" class="col-md-3 col-sm-3 no-pad branchid-tooltip-adjust">
+                    <label class="small top-margin text-left"><span class="asterisk">*</span><span
+                            ng-bind="::translation.money.direct_deposit.branch_id"></span>:</label>
+                    <input id="branchID" maxLength="5" minLength='5' ng-model="addAccountData.branchId" type="text"
+                           ng-pattern="/^[0-9\.]+$/"
+                           only-digits
+                           ng-trim="false"
+                           name="branchId"
+                           ng-class="{'error-warning': (isFormSubmited && validationPatterns.addAccount.focus.branchIdRequired) || validationPatterns.addAccount.focus.branchIdPattern ||  (isFormSubmited && validationPatterns.addAccount.blur.branchIdRequired) || validationPatterns.addAccount.blur.branchIdPattern || validationPatterns.addAccount.focus.smallBranchIdRequired || validationPatterns.addAccount.blur.smallBranchIdRequired }"
+                           ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.branchIdRequired = false;validationPatterns.addAccount.blur.branchIdPattern = false;validationPatterns.addAccount.blur.smallBranchIdRequired =false; validationPatterns.addAccount.focus.branchIdRequired=addAccountForm.branchId.$error.required;validationPatterns.addAccount.focus.branchIdPattern= addAccountForm.branchId.$error.pattern;validationPatterns.addAccount.focus.smallBranchIdRequired = addAccountForm.branchId.$error.minlength"
+                           ng-blur="validationPatterns.addAccount.focus.branchIdRequired = false;validationPatterns.addAccount.focus.branchIdPattern = false;validationPatterns.addAccount.focus.smallBranchIdRequired =false;validationPatterns.addAccount.blur.branchIdRequired=addAccountForm.branchId.$error.required;validationPatterns.addAccount.blur.branchIdPattern= addAccountForm.branchId.$error.pattern;validationPatterns.addAccount.blur.smallBranchIdRequired = addAccountForm.branchId.$error.minlength"
+                           class="form for-control check-inputs medium textbox-width"
+                           ng-required="true">
+
+                    <Validation condition="isFormSubmited && validationPatterns.addAccount.focus.branchIdRequired"
+                                msg="{{translation.required_field}}"></Validation>
+
+                    <Validation condition="!validationPatterns.addAccount.focus.branchIdRequired && validationPatterns.addAccount.focus.smallBranchIdRequired"
+                                msg="{{translation.money.direct_deposit.validations.minBranchId}}"></Validation>
+
+                    <Validation condition="(!validationPatterns.addAccount.focus.branchIdRequired && !validationPatterns.addAccount.focus.smallBranchIdRequired) && validationPatterns.addAccount.focus.branchIdPattern"
+                                msg="{{translation.money.direct_deposit.validations.branchIdPattern}}"
+                                class="add-account-tooltip-adj"></Validation>
+                </div>
+                <div ng-if="canadianFields" class="col-md-3 col-sm-3 no-pad bankid-tooltip-adjust">
+                    <label class="small top-margin text-left"><span class="asterisk">*</span><span
+                            ng-bind="::translation.money.direct_deposit.bank_id"></span>:</label>
+                    <input id="bankID" maxLength='3' minLength='3' type="text" ng-model="addAccountData.bankId"
+                           ng-pattern="/^[0-9\.]+$/"
+                           only-digits
+                           ng-trim="false"
+                           name="bankId"
+                           class="form for-control check-inputs medium textbox-width"
+                           ng-class="{'error-warning': (isFormSubmited && validationPatterns.addAccount.focus.bankIdRequired) || validationPatterns.addAccount.focus.bankIdPattern ||   (isFormSubmited && validationPatterns.addAccount.blur.bankIdRequired) || validationPatterns.addAccount.blur.bankIdPattern || validationPatterns.addAccount.focus.smallBankIdRequired || validationPatterns.addAccount.blur.smallBankIdRequired}"
+                           ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.bankIdRequired = false;validationPatterns.addAccount.blur.smallBankIdRequired = false;validationPatterns.addAccount.blur.bankIdPattern = false;validationPatterns.addAccount.focus.bankIdRequired=addAccountForm.bankId.$error.required;validationPatterns.addAccount.focus.bankIdPattern= addAccountForm.bankId.$error.pattern;validationPatterns.addAccount.focus.smallBankIdRequired= addAccountForm.bankId.$error.minlength"
+                           ng-blur="validationPatterns.addAccount.focus.bankIdRequired = false;validationPatterns.addAccount.focus.bankIdRequired = false;validationPatterns.addAccount.focus.bankIdPattern = false;validationPatterns.addAccount.blur.bankIdRequired=addAccountForm.bankId.$error.required;validationPatterns.addAccount.blur.bankIdPattern= addAccountForm.bankId.$error.pattern;validationPatterns.addAccount.blur.smallBankIdRequired = addAccountForm.bankId.$error.minlength"
+                           ng-required="true">
+
+                    <Validation condition="isFormSubmited && validationPatterns.addAccount.focus.bankIdRequired"
+                                msg="{{translation.required_field}}"></Validation>
+
+                    <Validation condition="!validationPatterns.addAccount.focus.bankIdRequired && validationPatterns.addAccount.focus.smallBankIdRequired"
+                                msg="{{translation.money.direct_deposit.validations.minBankId}}"></Validation>
+
+                    <Validation condition="(!validationPatterns.addAccount.focus.bankIdRequired && !validationPatterns.addAccount.focus.smallBankIdRequired) &&  validationPatterns.addAccount.focus.bankIdPattern"
+                                msg="{{translation.money.direct_deposit.validations.bankIdPattern}}"
+                                class="add-account-tooltip-adj"></Validation>
+                </div>
+
+                <!--<label class="col-md-3 col-sm-3 top-5 text-right small no-left-pad">*<span ng-bind="translation.money.direct_deposit.routing_no"></span>:</label>
+                <div class="col-md-3 col-sm-3 no-pad routing-amount"
+                     ng-class="{'error-warning': routingNumberRequired}">
+                     <input id="routingNumID" type="text" name="routingNumber"
+                            ng-model="addAccountData.routingNumber"
+                            class="form form-control check-inputs medium"
+                            ng-minLength="9" maxLength="9"  onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode== 8 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode== 8' ng-required="true"
+                            ng-blur="routingNumberRequired=addAccountForm.routingNumber.$error.required;smallRoutingNumber=addAccountForm.routingNumber.$error.minlength;">
+                    <Validation condition="routingNumberRequired" msg="{{translation.routing_num1+'\n '+translation.routing_num2}}" class="dd-routing-no"></Validation>
+                    <Validation condition="smallRoutingNumber" msg="{{translation.invalidRouting}}"></Validation>
+                </div>-->
+
+                <div class="col-md-6 col-sm-6 no-pad">
+                    <div class="col-md-4 col-sm-4 no-pad">
+                        <label class="small top-margin text-left"><span class="asterisk">*</span><span
+                                ng-bind="::translation.money.direct_deposit.acc_no"></span>:</label>
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        <input id="AccountNumber"
+                               name="accountNumber"
+                               only-digits
+                               ng-trim="false"
+                               type="text"
+                               ng-model="addAccountData.accountNumber"
+                               ng-class="{'error-warning': (isFormSubmited && validationPatterns.addAccount.focus.accountNumberRequired) || (isFormSubmited && validationPatterns.addAccount.blur.accountNumberRequired)  }"
+                               ng-required="true"
+                               maxlength="17"
+                               ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.accountNumberRequired = false;validationPatterns.addAccount.focus.accountNumberRequired=addAccountForm.accountNumber.$error.required;"
+                               ng-blur="validationPatterns.addAccount.focus.accountNumberRequired = false;validationPatterns.addAccount.blur.accountNumberRequired=addAccountForm.accountNumber.$error.required;"
+                               class="form for-control check-inputs medium">
+                        <Validation
+                                condition="isFormSubmited && validationPatterns.addAccount.focus.accountNumberRequired"
+                                msg="{{translation.required_field}}"></Validation>
+
+                        <!--<Validation condition="smallAccountNumber" msg="{{translation.invalidAccount}}"></Validation>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 no-pad">
+                <div class="col-md-3 col-sm-3  text-right">
+                    <label class="small top-margin text-left"><span ng-bind="::translation.amount"></span>:</label>
+                </div>
+                <div class="col-md-3 col-sm-3 no-pad direct-deposit-adj top-2">
+                    <!-- <span class="icon-icon_radiobutton_select small"></span> -->
+                    <input id="dollorAmount" type="radio" name="amountType" value="dollar"
+                           ng-change="getAmountType('amount');newChange()" ng-model="addAccountData.amountType"
+                           class="no-marg"
+                           ng-checked="dollarRadioChecked">
+
+                    <label class="small top-margin text-left"> $ <span
+                            ng-bind="::translation.money.direct_deposit.dollar_value"></span></label>
+                </div>
+
+                <div class="col-md-5 col-sm-5 direct-deposit-adj top-2">
+                    <!-- <span class=" icon-icon_radiobutton_empty small"></span> -->
+                    <input id="percentId" type="radio" name="amountType"
+                           ng-change="getAmountType('percentage');newChange()" value="percentage"
+                           ng-model="addAccountData.amountType"
+                           ng-checked="percentRadioChecked">
+                    <label class="small top-margin text-left"> % <span
+                            ng-bind="::translation.money.direct_deposit.percent_net"></span></label>
+                </div>
+                <div class="col-md-6 col-sm-6 pull-right " ng-show="addAccountData.isAmountType">
+                    <div class="col-md-4 col-lg-4 pad-5">
+                        <input id="percentValue"
+                               class="form-control small"
+                               only-decimals
+                               ng-trim="false"
+                               ng-class="{'error-warning': validationPatterns.addAccount.focus.percentageValueReq || validationPatterns.addAccount.blur.percentageValueReq}"
+                               ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.percentageValueReq = false;validationPatterns.addAccount.focus.percentageValueReq = addAccountData.percentage > percentageShould"
+                               ng-blur="validationPatterns.addAccount.focus.percentageValueReq = false;validationPatterns.addAccount.blur.percentageValueReq =  addAccountData.percentage > percentageShould"
+                               ng-model="addAccountData.percentage"
+                               name="percentageAmount"
+                               maxlength="3">
+                        <Validation condition="validationPatterns.addAccount.focus.percentageValueReq"
+                                    msg="{{translation.money.direct_deposit.validations.percentageValue}}"></Validation>
+                    </div>
+                    <div class="col-md-2 col-lg-2 no-pad medium ">%</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-md-offset-3 no-pad col-sm-offset-3"
+                     ng-hide="addAccountData.isAmountType">
+                    <div class="medium pull-left"><span>$&nbsp;&nbsp;</span></div>
+                    <div class="col-md-4 col-lg-4 no-pad">
+
+                        <input id="dollorId"
+                               class="form-control small"
+                               only-decimals
+                               ng-trim="false"
+                               ng-class="{'error-warning': validationPatterns.addAccount.blur.dollarValueRequired || validationPatterns.addAccount.focus.dollarValueRequired || (isFormSubmited && validationPatterns.addAccount.blur.dollarValueZeroRequired) || (isFormSubmited && validationPatterns.addAccount.focus.dollarValueZeroRequired)}"
+                               ng-model="addAccountData.amount"
+                               name="dollarAmount"
+                               placeholder="0.00"
+                               format="decimal"
+                               ng-focus="onFocus('addAccount',validationPatterns.addAccount.focus);validationPatterns.addAccount.blur.dollarValueRequired = false;validationPatterns.addAccount.blur.dollarValueZeroRequired = false;validationPatterns.addAccount.focus.dollarValueZeroRequired = addAccountData.amount <= 0;  validationPatterns.addAccount.focus.dollarValueRequired = addAccountData.amount > checkRemAmount"
+                               ng-blur="validationPatterns.addAccount.focus.dollarValueRequired = false;validationPatterns.addAccount.focus.dollarValueZeroRequired = false;validationPatterns.addAccount.blur.dollarValueZeroRequired = addAccountData.amount <= 0;validationPatterns.addAccount.blur.dollarValueRequired = addAccountData.amount > checkRemAmount">
+
+                        <Validation condition="isFormSubmited && validationPatterns.addAccount.focus.dollarValueZeroRequired"
+                                    msg="{{translation.money.direct_deposit.validations.dollarZeroValue}} "></Validation>
+                        <Validation condition="validationPatterns.addAccount.focus.dollarValueRequired"
+                                    msg="{{translation.money.direct_deposit.validations.dollarValue}}"></Validation>
+
+                        <!--<Validation condition="percentValueRequired" msg="{{translation.amount_num1+'\n '+translation.amount_num2}}"></Validation>-->
+                        <!-- ng-class="{'error-warning': percentValueRequired} "
+                               ng-blur="percentValueRequired=addAccountForm.percentAmount.$error.required;" required -->
+                        <!--<input class="form-control small"  ng-model="addAccountData.amount" id="dollarValue" ng-change="validateDollorValue(addAccountData.amount)" onkeypress='return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46 || event.charCode== 8 )'>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer clearfix no-pad">
+            <button id="saveBtn" name="save" class="trinet-primary-action-btn" type="submit"
+                    ng-click="validateAddAccount('add')" type="reset" ng-bind="::translation.add"></button>
+            <button id="cancelBtn" class="trinet-secondary-action-btn" aria-hidden="true" aria-label="Close"
+                    ng-click="closeModal()" type="" ng-bind="::translation.cancel"></button>
+        </div>
+    </div>
+</form>
+
+

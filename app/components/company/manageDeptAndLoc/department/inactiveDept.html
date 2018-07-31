@@ -1,0 +1,20 @@
+<!-- This is page is used to display inactive department data
+Author: Raghavendra Kumar Bonthala
+ -->
+<div class="" id="inactiveDept" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+
+    <div class="modal-header">
+        <h4 class="modal-title"> {{::translation.manageDeptAndLoc.makeDepartmentInactive}}</h4>
+    </div>
+    <div class="modal-body">
+            <p>
+                {{::translation.manageDeptAndLoc.assignedEmployees}}. {{::translation.manageDeptAndLoc.reassignEmployees}}            </p>
+        <div class="block text-center">
+            <button class="trinet-primary-action-btn adjustBtn"ng-click="assignToAnotherEmployee()">{{::translation.manageDeptAndLoc.assigntoOneDepartment}}</button>
+            <button class="trinet-secondary-action-btn adjustBtn">{{::translation.manageDeptAndLoc.assigntoMultipleDepartments}}</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>

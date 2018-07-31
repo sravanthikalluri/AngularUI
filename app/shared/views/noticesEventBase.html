@@ -1,0 +1,22 @@
+<md-card class="notice-event-base" ng-if="noticeEventData.length > 0">
+    <md-card-content>
+        <div class="notices-card" ng-repeat="event  in noticeEventData" ng-if="noticeEventData.length > 0">
+            <div class="notices-card-content">
+                <h3 class="notices-card-title">{{event.title}}</h3>
+                <p class="notices-card-date" ng-if="showDate && event.endDate"> {{event.effectiveDate | date:'MMM dd, yyyy'}} - {{event.endDate| date:'MMM dd, yyyy'}}</p>
+                <p class="notices-card-desc" ng-bind-html="event.body">
+                </p>
+                <div class="text-center">
+                    <a class="tn-action-link" ng-if="!event.isAle" ng-href="{{event.redirectUrl}}" target="_blank">{{event.urlText}}</a>
+                    <a class="tn-action-link" ng-if="event.isAle" ui-sref="app.main.benefits.aleSelection">{{event.urlText}}</a>
+                </div>
+            </div>
+        </div>
+    </md-card-content>
+
+    <md-card-content ng-if="!noticeEventData">
+        <div  class="announcements-card">
+            <span class="announcements-card-date">No important notices at this time</span>
+        </div>
+    </md-card-content>
+</md-card>

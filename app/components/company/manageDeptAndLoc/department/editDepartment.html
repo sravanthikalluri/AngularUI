@@ -1,0 +1,92 @@
+<!-- This is page is used to Edit Department details
+Author: Raghavendra Kumar Bonthala
+ -->
+
+<div class="tn-modal tn-emp-generate-form tn-modal-fullHeight" id="exampleModal1" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal1Label">
+
+    <div class="tn-modal-header">
+        <h4 class="proxima-nova-semibold text-center" id="exampleModal1Label"> {{::translation.edit}}&nbsp;{{::translation.department}}</h4>
+    </div>
+    <form class="tn-form" name="editDepartmentForm" valid-submit="sendForm()" novalidate>
+        <div class="tn-modal-body col-sm-12">
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <label>{{translation.manageDeptAndLoc.effectiveDate}}</label>
+                </div>
+                <div class="tn-calender-input" ng-controller="datePickerCtrl">
+                    <input type="text" class="form-control bg-white" readonly placeholder="MM/DD/YYYY"
+                           name="deptEffDate" id="editDepartmentDatePicker" datepicker-popup="{{format}}"
+                           ng-model="editDepartment.effectiveDate" is-open="opened" ng-required="true"
+                           min-date="pastMonthValue" max-date="nextMonthValue"
+                           datepicker-options="dateOptions" close-text="Close">
+                    <span class="calendar-icon" ng-click="open($event)">
+                          <i class="icon-icon_calendar blue bold"></i>
+                        </span>
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <h5>{{::translation.departmenttab.id}}:</h5></div>
+                <div>
+                    <span>{{editDepartment.deptId}}</span>
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div>
+                    <h5>{{::translation.departmenttab.code}}:</h5></div>
+                <div>
+                    <span>{{editDepartment.deptCode}}</span>
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label for="goalAmountId">{{::translation.departmenttab.name}}:</label>
+                </div>
+                <div>
+                    <input type="text" id="goalAmountId" name="departmentname" ng-model="editDepartment.deptName"
+                           ng-class="{'error-warning': goalAmountRequired}"
+                           ng-required="true" maxlength="30"
+                           class="form form-control"
+                           validation>
+                    <Validation condition="departmentnameRequired"
+                                msg="{{translation.departmenttab.name+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+
+            <div class="col-sm-12 no-padding-left margin-bottom">
+                <div class="required-field">
+                    <label for="earnAmountId">{{::translation.departmenttab.description}}:</label>
+                </div>
+                <div>
+                    <input type="text" id="earnAmountId" name="departmentdescription"
+                           ng-model='editDepartment.shortDesc'
+                           ng-class="{'error-warning': earnAmountRequired}"
+                           ng-required="true" maxlength="10"
+                           class="form goal-amount-create-new"
+                           validation>
+                    <Validation condition="departmentdescriptionRequired"
+                                msg="{{translation.departmenttab.description+'\n '+translation.is_required}}"
+                                class="error-msg-pos"></Validation>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer text-right">
+            <button type="button"
+                    ng-disabled="editDepartmentForm.$invalid"
+                    class="tn-button tn-action-button"
+                    data-dismiss="modal" ng-bind="::translation.save" id="validateDataId"
+                    ng-click="closeDialog(editDepartment)"></button>
+            <!--ng-class="{'tn-button tn-action-button': editDepartmentForm.$invalid, 'tn-button tn-action-button': !editDepartmentForm.$invalid}"-->
+            <button type="button" class="tn-button tn-cancel-button" id="closePanelId"
+                    ng-bind="::translation.cancel" ng-click="closePanel()"></button>
+        </div>
+    </form>
+
+</div>

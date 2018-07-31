@@ -1,0 +1,19 @@
+[
+  {
+    "emplyoeeName": "Aparna",
+    "empId": "0000789546",
+    "beginDate": "2015-01-08",
+    "endDate": "2015-03-09",
+    "payFrequency": "1st & 2nd Payrolls of Month",
+    "earnAmount": "$1500.00"
+  },
+  {
+    "emplyoeeName": "Harika",
+    "empId": "0000789545",
+    "beginDate": "2015-02-08",
+    "endDate": "2015-05-07",
+    "payFrequency": "3rd & 4th Payrolls of Month",
+    "earnAmount": "$1500.00"
+  }
+]
+

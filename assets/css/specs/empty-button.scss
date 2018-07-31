@@ -1,0 +1,131 @@
+@import '../global';
+
+$Black: #000;
+$White: #FFF;
+$Trinet-dark-gray: #494949;
+$Trinet-gray: #888888;
+$Lighter-gray: #B5B5B5;
+$Background: #f2f2f2;
+$White: #ffffff;
+$Trinet-light-gray: #c0c0c0;
+
+$Trinet-dark-blue: #0039A6;
+$Trinet-blue: #0073CF;
+$Trinet-light-blue: #3DB7E4;
+$Lighter-blue: #D9EAF8;
+
+$Trinet-dark-orange: #D55C19;
+$Trinet-orange: #E37222;
+$Trinet-light-orange: #EEAF30;
+
+$Trinet-dark-green: #739600;
+$Trinet-green: #69BE28;
+$Trinet-dark-red: #9E3039;
+
+$Background-main: #e1e1e1;
+
+$margin: 10px;
+
+$padding: 10px;
+
+//fonts
+$font_0: Trebuchet;
+$font_1: Arial;
+$font_2: sans-serif;
+
+//@extend-elements
+//original selectors
+//.yesNoswitch-inner:before, .yesNoswitch-inner:after
+.toggle-button-prop {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 30px;
+  padding: 0;
+  line-height: 21px;
+  font-size: 10px;
+  color: $White;
+  font-family: $font_0, $font_1, $font_2;
+  font-weight: bold;
+  //Instead of the line below you could use @includebox-sizing($bs)
+  box-sizing: border-box;
+}
+
+.emptyswitch {
+  position: relative;
+  width: 60px;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.emptyswitch-checkbox {
+  display: none;
+  &:checked + .emptyswitch-label {
+    .emptyswitch-inner {
+      margin-left: 0;
+    }
+    .emptyswitch-switch {
+      right: 0;
+    }
+  }
+}
+
+.emptyswitch-label {
+  height: 20px;
+  width: 60px;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  /*border: 2px solid $color_mountain_mist_approx;*/
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 20px;
+}
+
+.emptyswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: margin 0.3s ease-in 0s;
+  &:before {
+    @extend .toggle-button-prop;
+    content: "";
+    padding-left: 3px;
+    background-color: $Trinet-green;
+    color: $White;
+    border-radius: 10px 0px 0px 10px;
+    -moz-border-radius: 10px 0px 0px 10px;
+    -webkit-border-radius: 10px 0px 0px 10px;
+    height: 20px;
+  }
+  &:after {
+    @extend .toggle-button-prop;
+    content: "";
+    padding-right: 6px;
+    background-color: $Trinet-gray;
+    color: $White;
+    text-align: left;
+    left: 0;
+    border-radius: 0px 10px 10px 0px;
+    -moz-border-radius: 0px 10px 10px 0px;
+    -webkit-border-radius: 0px 10px 10px 0px;
+    height: 20px;
+  }
+}
+
+.emptyswitch-switch {
+  display: block;
+  width: 14px;
+  margin: 2px;
+  background: $White;
+  border: 2px solid $White;
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 31px;
+  //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all 0.3s ease-in 0s;
+}
+	

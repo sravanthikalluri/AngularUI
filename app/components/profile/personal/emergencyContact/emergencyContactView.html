@@ -1,0 +1,21 @@
+<div class="tn-emergency-section" ng-controller="emergencyContactCtrl">
+    <div class="heading-section ">
+        <h4 class="bold profile-heading" ng-bind="::translation.profile_personal.emergency_contact"></h4>
+        <button ng-if="emergencyContactData.length" class="tn-edit-button tn-button" ng-bind="::translation.profile_personal.add_new_contact"
+                ng-class="$parent.canAdd('emergencycontact') ? 'visible-hide' : ''"
+                ng-click="addNewEmergencyContact()">
+        </button>
+    </div>
+    <div class="profile-section-view" data-ng-if="!emergencyContactsSection">
+        <div class="employee-Details" ng-class="$first ? 'emergency-first-card' : ''"
+             ng-repeat="emergencyData in emergencyContactData">
+            <emergency-card emergencyData="emergencyData"></emergency-card>
+        </div>
+    </div>
+    <div data-ng-if="emergencyContactsSection || emergencyContactData.length == 0" class="no-records">
+        <h4 class="proxima-nova-semibold no-data">Ready to enter your emergency contact?</h4>
+        <button class="text-center proxima-nova-semibold tn-button tn-action-button"
+                ng-class="$parent.canAdd('emergencycontact') ? 'visible-hide' : ''"
+                ng-click="addNewEmergencyContact()" ng-bind="::translation.security.newContact"></button>
+    </div>
+</div>

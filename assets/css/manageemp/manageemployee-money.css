@@ -1,0 +1,669 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .manage-employee .employee-tabs-head, .manage-employee .table-content-block, .organisation-navigation, .payroll-estimation, .claculator-titles, .claculator-titles ul, .retirement-plan-enrolment, .retirement-plan-enrolment .no-enrolment, .modal-content .modal-body, .background-bg {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block, .claculator-titles ul li, .retirement-block a.elected, .retirement-block a.waived, .modes ul li, .modes ul li .calander-list, .modes ul li .list-view, .modes ul li .doc-print {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.manage-employee h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.manage-employee table:not(.dropdown-menu table) {
+    margin: 0 !important;
+}
+
+.manage-employee table:not(.dropdown-menu table) thead {
+    border-bottom: 5px solid #0073CF;
+    border-top: 5px solid #0073CF;
+}
+
+.manage-employee table:not(.dropdown-menu table) thead tr th {
+    font-size: 14px;
+    padding: 3px 5px;
+}
+
+.manage-employee table:not(.dropdown-menu table) tbody tr td {
+    font-size: 14px;
+    padding: 5px 8px !important;
+}
+
+.manage-employee table.no-table-border tbody tr {
+    border-bottom: 0px !important;
+}
+
+.manage-employee table.no-table-border tbody tr td {
+    padding: 10px !important;
+}
+
+.manage-employee .employee-tabs-head {
+    border-bottom: 1px solid #888888;
+    margin-bottom: 5px;
+}
+
+.manage-employee .employee-tabs-head ul.panel-tabs {
+    margin-top: 7px;
+}
+
+.manage-employee .table-content-block {
+    overflow-y: auto;
+    max-height: 380px;
+}
+
+.manage-employee .search-box {
+    background: #fff;
+    border: 1px solid #494949;
+    width: 100%;
+}
+
+.manage-employee .search-box input {
+    width: 80% !important;
+    color: black;
+}
+
+.money-tab .panel-default a .panel-heading {
+    color: #333333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    border-bottom: 1px solid #888888;
+}
+
+.money-tab .panel-group .panel {
+    border: none;
+    border-bottom: 1px solid #888888;
+}
+
+.money-tab a.trinet-primary-action-btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    line-height: 22px;
+    margin: 0;
+}
+
+.money-tab .transaction-heading p {
+    font-size: 14px;
+    color: #494949;
+    padding-top: 25px;
+    margin: 0;
+}
+
+.organisation-navigation {
+    padding-bottom: 20px;
+}
+
+.organisation-navigation [class*="icon-"] {
+    position: relative;
+    top: 5px;
+    padding-right: 5px;
+    font-size: 25px !important;
+    color: #0039A6 !important;
+}
+
+.organisation-navigation a {
+    font-size: 13px;
+    color: #0039A6 !important;
+    padding-top: 4px;
+    font-weight: 600;
+}
+
+.end-process-btn {
+    cursor: pointer;
+}
+
+table.end-payment-popup tbody tr td {
+    border: none !important;
+    padding: 10px 5px 0 0 !important;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+table.end-payment-popup tbody tr td small.tag {
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+    float: right;
+}
+
+.popup-input {
+    width: 125px;
+}
+
+.calendar-main .popup-input {
+    width: 73%;
+}
+.goal-amount-create-new {
+    width: 61%;
+}
+
+.estimation-tool-nav .dropdown-menu {
+    left: -100px;
+}
+
+.estimation-tool-nav .calculator-drop-down {
+    padding: 0;
+    float: left;
+    top: -18px;
+    padding-left: 5px;
+}
+
+.estimation-tool-nav .icon-icon_Calculator {
+    position: relative;
+    top: 5px;
+}
+
+.estimation-tool-nav a {
+    color: #0073CF;
+    font-size: 12px;
+}
+
+.estimation-tool-nav a .icon-icon_Dropdown_Arrow {
+    font-size: 12px;
+    top: 8px;
+    position: relative;
+}
+
+.estimation-tool-nav a:hover, .estimation-tool-nav a:focus, .estimation-tool-nav a:visited {
+    background: none;
+}
+
+.view-details {
+    display: none;
+}
+
+.manage-table {
+    margin-top: 10px;
+}
+
+.manage-table th {
+    border-left: 1px solid;
+    border-bottom: none !important;
+    background: #0073CF;
+    color: #FFF;
+    font-weight: 500;
+}
+
+.manage-table th:last-child {
+    width: 15%;
+}
+
+.manage-table th:first-child {
+    border: none !important;
+}
+
+.manage-table .icon-icon_filter {
+    font-size: 18px;
+}
+
+.manage-table td {
+    padding: 15px 8px;
+    border: none !important;
+}
+
+.manage-table td span {
+    padding: 0 10px;
+}
+
+.manage-table .pad-td {
+    padding: 5px 8px !important;
+}
+
+.manage-table .border-btm td {
+    border-bottom: 1px solid #B5B5B5 !important;
+}
+
+.manage-table tbody tr {
+    border-bottom: 1px solid;
+}
+
+.manage-table tbody tr .hide-icon {
+    visibility: hidden;
+}
+
+.manage-table tbody tr:hover {
+    background: #D9EAF8;
+}
+
+.manage-table tbody tr:hover .hide-icon {
+    visibility: visible;
+}
+
+.manage-table .icon-icon_checkmark_emptybox {
+    font-size: 18px;
+}
+
+.manage-table .chkbox-li {
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.manage-table .chk-box-th {
+    margin-right: 15px;
+}
+
+.money-tax-with-holding {
+    color: #494949;
+}
+
+.payroll-estimation {
+    padding-top: 30px;
+}
+
+.payroll-estimation p {
+    font-size: 14px;
+    color: #494949;
+}
+
+.claculator-titles h3 {
+    color: #0073CF;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 5px;
+}
+
+.claculator-titles p {
+    font-size: 12px;
+    color: #888888;
+    height: auto;
+    overflow: hidden;
+}
+
+.claculator-titles ul {
+    padding: 0;
+}
+
+.claculator-titles ul li {
+    list-style: none;
+    padding: 0;
+    border-right: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+}
+
+.claculator-titles ul li .calculator-block {
+    background: #f2f2f2;
+    height: 120px;
+    padding: 20px;
+    border: 1px solid #f2f2f2;
+}
+
+.claculator-titles ul li .calculator-block:hover {
+    background: #ffffff;
+    border: 1px solid #0073CF;
+}
+
+.retirement-plan-enrolment .no-enrolment {
+    border: 1px solid #f2f2f2;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.retirement-plan-enrolment .no-enrolment h3 {
+    color: #888888;
+    margin: 0;
+    opacity: .3;
+    font-weight: 400;
+}
+
+.retirement-plan-enrolment .no-enrolment a {
+    padding: 5px 20px;
+    line-height: 22px;
+    height: 34px;
+}
+
+.money-tab .panel-group .panel {
+    border: 0;
+}
+.adjustOverflow{
+    float:left;
+    width:100%;
+    clear:both;
+}
+.modal-content {
+    background: #f2f2f2;
+}
+
+.modal-content .modal-body {
+    background: #ffffff;
+    border: 10px solid #f2f2f2;
+}
+
+.retirement-plan-election {
+    font-size: 14px;
+}
+
+.retirement-plan-election h3 {
+    margin: 0;
+    border-bottom: 1px solid #888888;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 0 5px;
+}
+
+.background-bg {
+    background: #f2f2f2;
+    padding: 10px;
+    margin: 5px 0;
+    display: -webkit-box;
+}
+
+.white-bg {
+    background: #ffffff;
+    padding: 10px;
+}
+
+.plan-row {
+    padding: 10px 0 5px 0;
+}
+
+.line-height-30 {
+    line-height: 30px;
+    border: 1px solid #f2f2f2;
+}
+
+.retirement-block {
+    display: block;
+}
+
+.retirement-block h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #494949;
+    border: 0;
+}
+
+.retirement-block h3 sup {
+    font-size: 12px;
+}
+
+.retirement-block p.current-plan {
+    color: #494949;
+    font-size: 14px;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.retirement-block a.elected {
+    background: #69BE28;
+    padding: 0 10px;
+    color: #ffffff;
+    width: 65px;
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.retirement-block a.waived {
+    background: #9E3039;
+    padding: 0 10px;
+    color: #ffffff;
+    text-decoration: none;
+    width: 65px;
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.retirement-block .price-block {
+    display: block;
+    margin: 10px 0;
+}
+
+.retirement-block .price-block p {
+    font-size: 14px;
+    color: #494949;
+    margin: 0;
+    display: inline-block;
+}
+
+.retirement-block .price-block .price {
+    color: #0073CF;
+    font-size: 50px;
+}
+
+.retirement-block .price-block .tooltip2 {
+    position: absolute;
+}
+
+.form-content-block.money h4.panel-title {
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.transaction-details small {
+    font-size: 10px;
+    position: relative;
+    top: -7px;
+}
+
+.manage-employee-icon .icon-icon_approved, .manage-employee-icon .icon-icon_declined, .manage-employee-icon .icon-icon_pending {
+    font-size: 50px;
+    color: #888888;
+}
+
+table.change-employee tbody tr td {
+    padding: 8px 15px !important;
+}
+
+a.employee-change-add-more {
+    font-size: 16px;
+    padding: 5px 0 0 !important;
+}
+
+.compel {
+    font-size: 18px;
+    position: relative;
+    top: -1px;
+}
+
+.pay-roll-declaration {
+    padding: 0 5px;
+}
+
+.icon-big {
+    font-size: 48px;
+    color: #888888;
+}
+
+.modes {
+    position: absolute;
+    right: 0;
+    z-index: 5;
+}
+
+.modes ul {
+    padding: 0;
+    margin-top: 7px;
+}
+
+.modes ul li .calander-list {
+    padding: 5px;
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+.modes ul li .list-view {
+    padding: 5px;
+    background: #0073CF;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.modes ul li .doc-print {
+    padding: 5px;
+    color: #0073CF;
+    border-right: 1px solid #888888;
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+table.time-off thead {
+    border-top: 5px solid #0073CF;
+    border-bottom: 5px solid #0073CF;
+}
+
+table.time-off tbody > tr > td, table.time-off .table-striped > thead > tr > th {
+    font-size: 14px !important;
+}
+
+.roles-add {
+    position: absolute;
+    right: 0;
+}
+
+.eform-content {
+    height: 120px;
+    padding: 15px;
+}
+
+.accpt-date {
+    color: #494949 !important;
+}
+
+.popup-content-adj {
+    position: relative;
+    top: 5px;
+}
+
+.group-change-checkbox {
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+}
+
+.manage-emp-title {
+    color: #494949 !important;
+    font-size: 24px !important;
+    margin: 0 !important;
+    padding: 5px 10px !important;
+}
+
+.trinet-secondary-btn-line-height {
+    line-height: 30px !important;
+}
+
+.manage-emp-drop-list {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background: #fff;
+    padding: 10px;
+    z-index: 99;
+    min-width: 200px;
+}
+
+.manage-emp-drop-list label input {
+    float: left;
+}
+
+.manage-emp-drop-list label span {
+    padding-left: 18px;
+    display: block;
+    margin-top: 5px;
+    width: 180px;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+    position: relative;
+    left: -9px;
+    top: -5px;
+}
+
+.overflow-60vh {
+    overflow: auto !important;
+    height: 60vh;
+}
+
+.marg-btm {
+    margin-bottom: 10px;
+}
+
+.scroll {
+    overflow-x: hidden;
+    overflow-y: auto !important;
+}
+
+.table > tbody > tr > td.v-bottom {
+    vertical-align: bottom !important;
+}
+
+.trinet-report-head {
+    margin: 5px 0px 5px 0px !important;
+}
+.toggleSwitch {
+  padding-left: 20px !important;
+}
+.toggleSwitch .onoffswitch {
+   margin: 8px;
+}
+
+.line-clamp, .ben-form-tiles h4, .ben-form-tiles p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
+
+.ben-form-tiles {
+  overflow: hidden; }
+  .ben-form-tiles p {
+    height: auto !important; }
+
+.text-line-through {
+  text-decoration: line-through; }
+
+#manageDept.manage-table thead tr th, #manageLoc.manage-table thead tr th {
+  padding: 7px 5px; }
+#manageDept.manage-table tbody tr td, #manageLoc.manage-table tbody tr td {
+  padding: 10px 5px !important;
+  vertical-align: middle; }
+#manageDept.manage-table th:last-child, #manageLoc.manage-table th:last-child {
+  width: 17% !important; }
+
+#inactiveDept p {
+  font-size: 12px;
+  margin: 20px 15px;
+  color: #494949; }
+#inactiveDept .adjustBtn {
+  min-width: 325px;
+  height: 45px;
+  margin: 2px 0; }
+
+#assignToAnother .dislayMessage {
+  margin: 7px 30px;
+  font-size: 14px; }
+
+.font-weight-100{
+   font-weight:100;
+}
+.endpay-earning-amount{
+      position: relative !important;
+      top: -10px;
+}
+#enrollment-time-line .message-item.enrollment-time-line{min-width: 95%;}
+/*# sourceMappingURL=manageemployee-money.css.map */

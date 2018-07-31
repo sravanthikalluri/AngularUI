@@ -1,0 +1,124 @@
+<div class="tn-custom-fields-section" ng-controller="manageCustomFieldsCtrl">
+    <alert-view></alert-view>
+    <input type="hidden" value="custom" id="customType"/>
+    <h4 class="bold profile-heading">{{::translation.profile_personal.customFields}}</h4>
+    <div class="tn-horizontal-divider"></div>
+    <div  class="no-records"  ng-if="EmployeeStatus">
+        <h4 class="no-data proxima-nova-semibold" id="headingCustom" ng-if='items.length === 0'>{{::translation.manage_CustomFields.noFields}}</h4>
+    </div>
+    <div class="col-sm-12 no-pad" ng-if='items.length !== 0'>
+        <div ng-if="savePage  || !showSave">
+            <div class="row">
+                <div ng-if='items.length !== 0'>
+                    <form ng-model='customFields' class="tn-form">
+                        <div ng-repeat="abc in items">
+                            <div class="form-group" ng-if='abc.fieldType==="note"'>
+                                <label class="text-right col-sm-4 dataFiledLabel">{{abc.fieldLabel}}:</label>
+                                <div class="col-sm-8">
+                                    <textarea ng-model="abc.fieldAnswer" class="form-control" maxlength="250"
+                                              cols="50" rows="5" ng-change='manageTextBoxChange(abc.fieldAnswer)'>
+                                    </textarea>
+                                    <div class="text-right">
+                                        <h6 id="counter">{{maxLength - abc.fieldAnswer.length}} {{::translation.manage_CustomFields.characters}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if='abc.fieldType==="currency"'>
+                                <label class="text-right col-sm-4 dataFiledLabel">{{abc.fieldLabel}} : $</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="text-right" id="currency" placeholder=""
+                                           ng-model='abc.fieldAnswer' maxlength="20"
+                                           ng-change='manageTextBoxChange(abc.fieldAnswer)' valid-Format/>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if='abc.fieldType ==="text"'>
+                                <label class="text-right col-sm-4 dataFiledLabel">{{abc.fieldLabel}} :</label>
+                                <div class="col-sm-8" ng-if='abc.answerChoices === null '>
+                                    <input type="text" class="valu" placeholder="" ng-model='abc.fieldAnswer' maxlength="400"  ng-change='manageTextBoxChange(abc.fieldAnswer)'/>
+                                </div>
+                                <div ng-if='abc.answerChoices !== null' class="col-sm-8" >
+                                    <select class="select-custom-answerChoices"
+                                            ng-model="abc.fieldAnswer"
+                                            ng-change='manageTextBoxChange(abc.fieldAnswer)'
+                                            ng-options="item.modelName as item.modelName for item in abc.answerChoices" >
+                                        <option value="" ng-selected="selected">-Select-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if='abc.fieldType==="date"'>
+                                <label class="text-right col-sm-4 dataFiledLabel">{{abc.fieldLabel}} : </label>
+                                <div class="col-sm-8">
+                                    <div class="tn-calender-input" ng-controller='datePickerCtrl'>
+                                        <input type="text" class="form-control bg-white" id="startDate" ng-change='manageTextBoxChange(abc.fieldAnswer)'  placeholder="MM/DD/YYYY" readonly="readonly" name="effectiveDate" datepicker-popup="{{format}}" ng-model='abc.fieldAnswer' is-open="opened" datepicker-options="dateOptions" close-text="Close">
+                                        <span class="calendar-icon" ng-click="open($event)">
+                                              <i class="icon-icon_calendar blue bold"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if='abc.fieldType==="number"'>
+                                <label class="text-right col-sm-4 dataFiledLabel">{{abc.fieldLabel}} : </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="text-right" id="number" placeholder=""
+                                           ng-model='abc.fieldAnswer' maxlength="20" ng-pattern="number"
+                                           ng-change='manageTextBoxChange(abc.fieldAnswer)' valid-Format/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-right button-section">
+                        <button class="tn-button tn-action-button tn-button-small" ng-if="customSave" id="save1" ng-click="updateContent(items)" ng-class="{'buttondisableforsave':befSubmit}">{{::translation.save}}</button>
+                        <button class="tn-button tn-cancel-button tn-button-small" ng-click="customCancelButton(items)"  ng-class="{'buttondisable':befSubmit}">{{::translation.cancel}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="editdata" ng-if="editPage || showSave">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <a  ng-click="manageEditPage()" class="remove-link">{{::translation.edit}}</a>
+                </div>
+                <div class="col-sm-12">
+                    <div ng-if='items.length !==0'>
+                        <div ng-repeat="abc in items">
+                            <div class="col-xs-12 details-section">
+                                <div class="col-sm-12" ng-if='abc.fieldType==="currency"'>
+                                    <div class="col-sm-6 text-right dataFiledLabel">
+                                        <span>{{abc.fieldLabel}} :</span>
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-5 ">
+                                        <span>{{abc.fieldAnswer}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-if='abc.fieldType==="number"'>
+                                    <div class="col-sm-6 text-right dataFiledLabel">
+                                        <span>{{abc.fieldLabel}} :</span>
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-5">
+                                        <span>{{abc.fieldAnswer}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-if='abc.fieldType==="date"'>
+                                    <div class="col-sm-6 text-right dataFiledLabel">
+                                        <span>{{abc.fieldLabel}} :</span>
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-5">
+                                        <span>{{abc.fieldAnswer | date:'MM-dd-yyyy'}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-if='abc.fieldType !=="currency" && abc.fieldType !=="number" && abc.fieldType !=="date"'>
+                                    <div class="col-sm-6 text-right dataFiledLabel">
+                                        <span>{{abc.fieldLabel}} :</span>
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-5">
+                                        <span>{{abc.fieldAnswer}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

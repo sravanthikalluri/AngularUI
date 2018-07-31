@@ -1,0 +1,311 @@
+@font-face {
+    font-family: 'SansPro';
+    src: url("../../fonts/sourcesanspro-regular.eot");
+    src: url("../../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/sourcesanspro-regular.woff") format("woff"), url("../../fonts/sourcesanspro-regular.ttf") format("truetype"), url("../../fonts/sourcesanspro-regular.otf") format("otf"), url("../../fonts/sourcesanspro-regular.svg#webfont") format("svg");
+}
+
+.block, .security .security-details, .security .security-details .instructions, .proxy, .proxy .proxy-details, a.new-proxey {
+    display: block;
+    overflow: hidden;
+}
+
+.in-block, .proxy .proxy-details ul li {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.security .security-details {
+    background: #ffffff;
+    padding: 20px;
+}
+
+.security .security-details label {
+    font-weight: 400 !important;
+    font-size: 14px;
+    width: 150px;
+}
+
+.security .security-details a {
+    color: #ffffff;
+}
+
+.security .security-details p {
+    font-size: 14px;
+    padding-top: 3px;
+}
+
+.security .security-details p span {
+    font-size: 14px;
+    float: left;
+}
+
+.security .security-details .custom-id {
+    padding-top: 6px;
+}
+
+.security .security-details a.action {
+    padding: 0 30px !important;
+}
+
+.security .security-details h3.default-text {
+    font-size: 36px;
+    color: #B5B5B5;
+    font-weight: 400;
+}
+
+.security .security-details label.customer-id {
+    width: 125px !important;
+}
+
+.security .security-details .instructions h3 {
+    font-size: 12px;
+    color: #888888;
+}
+
+.security .security-details .instructions ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.security .security-details .instructions ul li {
+    font-size: 22px;
+    color: #888888;
+    list-style: disc;
+    line-height: 18px;
+}
+
+.security .security-details .instructions ul li span {
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+
+.security .security-details .instructions .options-check {
+    padding: 0;
+}
+
+.security .security-details .instructions .options-check ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+    list-style-position: inside;
+    padding-left: 45px;
+}
+
+.security .security-details .instructions .options-check ul li {
+    font-size: 22px;
+    color: #888888;
+    list-style: inherit !important;
+    line-height: 18px;
+    float: left;
+    width: 100%;
+}
+
+.security .security-details .instructions .options-check ul li.check {
+    position: relative;
+    left: -21px;
+}
+
+.security .security-details .instructions .options-check ul li.check:before {
+    content: "\a122";
+    font-family: 'icomoon';
+    font-size: 16px;
+    padding-right: 13px;
+    color: #69BE28 !important;
+}
+
+.security .security-details .instructions .options-check ul li.check span {
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+
+.security .security-details .instructions .options-check ul li.uncheck {
+    position: relative;
+    left: -21px;
+}
+
+.security .security-details .instructions .options-check ul li.uncheck:before {
+    content: "\a120";
+    font-family: 'icomoon';
+    font-size: 14px;
+    padding-right: 11px;
+    color: #9E3039 !important;
+}
+
+.security .security-details .instructions .options-check ul li.uncheck span {
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+
+.security .security-details .green-check {
+    color: #69BE28 !important;
+}
+
+.security .security-details .top-4 {
+    position: relative;
+    top: 4px;
+}
+
+.proxy .proxy-details {
+    padding: 15px;
+    background: #ffffff;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.proxy .proxy-details h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #888888;
+    padding: 0;
+}
+
+.proxy .proxy-details small {
+    color: #888888;
+}
+
+.proxy .proxy-details ul {
+    padding: 10px 0;
+    color: #888888;
+}
+
+.proxy .proxy-details ul li {
+    padding-right: 10px;
+    position: relative;
+    top: 2px;
+    color: #494949;
+}
+
+.proxy .proxy-details ul li [class^="icon-"], .proxy .proxy-details ul li [class*=" icon-"] {
+    font-size: 16px;
+    float: left;
+    padding-right: 5px;
+}
+
+.proxy .proxy-details .date {
+    color: #494949;
+}
+
+.proxy a {
+    padding: 0 0 0 10px !important;
+}
+
+.dark-grey {
+    color: #494949 !important;
+}
+
+.marg-top-20 {
+    margin-bottom: 20px;
+}
+
+.marg-top-5 {
+    margin-top: 5px;
+}
+
+a.new-proxey {
+    margin-top: 25px;
+}
+
+#tab6 {
+    color: #000;
+}
+
+#tab6 h4 {
+    border-bottom: 1px solid #000;
+}
+
+#tab6 .icon-icon_checkmark_emptybox {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+}
+
+#tab6 table tr {
+    display: table;
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    min-height: 70px;
+}
+
+#tab6 table tr td {
+    vertical-align: middle;
+}
+
+#tab6 table tr .hr-det {
+    font-size: 12px;
+}
+
+.top-1 {
+    position: relative;
+    top: 1px;
+}
+
+.top-3 {
+    position: relative;
+    top: 3px;
+}
+
+/*# sourceMappingURL=security.css.map */
+.security-history-timeline {
+    display: block;
+    overflow: hidden;
+    top: -15px !important;
+    position: relative;
+    padding-top: 15px;
+}
+
+.security-history-timeline .action.pull-left {
+    margin-bottom: 15px;
+}
+
+.security-history-timeline .message-item {
+    max-width: 95% !important;
+    min-width: 380px !important;
+}
+#autocomplete ul.dropdown-menu{
+        border: 1px solid #888;
+        background: #fff;
+        z-index: 999;
+        text-align: left;
+        padding: 0px;
+        margin: 0;
+        min-height:20px;
+        max-height:100px;
+        overflow-y:auto;
+}
+#autocomplete ul.dropdown-menu li{
+        position: relative;
+        margin:0 !important;
+        padding: 6px 10px;
+        cursor: pointer;
+        min-height: 0;
+        list-style:none;
+}
+#autocomplete .dropdown-menu > li > a:hover, #autocomplete .dropdown-menu > li > a:focus,
+#autocomplete ul.dropdown-menu li:hover,#autocomplete ul.dropdown-menu li:focus,#autocomplete ul.dropdown-menu li.active,
+#autocomplete ul.dropdown-menu li.active a:hover ,#autocomplete ul.dropdown-menu li.active a:focus{
+     background:#D9EAF8 !important;
+     margin:0 !important;
+     color:#494949;
+ }
+#autocomplete ul.dropdown-menu li a,#autocomplete ul.dropdown-menu li.active a
+{
+    font-weight:600;
+    min-width:150px;
+    text-align:left;
+    margin-right: 15px;
+    color:#494949;
+    background: transparent;
+}
+#autocomplete ul.dropdown-menu li span.userId
+{
+    font-weight:normal;
+    min-width:150px;
+    text-align:center;
+    color:#494949;
+}
+

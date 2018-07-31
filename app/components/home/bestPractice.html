@@ -1,0 +1,17 @@
+<!-- 
+Description: This page displays about all best practices of TriNet 
+Author:Raghavendra Kumar Bonthala
+ -->
+<div class="col-md-12 best-main no-pad">
+    <div class="clearfix"></div>
+    <h2 ng-bind="::translation.best_practices.title"></h2>
+    <p class="col-md-12 best-text" ng-bind="::translation.best_practices.desc"></p>
+    <ul class="no-pad best-block">
+        <li ng-repeat="practice in translation.best_practices.headers" class="col-md-6 col-sm-6"><a
+                href="http://www.trinet.com/blog/bestpractices" target="_blank">
+            <h4 ng-bind="::practice.title"></h4>
+            <p ng-bind="::practice.desc"></p>
+        </a>
+        </li>
+    </ul>
+</div>

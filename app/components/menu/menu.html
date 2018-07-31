@@ -1,0 +1,65 @@
+<div ng-controller="menuCtrl">
+    <md-sidenav class="site-sidenav md-sidenav-left tn-sidenav" layout="column"
+                md-component-id="left" aria-label="Show Menu" md-is-locked-open="$mdMedia('gt-md')">
+        <md-content layout="column">
+            <div class="hide-gt-md tn-brand-hamburger">
+                <section class="tn-brand"  >
+                    <a href="#/"><img src="assets/images/trinetLogo.svg" /></a>
+                    </section>
+            </div>
+          <!-- navigation filters -->
+            <!--<div ng-switch on="companyThemeExists">
+                <section ng-switch-when="true" layout="row" layout-sm="row" layout-align="center center"
+                         class="tn-navigation-filters ">
+                    <md-button class="tn-navigation-filter-group right tn-navigation-top-button "
+                               ng-click="toggleNav('Company',1);setMyselfOrCompany(1)"
+                               ng-class="{ 'selected': index == 1 }">Company
+                    </md-button>
+                    <md-button class="tn-navigation-filter-group left tn-navigation-top-button "
+                               ng-click="toggleNav('Me',0);setMyselfOrCompany(0)" ng-class="{ 'selected': index != 1 }">
+                        Myself
+                    </md-button>
+                </section>
+            </div>
+          -->
+            <!-- TODO: remove the old navigation after fixing menu item selection -->
+            <div ng-if="false" ng-repeat="it in navigations.side | filter:{ name: '!My Profile', theme: navFilter}" ng-switch
+                 on="it.subMenus.length" class="tn-side-main-menu">
+                <!-- has sub menu -->
+                <md-menu ng-switch-default md-position-mode="cascade target" class="tn-menu">
+                    <md-button ng-click="$mdOpenMenu($event);selectMainMenu(it.menuId);setMenuState(it.menuId)"
+                               class="tn-button tn-submenu-arrow"
+                               ng-class="{'selected' : it.menuId === selectedMainMenu}">
+                        <i class="md-icon icon-icon_{{it.component}} tn-icon"></i> {{it.name}}
+                    </md-button>
+                    <md-menu-content class="tn-menu-content tn-menu-content-sidenav sub-menu-scroll">
+                        <md-menu-item ng-repeat="sm in it.subMenus | filter:{theme: navFilter}">
+                            <md-button ng-href="{{sm.url}}" ng-click="getPermissions(sm.menuId);" class="tn-button"
+                                       ng-class="getClass(sm.url)"
+                                       target="{{sm.external == 'Y' ? '_blank' : '_self'}}">{{sm.name}}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <!-- has no sub menu -->
+                <div ng-switch-when="0">
+                    <md-button ng-href="{{it.url}}" ng-click="selectMainMenu(it.menuId);" class="tn-button"
+                               ng-class="{'selected' : it.menuId === selectedMainMenu}">
+                        <i class="md-icon icon-icon_{{it.component}} tn-icon"></i> {{it.name}}
+                    </md-button>
+                </div>
+            </div>
+            <div class="vertical-divider"></div>
+            <div class="tn-menu-container">
+                <ul class="menu-nested-list">
+                    <li ng-repeat="section in navigations.side | filter:{ name: '!My Profile', theme: navFilter}"
+                            ng-class="{'sectionActive' : isSectionSelected(section)}">
+                        <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+                        <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+                    </li>
+                </ul>
+            </div>
+
+        </md-content>
+    </md-sidenav>
+</div>

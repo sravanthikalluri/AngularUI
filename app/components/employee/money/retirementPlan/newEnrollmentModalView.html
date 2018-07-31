@@ -1,0 +1,335 @@
+<alert-view></alert-view>
+<div class="tn-modal tn-modal-fullHeight tn-retirement-modal" id="newEnrollmentPlan"
+     aria-labelledby="newEnrollmentModalLabel" tabindex="-1" role="dialog">
+    <form name="enrollForm" class="tn-form">
+        <div class="tn-modal-header">
+            <h4 class="profile-heading proxima-nova-semibold text-center"
+                id="newEnrollmentModalLabel" ng-bind="::translation.employee_money.retirementPlan"></h4>
+        </div>
+        <div class="tn-modal-boby col-sm-12">
+            <div class="col-sm-12 marg-top-15 no-padding">
+                <p class="font-slate" ng-bind="::translation.employee_money.electionFor"></p>
+                <div class="flex-box space-between">
+                    <div class="tn-ellipsis-text">
+                        <p class="tn-ellipsis-text no-margin proxima-nova-semibold">{{employeeName}}</p>
+                        <p class="proxima-nova-semibold">(EMP ID: {{appUserId}})</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding marg-top-15">
+                <div>
+                    <label for="enrollEffectiveDate" ng-bind="::translation.employee_money.effDate"></label>
+                </div>
+                <div class="tn-calender-input"
+                     ng-controller="datePickerCtrl">
+                    <input type="text" name="effDate"
+                           class="form-group" ng-model="newEffdate"
+                           ng-change="newEffectiveDateChange()"
+                           datepicker-popup="{{format}}" is-open="opened"
+                           placeholder="MM/DD/YYYY"
+                           min-date="pastMonthValue" max-date="nextMonthValue"
+                           datepicker-options="dateOptions"
+                           close-text="Close" id="enrollEffectiveDate" readonly>
+                    <span class="calendar-icon" ng-click="open($event)">
+                            <i class="icon-icon_calendar blue bold"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding marg-btm-10">
+                <p class="content-text no-margin" ng-show="newfutureMessage">*{{::translation.future_date}}</p>
+                <p class="content-text no-margin" ng-show="newPastMessage">*{{::translation.past_date}}</p>
+            </div>
+            <div class="col-sm-12 no-padding marg-btm-10">
+                <div>
+                    <label for="retirement_plan_plan_type" ng-bind="::translation.employee_money.plan"></label>
+                </div>
+                <div class="col-sm-8 no-padding">
+                    <select id="retirement_plan_plan_type"
+                            ng-model="$parent.selectedPlan"
+                            ng-options="plan.planDesc for plan in notEnrolledPlans track by plan.benefitPlan">
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 no-padding tn-horizontal-divider"></div>
+            <ng-form name="innerForm">
+                <h4 class="proxima-nova-semibold"
+                    ng-bind="::translation.employee_money.setupPayroll"
+                    ng-if="!selectedPlan.isEmployerOnly"></h4>
+                <!--Pre-Tax Election section-->
+                <div class="col-sm-12 no-padding"
+                     ng-if="!selectedPlan.isEmployerOnly && selectedPlan.beforeTaxPercent > 0">
+                    <p class="content-text" ng-bind="::translation.employee_money.withheld"></p>
+                    <p class="content-text proxima-nova-semibold">{{::translation.employee_money.PreTaxElection}}</p>
+                    <div class="flex-box space-between">
+                        <div class="radio">
+                            <input type="radio"
+                                   id="flatDollarRadioId"
+                                   ng-model="formData.payrollDeductions"
+                                   ng-click="formData.percentGrossDeductionPreTax = ''"
+                                   value="dollar"
+                                   name="new_setup_payroll_deductions">
+                            <label for="flatDollarRadioId">{{::translation.employee_money.flatDollar}}</label>
+                        </div>
+                        <div class="flex-box">
+                            <h5>{{::translation.employee_money.asof}}$</h5>
+                            <input type="text"
+                                   name="flatDollarAmt"
+                                   ng-model="formData.flatDeductionAmountPreTax"
+                                   id="flatDollarInputId"
+                                   class="form form-control input-small dollar-input"
+                                   only-decimals
+                                   ng-disabled="formData.payrollDeductions === 'percentage'"
+                                   ng-class="{'error-warning': isNewEnrollSave && enrollForm.innerForm.flatDollarAmt.$error.required}"
+                                   ng-required="(formData.payrollDeductions === 'dollar' && formData.percentGrossDeductionPostTax == '' && formData.flatDeductionAmountPostTax === '') ? true : false"
+                                   ng-focus="validationPatterns.create.focus.flatDollarRequiredText = enrollForm.innerForm.flatDollarAmt.$error.required;validationPatterns.create.blur.flatDollarRequiredText = false;"
+                                   ng-blur="validationPatterns.create.blur.flatDollarRequiredText = enrollForm.innerForm.flatDollarAmt.$error.required;validationPatterns.create.focus.flatDollarRequiredText = false;">
+                            <Validation
+                                condition="isNewEnrollSave && validationPatterns.create.focus.flatDollarRequiredText"
+                                msg="{{translation.is_required}}"></Validation>
+                            <h5>{{::translation.employee_money.perCheckIssued}}</h5>
+                        </div>
+
+                    </div>
+                    <div class="flex-box space-between">
+                        <div class="radio">
+                            <input type="radio"
+                                   id="grossWagesRadioId"
+                                   ng-model="formData.payrollDeductions"
+                                   ng-click="formData.flatDeductionAmountPreTax = ''"
+                                   value="percentage"
+                                   name="new_setup_payroll_deductions">
+                            <label for="grossWagesRadioId">
+                                {{::translation.employee_money.percentageGrossWages}}</label>
+                        </div>
+                        <div class="flex-box">
+                            <input type="text"
+                                   ng-model="formData.percentGrossDeductionPreTax"
+                                   name="grossWagesAmt"
+                                   id="grossWagesInputId"
+                                   only-percentage-decimals
+                                   class="form form-control input-small"
+                                   ng-disabled="formData.payrollDeductions === 'dollar'"
+                                   ng-class="{'error-warning': (isNewEnrollSave && enrollForm.innerForm.grossWagesAmt.$error.required) || grossWagesExceed }"
+                                   ng-change="grossWagesExceed = (formData.percentGrossDeductionPreTax > selectedPlan.beforeTaxPercent) ? true: false;validationPatterns.create.focus.grossWagesAmt = enrollForm.innerForm.grossWagesAmt.$error.required;validationPatterns.create.focus.grossWagesExceed = grossWagesExceed;"
+                                   ng-required="(formData.payrollDeductions === 'percentage' && formData.percentGrossDeductionPostTax == '' && formData.flatDeductionAmountPostTax == '') ? true : false"
+                                   ng-focus="validationPatterns.create.focus.grossWagesAmt = enrollForm.innerForm.grossWagesAmt.$error.required;validationPatterns.create.blur.grossWagesAmt = false;validationPatterns.create.focus.grossWagesExceed = grossWagesExceed;validationPatterns.create.blur.grossWagesExceed = false ;"
+                                   ng-blur="validationPatterns.create.blur.grossWagesAmt = enrollForm.innerForm.grossWagesAmt.$error.required;validationPatterns.create.focus.grossWagesAmt = false;validationPatterns.create.blur.grossWagesExceed = grossWagesExceed;validationPatterns.create.focus.grossWagesExceed = false;">
+
+                            <Validation condition="isNewEnrollSave && validationPatterns.create.focus.grossWagesAmt"
+                                        msg="{{translation.is_required}}"></Validation>
+                            <Validation condition=" validationPatterns.create.focus.grossWagesExceed "
+                                        msg="% cannot exceed {{selectedPlan.beforeTaxPercent}}%"></Validation>
+                            <h5>% {{::translation.employee_money.perCheckIssued}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <!--Post-Tax Election section-->
+                <div class="col-sm-12 no-padding"
+                     ng-if="selectedPlan.afterTaxPercent > 0 && !selectedPlan.isEmployerOnly">
+                    <p class="proxima-nova-semibold">{{::translation.employee_money.PostTaxElection}}</p>
+                    <div class="flex-box space-between">
+                        <div class="radio">
+                            <input type="radio"
+                                   id="postFlatDollarRadioId"
+                                   ng-model="formData.postPayrollDeductions"
+                                   ng-click="formData.percentGrossDeductionPostTax = ''"
+                                   value="dollar"
+                                   name="post_new_setup_payroll_deductions">
+                            <label for="postFlatDollarRadioId"> {{::translation.employee_money.flatDollar}}</label>
+                        </div>
+                        <div class="flex-box">
+                            <p>{{::translation.employee_money.asof}}</p>
+                            <input type="text"
+                                   name="postFlatDollarAmt"
+                                   ng-model="formData.flatDeductionAmountPostTax"
+                                   id="postFlatDollarInputId"
+                                   class="form form-control input-small dollar-input"
+                                   only-decimals
+                                   ng-disabled="formData.postPayrollDeductions === 'percentage'"
+                                   ng-class="{'error-warning': isNewEnrollSave && enrollForm.innerForm.postFlatDollarAmt.$error.required}"
+                                   ng-required="(formData.postPayrollDeductions === 'dollar'&& formData.percentGrossDeductionPreTax == '' && formData.flatDeductionAmountPreTax == '') ? true : false"
+                                   ng-focus="validationPatterns.create.focus.postFlatDollarRequiredText = enrollForm.innerForm.postFlatDollarAmt.$error.required;validationPatterns.create.blur.postFlatDollarRequiredText = false;"
+                                   ng-blur="validationPatterns.create.blur.postFlatDollarRequiredText = enrollForm.innerForm.postFlatDollarAmt.$error.required;validationPatterns.create.focus.postFlatDollarRequiredText = false;">
+                            <Validation
+                                condition="isNewEnrollSave && validationPatterns.create.focus.postFlatDollarRequiredText"
+                                msg="{{translation.is_required}}"></Validation>
+                            <p>{{::translation.employee_money.perCheckIssued}}</p>
+                        </div>
+                    </div>
+                    <div class="flex-box space-between">
+                        <div class="radio">
+                            <input type="radio"
+                                   id="postGrossWagesRadioId"
+                                   ng-model="formData.postPayrollDeductions"
+                                   ng-click="formData.flatDeductionAmountPostTax = ''"
+                                   value="percentage"
+                                   name="post_new_setup_payroll_deductions">
+                            <label for="postGrossWagesRadioId">
+                                {{::translation.employee_money.percentageGrossWages}}</label>
+                        </div>
+                        <div class="flex-box">
+                            <p>{{::translation.employee_money.asof}}</p>
+                            <input type="text"
+                                   ng-model="formData.percentGrossDeductionPostTax"
+                                   name="postGrossWagesAmt"
+                                   id="postGrossWagesInputId"
+                                   only-percentage-decimals
+                                   class="form form-control input-small"
+                                   ng-disabled="formData.postPayrollDeductions === 'dollar'"
+                                   ng-class="{'error-warning': (isNewEnrollSave && enrollForm.innerForm.postGrossWagesAmt.$error.required) || postGrossWagesExceed }"
+                                   ng-change="postGrossWagesExceed = (formData.percentGrossDeductionPostTax > selectedPlan.afterTaxPercent) ? true: false;validationPatterns.create.focus.postGrossWagesAmt = enrollForm.innerForm.postGrossWagesAmt.$error.required;validationPatterns.create.focus.postGrossWagesExceed = postGrossWagesExceed;"
+                                   ng-required="(formData.postPayrollDeductions === 'percentage' && formData.percentGrossDeductionPreTax == '' && formData.flatDeductionAmountPreTax == '') ? true : false"
+                                   ng-focus="validationPatterns.create.focus.postGrossWagesAmt = enrollForm.innerForm.postGrossWagesAmt.$error.required;validationPatterns.create.blur.postGrossWagesAmt = false;validationPatterns.create.focus.postGrossWagesExceed = postGrossWagesExceed;validationPatterns.create.blur.postGrossWagesExceed = false ;"
+                                   ng-blur="validationPatterns.create.blur.postGrossWagesAmt = enrollForm.innerForm.postGrossWagesAmt.$error.required;validationPatterns.create.focus.postGrossWagesAmt = false;validationPatterns.create.blur.postGrossWagesExceed = postGrossWagesExceed;validationPatterns.create.focus.postGrossWagesExceed = false;">
+
+                            <Validation condition="isNewEnrollSave && validationPatterns.create.focus.postGrossWagesAmt"
+                                        msg="{{translation.is_required}}"></Validation>
+                            <Validation condition=" validationPatterns.create.focus.postGrossWagesExceed "
+                                        msg="% cannot exceed {{selectedPlan.afterTaxPercent}}%"></Validation>
+                            <p>% {{::translation.employee_money.perCheckIssued}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="(selectedPlan.beforeTaxPercent > 0 || selectedPlan.afterTaxPercent > 0) && !selectedPlan.isEmployerOnly" class="col-sm-12 no-padding tn-horizontal-divider"></div>
+                <!--Goal Amount section-->
+                <div class="col-sm-12 no-padding"
+                     ng-if="!selectedPlan.showContributions">
+                    <h4 class="profile-heading proxima-nova-semibold">
+                        {{::translation.employee_money.setupGoalAmount}} <span class="font-light-gray">{{::translation.employee_money.optional}}</span>
+                        <span class="tn-tooltip" tabindex="0" role="tooltip">
+                        <i class="icon-icon_UA blue"></i>
+                        <span class="tn-tooltip-content tooltip-top">
+                            <span ng-bind="::translation.employee_money.setupGoalAMountTooltip"></span>
+                        </span>
+                    </span>
+                    </h4>
+                    <div class="flex-box space-between margin-bottom">
+                        <div class="radio">
+                            <input type="radio"
+                                   id="goalAmountRadioId"
+                                   ng-model="formData.contributions"
+                                   ng-click="formData.priorContributions = null"
+                                   value="setGoal"
+                                   name="setup_goal_amount">
+                            <label for="goalAmountRadioId">
+                                <p class="no-margin">
+                                    <span class="block">{{::translation.employee_money.setGoalAmount}}</span>
+                                    <span class="block font-light-gray h6 no-margin">{{::translation.employee_money.current_calenderyear}}</span>
+                                </p>
+                            </label>
+
+                        </div>
+                        <div class="flex-box isHaving-error">
+                            <h5>{{::translation.employee_money.asof}} $</h5>
+                            <input type="text" only-decimals
+                                   id="goalAmountInputId"
+                                   ng-model="formData.goalAmount"
+                                   name="setGoalAmt"
+                                   ng-disabled="formData.contributions === 'useLimit'"
+                                   class="form form-control input-small text-right"
+                                   ng-class="{'error-warning': (isNewEnrollSave && enrollForm.innerForm.setGoalAmt.$error.required) || goalAmountIsMore}"
+                                   ng-change="goalAmountIsMore = priorAmountValid(formData.goalAmount,'setGoalAmt'); maxContribution(formData.goalAmount);"
+                                   ng-focus="validationPatterns.create.focus.setGoalAmtRequired = enrollForm.innerForm.setGoalAmt.$error.required;validationPatterns.create.blur.setGoalAmtRequired = false;validationPatterns.create.focus.setGoalAmtCondi = goalAmountIsZero;validationPatterns.create.blur.setGoalAmtCondi = false ;validationPatterns.create.focus.goalAmountIsMore = goalAmountIsMore;validationPatterns.create.blur.goalAmountIsMore = false ;"
+                                   ng-blur="validationPatterns.create.blur.setGoalAmtRequired = enrollForm.innerForm.setGoalAmt.$error.required;validationPatterns.create.focus.setGoalAmtRequired = false;validationPatterns.create.blur.setGoalAmtCondi = goalAmountIsZero;validationPatterns.create.focus.setGoalAmtCondi = false;validationPatterns.create.blur.goalAmountIsMore = goalAmountIsMore ;validationPatterns.create.focus.goalAmountIsMore = false ;"
+                            ><!--ng-required="(formData.contributions === 'setGoal') ? true : false"-->
+
+                            <Validation
+                                condition="isNewEnrollSave && validationPatterns.create.focus.setGoalAmtRequired"
+                                msg="{{translation.is_required}}"></Validation>
+                            <Validation condition="  validationPatterns.create.focus.goalAmountIsMore"
+                                        msg="Goal amount should not exceed federal amount"></Validation>
+                            <Validation condition="  validationPatterns.create.focus.setGoalAmtCondi"
+                                        msg="Goal amount should be greater than 0."></Validation>
+                        </div>
+                    </div>
+                    <div class="flex-box space-between items-end margin-top">
+                        <div class="radio">
+                            <input type="radio"
+                                   id="limitAmountRadioId"
+                                   ng-model="formData.contributions"
+                                   ng-click="formData.goalAmount = null"
+                                   value="useLimit"
+                                   name="setup_goal_amount">
+                            <label for="limitAmountRadioId">
+                                <p class="no-margin">
+                                    <span class="block">{{::translation.employee_money.limitedAmountCal}}</span>
+                                    <span class="block font-light-gray h6 no-margin">(Federal Amount Maximum)</span>
+                                </p>
+                            </label>
+                        </div>
+                        <div>
+                            <div class="flex-box flex-start">
+                                <span class="tn-tooltip margin-right" tabindex="0" role="tooltip">
+                                    <i class="icon-icon_UA blue"></i>
+                                    <span class="tn-tooltip-content tooltip-top">
+                                        <span ng-bind="::translation.employee_money.federalAmountTooltip"></span>
+                                    </span>
+                                 </span>
+                                <p class="content-text proxima-nova-semibold no-margin">
+                                    <span class="block" ng-bind="::translation.employee_money.federalAmount"></span>
+                                    <span class="block">{{fedAmount | currencyFilter}}</span>
+                                </p>
+                            </div>
+                            <div class="flex-box space-between">
+                                <p class="content-text no-margin">
+                                     <span class="tn-tooltip margin-right" tabindex="0" role="tooltip">
+                                        <i class="icon-icon_UA blue"></i>
+                                        <span class="tn-tooltip-content tooltip-top">
+                                            <span ng-bind="::translation.employee_money.priorContributionTooltip"></span>
+                                        </span>
+                                     </span>
+                                    <span ng-bind="::translation.employee_money.priorContribution"></span>
+                                </p>
+                                <div class="flex-box isHaving-error">
+                                    <span>- $</span>
+                                    <input type="text" name="priorAmount"
+                                           only-decimals value="{{priorContributions}}"
+                                           id="limitAmountInputId" class="form form-control input-small text-right"
+                                           ng-model="formData.priorContributions"
+                                           ng-class="{'error-warning':   priorAmountIsMore}"
+                                           ng-change="priorAmountIsMore = priorAmountValid(formData.priorContributions,'priorAmount'); maxContribution(formData.priorContributions);"
+                                           disabled="disabled"
+                                           ng-disabled="formData.contributions === 'setGoal'"
+                                           ng-focus="validationPatterns.create.focus.priorAmountCondi = priorAmountIsMore;validationPatterns.create.blur.priorAmountCondi = false;"
+                                           ng-blur="validationPatterns.create.blur.priorAmountCondi = priorAmountIsMore;validationPatterns.create.focus.priorAmountCondi = false;">
+                                    <Validation condition="validationPatterns.create.focus.priorAmountCondi"
+                                                msg="Prior amount should not exceed federal amount"></Validation>
+                                </div>
+                            </div>
+                            <div class="tn-horizontal-divider no-margin"></div>
+                            <p class="content-text font-dark no-margin"
+                               ng-bind="::translation.employee_money.currentMaximumContribution"></p>
+                            <p class="content-text font-dark"
+                            ><!--ng-if="maximumContributions == '0.00' || maximumContributions == '0'"-->
+                             {{maximumContributions | currencyFilter}}
+                            </p>
+                            <!-- <p class="content-text text-right"
+                                ng-if="maximumContributions != '0.00' || maximumContributions != '0'">
+                                 {{maximumContributions | currencyFilter}}
+                             </p>-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--Agreement section-->
+                <div class="col-sm-12 no-padding">
+                    <h4 class="profile-heading proxima-nova-semibold">Agreement</h4>
+                    <p class="content-text" ng-bind="::translation.employee_money.penaltyPerjury"></p>
+                    <div class="tn-checkbox no-margin">
+                        <input type="checkbox" ng-model="isAgree" class="agree no-margin" id="retireEnrollAgreeID">
+                        <label for="retireEnrollAgreeID" ng-bind="::translation.employee_money.agree"></label>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tn-modal-footer text-right">
+            <button type="button" id="enrollId" class="tn-button tn-action-button" ng-disabled="!isAgree"
+                    ng-click="newEnroll(enrollForm)" ng-bind="::translation.employee_money.save">
+            </button>
+            <button type="button" class="tn-button tn-cancel-button"
+                    ng-click="closePanel(enrollForm)" ng-bind="::translation.employee_money.cancel">
+            </button>
+        </div>
+    </form>
+</div>

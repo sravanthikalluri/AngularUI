@@ -1,0 +1,712 @@
+<!--
+Program: trinetTCAView.html
+Description: It displays Information of trinet TCA details .
+ -->
+
+<!-- Container start -->
+<div id="trinetTCA" ng-controller='trinetTCAViewCtrl'>
+    <alertt-view></alertt-view>
+    <div class="tcamain">
+
+        <h2 class="policies-inner-title trient-tca-head no-pad-imp">TriNet TCA</h2>
+        <br>
+        <span class="large bold">TriNet HR Corporation</span><br>
+        <span class="large bold">Terms and Conditions Agreement ("TCA")</span>
+        <br> <br>
+        <p class="tca-top-content"> Please read this TCA carefully. It contains important information regarding your use
+            of TriNet's secured online portal, HR Passport® and
+
+            online services, your employment relationship with TriNet, and related matters. your acknowledgement and
+            acceptance of this TCA is a condition not only of your use of TriNet's HR Passport® and online services but
+            also of your employment and/or continued employment with TriNet. if you fail to acknowledge this TCA, you
+            cannot be employed by TriNet. </p>
+
+        <p class="tca-top-content">This TCA contains the following sections:</p>
+
+        <div class="clearfix"></div>
+        <div class="tca-acc-trinet">
+            <!-- Panel 1 start -->
+            <!-- Co-Employment vs. Standard Employment toggle  -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status1">
+                    <accordion-heading id="CoVsStandard">
+                        <b><span>1. Co-Employment vs. Standard Employment</span></b><i class="pull-right glyphicon "
+                                                                                       ng-class="{'icon-icon_Disclosure_Expand':!status1,'icon-icon_Disclosure_Collapse': status1 }"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>TriNet is a licensed professional employer organization ("PEO") headquartered in San Leandro,
+                            California.</p>
+                        <p>If your relationship with TriNet is beginning because the company at which you work has
+                            become a
+                            TriNet customer, this means that your company has entered into a customer service agreement
+                            with
+                            TriNet to share certain employer responsibilities as co-employers. This means TriNet will be
+                            your employer of record for administrative purposes and will process payroll, sponsor and
+                            administer benefits, and provide certain human resources services. As your worksite
+                            employer,
+                            your company retains the responsibilities of directing your day-to-day work and managing its
+                            business aﬀairs. This TCA addresses your relationship with TriNet and you and your worksite
+                            employer have and will continue to have additional terms and conditions of employment.</p>
+                        <p>If you were hired directly by TriNet as a TriNet corporate colleague, TriNet will be your
+                            employer for all purposes under this TCA.</p>
+
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+
+            <!-- Panel 1 End -->
+
+
+            <!-- Panel 2 start -->
+            <!-- Privacy, Accuracy, Use, and Exchange of Information Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status2">
+                    <accordion-heading id="CoVsStandard">
+                        <b><span>2. Privacy, Accuracy, Use, and Exchange of Information</span></b><i
+                            class="pull-right glyphicon"
+                            ng-class="{'icon-icon_Disclosure_Collapse': status2, 'icon-icon_Disclosure_Expand':!status2}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>The personal information you provide online through TriNet's TriNet Passport is used
+                            to facilitate your online HR transactions. You agree not to share with or disclose to
+                            anyone else your TriNet ID or password for TriNet Passport®. TriNet, in turn, agrees to
+                            use your information only as stated in TriNet's Terms of Use and Privacy Policy for
+                            websites.
+                            TriNet will not provide your individually identifiable information to third-party providers
+                            or other commercial parties for commercial use except as permitted by you or as required by
+                            law.</p>
+                        <p>You agree that all information submitted by you to TriNet is and will be true and correct.
+                            You
+                            authorize TriNet to enroll you in TriNet benefits, if you are eligible, and to make changes
+                            to
+                            your benefits, payroll, and personal information according to the information you submit to
+                            TriNet. Moreover, you agree to provide to TriNet a functioning email address for you, and to
+                            review and accept notices and forms sent to that email address as well as to review and
+                            accept
+                            notices and forms posted on TriNet Passport &reg;.</p>
+                        <p>With respect to IRS Form W-2, COBRA notices, and any other notice or form for which consent
+                            to
+                            electronic delivery is required by law, you hereby agree and consent to electronic delivery
+                            by
+                            email or via such other method as permitted by law. Further, you agree to make such
+                            documents
+                            available to your spouse, domestic partner, and/or dependents, as applicable. Such documents
+                            will also be posted and made available on TriNet.com;. If you desire a paper copy of such
+                            documents, please contact the TriNet Employee Solution Center at 1.800.638.0461.</p>
+                        <p>If you do not wish to receive such documents by electronic delivery, or if you withdraw your
+                            consent to electronic delivery, you will receive your Form W-2, COBRA notice, or other such
+                            documents in hard copy form at no charge.</p>
+
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+            <!-- Panel 2 end -->
+            <!-- Panel 3 start -->
+            <!-- Privacy, Accuracy, Use, and Exchange of Information Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status3">
+                    <accordion-heading id="TriNet Payroll Services">
+                        <b><span>3. TriNet Payroll Services</span></b><i class="pull-right glyphicon"
+                                                                         ng-class="{'icon-icon_Disclosure_Collapse': status3, 'icon-icon_Disclosure_Expand':!status3}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>If you work for one of TriNet's customers, you understand and agree that:</p>
+                        <ul>
+                            <li class="no-bg liColor"><p>(a) Responsibility for compliance with accurate reporting of
+                                hours
+                                worked, requisite break periods, overtime, and related matters are the responsibility of
+                                your worksite employer, over which TriNet has no control;</p></li>
+                            <li class="no-bg liColor"><p>(b) TriNet is responsible for processing your payroll as
+                                directed
+                                by your company and pursuant to the written agreement between your company and
+                                TriNet;</p>
+                            </li>
+                            <li class="no-bg liColor"><p>(c) TriNet does not set your rate of pay, determine the hours
+                                you
+                                work, or determine your exempt/non-exempt status under the law; and</p></li>
+                            <li class="no-bg liColor"><p>(d) TriNet's responsibility for your pay is limited in the
+                                following ways:
+
+                                (i) If TriNet learns that it paid you an amount not authorized by your company, you
+                                agree to
+                                repay the amount to TriNet and you consent to TriNet reversing such payment, to the full
+                                extent permitted by law;
+
+                                (ii) If your company fails to fund its payroll, TriNet will use the minimum wage rate to
+                                calculate your pay based on the information available to it regarding your hours worked
+                                for
+                                such a payroll; and
+
+                                (iii) If you believe that your employer owes you more than what TriNet remits to you
+                                (including payment for time that you have worked, or for commissions and bonuses, time
+                                that
+                                you have taken or accrued as sick/vacation leave/paid time off, time for any other paid
+                                leave of absence or amounts in excess of minimum wage), this will be the sole liability
+                                of
+                                your worksite employer, and your recourse for collection of such unpaid amounts is
+                                against
+                                your company and not TriNet.</p></li>
+                        </ul>
+
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+            <!-- Panel 3 end -->
+
+            <!-- Panel 4 start -->
+            <!-- Privacy, Accuracy, Use, and Exchange of Information Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status4">
+                    <accordion-heading id=" TriNet Benefits">
+                        <b><span>4. TriNet Benefits</span></b><i class="pull-right glyphicon"
+                                                                 ng-class="{'icon-icon_Disclosure_Collapse': status4, 'icon-icon_Disclosure_Expand':!status4}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>TriNet offers you benefits consistent with the benefits offered to other similarly situated
+                            employees, subject to the terms and conditions of such benefits offerings and your proper
+                            and
+                            timely completion of TriNet's enrollment materials. You acknowledge and agree that you must
+                            abide by the rules set forth in TriNet's health and welfare plans, if you participate in
+                            those
+                            plans. You also acknowledge and agree that, if you are eligible for TriNet benefits but fail
+                            to
+                            submit a TriNet medical benefits election or fail to waive TriNet medical coverage within
+                            the
+                            required time frame, you will automatically be enrolled in the lowest-cost, employee-only,
+                            TriNet PPO medical plan that meets applicable state requirements, and corresponding payroll
+                            deductions for the medical premiums for this plan will be applied to and deducted from your
+                            paycheck.</p>
+                        <p>You understand that you have access to a copy of TriNet's Benefits Guidebook and Summary Plan
+                            Description (the "Guidebook") posted on TriNet Passport&reg;, as well as in PDF format that
+                            TriNet can email to you, and as a hardcopy that TriNet can mail to you. You agree to read
+                            the
+                            Guidebook carefully as it contains important information regarding TriNet's health and
+                            welfare
+                            plans.</p>
+                        <p>You understand that, if your company arranges to sponsor a different medical plan, you will
+                            not
+                            be eligible to participate in a medical plan sponsored by TriNet. In such case, you also
+                            understand and agree that your company may request that TriNet take deductions from your pay
+                            for
+                            the medical premiums associated with the medical plan sponsored by your company in which you
+                            participate. You hereby consent to such deductions, and you understand and agree that they
+                            will
+                            appear on your pay stub as a deduction amount and will be reported accordingly on your Form
+                            W-2.</p>
+                        <p>Finally, you understand and agree that information about your TriNet benefits enrollments,
+                            including but not limited to plan elections and the amounts of your salary redirections
+                            (including, if applicable, salary redirections for a retirement plan, health care flexible
+                            spending account, dependent day care flexible spending account, and similar arrangements),
+                            may
+                            be shared with your worksite employer, for the purpose of verifying billing accuracy and/or
+                            for
+                            any other lawful purpose, including the transition of your elections if and when your
+                            worksite
+                            employer ceases to do business with TriNet.</p>
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+
+            <!-- Panel 4 end -->
+
+            <!-- Panel 5 start -->
+            <!-- Privacy, Accuracy, Use, and Exchange of Information Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status5">
+                    <accordion-heading id=" Employee Handbook">
+                        <b><span>5. TriNet's Employee Handbook</span></b><i class="pull-right glyphicon"
+                                                                            ng-class="{'icon-icon_Disclosure_Collapse': status5, 'icon-icon_Disclosure_Expand':!status5}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p class="inline additional-policies">Here you will find a copy of <a id="empHandBook"
+                                                                                              target="_blank"
+                                                                                              class="inline"
+                                                                                              ng-click="empHandbookStatus()">TriNet's
+                            Employee Handbook</a> . Any addendum to the Handbook and additional policies applicable to
+                            your
+                            employment (collectively "Additional Policies") are found on TriNet Passport&reg;. Please
+                            review
+                            these documents as soon as possible and provide the Acknowledgement below, acknowledging
+                            that
+                            you understand and agree that it is your responsibility to read and familiarize yourself
+                            with
+                            the Handbook and Additional Policies. Hard copies of the handbook and any additional
+                            policies
+                            are available at your place of work, and your hiring manager can email a PDF of them to you.
+                        </p>
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+            <!-- Panel 5 end -->
+
+            <!-- Panel 6 start -->
+            <!-- Privacy, Accuracy, Use, and Exchange of Information Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status6">
+                    <accordion-heading id="At-WillRelationship">
+                        <b><span>6. At-Will Relationship</span></b><i class="pull-right glyphicon"
+                                                                      ng-class="{'icon-icon_Disclosure_Collapse': status6, 'icon-icon_Disclosure_Expand':!status6}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>Your relationship with TriNet is "at-will," meaning that you and TriNet have the right to
+                            terminate your employment at any time, with or without cause, and with or without advance
+                            notice. The only way to change the at-will employment relationship with TriNet is through a
+                            written agreement signed by TriNet's President. It cannot be otherwise changed by any course
+                            of
+                            conduct, policy, or statement, whether written or oral.</p>
+                    </div>
+                </accordion-group>
+            </accordion>
+
+
+            <!-- Panel 6 end -->
+
+            <!-- Panel 7 start -->
+            <!-- Confirmation of Roles Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status7">
+                    <accordion-heading id="Confirmation of Roles">
+                        <b><span>7. Confirmation of Roles</span></b><i class="pull-right glyphicon"
+                                                                       ng-class="{'icon-icon_Disclosure_Collapse': status7, 'icon-icon_Disclosure_Expand':!status7}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>If you work for a TriNet customer, you understand that the work you perform is for the direct
+                            benefit of that company and not TriNet. You understand that your company, and not TriNet,
+                            directs and controls your hiring, compensation, employment duties, and performance
+                            measurement.</p>
+                        <p>If you work for a TriNet customer and you are an officer or partner of that company, you
+                            understand that the written agreement between your company and TriNet does not relieve you
+                            of
+                            any legal responsibility you may have to employees of the company, taxing authorities, or
+                            TriNet, should your company fail to meet its payroll obligations.</p>
+                    </div>
+                </accordion-group>
+            </accordion>
+
+
+            <!-- Panel 7 end -->
+
+
+            <!-- panel 8 start -->
+            <!-- 8. TriNet Passport®, Indemnification, And Limits Of Liability Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status8">
+                    <accordion-heading id="Indemnification">
+                        <b><span>8. TriNet Passport®, Indemnification, And Limits Of Liability</span></b><i
+                            class="pull-right glyphicon"
+                            ng-class="{'icon-icon_Disclosure_Collapse': status8, 'icon-icon_Disclosure_Expand':!status8}"></i>
+                    </accordion-heading>
+                    <div class=" ">
+                        <p>TriNet Passport® is licensed to you subject to the terms and conditions in this TCA. You
+                            agree
+                            that TriNet Passport® constitutes confidential, proprietary, intellectual property of
+                            TriNet,
+                            that
+                            this license is revocable by TriNet at any time, and that you will not modify, reverse
+                            engineer,
+                            decompile or disassemble, or otherwise tamper with TriNet Passport® or create any derivative
+                            works
+                            or otherwise incorporate TriNet Passport® in other programs, without TriNet's prior written
+                            consent.
+                            Any feedback you provide will become TriNet information and TriNet will have the
+                            royalty-free
+                            right
+                            to share the feedback and to create and use derivative works based on the feedback.</p>
+                        <p>If you fail to protect the confidentiality of your password or if you submit inaccurate
+                            information to
+                            TriNet, you agree to indemnify and hold TriNet, its parents, subsidiaries, affiliates,
+                            officers
+                            and employees
+                            harmless from any claim, demand, penalty, or damage, including reasonable attorneys' fees
+                            and
+                            costs, asserted
+                            by any third party due to or arising out of your use of TriNet Passport® or TriNet's online
+                            services. TriNet
+                            will notify you within a reasonable period of time of any claim for which TriNet seeks
+                            indemnification and will
+                            afford you the opportunity to participate in the defense of any such claim, provided that
+                            your
+                            participation
+                            does not prejudice TriNet's interests, as determined by TriNet.</p>
+
+                        <p>Your licensed usage of TriNet Passport® is on an "As Is" basis and TriNet disclaims any and
+                            all
+                            warranties,
+                            express or implied, to the full extent permitted by law. For example, TriNet does not
+                            warrant
+                            that its online
+                            services or content will be uninterrupted or error-free, available at all times or in any
+                            and
+                            all geographic
+                            areas, or will meet any particular criteria of performance or quality. If you are
+                            dissatisfied
+                            with any portion
+                            of TriNet's TriNet Passport® or online services, or with any of these terms and conditions,
+                            your
+                            sole and
+                            exclusive remedy is to not use TriNet's TriNet Passport® or online services. In no event can
+                            TriNet be held
+                            liable for any indirect, punitive, incidental, consequential, or other special damages
+                            arising
+                            out of your use
+                            of TriNet Passport® or TriNet's online services</p>
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+            <!-- panel 8 end -->
+            <!-- panel 9 start -->
+
+
+            <!-- 9. Dispute Resolution Protocol ("DRP")  Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status9">
+                    <accordion-heading id="CoVsStandard">
+                        <b><span>9. Dispute Resolution Protocol ("DRP")</span></b><i class="pull-right glyphicon"
+                                                                                     ng-class="{'icon-icon_Disclosure_Collapse': status9, 'icon-icon_Disclosure_Expand':!status9}"></i>
+                    </accordion-heading>
+                    <accordion close-others="true" id="accordion">
+                        <accordion-group is-open="statusa">
+                            <accordion-heading id="DRPApplies">
+                                <b><span>a. How The DRP Applies</span></b><i class="pull-right glyphicon"
+                                                                             ng-class="{'icon-icon_Disclosure_Collapse': statusa, 'icon-icon_Disclosure_Expand':!statusa}"></i>
+                            </accordion-heading>
+                            <p>This DRP covers any dispute arising out of or relating to your relationship with TriNet,
+                                including,
+                                without limitation, this TCA and your use of TriNet Passport® and TriNet's online
+                                services.
+                                The Federal
+                                Arbitration Act applies to this DRP. Also, existing internal procedures for resolving
+                                disputes, as well
+                                as the option of mediation, will continue to apply with the goal being to resolve
+                                disputes
+                                before they are
+                                arbitrated. This DRP will survive termination of the relationship. <b>With only the
+                                    exceptions described below,
+                                    arbitration will replace going before a government agency or a court for a judge or
+                                    jury
+                                    trial.</b></p>
+                        </accordion-group>
+                    </accordion>
+                    <accordion close-others="true" id="accordion">
+                        <accordion-group is-open="statusb">
+                            <accordion-heading id=" LimitationsApplies">
+                                <b><span>b. Limitations On How The DRP Applies</span></b><i class="pull-right glyphicon"
+                                                                                            ng-class="{'icon-icon_Disclosure_Collapse': statusb, 'icon-icon_Disclosure_Expand':!statusb}"></i>
+                            </accordion-heading>
+                            <p>Claims may be brought before an administrative agency if applicable law allows such
+                                claims
+                                even when there is
+                                an arbitration agreement. This DRP does not, however, excuse a requirement that a party
+                                exhaust administrative remedies
+                                before making a claim in arbitration. This DRP does not prevent a party from bringing
+                                complaints, claims or charges before
+                                the Equal Employment Opportunity Commission, the U.S. Department of Labor, the National
+                                Labor Relations Board, or the Office
+                                of Federal Contract Compliance Program and does not prevent a party from bringing claims
+                                in
+                                any forum as provided in Public
+                                Laws 111-203, 111-118 & 112-10. Nor does this DRP apply to any disputes that are, at the
+                                time of your acknowledgement of the DRP,
+                                already the subject of an existing lawsuit or agency proceeding.</p>
+                        </accordion-group>
+                    </accordion>
+                    <accordion close-others="true" id="accordion">
+                        <accordion-group is-open="statusc">
+                            <accordion-heading id="Starting Arbitration">
+                                <b><span>c. Starting Arbitration</span></b><i class="pull-right glyphicon"
+                                                                              ng-class="{'icon-icon_Disclosure_Collapse': statusc, 'icon-icon_Disclosure_Expand':!statusc}"></i>
+                            </accordion-heading>
+                            <p>Before commencement of arbitration, the parties may, upon written agreement of the
+                                parties,
+                                submit the dispute to mediation. This DRP does not require mediation before commencing
+                                arbitration.</p>
+                            <p class="inline additional-policies">Arbitration begins by bringing a claim under the
+                                applicable arbitration rules and procedures of
+                                either the American Arbitration Association ("AAA") or the Judicial Arbitration and
+                                Mediation Services,
+                                Inc. ("JAMS"), as then in effect and as modified by any superseding provisions in this
+                                DRP.
+                                The party
+                                bringing the claim may choose to bring the claim before either AAA or JAMS. The
+                                applicable
+                                Arbitration
+                                Rules may be found on the internet at <a id="ADR" class="inline"
+                                                                         href="https://www.adr.org"
+                                                                         target="_blank">www.adr.org</a> and <a
+                                        id="jamsadr"
+                                        class="inline"
+                                        href="http://www.jamsadr.com"
+                                        target="_blank">www.jamsadr.com</a>
+                                or by using an internet search
+                                engine to locate the "AAA Arbitration Rules" and "JAMS Arbitration Rules." All claims in
+                                arbitration
+                                must be raised within the same time limits (statutes of limitation) that would apply in
+                                court. The
+                                arbitrator will be selected by mutual agreement of the parties and will be an
+                                experienced
+                                attorney
+                                licensed in the state where the arbitration will be held or retired judicial officer who
+                                served in
+                                that state as a judge. If the parties cannot agree on an arbitrator, the applicable AAA
+                                or
+                                JAMS rules
+                                will apply to appoint an arbitrator. The arbitration will be conducted in the city of
+                                TriNet's office
+                                closest to you.</p>
+                        </accordion-group>
+                    </accordion>
+                    <accordion close-others="true" id="accordion">
+                        <accordion-group is-open="statusd">
+                            <accordion-heading id="Proceedings Are">
+                                <b><span>d. How Arbitration Proceedings Are Conducted</span></b><i
+                                    class="pull-right glyphicon"
+                                    ng-class="{'icon-icon_Disclosure_Collapse': statusd, 'icon-icon_Disclosure_Expand':!statusd}"></i>
+                            </accordion-heading>
+                            <p>In arbitration, the parties will have the right to conduct adequate civil discovery,
+                                bring dispositive motions, and present witnesses and evidence as needed to present their
+                                cases and defenses. The specific provisions of this DRP and the applicable rules of AAA
+                                or
+                                JAMS will direct the arbitrator in decisions regarding the enforceability of this DRP
+                                and in
+                                conducting the arbitration.</p>
+                            <p><b>There will be no right or authority for any dispute to be brought, heard or arbitrated
+                                as
+                                a class,
+                                collective, representative or private attorney general action, or as a member in any
+                                purported class, collective,
+                                representative or private attorney general proceeding, including, without limitation,
+                                uncertified class actions
+                                ("Class Action Waiver"); provided, however, that you may opt out of the Class Action
+                                Waiver
+                                by clicking this box
+                                <input type="checkbox" disabled>
+                                before you click below to acknowledge this TCA. </b>Disputes regarding the validity and
+                                enforceability of the Class
+                                Action Waiver may be resolved only by a civil court of competent jurisdiction and not by
+                                an
+                                arbitrator. In any case
+                                in which (1) the dispute is filed as a class, collective, representative or private
+                                attorney
+                                general action and (2)
+                                a civil court of competent jurisdiction finds all or part of the Class Action Waiver
+                                unenforceable, the class,
+                                collective, representative and/or private attorney general action must be litigated in a
+                                civil court of competent
+                                jurisdiction, but the portion of the Class Action Waiver that is enforceable shall be
+                                enforced in arbitration.
+                                No employee will be retaliated against, disciplined or threatened with discipline for
+                                exercising his or her rights
+                                under Section 7 of the National Labor Relations Act (NLRA) by the filing of or
+                                participation
+                                in a class, collective
+                                or representative action, but TriNet (and, if applicable, any TriNet customer interested
+                                in
+                                enforcing this DRP for
+                                its own benefit) retains the right to enforce this DRP and the Class Action Waiver under
+                                the
+                                Federal Arbitration Act
+                                and to seek dismissal of class, collective or representative actions. </p>
+                            <p>During the arbitration each party will pay his, her or its own attorneys' fees, subject
+                                to
+                                any
+                                remedies to which that party may later be entitled under applicable law. In all cases
+                                where
+                                the law
+                                requires it, TriNet (and, if applicable, any TriNet customer interested in enforcing
+                                this
+                                DRP for its
+                                own benefit) will pay the arbitrator's and arbitration fees. In cases in which
+                                apportionment
+                                of the
+                                arbitrator's and arbitration fees is permitted by applicable law, these fees will be
+                                divided
+                                between
+                                the parties as is required by law and determined by the arbitrator.</p>
+                        </accordion-group>
+                    </accordion>
+                    <accordion close-others="true" id="accordion">
+                        <accordion-group is-open="statuse">
+                            <accordion-heading id="Arbitration">
+                                <b><span>e. The Arbitration Hearing And Award</span></b><i class="pull-right glyphicon"
+                                                                                           ng-class="{'icon-icon_Disclosure_Collapse': statuse, 'icon-icon_Disclosure_Expand':!statuse}"></i>
+                            </accordion-heading>
+                            <p>Within 30 days after the end of the arbitration hearing, any party may file a written
+                                brief
+                                by providing copies to the arbitrator and the other parties.
+                                The arbitrator may award any remedy warranted under applicable law and will include a
+                                written opinion providing reasoned explanations for the decision.
+                                Neither a party nor the arbitrator will disclose the existence, content, or results of
+                                the
+                                arbitration without the prior written consent of all parties or
+                                in accordance with the arbitrator's decision that disclosure is permitted by law. A
+                                court of
+                                competent jurisdiction will have the authority to enter a judgment
+                                upon the arbitration award. To the extent, if at all, allowed by applicable law, the
+                                award
+                                may be vacated or corrected on appeal to a court of competent jurisdiction.</p>
+                        </accordion-group>
+                    </accordion>
+                    <accordion close-others="true" id="accordion">
+                        <accordion-group is-open="statusf">
+                            <accordion-heading id="Enforcement">
+                                <b><span>f. Enforcement Of The DRP</span></b><i class="pull-right glyphicon"
+                                                                                ng-class="{'icon-icon_Disclosure_Collapse': statusf, 'icon-icon_Disclosure_Expand':!statusf}"></i>
+                            </accordion-heading>
+                            <p>This DRP is the full and complete agreement relating to arbitration as the means to
+                                resolve
+                                covered
+                                disputes. If any portion of this DRP is determined to be unenforceable, the remainder of
+                                this DRP still
+                                will be enforceable, subject to the specific exception in section d, above.<b>With
+                                    respect
+                                    to covered disputes,
+                                    each party waives any rights under the law for a jury trial and agrees to
+                                    arbitration in
+                                    accordance with the terms of this DRP.</b></p>
+                        </accordion-group>
+                    </accordion>
+
+                </accordion-group>
+            </accordion>
+
+
+            <!-- Panel 9 end -->
+
+            <!-- Panel 10 start -->
+            <!--  Acknowledgement Toggle -->
+            <accordion close-others="true" id="accordion">
+                <accordion-group is-open="status10">
+                    <accordion-heading id="Acknowledgement">
+                        <b><span>10. Acknowledgement </span></b><i class="pull-right glyphicon"
+                                                                   ng-class="{'icon-icon_Disclosure_Collapse': status10, 'icon-icon_Disclosure_Expand':!status10}"></i>
+                    </accordion-heading>
+                    <p>By clicking below, I am acknowledging that I have read and understand the contents of this Terms
+                        and Conditions Agreement
+                        (including, but not limited to, the DRP), that I have the responsibility to read and familiarize
+                        myself with the TriNet Employee
+                        Handbook and Additional Policies for my company and that I agree to abide by the terms and
+                        conditions set forth above and the
+                        policies and procedures set forth in the Employee Handbook and Additional Policies.</p>
+
+                    <p>I understand that my employment with TriNet is at-will and that either I or TriNet can terminate
+                        the employment relationship
+                        at any time, with or without reason. I understand that the policies of TriNet and my company can
+                        be changed at any time, and I
+                        understand and acknowledge that none of the at-will-related language in this TCA, the Employee
+                        Handbook or elsewhere is intended
+                        to limit the exercise of rights under Section 7 of the NLRA. Finally, I agree to abide by the
+                        terms and conditions set forth above
+                        and the policies and procedures set forth in the Employee Handbook, Addendum and Additional
+                        Policies.</p>
+
+                    <p>Finally, I understand and agree that TriNet may change this TCA as well as its policies,
+                        procedures, and benefits at any time in
+                        its sole discretion, that any updated versions of the same will be available on TriNet
+                        Passport &reg; and will be binding on me and that
+                        my continued employment with TriNet constitutes acceptance of any revised documents.</p>
+                    <p>If you do not wish to receive such documents by electronic delivery, or if you withdraw your
+                        consent to electronic delivery, you will receive your Form W-2, COBRA notice, or other such
+                        documents in hard copy form at no charge.</p>
+                </accordion-group>
+            </accordion>
+
+            <!-- Panel 10 end -->
+
+        </div>
+    </div>
+</div>
+
+</div>
+<!--
+<script>
+    angular.element("#accordion").accordion({
+        heightStyle: "content"
+    });
+
+    angular.element('#accordion').accordion({
+        collapsible: true,
+        beforeActivate: function (event, ui) {
+            var currHeader, currContent, isPanelSelected;
+            // The accordion believes a panel is being opened
+            if (ui.newHeader[0]) {
+                currHeader = ui.newHeader;
+                currContent = currHeader.next('.ui-accordion-content');
+                // The accordion believes a panel is being closed
+            } else {
+                currHeader = ui.oldHeader;
+                currContent = currHeader.next('.ui-accordion-content');
+            }
+            // Since we've changed the default behavior, this detects the actual status
+            isPanelSelected = currHeader.attr('aria-selected') === 'true';
+
+            // Toggle the panel's header
+            currHeader.toggleClass('ui-corner-all', isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top', !isPanelSelected).attr('aria-selected', ((!isPanelSelected).toString()));
+
+            // Toggle the panel's icon
+            currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e', isPanelSelected).toggleClass('ui-icon-triangle-1-s', !isPanelSelected);
+
+            // Toggle the panel's content
+            currContent.toggleClass('accordion-content-active', !isPanelSelected);
+            if (isPanelSelected) {
+                currContent.slideUp();
+            } else {
+                currContent.slideDown();
+            }
+
+            return false; // Cancels the default action
+        }
+
+    });
+
+
+    angular.element("div.accordian").accordion({
+        autoHeight: true,
+        collapsible: true,
+        active: false
+    });
+
+    angular.element("#accordion h3").click(function () {
+        var res = angular.element(this).attr('aria-selected'),
+                clickedId = angular.element(this).attr('id');
+        if (!res) {
+            if (angular.element("#" + clickedId).hasClass("icon-icon_Disclosure_Collapse ")) {
+                angular.element("#" + clickedId + " .indicator").removeClass("icon-icon_Disclosure_Collapse");
+                angular.element("#" + clickedId + " .indicator").addClass("icon-icon_Disclosure_Expand");
+                angular.element("#faqs-container div").addClass('nestedAccordian');
+            }
+            else {
+                angular.element("#" + clickedId + " .indicator").removeClass("icon-icon_Disclosure_Expand ");
+                angular.element("#" + clickedId + " .indicator").addClass("icon-icon_Disclosure_Collapse");
+            }
+
+        }
+        else {
+            if (angular.element("#" + clickedId + " .indicator").hasClass("icon-icon_Disclosure_Collapse")) {
+                angular.element("#" + clickedId + " .indicator").removeClass("icon-icon_Disclosure_Collapse");
+                angular.element("#" + clickedId + " .indicator").addClass("icon-icon_Disclosure_Expand");
+                angular.element("#faqs-container div").addClass('nestedAccordian');
+            }
+            else {
+                angular.element("#" + clickedId + " .indicator").removeClass("icon-icon_Disclosure_Expand");
+                angular.element("#" + clickedId + " .indicator").addClass("icon-icon_Disclosure_Collapse");
+            }
+        }
+
+    });
+</script>
+-->
+
+
+

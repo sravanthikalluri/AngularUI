@@ -1,0 +1,12 @@
+{
+  "respnoseCode": null,
+  "status": null,
+  "message": null,
+  "statusCode": "200",
+  "statusMessage": "Success",
+  "resource": {
+    "orgDesc": "Vocera Communications CAN",
+    "effdt": "28-OCT-05",
+    "acaFlag": "N/A"
+  }
+}

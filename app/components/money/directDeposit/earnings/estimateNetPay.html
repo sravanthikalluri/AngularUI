@@ -1,0 +1,46 @@
+<div>
+    <alert-view></alert-view>
+    <div class="clearfix">&nbsp;</div>
+    <div class="modal-header modal-popup-title">
+        <h4 class="modal-title" id="myModalLabel" ng-bind="::translation.money.direct_deposit.estimated_net_pay"></h4>
+    </div>
+    <div class="modal-body col-md-12">
+        <div class="col-md-2 col-sm-2 no-pad"></div>
+        <div class="col-md-8 col-sm-10 no-pad">
+            <label class="small" ng-show="isLastPaycheck"
+                   ng-bind="::translation.money.direct_deposit.the_net_pay_for"></label>
+            <label class="small" ng-hide="isLastPaycheck" ng-bind="::translation.money.direct_deposit.est_for"></label>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-6 no-pad">
+                <form id="estimateform" name="estForm">
+
+                    <input id="estimateinput" class=" form-control estimate" maxlength="8" ng-pattern="/^[0-9\.]+$/"
+                           ng-model="earningsCheckAmount.estimatedPayCheck"
+                           />
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <button id="recetBtn" class="trinet-secondary-action-btn small reset-button no-marg"
+                        ng-click="resetToLastPaycheck()"
+                        ng-bind="::translation.money.direct_deposit.reset_last_paycheck"></button>
+            </div>
+            <div class="clearfix">&ensp;</div>
+            <div class="col-md-12 no-pad">
+                <a id="payrollcal" class="pull-left estimate-net-action"
+                   ng-bind="::translation.money.direct_deposit.payroll_calculator">
+                </a>
+
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2 no-pad"></div>
+    </div>
+    <div class="modal-footer">
+        <button id="estimatesaveBtn" name="save" class="trinet-primary-action-btn" type="submit"
+                ng-click="updateEstimate(selectedEffectiveDate.data,earningsCheckAmount.estimatedPayCheck)"
+                ng-bind="::translation.update">Update
+        </button>
+        <button id="estimatecancelBtn" class="trinet-secondary-action-btn"
+                ng-click="estCancel(earningsCheckAmount.estimatedPayCheck)" ng-bind="::translation.cancel"></button>
+    </div>
+</div>

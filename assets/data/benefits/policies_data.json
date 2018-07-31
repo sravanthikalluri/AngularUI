@@ -1,0 +1,54 @@
+{
+  "resource": [
+    {
+      "id": 1,
+      "heading": "Benefits Overview",
+      "subheading": "Look at your company's contributions for each plan in your company's benefits package."
+    },
+    {
+      "id": 2,
+      "heading": "Benefits Guide Book",
+      "subheading": "Information you need to explore all of your benefits options."
+    },
+    {
+      "id": 3,
+      "heading": "Benefits Summary",
+      "subheading": "Look at the cost of each plan in your company's benefits package."
+    },
+    {
+      "id": 4,
+      "heading": "Summary Plan Description",
+      "subheading": "Contains in-depth information about your benefits coverage."
+    },
+    {
+      "id": 5,
+      "heading": "ACA Marketplace Notifications",
+      "subheading": "New Health Insurance Marketplace Coverage Options and Your Health Coverage"
+    },
+    {
+      "id": 6,
+      "heading": "State & Federal Notices",
+      "subheading": "Please review some important information about your rights."
+    },
+    {
+      "id": 7,
+      "heading": "Additional Policies",
+      "subheading": ""
+    },
+    {
+      "id": 8,
+      "heading": "Benefits Carrier Contacts",
+      "subheading": "Provider Directories. Search for healthcare providers who serve your geographic area."
+    },
+    {
+      "id": 9,
+      "heading": "MetLife Benefits",
+      "subheading": "Bolster your benefits with voluntary benefits options: Annuities, Auto, Critical Illness, Home, Pet Insurance, Variable Life, and much more."
+    },
+    {
+      "id": 10,
+      "heading": "Aflac Benefits",
+      "subheading": "Gain additional insurance options from Aflac."
+    }
+  ]
+}

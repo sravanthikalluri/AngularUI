@@ -1,0 +1,183 @@
+<!--
+Description: This is first page of benefits policies which will displays information to user about benefits policies.
+ -->
+
+<div class="benefit-policies-general marg-left-15" id="policiesId">
+    <div class="row no-marg">
+        <alert-view></alert-view>
+
+        <div class="col-md-8 col-md-8 top-marg-10" id="header-bar">
+            <h2 class="heading-legal trient-benefits-head">{{::translation.my_benefits.legalNotices.heading}}</h2>
+        </div>
+
+    </div>
+
+    <div class="row row-top-margin row-pad">
+        <div ng-repeat="benefitsPoliciesDataObject in benefitsPoliciesData.legalNoticesList | limitTo:0:3">
+            <!-- tile template -->
+            <div id="{{benefitsPoliciesDataObject.title |  lowercase}}"
+                 class="col-md-4 column-pad tile company-policies-selected"
+                 ng-click="selectTab($event,$index+1);selectedTile($index)">
+                <div class="title-block" ng-class="{'active': $index+1 == tab}"
+                     id="sidebar{{benefitsPoliciesDataObject.id}}">
+                    <h4>{{::benefitsPoliciesDataObject.title}}</h4>
+                    <p class="content-text">{{::benefitsPoliciesDataObject.text}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Hidden Row-->
+    <div class="row policies-data no-pad">
+        <div class="col-md-12 no-pad pad-top-10">
+
+            <div class="content-block no-pad tilePanel" id="nav1" ng-if='isSelected(1)'>
+                <div class="col-md-12 no-pad">
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center hidden"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center hidden"><span class="arrow-up"></span></div>
+                </div>
+                <div class="policies-info-box panel-body-background ">
+                    <div class="col-md-12 no-pad">
+                        <button id="overviewClose" type="button" class="close" aria-label="Close"
+                                ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+
+
+                    <div ng-include="selectedUrlLink"></div>
+                </div>
+            </div>
+
+            <div class="content-block no-pad tilePanel" id="nav2" ng-if='isSelected(2)'>
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up hidden"></span></div>
+                </div>
+                <div class="policies-info-box">
+                    <div class="col-md-12">
+                        <button id="guideClose" type="button" class="close" aria-label="Close" ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    <div class="panel-group" id="accordion">
+                        <!--First Panel-->
+                        <div class="panel panel-default">
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body panel-body-background general-notice">
+
+                                    <ul class="no-pad" ng-repeat="data in  innerTileData.reportsNotices">
+                                        <li class="block">
+                                            <a id="currBook{{$index}}" ng-href="{{data.url | contentUrl}}"
+                                               class="pull-left"
+                                               target="_blank"><span class="icon-icon_pdf"></span>
+                                                <span id="currBookdates{{$index}}">{{::data.text}}	</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of First Panel-->
+                    </div>
+
+                </div>
+            </div>
+            <div class="content-block no-pad tilePanel" id="nav3" ng-if='isSelected(3)'>
+                <div class="col-md-12">
+                    <div class="col-md-4 text-center "><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center "><span class="arrow-up hidden"></span></div>
+                    <div class="col-md-4 text-center"><span class="arrow-up"></span></div>
+                </div>
+                <div class="policies-info-box visible clearfix">
+                    <div class="col-md-12">
+                        <button id="summaryClose" type="button" class="close" aria-label="Close"
+                                ng-click="closePanel()">
+                            <span aria-hidden="true" class="icon-close-temp"></span>
+                        </button>
+                    </div>
+                    <div class="panel-group" id="accordiontwo">
+                        <!--First Panel-->
+                        <div class="panel panel-default">
+                            <div id="collapsetwo" class="panel-collapse collapse in">
+                                <div class="panel-body panel-body-background general-notice">
+
+                                    <ul class="no-pad" ng-repeat="data in  innerTileData.reportsNotices">
+                                        <li class="block">
+                                            <a id="currBooktwo{{$index}}" ng-href="{{data.url | contentUrl}}"
+                                               class="pull-left"
+                                               target="_blank"><span class="icon-icon_pdf"></span>
+
+                                                <span id="currBookdatestwo{{$index}}">{{::data.text}}	</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of First Panel-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <no-records></no-records>
+    <!--Hidden Row-->
+
+    <!-- Tile row 4 end -->
+    <div class="row general-info">
+
+        <div class="row general-info ">
+            <h4 class="general" ng-bind="::translation.my_benefits.policies.otherHealthPlan"></h4>
+            <div class="clearfix block">
+                <div class="col-md-3 column-pad col-sm-3"
+                     ng-repeat="benefitsPoliciesDataObject in benefitsPoliciesJsonData.slice(17, 21)">
+                    <a id="otherFirst{{$index}}" ng-href="{{benefitsPoliciesDataObject.documentUrl}}" target="_blank">
+                        <div class="title-img">
+
+                            <img ng-src="{{benefitsPoliciesDataObject.imgurl}}" class="img-responsive">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="row general-info">
+                <h4 class="general" ng-bind="::translation.my_benefits.policies.otherSupPlan"></h4>
+                <div class=" ">
+                    <div class="col-md-3 col-sm-3 column-pad"
+                         ng-repeat="benefitsPoliciesDataObject in benefitsPoliciesJsonData.slice(21, 30)">
+                        <a id="otherSecond{{$index}}" ng-href="{{benefitsPoliciesDataObject.documentUrl}}"
+                           target="_blank">
+                            <div class="title-img">
+                                <img ng-src="{{benefitsPoliciesDataObject.imgurl}}" class="img-responsive">
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-md-1 text-right pull-right no-pad" id="go-to-top">
+                <a href="javascript:;" ng-click="gotoAnchor()"></a>
+
+                <a id="toTop" scroll-to="policiesId"><span class="icon-icon_backtotop b2t"></span></a>
+            </div>
+            <!--end of container-content-->
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 10) {
+            $('#go-to-top').fadeIn();
+        } else {
+            $('#go-to-top').fadeOut();
+        }
+    });
+</script>

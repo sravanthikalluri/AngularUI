@@ -1,0 +1,572 @@
+@import '../global';
+
+.create-leave-request {
+
+  h3 {
+    color: #494949;
+    font-size: 24px;
+    margin: 0;
+    padding: 5px 10px;
+  }
+  p {
+    font-weight: 400;
+  }
+
+  label {
+    display: inline-block !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    width: auto;
+  }
+  label.reason-for-leave-option {
+    float: left !important;
+    position: relative;
+    top: 8px;
+    padding: 0;
+  }
+  .icon-icon_radiobutton_select {
+    color: $Trinet-blue;
+  }
+  .note-textarea {
+    height: 100px !important;
+    resize: none;
+  }
+  .dropdown-border {
+    border: 1px solid #494949;
+    display: inline;
+    width: 100%;
+    position: relative;
+    top: 10px;
+
+    .dropdown-toggle {
+      padding: 4px 5px;
+      font-size: 14px;
+      color: $Trinet-dark-gray !important;
+      span {
+        font-size: 13px !important;
+        color: $Trinet-gray;
+      }
+      img {
+        position: relative;
+        top: 7px;
+      }
+    }
+    .add-new {
+      position: relative;
+      top: 10px;
+    }
+  }
+  .marg-top-15 {
+    margin-top: 15px;
+  }
+  .top-15 {
+    position: relative;
+    top: 15px;
+  }
+  .top-10 {
+    position: relative;
+    top: 10px;
+  }
+  .top-20 {
+    position: relative;
+    top: 20px;
+  }
+  .add-new {
+    position: relative;
+    top: 12px;
+    a {
+      padding: 0 5px;
+    }
+  }
+  .date-border {
+    border: 1px solid #494949;
+    display: inline-block;
+    margin: 0 0 $margin/2 0;
+    height: 30px;
+    overflow: hidden;
+    input {
+      width: 107px;
+    }
+    .cal {
+      position: relative;
+      top: 1px;
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+  .leave-active {
+    border: 3px solid $Trinet-blue !important;
+
+    span {
+      color: $Trinet-blue;
+    }
+  }
+  .text-padding {
+    /*padding-left:$padding*4;*/
+    font-size: 16px;
+  }
+
+  .well {
+
+    margin-top: $margin+5;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+  .req-align {
+    color: $Trinet-dark-gray;
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: $margin;
+    /*margin-left: ($margin*3)+5;*/
+  }
+
+  .jennif-align {
+    font-weight: 700;
+    position: relative;
+    top: -1px;
+  }
+
+  .emp-align {
+    color: $Lighter-gray;
+  }
+
+  .myfield-content {
+    border-top: 1px solid $Lighter-gray;
+    padding: $padding*2 $padding*3 $padding*3 $padding*2;
+
+    margin-bottom: $margin;
+    background: $Background;
+  }
+
+  .profile-details {
+    padding: $margin+5 0;
+    margin: $margin 0 0 0;
+    background: $White !important;
+
+    p {
+      padding-top: ($padding)-(2);
+    }
+
+  }
+
+  .date-status {
+    @extend .block;
+    ul {
+      padding: 0;
+      li {
+        margin-bottom: $margin/2;
+        display: -webkit-box;
+        clear: both;
+      }
+    }
+  }
+
+  h3 {
+
+  }
+
+  .star {
+    color: $Trinet-blue;
+    font-size: 18px;
+  }
+  /*label{font-weight:normal;}*/
+
+  .circle-icon {
+    font-size: 18px;
+    margin-right: $margin;
+
+  }
+
+  label {
+    color: #494949;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: 400;
+  }
+
+  .radio-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+  }
+  .pad22 {
+    padding-left: 22px;
+  }
+  .para-style {
+    margin-top: $margin*2 !important;
+    font-weight: bold;
+    padding-left: $padding;
+  }
+  .marg-bottom {
+    margin-bottom: $margin;
+  }
+  .marg-top {
+    margin-top: 17px;
+  }
+  .marg-hrs {
+    margin-right: 20px;
+  }
+  .additional-box {
+    height: 30px;
+    padding: 0 10px !important;
+    position: relative;
+    text-align: right;
+    width: 70px
+  }
+  .dd-larg {
+    border: 1px solid #494949;
+    display: inline;
+    width: 100%;
+    position: relative;
+    top: 0px;
+    .dropdown-toggle {
+      padding: 4px 5px;
+      font-size: 14px;
+      color: $Trinet-dark-gray !important;
+      span {
+        font-size: 15px !important;
+        color: $Trinet-gray;
+      }
+      img {
+        position: relative;
+        top: 7px;
+      }
+    }
+
+  }
+  select {
+    border: 1px solid $Trinet-gray !important;
+  }
+
+  .learn-color {
+    color: $Trinet-orange;
+    position: relative;
+    padding: 0;
+    top: 6px;
+
+    [class*="icon-"] {
+      font-size: 12px;
+      display: inline-block;
+      position: relative;
+      top: 1px;
+    }
+
+  }
+  .icon-icon_checkmarkwithbox {
+    color: $Trinet-blue;
+    font-weight: 600;
+  }
+  .additional-box2 {
+    height: 30px;
+    padding: 0 10px !important;
+    position: relative;
+    text-align: right;
+    top: 2px;
+    width: 60px
+  }
+  .icon-icon_trash {
+    color: $Trinet-gray;
+  }
+}
+
+.container-content {
+  h3 {
+    font-weight: 600;
+  }
+  .disabled {
+    opacity: 0.5;
+  }
+}
+
+.employee-change-list {
+  @extend .block;
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      display: table;
+      width: 100%;
+      margin: $margin/2 0 $margin;
+
+      ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin: 0;
+
+          .icon-icon_Dropdown_Arrow {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.request-leave-adjust {
+  margin-left: 33px;
+}
+
+.label-adjustment {
+  position: relative;
+  top: -11px;
+}
+
+.leave-type {
+  margin-bottom: 3px;
+
+  p.marg-hrs {
+    padding-top: $padding/2;
+  }
+  .icon-icon_trash {
+    padding-top: $padding/2+2;
+    float: left;
+  }
+}
+
+.reason-for-leave {
+  margin-bottom: $margin/2;
+  @extend .block;
+}
+
+.reason-for-leave-option {
+  padding-left: $padding*8;
+  float: left !important;
+}
+
+.marg-top-7 {
+  margin-top: $margin/2+2;
+}
+
+.return-from-leave {
+  label {
+    float: left !important;
+    text-align: left;
+  }
+}
+
+.retirement-plan-popup-checkbox {
+  @extend .block;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    float: left !important;
+    margin-right: $margin/2 !important;
+    margin-top: 0 !important;
+  }
+}
+
+.hr-det {
+  color: $Lighter-gray;
+  font-size: 15px;
+}
+
+.disabled-date-adjustment {
+  margin-left: $margin/2;
+}
+
+.fsa-adj {
+  .imp-left {
+    position: relative;
+    top: 8px;
+    margin-left: $margin*2;
+  }
+
+  .White-bg {
+    border: 3px solid $White;
+  }
+}
+
+.marg-top-10-imp {
+  margin-top: $margin !important;
+}
+
+.left-leave-pad {
+  padding-left: 2px !important;
+}
+
+.text-left-imp {
+  text-align: left !important;
+}
+
+.extend-leave-open-title {
+  font-weight: bold;
+  margin: $margin 0 !important;
+  @extend .block;
+}
+
+.return-from-leave-title-adj {
+  padding: $padding+5 $padding !important;
+  @extend .block;
+  line-height: auto;
+  float: left !important;
+  width: 100% !important;
+  line-height: 40px !important;
+  margin: auto;
+}
+
+.date-pick {
+  border: 1px solid #000;
+  margin-bottom: 5px;
+}
+
+select:required:invalid {
+  color: $Trinet-gray;
+  font-weight:$fontWeight-100;
+}
+
+option[value=""][disabled] {
+  display: none;
+}
+
+option {
+  color: black;
+  padding: 10px !important;
+  white-space: pre;
+  min-height: 1.2em;
+}
+
+.marg-top-3 {
+  margin-top: 3px;
+}
+
+.currentdependent {
+  font-size: 28px !important;
+}
+
+.currentdependent-popup {
+  display: block;
+
+  .modal-header {
+    @extend .block;
+
+    .Trinet-dark-blue {
+      color: $Trinet-dark-blue;
+    }
+  }
+}
+
+#demotiondetails, #employeetransferdetails {
+  label {
+    position: relative;
+    top: 5px;
+  }
+}
+.return-leave-plan-form {
+    .calender-input{
+        width: 130px;
+        border:1px solid #ddd;
+        label{
+            margin-top: 6px;
+        }
+    }
+    .checkbox-inline{
+    font-size: 12px !important;
+    margin-top: -6px;
+    }
+    select{
+        max-width: 300px;
+    }
+    .form-group{
+        width: 100%;
+        padding: 20px;
+        margin: 10px;
+        background: #fff;
+    }
+    .form-return-plan{
+        border-top:1px solid #ddd;
+        background: #f5f5f5;
+        .innerSections {
+            margin: 5px 0 15px 0;
+            .form-label{
+                min-width: 250px;
+            }
+        }
+    }
+    .tooltip{
+        width: 170px;
+    }
+    .input-mini{
+        width: 65px;
+        margin: 0 10px;
+    }
+    .input-midium
+    {
+        width: 120px;
+        margin: 0 0 0 10px;
+    }
+    .delete-icon{
+        display: inline-block;
+        margin: 0 10px;
+    }
+    .send-mail{
+        display: inline-block;
+        color: #E37222;
+    }
+    .addPiadHours{
+        margin-bottom:10px;
+    }
+    .input-tooltip{
+        top:100%;
+        left: 0 !important;
+    }
+    .radio {
+        label{
+            width: 100px;
+        }
+    }
+    .adjHintText{
+        position: absolute;
+        left:0;
+        top:100%;
+    }
+    .checkbox-inline {
+        .adj-checkbox{
+            width: 15px;
+            height: 15px;
+            position: relative;
+            top: 3px;
+            right: 6px;
+        }
+    }
+    .horizontal-radio{
+        &.isSelect{
+            border: 3px solid #0073CF;
+        }
+        border: 3px solid transparent;
+        label{
+            width: 100%;
+            display: flex !important;
+            align-items: flex-start;
+            &> span{
+                display: inline-block;
+                margin-top: 7px;
+            }
+        }
+    }
+    .form-control-textArea{
+        height: auto !important;
+        width: 65%;
+    }
+
+}
+.extendRequestTerms {
+    padding-left: 15px;
+    li {
+        list-style-type: disc;
+    }
+}
+.benefitPremiumRepayment{
+    display: inline-block;
+}
+.asterisk.adjAsterisk {
+    right: -4px;
+    top: 20px;
+}
